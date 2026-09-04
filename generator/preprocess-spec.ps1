@@ -8,7 +8,8 @@
     1. Parse the raw capture and report its observed byte count and sha256.
     2. Transform T1, the root security repair. Whisparr declares both API key schemes and then
        serves an empty requirement, so the generated client would carry no auth call site at
-       all. The repair sets the auth-optional, both-schemes form.
+       all. The repair sets the auth-optional, both-schemes form. -SecurityVariant selects one
+       of three closed values for the PREP-02 evidence run; only the default may be promoted.
     3. Transform T2, the malformed root path. paths["/"] is a StaticResource catch-all whose
        operation the generator turns into a method that shadows the client root. Deleting it
        takes the document from 190 paths and 273 operations to 189 and 272.
@@ -117,7 +118,19 @@ param(
     # the committed review artifact with one whose section 1 shows a security block nobody
     # chose. An explicit value still wins and resolves like every other path here, absolute as
     # given and relative against the repository root.
-    [string]$ReportPath = ''
+    [string]$ReportPath = '',
+
+    # Which root security value T1 writes (PREP-02, D-01). A closed validated set, never a free
+    # string: the whole point of the parameter is to generate the losing variant and count its
+    # auth call sites, and a typo that silently produced a fourth shape would be read as a fact
+    # about the variant rather than about the input. OptionalBothSchemes is the committed choice.
+    # SingleSchemeMandatory is the losing variant. AsCaptured leaves the document's own security
+    # untouched and is the negative control: without a run showing zero auth call sites from the
+    # captured [{},{}], the two variant numbers have nothing to be measured against.
+    #
+    # Only the default may be promoted to the committed output path; see the guard at step 0.
+    [ValidateSet('OptionalBothSchemes', 'SingleSchemeMandatory', 'AsCaptured')]
+    [string]$SecurityVariant = 'OptionalBothSchemes'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -136,6 +149,16 @@ $DefaultOutFile = 'spec/openapi.generated.json'
 # single-element array piped through the serializer unrolls into an object. The three-element
 # form below is unaffected, but a later single-element variant would be corrupted silently.
 $SecurityOptionalBothSchemes = '[{},{"X-Api-Key":[]},{"apikey":[]}]'
+# The losing variant, kept beside the winner so the evidence run measures it from the committed
+# pipeline rather than from an ad-hoc edit. Parsed from a literal for a reason that matters here
+# and not above: a SINGLE-element PowerShell array piped into a serializer unrolls into an OBJECT,
+# so this value built the other way would become {"X-Api-Key":[]} where the spec requires an
+# array, the generator would do something arbitrary with it, and the resulting call-site count
+# would be read as a fact about the variant rather than about the code that produced it.
+$SecuritySingleSchemeMandatory = '[{"X-Api-Key":[]}]'
+# The variant that may be promoted onto the committed deliverable. Any other value is an evidence
+# run and must carry a scratch -OutFile.
+$DefaultSecurityVariant = 'OptionalBothSchemes'
 # The floor below which the staged document cannot be an honest patched spec. The capture is
 # 381,380 bytes and its depth-2 truncation is 48,452 after LF normalization, so anything in
 # between is a wide margin around a defect that has no near miss.
@@ -336,6 +359,17 @@ try {
         Write-Host '  Pass -OutFile with a scratch path as well. A fixture run must not promote itself onto the committed spec.' -ForegroundColor Red
         exit 1
     }
+    # And this protects it from a non-default security variant. The evidence run generates the
+    # losing variant and the as-captured control on purpose; neither may become the spec Phase 20
+    # generates from, because that would ship an auth shape nobody chose and the failure would
+    # surface as a generated client that authenticates differently, not as an error here.
+    if ($SecurityVariant -cne $DefaultSecurityVariant -and $OutPath -eq $DefaultOutPath) {
+        Write-Host 'ERROR: REFUSED - a non-default security variant may not be written to the committed output path.' -ForegroundColor Red
+        Write-Host "  variant $SecurityVariant, default $DefaultSecurityVariant" -ForegroundColor Red
+        Write-Host "  output  $OutPath" -ForegroundColor Red
+        Write-Host '  Pass -OutFile with a scratch path. Only the default variant may be promoted onto spec/openapi.generated.json.' -ForegroundColor Red
+        exit 1
+    }
     if (-not (Test-Path -LiteralPath $RawPath)) {
         Write-Host "ERROR: REFUSED - no input document at $RawPath." -ForegroundColor Red
         exit 1
@@ -442,9 +476,13 @@ try {
     $SecurityBefore = if ($null -eq $Document['security']) { '(absent)' } else { $Document['security'].ToJsonString() }
     # Replaced in place, which keeps security at its position in the root key order. A removal
     # followed by an add would move it to the end and inflate the diff against the capture.
-    $Document['security'] = [System.Text.Json.Nodes.JsonNode]::Parse($SecurityOptionalBothSchemes)
-    $SecurityAfter = $Document['security'].ToJsonString()
-    Write-Host "  + T1 security $SecurityBefore -> $SecurityAfter" -ForegroundColor Green
+    if ($SecurityVariant -cne 'AsCaptured') {
+        $SecurityLiteral = if ($SecurityVariant -ceq 'SingleSchemeMandatory') { $SecuritySingleSchemeMandatory } else { $SecurityOptionalBothSchemes }
+        $Document['security'] = [System.Text.Json.Nodes.JsonNode]::Parse($SecurityLiteral)
+    }
+    $SecurityAfter = '(absent)'
+    if ($null -ne $Document['security']) { $SecurityAfter = $Document['security'].ToJsonString() }
+    Write-Host "  + T1 security $SecurityBefore -> $SecurityAfter [$SecurityVariant]" -ForegroundColor Green
 
     # --- 3. T2, the malformed root path (PREP-03, D-14) ---
     # Assert the removal from the call's own return value rather than trusting it. Deleting a

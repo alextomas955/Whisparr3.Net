@@ -1,0 +1,63 @@
+# The complete openapi-generator invocation, in one committed file (PREP-07, D-26).
+#
+# Run it as `generate -c /local/generator/gen-config.yaml` inside the pinned image
+# openapitools/openapi-generator-cli@sha256:2ab0a9680222de65dc9d3baf861aa02b99e1b80c211d8221ebf3ae8f8a102524.
+# The npm wrapper has a settings file of its own; that mechanism belongs to the wrapper and the
+# string does not appear anywhere in this image's jar, so `-c` with this file is the supported
+# form here.
+#
+# Generation must always run inside the image, on a dev machine and in CI alike:
+# .openapi-generator/FILES is written with the platform line separator, so a host run and a
+# container run differ in that one file for a reason that has nothing to do with the spec (D-28).
+generatorName: csharp
+library: generichost
+inputSpec: /local/spec/openapi.generated.json
+outputDir: /local
+
+# The boolean config key, inverted from the CLI flag of the opposite name. The flag's own spelling
+# is NOT a key here: an unrecognised key is swallowed silently into a dynamic-properties bag and
+# the run then fails with the very validation error it was meant to bypass. Validation also runs
+# before normalization, so this has to be false rather than merely absent.
+validateSpec: false
+
+# RepositoryUrl in the generated csproj is assembled from these three and from nothing else.
+gitHost: github.com
+gitUserId: alextomas955
+gitRepoId: Whisparr3.Net
+
+# Suppression by denylist. Never allowlist supportingFiles: for apis, models and supportingFiles
+# the value is a colon-separated allowlist, and naming one file restricts generation to it, which
+# measurably deleted the entire runtime.
+globalProperties:
+  apiTests: "false"
+  modelTests: "false"
+  apiDocs: "false"
+  modelDocs: "false"
+
+# The scaffolding this repository owns by hand or does not want at all. This is the config-file
+# equivalent of the ignore file, and unlike the ignore file it is rewritten on every run.
+openapiGeneratorIgnoreList:
+  - README.md
+  - src/*/README.md
+  - .gitignore
+  - appveyor.yml
+  - "*.sln"
+  - "*.slnx"
+  - "docs/**"
+  - api/openapi.yaml
+
+additionalProperties:
+  packageName: Whisparr3.Net
+  targetFramework: net8.0;net10.0
+  # Arbitrary when it was generated and fixed forever now. Left unset the generator emits a fresh
+  # random GUID on every run, which rewrites the solution and project GUID and breaks the
+  # determinism gate PIPE-02 depends on. Pinning it is sufficient: two runs with it pinned produce
+  # identical trees, and unpinned exactly two files diverge (D-27).
+  packageGuid: "{1EDF3552-B7CE-4C36-A15C-810845C3F203}"
+
+# Deliberately absent, each recorded with its reason in spec/transform-report.txt section 4:
+#   - the three normalizers (duplicate-operationId repair, security-scheme filter, path allowlist)
+#   - the generation-timestamp option, which already defaults to the value this repository wants
+#     for this generator and injects a build-date line when set the other way (D-27)
+#   - the model name mappings for the two BCL collisions, Command and Field, which Phase 20 owns
+#     (D-29, corrected from five names to two by R-02)
