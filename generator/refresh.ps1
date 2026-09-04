@@ -4,24 +4,17 @@
 
 .DESCRIPTION
   Runs the whole pipeline in order, stops at the first failure, and names the step that failed and
-  what to do about it. With no arguments it runs against the digest capture-spec.ps1 pins, which is
-  a no-op re-verification: every gate is exercised and nothing in the repository changes except the
-  capturedAt wall clock in spec/PROVENANCE.json.
+  what to do about it. With no arguments it re-verifies the digest capture-spec.ps1 pins: every gate
+  is exercised and nothing changes but the capturedAt wall clock in spec/PROVENANCE.json.
 
-  -ImageDigest is forwarded to capture-spec.ps1 only when it is supplied, so the pin stays in
-  capture-spec.ps1 alone rather than being copied here where the two could drift apart.
-
-  Each step runs as its own pwsh process, so a child that throws rather than exiting still arrives
-  here as an exit code and not as a stack trace over a half-finished pipeline.
-
-.EXAMPLE
-  pwsh -File I:\cove-dev\Whisparr3.Net\generator\refresh.ps1
-  # Re-verify the pinned digest end to end.
+  -ImageDigest is forwarded to capture-spec.ps1 only when supplied, so the pin stays there alone
+  rather than being copied here where the two could drift apart. Each step runs as its own pwsh
+  process, so a child that throws still arrives here as an exit code rather than as a stack trace.
 
 .EXAMPLE
   pwsh -File I:\cove-dev\Whisparr3.Net\generator\refresh.ps1 -ImageDigest sha256:0123abcd...
   # Move to a new Whisparr image. Expect the map gate to refuse if the new version added or
-  # removed operations; see its message.
+  # removed operations; see its message. Omit -ImageDigest to re-verify the pinned one.
 #>
 
 [CmdletBinding()]

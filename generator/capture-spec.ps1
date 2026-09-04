@@ -6,9 +6,8 @@
   Boots the pinned image, polls the spec endpoint until it answers, asserts the instance really is
   Whisparr 3 (Eros), captures the bytes verbatim, and writes spec/PROVENANCE.json beside them.
 
-  The image is referenced only by digest. The moving tags point at Whisparr 2, a different
-  application that also serves /api/v3, so an unpinned pull yields a client that compiles and looks
-  entirely plausible and is wrong.
+  By digest only. The moving tags point at Whisparr 2, a different application that also serves
+  /api/v3, so an unpinned pull yields a client that compiles, looks plausible, and is wrong.
 
 .EXAMPLE
   pwsh -File I:\cove-dev\Whisparr3.Net\generator\capture-spec.ps1
@@ -32,9 +31,9 @@ Set-StrictMode -Version Latest
 $RepoRoot      = Split-Path -Parent $PSScriptRoot
 $Image         = "ghcr.io/hotio/whisparr@$ImageDigest"
 $ContainerName = 'whisparr3-capture'
-# Not a credential: a fixed constant handed to a container that is destroyed at the end of the run
-# and published on 127.0.0.1 only. It is needed for the status read that feeds provenance; the spec
-# endpoint itself is served unauthenticated.
+# Not a credential: a constant handed to a container destroyed at the end of the run and published
+# on 127.0.0.1 only. Needed for the status read that feeds provenance; the spec endpoint itself is
+# served unauthenticated.
 $ApiKey    = '0123456789abcdef0123456789abcdef'
 $BaseUrl   = 'http://localhost:6969'
 $SpecUrl   = "$BaseUrl/docs/v3/openapi.json"

@@ -42,9 +42,8 @@ function Resolve-RepoPath {
 # Header only, though Whisparr also declares the query scheme: generichost does not treat the two
 # as alternatives but emits a call to every declared scheme, so the both-schemes form put the key
 # in the URL of all 272 requests, where it reaches access logs, proxy logs and Referer headers
-# (upstream openapi-generator issue 24138).
-# Parsed from a literal, not built from a PowerShell array: a single-element array piped through
-# the serializer unrolls into an object.
+# (upstream openapi-generator issue 24138). Parsed from a literal, not built from a PowerShell
+# array: a single-element array piped through the serializer unrolls into an object.
 $SecurityLiteral = '[{"X-Api-Key":[]}]'
 # The inline census, standing in for the standalone assert-spec-census.ps1 this replaced. The
 # capture is 381,380 bytes and its depth-2 truncation is 48,452, so the floor is a wide margin.
@@ -131,8 +130,8 @@ try {
     # The map reaches the committed spec through T3 as surely as the document does: a substituted
     # map differing in one value renames a public method. The two operands take different comparers
     # on purpose. "Non-default input" is ordinal, so on Linux spec/OPENAPI.RAW.JSON is not
-    # spec/openapi.raw.json and the guard fires. "Committed output path" stays case-insensitive,
-    # because on NTFS a differently-cased spelling IS the committed file.
+    # spec/openapi.raw.json. "Committed output path" is case-insensitive, because on NTFS a
+    # differently-cased spelling IS the committed file.
     if (($RawPath -cne $DefaultRawPath -or $MapFullPath -cne $DefaultMapFullPath) -and $OutPath -eq $DefaultOutPath) {
         Write-Host "ERROR: REFUSED - a non-default input may not be written to the committed output path. Pass -OutFile with a scratch path too. input $RawPath / map $MapFullPath / output $OutPath" -ForegroundColor Red
         exit 1

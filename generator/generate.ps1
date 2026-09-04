@@ -8,18 +8,14 @@
   The generator never prunes, so the delete is the pruner.
 
   Docker on this machine cannot bind-mount the I: drive. Measured 2026-09-04: a bind mount of an I:
-  path lists an empty directory and exits 0, so the mount looks like it worked and is not.
-  Generation therefore stages under the user temp directory on C: and the result is copied back.
-  gen-config.yaml needs no edit for that, because its /local-rooted paths already resolve against a
-  mirrored staging root. Do not try to repair the mount by restarting Docker Desktop or by running
-  wsl --shutdown: this machine hosts live containers.
+  path lists an empty directory and exits 0, so it looks like it worked and is not. Generation
+  therefore stages under the user temp directory on C:. gen-config.yaml needs no edit, because its
+  /local-rooted paths already resolve against a mirrored staging root. Do not repair the mount by
+  restarting Docker Desktop or running wsl --shutdown: this machine hosts live containers. Invoking
+  Docker from pwsh needs no MSYS_NO_PATHCONV=1; that rewrite happens only from Git Bash.
 
-  Invoking Docker from pwsh needs no MSYS_NO_PATHCONV=1. The rewrite of /local/... into a path
-  under the Git installation directory happens only when Docker is invoked from Git Bash.
-
-  This script takes no output-root parameter on purpose. Its destination is the whole repository
-  tree, and a redirect parameter without a promote guard is the fail-open shape preprocess-spec.ps1
-  is hardened against. A sandbox run is a copy of the whole repository.
+  There is no output-root parameter on purpose. The destination is the whole repository tree, and a
+  redirect without a promote guard is the fail-open shape preprocess-spec.ps1 is hardened against.
 
 .EXAMPLE
   pwsh -File I:\cove-dev\Whisparr3.Net\generator\generate.ps1
@@ -42,16 +38,14 @@ $Image      = "openapitools/openapi-generator-cli@$ImageDigest"
 $PkgDir     = Join-Path $RepoRoot 'src/Whisparr3.Net'
 $GenMetaDir = Join-Path $RepoRoot '.openapi-generator'
 # The generated tree is these five subdirectories, not src/Whisparr3.Net itself: the hand-owned
-# csproj sits beside them and survives every run. One list, so the delete set and the copy set can
-# never drift apart.
+# csproj sits beside them and survives every run. One list, so the delete set and the copy set
+# cannot drift apart.
 $GeneratedSubdirs = @('Api', 'Client', 'Extensions', 'Logging', 'Model')
-# What the pinned image produces from the committed spec. A constant and never a parameter: a
-# caller-supplied expected count makes the gate a tautology. .openapi-generator/FILES is written by
-# the same run that wrote the files, so it agrees with a truncated tree as readily as a complete
-# one, and without this count a generation emitting ten files would replace the committed 262 at
-# exit 0. Move it in the same commit that moves the tree.
+# What the pinned image produces from the committed spec. A constant and never a parameter, since a
+# caller-supplied count makes the gate a tautology. Without it a generation emitting ten files
+# replaces the committed 262 at exit 0. Move it in the same commit that moves the tree.
 $ExpectedCs = 262
-# A GUID suffix makes a collision between two concurrent runs impossible, and the finally below
+# The GUID suffix makes a collision between concurrent runs impossible, and the finally below
 # removes only this run's own root.
 $Stage       = Join-Path ([System.IO.Path]::GetTempPath()) ("whisparr3-generate-" + [guid]::NewGuid().ToString('N'))
 $StagePkgDir = Join-Path $Stage 'src/Whisparr3.Net'
@@ -95,7 +89,7 @@ try {
     $StagedCs       = @(Get-GeneratedCsFile -PackageRoot $StagePkgDir)
     # A subdirectory the generator did not emit at all is invisible to the count, because
     # Get-GeneratedCsFile skips a missing one. Step 4 would then throw partway through the copy,
-    # after the delete, which is the expensive place to discover it.
+    # after the delete, which is the expensive place to find out.
     $MissingSubdirs = @($GeneratedSubdirs | Where-Object { -not (Test-Path -LiteralPath (Join-Path $StagePkgDir $_)) })
     if ($StagedCs.Count -ne $ExpectedCs -or $MissingSubdirs.Count -gt 0) {
         Write-Host "ERROR: REFUSED - the staged tree holds $($StagedCs.Count) .cs files across the five generated subdirectories, expected $ExpectedCs, with $($MissingSubdirs.Count) subdirectories absent. Nothing in $PkgDir was touched." -ForegroundColor Red
