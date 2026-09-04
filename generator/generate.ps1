@@ -157,7 +157,21 @@ try {
     # The transcript is captured rather than streamed, matching capture-spec.ps1. The run prints
     # one line per generated file, and that volume buries the message that matters when it fails.
     # The whole transcript is printed on the failure path below, where it is the diagnosis.
-    $RunOutput = docker run --rm -v "${Stage}:/local" $Image generate -c /local/generator/gen-config.yaml 2>&1
+    #
+    # The image runs as uid 0. Measured 2026-09-04: docker run --entrypoint id <pinned digest>
+    # returns uid=0(root). On a Linux runner that makes every directory the generator creates
+    # inside the read-write bind mount root-owned, and the finally below then cannot unlink the
+    # files under them, because unlinking $Stage/src/Whisparr3.Net/Api/MovieApi.cs needs write
+    # permission on its root-owned parent. A throw in finally replaces whatever exit code is
+    # pending, so a fully correct Linux generation would exit 1 and probe-generated-boundary.ps1
+    # would report a boundary it never exercised. Phase 23 runs these scripts on ubuntu-latest.
+    #
+    # Windows bind mounts carry no POSIX ownership, so the flag is added only where it means
+    # something. Measured 2026-09-04 that this image tolerates it rather than assumed: --user
+    # 1000:1000 runs as uid=1000(ubuntu), exits 0, and produced a tree byte-identical to the
+    # committed one across all five subdirectories and .openapi-generator/FILES.
+    $UserArgs = if ($IsWindows) { @() } else { @('--user', "$(id -u):$(id -g)") }
+    $RunOutput = docker run --rm @UserArgs -v "${Stage}:/local" $Image generate -c /local/generator/gen-config.yaml 2>&1
     if ($LASTEXITCODE -ne 0) {
         $GeneratorExit = $LASTEXITCODE
         Write-Host ($RunOutput -join [Environment]::NewLine) -ForegroundColor Red
@@ -264,5 +278,15 @@ finally {
     # Removes this run's own GUID-suffixed root and nothing else, so a concurrent run is
     # unaffected. Unconditional, because an interrupted run would otherwise leave a full generated
     # tree sitting under the user temp directory.
-    if (Test-Path -LiteralPath $Stage) { Remove-Item -LiteralPath $Stage -Recurse -Force }
+    #
+    # Non-fatal on purpose. A terminating error here replaces the pending exit code, so a cleanup
+    # failure would rewrite the verdict of the run above it. Measured on pwsh 7.6.5 under
+    # $ErrorActionPreference = 'Stop': exit 7 with a throwing finally leaves the process at 1,
+    # and the same finally with this try/catch leaves it at 7. A leftover staging root is a
+    # nuisance to be named; it is not a reason to call a correct generation a failure or a
+    # refusal the wrong code.
+    if (Test-Path -LiteralPath $Stage) {
+        try { Remove-Item -LiteralPath $Stage -Recurse -Force }
+        catch { Write-Host "  ! the staging root $Stage could not be removed: $($_.Exception.Message). Remove it by hand. The verdict above stands." -ForegroundColor Yellow }
+    }
 }
