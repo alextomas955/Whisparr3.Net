@@ -804,7 +804,14 @@ try {
     # this note the first person to bump the image digest reads that failure as a bug.
     if (Test-Path -LiteralPath $ProvenancePath) {
         $PromotedSha = (Get-FileHash -Algorithm SHA256 -LiteralPath $OutPath).Hash.ToLower()
-        $Provenance  = Get-Content -Raw -LiteralPath $ProvenancePath | ConvertFrom-Json
+        # -DateKind String, matching capture-spec.ps1 and for the same reason. Without it
+        # capturedAt and whisparrBuildTime are parsed into [DateTime] and re-serialized below,
+        # which turns an observed value into a derived one and makes the committed bytes depend
+        # on the writing machine's timezone. Both fields carry Z today so the round trip happens
+        # to be byte-identical; a buildTime with an offset, which /api/v3/system/status is free
+        # to serve, is rewritten into local time. This file is not this script's to change beyond
+        # appending one key.
+        $Provenance  = Get-Content -Raw -LiteralPath $ProvenancePath | ConvertFrom-Json -DateKind String
         if ($Provenance.PSObject.Properties.Name -contains 'generatedSpecSha256') {
             $Provenance.generatedSpecSha256 = $PromotedSha
         } else {
