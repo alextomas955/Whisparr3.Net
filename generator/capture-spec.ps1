@@ -54,6 +54,13 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+# Match assert-spec-census.ps1. Without strict mode a renamed or dropped member on the parsed
+# status response evaluates to $null, ConvertTo-Json writes null into the manifest, and the run
+# prints Done. and exits 0 - the "reports success while proving nothing" shape this whole
+# capture is built against. Strict mode alone is not enough: it turns that case into a stack
+# trace rather than a refusal, which is why every observed member is read through Get-Observed
+# and the manifest is asserted complete before anything is written.
+Set-StrictMode -Version Latest
 
 # --- Constants (edit here if the layout changes) ---
 $RepoRoot      = Split-Path -Parent $PSScriptRoot
@@ -77,6 +84,14 @@ $ProvenancePath = Join-Path $SpecDir 'PROVENANCE.json'
 # cannot leave the committed deliverable replaced by unverified bytes. Declared beside the
 # other paths rather than inside the try so the finally block can clear a partial download.
 $StagePath      = "$SpecPath.incoming"
+
+# Read a member that the remote API owns, not this script. Returns $null when the member is
+# absent instead of raising the strict-mode property error, so the absence can be reported as a
+# refusal that names the field rather than as a stack trace.
+function Get-Observed {
+    param($Object, [string]$Name)
+    if ($null -ne $Object -and $Object.PSObject.Properties.Name -contains $Name) { $Object.$Name } else { $null }
+}
 
 Write-Host "Capture Whisparr 3 openapi -> $SpecPath" -ForegroundColor Cyan
 Write-Host "  - image $Image" -ForegroundColor DarkGray
@@ -170,12 +185,18 @@ try {
     # -DateKind String keeps buildTime as the string the API returned. Without it the parser
     # converts it to a local DateTime and provenance would record a converted value rather
     # than an observed one.
-    $Status = $StatusResponse.Content | ConvertFrom-Json -DateKind String
-    if ($Status.branch -ne 'eros' -or ([version]$Status.version).Major -ne 3) {
-        Write-Host "ERROR: REFUSED - the instance serves a spec but reports branch '$($Status.branch)' version '$($Status.version)'. Required: branch 'eros' and major version 3. No spec was written to $SpecPath." -ForegroundColor Red
+    $Status  = $StatusResponse.Content | ConvertFrom-Json -DateKind String
+    $Branch  = Get-Observed $Status 'branch'
+    $Version = Get-Observed $Status 'version'
+    # An absent or unparseable version is a failed identity assertion, not a crash. Casting
+    # [version] on a missing member would throw before this refusal could be printed.
+    $ParsedVersion = $null
+    if ($null -ne $Version) { $null = [version]::TryParse([string]$Version, [ref]$ParsedVersion) }
+    if ($Branch -ne 'eros' -or $null -eq $ParsedVersion -or $ParsedVersion.Major -ne 3) {
+        Write-Host "ERROR: REFUSED - the instance serves a spec but reports branch '$Branch' version '$Version'. Required: branch 'eros' and major version 3. No spec was written to $SpecPath." -ForegroundColor Red
         exit 1
     }
-    Write-Host "  + identity ok - Whisparr $($Status.version), branch $($Status.branch)" -ForegroundColor Green
+    Write-Host "  + identity ok - Whisparr $Version, branch $Branch" -ForegroundColor Green
 
     # --- 4. Capture, byte-verbatim, to a staging path ---
     # -OutFile reproduces the source bytes exactly. Out-File and Set-Content append a trailing
@@ -201,14 +222,29 @@ try {
         capturedAt             = (Get-Date).ToUniversalTime().ToString('o')
         capturedFrom           = $SpecUrl
         imageDigest            = $Image
-        whisparrVersion        = $Status.version
-        whisparrBranch         = $Status.branch
-        whisparrBuildTime      = $Status.buildTime
-        whisparrPackageVersion = $Status.packageVersion
+        whisparrVersion        = $Version
+        whisparrBranch         = $Branch
+        whisparrBuildTime      = Get-Observed $Status 'buildTime'
+        whisparrPackageVersion = Get-Observed $Status 'packageVersion'
         specEndpoint           = '/docs/v3/openapi.json'
         specSha256             = $Sha
         specBytes              = $Bytes
-        specOpenApiVersion     = $Spec.openapi
+        specOpenApiVersion     = Get-Observed $Spec 'openapi'
+    }
+
+    # D-26 requires every field to be written from an observed value. A null is not an
+    # observation, so all eleven are asserted present before anything is written. The census
+    # cannot catch this: it counts members inside the spec document and never reads the
+    # manifest.
+    $Unobserved = @($Provenance.PSObject.Properties |
+        Where-Object { $null -eq $_.Value -or ($_.Value -is [string] -and $_.Value.Trim() -eq '') } |
+        Select-Object -ExpandProperty Name)
+    if ($Unobserved.Count -gt 0) {
+        Remove-Item -LiteralPath $StagePath -Force
+        Write-Host "ERROR: REFUSED - provenance would record no observed value for: $($Unobserved -join ', ')." -ForegroundColor Red
+        Write-Host "  $StatusUrl did not return what this script expects, or the captured document has no openapi member." -ForegroundColor Red
+        Write-Host "  The staged capture has been discarded. $SpecPath and $ProvenancePath are untouched." -ForegroundColor Red
+        exit 1
     }
 
     # --- 6. Census gate, over the staged bytes ---
