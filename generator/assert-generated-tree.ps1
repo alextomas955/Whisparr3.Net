@@ -66,8 +66,14 @@ $VersionPath              = Join-Path $RepoRoot '.openapi-generator/VERSION'
 $ConfigPath               = Join-Path $PSScriptRoot 'gen-config.yaml'
 $MapPath                  = Join-Path $PSScriptRoot 'operation-ids.json'
 $AssemblyPath             = Join-Path $PkgDir "bin/$Configuration/net8.0/Whisparr3.Net.dll"
-$ExpectedCs               = 262
 $ExpectedPerDir           = [ordered]@{ Api = 76; Client = 20; Model = 162; Extensions = 3; Logging = 1 }
+# Derived from the table above rather than restated, so the two can never disagree. A partial edit
+# after a spec refresh - moving one per-directory value and not the total - is otherwise undetected,
+# because both are compared against the tree and neither is compared against the other. The other
+# three statements of this number, $ExpectedManifestLines below, $ExpectedCs in generate.ps1 and
+# $ExpectedTreeFiles in probe-generated-boundary.ps1, are deliberate independent copies and must be
+# moved in the same commit as this table.
+$ExpectedCs               = [int](($ExpectedPerDir.Values | Measure-Object -Sum).Sum)
 $ExpectedManifestLines    = 262
 $ExpectedOperations       = 272
 $ExpectedGeneratorVersion = '7.25.0'
