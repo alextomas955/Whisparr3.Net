@@ -108,3 +108,100 @@ hostile, once, against this repository. The clause closes here (D-20).
 
 The refusal branch was also observed rather than asserted by shape. Run against a working tree
 carrying one uncommitted file, the probe exited 1, named the offending path, and planted nothing.
+
+## Dependency audit baseline
+
+**Observed:** 2026-09-04, .NET SDK `10.0.400`, restoring online against
+`https://api.nuget.org/v3/index.json`.
+
+**This whole section is point in time.** It is true against the nuget.org advisory database on the
+date above and no longer. The continuous gate is the props, recorded at the end of this section.
+
+- **Script:** `generator/assert-package-audit.ps1`.
+- **Command:** `pwsh -NoProfile -File generator/assert-package-audit.ps1`.
+- **Exit code:** `0`.
+
+| framework | verdict | expected |
+| --- | --- | --- |
+| `net8.0` | clean | clean |
+| `net10.0` | clean | clean |
+
+The verdict on each row is read from the transcript text, from the verbatim marker `has no
+vulnerable packages given the current sources` with the verbatim marker `has the following
+vulnerable packages` absent. A transcript carrying neither is refused as an unrecognised third
+state rather than read as clean, because an unrestored or offline project prints neither string.
+The process exit code is printed as a report-only row and never decides the verdict.
+
+### The closure that was audited
+
+The scan is not vacuous. `dotnet list package --include-transitive` reports **4 top-level and 29
+transitive** packages on each framework, 33 in total per leg.
+
+| top-level package | net8.0 resolved | net10.0 resolved |
+| --- | --- | --- |
+| `Microsoft.Extensions.Hosting` | 8.0.1 | 10.0.1 |
+| `Microsoft.Extensions.Http` | 8.0.1 | 10.0.1 |
+| `Microsoft.Extensions.Http.Polly` | 8.0.20 | 10.0.1 |
+| `Microsoft.Net.Http.Headers` | 8.0.17 | 10.0.1 |
+
+Both legs resolve `Polly 7.2.4` and `Polly.Extensions.Http 3.0.0`, at the same versions, because
+those two come in through `Microsoft.Extensions.Http.Polly` rather than from the framework.
+
+All four are kept (D-09). A finding here would be a finding to report, never a dependency to
+remove: `Microsoft.Extensions.Http.Polly` is required by `ERGO-06` and by a milestone constraint,
+so resolving an advisory by dropping it would trade a reported risk for a broken requirement.
+
+### The exit-code trap, reproduced rather than asserted
+
+`dotnet list package --vulnerable --include-transitive` exits **0** while printing a High severity
+advisory. Observed on a poisoned probe project built under the system temp directory, referencing
+`System.Text.RegularExpressions 4.3.0`:
+
+```
+Project `VulnProbe` has the following vulnerable packages
+   [net8.0]:
+   Top-level Package                     Requested   Resolved   Severity   Advisory URL
+   > System.Text.RegularExpressions      4.3.0       4.3.0      High       https://github.com/advisories/GHSA-cmhx-cq75-c4mj
+```
+
+- `dotnet list package` exit code on that project: **0**.
+- `assert-package-audit.ps1` exit code on that same project: **1**, both framework rows reading
+  `actual finding expected clean MISMATCH`, with the advisory row and its URL reprinted.
+
+A gate written as "run it and fail when the exit code is non-zero" passes on that project. That is
+the silent pass this script exists to prevent, and it is why the gate matches text.
+
+The probe is built under the system temp directory and never inside this repository. A project
+under `I:/cove-dev/Whisparr3.Net` inherits `Directory.Build.props`, whose `TreatWarningsAsErrors`
+turns `NU1903` into a restore error, so the probe would fail to restore and the gate would refuse
+through the unrecognised-transcript branch. It would still exit non-zero, and it would prove the
+wrong thing. The probe was deleted after the run.
+
+### Two measurements to read rather than re-derive
+
+**1. The props already convert any advisory into a restore error.** Resolved on the real project,
+2026-09-04: `NuGetAudit=true`, `NuGetAuditLevel=low`, `TreatWarningsAsErrors=true`. Reproduced by
+copying this repository's `Directory.Build.props` beside a throwaway project outside the repository
+and restoring it with the same poisoned reference:
+
+```
+error NU1903: Warning As Error: Package 'System.Text.RegularExpressions' 4.3.0
+  has a known high severity vulnerability, https://github.com/advisories/GHSA-cmhx-cq75-c4mj
+Failed to restore ...
+```
+
+`dotnet restore` exited 1. Any severity, down to low, on any package the audit covers, already
+fails the build before anyone runs this script. That transcript also carried an unrelated `NU1510`
+pruning error, so the exit code alone does not isolate the advisory; the `NU1903` line does. The
+build-time gate is continuous and this script is the point-in-time artifact. They do different
+jobs, and both are wanted.
+
+**2. `NuGetAuditMode` needs no change in the props.** Resolved 2026-09-04: `direct` for `net8.0`,
+`all` for `net10.0`, and `direct` on the outer evaluation with no `TargetFramework` set. That looks
+like a gap on the `net8.0` leg and is not one. A probe with `TargetFrameworks` of `net8.0;net10.0`
+and a `net8.0`-conditioned reference to `System.IdentityModel.Tokens.Jwt 6.10.0` still reported the
+transitive `Microsoft.IdentityModel.JsonWebTokens 6.10.0`, as `NU1902` at restore and again under
+`[net8.0]` in `dotnet list package --vulnerable --include-transitive`. The multi-target restore
+audits at the `all` level contributed by the `net10.0` leg. Setting `<NuGetAuditMode>all</NuGetAuditMode>`
+would be insurance against a future in which `net10.0` is dropped, and a milestone constraint locks
+`net8.0;net10.0`, so it is not added here.
