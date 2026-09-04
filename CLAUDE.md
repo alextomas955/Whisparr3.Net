@@ -62,5 +62,5 @@ a commit is checked. Read what you are staging.
   `git log -1 --format='%an <%ae>'` rather than assuming.
 - No agent co-author trailer, no agent name, no planning content.
 - Push over `origin`, the `git@github.com-alex` SSH alias. HTTPS authenticates as the wrong
-  account on this machine. The `canonical` https remote exists only so SourceLink has a host it
-  recognises; never push to it.
+  account on this machine. SourceLink reads `origin` and `Directory.Build.props` registers the
+  alias as a GitHub host, so a clone needs no extra remote.

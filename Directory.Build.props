@@ -20,11 +20,27 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <!-- origin is the github.com-alex SSH alias. SourceLink cannot map that host and emits an
-         empty source map with no warning. Read the canonical https remote instead. In GitHub
-         Actions only origin exists, and the SDK falls back to it with a warning, so skip it there. -->
-    <GitRepositoryRemoteName Condition="'$(GITHUB_ACTIONS)' != 'true'">canonical</GitRepositoryRemoteName>
   </PropertyGroup>
+
+  <!-- SourceLink reads origin, the only remote a clone is guaranteed to have.
+
+       The problem this solves: origin here is the git@github.com-alex SSH alias, and the SDK
+       does not recognise that host, so it emits no source map at all and ships a dead .snupkg,
+       silently and with no warning. Pointing GitRepositoryRemoteName at a hand-added canonical
+       remote fixed it only on the one machine where someone typed git remote add by hand; every
+       clone, including the owner's second machine and CI, has only origin and got two fallback
+       warnings per project per build.
+
+       Registering the alias as a GitHub host is repo-tracked, so it works in every clone.
+       Measured on SDK 10.0.400, packing this props file with each remote in turn as the only
+       remote:
+         origin https://github.com/...            0 warnings, source map to raw.githubusercontent.com
+         origin git@github.com-alex:...           0 warnings, source map to raw.githubusercontent.com
+       Without the mapping the second case emits no .sourcelink.json and writes
+       url="ssh://git@github.com-alex/..." into the nuspec. -->
+  <ItemGroup>
+    <SourceLinkGitHubHost Include="github.com-alex" ContentUrl="https://raw.githubusercontent.com" />
+  </ItemGroup>
 
   <!-- NuGet package metadata. RepositoryUrl and RepositoryType are deliberately absent;
        SourceLink injects both plus the commit SHA from PublishRepositoryUrl=true. -->
