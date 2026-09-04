@@ -170,7 +170,7 @@ try {
     # No generator keys here. The generator is not pinned until Phase 20, and writing them now
     # would be transcription rather than measurement.
     $Spec = Get-Content -Raw -LiteralPath $SpecPath | ConvertFrom-Json
-    [pscustomobject][ordered]@{
+    $Provenance = [pscustomobject][ordered]@{
         capturedAt             = (Get-Date).ToUniversalTime().ToString('o')
         capturedFrom           = $SpecUrl
         imageDigest            = $Image
@@ -182,7 +182,12 @@ try {
         specSha256             = $Sha
         specBytes              = $Bytes
         specOpenApiVersion     = $Spec.openapi
-    } | ConvertTo-Json | Set-Content -LiteralPath $ProvenancePath -Encoding utf8NoBOM
+    }
+    # ConvertTo-Json emits the platform newline, which is CRLF here, and .gitattributes
+    # declares *.json as eol=lf. Write LF explicitly so the working tree matches what a
+    # clone gets, rather than leaving git to renormalize on every capture.
+    $ProvenanceJson = (($Provenance | ConvertTo-Json) -replace "`r`n", "`n").TrimEnd("`n") + "`n"
+    [System.IO.File]::WriteAllText($ProvenancePath, $ProvenanceJson, [System.Text.UTF8Encoding]::new($false))
     Write-Host "  + wrote $ProvenancePath" -ForegroundColor Green
 
     # --- 6. Census gate ---
