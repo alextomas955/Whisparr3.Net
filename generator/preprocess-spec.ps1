@@ -34,7 +34,12 @@
     10. Gate G1, the census over the staged bytes, with the Patched profile. Its exit code is
         propagated rather than flattened.
     11. Gate G2, the depth and size guard over the staged bytes. This is the gate the census
-        cannot be. See the parser note below.
+        cannot be. See the parser note below. Gate G5 runs beside it and reads the two
+        transforms this phase exists for back out of those same staged bytes: root security
+        against the named constant for the selected variant, and every operationId against the
+        committed map. T1 and T3 report from the in-memory document and from the loop's own
+        counter, which is a self-report, and a promoted spec whose ids disagree with the map is
+        otherwise undetectable by anything in this repository.
     12. Promote. Only here is the committed spec replaced. A run that refuses at any earlier
         step leaves the committed spec and the committed manifest exactly as they were.
     13. Manifest. generatedSpecSha256 is added to the PROVENANCE.json beside the output.
@@ -767,6 +772,29 @@ try {
         exit 1
     }
 
+    # --- 11b. Gate G5, the two transforms read out of the staged bytes (PREP-02, PREP-04) ---
+    # G2 was built on the argument that a counting gate proves nothing about content. The same
+    # argument applies to T1 and T3, and neither was checked anywhere: the "+ T1 security" line
+    # reads the in-memory document back immediately after assigning it, and the "+ T3 assigned"
+    # line is the loop's own counter. Both report on the object that was mutated rather than on
+    # the file about to be promoted. Every expected value below comes from a named constant or
+    # from the committed map, never from the document being checked.
+    $ExpectedSecurity = $SecurityOptionalBothSchemes
+    if ($SecurityVariant -ceq 'AsCaptured') {
+        $ExpectedSecurity = $SecurityBefore
+    } elseif ($SecurityVariant -ceq 'SingleSchemeMandatory') {
+        $ExpectedSecurity = $SecuritySingleSchemeMandatory
+    }
+    $StagedSecurity = '(absent)'
+    if ($null -ne $Staged['security']) { $StagedSecurity = $Staged['security'].ToJsonString() }
+    if ($StagedSecurity -cne $ExpectedSecurity) {
+        Write-Refusal @(
+            "ERROR: staged transform assertion failed - the staged root security is $StagedSecurity, expected $ExpectedSecurity for variant $SecurityVariant.",
+            '  PREP-02 is the load-bearing transform in this milestone, and this is the only check that reads it back out of the bytes that would be promoted.'
+        )
+        exit 1
+    }
+
     # An operation must be a JSON object. In a truncated document it is a plain string.
     $OperationsChecked = 0
     foreach ($PathEntry in $Staged['paths'].AsObject()) {
@@ -780,9 +808,31 @@ try {
                 )
                 exit 1
             }
+            # T3, read back out of the staged bytes and compared against the map that was
+            # loaded. This walk already visits every operation, so the assertion is the check G2
+            # was missing rather than a second pass. On any run that can promote, the -MapPath
+            # guard above has already forced that map to be the committed one, so this is also
+            # the only place the promoted spec is compared against the committed contract:
+            # nothing else in this repository reads the two files against each other.
+            $StagedKey  = "$($Member.Key.ToUpperInvariant()) $($PathEntry.Key)"
+            $StagedNode = $Member.Value['operationId']
+            $StagedId   = '(absent)'
+            if ($null -ne $StagedNode -and $StagedNode.GetValueKind() -eq [System.Text.Json.JsonValueKind]::String) {
+                $StagedId = $StagedNode.GetValue[string]()
+            }
+            $ExpectedId = '(no map entry)'
+            if ($Map.ContainsKey($StagedKey)) { $ExpectedId = $Map[$StagedKey] }
+            if ($StagedId -cne $ExpectedId) {
+                Write-Refusal @(
+                    "ERROR: staged transform assertion failed - the staged operation $StagedKey carries operationId $StagedId, the map says $ExpectedId.",
+                    "  Every operationId in the promoted spec must be the one $(Get-ReportPathLabel -FullPath $MapFullPath) names, or the committed spec and the committed map disagree with nothing left to detect it."
+                )
+                exit 1
+            }
         }
     }
     Write-Host "  + depth and size guard passed - $StagedBytes bytes, deep probe ""$DeepProbeExpected"", $OperationsChecked operation bodies are objects" -ForegroundColor Green
+    Write-Host "  + G5 staged transform assertion passed - root security $StagedSecurity, $OperationsChecked operationIds equal to the map" -ForegroundColor Green
 
     # --- 12. Promote. The first write to anything committed ---
     Move-Item -LiteralPath $StagePath -Destination $OutPath -Force
