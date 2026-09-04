@@ -84,23 +84,9 @@ $HttpMethods        = 'get', 'put', 'post', 'delete', 'options', 'head', 'patch'
 # If nothing invalid ever reaches the generator, what the generator would do to an invalid name
 # stops mattering.
 $OperationIdPattern = '^[A-Z][A-Za-z0-9]*$'
-# Report column widths, from constants and never from the data. Deriving them from the longest
-# path means adding one long path reflows every appendix line and the refresh diff becomes
-# unreadable. A path longer than the column overflows its row instead. The operationId is the last
-# field on the line and is never padded: .editorconfig trims trailing whitespace, so a padded
-# final field would be stripped and produce a spurious diff on the next edit.
-$ReportIndent       = '    '
-$ReportMethodColumn = 8
-$ReportPathColumn   = 56
-$ReportLabelColumn  = 35
-# The appendix is ordered by path with the ordinal comparer and then by this fixed method order,
-# so the ordering is total and does not depend on the machine's locale. An ordinal dictionary, not
-# a hashtable, because @{} lookups are case-insensitive.
-$ReportMethodOrder = [System.Collections.Generic.Dictionary[string, int]]::new([System.StringComparer]::Ordinal)
-$Rank = 0
-foreach ($Name in @('GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE')) { $ReportMethodOrder[$Name] = $Rank; $Rank++ }
-# The schema names that collide with a BCL type name, so section 4 can print an observed count
-# rather than repeat the inherited claim of five. Measured: only Command and Field exist.
+$ReportIndent = '    '
+# The schema names that would collide with a BCL type name, so the report can name the ones this
+# document actually declares rather than repeat the inherited claim of five.
 $BclCollisionNames = 'Command', 'Field', 'TimeSpan', 'HttpUri', 'Version'
 
 $RawPath     = Resolve-RepoPath $RawSpec
@@ -125,13 +111,6 @@ $DefaultMapFullPath = Resolve-RepoPath 'generator/operation-ids.json'
 function Get-ReportPathLabel {
     param([string]$FullPath)
     return ([System.IO.Path]::GetRelativePath($Script:RepoRoot, $FullPath)).Replace('\', '/')
-}
-
-# Pad to a fixed column and let a longer value overflow rather than reflowing every other row.
-function Format-ReportColumn {
-    param([string]$Value, [int]$Width)
-    if ($Value.Length -ge $Width) { return "$Value " }
-    return $Value.PadRight($Width)
 }
 
 function Write-Refusal {
@@ -288,7 +267,8 @@ try {
     # Schemas NAMED Version, not substring hits. The substring occurs inside other property names
     # and a raw count would read as five, which is where the inherited claim came from.
     $ObservedVersionSchema = @($SchemaNames | Where-Object { $_ -ceq 'Version' }).Count
-    $ObservedBclCollisions = @($SchemaNames | Where-Object { $BclCollisionNames -ccontains $_ }).Count
+    $ObservedBclNames      = (@($SchemaNames | Where-Object { $BclCollisionNames -ccontains $_ }) -join ' and ')
+    if ([string]::IsNullOrEmpty($ObservedBclNames)) { $ObservedBclNames = 'none' }
 
     $ObservedImportListType = '(absent)'
     if ($Schemas -is [System.Text.Json.Nodes.JsonObject]) {
@@ -305,19 +285,7 @@ try {
 
     $ObservedTags = if ($Document['tags'] -is [System.Text.Json.Nodes.JsonArray]) { $Document['tags'].Count } else { 0 }
 
-    # The declared schemes, read from the document rather than transcribed, so the report names
-    # what this capture actually declares instead of what an earlier one did.
-    $SecuritySchemeLabels = [System.Collections.Generic.List[string]]::new()
-    $SecuritySchemes      = $null
-    if ($Components -is [System.Text.Json.Nodes.JsonObject]) { $SecuritySchemes = $Components['securitySchemes'] }
-    if ($SecuritySchemes -is [System.Text.Json.Nodes.JsonObject]) {
-        foreach ($Scheme in $SecuritySchemes.AsObject()) {
-            $In = 'unknown'
-            if ($Scheme.Value -is [System.Text.Json.Nodes.JsonObject] -and $null -ne $Scheme.Value['in']) { $In = $Scheme.Value['in'].GetValue[string]() }
-            $SecuritySchemeLabels.Add("$($Scheme.Key) ($In)")
-        }
-    }
-    Write-Host "  + measured the input document: $ObservedTags tags, $ObservedSecondSuccessCodes second 2xx codes, $ObservedBclCollisions BCL name collisions" -ForegroundColor Green
+    Write-Host "  + measured the input document: $ObservedTags tags, $ObservedSecondSuccessCodes second 2xx codes, BCL-looking schema names $ObservedBclNames" -ForegroundColor Green
 
     # --- 2. T1, the root security repair (PREP-02) ---
     # Replaced in place, which keeps security at its position in the root key order. A removal
@@ -599,97 +567,82 @@ try {
     }
 
     # --- 13. The transform report (PREP-08) ---
+    # What each transform changed with its count, and why each devopsarr transform this pipeline
+    # does not reuse was rejected. Every number quoted in section 4 is measured at step 1b against
+    # the capture, so a reader can re-derive it rather than take the sentence on trust, and a
+    # future capture that invalidates a reason changes the report.
+    #
+    # The report carries no timestamp, no GUID, no environment value and no absolute path, so two
+    # runs over the same capture produce a byte-identical report. A timestamp would produce a diff
+    # on every run even when nothing changed, which is exactly the signal this file exists to
+    # carry. Provenance timestamps belong in PROVENANCE.json, which already has one.
+    #
+    # The 272 assigned operationIds are deliberately not listed here. generator/operation-ids.json
+    # is committed source, is keyed the same way, and is where a reviewer reads them.
     $ReportBytes = (Get-Item -LiteralPath $OutPath).Length
     $ReportSha   = (Get-FileHash -Algorithm SHA256 -LiteralPath $OutPath).Hash.ToLower()
-    $Continue    = ' ' * ($ReportIndent.Length + $ReportLabelColumn)
 
     $Report = [System.Collections.Generic.List[string]]::new()
     $Report.Add('Whisparr3.Net spec pre-processing report (PREP-08)')
     $Report.Add('')
-    $Report.Add("input   $(Format-ReportColumn -Value (Get-ReportPathLabel -FullPath $RawPath) -Width 30) $RawBytes bytes  sha256 $RawSha")
-    $Report.Add("output  $(Format-ReportColumn -Value (Get-ReportPathLabel -FullPath $OutPath) -Width 30) $ReportBytes bytes  sha256 $ReportSha")
+    $Report.Add("input   $((Get-ReportPathLabel -FullPath $RawPath).PadRight(28))$RawBytes bytes  sha256 $RawSha")
+    $Report.Add("output  $((Get-ReportPathLabel -FullPath $OutPath).PadRight(28))$ReportBytes bytes  sha256 $ReportSha")
     $Report.Add('')
 
-    $Report.Add('[1] security repair (PREP-02)')
+    $Report.Add('[1] root security repair (PREP-02)')
     $Report.Add("${ReportIndent}before  $SecurityBefore")
     $Report.Add("${ReportIndent}after   $SecurityAfter")
-    $Report.Add("${ReportIndent}schemes declared in components.securitySchemes: $($SecuritySchemeLabels -join ', ')")
+    $Report.Add("${ReportIndent}Whisparr declares both API key schemes and then serves an empty requirement, so without")
+    $Report.Add("${ReportIndent}this repair the generated client carries no auth call site at all.")
     $Report.Add('')
 
     $Report.Add('[2] delete paths["/"] (PREP-03)')
-    foreach ($Removed in $RemovedOperations) { $Report.Add("${ReportIndent}removed  $Removed") }
+    foreach ($Removed in $RemovedOperations) { $Report.Add("${ReportIndent}removed     $Removed") }
     $Report.Add("${ReportIndent}paths       $PathCountBefore -> $($PathsObject.Count)")
     $Report.Add("${ReportIndent}operations  $OperationCountBefore -> $($SpecOps.Count)")
     $Report.Add('')
 
     $Report.Add('[3] operationId assignment (PREP-04, PREP-05)')
-    $Report.Add("${ReportIndent}map               $(Get-ReportPathLabel -FullPath $MapFullPath)   $($MapKeys.Count) entries")
+    $Report.Add("${ReportIndent}map               $(Get-ReportPathLabel -FullPath $MapFullPath), $($MapKeys.Count) entries")
     $Report.Add("${ReportIndent}assigned          $AssignedFromMap from map, $DerivedAtRuntime derived")
-    $Report.Add("${ReportIndent}unmatched         $($Unmapped.Count) operations missing from the map")
+    $Report.Add("${ReportIndent}unmapped          $($Unmapped.Count) operations missing from the map")
     $Report.Add("${ReportIndent}orphaned          $($Orphans.Count) map entries matching no operation")
     $Report.Add("${ReportIndent}collisions        $($Collisions.Count)")
     $Report.Add("${ReportIndent}identifier shape  $($MapKeys.Count - $BadShape.Count)/$($MapKeys.Count) match $OperationIdPattern")
     $Report.Add('')
 
-    # A transform that changed nothing prints its section with an explicit zero rather than
-    # omitting it, so a reader can tell ran-and-changed-nothing from did-not-run. Every value in
-    # brackets below is measured at step 1b, never transcribed.
-    $Report.Add('[4] transforms deliberately not applied (PREP-06)')
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value '"200" -> "2XX"' -Width $ReportLabelColumn)rejected: $ObservedSecondSuccessCodes operations declare a second 2xx code beside 200,")
-    $Report.Add("$Continue" + 'POST /api/v3/performer (201) and PUT /api/v3/performer/{id} (202), so the')
-    $Report.Add("$Continue" + 'range key would sit beside a literal code inside its own range; and the')
-    $Report.Add("$Continue" + 'generichost accessor for that range is unreachable code, its generated')
-    $Report.Add("$Continue" + 'comparison can never be true')
-    $Report.Add("$Continue" + "[observed: secondSuccessCodes=$ObservedSecondSuccessCodes]")
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'FIX_DUPLICATED_OPERATIONID' -Width $ReportLabelColumn)rejected: it de-duplicates by appending a positional suffix, which would")
-    $Report.Add("$Continue" + 'mask the PREP-04 collision assertion, and inserting an operation upstream')
-    $Report.Add("$Continue" + 'moves the suffix onto a different method, renaming public API with no diff')
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'SECURITY_SCHEMES_FILTER' -Width $ReportLabelColumn)rejected: it would drop the query scheme and tidy the generated surface,")
-    $Report.Add("$Continue" + 'but ERGO-01 requires both declared schemes to reach the wire')
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'FILTER (path allowlist)' -Width $ReportLabelColumn)rejected: it is a prefix allowlist, so excluding one path means enumerating")
-    $Report.Add("$Continue" + 'every other top-level path, and a future Whisparr adding one would be')
-    $Report.Add("$Continue" + 'dropped silently with the operation count falling and nothing reported')
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'fixes.py TimeSpan/HttpUri/Version' -Width $ReportLabelColumn)not applicable: the three type names it rewrites are absent from this")
-    $Report.Add("$Continue" + 'document, and no schema is named Version. Command and Field are schemas')
-    $Report.Add("$Continue" + 'here but System.Command and System.Field do not exist, so nothing collides')
-    $Report.Add("$Continue" + 'and no name mapping is needed. bclCollisions counts BCL-looking schema')
-    $Report.Add("$Continue" + 'names, not collisions; a 0-error two-framework compile settled it')
-    $Report.Add("$Continue" + "[observed: TimeSpan=$ObservedTimeSpan; HttpUri=$ObservedHttpUri; VersionSchema=$ObservedVersionSchema; bclCollisions=$ObservedBclCollisions]")
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'fixes.py ImportListType += "plex"' -Width $ReportLabelColumn)rejected: devopsarr generate their whisparr client from Radarr's spec, so")
-    $Report.Add("$Continue" + 'the patch repairs a Radarr gap. Eros serves a different value set, and')
-    $Report.Add("$Continue" + 'adding a member the server cannot send teaches the deserializer to accept')
-    $Report.Add("$Continue" + 'something this API never returns')
-    $Report.Add("$Continue" + "[observed: ImportListType=$ObservedImportListType]")
-    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'KEEP_ONLY_FIRST_TAG_IN_OPERATION' -Width $ReportLabelColumn)no-op: measured against this document, every operation carries exactly one")
-    $Report.Add("$Continue" + 'tag, so it would change nothing. Recorded as measured rather than copied')
-    $Report.Add("$Continue" + 'across from devopsarr on the strength of it being in their pipeline')
-    $Report.Add("$Continue" + "[observed: tags=$ObservedTags; multiTagOperations=$ObservedMultiTagOperations; untaggedOperations=$ObservedUntaggedOperations]")
-    $Report.Add('')
-
-    # The appendix. Ordered by path with the ordinal comparer, then by the fixed method order, so
-    # the ordering is total and locale-independent. Sort-Object is culture-aware and reorders
-    # exactly this data, which would make a committed report's diff depend on the machine that
-    # wrote it.
-    $Report.Add('[5] operationId map, sorted by path then method')
-    $AppendixRows = [System.Collections.Generic.List[object]]::new()
-    foreach ($Op in $SpecOps) {
-        $UpperMethod = $Op.Method.ToUpperInvariant()
-        $AppendixRows.Add([pscustomobject]@{
-            Method = $UpperMethod
-            Rank   = if ($ReportMethodOrder.ContainsKey($UpperMethod)) { $ReportMethodOrder[$UpperMethod] } else { $ReportMethodOrder.Count }
-            Path   = $Op.Path
-            Id     = $Map[$Op.Key]
-        })
-    }
-    $AppendixRows.Sort([System.Comparison[object]] {
-        param($Left, $Right)
-        $Compared = [System.StringComparer]::Ordinal.Compare($Left.Path, $Right.Path)
-        if ($Compared -ne 0) { return $Compared }
-        return $Left.Rank.CompareTo($Right.Rank)
-    })
-    foreach ($Row in $AppendixRows) {
-        $Report.Add("$ReportIndent$(Format-ReportColumn -Value $Row.Method -Width $ReportMethodColumn)$(Format-ReportColumn -Value $Row.Path -Width $ReportPathColumn)$($Row.Id)")
-    }
+    $Report.Add('[4] devopsarr transforms deliberately not reused (PREP-06)')
+    foreach ($Line in @(
+        '"200" -> "2XX"',
+        "  Rejected. $ObservedSecondSuccessCodes operations declare a second 2xx code beside 200: POST /api/v3/performer",
+        '  (201) and PUT /api/v3/performer/{id} (202). The range key would sit beside a literal code',
+        '  inside its own range, and the generichost accessor for that range is unreachable code',
+        '  whose generated comparison can never be true.',
+        'FIX_DUPLICATED_OPERATIONID',
+        '  Rejected. It de-duplicates by appending a positional suffix, which would mask the PREP-04',
+        '  collision assertion, and inserting an operation upstream moves the suffix onto a different',
+        '  method, renaming public API with no diff.',
+        'fixes.py type fixes for TimeSpan, HttpUri and Version',
+        "  Not applicable. TimeSpan occurs $ObservedTimeSpan times in this document and HttpUri $ObservedHttpUri times, and",
+        "  $ObservedVersionSchema schemas are named Version. The schema names that look like BCL types are $ObservedBclNames,",
+        '  but System.Command and System.Field do not exist, so nothing collides and no name mapping',
+        '  is needed. A 0-error two-framework compile settled it.',
+        'fixes.py ImportListType += "plex"',
+        '  Rejected. devopsarr generate their whisparr client from Radarr''s spec, so the patch repairs',
+        "  a Radarr gap. Eros serves a different value set, observed here as $ObservedImportListType,",
+        '  and adding a member the server cannot send teaches the deserializer to accept something',
+        '  this API never returns.',
+        'SECURITY_SCHEMES_FILTER',
+        '  Rejected. It would drop the query scheme and tidy the generated surface, but ERGO-01',
+        '  requires both declared schemes to reach the wire.',
+        'FILTER (path allowlist)',
+        '  Rejected. It is a prefix allowlist, so excluding one path means enumerating every other',
+        '  top-level path, and a future Whisparr adding one would be dropped silently, with the',
+        '  operation count falling and nothing reported.',
+        'KEEP_ONLY_FIRST_TAG_IN_OPERATION',
+        "  No-op. This document declares $ObservedTags tags and every operation carries exactly one:",
+        "  $ObservedMultiTagOperations operations carry more than one, $ObservedUntaggedOperations carry none."
+    )) { $Report.Add("$ReportIndent$Line") }
 
     # The same LF, no byte order mark, exactly one trailing newline discipline every other artifact
     # in this repository uses.
