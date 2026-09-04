@@ -18,6 +18,11 @@
     5. Copy back exactly what the generator owns, and nothing else.
     6. Assert the copied .cs count equals the staged .cs count.
 
+  Steps 4 and 5 are the window in which the repository is mid-replace. Every exit out of that
+  window says so and names the recovery, including an unexpected one: the catch reports the .cs
+  count the tree actually holds rather than claiming, as a bare PowerShell error record implicitly
+  does, that nothing was touched.
+
   Docker on this machine cannot bind-mount the I: drive. Measured 2026-09-04: a bind mount of an
   I: path lists an empty directory and exits 0, so the mount looks like it worked and is not
   (D-01). Generation therefore runs against a staging root under the user temp directory on C:
@@ -100,8 +105,9 @@ $StagePkgDir = Join-Path $Stage 'src/Whisparr3.Net'
 # in the same sentence every time. The sentence is written once here rather than repeated at each
 # gate, which is how its wording drifted in the prototype.
 #
-# The post-copy refusal at step 6 deliberately does NOT call this helper. It is the one refusal
-# that fires after the delete, so the tree is not untouched and saying otherwise would be false.
+# The two exits that can fire once step 4 has started deliberately do NOT call this helper: the
+# post-copy refusal at step 6, and the touched branch of the catch. Neither can claim the tree is
+# untouched, so each names the state it is actually in and the recovery from it.
 #
 # A refusal writes to the host and then exits. The cmdlet that writes an error record instead
 # throws under $ErrorActionPreference = 'Stop', which makes the exit after it unreachable.
@@ -132,6 +138,11 @@ function Get-GeneratedCsFile {
 Write-Host "Generate Whisparr3.Net client -> $PkgDir" -ForegroundColor Cyan
 Write-Host "  - image $Image" -ForegroundColor DarkGray
 Write-Host "  - staging root $Stage" -ForegroundColor DarkGray
+
+# False until this run has begun changing the repository, which is the moment step 4 starts. The
+# catch below branches on it, because that is the one fact a caller needs from an unexpected error
+# and the one the default PowerShell error record does not carry.
+$TreeTouched = $false
 
 try {
     # --- 1. Stage the two inputs, mirroring the repository layout ---
@@ -167,17 +178,26 @@ try {
     $Listed   = @(Get-Content -LiteralPath $StageManifest | Where-Object { $_.Trim() -ne '' })
     $Absent   = @($Listed | Where-Object { -not (Test-Path -LiteralPath (Join-Path $Stage $_)) })
     $StagedCs = @(Get-GeneratedCsFile -PackageRoot $StagePkgDir)
-    if ($Listed.Count -eq 0 -or $Absent.Count -gt 0 -or $StagedCs.Count -ne $ExpectedCs) {
-        Write-Refusal @("ERROR: REFUSED - the staged tree is not the expected tree: $($Listed.Count) paths listed in the manifest, $($Absent.Count) of them missing on disk, $($StagedCs.Count) .cs files across the five generated subdirectories, expected $ExpectedCs.")
+    # A subdirectory the generator did not emit at all is invisible to the count above, because
+    # Get-GeneratedCsFile skips a missing one. Step 5 would then throw Cannot find path partway
+    # through the copy, after the delete, which is the expensive place to discover it.
+    $MissingSubdirs = @($GeneratedSubdirs | Where-Object { -not (Test-Path -LiteralPath (Join-Path $StagePkgDir $_)) })
+    if ($Listed.Count -eq 0 -or $Absent.Count -gt 0 -or $StagedCs.Count -ne $ExpectedCs -or $MissingSubdirs.Count -gt 0) {
+        $Refusal = @("ERROR: REFUSED - the staged tree is not the expected tree: $($Listed.Count) paths listed in the manifest, $($Absent.Count) of them missing on disk, $($StagedCs.Count) .cs files across the five generated subdirectories, expected $ExpectedCs, $($MissingSubdirs.Count) of the five subdirectories absent under the stage.")
+        if ($MissingSubdirs.Count -gt 0) { $Refusal += "  Absent under ${StagePkgDir}: $($MissingSubdirs -join ', ')." }
+        Write-Refusal $Refusal
         exit 1
     }
-    Write-Host "  + staged $($StagedCs.Count) .cs files, expected $ExpectedCs, $($Listed.Count) manifest entries, 0 missing" -ForegroundColor Green
+    Write-Host "  + staged $($StagedCs.Count) .cs files, expected $ExpectedCs, $($Listed.Count) manifest entries, 0 missing, $(@($GeneratedSubdirs).Count) of $(@($GeneratedSubdirs).Count) subdirectories present" -ForegroundColor Green
 
     # --- 4. Replace, never merge. The generator never prunes, so the delete is the pruner ---
     # Measured 2026-09-04: Copy-Item -Recurse into an existing target merges. It neither replaces
     # the target nor nests inside it, so without this delete a stale file inside Api/ survives the
     # copy and compiles (D-17).
     $DeletedSubdirs = 0
+    # Set before the first unlink and not after the loop. From here to the end of step 5 the
+    # repository is mid-replace, and an error anywhere in that window leaves it that way.
+    $TreeTouched = $true
     foreach ($Subdir in $GeneratedSubdirs) {
         $Target = Join-Path $PkgDir $Subdir
         if (Test-Path -LiteralPath $Target) {
@@ -202,8 +222,8 @@ try {
 
     # --- 6. Assert the copied count equals the staged count ---
     # A cheap post-condition that catches a partially failed copy, which is otherwise silent. This
-    # is the one refusal in the script that fires after the delete, so it must not carry the
-    # untouched sentence Write-Refusal appends. It names the state the tree is actually in.
+    # is one of the two exits that fire after the delete, so it must not carry the untouched
+    # sentence Write-Refusal appends. It names the state the tree is actually in.
     $CopiedCs = @(Get-GeneratedCsFile -PackageRoot $PkgDir)
     if ($CopiedCs.Count -ne $StagedCs.Count) {
         Write-Host "ERROR: REFUSED - copied $($CopiedCs.Count) .cs files but staged $($StagedCs.Count)." -ForegroundColor Red
@@ -215,6 +235,30 @@ try {
     Write-Host "  ! generated from image digest $ImageDigest - reported only, not asserted" -ForegroundColor Yellow
 
     Write-Host "Done. $PkgDir" -ForegroundColor Green
+}
+catch {
+    # Without this, try/finally with no catch let every terminating error between the delete and
+    # the step 6 assertion escape as a raw PowerShell error record under $ErrorActionPreference =
+    # 'Stop'. That record says nothing about the repository, and by then the five subdirectories
+    # and .openapi-generator/ are gone. This is the script that needs the catch most, because it
+    # is the only one here that deletes a committed deliverable, and it was the one without it.
+    # probe-generated-boundary.ps1 carries the same shape for the same reason.
+    #
+    # The touched branch states measured counts rather than a narrative, because the error can
+    # arrive at any point in the window and a fixed sentence about what was deleted would be a
+    # guess. The untouched branch is the ordinary refusal wording, and is true because nothing in
+    # the repository has been written at that point.
+    if ($TreeTouched) {
+        $Present = @(Get-GeneratedCsFile -PackageRoot $PkgDir)
+        $MetaState = if (Test-Path -LiteralPath $GenMetaDir) { 'present' } else { 'absent' }
+        Write-Host "ERROR: generate.ps1 stopped after it had begun replacing the tree: $($_.Exception.Message)" -ForegroundColor Red
+        Write-Host "  The tree under $PkgDir is partially written and is not untouched: it now holds $($Present.Count) .cs files across the five generated subdirectories where a complete tree holds $ExpectedCs, and .openapi-generator/ is $MetaState." -ForegroundColor Red
+        Write-Host "  Recovery is to re-run generate.ps1, or git -C $RepoRoot checkout -- src/Whisparr3.Net .openapi-generator .openapi-generator-ignore" -ForegroundColor Red
+    }
+    else {
+        Write-Refusal @("ERROR: generate.ps1 stopped before it had begun replacing the tree: $($_.Exception.Message)")
+    }
+    exit 1
 }
 finally {
     # Removes this run's own GUID-suffixed root and nothing else, so a concurrent run is
