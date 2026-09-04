@@ -12,9 +12,12 @@
        readiness timeout.
     3. Identity assertion against /api/v3/system/status - branch eros, major version 3.
     4. Capture with Invoke-WebRequest -OutFile, which is byte-verbatim. Out-File and
-       Set-Content append a trailing CRLF and change the sha256.
-    5. Provenance manifest, written into the output file's own directory.
-    6. Census gate, whose exit code is propagated.
+       Set-Content append a trailing CRLF and change the sha256. The capture lands on a
+       staging path, not on the committed file.
+    5. Provenance manifest built from observed values, in memory.
+    6. Census gate over the staged bytes, whose exit code is propagated.
+    7. Promotion. Only here is the committed spec replaced and the manifest written. A run
+       that refuses at any earlier step leaves both exactly as they were.
 
   The image is referenced only by digest. The moving tags point at Whisparr 2, a different
   application that also serves /api/v3, so an unpinned pull yields a client that compiles and
@@ -70,6 +73,10 @@ $StatusUrl     = "$BaseUrl/api/v3/system/status"
 $SpecPath       = if ([System.IO.Path]::IsPathRooted($OutFile)) { $OutFile } else { Join-Path $RepoRoot $OutFile }
 $SpecDir        = Split-Path -Parent $SpecPath
 $ProvenancePath = Join-Path $SpecDir 'PROVENANCE.json'
+# Every capture lands here first and is promoted only once every gate has passed, so a refusal
+# cannot leave the committed deliverable replaced by unverified bytes. Declared beside the
+# other paths rather than inside the try so the finally block can clear a partial download.
+$StagePath      = "$SpecPath.incoming"
 
 Write-Host "Capture Whisparr 3 openapi -> $SpecPath" -ForegroundColor Cyan
 Write-Host "  - image $Image" -ForegroundColor DarkGray
@@ -170,20 +177,26 @@ try {
     }
     Write-Host "  + identity ok - Whisparr $($Status.version), branch $($Status.branch)" -ForegroundColor Green
 
-    # --- 4. Capture, byte-verbatim ---
+    # --- 4. Capture, byte-verbatim, to a staging path ---
     # -OutFile reproduces the source bytes exactly. Out-File and Set-Content append a trailing
     # CRLF, two extra bytes, and change the sha256. -OutFile also sidesteps the response
     # content being a string for a 200 and a byte array for an error.
+    #
+    # It writes to $StagePath, not to $SpecPath. The gate below used to run after both the
+    # committed spec and the committed manifest had already been overwritten, so an ordinary
+    # digest bump replaced the repository's sole deliverable with an unverified capture and
+    # rewrote specSha256 to describe those unverified bytes - while the failure message said
+    # only that the census did not match. Nothing committed is touched before step 7.
     New-Item -ItemType Directory -Force -Path $SpecDir | Out-Null
-    Invoke-WebRequest $SpecUrl -OutFile $SpecPath
-    $Sha   = (Get-FileHash -Algorithm SHA256 -Path $SpecPath).Hash.ToLower()
-    $Bytes = (Get-Item -LiteralPath $SpecPath).Length
-    Write-Host "  + captured $Bytes bytes, sha256 $Sha" -ForegroundColor Green
+    Invoke-WebRequest $SpecUrl -OutFile $StagePath
+    $Sha   = (Get-FileHash -Algorithm SHA256 -Path $StagePath).Hash.ToLower()
+    $Bytes = (Get-Item -LiteralPath $StagePath).Length
+    Write-Host "  + staged $Bytes bytes at $StagePath, sha256 $Sha" -ForegroundColor Green
 
-    # --- 5. Provenance, from observed values only ---
+    # --- 5. Provenance, from observed values only. Built here, written only at step 7 ---
     # No generator keys here. The generator is not pinned until Phase 20, and writing them now
     # would be transcription rather than measurement.
-    $Spec = Get-Content -Raw -LiteralPath $SpecPath | ConvertFrom-Json
+    $Spec = Get-Content -Raw -LiteralPath $StagePath | ConvertFrom-Json
     $Provenance = [pscustomobject][ordered]@{
         capturedAt             = (Get-Date).ToUniversalTime().ToString('o')
         capturedFrom           = $SpecUrl
@@ -197,6 +210,25 @@ try {
         specBytes              = $Bytes
         specOpenApiVersion     = $Spec.openapi
     }
+
+    # --- 6. Census gate, over the staged bytes ---
+    # $LASTEXITCODE is the only reliable way to read a child script's exit code: the stop
+    # error preference does not intercept it.
+    # -SkipProvenanceHash because the manifest beside $SpecPath still describes the previous
+    # capture. The staged bytes were hashed at step 4 and that hash is what step 7 records, so
+    # comparing them against the old manifest here would refuse every deliberate digest bump.
+    & (Join-Path $PSScriptRoot 'assert-spec-census.ps1') -Path $StagePath -SkipProvenanceHash
+    if ($LASTEXITCODE -ne 0) {
+        $CensusExit = $LASTEXITCODE
+        Remove-Item -LiteralPath $StagePath -Force
+        Write-Host "ERROR: census gate failed (exit $CensusExit) for the capture staged at $StagePath." -ForegroundColor Red
+        Write-Host "  The staged capture has been discarded. $SpecPath and $ProvenancePath are untouched." -ForegroundColor Red
+        exit $CensusExit
+    }
+
+    # --- 7. Promote. The first and only writes to anything committed ---
+    Move-Item -LiteralPath $StagePath -Destination $SpecPath -Force
+    Write-Host "  + promoted to $SpecPath" -ForegroundColor Green
     # ConvertTo-Json emits the platform newline, which is CRLF here, and .gitattributes
     # declares *.json as eol=lf. Write LF explicitly so the working tree matches what a
     # clone gets, rather than leaving git to renormalize on every capture.
@@ -204,19 +236,13 @@ try {
     [System.IO.File]::WriteAllText($ProvenancePath, $ProvenanceJson, [System.Text.UTF8Encoding]::new($false))
     Write-Host "  + wrote $ProvenancePath" -ForegroundColor Green
 
-    # --- 6. Census gate ---
-    # $LASTEXITCODE is the only reliable way to read a child script's exit code: the stop
-    # error preference does not intercept it.
-    & (Join-Path $PSScriptRoot 'assert-spec-census.ps1') -Path $SpecPath
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "ERROR: census gate failed for $SpecPath (exit $LASTEXITCODE). The spec was captured but does not match the pinned census." -ForegroundColor Red
-        exit $LASTEXITCODE
-    }
-
     Write-Host "Done. $SpecPath" -ForegroundColor Green
 }
 finally {
     # Force-remove by name so a failed run cannot leave a stale container that poisons the
     # next one or keeps host port 6969 bound.
     docker rm -f -v $ContainerName 2>&1 | Out-Null
+    # A run killed mid-download leaves a partial staging file. It is never the deliverable, so
+    # clearing it here keeps the working tree clean without touching anything committed.
+    if (Test-Path -LiteralPath $StagePath) { Remove-Item -LiteralPath $StagePath -Force }
 }
