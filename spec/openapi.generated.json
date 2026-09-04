@@ -80,7 +80,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListAlternativeTitle"
       }
     },
     "/api/v3/alttitle/{id}": {
@@ -120,7 +121,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetAlternativeTitleById"
       }
     },
     "/api": {
@@ -139,7 +141,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetApiInfo"
       }
     },
     "/login": {
@@ -191,7 +194,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateLogin"
       },
       "get": {
         "tags": [
@@ -201,7 +205,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLoginPage"
       }
     },
     "/logout": {
@@ -213,7 +218,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLogout"
       }
     },
     "/api/v3/autotagging": {
@@ -251,7 +257,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateAutoTagging"
       },
       "get": {
         "tags": [
@@ -271,7 +278,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListAutoTagging"
       }
     },
     "/api/v3/autotagging/{id}": {
@@ -319,7 +327,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateAutoTagging"
       },
       "delete": {
         "tags": [
@@ -340,7 +349,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteAutoTagging"
       },
       "get": {
         "tags": [
@@ -378,7 +388,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetAutoTaggingById"
       }
     },
     "/api/v3/autotagging/schema": {
@@ -390,7 +401,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetAutoTaggingSchema"
       }
     },
     "/api/v3/system/backup": {
@@ -428,7 +440,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListSystemBackup"
       }
     },
     "/api/v3/system/backup/{id}": {
@@ -451,7 +464,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteSystemBackup"
       }
     },
     "/api/v3/system/backup/restore/{id}": {
@@ -474,7 +488,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateSystemBackupRestoreById"
       }
     },
     "/api/v3/system/backup/restore/upload": {
@@ -486,7 +501,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateSystemBackupRestoreUpload"
       }
     },
     "/api/v3/blocklist": {
@@ -560,7 +576,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetBlocklist"
       }
     },
     "/api/v3/blocklist/movie": {
@@ -608,7 +625,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListBlocklistMovie"
       }
     },
     "/api/v3/blocklist/{id}": {
@@ -631,7 +649,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteBlocklist"
       }
     },
     "/api/v3/blocklist/bulk": {
@@ -652,7 +671,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteBlocklistBulk"
       }
     },
     "/api/v3/calendar": {
@@ -708,7 +728,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListCalendar"
       }
     },
     "/feed/v3/calendar/whisparr.ics": {
@@ -756,7 +777,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetCalendarFeed"
       }
     },
     "/api/v3/collection": {
@@ -790,7 +812,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListCollection"
       },
       "put": {
         "tags": [
@@ -811,7 +834,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PutCollection"
       }
     },
     "/api/v3/collection/{id}": {
@@ -851,7 +875,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateCollection"
       },
       "delete": {
         "tags": [
@@ -892,7 +917,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteCollection"
       },
       "get": {
         "tags": [
@@ -930,7 +956,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetCollectionById"
       }
     },
     "/api/v3/command": {
@@ -958,7 +985,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateCommand"
       },
       "get": {
         "tags": [
@@ -994,7 +1022,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListCommand"
       }
     },
     "/api/v3/command/{id}": {
@@ -1017,7 +1046,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteCommand"
       },
       "get": {
         "tags": [
@@ -1055,7 +1085,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetCommandById"
       }
     },
     "/api/v3/credit": {
@@ -1122,7 +1153,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListCredit"
       }
     },
     "/api/v3/credit/{id}": {
@@ -1162,7 +1194,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetCreditById"
       }
     },
     "/api/v3/customfilter": {
@@ -1200,7 +1233,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListCustomFilter"
       },
       "post": {
         "tags": [
@@ -1236,7 +1270,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateCustomFilter"
       }
     },
     "/api/v3/customfilter/{id}": {
@@ -1284,7 +1319,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateCustomFilter"
       },
       "delete": {
         "tags": [
@@ -1305,7 +1341,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteCustomFilter"
       },
       "get": {
         "tags": [
@@ -1343,7 +1380,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetCustomFilterById"
       }
     },
     "/api/v3/customformat": {
@@ -1365,7 +1403,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListCustomFormat"
       },
       "post": {
         "tags": [
@@ -1401,7 +1440,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateCustomFormat"
       }
     },
     "/api/v3/customformat/{id}": {
@@ -1449,7 +1489,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateCustomFormat"
       },
       "delete": {
         "tags": [
@@ -1470,7 +1511,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteCustomFormat"
       },
       "get": {
         "tags": [
@@ -1508,7 +1550,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetCustomFormatById"
       }
     },
     "/api/v3/customformat/bulk": {
@@ -1536,7 +1579,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "PutCustomFormatBulk"
       },
       "delete": {
         "tags": [
@@ -1555,7 +1599,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteCustomFormatBulk"
       }
     },
     "/api/v3/customformat/schema": {
@@ -1567,7 +1612,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetCustomFormatSchema"
       }
     },
     "/api/v3/wanted/cutoff": {
@@ -1628,7 +1674,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetWantedCutoff"
       }
     },
     "/api/v3/delayprofile": {
@@ -1666,7 +1713,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateDelayProfile"
       },
       "get": {
         "tags": [
@@ -1702,7 +1750,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListDelayProfile"
       }
     },
     "/api/v3/delayprofile/{id}": {
@@ -1725,7 +1774,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteDelayProfile"
       },
       "put": {
         "tags": [
@@ -1771,7 +1821,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateDelayProfile"
       },
       "get": {
         "tags": [
@@ -1809,7 +1860,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetDelayProfileById"
       }
     },
     "/api/v3/delayprofile/reorder/{id}": {
@@ -1866,7 +1918,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateDelayProfileReorder"
       }
     },
     "/api/v3/diskspace": {
@@ -1904,7 +1957,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListDiskSpace"
       }
     },
     "/api/v3/downloadclient": {
@@ -1926,7 +1980,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListDownloadClient"
       },
       "post": {
         "tags": [
@@ -1962,7 +2017,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateDownloadClient"
       }
     },
     "/api/v3/downloadclient/{id}": {
@@ -2009,7 +2065,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateDownloadClient"
       },
       "delete": {
         "tags": [
@@ -2030,7 +2087,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteDownloadClient"
       },
       "get": {
         "tags": [
@@ -2068,7 +2126,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetDownloadClientById"
       }
     },
     "/api/v3/downloadclient/bulk": {
@@ -2096,7 +2155,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "PutDownloadClientBulk"
       },
       "delete": {
         "tags": [
@@ -2115,7 +2175,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteDownloadClientBulk"
       }
     },
     "/api/v3/downloadclient/schema": {
@@ -2137,7 +2198,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListDownloadClientSchema"
       }
     },
     "/api/v3/downloadclient/test": {
@@ -2168,7 +2230,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestDownloadClient"
       }
     },
     "/api/v3/downloadclient/testall": {
@@ -2180,7 +2243,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestAllDownloadClient"
       }
     },
     "/api/v3/downloadclient/action/{name}": {
@@ -2211,7 +2275,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateDownloadClientActionByName"
       }
     },
     "/api/v3/config/downloadclient": {
@@ -2230,7 +2295,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetDownloadClientConfig"
       }
     },
     "/api/v3/config/downloadclient/{id}": {
@@ -2278,7 +2344,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateDownloadClientConfig"
       },
       "get": {
         "tags": [
@@ -2316,7 +2383,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetDownloadClientConfigById"
       }
     },
     "/api/v3/extrafile": {
@@ -2364,7 +2432,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListExtraFile"
       }
     },
     "/api/v3/filesystem": {
@@ -2401,7 +2470,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetFileSystem"
       }
     },
     "/api/v3/filesystem/type": {
@@ -2422,7 +2492,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetFileSystemType"
       }
     },
     "/api/v3/filesystem/mediafiles": {
@@ -2443,7 +2514,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetFileSystemMediaFiles"
       }
     },
     "/api/v3/health": {
@@ -2481,7 +2553,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListHealth"
       }
     },
     "/api/v3/history": {
@@ -2592,7 +2665,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetHistory"
       }
     },
     "/api/v3/history/since": {
@@ -2639,7 +2713,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListHistorySince"
       }
     },
     "/api/v3/history/movie": {
@@ -2686,7 +2761,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListHistoryMovie"
       }
     },
     "/api/v3/history/failed/{id}": {
@@ -2709,7 +2785,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateHistoryFailedById"
       }
     },
     "/api/v3/config/host": {
@@ -2738,7 +2815,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetHostConfig"
       }
     },
     "/api/v3/config/host/{id}": {
@@ -2786,7 +2864,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateHostConfig"
       },
       "get": {
         "tags": [
@@ -2824,7 +2903,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetHostConfigById"
       }
     },
     "/api/v3/importlist": {
@@ -2846,7 +2926,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListImportList"
       },
       "post": {
         "tags": [
@@ -2882,7 +2963,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateImportList"
       }
     },
     "/api/v3/importlist/{id}": {
@@ -2929,7 +3011,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateImportList"
       },
       "delete": {
         "tags": [
@@ -2950,7 +3033,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteImportList"
       },
       "get": {
         "tags": [
@@ -2988,7 +3072,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetImportListById"
       }
     },
     "/api/v3/importlist/bulk": {
@@ -3016,7 +3101,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "PutImportListBulk"
       },
       "delete": {
         "tags": [
@@ -3035,7 +3121,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteImportListBulk"
       }
     },
     "/api/v3/importlist/schema": {
@@ -3057,7 +3144,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListImportListSchema"
       }
     },
     "/api/v3/importlist/test": {
@@ -3088,7 +3176,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestImportList"
       }
     },
     "/api/v3/importlist/testall": {
@@ -3100,7 +3189,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestAllImportList"
       }
     },
     "/api/v3/importlist/action/{name}": {
@@ -3131,7 +3221,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateImportListActionByName"
       }
     },
     "/api/v3/config/importlist": {
@@ -3150,7 +3241,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetImportListConfig"
       }
     },
     "/api/v3/config/importlist/{id}": {
@@ -3198,7 +3290,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateImportListConfig"
       },
       "get": {
         "tags": [
@@ -3236,7 +3329,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetImportListConfigById"
       }
     },
     "/api/v3/exclusions": {
@@ -3274,7 +3368,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListExclusions"
       },
       "post": {
         "tags": [
@@ -3310,7 +3405,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateExclusions"
       }
     },
     "/api/v3/exclusions/paged": {
@@ -3363,7 +3459,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetExclusionsPaged"
       }
     },
     "/api/v3/exclusions/{id}": {
@@ -3411,7 +3508,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateExclusions"
       },
       "delete": {
         "tags": [
@@ -3432,7 +3530,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteExclusions"
       },
       "get": {
         "tags": [
@@ -3470,7 +3569,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetExclusionsById"
       }
     },
     "/api/v3/exclusions/bulk": {
@@ -3510,7 +3610,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateExclusionsBulk"
       },
       "delete": {
         "tags": [
@@ -3529,7 +3630,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteExclusionsBulk"
       }
     },
     "/api/v3/importlist/movie": {
@@ -3541,7 +3643,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetImportListMovie"
       },
       "post": {
         "tags": [
@@ -3579,7 +3682,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateImportListMovie"
       }
     },
     "/api/v3/indexer": {
@@ -3601,7 +3705,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListIndexer"
       },
       "post": {
         "tags": [
@@ -3637,7 +3742,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateIndexer"
       }
     },
     "/api/v3/indexer/{id}": {
@@ -3684,7 +3790,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateIndexer"
       },
       "delete": {
         "tags": [
@@ -3705,7 +3812,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteIndexer"
       },
       "get": {
         "tags": [
@@ -3743,7 +3851,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetIndexerById"
       }
     },
     "/api/v3/indexer/bulk": {
@@ -3771,7 +3880,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "PutIndexerBulk"
       },
       "delete": {
         "tags": [
@@ -3790,7 +3900,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteIndexerBulk"
       }
     },
     "/api/v3/indexer/schema": {
@@ -3812,7 +3923,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListIndexerSchema"
       }
     },
     "/api/v3/indexer/test": {
@@ -3843,7 +3955,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestIndexer"
       }
     },
     "/api/v3/indexer/testall": {
@@ -3855,7 +3968,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestAllIndexer"
       }
     },
     "/api/v3/indexer/action/{name}": {
@@ -3886,7 +4000,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateIndexerActionByName"
       }
     },
     "/api/v3/config/indexer": {
@@ -3905,7 +4020,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetIndexerConfig"
       }
     },
     "/api/v3/config/indexer/{id}": {
@@ -3953,7 +4069,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateIndexerConfig"
       },
       "get": {
         "tags": [
@@ -3991,7 +4108,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetIndexerConfigById"
       }
     },
     "/api/v3/indexerflag": {
@@ -4029,7 +4147,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListIndexerFlag"
       }
     },
     "/api/v3/language": {
@@ -4067,7 +4186,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListLanguage"
       }
     },
     "/api/v3/language/{id}": {
@@ -4107,7 +4227,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetLanguageById"
       }
     },
     "/api/v3/localization": {
@@ -4136,7 +4257,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetLocalization"
       }
     },
     "/api/v3/localization/language": {
@@ -4155,7 +4277,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetLocalizationLanguage"
       }
     },
     "/api/v3/log": {
@@ -4215,7 +4338,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetLog"
       }
     },
     "/api/v3/log/file": {
@@ -4253,7 +4377,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListLogFile"
       }
     },
     "/api/v3/log/file/{filename}": {
@@ -4276,7 +4401,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLogFileByFilename"
       }
     },
     "/api/v3/manualimport": {
@@ -4330,7 +4456,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListManualImport"
       },
       "post": {
         "tags": [
@@ -4352,7 +4479,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateManualImport"
       }
     },
     "/api/v3/mediacover/{movieId}/{filename}": {
@@ -4384,7 +4512,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetMediaCoverByMovieIdAndFilename"
       }
     },
     "/api/v3/config/mediamanagement": {
@@ -4403,7 +4532,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMediaManagementConfig"
       }
     },
     "/api/v3/config/mediamanagement/{id}": {
@@ -4451,7 +4581,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateMediaManagementConfig"
       },
       "get": {
         "tags": [
@@ -4489,7 +4620,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMediaManagementConfigById"
       }
     },
     "/api/v3/metadata": {
@@ -4511,7 +4643,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMetadata"
       },
       "post": {
         "tags": [
@@ -4547,7 +4680,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateMetadata"
       }
     },
     "/api/v3/metadata/{id}": {
@@ -4594,7 +4728,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateMetadata"
       },
       "delete": {
         "tags": [
@@ -4615,7 +4750,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteMetadata"
       },
       "get": {
         "tags": [
@@ -4653,7 +4789,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMetadataById"
       }
     },
     "/api/v3/metadata/schema": {
@@ -4675,7 +4812,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMetadataSchema"
       }
     },
     "/api/v3/metadata/test": {
@@ -4706,7 +4844,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestMetadata"
       }
     },
     "/api/v3/metadata/testall": {
@@ -4718,7 +4857,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestAllMetadata"
       }
     },
     "/api/v3/metadata/action/{name}": {
@@ -4749,7 +4889,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateMetadataActionByName"
       }
     },
     "/api/v3/wanted/missing": {
@@ -4810,7 +4951,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetWantedMissing"
       }
     },
     "/api/v3/movie/search": {
@@ -4854,7 +4996,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovieSearch"
       }
     },
     "/api/v3/movie": {
@@ -4930,7 +5073,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovie"
       },
       "post": {
         "tags": [
@@ -4958,7 +5102,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateMovie"
       }
     },
     "/api/v3/movie/{id}": {
@@ -5000,7 +5145,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMovieById"
       },
       "put": {
         "tags": [
@@ -5047,7 +5193,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateMovie"
       },
       "patch": {
         "tags": [
@@ -5080,7 +5227,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PatchMovieById"
       },
       "delete": {
         "tags": [
@@ -5121,7 +5269,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteMovie"
       }
     },
     "/api/v3/movie/list": {
@@ -5163,7 +5312,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovieList"
       },
       "post": {
         "tags": [
@@ -5214,7 +5364,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateMovieList"
       }
     },
     "/api/v3/movie/stats": {
@@ -5255,7 +5406,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMovieStats"
       }
     },
     "/api/v3/movie/bulk/monitor": {
@@ -5310,7 +5462,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PatchMovieBulkMonitor"
       }
     },
     "/api/v3/movie/bulk": {
@@ -5381,7 +5534,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateMovieBulk"
       }
     },
     "/api/v3/movie/listbyperformerforeignid": {
@@ -5433,7 +5587,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovieByPerformerForeignId"
       }
     },
     "/api/v3/movie/listbystudioforeignid": {
@@ -5485,7 +5640,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovieByStudioForeignId"
       }
     },
     "/api/v3/movie/paged": {
@@ -5525,7 +5681,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateMoviePaged"
       }
     },
     "/api/v3/movie/editor": {
@@ -5546,7 +5703,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PutMovieEditor"
       },
       "delete": {
         "tags": [
@@ -5575,7 +5733,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteMovieEditor"
       }
     },
     "/api/v3/moviefile": {
@@ -5628,7 +5787,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovieFile"
       }
     },
     "/api/v3/moviefile/{id}": {
@@ -5676,7 +5836,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateMovieFile"
       },
       "delete": {
         "tags": [
@@ -5697,7 +5858,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteMovieFile"
       },
       "get": {
         "tags": [
@@ -5735,7 +5897,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMovieFileById"
       }
     },
     "/api/v3/moviefile/editor": {
@@ -5757,7 +5920,8 @@
             "description": "OK"
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "operationId": "PutMovieFileEditor"
       }
     },
     "/api/v3/moviefile/bulk": {
@@ -5778,7 +5942,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteMovieFileBulk"
       },
       "put": {
         "tags": [
@@ -5800,7 +5965,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PutMovieFileBulk"
       }
     },
     "/api/v3/movie/{id}/folder": {
@@ -5823,7 +5989,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetMovieFolder"
       }
     },
     "/api/v3/movie/import": {
@@ -5859,7 +6026,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateMovieImport"
       }
     },
     "/api/v3/movie/lookup/tmdb": {
@@ -5890,7 +6058,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMovieLookupTmdb"
       }
     },
     "/api/v3/movie/lookup/tpdb": {
@@ -5920,7 +6089,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMovieLookupTpdb"
       }
     },
     "/api/v3/movie/lookup/imdb": {
@@ -5950,7 +6120,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetMovieLookupImdb"
       }
     },
     "/api/v3/movie/lookup": {
@@ -5991,7 +6162,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListMovieLookup"
       }
     },
     "/api/v3/config/naming": {
@@ -6020,7 +6192,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetNamingConfig"
       }
     },
     "/api/v3/config/naming/{id}": {
@@ -6068,7 +6241,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateNamingConfig"
       },
       "get": {
         "tags": [
@@ -6106,7 +6280,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetNamingConfigById"
       }
     },
     "/api/v3/config/naming/examples": {
@@ -6214,7 +6389,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetNamingConfigExamples"
       }
     },
     "/api/v3/notification": {
@@ -6236,7 +6412,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListNotification"
       },
       "post": {
         "tags": [
@@ -6272,7 +6449,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateNotification"
       }
     },
     "/api/v3/notification/{id}": {
@@ -6319,7 +6497,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateNotification"
       },
       "delete": {
         "tags": [
@@ -6340,7 +6519,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteNotification"
       },
       "get": {
         "tags": [
@@ -6378,7 +6558,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetNotificationById"
       }
     },
     "/api/v3/notification/schema": {
@@ -6400,7 +6581,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListNotificationSchema"
       }
     },
     "/api/v3/notification/test": {
@@ -6431,7 +6613,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestNotification"
       }
     },
     "/api/v3/notification/testall": {
@@ -6443,7 +6626,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "TestAllNotification"
       }
     },
     "/api/v3/notification/action/{name}": {
@@ -6474,7 +6658,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateNotificationActionByName"
       }
     },
     "/api/v3/parse": {
@@ -6512,7 +6697,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetParse"
       }
     },
     "/api/v3/performer/{performerForeignId}": {
@@ -6545,7 +6731,8 @@
           "404": {
             "description": "Performer with the specified foreign ID not found"
           }
-        }
+        },
+        "operationId": "GetPerformerByPerformerForeignId"
       }
     },
     "/api/v3/performer/list": {
@@ -6578,7 +6765,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreatePerformerList"
       }
     },
     "/api/v3/performer/{performerForeignId}/works": {
@@ -6630,7 +6818,8 @@
           "404": {
             "description": "Performer with the specified foreign ID not found"
           }
-        }
+        },
+        "operationId": "ListPerformerWorks"
       }
     },
     "/api/v3/performer": {
@@ -6656,7 +6845,8 @@
           "404": {
             "description": "Performer with the specified foreign ID not found"
           }
-        }
+        },
+        "operationId": "ListPerformer"
       },
       "post": {
         "tags": [
@@ -6690,7 +6880,8 @@
           "400": {
             "description": "Invalid performer details provided"
           }
-        }
+        },
+        "operationId": "CreatePerformer"
       }
     },
     "/api/v3/performer/{id}": {
@@ -6739,7 +6930,8 @@
           "404": {
             "description": "Performer with the specified ID not found"
           }
-        }
+        },
+        "operationId": "UpdatePerformer"
       },
       "delete": {
         "tags": [
@@ -6780,7 +6972,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeletePerformer"
       },
       "get": {
         "tags": [
@@ -6818,7 +7011,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetPerformerById"
       }
     },
     "/api/v3/performer/paged": {
@@ -6848,7 +7042,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreatePerformerPaged"
       }
     },
     "/api/v3/performer/editor": {
@@ -6871,7 +7066,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PutPerformerEditor"
       },
       "delete": {
         "tags": [
@@ -6900,7 +7096,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeletePerformerEditor"
       }
     },
     "/ping": {
@@ -6919,7 +7116,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetPing"
       },
       "head": {
         "tags": [
@@ -6936,7 +7134,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "HeadPing"
       }
     },
     "/api/v3/qualitydefinition/{id}": {
@@ -6994,7 +7193,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateQualityDefinition"
       },
       "get": {
         "tags": [
@@ -7032,7 +7232,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetQualityDefinitionById"
       }
     },
     "/api/v3/qualitydefinition": {
@@ -7070,7 +7271,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListQualityDefinition"
       }
     },
     "/api/v3/qualitydefinition/update": {
@@ -7110,7 +7312,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PutQualityDefinitionUpdate"
       }
     },
     "/api/v3/qualitydefinition/limits": {
@@ -7139,7 +7342,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetQualityDefinitionLimits"
       }
     },
     "/api/v3/qualityprofile": {
@@ -7177,7 +7381,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateQualityProfile"
       },
       "get": {
         "tags": [
@@ -7213,7 +7418,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListQualityProfile"
       }
     },
     "/api/v3/qualityprofile/{id}": {
@@ -7236,7 +7442,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteQualityProfile"
       },
       "put": {
         "tags": [
@@ -7282,7 +7489,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateQualityProfile"
       },
       "get": {
         "tags": [
@@ -7320,7 +7528,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetQualityProfileById"
       }
     },
     "/api/v3/qualityprofile/schema": {
@@ -7349,7 +7558,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetQualityProfileSchema"
       }
     },
     "/api/v3/queue/{id}": {
@@ -7404,7 +7614,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteQueue"
       }
     },
     "/api/v3/queue/bulk": {
@@ -7459,7 +7670,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteQueueBulk"
       }
     },
     "/api/v3/queue": {
@@ -7578,7 +7790,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetQueue"
       }
     },
     "/api/v3/queue/grab/{id}": {
@@ -7601,7 +7814,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateQueueGrabById"
       }
     },
     "/api/v3/queue/grab/bulk": {
@@ -7622,7 +7836,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateQueueGrabBulk"
       }
     },
     "/api/v3/queue/details": {
@@ -7678,7 +7893,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListQueueDetails"
       }
     },
     "/api/v3/queue/status": {
@@ -7707,7 +7923,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetQueueStatus"
       }
     },
     "/api/v3/release": {
@@ -7728,7 +7945,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateRelease"
       },
       "get": {
         "tags": [
@@ -7758,7 +7976,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListRelease"
       }
     },
     "/api/v3/releaseprofile": {
@@ -7796,7 +8015,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateReleaseProfile"
       },
       "get": {
         "tags": [
@@ -7832,7 +8052,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListReleaseProfile"
       }
     },
     "/api/v3/releaseprofile/{id}": {
@@ -7855,7 +8076,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteReleaseProfile"
       },
       "put": {
         "tags": [
@@ -7901,7 +8123,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateReleaseProfile"
       },
       "get": {
         "tags": [
@@ -7939,7 +8162,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetReleaseProfileById"
       }
     },
     "/api/v3/release/push": {
@@ -7970,7 +8194,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateReleasePush"
       }
     },
     "/api/v3/remotepathmapping": {
@@ -8008,7 +8233,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateRemotePathMapping"
       },
       "get": {
         "tags": [
@@ -8044,7 +8270,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListRemotePathMapping"
       }
     },
     "/api/v3/remotepathmapping/{id}": {
@@ -8067,7 +8294,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteRemotePathMapping"
       },
       "put": {
         "tags": [
@@ -8123,7 +8351,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateRemotePathMapping"
       },
       "get": {
         "tags": [
@@ -8161,7 +8390,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetRemotePathMappingById"
       }
     },
     "/api/v3/rename": {
@@ -8212,7 +8442,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListRename"
       }
     },
     "/api/v3/rootfolder": {
@@ -8252,7 +8483,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateRootFolder"
       },
       "get": {
         "tags": [
@@ -8289,7 +8521,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListRootFolder"
       }
     },
     "/api/v3/rootfolder/refresh/{id}": {
@@ -8331,7 +8564,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateRootFolderRefreshById"
       }
     },
     "/api/v3/rootfolder/{id}": {
@@ -8356,7 +8590,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteRootFolder"
       },
       "get": {
         "tags": [
@@ -8394,7 +8629,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetRootFolderById"
       }
     },
     "/api/v3/lookup/scene": {
@@ -8415,7 +8651,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLookupScene"
       }
     },
     "/api/v3/lookup/movie": {
@@ -8436,7 +8673,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLookupMovie"
       }
     },
     "/api/v3/lookup/studio": {
@@ -8457,7 +8695,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLookupStudio"
       }
     },
     "/api/v3/lookup/performer": {
@@ -8478,7 +8717,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLookupPerformer"
       }
     },
     "/content/{path}": {
@@ -8501,7 +8741,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetContentByPath"
       }
     },
     "/{path}": {
@@ -8524,7 +8765,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetStaticResourceByPath"
       }
     },
     "/api/v3/studio/{studioForeignId}": {
@@ -8557,7 +8799,8 @@
           "404": {
             "description": "Studio with the specified foreign ID not found"
           }
-        }
+        },
+        "operationId": "GetStudioByStudioForeignId"
       }
     },
     "/api/v3/studio/{studioForeignId}/works": {
@@ -8609,7 +8852,8 @@
           "404": {
             "description": "Studio with the specified foreign ID not found"
           }
-        }
+        },
+        "operationId": "ListStudioWorks"
       }
     },
     "/api/v3/studio/list": {
@@ -8645,7 +8889,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateStudioList"
       }
     },
     "/api/v3/studio/paged": {
@@ -8675,7 +8920,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateStudioPaged"
       }
     },
     "/api/v3/studio": {
@@ -8722,7 +8968,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListStudio"
       },
       "post": {
         "tags": [
@@ -8748,7 +8995,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateStudio"
       }
     },
     "/api/v3/studio/{id}": {
@@ -8786,7 +9034,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateStudio"
       },
       "delete": {
         "tags": [
@@ -8823,7 +9072,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteStudio"
       },
       "get": {
         "tags": [
@@ -8861,7 +9111,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetStudioById"
       }
     },
     "/api/v3/studio/editor": {
@@ -8884,7 +9135,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "PutStudioEditor"
       }
     },
     "/api/v3/system/status": {
@@ -8913,7 +9165,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetSystemStatus"
       }
     },
     "/api/v3/system/routes": {
@@ -8925,7 +9178,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetSystemRoutes"
       }
     },
     "/api/v3/system/routes/duplicate": {
@@ -8937,7 +9191,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetSystemRoutesDuplicate"
       }
     },
     "/api/v3/system/shutdown": {
@@ -8949,7 +9204,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateSystemShutdown"
       }
     },
     "/api/v3/system/restart": {
@@ -8961,7 +9217,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "CreateSystemRestart"
       }
     },
     "/api/v3/tag": {
@@ -8999,7 +9256,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListTag"
       },
       "post": {
         "tags": [
@@ -9035,7 +9293,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "CreateTag"
       }
     },
     "/api/v3/tag/{id}": {
@@ -9083,7 +9342,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateTag"
       },
       "delete": {
         "tags": [
@@ -9104,7 +9364,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "DeleteTag"
       },
       "get": {
         "tags": [
@@ -9142,7 +9403,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetTagById"
       }
     },
     "/api/v3/tag/detail": {
@@ -9180,7 +9442,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListTagDetail"
       }
     },
     "/api/v3/tag/detail/{id}": {
@@ -9220,7 +9483,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetTagDetailById"
       }
     },
     "/api/v3/system/task": {
@@ -9258,7 +9522,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListSystemTask"
       }
     },
     "/api/v3/system/task/{id}": {
@@ -9298,7 +9563,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetSystemTaskById"
       }
     },
     "/api/v3/config/ui/{id}": {
@@ -9346,7 +9612,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "UpdateUiConfig"
       },
       "get": {
         "tags": [
@@ -9384,7 +9651,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetUiConfigById"
       }
     },
     "/api/v3/config/ui": {
@@ -9403,7 +9671,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "GetUiConfig"
       }
     },
     "/api/v3/update": {
@@ -9441,7 +9710,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListUpdate"
       }
     },
     "/api/v3/log/file/update": {
@@ -9479,7 +9749,8 @@
               }
             }
           }
-        }
+        },
+        "operationId": "ListLogFileUpdate"
       }
     },
     "/api/v3/log/file/update/{filename}": {
@@ -9502,7 +9773,8 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "operationId": "GetLogFileUpdateByFilename"
       }
     }
   },
