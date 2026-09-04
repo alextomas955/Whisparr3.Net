@@ -78,9 +78,21 @@ additionalProperties:
   # assumption that this pin covers it.
   packageGuid: "{1EDF3552-B7CE-4C36-A15C-810845C3F203}"
 
-# Deliberately absent, each recorded with its reason in spec/transform-report.txt section 4:
+# Deliberately absent, each with its reason. The three normalizers are also recorded in
+# spec/transform-report.txt section 4:
 #   - the three normalizers (duplicate-operationId repair, security-scheme filter, path allowlist)
 #   - the generation-timestamp option, which already defaults to the value this repository wants
 #     for this generator and injects a build-date line when set the other way (D-27)
-#   - the model name mappings for the two BCL collisions, Command and Field, which Phase 20 owns
-#     (D-29, corrected from five names to two by R-02)
+#   - useSourceGeneration, a generichost-only option whose generator default is false. Read from
+#     `config-help -g csharp` inside the pinned image on 2026-09-04: `Use source generation where
+#     available (only generichost library supports this option). (Default: false)`. It stays at
+#     that default here because turning it on has not been verified against either target
+#     framework, and verifying it is deferred work rather than this phase's. The recorded reason is
+#     the deliverable, so do not add the key in order to satisfy the requirement.
+#   - modelNameMappings, because the collision count is zero. Measured 2026-09-04: a collision needs
+#     a schema name that is also a real BCL type, Command and Field are schemas in this spec but no
+#     System.Command or System.Field exists, and TimeSpan and Version are BCL types that are not
+#     schemas in this spec. The generated tree compiles with 0 errors on both net8.0 and net10.0
+#     with Command and Field present and no mappings at all. That compile is what settled it. The
+#     count was recorded wrong twice before, first at five names and then at two, so what is written
+#     here is the measurement rather than a third estimate.
