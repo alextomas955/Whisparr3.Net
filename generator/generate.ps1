@@ -9,8 +9,10 @@
        fresh temporary root laid out to mirror the repository.
     2. Run the pinned image against that root and check its exit code immediately.
     3. Gate the staged tree, before anything committed is deleted. The manifest must exist, every
-       path it lists must exist on disk under the stage, and at least one .cs file must have been
-       written.
+       path it lists must exist on disk under the stage, and the staged .cs count must equal the
+       count this script pins. The count is what makes the gate mean something: the manifest is
+       written by the run that wrote the files, so it agrees with a truncated tree as readily as
+       with a complete one.
     4. Delete the five generated subdirectories and .openapi-generator/, so the replace is a
        replace. The generator never prunes stale files, so the delete is the pruner.
     5. Copy back exactly what the generator owns, and nothing else.
@@ -79,6 +81,15 @@ $GenMetaDir = Join-Path $RepoRoot '.openapi-generator'
 # every run, which is what GEN-04 names explicitly (D-07). This list is both the delete set and
 # the copy set, so the two can never drift apart.
 $GeneratedSubdirs = @('Api', 'Client', 'Extensions', 'Logging', 'Model')
+# The count the pinned image produces from the committed spec, measured 2026-09-04. A constant and
+# never a parameter, matching assert-generated-tree.ps1 and probe-generated-boundary.ps1: a
+# caller-supplied expected count makes the gate a tautology. Without it the only volume condition
+# in this script was "at least one", and .openapi-generator/FILES is written by the same run that
+# wrote the files, so a truncated generation listing ten paths satisfies the manifest cross-check
+# by construction and the 262-file committed tree is replaced by ten files at exit 0. Edit here
+# when the spec or the generator moves, in the same commit that moves the committed tree, and in
+# the same commit as the two sibling scripts.
+$ExpectedCs = 262
 # Staged under GetTempPath rather than mktemp -d, which resolves differently under pwsh -File and
 # pwsh -Command. The GUID suffix is what makes a collision between two concurrent runs impossible:
 # each run creates its own root, and the finally block removes only that root.
@@ -156,11 +167,11 @@ try {
     $Listed   = @(Get-Content -LiteralPath $StageManifest | Where-Object { $_.Trim() -ne '' })
     $Absent   = @($Listed | Where-Object { -not (Test-Path -LiteralPath (Join-Path $Stage $_)) })
     $StagedCs = @(Get-GeneratedCsFile -PackageRoot $StagePkgDir)
-    if ($Listed.Count -eq 0 -or $Absent.Count -gt 0 -or $StagedCs.Count -eq 0) {
-        Write-Refusal @("ERROR: REFUSED - the staged tree is incomplete: $($Listed.Count) paths listed in the manifest, $($Absent.Count) of them missing on disk, $($StagedCs.Count) .cs files across the five generated subdirectories.")
+    if ($Listed.Count -eq 0 -or $Absent.Count -gt 0 -or $StagedCs.Count -ne $ExpectedCs) {
+        Write-Refusal @("ERROR: REFUSED - the staged tree is not the expected tree: $($Listed.Count) paths listed in the manifest, $($Absent.Count) of them missing on disk, $($StagedCs.Count) .cs files across the five generated subdirectories, expected $ExpectedCs.")
         exit 1
     }
-    Write-Host "  + staged $($StagedCs.Count) .cs files, $($Listed.Count) manifest entries, 0 missing" -ForegroundColor Green
+    Write-Host "  + staged $($StagedCs.Count) .cs files, expected $ExpectedCs, $($Listed.Count) manifest entries, 0 missing" -ForegroundColor Green
 
     # --- 4. Replace, never merge. The generator never prunes, so the delete is the pruner ---
     # Measured 2026-09-04: Copy-Item -Recurse into an existing target merges. It neither replaces
