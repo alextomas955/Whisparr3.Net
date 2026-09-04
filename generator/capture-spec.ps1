@@ -76,7 +76,9 @@ Write-Host "  - image $Image" -ForegroundColor DarkGray
 
 try {
     # --- Boot the digest-pinned container ---
-    docker rm -f $ContainerName 2>&1 | Out-Null
+    # -v removes the anonymous volume the image declares for /config. Without it every run,
+    # successful or not, leaks a full Whisparr /config tree including its SQLite databases.
+    docker rm -f -v $ContainerName 2>&1 | Out-Null
     # Publish on 127.0.0.1 explicitly. A bare -p 6969:6969 binds 0.0.0.0, which would put an
     # instance carrying the constant API key above on every interface for the whole run, and
     # docker punches its own firewall rule for published ports.
@@ -208,5 +210,5 @@ try {
 finally {
     # Force-remove by name so a failed run cannot leave a stale container that poisons the
     # next one or keeps host port 6969 bound.
-    docker rm -f $ContainerName 2>&1 | Out-Null
+    docker rm -f -v $ContainerName 2>&1 | Out-Null
 }
