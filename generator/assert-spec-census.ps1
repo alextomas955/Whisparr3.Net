@@ -10,9 +10,15 @@
     3. schemas      - 162
     4. declared tags - 75
 
+  It then checks the file against the specSha256 recorded in the PROVENANCE.json beside it.
+  The four counts are a weak bound on their own - a different document with 190 paths and 273
+  operations would pass them - and the recorded hash is the strongest integrity claim the repo
+  makes, so it is asserted here rather than by hand. The check is skipped when no sibling
+  manifest exists, so a scratch spec still censuses.
+
   Every actual value is printed beside its expected value, pass or fail, and any mismatch
   exits non-zero. Runnable standalone against the committed bytes, which is what SPEC-05's
-  "before use" means, and also called as the last step of capture-spec.ps1.
+  "before use" means, and also called as the gate on a staged capture in capture-spec.ps1.
 
   The operation count is 273 and not 272 on purpose. The raw capture still carries the
   malformed "GET /" path item; dropping it is PREP-03 in Phase 19, not a correction to make
@@ -31,7 +37,13 @@ param(
     # Spec file to census. Mandatory - there is no safe default, because the whole point of
     # this script is to be pointed at one specific file and say what is in it.
     [Parameter(Mandatory = $true)]
-    [string]$Path
+    [string]$Path,
+
+    # Skip the recorded-hash check. capture-spec.ps1 passes this because it gates a staged
+    # capture whose manifest is written only after the gate passes, so the sibling
+    # PROVENANCE.json still holds the previous run's hash and comparing against it would
+    # deadlock a deliberate digest bump. Nothing else should pass it.
+    [switch]$SkipProvenanceHash
 )
 
 # Strict mode turns a typo'd property access on the parsed spec into an error instead of a
@@ -106,11 +118,31 @@ foreach ($Row in $Rows) {
     Write-Census ('  {0} {1,-12} actual {2,-6} expected {3,-6} {4}' -f $Sigil, $Row.Name, $Row.Actual, $Row.Expected, $Verdict) $Colour
 }
 
-# --- 3. Document versions, reported and not asserted (SPEC-05 names four numbers) ---
+# --- 3. The file against the hash recorded beside it ---
+# The four counts above cannot see content, only shape. This is what actually bounds the bytes.
+if (-not $SkipProvenanceHash) {
+    $ProvenancePath = Join-Path (Split-Path -Parent (Resolve-Path -LiteralPath $Path)) 'PROVENANCE.json'
+    if (Test-Path -LiteralPath $ProvenancePath) {
+        $Provenance = Get-Content -Raw -LiteralPath $ProvenancePath | ConvertFrom-Json
+        # Strict mode makes a missing specSha256 a terminating error, and a manifest without
+        # one is a real thing to report rather than crash on.
+        $ExpectedSha = if ($Provenance.PSObject.Properties.Name -contains 'specSha256') { $Provenance.specSha256 } else { $null }
+        $ActualSha   = (Get-FileHash -Algorithm SHA256 -LiteralPath $Path).Hash.ToLower()
+        $ShaMatched  = ($null -ne $ExpectedSha) -and ($ActualSha -eq $ExpectedSha)
+        if (-not $ShaMatched) { $Mismatches++ }
+        Write-Census ('  {0} {1,-12} {2}' -f $(if ($ShaMatched) { '+' } else { '!' }), 'sha256', $(if ($ShaMatched) { 'OK' } else { 'MISMATCH' })) $(if ($ShaMatched) { 'Green' } else { 'Red' })
+        Write-Census "      actual   $ActualSha" $(if ($ShaMatched) { 'Green' } else { 'Red' })
+        Write-Census "      recorded $(if ($null -eq $ExpectedSha) { '(no specSha256 in the manifest)' } else { $ExpectedSha }) - $ProvenancePath" $(if ($ShaMatched) { 'Green' } else { 'Red' })
+    } else {
+        Write-Census "  - sha256       no PROVENANCE.json beside this file, recorded-hash check skipped" 'DarkGray'
+    }
+}
+
+# --- 4. Document versions, reported and not asserted (SPEC-05 names four numbers) ---
 Write-Census "  ! openapi $($Spec.openapi), info.version $($Spec.info.version) - reported only, not asserted" 'Yellow'
 
 if ($Mismatches -gt 0) {
-    Write-Host "ERROR: census failed - $Mismatches of 4 counts do not match this spec. See the actual-versus-expected lines above." -ForegroundColor Red
+    Write-Host "ERROR: census failed - $Mismatches assertion(s) do not match this spec. See the actual-versus-expected lines above." -ForegroundColor Red
     exit 1
 }
 
