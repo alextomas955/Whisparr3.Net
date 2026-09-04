@@ -110,16 +110,6 @@ param(
     # input for a human editing the committed map; the pipeline still exits non-zero.
     [switch]$ProposeMissing,
 
-    # Where to write the transform report (PREP-08, D-13). Left empty it is DERIVED from the
-    # output file's own directory, the same way PROVENANCE.json is, so a run with a scratch
-    # output path writes its report beside that scratch output and cannot touch the committed
-    # one. That derivation is load-bearing rather than tidy: the security-variant runs below
-    # override -OutFile, and under a repository-relative default each of them would overwrite
-    # the committed review artifact with one whose section 1 shows a security block nobody
-    # chose. An explicit value still wins and resolves like every other path here, absolute as
-    # given and relative against the repository root.
-    [string]$ReportPath = '',
-
     # Which root security value T1 writes (PREP-02, D-01). A closed validated set, never a free
     # string: the whole point of the parameter is to generate the losing variant and count its
     # auth call sites, and a typo that silently produced a fourth shape would be read as a fact
@@ -204,12 +194,13 @@ $OutDir         = Split-Path -Parent $OutPath
 $MapFullPath    = [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRooted($MapPath)) { $MapPath } else { Join-Path $RepoRoot $MapPath }))
 $ProvenancePath = Join-Path $OutDir 'PROVENANCE.json'
 # The transform report is derived from the same directory for the same reason, so a scratch run
-# cannot replace the committed review artifact.
-$ReportFullPath = if ([string]::IsNullOrWhiteSpace($ReportPath)) {
-    Join-Path $OutDir 'transform-report.txt'
-} else {
-    [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRooted($ReportPath)) { $ReportPath } else { Join-Path $RepoRoot $ReportPath }))
-}
+# cannot replace the committed review artifact (PREP-08, D-13). There is deliberately no
+# -ReportPath override. The derivation is a guard rather than a default: the two step-0 guards
+# test only $OutPath, so an override resolving against the repository root let a scratch run
+# with a rejected security variant write spec/transform-report.txt past both of them. Observed
+# before it was removed, from a SingleSchemeMandatory run with a scratch -OutFile: a report in
+# spec/ whose section 1 read "after [{"X-Api-Key":[]}]". Nothing needed the override.
+$ReportFullPath = Join-Path $OutDir 'transform-report.txt'
 # Every run lands here first and is promoted only once every gate has passed, so a refusal
 # cannot leave the committed deliverable replaced by unverified bytes. Declared beside the other
 # paths rather than inside the try so the finally block can clear a partial write.
