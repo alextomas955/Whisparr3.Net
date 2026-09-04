@@ -4,12 +4,15 @@
 
 .DESCRIPTION
   T1 repairs root security, T2 deletes the malformed paths["/"] so 273 operations become 272, and
-  T3 assigns operationId from generator/operation-ids.json and from nothing else. The result is
-  gated on a staging path and only then replaces the committed spec.
+  T3 derives an operationId for every operation from the document itself.
 
-  The map gate refuses in both directions and prints a proposed operationId for every unmapped
-  operation. That is what makes a Whisparr version bump a short review rather than a silent
-  public-API rename.
+  The derivation is devopsarr's assign_operation_id.py, the algorithm behind the Go, Python and
+  TypeScript *arr clients. $OperationIdOverrides names the 13 operations it cannot get right from
+  the URL alone, mostly abbreviations only a human can expand: alttitle is AlternativeTitle.
+
+  Nothing here pins a name against upstream change. If Whisparr renames a path, the derived method
+  name follows it and the break surfaces in a consumer's build. That trade was accepted in exchange
+  for deleting a 272-entry committed map that had to be reviewed on every version bump.
 
 .EXAMPLE
   pwsh -File I:\cove-dev\Whisparr3.Net\generator\preprocess-spec.ps1
@@ -18,10 +21,7 @@
 [CmdletBinding()]
 param(
     [string]$RawSpec = 'spec/openapi.raw.json',
-    [string]$OutFile = 'spec/openapi.generated.json',
-    # The committed operationId contract, and the only source of an operationId this pipeline uses.
-    # There is deliberately no parameter that writes it.
-    [string]$MapPath = 'generator/operation-ids.json'
+    [string]$OutFile = 'spec/openapi.generated.json'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -45,27 +45,48 @@ function Resolve-RepoPath {
 # (upstream openapi-generator issue 24138). Parsed from a literal, not built from a PowerShell
 # array: a single-element array piped through the serializer unrolls into an object.
 $SecurityLiteral = '[{"X-Api-Key":[]}]'
-# The inline census, standing in for the standalone assert-spec-census.ps1 this replaced. The
-# capture is 381,380 bytes and its depth-2 truncation is 48,452, so the floor is a wide margin.
+# The inline census. The capture is 381,380 bytes and its depth-2 truncation is 48,452, so the
+# floor is a wide margin.
 $ExpectedOperations = 272
 $MinimumStagedBytes = 350000
 $HttpMethods        = 'get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'
 # A valid C# identifier of the shape this library's public method names take. Anchored on purpose.
 $OperationIdPattern = '^[A-Z][A-Za-z0-9]*$'
 
-$RawPath     = Resolve-RepoPath $RawSpec
-$OutPath     = Resolve-RepoPath $OutFile
-$MapFullPath = Resolve-RepoPath $MapPath
-$OutDir      = Split-Path -Parent $OutPath
+# The 13 operations the derivation cannot name from the URL, keyed "METHOD /path". Every other name
+# in the SDK is computed. Lookups are case-insensitive because this is a PowerShell hashtable
+# literal, which is harmless: keys are built with an upper-cased method and the path verbatim.
+#
+# GET /feed/v3/calendar/whisparr.ics is the one entry that is not cosmetic. It derives to
+# GetFeedV3CalendarWhisparr.ics, which is not a C# identifier, and the shape assertion below
+# refuses it. The rest expand an abbreviation or a lower-cased run the URL does not delimit.
+$OperationIdOverrides = @{
+    'GET /{path}'                                 = 'GetStaticResourceByPath'
+    'GET /api'                                    = 'GetApiInfo'
+    'GET /api/v3/alttitle'                        = 'ListAlternativeTitle'
+    'GET /api/v3/alttitle/{id}'                   = 'GetAlternativeTitleById'
+    'GET /api/v3/filesystem/mediafiles'           = 'GetFileSystemMediaFiles'
+    'GET /api/v3/importlist/movie'                = 'GetImportListMovie'
+    'GET /api/v3/mediacover/{movieId}/{filename}' = 'GetMediaCoverByMovieIdAndFilename'
+    'GET /api/v3/movie/listbyperformerforeignid'  = 'ListMovieByPerformerForeignId'
+    'GET /api/v3/movie/listbystudioforeignid'     = 'ListMovieByStudioForeignId'
+    'GET /api/v3/qualityprofile/schema'           = 'GetQualityProfileSchema'
+    'GET /feed/v3/calendar/whisparr.ics'          = 'GetCalendarFeed'
+    'GET /login'                                  = 'GetLoginPage'
+    'POST /api/v3/importlist/movie'               = 'CreateImportListMovie'
+}
+
+$RawPath = Resolve-RepoPath $RawSpec
+$OutPath = Resolve-RepoPath $OutFile
+$OutDir  = Split-Path -Parent $OutPath
 # Derived from the output file's own directory, so a scratch run cannot overwrite the committed one.
 $ProvenancePath = Join-Path $OutDir 'PROVENANCE.json'
 # Every run lands here first and is promoted only once every gate has passed. Not ceremony: a code
 # review found a gate running after the committed spec had already been overwritten.
 $StagePath = "$OutPath.incoming"
 
-$DefaultRawPath     = Resolve-RepoPath 'spec/openapi.raw.json'
-$DefaultOutPath     = Resolve-RepoPath 'spec/openapi.generated.json'
-$DefaultMapFullPath = Resolve-RepoPath 'generator/operation-ids.json'
+$DefaultRawPath = Resolve-RepoPath 'spec/openapi.raw.json'
+$DefaultOutPath = Resolve-RepoPath 'spec/openapi.generated.json'
 
 # A refusal writes to the host and then exits. Write-Error throws under $ErrorActionPreference =
 # 'Stop', which makes the exit after it unreachable.
@@ -89,11 +110,12 @@ function Test-ReturnsJsonArray {
     return $Node.ToJsonString() -eq '"array"'
 }
 
-# devopsarr's assign_operation_id.py, ported faithfully with one fix: this iterates the segment list
+# devopsarr's assign_operation_id.py, ported with two fixes. This iterates the segment list
 # BACKWARDS in the placeholder-removal loop, because devopsarr's forward loop mutates the list it is
-# enumerating and a removal makes it skip the following element. Reached only from the map gate's
-# failure path, and it never assigns anything. What it returns is authoring input for a human.
-function Get-ProposedOperationId {
+# enumerating and a removal makes it skip the following element. And the POST test-verb rule spells
+# testall as testAll, so the five /testall endpoints derive TestAllIndexer rather than
+# TestallIndexer without needing five override entries of their own.
+function Get-DerivedOperationId {
     param([string]$Method, [string]$Path, [string]$Tag, [bool]$ReturnsArray)
     $Stripped = [regex]::Replace($Path, '^/api/v\d/(.*)$', '$1')
     $Parts    = [System.Collections.Generic.List[string]]([regex]::Split($Stripped, '/|-'))
@@ -108,7 +130,10 @@ function Get-ProposedOperationId {
     if ($Method -eq 'put' -and $TailIsById) { $Verb = 'update'; $Parts.RemoveRange($Parts.Count - 2, 2) }
     if ($Method -eq 'post') {
         $Verb = 'create'
-        if ($Parts[$Parts.Count - 1].StartsWith('test')) { $Verb = $Parts[$Parts.Count - 1]; $Parts.RemoveAt($Parts.Count - 1) }
+        if ($Parts[$Parts.Count - 1].StartsWith('test')) {
+            $Verb = $Parts[$Parts.Count - 1] -replace '^testall$', 'testAll'
+            $Parts.RemoveAt($Parts.Count - 1)
+        }
     }
     if ($Method -eq 'get' -and $ReturnsArray) { $Verb = 'list' }
     if ($Parts.Count -gt 1 -and $Parts[0] -eq 'config') { $Parts[0] = $Parts[1] + 'config'; $Parts.RemoveAt(1) }
@@ -127,13 +152,11 @@ Write-Host "Pre-process Whisparr 3 openapi -> $OutPath" -ForegroundColor Cyan
 
 try {
     # --- 0. A fixture run must never promote itself onto the committed deliverable ---
-    # The map reaches the committed spec through T3 as surely as the document does: a substituted
-    # map differing in one value renames a public method. The two operands take different comparers
-    # on purpose. "Non-default input" is ordinal, so on Linux spec/OPENAPI.RAW.JSON is not
-    # spec/openapi.raw.json. "Committed output path" is case-insensitive, because on NTFS a
-    # differently-cased spelling IS the committed file.
-    if (($RawPath -cne $DefaultRawPath -or $MapFullPath -cne $DefaultMapFullPath) -and $OutPath -eq $DefaultOutPath) {
-        Write-Host "ERROR: REFUSED - a non-default input may not be written to the committed output path. Pass -OutFile with a scratch path too. input $RawPath / map $MapFullPath / output $OutPath" -ForegroundColor Red
+    # The two operands take different comparers on purpose. "Non-default input" is ordinal, so on
+    # Linux spec/OPENAPI.RAW.JSON is not spec/openapi.raw.json. "Committed output path" is
+    # case-insensitive, because on NTFS a differently-cased spelling IS the committed file.
+    if ($RawPath -cne $DefaultRawPath -and $OutPath -eq $DefaultOutPath) {
+        Write-Host "ERROR: REFUSED - a non-default input may not be written to the committed output path. Pass -OutFile with a scratch path too. input $RawPath / output $OutPath" -ForegroundColor Red
         exit 1
     }
     if (-not (Test-Path -LiteralPath $RawPath)) {
@@ -164,33 +187,9 @@ try {
     }
     Write-Host "  + T2 deleted paths[""/""], $($PathsObject.Count) path items remain" -ForegroundColor Green
 
-    # --- 4. Load the committed operationId map ---
-    if (-not (Test-Path -LiteralPath $MapFullPath)) {
-        Write-Host "ERROR: REFUSED - no operationId map at $MapFullPath. This script never writes it." -ForegroundColor Red
-        exit 1
-    }
-    $MapNode = [System.Text.Json.Nodes.JsonNode]::Parse((Get-Content -Raw -LiteralPath $MapFullPath))
-    if ($MapNode -isnot [System.Text.Json.Nodes.JsonObject]) {
-        Write-Host "ERROR: REFUSED - the map at $MapFullPath is not a JSON object keyed ""METHOD /path""." -ForegroundColor Red
-        exit 1
-    }
-    # Ordinal throughout. A case-insensitive dictionary would accept a lower-cased method; the key
-    # shape is the upper-cased method, one space, then the path verbatim.
-    $Map     = [System.Collections.Generic.Dictionary[string, string]]::new([System.StringComparer]::Ordinal)
-    $MapKeys = [System.Collections.Generic.List[string]]::new()
-    foreach ($Entry in $MapNode.AsObject()) {
-        if ($null -eq $Entry.Value -or $Entry.Value.GetValueKind() -ne [System.Text.Json.JsonValueKind]::String -or
-            [string]::IsNullOrWhiteSpace($Entry.Value.GetValue[string]())) {
-            Write-Host "ERROR: REFUSED - the map entry ""$($Entry.Key)"" does not carry a non-empty string." -ForegroundColor Red
-            exit 1
-        }
-        $Map[$Entry.Key] = $Entry.Value.GetValue[string]()
-        $MapKeys.Add($Entry.Key)
-    }
-    Write-Host "  + loaded $($MapKeys.Count) operationId map entries" -ForegroundColor Green
-
-    # The spec side of the comparison, keyed the same way.
-    $SpecOps = [System.Collections.Generic.List[object]]::new()
+    # --- 4. Derive a name for every operation ---
+    $SpecOps      = [System.Collections.Generic.List[object]]::new()
+    $OverrideUsed = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
     foreach ($PathEntry in $PathsObject) {
         if ($PathEntry.Value -isnot [System.Text.Json.Nodes.JsonObject]) {
             Write-Host "ERROR: REFUSED - the path item $($PathEntry.Key) is not a JSON object. Nothing was written." -ForegroundColor Red
@@ -198,95 +197,72 @@ try {
         }
         foreach ($Member in $PathEntry.Value.AsObject()) {
             if ($HttpMethods -notcontains $Member.Key) { continue }
-            $SpecOps.Add([pscustomobject]@{
-                Key = "$($Member.Key.ToUpperInvariant()) $($PathEntry.Key)"; Method = $Member.Key
-                Path = $PathEntry.Key; Node = $Member.Value
-            })
-        }
-    }
-
-    # --- 5. The map gate, both directions accumulated into one refusal ---
-    # This gate is why the separate census and tree-count scripts were removed. If Whisparr adds an
-    # operation it refuses as unmapped; if Whisparr removes one it refuses as orphaned. With a
-    # fail-closed map of N entries and a generation that then compiles, the compiler itself proves
-    # N methods exist, so counting them again proved nothing new.
-    $SpecKeys = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::Ordinal)
-    foreach ($Op in $SpecOps) { [void]$SpecKeys.Add($Op.Key) }
-    $Unmapped = [System.Collections.Generic.List[object]]::new()
-    foreach ($Op in $SpecOps) { if (-not $Map.ContainsKey($Op.Key)) { $Unmapped.Add($Op) } }
-    $Orphans = [System.Collections.Generic.List[string]]::new()
-    foreach ($Key in $MapKeys) { if (-not $SpecKeys.Contains($Key)) { $Orphans.Add($Key) } }
-
-    if ($Unmapped.Count -gt 0 -or $Orphans.Count -gt 0) {
-        Write-Host 'ERROR: map gate failed - the operationId map and the spec disagree.' -ForegroundColor Red
-        Write-Host "  spec to map: $($Unmapped.Count) operations in the spec have no entry in the map." -ForegroundColor Red
-        Write-Host "  map to spec: $($Orphans.Count) map entries match no operation in the spec." -ForegroundColor Red
-        if ($Unmapped.Count -gt 0) {
-            Write-Host '  Unmapped operations, with a proposed operationId for each:' -ForegroundColor Red
-            foreach ($Op in $Unmapped) {
+            if ($Member.Value -isnot [System.Text.Json.Nodes.JsonObject]) {
+                Write-Host "ERROR: REFUSED - the operation $($Member.Key) $($PathEntry.Key) is not a JSON object. An operation body replaced by a scalar is the depth-truncation signature. Nothing was staged." -ForegroundColor Red
+                exit 1
+            }
+            $Key = "$($Member.Key.ToUpperInvariant()) $($PathEntry.Key)"
+            if ($OperationIdOverrides.ContainsKey($Key)) {
+                $Id = $OperationIdOverrides[$Key]
+                [void]$OverrideUsed.Add($Key)
+            } else {
                 $Tag  = ''
-                $Tags = $Op.Node['tags']
+                $Tags = $Member.Value['tags']
                 if ($Tags -is [System.Text.Json.Nodes.JsonArray] -and $Tags.Count -gt 0 -and
                     $Tags[0].GetValueKind() -eq [System.Text.Json.JsonValueKind]::String) { $Tag = $Tags[0].GetValue[string]() }
-                $Proposed = Get-ProposedOperationId -Method $Op.Method -Path $Op.Path -Tag $Tag -ReturnsArray (Test-ReturnsJsonArray -Operation $Op.Node)
-                Write-Host "    $($Op.Key) -> $Proposed" -ForegroundColor Red
+                $Id = Get-DerivedOperationId -Method $Member.Key -Path $PathEntry.Key -Tag $Tag -ReturnsArray (Test-ReturnsJsonArray -Operation $Member.Value)
             }
+            $SpecOps.Add([pscustomobject]@{ Key = $Key; Id = $Id; Node = $Member.Value })
         }
-        if ($Orphans.Count -gt 0) {
-            Write-Host '  Orphaned map entries:' -ForegroundColor Red
-            foreach ($Key in $Orphans) { Write-Host "    $Key" -ForegroundColor Red }
-        }
-        Write-Host '  Review each proposed name above and add it to the map, delete each orphaned entry, and run again. A proposal is authoring input for a human; this script never assigns one. Nothing was staged and nothing was promoted.' -ForegroundColor Red
+    }
+    Write-Host "  + derived $($SpecOps.Count) operationIds, $($OverrideUsed.Count) of them from the override table" -ForegroundColor Green
+
+    # --- 5. The assertions the derivation makes necessary ---
+    # An override that matches no operation is the only remaining signal that Whisparr moved a path.
+    $StaleOverrides = @($OperationIdOverrides.Keys | Where-Object { -not $OverrideUsed.Contains($_) })
+    if ($StaleOverrides.Count -gt 0) {
+        Write-Host "ERROR: $($StaleOverrides.Count) override entries match no operation in this spec. Whisparr has moved or removed a path, so the name it pinned is now derived instead. Nothing was staged." -ForegroundColor Red
+        foreach ($Key in $StaleOverrides) { Write-Host "    $Key -> $($OperationIdOverrides[$Key])" -ForegroundColor Red }
         exit 1
     }
-    Write-Host "  + map gate passed - $($SpecOps.Count) operations, $($MapKeys.Count) map entries, key sets identical in both directions" -ForegroundColor Green
-
-    # --- 6. The collision and identifier-shape assertions ---
     # Not the generator's FIX_DUPLICATED_OPERATIONID normalizer, which de-duplicates by appending a
     # positional suffix: that masks this assertion, and inserting an operation upstream then moves
     # the suffix onto a different method and renames public API with no diff.
     $ById = [System.Collections.Generic.Dictionary[string, System.Collections.Generic.List[string]]]::new([System.StringComparer]::Ordinal)
     foreach ($Op in $SpecOps) {
-        $Id = $Map[$Op.Key]
-        if (-not $ById.ContainsKey($Id)) { $ById[$Id] = [System.Collections.Generic.List[string]]::new() }
-        $ById[$Id].Add($Op.Key)
+        if (-not $ById.ContainsKey($Op.Id)) { $ById[$Op.Id] = [System.Collections.Generic.List[string]]::new() }
+        $ById[$Op.Id].Add($Op.Key)
     }
     $Collisions = @($ById.GetEnumerator() | Where-Object { $_.Value.Count -gt 1 })
     if ($Collisions.Count -gt 0) {
         Write-Host "ERROR: collision assertion failed - $($Collisions.Count) operationIds are carried by more than one operation." -ForegroundColor Red
         foreach ($Collision in $Collisions) { Write-Host "    $($Collision.Key) is assigned to: $($Collision.Value -join ', ')" -ForegroundColor Red }
-        Write-Host '  The generator emits one class per tag, so two operations sharing an operationId are two methods with one name on one class. Nothing was staged.' -ForegroundColor Red
+        Write-Host '  The generator emits one class per tag, so two operations sharing an operationId are two methods with one name on one class. Add an override for one of them. Nothing was staged.' -ForegroundColor Red
         exit 1
     }
     # -cnotmatch, not -notmatch. PowerShell's -match is case-insensitive, so the anchored pattern
     # would accept listMovie and pass a name the generator then sanitizes into one of its own
-    # choosing, which is the silent public-API rename this map exists to stop.
-    $BadShape = @($MapKeys | Where-Object { $Map[$_] -cnotmatch $OperationIdPattern })
+    # choosing. This is the assertion that catches GetFeedV3CalendarWhisparr.ics.
+    $BadShape = @($SpecOps | Where-Object { $_.Id -cnotmatch $OperationIdPattern })
     if ($BadShape.Count -gt 0) {
-        Write-Host "ERROR: identifier shape assertion failed - $($BadShape.Count) map values do not match $OperationIdPattern. Nothing was staged." -ForegroundColor Red
-        foreach ($Key in $BadShape) { Write-Host "    $Key carries the invalid identifier $($Map[$Key])" -ForegroundColor Red }
+        Write-Host "ERROR: identifier shape assertion failed - $($BadShape.Count) names do not match $OperationIdPattern. Add an override for each. Nothing was staged." -ForegroundColor Red
+        foreach ($Op in $BadShape) { Write-Host "    $($Op.Key) derived the invalid identifier $($Op.Id)" -ForegroundColor Red }
         exit 1
     }
-    Write-Host "  + collision and shape assertions passed - $($ById.Count) distinct operationIds" -ForegroundColor Green
+    Write-Host "  + stale-override, collision and shape assertions passed - $($ById.Count) distinct operationIds" -ForegroundColor Green
 
-    # --- 7. T3, operationId, from the map only ---
-    foreach ($Op in $SpecOps) {
-        if ($Op.Node -isnot [System.Text.Json.Nodes.JsonObject]) {
-            Write-Host "ERROR: REFUSED - the operation $($Op.Key) is not a JSON object. An operation body replaced by a scalar is the depth-truncation signature. Nothing was staged." -ForegroundColor Red
-            exit 1
-        }
-        # Appended as a new last member, which is deterministic run to run.
-        $Op.Node['operationId'] = [System.Text.Json.Nodes.JsonValue]::Create($Map[$Op.Key])
-    }
-    Write-Host "  + T3 assigned $($SpecOps.Count) operationIds from the map, 0 derived" -ForegroundColor Green
+    # --- 6. T3, assign ---
+    # Appended as a new last member, which is deterministic run to run.
+    foreach ($Op in $SpecOps) { $Op.Node['operationId'] = [System.Text.Json.Nodes.JsonValue]::Create($Op.Id) }
+    Write-Host "  + T3 assigned $($SpecOps.Count) operationIds" -ForegroundColor Green
 
-    # --- 8. The inline census, count half ---
+    # --- 7. The inline census, count half ---
     if ($SpecOps.Count -ne $ExpectedOperations) {
         Write-Host "ERROR: REFUSED - the patched document carries $($SpecOps.Count) operations, expected $ExpectedOperations. Nothing was staged." -ForegroundColor Red
         exit 1
     }
 
-    # --- 9. Stage. Never the output path itself ---
+    # --- 8. Stage. Never the output path itself ---
     # The relaxed encoder leaves the 25 apostrophes in the document literal, so the diff against
     # the capture shows the transforms and nothing else. The indented writer emits the platform
     # newline, CRLF here, and .gitattributes declares *.json as eol=lf, so LF is applied explicitly
@@ -306,11 +282,11 @@ try {
     }
     Write-Host "  + staged $StagedBytes bytes, sha256 $((Get-FileHash -Algorithm SHA256 -LiteralPath $StagePath).Hash.ToLower())" -ForegroundColor Green
 
-    # --- 10. Promote. The first write to anything committed ---
+    # --- 9. Promote. The first write to anything committed ---
     Move-Item -LiteralPath $StagePath -Destination $OutPath -Force
     Write-Host "  + promoted to $OutPath" -ForegroundColor Green
 
-    # --- 11. The manifest ---
+    # --- 10. The manifest ---
     # capture-spec.ps1 rebuilds this file from its own observed fields, so a re-capture DROPS
     # generatedSpecSha256. Deliberate: a new capture invalidates the patched spec, and this script
     # is what puts the field back.

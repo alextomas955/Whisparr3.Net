@@ -13,8 +13,8 @@
 
 .EXAMPLE
   pwsh -File I:\cove-dev\Whisparr3.Net\generator\refresh.ps1 -ImageDigest sha256:0123abcd...
-  # Move to a new Whisparr image. Expect the map gate to refuse if the new version added or
-  # removed operations; see its message. Omit -ImageDigest to re-verify the pinned one.
+  # Move to a new Whisparr image. Expect an operationId assertion to refuse if the new version
+  # moved a path; see its message. Omit -ImageDigest to re-verify the pinned one.
 #>
 
 [CmdletBinding()]
@@ -45,13 +45,13 @@ $Steps = @(
        Remedy = 'The capture failed, or the identity assertion refused what came back. Check that the digest names a Whisparr 3 (eros) image and that Docker can pull and boot it. Nothing downstream ran.' },
     @{ Name = 'preprocess-spec'
        Run  = { pwsh -NoProfile -File (Join-Path $GenDir 'preprocess-spec.ps1') }
-       Remedy = 'Most often this is the map gate, which means this Whisparr added or removed operations. Review each proposed operationId printed above, add it to generator/operation-ids.json, delete every orphaned entry it also lists, and run this script again. The committed spec was not replaced.' },
+       Remedy = 'Most often this is an assertion on the derived operationIds, which means this Whisparr moved a path. Read which assertion refused: a stale override names a path that has moved, and a shape or collision failure names an operation that needs an override. Edit $OperationIdOverrides in preprocess-spec.ps1 and run this script again. The committed spec was not replaced.' },
     @{ Name = 'generate'
        Run  = { pwsh -NoProfile -File (Join-Path $GenDir 'generate.ps1') }
        Remedy = 'Generation refused or the generator container failed. Its own message says whether the generated tree was left touched or untouched; read that before re-running.' },
     @{ Name = 'build'
        Run  = { dotnet build $Solution -c Release --nologo }
-       Remedy = 'The regenerated surface does not compile on both target frameworks. Directory.Build.props treats warnings as errors, so a new warning stops here too. A build that passes here is also what proves the map gate delivered a method for every mapped operation. Fix it in the spec pre-processing or in the hand-written layer, never inside src/Whisparr3.Net/.' },
+       Remedy = 'The regenerated surface does not compile on both target frameworks. Directory.Build.props treats warnings as errors, so a new warning stops here too. A build that passes here is also what proves the derivation delivered one method per operation. Fix it in the spec pre-processing or in the hand-written layer, never inside src/Whisparr3.Net/.' },
     @{ Name = 'package-audit'
        # The verdict is read from the transcript text and never from the exit code. Measured
        # 2026-09-04: against a probe referencing System.Text.RegularExpressions 4.3.0 this command
