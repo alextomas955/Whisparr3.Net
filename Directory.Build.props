@@ -1,0 +1,50 @@
+<Project>
+
+  <!-- Compilation. Owned here because the library csproj is generator output from Phase 20 on. -->
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- CS0612: the spec's own deprecated: true on QueueResource.Sizeleft/Timeleft.
+         CS1591: missing XML comments, insurance for the hand-written layer. -->
+    <NoWarn>$(NoWarn);CS0612;CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Deterministic build and symbols. Deterministic already defaults to true; do not set it.
+       Do not reference Microsoft.SourceLink.GitHub; it suppresses the SDK's built-in copy. -->
+  <PropertyGroup>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!-- origin is the github.com-alex SSH alias. SourceLink cannot map that host and emits an
+         empty source map with no warning. Read the canonical https remote instead. In GitHub
+         Actions only origin exists, and the SDK falls back to it with a warning, so skip it there. -->
+    <GitRepositoryRemoteName Condition="'$(GITHUB_ACTIONS)' != 'true'">canonical</GitRepositoryRemoteName>
+  </PropertyGroup>
+
+  <!-- NuGet package metadata. RepositoryUrl and RepositoryType are deliberately absent;
+       SourceLink injects both plus the commit SHA from PublishRepositoryUrl=true. -->
+  <PropertyGroup>
+    <PackageId>Whisparr3.Net</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>alextomas955</Authors>
+    <Description>C# SDK for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI spec.</Description>
+    <Copyright>Copyright (c) 2026 alextomas955</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/alextomas955/Whisparr3.Net</PackageProjectUrl>
+    <PackageTags>whisparr;arr;openapi;sdk;rest;client</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <EnablePackageValidation>true</EnablePackageValidation>
+  </PropertyGroup>
+
+  <!-- Required by PackageReadmeFile. Without it, pack fails with NU5039.
+       $(MSBuildThisFileDirectory) is the repo root, so this works from any project depth. -->
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+</Project>
