@@ -8,7 +8,8 @@
 
     T1  Root security. Whisparr declares both API key schemes and then serves an empty
         requirement, so the generated client would carry no auth call site at all. Repaired to the
-        auth-optional, both-schemes form (PREP-02).
+        mandatory, header-only form (PREP-02). See the SecurityLiteral comment for why it is neither
+        optional nor both-schemes.
     T2  Delete paths["/"], a StaticResource catch-all whose required in: path parameter is absent
         from its own URL template. 190 paths and 273 operations become 189 and 272 (PREP-03).
     T3  operationId, assigned from generator/operation-ids.json and from nothing else. The map is
@@ -72,7 +73,22 @@ function Resolve-RepoPath {
     return [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRooted($Path)) { $Path } else { Join-Path $RepoRoot $Path }))
 }
 
-# Auth-optional, header scheme only.
+# Mandatory auth, header scheme only.
+#
+# This carried a leading empty requirement, the OpenAPI spelling for "auth optional", until
+# 2026-09-04. That was wrong. Whisparr's API key is not optional and cannot be turned off:
+# NzbDrone.Host/Startup.cs sets `options.FallbackPolicy = new AuthorizationPolicyBuilder("API")
+# .RequireAuthenticatedUser().Build()`, pinned to the API-key scheme, consulting neither
+# AuthenticationMethod nor AuthenticationRequired. That block is character-identical across Sonarr,
+# Radarr, Lidarr, Readarr, Prowlarr and Whisparr-Eros. AuthenticationMethod governs the browser
+# login only; AuthenticationRequired is read in exactly one runtime location, the UI handler.
+# Whisparr's own integration tests set both to their permissive values and still send X-Api-Key.
+# Blanking <ApiKey> in config.xml regenerates a GUID and writes it back.
+#
+# Measured: no key returns 401 under the default config, under WHISPARR__AUTH__METHOD=None and
+# =External, and under a seeded config.xml with AuthenticationMethod None plus
+# AuthenticationRequired DisabledForLocalAddresses, from the Docker host and from inside the
+# container alike. Whisparr's own checked-in openapi.json declares no empty alternative either.
 #
 # This was both schemes until 2026-09-04. Whisparr declares the key twice, X-Api-Key in the header
 # and apikey in the query string, as OR-alternatives. The generichost generator does not treat them
@@ -91,7 +107,7 @@ function Resolve-RepoPath {
 #
 # Parsed from a literal rather than built from a PowerShell array: a single-element array piped
 # through the serializer unrolls into an object, so a single-element variant would be corrupted.
-$SecurityLiteral = '[{},{"X-Api-Key":[]}]'
+$SecurityLiteral = '[{"X-Api-Key":[]}]'
 # The floor below which the staged document cannot be an honest patched spec. The capture is
 # 381,380 bytes and its depth-2 truncation is 48,452, so anything between is a wide margin.
 $MinimumStagedBytes = 350000
