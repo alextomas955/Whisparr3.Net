@@ -3,289 +3,153 @@
   Regenerate the Whisparr3.Net client tree from the committed spec, using the pinned generator.
 
 .DESCRIPTION
-  Runs openapi-generator inside a digest-pinned container and replaces this repository's generated
-  tree with what that run produced.
-    1. Stage the two inputs, spec/openapi.generated.json and generator/gen-config.yaml, into a
-       fresh temporary root laid out to mirror the repository.
-    2. Run the pinned image against that root and check its exit code immediately.
-    3. Gate the staged tree, before anything committed is deleted. The manifest must exist, every
-       path it lists must exist on disk under the stage, and the staged .cs count must equal the
-       count this script pins. The count is what makes the gate mean something: the manifest is
-       written by the run that wrote the files, so it agrees with a truncated tree as readily as
-       with a complete one.
-    4. Delete the five generated subdirectories and .openapi-generator/, so the replace is a
-       replace. The generator never prunes stale files, so the delete is the pruner.
-    5. Copy back exactly what the generator owns, and nothing else.
-    6. Assert the copied .cs count equals the staged .cs count.
+  Stages the two inputs into a temporary root, runs the pinned generator image against it, gates
+  the staged tree, then deletes the five generated subdirectories and copies the new ones back.
+  The generator never prunes, so the delete is the pruner.
 
-  Steps 4 and 5 are the window in which the repository is mid-replace. Every exit out of that
-  window says so and names the recovery, including an unexpected one: the catch reports the .cs
-  count the tree actually holds rather than claiming, as a bare PowerShell error record implicitly
-  does, that nothing was touched.
+  Docker on this machine cannot bind-mount the I: drive. Measured 2026-09-04: a bind mount of an I:
+  path lists an empty directory and exits 0, so the mount looks like it worked and is not.
+  Generation therefore stages under the user temp directory on C: and the result is copied back.
+  gen-config.yaml needs no edit for that, because its /local-rooted paths already resolve against a
+  mirrored staging root. Do not try to repair the mount by restarting Docker Desktop or by running
+  wsl --shutdown: this machine hosts live containers.
 
-  Docker on this machine cannot bind-mount the I: drive. Measured 2026-09-04: a bind mount of an
-  I: path lists an empty directory and exits 0, so the mount looks like it worked and is not
-  (D-01). Generation therefore runs against a staging root under the user temp directory on C:
-  and the result is copied back (D-02, D-03). The committed gen-config.yaml needs no edit for
-  that, because its /local-rooted paths already resolve against a mirrored staging root. Do not
-  try to repair the mount by restarting Docker Desktop or by running wsl --shutdown: this machine
-  hosts a live Whisparr instance and a Testcontainers suite, and that repair is the owner's call
-  at a quiet moment (D-04).
+  Invoking Docker from pwsh needs no MSYS_NO_PATHCONV=1. The rewrite of /local/... into a path
+  under the Git installation directory happens only when Docker is invoked from Git Bash.
 
-  Invoking Docker from pwsh needs no MSYS_NO_PATHCONV=1, measured 2026-09-04. The rewrite of
-  /local/... into a path under the Git installation directory happens only when Docker is invoked
-  from Git Bash, which is where a verifier reproducing this run by hand is most likely to hit it
-  (D-05).
-
-  This script has no scratch mode on purpose, and takes no output-root parameter. Its destination
-  is the whole repository tree, and a redirect parameter without a promote guard is exactly the
-  fail-open shape preprocess-spec.ps1 was hardened against. A sandbox run is a copy of the whole
-  repository.
-
-  The script writes no file of its own. Everything that lands arrives by Copy-Item from a tree the
-  container produced, so the repository's LF, no BOM, one trailing newline convention is the
-  container's to satisfy and not this script's to apply.
+  This script takes no output-root parameter on purpose. Its destination is the whole repository
+  tree, and a redirect parameter without a promote guard is the fail-open shape preprocess-spec.ps1
+  is hardened against. A sandbox run is a copy of the whole repository.
 
 .EXAMPLE
   pwsh -File I:\cove-dev\Whisparr3.Net\generator\generate.ps1
-  # The ordinary run. Replaces the five generated subdirectories, .openapi-generator/ and
-  # .openapi-generator-ignore with the output of the pinned image.
-
-.EXAMPLE
-  pwsh -File I:\cove-dev\Whisparr3.Net\generator\generate.ps1 -ImageDigest sha256:0000000000000000000000000000000000000000000000000000000000000000
-  # A refusal run. No such image exists, docker exits non-zero, and the script refuses at step 2
-  # with the container transcript printed and nothing in src/Whisparr3.Net touched.
 #>
 
 [CmdletBinding()]
 param(
-    # Generator image digest. Defaults to the pin recorded at the top of generator/gen-config.yaml,
-    # openapi-generator-cli 7.25.0. The image is referenced by digest and never by tag, so a
-    # retagged image cannot change this library's public surface silently. Nothing in this phase
-    # detects a caller passing a different digest; the default is the pin.
+    # openapi-generator-cli 7.25.0, the pin recorded at the top of generator/gen-config.yaml. By
+    # digest and never by tag, so a retagged image cannot change this library's public surface.
     [string]$ImageDigest = 'sha256:2ab0a9680222de65dc9d3baf861aa02b99e1b80c211d8221ebf3ae8f8a102524'
 )
 
 $ErrorActionPreference = 'Stop'
-# Match both sibling scripts. Without strict mode a renamed or absent member evaluates to $null,
-# a count comparison silently compares nothing against nothing, and the run prints Done. and exits
-# 0 - the "reports success while proving nothing" shape this pipeline is built against. Strict
-# mode does not catch the .Count unrolling trap; only @( ) does.
+# Without strict mode a count comparison silently compares nothing against nothing and the run
+# prints Done. and exits 0. Strict mode does not catch the .Count unrolling trap; only @( ) does.
 Set-StrictMode -Version Latest
 
-# --- Constants (edit here if the layout changes) ---
 $RepoRoot   = Split-Path -Parent $PSScriptRoot
 $Image      = "openapitools/openapi-generator-cli@$ImageDigest"
-$SpecRel    = 'spec/openapi.generated.json'
-$ConfigRel  = 'generator/gen-config.yaml'
-$IgnoreRel  = '.openapi-generator-ignore'
 $PkgDir     = Join-Path $RepoRoot 'src/Whisparr3.Net'
 $GenMetaDir = Join-Path $RepoRoot '.openapi-generator'
-# The generated tree, read as GEN-03 means it: these five subdirectories, not src/Whisparr3.Net
-# itself. The hand-owned Whisparr3.Net.csproj sits beside them at the package root and survives
-# every run, which is what GEN-04 names explicitly (D-07). This list is both the delete set and
-# the copy set, so the two can never drift apart.
+# The generated tree is these five subdirectories, not src/Whisparr3.Net itself: the hand-owned
+# csproj sits beside them and survives every run. One list, so the delete set and the copy set can
+# never drift apart.
 $GeneratedSubdirs = @('Api', 'Client', 'Extensions', 'Logging', 'Model')
-# The count the pinned image produces from the committed spec, measured 2026-09-04. A constant and
-# never a parameter, matching assert-generated-tree.ps1: a
-# caller-supplied expected count makes the gate a tautology. Without it the only volume condition
-# in this script was "at least one", and .openapi-generator/FILES is written by the same run that
-# wrote the files, so a truncated generation listing ten paths satisfies the manifest cross-check
-# by construction and the 262-file committed tree is replaced by ten files at exit 0. Edit here
-# when the spec or the generator moves, in the same commit that moves the committed tree, and in
-# the same commit as the two sibling scripts.
+# What the pinned image produces from the committed spec. A constant and never a parameter: a
+# caller-supplied expected count makes the gate a tautology. .openapi-generator/FILES is written by
+# the same run that wrote the files, so it agrees with a truncated tree as readily as a complete
+# one, and without this count a generation emitting ten files would replace the committed 262 at
+# exit 0. Move it in the same commit that moves the tree.
 $ExpectedCs = 262
-# Staged under GetTempPath rather than mktemp -d, which resolves differently under pwsh -File and
-# pwsh -Command. The GUID suffix is what makes a collision between two concurrent runs impossible:
-# each run creates its own root, and the finally block removes only that root.
+# A GUID suffix makes a collision between two concurrent runs impossible, and the finally below
+# removes only this run's own root.
 $Stage       = Join-Path ([System.IO.Path]::GetTempPath()) ("whisparr3-generate-" + [guid]::NewGuid().ToString('N'))
 $StagePkgDir = Join-Path $Stage 'src/Whisparr3.Net'
 
-# Every refusal that fires BEFORE step 4 leaves the committed tree exactly as it was, and says so
-# in the same sentence every time. The sentence is written once here rather than repeated at each
-# gate, which is how its wording drifted in the prototype.
-#
-# The two exits that can fire once step 4 has started deliberately do NOT call this helper: the
-# post-copy refusal at step 6, and the touched branch of the catch. Neither can claim the tree is
-# untouched, so each names the state it is actually in and the recovery from it.
-#
-# A refusal writes to the host and then exits. The cmdlet that writes an error record instead
-# throws under $ErrorActionPreference = 'Stop', which makes the exit after it unreachable.
-function Write-Refusal {
-    param([string[]]$Message)
-    foreach ($Line in $Message) { Write-Host $Line -ForegroundColor Red }
-    Write-Host "  Nothing in $PkgDir was touched." -ForegroundColor Red
-}
-
-# Count .cs files over the five generated subdirectories of a package root, never recursively over
-# the package root itself. After any build, obj/<configuration>/<tfm>/Whisparr3.Net.AssemblyInfo.cs
-# sits under the committed package root, and a recursive count would refuse a correct run in any
-# repository where a build has happened.
-#
-# The staged side and the committed side stay comparable only while src/Whisparr3.Net/ holds no
-# hand-written .cs file. Whisparr3.Net/CLAUDE.md forbids one, so that invariant holds by contract
-# rather than by accident.
+# Count over the five generated subdirectories, never recursively over the package root: after any
+# build obj/<config>/<tfm>/Whisparr3.Net.AssemblyInfo.cs sits under it and would be counted.
 function Get-GeneratedCsFile {
     param([string]$PackageRoot)
     foreach ($Subdir in $GeneratedSubdirs) {
         $SubdirPath = Join-Path $PackageRoot $Subdir
-        if (Test-Path -LiteralPath $SubdirPath) {
-            Get-ChildItem -LiteralPath $SubdirPath -Recurse -File -Filter *.cs
-        }
+        if (Test-Path -LiteralPath $SubdirPath) { Get-ChildItem -LiteralPath $SubdirPath -Recurse -File -Filter *.cs }
     }
 }
 
 Write-Host "Generate Whisparr3.Net client -> $PkgDir" -ForegroundColor Cyan
 Write-Host "  - image $Image" -ForegroundColor DarkGray
-Write-Host "  - staging root $Stage" -ForegroundColor DarkGray
 
-# False until this run has begun changing the repository, which is the moment step 4 starts. The
-# catch below branches on it, because that is the one fact a caller needs from an unexpected error
-# and the one the default PowerShell error record does not carry.
+# False until step 3 starts deleting. The catch branches on it, because whether the repository is
+# mid-replace is the one fact a caller needs and the one a bare error record does not carry.
 $TreeTouched = $false
 
 try {
     # --- 1. Stage the two inputs, mirroring the repository layout ---
     New-Item -ItemType Directory -Force -Path (Join-Path $Stage 'spec')      | Out-Null
     New-Item -ItemType Directory -Force -Path (Join-Path $Stage 'generator') | Out-Null
-    Copy-Item -LiteralPath (Join-Path $RepoRoot $SpecRel)   -Destination (Join-Path $Stage 'spec')      -Force
-    Copy-Item -LiteralPath (Join-Path $RepoRoot $ConfigRel) -Destination (Join-Path $Stage 'generator') -Force
-    $StagedSpecBytes = (Get-Item -LiteralPath (Join-Path $Stage $SpecRel)).Length
-    Write-Host "  + staged 2 input files, spec $StagedSpecBytes bytes" -ForegroundColor Green
+    Copy-Item -LiteralPath (Join-Path $RepoRoot 'spec/openapi.generated.json') -Destination (Join-Path $Stage 'spec')      -Force
+    Copy-Item -LiteralPath (Join-Path $RepoRoot 'generator/gen-config.yaml')   -Destination (Join-Path $Stage 'generator') -Force
 
-    # --- 2. Run the pinned image ---
-    # The transcript is captured rather than streamed, matching capture-spec.ps1. The run prints
-    # one line per generated file, and that volume buries the message that matters when it fails.
-    # The whole transcript is printed on the failure path below, where it is the diagnosis.
-    #
-    # The image runs as uid 0. Measured 2026-09-04: docker run --entrypoint id <pinned digest>
-    # returns uid=0(root). On a Linux runner that makes every directory the generator creates
-    # inside the read-write bind mount root-owned, and the finally below then cannot unlink the
-    # files under them, because unlinking $Stage/src/Whisparr3.Net/Api/MovieApi.cs needs write
-    # permission on its root-owned parent. A throw in finally replaces whatever exit code is
-    # pending, so a fully correct Linux generation would exit 1. Phase 23 runs these scripts on
-    # ubuntu-latest.
-    #
-    # Windows bind mounts carry no POSIX ownership, so the flag is added only where it means
-    # something. Measured 2026-09-04 that this image tolerates it rather than assumed: --user
-    # 1000:1000 runs as uid=1000(ubuntu), exits 0, and produced a tree byte-identical to the
-    # committed one across all five subdirectories and .openapi-generator/FILES.
-    $UserArgs = if ($IsWindows) { @() } else { @('--user', "$(id -u):$(id -g)") }
+    # --- 2. Run the pinned image, then gate the staged tree before anything committed is deleted ---
+    # The image runs as uid 0. On a Linux runner that makes every directory it creates inside the
+    # bind mount root-owned, and the finally below then cannot unlink under them. Windows bind
+    # mounts carry no POSIX ownership, so the flag is added only where it means something.
+    $UserArgs  = if ($IsWindows) { @() } else { @('--user', "$(id -u):$(id -g)") }
     $RunOutput = docker run --rm @UserArgs -v "${Stage}:/local" $Image generate -c /local/generator/gen-config.yaml 2>&1
     if ($LASTEXITCODE -ne 0) {
         $GeneratorExit = $LASTEXITCODE
         Write-Host ($RunOutput -join [Environment]::NewLine) -ForegroundColor Red
-        Write-Refusal @("ERROR: REFUSED - the generator exited $GeneratorExit for $Image.")
+        Write-Host "ERROR: REFUSED - the generator exited $GeneratorExit for $Image. Nothing in $PkgDir was touched." -ForegroundColor Red
         exit $GeneratorExit
     }
-    Write-Host "  + generator exited 0, $(@($RunOutput).Count) transcript lines" -ForegroundColor Green
-
-    # --- 3. Gate the staged tree, before anything committed is deleted ---
-    # capture-spec.ps1 records the incident this discipline came from: its gate used to run after
-    # the committed deliverable had already been replaced. Three conditions, and the message names
-    # all three observed counts whichever one of them fired.
-    $StageManifest = Join-Path $Stage '.openapi-generator/FILES'
-    if (-not (Test-Path -LiteralPath $StageManifest)) {
-        Write-Refusal @("ERROR: REFUSED - the run wrote no .openapi-generator/FILES under $Stage.")
-        exit 1
-    }
-    $Listed   = @(Get-Content -LiteralPath $StageManifest | Where-Object { $_.Trim() -ne '' })
-    $Absent   = @($Listed | Where-Object { -not (Test-Path -LiteralPath (Join-Path $Stage $_)) })
-    $StagedCs = @(Get-GeneratedCsFile -PackageRoot $StagePkgDir)
-    # A subdirectory the generator did not emit at all is invisible to the count above, because
-    # Get-GeneratedCsFile skips a missing one. Step 5 would then throw Cannot find path partway
-    # through the copy, after the delete, which is the expensive place to discover it.
+    $StagedCs       = @(Get-GeneratedCsFile -PackageRoot $StagePkgDir)
+    # A subdirectory the generator did not emit at all is invisible to the count, because
+    # Get-GeneratedCsFile skips a missing one. Step 4 would then throw partway through the copy,
+    # after the delete, which is the expensive place to discover it.
     $MissingSubdirs = @($GeneratedSubdirs | Where-Object { -not (Test-Path -LiteralPath (Join-Path $StagePkgDir $_)) })
-    if ($Listed.Count -eq 0 -or $Absent.Count -gt 0 -or $StagedCs.Count -ne $ExpectedCs -or $MissingSubdirs.Count -gt 0) {
-        $Refusal = @("ERROR: REFUSED - the staged tree is not the expected tree: $($Listed.Count) paths listed in the manifest, $($Absent.Count) of them missing on disk, $($StagedCs.Count) .cs files across the five generated subdirectories, expected $ExpectedCs, $($MissingSubdirs.Count) of the five subdirectories absent under the stage.")
-        if ($MissingSubdirs.Count -gt 0) { $Refusal += "  Absent under ${StagePkgDir}: $($MissingSubdirs -join ', ')." }
-        Write-Refusal $Refusal
+    if ($StagedCs.Count -ne $ExpectedCs -or $MissingSubdirs.Count -gt 0) {
+        Write-Host "ERROR: REFUSED - the staged tree holds $($StagedCs.Count) .cs files across the five generated subdirectories, expected $ExpectedCs, with $($MissingSubdirs.Count) subdirectories absent. Nothing in $PkgDir was touched." -ForegroundColor Red
         exit 1
     }
-    Write-Host "  + staged $($StagedCs.Count) .cs files, expected $ExpectedCs, $($Listed.Count) manifest entries, 0 missing, $(@($GeneratedSubdirs).Count) of $(@($GeneratedSubdirs).Count) subdirectories present" -ForegroundColor Green
+    Write-Host "  + generator exited 0, staged $($StagedCs.Count) .cs files" -ForegroundColor Green
 
-    # --- 4. Replace, never merge. The generator never prunes, so the delete is the pruner ---
-    # Measured 2026-09-04: Copy-Item -Recurse into an existing target merges. It neither replaces
-    # the target nor nests inside it, so without this delete a stale file inside Api/ survives the
-    # copy and compiles (D-17).
-    $DeletedSubdirs = 0
-    # Set before the first unlink and not after the loop. From here to the end of step 5 the
-    # repository is mid-replace, and an error anywhere in that window leaves it that way.
+    # --- 3. Replace, never merge ---
+    # Copy-Item -Recurse into an existing target merges: it neither replaces the target nor nests
+    # inside it, so without this delete a stale file inside Api/ survives the copy and compiles.
+    # Set before the first unlink: from here to the end of step 4 the repository is mid-replace.
     $TreeTouched = $true
     foreach ($Subdir in $GeneratedSubdirs) {
         $Target = Join-Path $PkgDir $Subdir
-        if (Test-Path -LiteralPath $Target) {
-            Remove-Item -LiteralPath $Target -Recurse -Force
-            $DeletedSubdirs++
-        }
+        if (Test-Path -LiteralPath $Target) { Remove-Item -LiteralPath $Target -Recurse -Force }
     }
     if (Test-Path -LiteralPath $GenMetaDir) { Remove-Item -LiteralPath $GenMetaDir -Recurse -Force }
-    Write-Host "  - deleted $DeletedSubdirs of $(@($GeneratedSubdirs).Count) generated subdirectories, and .openapi-generator/" -ForegroundColor DarkGray
 
-    # --- 5. Copy back exactly what the generator owns ---
-    # Only these paths, not the whole staged tree. Copying the whole tree back would drag spec/ and
-    # generator/ over the committed originals, which is harmless only until someone edits the
-    # staged copy. .openapi-generator-ignore is overwritten in place rather than deleted first,
-    # because it comes out byte-identical on every run.
+    # --- 4. Copy back exactly what the generator owns, and nothing else ---
+    # Not the whole staged tree, which would drag spec/ and generator/ over the committed originals.
     New-Item -ItemType Directory -Force -Path $PkgDir | Out-Null
     foreach ($Subdir in $GeneratedSubdirs) {
         Copy-Item -LiteralPath (Join-Path $StagePkgDir $Subdir) -Destination $PkgDir -Recurse -Force
     }
-    Copy-Item -LiteralPath (Join-Path $Stage '.openapi-generator') -Destination $RepoRoot -Recurse -Force
-    Copy-Item -LiteralPath (Join-Path $Stage $IgnoreRel)          -Destination $RepoRoot -Force
+    Copy-Item -LiteralPath (Join-Path $Stage '.openapi-generator')     -Destination $RepoRoot -Recurse -Force
+    Copy-Item -LiteralPath (Join-Path $Stage '.openapi-generator-ignore') -Destination $RepoRoot -Force
 
-    # --- 6. Assert the copied count equals the staged count ---
-    # A cheap post-condition that catches a partially failed copy, which is otherwise silent. This
-    # is one of the two exits that fire after the delete, so it must not carry the untouched
-    # sentence Write-Refusal appends. It names the state the tree is actually in.
     $CopiedCs = @(Get-GeneratedCsFile -PackageRoot $PkgDir)
     if ($CopiedCs.Count -ne $StagedCs.Count) {
-        Write-Host "ERROR: REFUSED - copied $($CopiedCs.Count) .cs files but staged $($StagedCs.Count)." -ForegroundColor Red
-        Write-Host "  The generated tree under $PkgDir is now partially written: the five generated subdirectories were deleted and only $($CopiedCs.Count) of the $($StagedCs.Count) staged files were copied back." -ForegroundColor Red
-        Write-Host "  Recovery is to re-run generate.ps1, which deletes and rewrites the whole tree from a fresh generator run." -ForegroundColor Red
+        Write-Host "ERROR: copied $($CopiedCs.Count) .cs files but staged $($StagedCs.Count). The tree under $PkgDir is now partially written. Recovery is to re-run generate.ps1, which deletes and rewrites the whole tree." -ForegroundColor Red
         exit 1
     }
     Write-Host "  + copied $($CopiedCs.Count) .cs files into $PkgDir" -ForegroundColor Green
-    Write-Host "  ! generated from image digest $ImageDigest - reported only, not asserted" -ForegroundColor Yellow
-
     Write-Host "Done. $PkgDir" -ForegroundColor Green
 }
 catch {
-    # Without this, try/finally with no catch let every terminating error between the delete and
-    # the step 6 assertion escape as a raw PowerShell error record under $ErrorActionPreference =
-    # 'Stop'. That record says nothing about the repository, and by then the five subdirectories
-    # and .openapi-generator/ are gone. This is the script that needs the catch most, because it
-    # is the only one here that deletes a committed deliverable, and it was the one without it.
-    #
-    # The touched branch states measured counts rather than a narrative, because the error can
-    # arrive at any point in the window and a fixed sentence about what was deleted would be a
-    # guess. The untouched branch is the ordinary refusal wording, and is true because nothing in
-    # the repository has been written at that point.
+    # Without this, a terminating error between the delete and the count assertion escapes as a raw
+    # error record that says nothing about the repository, by which point the five subdirectories
+    # are gone. This is the only script here that deletes a committed deliverable.
     if ($TreeTouched) {
         $Present = @(Get-GeneratedCsFile -PackageRoot $PkgDir)
-        $MetaState = if (Test-Path -LiteralPath $GenMetaDir) { 'present' } else { 'absent' }
         Write-Host "ERROR: generate.ps1 stopped after it had begun replacing the tree: $($_.Exception.Message)" -ForegroundColor Red
-        Write-Host "  The tree under $PkgDir is partially written and is not untouched: it now holds $($Present.Count) .cs files across the five generated subdirectories where a complete tree holds $ExpectedCs, and .openapi-generator/ is $MetaState." -ForegroundColor Red
-        Write-Host "  Recovery is to re-run generate.ps1, or git -C $RepoRoot checkout -- src/Whisparr3.Net .openapi-generator .openapi-generator-ignore" -ForegroundColor Red
-    }
-    else {
-        Write-Refusal @("ERROR: generate.ps1 stopped before it had begun replacing the tree: $($_.Exception.Message)")
+        Write-Host "  $PkgDir now holds $($Present.Count) .cs files where a complete tree holds $ExpectedCs. Recovery is to re-run generate.ps1, or git -C $RepoRoot checkout -- src/Whisparr3.Net .openapi-generator .openapi-generator-ignore" -ForegroundColor Red
+    } else {
+        Write-Host "ERROR: generate.ps1 stopped before it had begun replacing the tree: $($_.Exception.Message). Nothing in $PkgDir was touched." -ForegroundColor Red
     }
     exit 1
 }
 finally {
-    # Removes this run's own GUID-suffixed root and nothing else, so a concurrent run is
-    # unaffected. Unconditional, because an interrupted run would otherwise leave a full generated
-    # tree sitting under the user temp directory.
-    #
-    # Non-fatal on purpose. A terminating error here replaces the pending exit code, so a cleanup
-    # failure would rewrite the verdict of the run above it. Measured on pwsh 7.6.5 under
-    # $ErrorActionPreference = 'Stop': exit 7 with a throwing finally leaves the process at 1,
-    # and the same finally with this try/catch leaves it at 7. A leftover staging root is a
-    # nuisance to be named; it is not a reason to call a correct generation a failure or a
-    # refusal the wrong code.
+    # Non-fatal on purpose. A terminating error here would replace the pending exit code and rewrite
+    # the verdict of the run above it. A leftover staging root is a nuisance to name, not a reason
+    # to call a correct generation a failure.
     if (Test-Path -LiteralPath $Stage) {
         try { Remove-Item -LiteralPath $Stage -Recurse -Force }
-        catch { Write-Host "  ! the staging root $Stage could not be removed: $($_.Exception.Message). Remove it by hand. The verdict above stands." -ForegroundColor Yellow }
+        catch { Write-Host "  ! could not remove the staging root $Stage. Remove it by hand. The verdict above stands." -ForegroundColor Yellow }
     }
 }
