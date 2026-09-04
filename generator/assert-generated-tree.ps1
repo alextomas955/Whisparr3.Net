@@ -22,7 +22,10 @@
   Step 4 is the reason this script needs a build. A source-text search for <id>Async also matches
   a comment and matches an OrDefaultAsync variant, so it proves the token is in a file rather than
   that the operation is callable. Reflection over the compiled assembly proves the public surface.
-  When the assembly is absent the gate refuses; it never passes by skipping itself.
+  When the assembly is absent the gate refuses; it never passes by skipping itself. An assembly
+  older than the newest file under census is refused for the same reason: a present assembly is
+  not necessarily this tree's assembly, and generate.ps1 replaces the tree without building it, so
+  present-but-stale is the ordinary state after a regeneration rather than an exotic one.
 
   Every actual value is printed beside its expected value, pass or fail. Mismatches accumulate and
   the script exits once at the end, so a regeneration that moves several counts prints all of them
@@ -164,6 +167,36 @@ $Rows += [pscustomobject]@{ Name = 'apiAssembly'; Actual = $(if ($AssemblyPresen
 
 $MissingIds = @()
 if ($AssemblyPresent) {
+    # The gate reads a compiled surface, so it must assert that the surface it reads was compiled
+    # from the tree it is counting. Existence is not enough. generate.ps1 does not build, so the
+    # ordinary state right after a regeneration is a present-but-stale assembly, and an operationId
+    # renamed without moving the file count would pass against the previous build - the exact
+    # failure the reflection gate was chosen over a source-text search to close. Measured in the
+    # committed working tree on 2026-09-04, before this row existed: every generated source was
+    # five minutes newer than bin/Release/net8.0/Whisparr3.Net.dll and the census still reported
+    # missingOps 0 and exited 0.
+    #
+    # Timestamps rather than content. The assembly carries no cheap identity of the sources it was
+    # built from, and last-write time is the signal MSBuild's own up-to-date check uses. It is a
+    # weaker statement than a content hash and a much stronger one than existence.
+    $AssemblyTime = (Get-Item -LiteralPath $AssemblyPath).LastWriteTimeUtc
+    if ($CsFiles.Count -eq 0) {
+        # csTotal has already failed. Recorded as a failing row rather than skipped, because a
+        # skipped row reads as a passing one.
+        $NewestCs      = $null
+        $AssemblyFresh = $false
+    }
+    else {
+        $NewestCs      = @($CsFiles | Sort-Object LastWriteTimeUtc -Descending)[0]
+        $AssemblyFresh = ($AssemblyTime -ge $NewestCs.LastWriteTimeUtc)
+    }
+    $Rows += [pscustomobject]@{
+        Name     = 'assemblyFresh'
+        Actual   = $(if ($AssemblyFresh) { 'current' } elseif ($null -eq $NewestCs) { 'no source' } else { 'stale' })
+        Expected = 'current'
+        Matched  = $AssemblyFresh
+    }
+
     $Assembly    = [System.Reflection.Assembly]::LoadFrom($AssemblyPath)
     $MethodNames = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
     $ApiTypes    = 0
@@ -194,6 +227,13 @@ foreach ($Row in $Rows) {
 
 if ($AssemblyPresent) {
     Write-TreeCensus "  - $ApiTypes exported types in namespace Whisparr3.Net.Api, $($MethodNames.Count) distinct public method names" 'DarkGray'
+    if (-not $AssemblyFresh) {
+        # Name both timestamps, the way the absent-assembly refusal names the path and the build
+        # command. A bare stale sends the reader to compare file times by hand.
+        $NewestLine = if ($null -eq $NewestCs) { 'there is no generated source to compare against' } else { "the newest generated source is $(Get-RepoRelativePath $NewestCs.FullName) at $($NewestCs.LastWriteTimeUtc.ToString('u'))" }
+        Write-TreeCensus "  ! the assembly is older than the tree under census: $AssemblyPath is $($AssemblyTime.ToString('u')) and $NewestLine." 'Red'
+        Write-TreeCensus "  ! the operation gate reflects over that build, so it would be asserting a public surface this tree did not produce. Rebuild first: dotnet build $CsprojPath -c $Configuration" 'Red'
+    }
     if ($MissingIds.Count -gt 0) {
         # Name them. A bare count sends the reader back to reflection by hand.
         $FirstTen = @($MissingIds | Select-Object -First 10)
