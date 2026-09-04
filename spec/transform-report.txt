@@ -1,11 +1,11 @@
 Whisparr3.Net spec pre-processing report (PREP-08)
 
 input   spec/openapi.raw.json       381380 bytes  sha256 8ac2dbceedf65de542c6a8d2c7bb8d8f8fa6e155b651956079f9b192e8bedf18
-output  spec/openapi.generated.json 393041 bytes  sha256 2d7fe58abddd7c6d5659227920c0e5df80afb4483cafc4743564aa26cf9b5ec1
+output  spec/openapi.generated.json 393009 bytes  sha256 3469189dc7f2b8aa86e4ea5d9e97d54d22c1fd71f316a1ded7f12032b0760a99
 
 [1] root security repair (PREP-02)
     before  [{},{}]
-    after   [{},{"X-Api-Key":[]},{"apikey":[]}]
+    after   [{},{"X-Api-Key":[]}]
     Whisparr declares both API key schemes and then serves an empty requirement, so without
     this repair the generated client carries no auth call site at all.
 

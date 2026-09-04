@@ -72,10 +72,26 @@ function Resolve-RepoPath {
     return [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRooted($Path)) { $Path } else { Join-Path $RepoRoot $Path }))
 }
 
-# The auth-optional, both-schemes form, chosen in D-01 against two measured alternatives. Parsed
-# from a literal rather than built from a PowerShell array: a single-element array piped through
-# the serializer unrolls into an object, so a later single-element variant would be corrupted.
-$SecurityLiteral = '[{},{"X-Api-Key":[]},{"apikey":[]}]'
+# Auth-optional, header scheme only.
+#
+# This was both schemes until 2026-09-04. Whisparr declares the key twice, X-Api-Key in the header
+# and apikey in the query string, as OR-alternatives. The generichost generator does not treat them
+# as alternatives: it emits a call to every declared scheme on every operation, so the both-schemes
+# form put the API key in the URL query string of all 272 requests as well as in the header.
+# Measured before the change: 272 UseInQuery and 272 UseInHeader call sites.
+#
+# A credential in a URL reaches server access logs, reverse-proxy logs and Referer headers, which is
+# not acceptable in a library other people install. Upstream openapi-generator issue 24138 has this
+# open with maintainer discussion; the recommended workaround is to drop the extra scheme, which is
+# what this literal now does at the spec level rather than undoing it downstream.
+#
+# devopsarr's Rust Whisparr client has the same defect. Their Python and Go clients avoid it only
+# because the consumer chooses which schemes to populate. The one production consumer of any of
+# them, terraform-provider-whisparr, bypasses the generated auth entirely and sets the header itself.
+#
+# Parsed from a literal rather than built from a PowerShell array: a single-element array piped
+# through the serializer unrolls into an object, so a single-element variant would be corrupted.
+$SecurityLiteral = '[{},{"X-Api-Key":[]}]'
 # The floor below which the staged document cannot be an honest patched spec. The capture is
 # 381,380 bytes and its depth-2 truncation is 48,452, so anything between is a wide margin.
 $MinimumStagedBytes = 350000
