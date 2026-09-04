@@ -18,8 +18,13 @@ every number is quoted from the command printed beside it.
 - **Gate:** `git -C I:/cove-dev/Whisparr3.Net status --porcelain`.
 - **Observed line count:** `0` before the run and `0` after it.
 
-The run reported `+ staged 262 .cs files, 262 manifest entries, 0 missing`, then `- deleted 5 of 5
-generated subdirectories, and .openapi-generator/`, then `+ copied 262 .cs files`, and exited 0.
+The run reported `+ staged 262 .cs files, expected 262, 262 manifest entries, 0 missing, 5 of 5
+subdirectories present`, then `- deleted 5 of 5 generated subdirectories, and .openapi-generator/`,
+then `+ copied 262 .cs files into I:\cove-dev\Whisparr3.Net\src\Whisparr3.Net`, and exited 0.
+
+The staged line gained `expected 262` and the subdirectory count after the code review: gate 3's
+only floor was a count of zero, so a short generation would have replaced the committed tree and
+exited 0. Requoted from a real run on 2026-09-04, not edited by hand.
 
 The gate is `git status --porcelain` rather than `git diff --exit-code`. `git diff` alone misses a
 newly created file, and the whole point of the delete-and-replace is that files can appear and
@@ -126,11 +131,29 @@ date above and no longer. The continuous gate is the props, recorded at the end 
 | `net8.0` | clean | clean |
 | `net10.0` | clean | clean |
 
-The verdict on each row is read from the transcript text, from the verbatim marker `has no
-vulnerable packages given the current sources` with the verbatim marker `has the following
-vulnerable packages` absent. A transcript carrying neither is refused as an unrecognised third
-state rather than read as clean, because an unrestored or offline project prints neither string.
-The process exit code is printed as a report-only row and never decides the verdict.
+The verdict on each row is read from the transcript text, never from the process exit code, which is
+printed as a report-only row. Measured 2026-09-04: `dotnet list package --vulnerable` exits 0 while
+printing a High severity finding, which is why the exit code decides nothing here.
+
+There are **four** verdicts, not three. The code review found that reading `clean` from the marker
+`has no vulnerable packages given the current sources` alone was itself a silent pass, because that
+sentence is a statement about the sources the run read. Pointed at a feed carrying no advisory data
+it prints verbatim and exits 0, having consulted no advisory database:
+
+| verdict | condition |
+|---|---|
+| `finding` | the marker `has the following vulnerable packages` is present |
+| `clean` | the clean marker is present **and** the transcript names `https://api.nuget.org/v3/index.json` among `The following sources were used:` |
+| `unsourced` | the clean marker is present but the audit source is not named - refused, transcript reprinted |
+| `unrecognised` | neither marker present, as an unrestored or offline project prints - refused, transcript reprinted |
+
+A passing run therefore prints a `sources` row beside each framework row, so a green transcript
+records what actually answered the question:
+
+    [audit]   + net8.0           actual clean                expected clean                OK
+    [audit]   + net8.0 sources   actual nuget.org consulted  expected nuget.org consulted  OK
+    [audit]   + net10.0          actual clean                expected clean                OK
+    [audit]   + net10.0 sources  actual nuget.org consulted  expected nuget.org consulted  OK
 
 ### The closure that was audited
 
