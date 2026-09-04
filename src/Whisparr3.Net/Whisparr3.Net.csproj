@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Hand-owned. The generator would write this file, so **/*.csproj is in
+       openapiGeneratorIgnoreList; see generator/gen-config.yaml.
+
+       This file carries ONLY the TFM-conditional PackageReference items, because that is the
+       one build fact Directory.Build.props cannot express - it is per-TFM item data, not a
+       property. Everything else the generator writes here is either a placeholder the props
+       already correct, or a RepositoryUrl/RepositoryType pair that overrides the SDK's built-in
+       SourceLink and ships a .snupkg with no commit SHA. Do not restate a props value here. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Condition="'$(TargetFramework)' == 'net8.0'" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Condition="'$(TargetFramework)' == 'net8.0'" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Condition="'$(TargetFramework)' == 'net8.0'" Version="8.0.20" />
+    <PackageReference Include="Microsoft.Net.Http.Headers" Condition="'$(TargetFramework)' == 'net8.0'" Version="8.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Http" Condition="'$(TargetFramework)' == 'net10.0'" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Condition="'$(TargetFramework)' == 'net10.0'" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Condition="'$(TargetFramework)' == 'net10.0'" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Net.Http.Headers" Condition="'$(TargetFramework)' == 'net10.0'" Version="10.0.1" />
+  </ItemGroup>
+
+</Project>

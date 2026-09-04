@@ -36,6 +36,18 @@ globalProperties:
 
 # The scaffolding this repository owns by hand or does not want at all. This is the config-file
 # equivalent of the ignore file, and unlike the ignore file it is rewritten on every run.
+#
+# "**/*.csproj" is here because the project file is hand-owned from Phase 20 on (D-06). Measured
+# 2026-09-04 against the csproj this generator actually emits: it carries six placeholder metadata
+# values that Directory.Build.props exists to correct, Authors, Company, Description, Copyright,
+# Version and PackageReleaseNotes. It also hardcodes RepositoryUrl and RepositoryType, and a
+# hardcoded RepositoryUrl overrides the PublishRepositoryUrl auto-detection the props rely on, so
+# the shipped .snupkg carries no commit SHA and the source map is dead.
+#
+# The .openapi-generator-ignore committed at the repository root is a record of what this key
+# produced, never an input. Generation stages only spec/openapi.generated.json and
+# generator/gen-config.yaml into a fresh root, so the generator never reads the committed file and
+# a hand edit to it is discarded silently on the next run. Edit this key instead.
 openapiGeneratorIgnoreList:
   - README.md
   - src/*/README.md
@@ -45,6 +57,7 @@ openapiGeneratorIgnoreList:
   - "*.slnx"
   - "docs/**"
   - api/openapi.yaml
+  - "**/*.csproj"
 
 additionalProperties:
   packageName: Whisparr3.Net
