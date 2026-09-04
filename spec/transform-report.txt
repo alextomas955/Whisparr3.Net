@@ -1,0 +1,325 @@
+Whisparr3.Net spec pre-processing report (PREP-08)
+
+input   spec/openapi.raw.json          381380 bytes  sha256 8ac2dbceedf65de542c6a8d2c7bb8d8f8fa6e155b651956079f9b192e8bedf18
+output  spec/openapi.generated.json    393041 bytes  sha256 2d7fe58abddd7c6d5659227920c0e5df80afb4483cafc4743564aa26cf9b5ec1
+
+[1] security repair (PREP-02)
+    before  [{},{}]
+    after   [{},{"X-Api-Key":[]},{"apikey":[]}]
+    schemes declared in components.securitySchemes: X-Api-Key (header), apikey (query)
+
+[2] delete paths["/"] (PREP-03)
+    removed  GET /   [tag StaticResource]  required parameter 'path' (in: path) absent from the URL template
+    paths       190 -> 189
+    operations  273 -> 272
+
+[3] operationId assignment (PREP-04, PREP-05)
+    map               generator/operation-ids.json   272 entries
+    assigned          272 from map, 0 derived
+    unmatched         0 operations missing from the map
+    orphaned          0 map entries matching no operation
+    collisions        0
+    identifier shape  272/272 match ^[A-Z][A-Za-z0-9]*$
+
+[4] transforms deliberately not applied (PREP-06)
+    "200" -> "2XX"                     rejected: 2 operations declare a second 2xx code beside 200,
+                                       POST /api/v3/performer (201) and PUT /api/v3/performer/{id} (202), so the
+                                       range key would sit beside a literal code inside its own range; and the
+                                       generichost accessor for that range is unreachable code, its generated
+                                       comparison can never be true
+                                       [observed: secondSuccessCodes=2]
+    FIX_DUPLICATED_OPERATIONID         rejected: it de-duplicates by appending a positional suffix, which would
+                                       mask the PREP-04 collision assertion, and inserting an operation upstream
+                                       moves the suffix onto a different method, renaming public API with no diff
+    SECURITY_SCHEMES_FILTER            rejected: it would drop the query scheme and tidy the generated surface,
+                                       but ERGO-01 requires both declared schemes to reach the wire
+    FILTER (path allowlist)            rejected: it is a prefix allowlist, so excluding one path means enumerating
+                                       every other top-level path, and a future Whisparr adding one would be
+                                       dropped silently with the operation count falling and nothing reported
+    fixes.py TimeSpan/HttpUri/Version  not applicable: the three type names it rewrites are absent from this
+                                       document, and no schema is named Version. Only Command and Field collide
+                                       with a BCL type name, which Phase 20 resolves by name mapping, not here
+                                       [observed: TimeSpan=0; HttpUri=0; VersionSchema=0; bclCollisions=2]
+    fixes.py ImportListType += "plex"  rejected: devopsarr generate their whisparr client from Radarr's spec, so
+                                       the patch repairs a Radarr gap. Eros serves a different value set, and
+                                       adding a member the server cannot send teaches the deserializer to accept
+                                       something this API never returns
+                                       [observed: ImportListType=program,stashDB,tmdb,other,advanced]
+    KEEP_ONLY_FIRST_TAG_IN_OPERATION   no-op: measured against this document, every operation carries exactly one
+                                       tag, so it would change nothing. Recorded as measured rather than copied
+                                       across from devopsarr on the strength of it being in their pipeline
+                                       [observed: tags=75; multiTagOperations=0; untaggedOperations=0]
+
+[5] operationId map, sorted by path then method
+    GET     /api                                                    GetApiInfo
+    GET     /api/v3/alttitle                                        ListAlternativeTitle
+    GET     /api/v3/alttitle/{id}                                   GetAlternativeTitleById
+    GET     /api/v3/autotagging                                     ListAutoTagging
+    POST    /api/v3/autotagging                                     CreateAutoTagging
+    GET     /api/v3/autotagging/schema                              GetAutoTaggingSchema
+    GET     /api/v3/autotagging/{id}                                GetAutoTaggingById
+    PUT     /api/v3/autotagging/{id}                                UpdateAutoTagging
+    DELETE  /api/v3/autotagging/{id}                                DeleteAutoTagging
+    GET     /api/v3/blocklist                                       GetBlocklist
+    DELETE  /api/v3/blocklist/bulk                                  DeleteBlocklistBulk
+    GET     /api/v3/blocklist/movie                                 ListBlocklistMovie
+    DELETE  /api/v3/blocklist/{id}                                  DeleteBlocklist
+    GET     /api/v3/calendar                                        ListCalendar
+    GET     /api/v3/collection                                      ListCollection
+    PUT     /api/v3/collection                                      PutCollection
+    GET     /api/v3/collection/{id}                                 GetCollectionById
+    PUT     /api/v3/collection/{id}                                 UpdateCollection
+    DELETE  /api/v3/collection/{id}                                 DeleteCollection
+    GET     /api/v3/command                                         ListCommand
+    POST    /api/v3/command                                         CreateCommand
+    GET     /api/v3/command/{id}                                    GetCommandById
+    DELETE  /api/v3/command/{id}                                    DeleteCommand
+    GET     /api/v3/config/downloadclient                           GetDownloadClientConfig
+    GET     /api/v3/config/downloadclient/{id}                      GetDownloadClientConfigById
+    PUT     /api/v3/config/downloadclient/{id}                      UpdateDownloadClientConfig
+    GET     /api/v3/config/host                                     GetHostConfig
+    GET     /api/v3/config/host/{id}                                GetHostConfigById
+    PUT     /api/v3/config/host/{id}                                UpdateHostConfig
+    GET     /api/v3/config/importlist                               GetImportListConfig
+    GET     /api/v3/config/importlist/{id}                          GetImportListConfigById
+    PUT     /api/v3/config/importlist/{id}                          UpdateImportListConfig
+    GET     /api/v3/config/indexer                                  GetIndexerConfig
+    GET     /api/v3/config/indexer/{id}                             GetIndexerConfigById
+    PUT     /api/v3/config/indexer/{id}                             UpdateIndexerConfig
+    GET     /api/v3/config/mediamanagement                          GetMediaManagementConfig
+    GET     /api/v3/config/mediamanagement/{id}                     GetMediaManagementConfigById
+    PUT     /api/v3/config/mediamanagement/{id}                     UpdateMediaManagementConfig
+    GET     /api/v3/config/naming                                   GetNamingConfig
+    GET     /api/v3/config/naming/examples                          GetNamingConfigExamples
+    GET     /api/v3/config/naming/{id}                              GetNamingConfigById
+    PUT     /api/v3/config/naming/{id}                              UpdateNamingConfig
+    GET     /api/v3/config/ui                                       GetUiConfig
+    GET     /api/v3/config/ui/{id}                                  GetUiConfigById
+    PUT     /api/v3/config/ui/{id}                                  UpdateUiConfig
+    GET     /api/v3/credit                                          ListCredit
+    GET     /api/v3/credit/{id}                                     GetCreditById
+    GET     /api/v3/customfilter                                    ListCustomFilter
+    POST    /api/v3/customfilter                                    CreateCustomFilter
+    GET     /api/v3/customfilter/{id}                               GetCustomFilterById
+    PUT     /api/v3/customfilter/{id}                               UpdateCustomFilter
+    DELETE  /api/v3/customfilter/{id}                               DeleteCustomFilter
+    GET     /api/v3/customformat                                    ListCustomFormat
+    POST    /api/v3/customformat                                    CreateCustomFormat
+    PUT     /api/v3/customformat/bulk                               PutCustomFormatBulk
+    DELETE  /api/v3/customformat/bulk                               DeleteCustomFormatBulk
+    GET     /api/v3/customformat/schema                             GetCustomFormatSchema
+    GET     /api/v3/customformat/{id}                               GetCustomFormatById
+    PUT     /api/v3/customformat/{id}                               UpdateCustomFormat
+    DELETE  /api/v3/customformat/{id}                               DeleteCustomFormat
+    GET     /api/v3/delayprofile                                    ListDelayProfile
+    POST    /api/v3/delayprofile                                    CreateDelayProfile
+    PUT     /api/v3/delayprofile/reorder/{id}                       UpdateDelayProfileReorder
+    GET     /api/v3/delayprofile/{id}                               GetDelayProfileById
+    PUT     /api/v3/delayprofile/{id}                               UpdateDelayProfile
+    DELETE  /api/v3/delayprofile/{id}                               DeleteDelayProfile
+    GET     /api/v3/diskspace                                       ListDiskSpace
+    GET     /api/v3/downloadclient                                  ListDownloadClient
+    POST    /api/v3/downloadclient                                  CreateDownloadClient
+    POST    /api/v3/downloadclient/action/{name}                    CreateDownloadClientActionByName
+    PUT     /api/v3/downloadclient/bulk                             PutDownloadClientBulk
+    DELETE  /api/v3/downloadclient/bulk                             DeleteDownloadClientBulk
+    GET     /api/v3/downloadclient/schema                           ListDownloadClientSchema
+    POST    /api/v3/downloadclient/test                             TestDownloadClient
+    POST    /api/v3/downloadclient/testall                          TestAllDownloadClient
+    GET     /api/v3/downloadclient/{id}                             GetDownloadClientById
+    PUT     /api/v3/downloadclient/{id}                             UpdateDownloadClient
+    DELETE  /api/v3/downloadclient/{id}                             DeleteDownloadClient
+    GET     /api/v3/exclusions                                      ListExclusions
+    POST    /api/v3/exclusions                                      CreateExclusions
+    POST    /api/v3/exclusions/bulk                                 CreateExclusionsBulk
+    DELETE  /api/v3/exclusions/bulk                                 DeleteExclusionsBulk
+    GET     /api/v3/exclusions/paged                                GetExclusionsPaged
+    GET     /api/v3/exclusions/{id}                                 GetExclusionsById
+    PUT     /api/v3/exclusions/{id}                                 UpdateExclusions
+    DELETE  /api/v3/exclusions/{id}                                 DeleteExclusions
+    GET     /api/v3/extrafile                                       ListExtraFile
+    GET     /api/v3/filesystem                                      GetFileSystem
+    GET     /api/v3/filesystem/mediafiles                           GetFileSystemMediaFiles
+    GET     /api/v3/filesystem/type                                 GetFileSystemType
+    GET     /api/v3/health                                          ListHealth
+    GET     /api/v3/history                                         GetHistory
+    POST    /api/v3/history/failed/{id}                             CreateHistoryFailedById
+    GET     /api/v3/history/movie                                   ListHistoryMovie
+    GET     /api/v3/history/since                                   ListHistorySince
+    GET     /api/v3/importlist                                      ListImportList
+    POST    /api/v3/importlist                                      CreateImportList
+    POST    /api/v3/importlist/action/{name}                        CreateImportListActionByName
+    PUT     /api/v3/importlist/bulk                                 PutImportListBulk
+    DELETE  /api/v3/importlist/bulk                                 DeleteImportListBulk
+    GET     /api/v3/importlist/movie                                GetImportListMovie
+    POST    /api/v3/importlist/movie                                CreateImportListMovie
+    GET     /api/v3/importlist/schema                               ListImportListSchema
+    POST    /api/v3/importlist/test                                 TestImportList
+    POST    /api/v3/importlist/testall                              TestAllImportList
+    GET     /api/v3/importlist/{id}                                 GetImportListById
+    PUT     /api/v3/importlist/{id}                                 UpdateImportList
+    DELETE  /api/v3/importlist/{id}                                 DeleteImportList
+    GET     /api/v3/indexer                                         ListIndexer
+    POST    /api/v3/indexer                                         CreateIndexer
+    POST    /api/v3/indexer/action/{name}                           CreateIndexerActionByName
+    PUT     /api/v3/indexer/bulk                                    PutIndexerBulk
+    DELETE  /api/v3/indexer/bulk                                    DeleteIndexerBulk
+    GET     /api/v3/indexer/schema                                  ListIndexerSchema
+    POST    /api/v3/indexer/test                                    TestIndexer
+    POST    /api/v3/indexer/testall                                 TestAllIndexer
+    GET     /api/v3/indexer/{id}                                    GetIndexerById
+    PUT     /api/v3/indexer/{id}                                    UpdateIndexer
+    DELETE  /api/v3/indexer/{id}                                    DeleteIndexer
+    GET     /api/v3/indexerflag                                     ListIndexerFlag
+    GET     /api/v3/language                                        ListLanguage
+    GET     /api/v3/language/{id}                                   GetLanguageById
+    GET     /api/v3/localization                                    GetLocalization
+    GET     /api/v3/localization/language                           GetLocalizationLanguage
+    GET     /api/v3/log                                             GetLog
+    GET     /api/v3/log/file                                        ListLogFile
+    GET     /api/v3/log/file/update                                 ListLogFileUpdate
+    GET     /api/v3/log/file/update/{filename}                      GetLogFileUpdateByFilename
+    GET     /api/v3/log/file/{filename}                             GetLogFileByFilename
+    GET     /api/v3/lookup/movie                                    GetLookupMovie
+    GET     /api/v3/lookup/performer                                GetLookupPerformer
+    GET     /api/v3/lookup/scene                                    GetLookupScene
+    GET     /api/v3/lookup/studio                                   GetLookupStudio
+    GET     /api/v3/manualimport                                    ListManualImport
+    POST    /api/v3/manualimport                                    CreateManualImport
+    GET     /api/v3/mediacover/{movieId}/{filename}                 GetMediaCoverByMovieIdAndFilename
+    GET     /api/v3/metadata                                        ListMetadata
+    POST    /api/v3/metadata                                        CreateMetadata
+    POST    /api/v3/metadata/action/{name}                          CreateMetadataActionByName
+    GET     /api/v3/metadata/schema                                 ListMetadataSchema
+    POST    /api/v3/metadata/test                                   TestMetadata
+    POST    /api/v3/metadata/testall                                TestAllMetadata
+    GET     /api/v3/metadata/{id}                                   GetMetadataById
+    PUT     /api/v3/metadata/{id}                                   UpdateMetadata
+    DELETE  /api/v3/metadata/{id}                                   DeleteMetadata
+    GET     /api/v3/movie                                           ListMovie
+    POST    /api/v3/movie                                           CreateMovie
+    POST    /api/v3/movie/bulk                                      CreateMovieBulk
+    PATCH   /api/v3/movie/bulk/monitor                              PatchMovieBulkMonitor
+    PUT     /api/v3/movie/editor                                    PutMovieEditor
+    DELETE  /api/v3/movie/editor                                    DeleteMovieEditor
+    POST    /api/v3/movie/import                                    CreateMovieImport
+    GET     /api/v3/movie/list                                      ListMovieList
+    POST    /api/v3/movie/list                                      CreateMovieList
+    GET     /api/v3/movie/listbyperformerforeignid                  ListMovieByPerformerForeignId
+    GET     /api/v3/movie/listbystudioforeignid                     ListMovieByStudioForeignId
+    GET     /api/v3/movie/lookup                                    ListMovieLookup
+    GET     /api/v3/movie/lookup/imdb                               GetMovieLookupImdb
+    GET     /api/v3/movie/lookup/tmdb                               GetMovieLookupTmdb
+    GET     /api/v3/movie/lookup/tpdb                               GetMovieLookupTpdb
+    POST    /api/v3/movie/paged                                     CreateMoviePaged
+    GET     /api/v3/movie/search                                    ListMovieSearch
+    GET     /api/v3/movie/stats                                     GetMovieStats
+    GET     /api/v3/movie/{id}                                      GetMovieById
+    PUT     /api/v3/movie/{id}                                      UpdateMovie
+    PATCH   /api/v3/movie/{id}                                      PatchMovieById
+    DELETE  /api/v3/movie/{id}                                      DeleteMovie
+    GET     /api/v3/movie/{id}/folder                               GetMovieFolder
+    GET     /api/v3/moviefile                                       ListMovieFile
+    PUT     /api/v3/moviefile/bulk                                  PutMovieFileBulk
+    DELETE  /api/v3/moviefile/bulk                                  DeleteMovieFileBulk
+    PUT     /api/v3/moviefile/editor                                PutMovieFileEditor
+    GET     /api/v3/moviefile/{id}                                  GetMovieFileById
+    PUT     /api/v3/moviefile/{id}                                  UpdateMovieFile
+    DELETE  /api/v3/moviefile/{id}                                  DeleteMovieFile
+    GET     /api/v3/notification                                    ListNotification
+    POST    /api/v3/notification                                    CreateNotification
+    POST    /api/v3/notification/action/{name}                      CreateNotificationActionByName
+    GET     /api/v3/notification/schema                             ListNotificationSchema
+    POST    /api/v3/notification/test                               TestNotification
+    POST    /api/v3/notification/testall                            TestAllNotification
+    GET     /api/v3/notification/{id}                               GetNotificationById
+    PUT     /api/v3/notification/{id}                               UpdateNotification
+    DELETE  /api/v3/notification/{id}                               DeleteNotification
+    GET     /api/v3/parse                                           GetParse
+    GET     /api/v3/performer                                       ListPerformer
+    POST    /api/v3/performer                                       CreatePerformer
+    PUT     /api/v3/performer/editor                                PutPerformerEditor
+    DELETE  /api/v3/performer/editor                                DeletePerformerEditor
+    POST    /api/v3/performer/list                                  CreatePerformerList
+    POST    /api/v3/performer/paged                                 CreatePerformerPaged
+    GET     /api/v3/performer/{id}                                  GetPerformerById
+    PUT     /api/v3/performer/{id}                                  UpdatePerformer
+    DELETE  /api/v3/performer/{id}                                  DeletePerformer
+    GET     /api/v3/performer/{performerForeignId}                  GetPerformerByPerformerForeignId
+    GET     /api/v3/performer/{performerForeignId}/works            ListPerformerWorks
+    GET     /api/v3/qualitydefinition                               ListQualityDefinition
+    GET     /api/v3/qualitydefinition/limits                        GetQualityDefinitionLimits
+    PUT     /api/v3/qualitydefinition/update                        PutQualityDefinitionUpdate
+    GET     /api/v3/qualitydefinition/{id}                          GetQualityDefinitionById
+    PUT     /api/v3/qualitydefinition/{id}                          UpdateQualityDefinition
+    GET     /api/v3/qualityprofile                                  ListQualityProfile
+    POST    /api/v3/qualityprofile                                  CreateQualityProfile
+    GET     /api/v3/qualityprofile/schema                           GetQualityProfileSchema
+    GET     /api/v3/qualityprofile/{id}                             GetQualityProfileById
+    PUT     /api/v3/qualityprofile/{id}                             UpdateQualityProfile
+    DELETE  /api/v3/qualityprofile/{id}                             DeleteQualityProfile
+    GET     /api/v3/queue                                           GetQueue
+    DELETE  /api/v3/queue/bulk                                      DeleteQueueBulk
+    GET     /api/v3/queue/details                                   ListQueueDetails
+    POST    /api/v3/queue/grab/bulk                                 CreateQueueGrabBulk
+    POST    /api/v3/queue/grab/{id}                                 CreateQueueGrabById
+    GET     /api/v3/queue/status                                    GetQueueStatus
+    DELETE  /api/v3/queue/{id}                                      DeleteQueue
+    GET     /api/v3/release                                         ListRelease
+    POST    /api/v3/release                                         CreateRelease
+    POST    /api/v3/release/push                                    CreateReleasePush
+    GET     /api/v3/releaseprofile                                  ListReleaseProfile
+    POST    /api/v3/releaseprofile                                  CreateReleaseProfile
+    GET     /api/v3/releaseprofile/{id}                             GetReleaseProfileById
+    PUT     /api/v3/releaseprofile/{id}                             UpdateReleaseProfile
+    DELETE  /api/v3/releaseprofile/{id}                             DeleteReleaseProfile
+    GET     /api/v3/remotepathmapping                               ListRemotePathMapping
+    POST    /api/v3/remotepathmapping                               CreateRemotePathMapping
+    GET     /api/v3/remotepathmapping/{id}                          GetRemotePathMappingById
+    PUT     /api/v3/remotepathmapping/{id}                          UpdateRemotePathMapping
+    DELETE  /api/v3/remotepathmapping/{id}                          DeleteRemotePathMapping
+    GET     /api/v3/rename                                          ListRename
+    GET     /api/v3/rootfolder                                      ListRootFolder
+    POST    /api/v3/rootfolder                                      CreateRootFolder
+    POST    /api/v3/rootfolder/refresh/{id}                         CreateRootFolderRefreshById
+    GET     /api/v3/rootfolder/{id}                                 GetRootFolderById
+    DELETE  /api/v3/rootfolder/{id}                                 DeleteRootFolder
+    GET     /api/v3/studio                                          ListStudio
+    POST    /api/v3/studio                                          CreateStudio
+    PUT     /api/v3/studio/editor                                   PutStudioEditor
+    POST    /api/v3/studio/list                                     CreateStudioList
+    POST    /api/v3/studio/paged                                    CreateStudioPaged
+    GET     /api/v3/studio/{id}                                     GetStudioById
+    PUT     /api/v3/studio/{id}                                     UpdateStudio
+    DELETE  /api/v3/studio/{id}                                     DeleteStudio
+    GET     /api/v3/studio/{studioForeignId}                        GetStudioByStudioForeignId
+    GET     /api/v3/studio/{studioForeignId}/works                  ListStudioWorks
+    GET     /api/v3/system/backup                                   ListSystemBackup
+    POST    /api/v3/system/backup/restore/upload                    CreateSystemBackupRestoreUpload
+    POST    /api/v3/system/backup/restore/{id}                      CreateSystemBackupRestoreById
+    DELETE  /api/v3/system/backup/{id}                              DeleteSystemBackup
+    POST    /api/v3/system/restart                                  CreateSystemRestart
+    GET     /api/v3/system/routes                                   GetSystemRoutes
+    GET     /api/v3/system/routes/duplicate                         GetSystemRoutesDuplicate
+    POST    /api/v3/system/shutdown                                 CreateSystemShutdown
+    GET     /api/v3/system/status                                   GetSystemStatus
+    GET     /api/v3/system/task                                     ListSystemTask
+    GET     /api/v3/system/task/{id}                                GetSystemTaskById
+    GET     /api/v3/tag                                             ListTag
+    POST    /api/v3/tag                                             CreateTag
+    GET     /api/v3/tag/detail                                      ListTagDetail
+    GET     /api/v3/tag/detail/{id}                                 GetTagDetailById
+    GET     /api/v3/tag/{id}                                        GetTagById
+    PUT     /api/v3/tag/{id}                                        UpdateTag
+    DELETE  /api/v3/tag/{id}                                        DeleteTag
+    GET     /api/v3/update                                          ListUpdate
+    GET     /api/v3/wanted/cutoff                                   GetWantedCutoff
+    GET     /api/v3/wanted/missing                                  GetWantedMissing
+    GET     /content/{path}                                         GetContentByPath
+    GET     /feed/v3/calendar/whisparr.ics                          GetCalendarFeed
+    GET     /login                                                  GetLoginPage
+    POST    /login                                                  CreateLogin
+    GET     /logout                                                 GetLogout
+    GET     /ping                                                   GetPing
+    HEAD    /ping                                                   HeadPing
+    GET     /{path}                                                 GetStaticResourceByPath

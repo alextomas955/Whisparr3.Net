@@ -37,6 +37,13 @@
     12. Promote. Only here is the committed spec replaced. A run that refuses at any earlier
         step leaves the committed spec and the committed manifest exactly as they were.
     13. Manifest. generatedSpecSha256 is added to the PROVENANCE.json beside the output.
+    14. Report. spec/transform-report.txt is written beside the output, carrying what each
+        transform changed with its count, and what was deliberately not applied with the reason.
+        It holds no timestamp, no GUID, no environment value and no absolute path, so two runs
+        over the same capture produce a byte-identical report. A timestamp would produce a diff
+        on every run even when nothing changed, which is exactly the signal the file exists to
+        carry, and would leave PREP-01's two-run byte-identity holding for the spec but not for
+        the report. Provenance timestamps belong in PROVENANCE.json, which already has one.
 
   Steps 4 through 8 all run before the staged write, so none of them has a staging file to
   discard and none of them calls Write-Refusal. That is deliberate, not an oversight: the map
@@ -100,7 +107,17 @@ param(
     # gate refuses, print a proposed operationId beside each unmapped operation so a spec-refresh
     # PR gets an actionable message instead of a bare list of paths. The proposal is authoring
     # input for a human editing the committed map; the pipeline still exits non-zero.
-    [switch]$ProposeMissing
+    [switch]$ProposeMissing,
+
+    # Where to write the transform report (PREP-08, D-13). Left empty it is DERIVED from the
+    # output file's own directory, the same way PROVENANCE.json is, so a run with a scratch
+    # output path writes its report beside that scratch output and cannot touch the committed
+    # one. That derivation is load-bearing rather than tidy: the security-variant runs below
+    # override -OutFile, and under a repository-relative default each of them would overwrite
+    # the committed review artifact with one whose section 1 shows a security block nobody
+    # chose. An explicit value still wins and resolves like every other path here, absolute as
+    # given and relative against the repository root.
+    [string]$ReportPath = ''
 )
 
 $ErrorActionPreference = 'Stop'
@@ -133,6 +150,27 @@ $HttpMethods       = 'get', 'put', 'post', 'delete', 'options', 'head', 'patch',
 # committed map overrides it to GetCalendarFeed. If nothing invalid ever reaches the generator,
 # what the generator would have done to an invalid name stops mattering (D-16).
 $OperationIdPattern = '^[A-Z][A-Za-z0-9]*$'
+# Report column widths, from constants and never from the data. Deriving them from the longest
+# path means adding one long path reflows all 272 appendix lines and the refresh diff becomes
+# unreadable. A path longer than the column overflows its row instead. The operationId is the
+# last field on the line and is never padded: .editorconfig trims trailing whitespace, so a
+# padded final field would be stripped and produce a spurious diff on the next edit.
+$ReportIndent       = '    '
+$ReportMethodColumn = 8
+$ReportPathColumn   = 56
+$ReportLabelColumn  = 35
+# The appendix is ordered by path with the ordinal comparer and then by this fixed method order,
+# so the ordering is total and does not depend on the machine's locale. Deliberately a different
+# order from the map file's own, which sorts ordinally on the combined "METHOD /path" key and so
+# groups by method: a machine-read contract and a human-read review artifact want different
+# groupings. An ordinal dictionary, not a hashtable, because @{} lookups are case-insensitive.
+$ReportMethodOrder = [System.Collections.Generic.Dictionary[string, int]]::new([System.StringComparer]::Ordinal)
+$Rank = 0
+foreach ($Name in @('GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE')) { $ReportMethodOrder[$Name] = $Rank; $Rank++ }
+# The schema names that collide with a BCL type name. Phase 20 owns the modelNameMappings that
+# resolve them (D-29); this list exists only so section 4 can print an observed count rather than
+# repeat the inherited claim of five. Measured here: only Command and Field exist (R-02).
+$BclCollisionNames = 'Command', 'Field', 'TimeSpan', 'HttpUri', 'Version'
 
 # The provenance manifest is derived from the output file's own directory rather than
 # hardcoded, so a run with a scratch output path cannot overwrite the committed manifest.
@@ -141,6 +179,13 @@ $OutPath        = [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRo
 $OutDir         = Split-Path -Parent $OutPath
 $MapFullPath    = [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRooted($MapPath)) { $MapPath } else { Join-Path $RepoRoot $MapPath }))
 $ProvenancePath = Join-Path $OutDir 'PROVENANCE.json'
+# The transform report is derived from the same directory for the same reason, so a scratch run
+# cannot replace the committed review artifact.
+$ReportFullPath = if ([string]::IsNullOrWhiteSpace($ReportPath)) {
+    Join-Path $OutDir 'transform-report.txt'
+} else {
+    [System.IO.Path]::GetFullPath($(if ([System.IO.Path]::IsPathRooted($ReportPath)) { $ReportPath } else { Join-Path $RepoRoot $ReportPath }))
+}
 # Every run lands here first and is promoted only once every gate has passed, so a refusal
 # cannot leave the committed deliverable replaced by unverified bytes. Declared beside the other
 # paths rather than inside the try so the finally block can clear a partial write.
@@ -152,6 +197,23 @@ $DefaultOutPath = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $DefaultOut
 # Print an ERROR block, discard the staged file, and state that nothing committed was touched.
 # Every refusal after step 4 goes through this. The caller keeps its own exit statement, so the
 # exit code stays visible at the refusal site rather than hidden inside a helper.
+# Every path the report prints is repository-relative with forward slashes. An absolute path
+# would carry a drive letter and one machine's directory layout into a committed review artifact,
+# and two checkouts of the same commit would then produce different reports. A scratch output
+# path on another volume has no relative form and keeps its own spelling; that report is never
+# committed.
+function Get-ReportPathLabel {
+    param([string]$FullPath)
+    return ([System.IO.Path]::GetRelativePath($Script:RepoRoot, $FullPath)).Replace('\', '/')
+}
+
+# Pad to a fixed column and let a longer value overflow rather than reflowing every other row.
+function Format-ReportColumn {
+    param([string]$Value, [int]$Width)
+    if ($Value.Length -ge $Width) { return "$Value " }
+    return $Value.PadRight($Width)
+}
+
 function Write-Refusal {
     param([string[]]$Message)
     if (Test-Path -LiteralPath $Script:StagePath) { Remove-Item -LiteralPath $Script:StagePath -Force }
@@ -282,15 +344,107 @@ try {
     # --- 1. Parse ---
     $RawBytes = (Get-Item -LiteralPath $RawPath).Length
     $RawSha   = (Get-FileHash -Algorithm SHA256 -LiteralPath $RawPath).Hash.ToLower()
-    $Document = [System.Text.Json.Nodes.JsonNode]::Parse((Get-Content -Raw -LiteralPath $RawPath))
+    $RawText  = Get-Content -Raw -LiteralPath $RawPath
+    $Document = [System.Text.Json.Nodes.JsonNode]::Parse($RawText)
     Write-Host "  + parsed $RawBytes bytes, sha256 $RawSha" -ForegroundColor Green
+
+    # --- 1b. The PREP-06 observed values, measured on the input document before any transform ---
+    # D-23 asks for a checked statement rather than a repeated one. Every reason section 4 prints
+    # that CAN be checked is measured here and carried into the report as an observed value, so a
+    # reviewer can re-derive all nine straight from the capture and diff them against the report.
+    # Prose that merely names a value is not a check: a gate looking for the word stashDB passes
+    # against a sentence that mentions stashDB, which is the substitution D-23 rejects.
+    #
+    # Measured before T1 and T2 on purpose. The numbers then describe the document as captured,
+    # which is the document the re-derivation reads, rather than the document after this pipeline
+    # has already changed it.
+    $ObservedSecondSuccessCodes = 0
+    $ObservedMultiTagOperations = 0
+    $ObservedUntaggedOperations = 0
+    $OperationCountBefore       = 0
+    $PathCountBefore            = $Document['paths'].AsObject().Count
+    foreach ($PathEntry in $Document['paths'].AsObject()) {
+        if ($PathEntry.Value -isnot [System.Text.Json.Nodes.JsonObject]) { continue }
+        foreach ($Member in $PathEntry.Value.AsObject()) {
+            if ($HttpMethods -notcontains $Member.Key) { continue }
+            $OperationCountBefore++
+            $Operation = $Member.Value
+            if ($Operation -isnot [System.Text.Json.Nodes.JsonObject]) { continue }
+            $Responses = $Operation['responses']
+            if ($Responses -is [System.Text.Json.Nodes.JsonObject]) {
+                foreach ($Response in $Responses.AsObject()) {
+                    # A second documented 2xx code beside 200. This is the overlap the "200" to
+                    # "2XX" rewrite would create, counted rather than asserted.
+                    if ($Response.Key.StartsWith('2') -and $Response.Key -cne '200') { $ObservedSecondSuccessCodes++ }
+                }
+            }
+            $Tags     = $Operation['tags']
+            $TagCount = if ($Tags -is [System.Text.Json.Nodes.JsonArray]) { $Tags.Count } else { 0 }
+            if ($TagCount -gt 1) { $ObservedMultiTagOperations++ }
+            if ($TagCount -eq 0) { $ObservedUntaggedOperations++ }
+        }
+    }
+
+    # devopsarr's fixes.py rewrites three schemas to {"type": "string"}. Counted over the raw text
+    # rather than over the schema names, because the honest form of the claim is "absent from the
+    # whole document", not "absent from components.schemas".
+    $ObservedTimeSpan = ([regex]::Matches($RawText, 'TimeSpan')).Count
+    $ObservedHttpUri  = ([regex]::Matches($RawText, 'HttpUri')).Count
+
+    # Plain assignment inside an if BLOCK, never `$x = if (...) { $node['k'] }`. A JsonObject is
+    # enumerable, so an if-expression's output is unrolled by the pipeline into a sequence of
+    # key-value pairs and the -is test below then silently fails against a document that is
+    # perfectly well formed. Measured here: it reported 0 BCL collisions and an absent
+    # ImportListType against a spec that has two of the first and does declare the second.
+    $SchemaNames = [System.Collections.Generic.List[string]]::new()
+    $Components  = $Document['components']
+    $Schemas     = $null
+    if ($Components -is [System.Text.Json.Nodes.JsonObject]) { $Schemas = $Components['schemas'] }
+    if ($Schemas -is [System.Text.Json.Nodes.JsonObject]) {
+        foreach ($Schema in $Schemas.AsObject()) { $SchemaNames.Add($Schema.Key) }
+    }
+    # Schemas NAMED Version, not substring hits. The substring occurs inside other property names
+    # and a raw count would read as five, which is where the inherited five-collision claim came
+    # from (R-02).
+    $ObservedVersionSchema = @($SchemaNames | Where-Object { $_ -ceq 'Version' }).Count
+    $ObservedBclCollisions = @($SchemaNames | Where-Object { $BclCollisionNames -ccontains $_ }).Count
+
+    $ObservedImportListType = '(absent)'
+    if ($Schemas -is [System.Text.Json.Nodes.JsonObject]) {
+        $ImportListType = $Schemas['ImportListType']
+        if ($ImportListType -is [System.Text.Json.Nodes.JsonObject]) {
+            $ImportListEnum = $ImportListType['enum']
+            if ($ImportListEnum -is [System.Text.Json.Nodes.JsonArray]) {
+                $Members = [System.Collections.Generic.List[string]]::new()
+                foreach ($Member in $ImportListEnum) { $Members.Add($Member.GetValue[string]()) }
+                $ObservedImportListType = $Members -join ','
+            }
+        }
+    }
+
+    $ObservedTags = if ($Document['tags'] -is [System.Text.Json.Nodes.JsonArray]) { $Document['tags'].Count } else { 0 }
+
+    # The declared schemes, read from the document rather than transcribed, so section 1 names
+    # what this capture actually declares instead of what an earlier one did.
+    $SecuritySchemeLabels = [System.Collections.Generic.List[string]]::new()
+    $SecuritySchemes      = $null
+    if ($Components -is [System.Text.Json.Nodes.JsonObject]) { $SecuritySchemes = $Components['securitySchemes'] }
+    if ($SecuritySchemes -is [System.Text.Json.Nodes.JsonObject]) {
+        foreach ($Scheme in $SecuritySchemes.AsObject()) {
+            $In = 'unknown'
+            if ($Scheme.Value -is [System.Text.Json.Nodes.JsonObject] -and $null -ne $Scheme.Value['in']) { $In = $Scheme.Value['in'].GetValue[string]() }
+            $SecuritySchemeLabels.Add("$($Scheme.Key) ($In)")
+        }
+    }
+    Write-Host "  + measured the input document: $ObservedTags tags, $ObservedSecondSuccessCodes second 2xx codes, $ObservedBclCollisions BCL name collisions" -ForegroundColor Green
 
     # --- 2. T1, the root security repair (D-01) ---
     $SecurityBefore = if ($null -eq $Document['security']) { '(absent)' } else { $Document['security'].ToJsonString() }
     # Replaced in place, which keeps security at its position in the root key order. A removal
     # followed by an add would move it to the end and inflate the diff against the capture.
     $Document['security'] = [System.Text.Json.Nodes.JsonNode]::Parse($SecurityOptionalBothSchemes)
-    Write-Host "  + T1 security $SecurityBefore -> $($Document['security'].ToJsonString())" -ForegroundColor Green
+    $SecurityAfter = $Document['security'].ToJsonString()
+    Write-Host "  + T1 security $SecurityBefore -> $SecurityAfter" -ForegroundColor Green
 
     # --- 3. T2, the malformed root path (PREP-03, D-14) ---
     # Assert the removal from the call's own return value rather than trusting it. Deleting a
@@ -300,7 +454,36 @@ try {
     # path means enumerating every other top-level path, and a future Whisparr adding a new one
     # would be dropped silently with the count falling below 272 and no error (D-15).
     $PathsObject = $Document['paths'].AsObject()
-    if (-not $PathsObject.Remove('/')) {
+    # Read the doomed path item BEFORE removing it, so the report can name the method, the tag and
+    # the malformed parameter from the document rather than from a transcribed description.
+    $RemovedOperations = [System.Collections.Generic.List[string]]::new()
+    $RootPathItemKey   = '/'
+    $RootPathItem      = $PathsObject[$RootPathItemKey]
+    if ($RootPathItem -is [System.Text.Json.Nodes.JsonObject]) {
+        foreach ($Member in $RootPathItem.AsObject()) {
+            if ($HttpMethods -notcontains $Member.Key) { continue }
+            $Operation = $Member.Value
+            $Tag       = 'untagged'
+            $BadParams = [System.Collections.Generic.List[string]]::new()
+            if ($Operation -is [System.Text.Json.Nodes.JsonObject]) {
+                $Tags = $Operation['tags']
+                if ($Tags -is [System.Text.Json.Nodes.JsonArray] -and $Tags.Count -gt 0) { $Tag = $Tags[0].GetValue[string]() }
+                $Parameters = $Operation['parameters']
+                if ($Parameters -is [System.Text.Json.Nodes.JsonArray]) {
+                    foreach ($Parameter in $Parameters) {
+                        if ($Parameter -isnot [System.Text.Json.Nodes.JsonObject]) { continue }
+                        if ($null -eq $Parameter['in'] -or $Parameter['in'].GetValue[string]() -ne 'path') { continue }
+                        $ParamName = if ($null -eq $Parameter['name']) { 'unnamed' } else { $Parameter['name'].GetValue[string]() }
+                        # in: path only makes sense for a name that appears in the URL template.
+                        if (-not $RootPathItemKey.Contains("{$ParamName}")) { $BadParams.Add($ParamName) }
+                    }
+                }
+            }
+            $Reason = if ($BadParams.Count -eq 0) { 'no path parameter is declared' } else { "required parameter '$($BadParams -join ", ")' (in: path) absent from the URL template" }
+            $RemovedOperations.Add("$($Member.Key.ToUpperInvariant()) $RootPathItemKey   [tag $Tag]  $Reason")
+        }
+    }
+    if (-not $PathsObject.Remove($RootPathItemKey)) {
         Write-Host 'ERROR: REFUSED - paths["/"] is not present in this document.' -ForegroundColor Red
         Write-Host "  $RawPath is not what this pipeline expects. The capture carries a malformed StaticResource catch-all at the key ""/"", and PREP-03 exists to delete exactly that key." -ForegroundColor Red
         Write-Host '  A capture that renamed or repaired it must stop this pipeline rather than silently produce a plausible 272-operation spec. Nothing was written.' -ForegroundColor Red
@@ -583,6 +766,107 @@ try {
         # Only reachable with a scratch output path, which by design has no manifest beside it.
         Write-Host "  - no PROVENANCE.json beside $OutPath, generatedSpecSha256 not recorded" -ForegroundColor DarkGray
     }
+
+    # --- 14. The transform report (PREP-08, D-13) ---
+    # Written after promotion, from the counters the transforms accumulated, beside the output.
+    # Nothing in it varies between two runs over the same capture: no timestamp, no GUID, no
+    # environment value and no absolute path. See the docstring for why that rule is the whole
+    # design of this file.
+    $ReportBytes = (Get-Item -LiteralPath $OutPath).Length
+    $ReportSha   = (Get-FileHash -Algorithm SHA256 -LiteralPath $OutPath).Hash.ToLower()
+    $Continue    = ' ' * ($ReportIndent.Length + $ReportLabelColumn)
+
+    $Report = [System.Collections.Generic.List[string]]::new()
+    $Report.Add('Whisparr3.Net spec pre-processing report (PREP-08)')
+    $Report.Add('')
+    $Report.Add("input   $(Format-ReportColumn -Value (Get-ReportPathLabel -FullPath $RawPath) -Width 30) $RawBytes bytes  sha256 $RawSha")
+    $Report.Add("output  $(Format-ReportColumn -Value (Get-ReportPathLabel -FullPath $OutPath) -Width 30) $ReportBytes bytes  sha256 $ReportSha")
+    $Report.Add('')
+
+    $Report.Add('[1] security repair (PREP-02)')
+    $Report.Add("${ReportIndent}before  $SecurityBefore")
+    $Report.Add("${ReportIndent}after   $SecurityAfter")
+    $Report.Add("${ReportIndent}schemes declared in components.securitySchemes: $($SecuritySchemeLabels -join ', ')")
+    $Report.Add('')
+
+    $Report.Add('[2] delete paths["/"] (PREP-03)')
+    foreach ($Removed in $RemovedOperations) { $Report.Add("${ReportIndent}removed  $Removed") }
+    $Report.Add("${ReportIndent}paths       $PathCountBefore -> $($PathsObject.Count)")
+    $Report.Add("${ReportIndent}operations  $OperationCountBefore -> $($SpecOps.Count)")
+    $Report.Add('')
+
+    $Report.Add('[3] operationId assignment (PREP-04, PREP-05)')
+    $Report.Add("${ReportIndent}map               $(Get-ReportPathLabel -FullPath $MapFullPath)   $($MapKeys.Count) entries")
+    $Report.Add("${ReportIndent}assigned          $AssignedFromMap from map, $DerivedAtRuntime derived")
+    $Report.Add("${ReportIndent}unmatched         $($Unmapped.Count) operations missing from the map")
+    $Report.Add("${ReportIndent}orphaned          $($Orphans.Count) map entries matching no operation")
+    $Report.Add("${ReportIndent}collisions        $($Collisions.Count)")
+    $Report.Add("${ReportIndent}identifier shape  $($MapKeys.Count - $BadShape.Count)/$($MapKeys.Count) match $OperationIdPattern")
+    $Report.Add('')
+
+    # A transform that changed nothing prints its section with an explicit zero rather than
+    # omitting it, so a reader can tell ran-and-changed-nothing from did-not-run. Every value in
+    # brackets below is measured at step 1b, never transcribed.
+    $Report.Add('[4] transforms deliberately not applied (PREP-06)')
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value '"200" -> "2XX"' -Width $ReportLabelColumn)rejected: $ObservedSecondSuccessCodes operations declare a second 2xx code beside 200,")
+    $Report.Add("$Continue" + 'POST /api/v3/performer (201) and PUT /api/v3/performer/{id} (202), so the')
+    $Report.Add("$Continue" + 'range key would sit beside a literal code inside its own range; and the')
+    $Report.Add("$Continue" + 'generichost accessor for that range is unreachable code, its generated')
+    $Report.Add("$Continue" + 'comparison can never be true')
+    $Report.Add("$Continue" + "[observed: secondSuccessCodes=$ObservedSecondSuccessCodes]")
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'FIX_DUPLICATED_OPERATIONID' -Width $ReportLabelColumn)rejected: it de-duplicates by appending a positional suffix, which would")
+    $Report.Add("$Continue" + 'mask the PREP-04 collision assertion, and inserting an operation upstream')
+    $Report.Add("$Continue" + 'moves the suffix onto a different method, renaming public API with no diff')
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'SECURITY_SCHEMES_FILTER' -Width $ReportLabelColumn)rejected: it would drop the query scheme and tidy the generated surface,")
+    $Report.Add("$Continue" + 'but ERGO-01 requires both declared schemes to reach the wire')
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'FILTER (path allowlist)' -Width $ReportLabelColumn)rejected: it is a prefix allowlist, so excluding one path means enumerating")
+    $Report.Add("$Continue" + 'every other top-level path, and a future Whisparr adding one would be')
+    $Report.Add("$Continue" + 'dropped silently with the operation count falling and nothing reported')
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'fixes.py TimeSpan/HttpUri/Version' -Width $ReportLabelColumn)not applicable: the three type names it rewrites are absent from this")
+    $Report.Add("$Continue" + 'document, and no schema is named Version. Only Command and Field collide')
+    $Report.Add("$Continue" + 'with a BCL type name, which Phase 20 resolves by name mapping, not here')
+    $Report.Add("$Continue" + "[observed: TimeSpan=$ObservedTimeSpan; HttpUri=$ObservedHttpUri; VersionSchema=$ObservedVersionSchema; bclCollisions=$ObservedBclCollisions]")
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'fixes.py ImportListType += "plex"' -Width $ReportLabelColumn)rejected: devopsarr generate their whisparr client from Radarr's spec, so")
+    $Report.Add("$Continue" + 'the patch repairs a Radarr gap. Eros serves a different value set, and')
+    $Report.Add("$Continue" + 'adding a member the server cannot send teaches the deserializer to accept')
+    $Report.Add("$Continue" + 'something this API never returns')
+    $Report.Add("$Continue" + "[observed: ImportListType=$ObservedImportListType]")
+    $Report.Add("$ReportIndent$(Format-ReportColumn -Value 'KEEP_ONLY_FIRST_TAG_IN_OPERATION' -Width $ReportLabelColumn)no-op: measured against this document, every operation carries exactly one")
+    $Report.Add("$Continue" + 'tag, so it would change nothing. Recorded as measured rather than copied')
+    $Report.Add("$Continue" + 'across from devopsarr on the strength of it being in their pipeline')
+    $Report.Add("$Continue" + "[observed: tags=$ObservedTags; multiTagOperations=$ObservedMultiTagOperations; untaggedOperations=$ObservedUntaggedOperations]")
+    $Report.Add('')
+
+    # The appendix. Ordered by path with the ordinal comparer, then by the fixed method order, so
+    # the ordering is total and locale-independent. Sort-Object is culture-aware and reorders
+    # exactly this data, which would make a committed report's diff depend on the machine that
+    # wrote it.
+    $Report.Add('[5] operationId map, sorted by path then method')
+    $AppendixRows = [System.Collections.Generic.List[object]]::new()
+    foreach ($Op in $SpecOps) {
+        $UpperMethod = $Op.Method.ToUpperInvariant()
+        $AppendixRows.Add([pscustomobject]@{
+            Method = $UpperMethod
+            Rank   = if ($ReportMethodOrder.ContainsKey($UpperMethod)) { $ReportMethodOrder[$UpperMethod] } else { $ReportMethodOrder.Count }
+            Path   = $Op.Path
+            Id     = $Map[$Op.Key]
+        })
+    }
+    $AppendixRows.Sort([System.Comparison[object]] {
+        param($Left, $Right)
+        $Compared = [System.StringComparer]::Ordinal.Compare($Left.Path, $Right.Path)
+        if ($Compared -ne 0) { return $Compared }
+        return $Left.Rank.CompareTo($Right.Rank)
+    })
+    foreach ($Row in $AppendixRows) {
+        $Report.Add("$ReportIndent$(Format-ReportColumn -Value $Row.Method -Width $ReportMethodColumn)$(Format-ReportColumn -Value $Row.Path -Width $ReportPathColumn)$($Row.Id)")
+    }
+
+    # The same LF, no byte order mark, exactly one trailing newline discipline every other
+    # artifact in this repository uses.
+    $ReportText = (($Report -join "`n") -replace "`r`n", "`n").TrimEnd("`n") + "`n"
+    [System.IO.File]::WriteAllText($ReportFullPath, $ReportText, [System.Text.UTF8Encoding]::new($false))
+    Write-Host "  + wrote the transform report to $ReportFullPath" -ForegroundColor Green
 
     Write-Host "Done. $OutPath" -ForegroundColor Green
 }

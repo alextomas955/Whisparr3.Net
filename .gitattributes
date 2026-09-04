@@ -10,16 +10,20 @@
 *.slnx text eol=lf
 
 # linguist-generated drops these from the language statistics and collapses them in GitHub diffs.
-# src/Whisparr3.Net/ is openapi-generator output, spec/openapi.raw.json is a captured spec, and
-# spec/openapi.generated.json is generator/preprocess-spec.ps1 output.
+# src/Whisparr3.Net/ is openapi-generator output, spec/openapi.raw.json is a captured spec,
+# spec/openapi.generated.json is generator/preprocess-spec.ps1 output, and
+# spec/transform-report.txt is that same script's review artifact, derived from the two by
+# definition.
 # Deliberately not the binary macro: it expands to -diff -merge -text, which would render the spec
 # delta as "Binary files differ" and destroy the reviewability the capture exists for. That reason
-# applies to the patched spec's refresh diff exactly as it applies to the capture.
+# applies to the patched spec's refresh diff exactly as it applies to the capture, and it applies
+# hardest of all to the transform report, whose entire purpose is to be read as a diff.
 # generator/operation-ids.json is deliberately absent from this list: it is committed source, and
 # marking it generated would collapse in review the diff PREP-05 exists to expose.
 src/Whisparr3.Net/** linguist-generated
 spec/openapi.raw.json linguist-generated
 spec/openapi.generated.json linguist-generated
+spec/transform-report.txt linguist-generated
 .openapi-generator/FILES linguist-generated
 
 # Explicit so `* text=auto` cannot reclassify it.
