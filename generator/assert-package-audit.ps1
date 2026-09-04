@@ -67,6 +67,12 @@ Set-StrictMode -Version Latest
 # supplied set would let one leg be dropped from the audit while the verdict still read clean.
 $Frameworks = @('net8.0', 'net10.0')
 
+# The three markers below are English strings and dotnet localizes its output, so on a runner with
+# a non-English UI culture every one of them would miss and a correct closure would be refused
+# through the unrecognised branch with no visible cause. This variable is what keeps them true. It
+# is set on this process only, is inherited by the dotnet child processes, and dies with the run.
+$env:DOTNET_CLI_UI_LANGUAGE = 'en'
+
 # The verbatim strings dotnet list package prints. Measured 2026-09-04 on SDK 10.0.400, both
 # against the real project and against a poisoned probe. Matched verbatim and case-sensitively: a
 # looser match on the word vulnerable alone is satisfied by the echoed command line and by the
