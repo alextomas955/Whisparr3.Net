@@ -1,2 +1,5 @@
 <Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Whisparr3.Net/Whisparr3.Net.csproj" />
+  </Folder>
 </Solution>

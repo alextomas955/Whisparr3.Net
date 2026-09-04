@@ -26,5 +26,16 @@ spec/openapi.raw.json linguist-generated
 spec/openapi.generated.json linguist-generated
 .openapi-generator/FILES linguist-generated
 
+# The one exception inside src/Whisparr3.Net/. The wide glob above matches the hand-owned
+# Whisparr3.Net.csproj too, confirmed with git check-attr, and that file is the one thing in that
+# directory a reviewer must read line by line: D-06 makes its content the difference between a
+# working .snupkg and a dead one. Later lines win, so this narrower line releases it, which is the
+# same manoeuvre the paragraph above records for generator/operation-ids.json.
+src/Whisparr3.Net/Whisparr3.Net.csproj -linguist-generated
+
+# .openapi-generator/VERSION is left unmarked deliberately, and is not an oversight. It is one
+# line holding the generator version, and a generator version bump is exactly the diff a reviewer
+# wants shown, so collapsing it would remove the signal rather than reduce noise.
+
 # Explicit so `* text=auto` cannot reclassify it.
 *.png binary
