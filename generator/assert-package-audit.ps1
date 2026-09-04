@@ -13,15 +13,20 @@
   it has not earned. The exit code is printed here as a report-only row and is labelled as reported
   rather than asserted.
 
-  Three outcomes per framework, decided by two verbatim marker strings:
+  Four outcomes per framework, decided by three verbatim marker strings:
     - the finding marker present, which refuses and reprints the advisory rows and their URLs;
-    - the clean marker present and the finding marker absent, which passes;
-    - anything else, which refuses as an unrecognised third state and reprints the whole
-      transcript.
+    - the clean marker present, the finding marker absent and the audit source named among the
+      sources the run used, which passes;
+    - the clean marker present without that source, which refuses as unsourced and reprints the
+      whole transcript;
+    - anything else, which refuses as an unrecognised state and reprints the whole transcript.
 
-  The third branch is not defensive padding. An unrestored or offline project prints neither
-  marker, so without it a failed restore reads as an absence of findings, which is to say as clean.
-  An empty transcript lands in the same branch for the same reason.
+  Neither refusing branch is defensive padding. An unrestored or offline project prints neither
+  marker, so without the unrecognised branch a failed restore reads as an absence of findings,
+  which is to say as clean; an empty transcript lands there for the same reason. A project that is
+  restored against a feed carrying no advisory data prints the clean marker verbatim and exits 0,
+  which is the unsourced branch: measured 2026-09-04 with --source pointed at a directory that does
+  not exist, and the reason the clean marker's own wording is "given the current sources".
 
   $Frameworks is a hardcoded array and is deliberately not a parameter. A caller able to supply the
   framework set could audit one leg and call the closure clean, and a milestone constraint locks
@@ -62,12 +67,29 @@ Set-StrictMode -Version Latest
 # supplied set would let one leg be dropped from the audit while the verdict still read clean.
 $Frameworks = @('net8.0', 'net10.0')
 
-# The two verbatim strings dotnet list package prints. Measured 2026-09-04 on SDK 10.0.400, both
+# The verbatim strings dotnet list package prints. Measured 2026-09-04 on SDK 10.0.400, both
 # against the real project and against a poisoned probe. Matched verbatim and case-sensitively: a
 # looser match on the word vulnerable alone is satisfied by the echoed command line and by the
 # table header, so it would be present on every branch and would separate nothing.
 $CleanMarker   = 'has no vulnerable packages given the current sources'
 $FindingMarker = 'has the following vulnerable packages'
+
+# The advisory database is reachable only through a source that carries one, so the sources the run
+# used are part of the assertion and not context. The clean marker says "given the current sources"
+# because the answer is source-dependent, and nothing else in this transcript is. Measured
+# 2026-09-04 against this project with --source pointed at a directory that does not exist:
+#
+#   The following sources were used:
+#      C:/Users/raygo/AppData/Local/Temp/nonexistent-feed-xyz
+#
+#   The given project `Whisparr3.Net` has no vulnerable packages given the current sources.
+#   EXIT=0
+#
+# That transcript carries the clean marker verbatim. Read on the clean marker alone it is a green
+# tick for GEN-08 that no advisory database was consulted for, which is the same defect one level
+# up from the exit code this script already refuses to trust.
+$SourcesMarker = 'The following sources were used:'
+$AuditSource   = 'https://api.nuget.org/v3/index.json'
 
 # Every line carries an [audit] prefix so the output stays readable when this script is called as a
 # child and two transcripts interleave, matching assert-spec-census.ps1.
@@ -102,13 +124,24 @@ foreach ($Framework in $Frameworks) {
     # tested first: a transcript carrying it is a finding whatever else it also carries.
     $HasFinding = $Text.Contains($FindingMarker)
     $HasClean   = $Text.Contains($CleanMarker)
-    $Verdict    = if ($HasFinding) { 'finding' } elseif ($HasClean) { 'clean' } else { 'unrecognised' }
+    # The clean marker alone is not a clean verdict. It is a statement about the sources the run
+    # read, so clean also requires the transcript to name the audit source among them.
+    $HasSources = $Text.Contains($SourcesMarker) -and $Text.Contains($AuditSource)
+    $Verdict    = if ($HasFinding) { 'finding' } elseif ($HasClean -and $HasSources) { 'clean' } elseif ($HasClean) { 'unsourced' } else { 'unrecognised' }
 
     $Rows += [pscustomobject]@{
         Name     = $Framework
         Actual   = $Verdict
         Expected = 'clean'
         Matched  = ($Verdict -ceq 'clean')
+    }
+    # A row of its own rather than only a condition on the verdict, so the passing transcript
+    # records which source answered the question instead of leaving it to be assumed.
+    $Rows += [pscustomobject]@{
+        Name     = "$Framework sources"
+        Actual   = $(if ($HasSources) { 'nuget.org consulted' } else { 'nuget.org absent' })
+        Expected = 'nuget.org consulted'
+        Matched  = $HasSources
     }
 
     if ($Verdict -ceq 'finding') {
@@ -119,6 +152,10 @@ foreach ($Framework in $Frameworks) {
         # If the shape of the table ever changes, print everything rather than print nothing.
         if ($Advisory.Count -eq 0) { $Advisory = $Lines }
         foreach ($Line in $Advisory) { $Details.Add("      $Line") }
+    }
+    elseif ($Verdict -ceq 'unsourced') {
+        $Details.Add("  ! $Framework printed the clean marker without naming $AuditSource among the sources it used, so no advisory database was consulted and the marker states only that the sources it did read carry no advisory. It is refused rather than read as clean. The whole transcript follows.")
+        foreach ($Line in $Lines) { $Details.Add("      $Line") }
     }
     elseif ($Verdict -ceq 'unrecognised') {
         $Details.Add("  ! $Framework produced a transcript carrying neither marker, $($Lines.Count) line(s). It is refused rather than read as clean, because an unrestored or offline project prints neither string. The whole transcript follows.")
@@ -135,7 +172,7 @@ foreach ($Row in $Rows) {
     $Sigil   = if ($Row.Matched) { '+' } else { '!' }
     $Colour  = if ($Row.Matched) { 'Green' } else { 'Red' }
     $Status  = if ($Row.Matched) { 'OK' } else { 'MISMATCH' }
-    Write-Audit ('  {0} {1,-10} actual {2,-14} expected {3,-14} {4}' -f $Sigil, $Row.Name, $Row.Actual, $Row.Expected, $Status) $Colour
+    Write-Audit ('  {0} {1,-16} actual {2,-20} expected {3,-20} {4}' -f $Sigil, $Row.Name, $Row.Actual, $Row.Expected, $Status) $Colour
 }
 foreach ($Line in $Details) {
     $Colour = if ($Line.Contains('reported only')) { 'Yellow' } else { 'Red' }
@@ -143,11 +180,12 @@ foreach ($Line in $Details) {
 }
 
 if ($Mismatches -gt 0) {
-    Write-Host "ERROR: package audit failed - $Mismatches of $(@($Frameworks).Count) framework(s) did not report a clean closure. See the actual-versus-expected lines above." -ForegroundColor Red
+    Write-Host "ERROR: package audit failed - $Mismatches of $(@($Rows).Count) assertion(s) across $(@($Frameworks).Count) framework(s) did not hold. See the actual-versus-expected lines above." -ForegroundColor Red
     Write-Host "  The verdict is read from the transcript text and not from the process exit code, which was reported above and is 0 even when a High severity advisory is printed." -ForegroundColor Red
+    Write-Host "  A clean verdict also requires the transcript to name $AuditSource among the sources the run used. The clean marker is source-dependent by its own wording, and a restore against a feed carrying no advisory data prints it verbatim and exits 0." -ForegroundColor Red
     Write-Host "  A finding is a finding to report, never a dependency to remove: all four shipped packages are required, and Microsoft.Extensions.Http.Polly is required by ERGO-06 and by a milestone constraint." -ForegroundColor Red
     exit 1
 }
 
-Write-Audit "+ package audit passed, $(@($Frameworks).Count) of $(@($Frameworks).Count) frameworks clean - point in time against the nuget.org advisory database on the day this ran" 'Green'
+Write-Audit "+ package audit passed, $(@($Frameworks).Count) of $(@($Frameworks).Count) frameworks clean against $AuditSource, named in each transcript - point in time against the nuget.org advisory database on the day this ran" 'Green'
 exit 0
