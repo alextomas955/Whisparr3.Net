@@ -350,7 +350,13 @@ try {
     # --- 0. A fixture input must never be able to promote itself onto the deliverable ---
     # The manifest derivation above already protects the committed PROVENANCE.json from a
     # scratch output path. This protects the committed spec from a scratch input path.
-    if ($RawPath -ne $DefaultRawPath -and $OutPath -eq $DefaultOutPath) {
+    # The two operands take different comparers on purpose, and both directions fail closed on
+    # both platforms. "Is this a non-default input" is ordinal, so on the Linux CI target
+    # spec/OPENAPI.RAW.JSON is not spec/openapi.raw.json and the guard fires. "Is this the
+    # committed output path" stays case-insensitive, because on NTFS a differently-cased spelling
+    # IS the committed file and an ordinal test there would let it through. Making both ordinal
+    # trades a Linux fail-open for a Windows one.
+    if ($RawPath -cne $DefaultRawPath -and $OutPath -eq $DefaultOutPath) {
         Write-Host 'ERROR: REFUSED - a non-default input may not be written to the committed output path.' -ForegroundColor Red
         Write-Host "  input  $RawPath" -ForegroundColor Red
         Write-Host "  output $OutPath" -ForegroundColor Red
