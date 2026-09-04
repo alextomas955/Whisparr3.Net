@@ -144,6 +144,7 @@ Set-StrictMode -Version Latest
 $RepoRoot       = Split-Path -Parent $PSScriptRoot
 $DefaultRawSpec = 'spec/openapi.raw.json'
 $DefaultOutFile = 'spec/openapi.generated.json'
+$DefaultMapFile = 'generator/operation-ids.json'
 # The auth-optional, both-schemes form, chosen in D-01 against two measured alternatives. Held
 # as a named constant, and parsed from a literal rather than built from a PowerShell array: a
 # single-element array piped through the serializer unrolls into an object. The three-element
@@ -214,8 +215,9 @@ $ReportFullPath = if ([string]::IsNullOrWhiteSpace($ReportPath)) {
 # paths rather than inside the try so the finally block can clear a partial write.
 $StagePath      = "$OutPath.incoming"
 
-$DefaultRawPath = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $DefaultRawSpec))
-$DefaultOutPath = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $DefaultOutFile))
+$DefaultRawPath     = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $DefaultRawSpec))
+$DefaultOutPath     = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $DefaultOutFile))
+$DefaultMapFullPath = [System.IO.Path]::GetFullPath((Join-Path $RepoRoot $DefaultMapFile))
 
 # Print an ERROR block, discard the staged file, and state that nothing committed was touched.
 # Every refusal after step 4 goes through this. The caller keeps its own exit statement, so the
@@ -368,6 +370,20 @@ try {
         Write-Host "  variant $SecurityVariant, default $DefaultSecurityVariant" -ForegroundColor Red
         Write-Host "  output  $OutPath" -ForegroundColor Red
         Write-Host '  Pass -OutFile with a scratch path. Only the default variant may be promoted onto spec/openapi.generated.json.' -ForegroundColor Red
+        exit 1
+    }
+    # And this protects it from a fixture map. The map is never written by this script, which is
+    # what PREP-05 says, but the EFFECT of a map reaches the committed deliverable through T3: a
+    # substituted map identical to the committed one except for one value renames a public method
+    # and passes G3, G4a, G4b, T3, the census and the depth guard with every line green. The
+    # promoted spec would then disagree with the committed map, and the two files are never
+    # cross-checked afterwards. The docstring's claim that -MapPath is scratch on purpose is this
+    # branch, not a convention.
+    if ($MapFullPath -cne $DefaultMapFullPath -and $OutPath -eq $DefaultOutPath) {
+        Write-Host 'ERROR: REFUSED - a non-default operationId map may not be written to the committed output path.' -ForegroundColor Red
+        Write-Host "  map    $MapFullPath" -ForegroundColor Red
+        Write-Host "  output $OutPath" -ForegroundColor Red
+        Write-Host '  Pass -OutFile with a scratch path. Only the committed map may name the methods in spec/openapi.generated.json.' -ForegroundColor Red
         exit 1
     }
     if (-not (Test-Path -LiteralPath $RawPath)) {
