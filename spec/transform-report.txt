@@ -37,8 +37,10 @@ output  spec/openapi.generated.json    393041 bytes  sha256 2d7fe58abddd7c6d5659
                                        every other top-level path, and a future Whisparr adding one would be
                                        dropped silently with the operation count falling and nothing reported
     fixes.py TimeSpan/HttpUri/Version  not applicable: the three type names it rewrites are absent from this
-                                       document, and no schema is named Version. Only Command and Field collide
-                                       with a BCL type name, which Phase 20 resolves by name mapping, not here
+                                       document, and no schema is named Version. Command and Field are schemas
+                                       here but System.Command and System.Field do not exist, so nothing collides
+                                       and no name mapping is needed. bclCollisions counts BCL-looking schema
+                                       names, not collisions; a 0-error two-framework compile settled it
                                        [observed: TimeSpan=0; HttpUri=0; VersionSchema=0; bclCollisions=2]
     fixes.py ImportListType += "plex"  rejected: devopsarr generate their whisparr client from Radarr's spec, so
                                        the patch repairs a Radarr gap. Eros serves a different value set, and
