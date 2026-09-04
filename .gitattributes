@@ -1,0 +1,21 @@
+# Normalize every text file to LF in the index and on checkout. Later lines win, so the narrower
+# overrides below take precedence over this catch-all.
+* text=auto eol=lf
+
+# Pin the line ending per type rather than leaving it to auto-detection, and give git a C#-aware
+# hunk header for .cs files.
+*.cs text eol=lf diff=csharp
+*.csproj text eol=lf
+*.json text eol=lf
+*.slnx text eol=lf
+
+# linguist-generated drops these from the language statistics and collapses them in GitHub diffs.
+# src/Whisparr3.Net/ is openapi-generator output and spec/openapi.raw.json is a captured spec.
+# Deliberately not the binary macro: it expands to -diff -merge -text, which would render the spec
+# delta as "Binary files differ" and destroy the reviewability the capture exists for.
+src/Whisparr3.Net/** linguist-generated
+spec/openapi.raw.json linguist-generated
+.openapi-generator/FILES linguist-generated
+
+# Explicit so `* text=auto` cannot reclassify it.
+*.png binary
