@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-09-04T08:03:38.8936118Z",
+  "capturedFrom": "http://localhost:6969/docs/v3/openapi.json",
+  "imageDigest": "ghcr.io/hotio/whisparr@sha256:fab920114a75f1c86bbadf24c66f1e35a912ace9c7527e971f1032a569589ee6",
+  "whisparrVersion": "3.4.0.1387",
+  "whisparrBranch": "eros",
+  "whisparrBuildTime": "2026-08-30T11:26:49Z",
+  "whisparrPackageVersion": "v3-7f610bc",
+  "specEndpoint": "/docs/v3/openapi.json",
+  "specSha256": "8ac2dbceedf65de542c6a8d2c7bb8d8f8fa6e155b651956079f9b192e8bedf18",
+  "specBytes": 381380,
+  "specOpenApiVersion": "3.0.4"
+}
