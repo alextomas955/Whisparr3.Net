@@ -57,8 +57,9 @@ $RepoRoot      = Split-Path -Parent $PSScriptRoot
 $Image         = "ghcr.io/hotio/whisparr@$ImageDigest"
 $ContainerName = 'whisparr3-capture'
 # Not a credential: a fixed constant handed to a container that is destroyed at the end of the
-# run. Never substitute a real key. It is needed only for the status read that feeds
-# provenance - the spec endpoint itself is served unauthenticated.
+# run, published on 127.0.0.1 only and therefore never reachable off this host. Never
+# substitute a real key. It is needed only for the status read that feeds provenance - the
+# spec endpoint itself is served unauthenticated.
 $ApiKey        = '0123456789abcdef0123456789abcdef'
 $BaseUrl       = 'http://localhost:6969'
 $SpecUrl       = "$BaseUrl/docs/v3/openapi.json"
@@ -76,7 +77,10 @@ Write-Host "  - image $Image" -ForegroundColor DarkGray
 try {
     # --- Boot the digest-pinned container ---
     docker rm -f $ContainerName 2>&1 | Out-Null
-    $RunOutput = docker run -d --name $ContainerName -p 6969:6969 -e "WHISPARR__AUTH__APIKEY=$ApiKey" $Image 2>&1
+    # Publish on 127.0.0.1 explicitly. A bare -p 6969:6969 binds 0.0.0.0, which would put an
+    # instance carrying the constant API key above on every interface for the whole run, and
+    # docker punches its own firewall rule for published ports.
+    $RunOutput = docker run -d --name $ContainerName -p 127.0.0.1:6969:6969 -e "WHISPARR__AUTH__APIKEY=$ApiKey" $Image 2>&1
     if ($LASTEXITCODE -ne 0) {
         Write-Host "ERROR: docker run failed for $Image. If port 6969 is already bound, free it rather than repointing this script - it must never capture from an instance it did not start." -ForegroundColor Red
         Write-Host ($RunOutput -join [Environment]::NewLine) -ForegroundColor Red
