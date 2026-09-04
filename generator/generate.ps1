@@ -87,7 +87,7 @@ $GenMetaDir = Join-Path $RepoRoot '.openapi-generator'
 # the copy set, so the two can never drift apart.
 $GeneratedSubdirs = @('Api', 'Client', 'Extensions', 'Logging', 'Model')
 # The count the pinned image produces from the committed spec, measured 2026-09-04. A constant and
-# never a parameter, matching assert-generated-tree.ps1 and probe-generated-boundary.ps1: a
+# never a parameter, matching assert-generated-tree.ps1: a
 # caller-supplied expected count makes the gate a tautology. Without it the only volume condition
 # in this script was "at least one", and .openapi-generator/FILES is written by the same run that
 # wrote the files, so a truncated generation listing ten paths satisfies the manifest cross-check
@@ -163,8 +163,8 @@ try {
     # inside the read-write bind mount root-owned, and the finally below then cannot unlink the
     # files under them, because unlinking $Stage/src/Whisparr3.Net/Api/MovieApi.cs needs write
     # permission on its root-owned parent. A throw in finally replaces whatever exit code is
-    # pending, so a fully correct Linux generation would exit 1 and probe-generated-boundary.ps1
-    # would report a boundary it never exercised. Phase 23 runs these scripts on ubuntu-latest.
+    # pending, so a fully correct Linux generation would exit 1. Phase 23 runs these scripts on
+    # ubuntu-latest.
     #
     # Windows bind mounts carry no POSIX ownership, so the flag is added only where it means
     # something. Measured 2026-09-04 that this image tolerates it rather than assumed: --user
@@ -256,7 +256,6 @@ catch {
     # 'Stop'. That record says nothing about the repository, and by then the five subdirectories
     # and .openapi-generator/ are gone. This is the script that needs the catch most, because it
     # is the only one here that deletes a committed deliverable, and it was the one without it.
-    # probe-generated-boundary.ps1 carries the same shape for the same reason.
     #
     # The touched branch states measured counts rather than a narrative, because the error can
     # arrive at any point in the window and a fixed sentence about what was deleted would be a
