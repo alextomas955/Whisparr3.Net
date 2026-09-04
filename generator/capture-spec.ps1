@@ -122,10 +122,18 @@ try {
         try { $RootStatus = (Invoke-WebRequest "$BaseUrl/" -SkipHttpErrorCheck -TimeoutSec 5 -MaximumRedirection 0).StatusCode } catch { $RootStatus = 0 }
         try { $SpecStatus = (Invoke-WebRequest $SpecUrl -SkipHttpErrorCheck -TimeoutSec 5).StatusCode } catch { $SpecStatus = 0 }
 
-        if ($RootStatus -gt 0 -and $RootStatus -lt 400 -and $SpecStatus -eq 404) {
+        # Key the diagnosis on the spec endpoint 404 alone, and accept the evidence accumulated
+        # over the whole poll window rather than one fresh re-probe. The previous condition also
+        # required GET / to answer below 400, which is an incidental property of the wrong
+        # image: a Whisparr 2 with forms or basic authentication answers 401 there, and this
+        # container cannot be configured because v2 ignores WHISPARR__AUTH__APIKEY. Either that
+        # or a single unlucky re-probe - a transient 502, a reset during teardown - dropped the
+        # refusal back to a bare readiness timeout that never names Whisparr 2, which is the
+        # "exits non-zero while proving nothing" shape D-20 was amended to close.
+        if ($SpecStatus -eq 404 -or $LastStatus -eq 404) {
             Write-Host "ERROR: REFUSED after ${TimeoutSec}s - this image is not Whisparr 3 (Eros)." -ForegroundColor Red
-            Write-Host "  The image at $ImageDigest answers on port 6969 (GET / returned $RootStatus)" -ForegroundColor Red
-            Write-Host "  but returns HTTP 404 for /docs/v3/openapi.json." -ForegroundColor Red
+            Write-Host "  The image at $ImageDigest returned HTTP 404 for /docs/v3/openapi.json" -ForegroundColor Red
+            Write-Host "  (last poll $LastStatus, re-probe $SpecStatus; GET / returned $RootStatus)." -ForegroundColor Red
             Write-Host "  Whisparr 3 (Eros) always serves that endpoint unauthenticated, so this is almost" -ForegroundColor Red
             Write-Host "  certainly Whisparr 2 - a different application that also serves /api/v3 and would" -ForegroundColor Red
             Write-Host "  therefore yield a client that compiles and looks entirely plausible and is wrong." -ForegroundColor Red
