@@ -67,18 +67,21 @@ Traps that a reader copying the sibling `extensions\` repo would walk into.
 
 ## Tests
 
-`test/Whisparr3.Net.UnitTests/` is the only test project. It sits outside `src/` deliberately, so
-the generator's sweep cannot reach it, and it is not packed.
+There are two test projects. `test/Whisparr3.Net.UnitTests/` needs no Docker and is what a
+per-change check should run. `test/Whisparr3.Net.IntegrationTests/` drives a pinned Whisparr
+container through Testcontainers and skips itself when Docker is unreachable, so a machine without
+Docker still gets a green build. Both sit outside `src/` deliberately, so the generator's sweep
+cannot reach them, and neither is packed.
 
 The generator writes no tests of its own. It does write
 `[assembly: InternalsVisibleTo("Whisparr3.Net.Test")]` into `Client/ClientUtils.cs`, naming a
 project this repo does not have and will not add. Tests therefore stay on the public surface. Do
 not add a second `InternalsVisibleTo` and do not rename the test project to match that attribute.
 
-The test project references the library project and calls `AddWhisparr3` directly. That coupling is
+Both test projects reference the library project and call `AddWhisparr3` directly. That coupling is
 load-bearing: it is what turns a broken `Compile` glob into a build error instead of a green build
 over a hand-written layer that was never compiled. Do not test through an intermediate abstraction
-and do not copy hand-written sources into the test project.
+and do not copy hand-written sources into a test project.
 
 ## Planning
 

@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- No TargetFramework element on purpose. Directory.Build.props sets the plural
+         TargetFrameworks, and setting the singular one alongside it leaves the build green while
+         the test runner reports that no test is available. Omitting it cross-targets, so the whole
+         suite runs once per target framework. -->
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <!-- PackageId is inherited from Directory.Build.props and applies whatever IsPackable says, so
+         without this line restore fails with "Ambiguous project name 'Whisparr3.Net'". -->
+    <PackageId>$(MSBuildProjectName)</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The template also offers coverlet.collector. Nothing here collects coverage, so it is
+         dropped rather than installed and ignored. -->
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <!-- Testcontainers drives the Docker daemon from this process. It is test-only and never
+         reaches the shipped package. Xunit.SkippableFact supplies the dynamic skip that xunit 2.x
+         has no native equivalent for, which is what lets a machine without Docker build green. -->
+    <PackageReference Include="Testcontainers" Version="4.14.0" />
+    <PackageReference Include="Xunit.SkippableFact" Version="1.5.85" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!-- The image digest, the expected version and the expected branch all come from this one file,
+       so a spec refresh moves all three in a single commit. The logical name is explicit because
+       the name MSBuild would derive for a file outside the project directory is not guessable, and
+       a mistyped Include here is a build error rather than a runtime surprise. -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\spec\PROVENANCE.json" LogicalName="PROVENANCE.json" />
+  </ItemGroup>
+
+  <!-- This reference, plus direct calls to AddWhisparr3, is what makes an uncompiled hand-written
+       directory a hard build error here instead of a green suite that tested nothing. Do not test
+       through an intermediate abstraction and do not copy the hand-written sources in. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Whisparr3.Net\Whisparr3.Net.csproj" />
+  </ItemGroup>
+
+</Project>
