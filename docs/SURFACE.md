@@ -8,21 +8,24 @@ A reader who calls a generated method, gets nothing back, and finds no explanati
 whether that is a defect in this library or a property of the API it was generated from. It is the
 second, and this document is the evidence.
 
-Nothing below is hand-counted. `scripts/assert_surface.py` re-derives every number here from
-`spec/openapi.raw.json` and `spec/openapi.generated.json`, requires every sentence that states a
-count to appear verbatim, and compares both tables against the spec row by row. That script runs on
-every push and pull request, so a spec refresh that moves a count turns the build red instead of
-leaving this document quietly wrong.
+This file is generated. `generator/render_docs.py` writes it from the committed spec and the
+prose template beside that script, so every count and every table row here is derived rather than
+typed. Edit `generator/templates/SURFACE.md.in` and re-run the renderer; an edit made here is
+overwritten. Continuous integration re-renders and diffs, so a document that drifts from the spec
+fails the build.
+
+The counts below describe the spec this library was last generated from. They move when Whisparr
+adds or removes operations, and that is expected rather than a defect.
 
 ## The operations that return nothing
 
 92 of the 272 operations return no value. The generated method for each of them is declared void or
 returns only the HTTP status.
 
-The reason is the same for all 92 and it is in the spec rather than in this library. Each of them
+The reason is the same for all of them, and it is in the spec rather than in this library. Each
 declares a 2xx response and declares no `content` for that response. With no media type and no
 schema, the generator has nothing to bind a return type to, so it emits a method that returns
-nothing. No operation lacks a 2xx response entirely, so the whole 92 falls into that single
+nothing. No operation lacks a 2xx response entirely, so they all fall into that single
 category.
 
 The call still happens. The request is sent, the server answers, and whatever body it sends
@@ -32,9 +35,8 @@ Rebuilding those response schemas from observed real bodies is deliberately out 
 release. It is a known and deferred gap, not an oversight.
 
 The third column is the operation identifier the generated client uses for its method name. Both
-tables in this document are sorted by path and then by method, and the gate compares their rows
-against the spec in that order rather than as a set, so a diff on this section means the spec
-changed.
+tables in this document are sorted by path and then by method, so a diff on this section means the
+spec changed.
 
 | Method | Path | Operation |
 | --- | --- | --- |
@@ -133,9 +135,10 @@ changed.
 
 ## The operations that are generated but not useful
 
-Six operations across five paths are generated because this library covers every operation in the
-spec, not because anyone expects a C# caller to use them. They serve Whisparr's own web interface or
-a calendar subscriber. All six also appear in the table above, so all six return nothing as well.
+The operations below are generated because this library covers every operation in the spec, not
+because anyone expects a C# caller to use them. They serve Whisparr's own web interface or a
+calendar subscriber. The paths are a hand-kept judgement in `generator/render_docs.py`; the rows and
+the count come from the spec.
 
 | Method | Path | Operation |
 | --- | --- | --- |
@@ -145,12 +148,6 @@ a calendar subscriber. All six also appear in the table above, so all six return
 | POST | /login | CreateLogin |
 | GET | /logout | GetLogout |
 | GET | /{path} | GetStaticResourceByPath |
-
-Six rows, and the two obvious groupings do not add up to six. `GetLoginPage` is one of the three
-operations the generator places in its static-resource API, and it is also half of the browser login
-and logout pair. Adding the group sizes gives seven. Counting the operations gives six, because
-`GetLoginPage` sits under both headings. The table is the count that is right.
-
 What each one is for, and why it is not useful from C#.
 
 - `GetStaticResourceByPath` serves any file from Whisparr's web root by path. It answers a browser

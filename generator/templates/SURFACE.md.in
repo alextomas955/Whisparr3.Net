@@ -1,0 +1,63 @@
+# What this library returns, and what it does not
+
+The Whisparr 3 API declares @@RAW_TOTAL@@ operations. One of them is a malformed root path, removed during
+spec pre-processing, and this library generates all @@TOTAL@@ that remain. Not all of them are equally
+useful, and a large minority return no value at all.
+
+A reader who calls a generated method, gets nothing back, and finds no explanation has to guess
+whether that is a defect in this library or a property of the API it was generated from. It is the
+second, and this document is the evidence.
+
+This file is generated. `generator/render_docs.py` writes it from the committed spec and the
+prose template beside that script, so every count and every table row here is derived rather than
+typed. Edit `generator/templates/SURFACE.md.in` and re-run the renderer; an edit made here is
+overwritten. Continuous integration re-renders and diffs, so a document that drifts from the spec
+fails the build.
+
+The counts below describe the spec this library was last generated from. They move when Whisparr
+adds or removes operations, and that is expected rather than a defect.
+
+## The operations that return nothing
+
+@@VOID_COUNT@@ of the @@TOTAL@@ operations return no value. The generated method for each of them is declared void or
+returns only the HTTP status.
+
+The reason is the same for all of them, and it is in the spec rather than in this library. Each
+declares a 2xx response and declares no `content` for that response. With no media type and no
+schema, the generator has nothing to bind a return type to, so it emits a method that returns
+nothing. No operation lacks a 2xx response entirely, so they all fall into that single
+category.
+
+The call still happens. The request is sent, the server answers, and whatever body it sends
+arrives. The generated method discards it, because the spec named no type to deserialize it into.
+
+Rebuilding those response schemas from observed real bodies is deliberately out of scope for this
+release. It is a known and deferred gap, not an oversight.
+
+The third column is the operation identifier the generated client uses for its method name. Both
+tables in this document are sorted by path and then by method, so a diff on this section means the
+spec changed.
+
+@@VOID_TABLE@@
+
+## The operations that are generated but not useful
+
+The operations below are generated because this library covers every operation in the spec, not
+because anyone expects a C# caller to use them. They serve Whisparr's own web interface or a
+calendar subscriber. The paths are a hand-kept judgement in `generator/render_docs.py`; the rows and
+the count come from the spec.
+
+@@NOT_USEFUL_TABLE@@
+What each one is for, and why it is not useful from C#.
+
+- `GetStaticResourceByPath` serves any file from Whisparr's web root by path. It answers a browser
+  with HTML, JavaScript or images.
+- `GetContentByPath` serves the same web assets under the `/content` prefix.
+- `GetLoginPage` returns the HTML login form. A C# caller authenticates with an API key header and
+  never sees this page.
+- `CreateLogin` submits that form and establishes a browser session. This library authenticates
+  every request with an API key instead, so a session cookie buys it nothing.
+- `GetLogout` ends that browser session. There is no browser session to end.
+- `GetCalendarFeed` returns an iCalendar document for a calendar client to subscribe to. It declares
+  no content, so the generated method discards the calendar it just fetched. Point a calendar
+  application at the URL rather than calling this from C#.

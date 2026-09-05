@@ -7,7 +7,7 @@ numbers refer to is at the bottom of this file and does not move.
 
 The first release. Not yet published to nuget.org.
 
-- Covers all 272 operations the Whisparr 3 (Eros) API declares, generated from Whisparr's own
+- Covers every operation the Whisparr 3 (Eros) API declares, generated from Whisparr's own
   OpenAPI specification. The one malformed root path is excluded.
 - Targets `net8.0` and `net10.0`, with an assembly and an XML documentation file shipped for each.
 - One registration entry point, `AddWhisparr3`, which validates the base URL and the API key and
@@ -15,9 +15,9 @@ The first release. Not yet published to nuget.org.
 - One typed error, `Whisparr3ApiException`, carrying the status, the route template, the request
   URI and the raw body, and distinguishing a failed request from a success with no readable body.
 - `EnsureSuccess` classifies a response, which the generated success accessor does not.
-- 92 of the 272 operations return no value, because the specification declares no response content
-  for them. They are listed with their cause in [docs/SURFACE.md](docs/SURFACE.md), along with the
-  six operations that are generated but not useful from C#.
+- A large minority of operations return no value, because the specification declares no response
+  content for them. They are listed with their cause in [docs/SURFACE.md](docs/SURFACE.md), along
+  with the operations that are generated but not useful from C#.
 
 ## Public API stability policy
 

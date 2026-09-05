@@ -1,8 +1,12 @@
 # State-mutating operations, and the two the suite calls
 
-The Whisparr 3 API has 272 operations and 131 of them change state on the instance. This
-document lists all 131, so that anyone adding a test can check a call against the list before
+The Whisparr 3 API has 272 operations and 131 of them change state on the instance.
+This document lists them all, so that anyone adding a test can check a call against the list before
 writing it. The suite calls two of them, both on tags, and both are named below.
+
+This file is generated. `generator/render_docs.py` writes it from the committed spec and the prose
+template beside that script. Edit `generator/templates/DO-NOT-CALL.md.in` and re-run the renderer;
+an edit made here is overwritten. The counts move when Whisparr adds or removes operations.
 
 The list is documentation. Nothing reads it at build time and nothing enforces it. What keeps
 the suite off any instance but the one it created is that every client in it is built from
@@ -92,7 +96,7 @@ is unsafe on both counts and appears on the list below as well.
 
 ## The full list
 
-All 131 state-mutating operations, grouped by tag and sorted within each group. The order is a
+Every state-mutating operation, grouped by tag and sorted within each group. The order is a
 function of the spec alone, so a diff on this section means the spec changed.
 
 The third column is the operation identifier the generated client uses for its method name.
@@ -463,11 +467,12 @@ declared under every path.
 | `HEAD` | 1 |
 | Total | 272 |
 
-State-mutating is POST plus PUT plus DELETE plus PATCH, which is 131. The read-only surface
-is 141, not 140, because HEAD is read-only and is not a GET.
+State-mutating is POST plus PUT plus DELETE plus PATCH, which is 131. The read-only
+surface is 141, and that is larger than the GET count because HEAD is read-only and is not
+a GET.
 
-Counting "non-GET" gives 132 and is wrong. It puts the one HEAD operation on the
-dangerous list. The two totals are 131 and 141, and they add up to 272.
+Counting "non-GET" is wrong: it puts every HEAD operation on the dangerous list. The two totals are
+131 and 141, and they add up to 272.
 
 ## What is not enforced
 
