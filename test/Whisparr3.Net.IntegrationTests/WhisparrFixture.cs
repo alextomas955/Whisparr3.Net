@@ -45,6 +45,24 @@ namespace Whisparr3.Net.IntegrationTests
         private const string SpecPath = "/docs/v3/openapi.json";
 
         /// <summary>
+        /// The log line that marks the end of the startup task sequence, and the readiness signal
+        /// the spec endpoint is not.
+        /// </summary>
+        /// <remarks>
+        /// Whisparr serves the spec while it is still seeding its database. Measured on this
+        /// digest: the spec endpoint answered 200 at 13 seconds with 0 quality profiles present in
+        /// one boot and 5 in another, and 7 arrived a second or four later. A suite that starts
+        /// asserting at the spec signal therefore reads a half-seeded instance, which is how the
+        /// profile count assertion first failed against a live container reporting 2. The default
+        /// profiles are created by a handler of the application-started event, and this line is
+        /// logged by a later handler of the same event, so it cannot be written before the seeding
+        /// it follows has returned. Measured over three consecutive boots: at the instant this line
+        /// appeared, the instance reported 7 profiles and 29 definitions every time. The thread
+        /// count in the full line varies with the host, so it is not matched.
+        /// </remarks>
+        private const string StartupTasksMarker = "CommandExecutor: Starting";
+
+        /// <summary>
         /// The key generator/capture_spec.py already hands this image. Reusing it keeps one value
         /// in the repository rather than two, and it is the only key proven to authenticate
         /// against this digest.
@@ -139,9 +157,16 @@ namespace Whisparr3.Net.IntegrationTests
                             }
                         }
                     })
+                    // Two signals, and both are needed. The spec endpoint says the web host is up
+                    // and that this is a Whisparr 3 image, because a Whisparr 2 image answers 404
+                    // there for its whole lifetime. The log line says the startup tasks that seed
+                    // the database have finished, which the spec endpoint does not.
                     .WithWaitStrategy(Wait.ForUnixContainer()
                         .UntilHttpRequestIsSucceeded(
                             request => request.ForPort(ContainerPort).ForPath(SpecPath),
+                            waitStrategy => waitStrategy.WithTimeout(ReadinessTimeout))
+                        .UntilMessageIsLogged(
+                            StartupTasksMarker,
                             waitStrategy => waitStrategy.WithTimeout(ReadinessTimeout)))
                     .Build();
             }
