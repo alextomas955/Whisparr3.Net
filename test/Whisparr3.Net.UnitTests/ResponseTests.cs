@@ -41,6 +41,17 @@ namespace Whisparr3.Net.UnitTests
         private const string SystemStatusBody =
             "{\"appName\":\"Whisparr\",\"instanceName\":\"wsp53-v3\",\"version\":\"3.3.8.1097\"}";
 
+        /// <summary>The performer payload the create operation answers with.</summary>
+        private const string CreatedPerformerBody =
+            "{\"id\":7,\"fullName\":\"Created Performer\"}";
+
+        /// <summary>The performer payload the update operation answers with.</summary>
+        private const string UpdatedPerformerBody =
+            "{\"id\":9,\"fullName\":\"Accepted Performer\"}";
+
+        /// <summary>The id the update tests address, which the route template does not carry.</summary>
+        private const string PerformerId = "7";
+
         /// <summary>
         /// The bodiless 401 is the shape the live instance actually returns for a prefixed key,
         /// measured against a real Whisparr instance. It is the case that hands the caller nothing
@@ -186,6 +197,104 @@ namespace Whisparr3.Net.UnitTests
                 error.Message.Length <= MessageBodyCap + FramingAllowance,
                 $"The message was {error.Message.Length} characters, above the {MessageBodyCap} "
                     + $"character body cap plus {FramingAllowance} characters of framing.");
+        }
+
+        /// <summary>
+        /// A real 201 is a documented success on this operation, and without the hook its body is
+        /// unreachable through any typed accessor because the generated one deserializes on
+        /// exactly 200.
+        /// </summary>
+        [Fact]
+        public async Task Created_201_body_is_reachable_and_EnsureSuccess_returns_it()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CreatedPerformerBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreatePerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().CreatePerformerAsync();
+
+            PerformerResource created = response.EnsureSuccess();
+
+            Assert.Equal(7, created.Id);
+            Assert.Equal("Created Performer", created.FullName);
+        }
+
+        /// <summary>
+        /// The same for the update operation, whose documented non-200 success is 202.
+        /// </summary>
+        [Fact]
+        public async Task Accepted_202_body_is_reachable_and_EnsureSuccess_returns_it()
+        {
+            using LoopbackCapture capture = new(status: 202, body: UpdatedPerformerBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IUpdatePerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().UpdatePerformerAsync(PerformerId);
+
+            PerformerResource updated = response.EnsureSuccess();
+
+            Assert.Equal(9, updated.Id);
+            Assert.Equal("Accepted Performer", updated.FullName);
+        }
+
+        /// <summary>
+        /// The empty-body case, which without a guard in the hook throws a raw serialization
+        /// exception straight out of the accessor and escapes the typed layer untyped.
+        /// </summary>
+        [Fact]
+        public async Task Created_201_with_an_empty_body_throws_the_typed_error()
+        {
+            using LoopbackCapture capture = new(status: 201, body: string.Empty);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreatePerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().CreatePerformerAsync();
+
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
+
+            Assert.Equal(HttpStatusCode.Created, error.StatusCode);
+            Assert.Equal("/api/v3/performer", error.Path);
+            Assert.True(error.IsSuccessStatusCode);
+            Assert.Contains("201", error.Message, StringComparison.Ordinal);
+            Assert.Contains("/api/v3/performer", error.Message, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// The hook's one real risk is disturbing the path it is not meant to touch, so the
+        /// ordinary 200 is asserted on each affected operation separately rather than sampled.
+        /// </summary>
+        [Fact]
+        public async Task Ok_200_on_the_create_operation_still_returns_the_body()
+        {
+            using LoopbackCapture capture = new(status: 200, body: CreatedPerformerBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreatePerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().CreatePerformerAsync();
+
+            PerformerResource created = response.EnsureSuccess();
+
+            Assert.Equal(7, created.Id);
+            Assert.Equal("Created Performer", created.FullName);
+        }
+
+        /// <summary>
+        /// The same assertion for the update operation.
+        /// </summary>
+        [Fact]
+        public async Task Ok_200_on_the_update_operation_still_returns_the_body()
+        {
+            using LoopbackCapture capture = new(status: 200, body: UpdatedPerformerBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IUpdatePerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().UpdatePerformerAsync(PerformerId);
+
+            PerformerResource updated = response.EnsureSuccess();
+
+            Assert.Equal(9, updated.Id);
+            Assert.Equal("Accepted Performer", updated.FullName);
         }
 
         /// <summary>
