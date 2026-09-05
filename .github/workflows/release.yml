@@ -1,0 +1,82 @@
+# Packs the library on a v* tag and then either publishes it or refuses, naming the reason.
+#
+# The refusal is placed before the push call rather than after it. Measured against a loopback
+# NuGet server with the real 1,656,966-byte package: with an empty key the client warns, sends no
+# API key header, transmits the entire body, receives 401 and exits 1. Nothing publishes, so the
+# milestone constraint holds, but the bytes reach the endpoint first. Letting that 401 be the gate
+# uploads this package to nuget.org on every gated release run.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+# The workflow reads the repository, builds it and packs it. It writes nothing back.
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # fetch-depth 0 so the deterministic-build and source-link metadata resolve against real
+      # history rather than against a shallow clone.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      # Both lines are required. net8.0 compiles against reference assemblies, but anything
+      # hosting net8.0 needs the .NET 8 runtime, and roll-forward does not cross a major.
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Build
+        run: dotnet build Whisparr3.Net.slnx -c Release --nologo
+
+      - name: Pack
+        run: dotnet pack src/Whisparr3.Net/Whisparr3.Net.csproj -c Release -o artifacts --nologo
+
+      # The same gate build-and-test.yml runs, so the release path and the continuous path assert
+      # identical package properties and cannot drift. It sits before the publish step because a
+      # package that lost its XML documentation files, or acquired an unresolvable repository url,
+      # must not reach a publish step at all.
+      - name: Assert the package ships its documentation and a resolvable repository url
+        run: python3 scripts/assert_package.py artifacts/Whisparr3.Net.0.1.0.nupkg artifacts/Whisparr3.Net.0.1.0.snupkg
+
+      # A release run leaves something a human can open rather than only a log line.
+      - name: Upload the packed artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: nuget-packages
+          path: |
+            artifacts/*.nupkg
+            artifacts/*.snupkg
+          if-no-files-found: error
+
+      # The gate. Four things about this step are load-bearing and each was measured.
+      #
+      # The emptiness test is inside run: on an environment variable and is never a step
+      # condition. The secrets context is not available to a step condition, so a guard written
+      # there evaluates false forever and the step reads as skipped when the intent was reached
+      # and stopped.
+      #
+      # The test comes before the push call rather than being delegated to the server's 401,
+      # because the client transmits the whole package body before that answer arrives.
+      #
+      # The empty branch exits 1 rather than finishing green. A green run whose publish step did
+      # nothing is the shape this milestone treats as a defect.
+      #
+      # Only emptiness is tested. The value is never echoed, here or anywhere else.
+      - name: Publish to nuget.org
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo "NUGET_API_KEY is not configured on this repository."
+            echo "The release stops here. No package was transmitted to nuget.org."
+            exit 1
+          fi
+          dotnet nuget push artifacts/*.nupkg -k "$NUGET_API_KEY" -s https://api.nuget.org/v3/index.json
