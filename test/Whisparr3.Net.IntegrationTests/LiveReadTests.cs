@@ -163,6 +163,72 @@ namespace Whisparr3.Net.IntegrationTests
         }
 
         /// <summary>
+        /// An operation whose spec declares no response content still delivers a body, and ReadAs
+        /// binds it to a type the caller names.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// GetCustomFormatSchema is one of the 92 operations that declare a 2xx and declare no
+        /// content for it, so the generated response carries no typed accessor. This is the live
+        /// half of the evidence: the unit project pins the classification against canned bodies,
+        /// and this pins that a real Whisparr answers one of them with a JSON body that binds.
+        /// </para>
+        /// <para>
+        /// The probe type is declared here rather than taken from Whisparr3.Net.Model, because a
+        /// caller of one of these operations has no model to take. Its JsonPropertyName attributes
+        /// are required: the client registers no naming policy, so a Pascal-cased member binds
+        /// nothing without one and does so silently.
+        /// </para>
+        /// <para>
+        /// Read-only. It adds nothing to the write inventory recorded in this project README.
+        /// </para>
+        /// </remarks>
+        [SkippableFact]
+        public async Task Content_less_operation_body_binds_through_read_as()
+        {
+            Skip.If(fixture.SkipReason is not null, fixture.SkipReason);
+
+            await using ServiceProvider provider = BuildProvider();
+
+            IGetCustomFormatSchemaApiResponse response = await provider
+                .GetRequiredService<ICustomFormatApi>()
+                .GetCustomFormatSchemaAsync();
+
+            response.EnsureSuccess();
+
+            // The body arrived even though the spec named no type for it. Asserted before the
+            // deserialization, so a failure here says the body was empty rather than that the type
+            // was wrong.
+            Assert.False(string.IsNullOrWhiteSpace(response.RawContent));
+
+            List<SpecificationProbe> schema =
+                ((Whisparr3.Net.Client.ApiResponse)response).ReadAs<List<SpecificationProbe>>();
+
+            // Field values, not a non-null check. A list of objects whose every member stayed at
+            // its default is exactly what a missing JsonPropertyName produces, and a non-null check
+            // passes against it.
+            Assert.NotEmpty(schema);
+            Assert.All(schema, item => Assert.False(string.IsNullOrWhiteSpace(item.Implementation)));
+            Assert.Contains(schema, item =>
+                string.Equals("ReleaseTitleSpecification", item.Implementation, StringComparison.Ordinal));
+        }
+
+        /// <summary>
+        /// The shape a caller supplies for the custom-format schema, which the spec does not
+        /// describe.
+        /// </summary>
+        public sealed class SpecificationProbe
+        {
+            /// <summary>The specification implementation name.</summary>
+            [System.Text.Json.Serialization.JsonPropertyName("implementation")]
+            public string? Implementation { get; set; }
+
+            /// <summary>The negate flag each specification carries.</summary>
+            [System.Text.Json.Serialization.JsonPropertyName("negate")]
+            public bool Negate { get; set; }
+        }
+
+        /// <summary>
         /// Builds a provider pointed at the container this run started.
         /// </summary>
         /// <returns>A provider the caller owns and disposes.</returns>

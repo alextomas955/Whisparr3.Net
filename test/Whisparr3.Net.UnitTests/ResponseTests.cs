@@ -3,8 +3,11 @@
 #nullable enable
 
 using System.Net;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using Whisparr3.Net.Api;
+using Whisparr3.Net.Client;
 using Whisparr3.Net.Model;
 
 namespace Whisparr3.Net.UnitTests
@@ -599,6 +602,230 @@ namespace Whisparr3.Net.UnitTests
             Assert.True(error.IsSuccessStatusCode);
             Assert.Contains("201", error.Message, StringComparison.Ordinal);
             Assert.Contains("/api/v3/tag", error.Message, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// The ordinary path for an operation the spec gave no response body. The server sends
+        /// JSON, the generated method exposes no typed accessor for it, and ReadAs names the shape.
+        /// </summary>
+        /// <remarks>
+        /// GetSystemRoutes is the content-less example the tests above already use: its response
+        /// interface carries no IOk in its base list, so no generated accessor exists to fall back
+        /// on. Field values are asserted rather than a non-null check, which would pass against a
+        /// list of empty objects.
+        /// </remarks>
+        [Fact]
+        public async Task Content_less_operation_body_is_readable_as_the_type_the_caller_names()
+        {
+            using LoopbackCapture capture = new(
+                status: 200,
+                body: "[{\"implementation\":\"ReleaseTitleSpecification\",\"negate\":false}]");
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            List<RouteProbe> routes = ((ApiResponse)response).ReadAs<List<RouteProbe>>();
+
+            Assert.Single(routes);
+            Assert.Equal("ReleaseTitleSpecification", routes[0].Implementation);
+            Assert.False(routes[0].Negate);
+        }
+
+        /// <summary>
+        /// The body reaches RawContent whether or not it can be deserialized, which is the fact the
+        /// surface document states and the reason ReadAs can exist at all.
+        /// </summary>
+        /// <remarks>
+        /// Asserted over a payload that is not JSON, because a third of these operations answer
+        /// with plain text, iCalendar, HTML or an image rather than a document any type describes.
+        /// </remarks>
+        [Fact]
+        public async Task Content_less_operation_delivers_a_non_json_body_through_raw_content()
+        {
+            const string Graph = "digraph DFA { 0 [label=\"/api/v3/movie/\"]; }";
+
+            using LoopbackCapture capture = new(status: 200, body: Graph);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            response.EnsureSuccess();
+
+            Assert.Equal(Graph, response.RawContent);
+        }
+
+        /// <summary>
+        /// A failing status throws before any deserialization is attempted, and reports itself as a
+        /// failure rather than as an unreadable body.
+        /// </summary>
+        [Fact]
+        public async Task ReadAs_reports_a_failing_status_as_a_failure()
+        {
+            using LoopbackCapture capture = new(status: 401, body: string.Empty);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            Whisparr3ApiException error = Assert.Throws<Whisparr3ApiException>(
+                () => ((ApiResponse)response).ReadAs<List<RouteProbe>>());
+
+            Assert.Equal(HttpStatusCode.Unauthorized, error.StatusCode);
+            Assert.False(error.IsSuccessStatusCode);
+        }
+
+        /// <summary>
+        /// An empty 200 is a success with nothing to read, not a malformed body. Many of the
+        /// content-less operations are deletes that answer exactly this way.
+        /// </summary>
+        [Fact]
+        public async Task ReadAs_separates_an_empty_success_from_a_malformed_one()
+        {
+            using LoopbackCapture capture = new(status: 200, body: string.Empty);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            Whisparr3ApiException error = Assert.Throws<Whisparr3ApiException>(
+                () => ((ApiResponse)response).ReadAs<List<RouteProbe>>());
+
+            Assert.True(error.IsSuccessStatusCode);
+            Assert.Contains("empty", error.Message, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// A body that is not the named shape throws the typed error rather than letting the
+        /// serializer exception escape, which is the same hole EnsureSuccess closes.
+        /// </summary>
+        [Fact]
+        public async Task ReadAs_wraps_a_deserialization_failure_in_the_typed_error()
+        {
+            using LoopbackCapture capture = new(status: 200, body: "not json at all");
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            Whisparr3ApiException error = Assert.Throws<Whisparr3ApiException>(
+                () => ((ApiResponse)response).ReadAs<List<RouteProbe>>());
+
+            Assert.True(error.IsSuccessStatusCode);
+            Assert.IsType<JsonException>(error.InnerException);
+        }
+
+        /// <summary>
+        /// ReadAs binds through the serializer options the client registered, not plain defaults.
+        /// That is the whole reason it is a partial on the response class rather than an extension
+        /// method, which could only take options from its caller.
+        /// </summary>
+        /// <remarks>
+        /// An enum written as a string is the discriminator. A bare JsonSerializerOptions reads an
+        /// enum only from a number and throws on a string, so this payload cannot bind under plain
+        /// defaults at all. The client registers a JsonStringEnumConverter, so it binds here. A
+        /// property-name assertion would not have worked: the client registers no naming policy
+        /// either, which is measured by the second assertion below.
+        /// </remarks>
+        [Fact]
+        public async Task ReadAs_uses_the_serializer_options_the_client_registered()
+        {
+            using LoopbackCapture capture = new(
+                status: 200,
+                body: "[{\"implementation\":\"Probe\",\"negate\":true,\"kind\":\"Enabled\"}]");
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            List<RouteProbe> routes = ((ApiResponse)response).ReadAs<List<RouteProbe>>();
+
+            Assert.Equal(ProbeKind.Enabled, routes[0].Kind);
+
+            // The same payload under plain defaults, to show the assertion above is not passing on
+            // options a caller could have supplied themselves.
+            Assert.Throws<JsonException>(
+                () => JsonSerializer.Deserialize<List<RouteProbe>>(response.RawContent, new JsonSerializerOptions()));
+        }
+
+        /// <summary>
+        /// The client registers no naming policy and no case-insensitive matching, so a caller
+        /// type without JsonPropertyName binds nothing and raises nothing.
+        /// </summary>
+        /// <remarks>
+        /// This is the trap ReadAs hands a caller, so it is pinned rather than described. A reader
+        /// who assumes camel-case matching gets a fully-populated object graph of defaults and no
+        /// error to explain it.
+        /// </remarks>
+        [Fact]
+        public async Task ReadAs_binds_nothing_when_the_caller_type_omits_property_names()
+        {
+            using LoopbackCapture capture = new(
+                status: 200,
+                body: "[{\"implementation\":\"Probe\",\"negate\":true}]");
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IGetSystemRoutesApiResponse response =
+                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+
+            List<UnnamedProbe> probes = ((ApiResponse)response).ReadAs<List<UnnamedProbe>>();
+
+            Assert.Single(probes);
+            Assert.Null(probes[0].Implementation);
+            Assert.False(probes[0].Negate);
+        }
+
+        /// <summary>
+        /// The same shape as RouteProbe with the property names left off, which is what a caller
+        /// writes by default and what silently binds nothing.
+        /// </summary>
+        public sealed class UnnamedProbe
+        {
+            /// <summary>Never bound, because the payload spells it in camel case.</summary>
+            public string? Implementation { get; set; }
+
+            /// <summary>Never bound, for the same reason.</summary>
+            public bool Negate { get; set; }
+        }
+
+        /// <summary>
+        /// A shape a caller supplies for a body the spec never described. Declared here rather than
+        /// taken from Whisparr3.Net.Model on purpose: the point of ReadAs is that the type belongs
+        /// to the caller, because the spec names none.
+        /// </summary>
+        /// <remarks>
+        /// The JsonPropertyName attributes are required, not decoration. The client builds its
+        /// options as a bare JsonSerializerOptions plus a converter list, with no naming policy and
+        /// no case-insensitive matching, so a camel-cased payload binds nothing to a Pascal-cased
+        /// member. That failure is silent: every property keeps its default and no exception is
+        /// raised. Measured by writing this type without the attributes first.
+        /// </remarks>
+        public sealed class RouteProbe
+        {
+            /// <summary>The implementation name the payload carries.</summary>
+            [JsonPropertyName("implementation")]
+            public string? Implementation { get; set; }
+
+            /// <summary>The negate flag the payload carries.</summary>
+            [JsonPropertyName("negate")]
+            public bool Negate { get; set; }
+
+            /// <summary>The enum the serializer-options test reads as a string.</summary>
+            [JsonPropertyName("kind")]
+            public ProbeKind Kind { get; set; }
+        }
+
+        /// <summary>
+        /// An enum whose string form only binds when a JsonStringEnumConverter is registered.
+        /// </summary>
+        public enum ProbeKind
+        {
+            /// <summary>The default, which a failed bind would leave in place.</summary>
+            Unset = 0,
+
+            /// <summary>The value the serializer-options payload names.</summary>
+            Enabled = 1,
         }
 
         /// <summary>
