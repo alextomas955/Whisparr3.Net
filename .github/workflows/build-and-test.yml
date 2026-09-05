@@ -44,3 +44,13 @@ jobs:
           WHISPARR3NET_REQUIRE_DOCKER: "1"
         run: dotnet test test/Whisparr3.Net.IntegrationTests -c Release --no-build --nologo
         timeout-minutes: 15
+
+      # Packing on every push, rather than only on the release path, is what makes a regression
+      # in the shipped documentation files or the repository url visible before a tag exists.
+      - name: Pack
+        run: dotnet pack src/Whisparr3.Net/Whisparr3.Net.csproj -c Release --no-build -o artifacts --nologo
+
+      # python3 is the name on the runner. The same script is python on the owner's machine,
+      # where python3 does not resolve.
+      - name: Assert the package ships its documentation and a resolvable repository url
+        run: python3 scripts/assert_package.py artifacts/Whisparr3.Net.0.1.0.nupkg artifacts/Whisparr3.Net.0.1.0.snupkg
