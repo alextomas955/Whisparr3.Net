@@ -1,0 +1,48 @@
+# Version updates for the two manifest kinds this repository actually has: the NuGet references in
+# the three project files, and the action pins in .github/workflows/.
+#
+# The generated tree needs no exclusion here. Everything openapi-generator writes under
+# src/Whisparr3.Net/ is C# source, and Dependabot only edits manifests. The one manifest in that
+# directory, src/Whisparr3.Net/Whisparr3.Net.csproj, is hand-owned: "**/*.csproj" sits in
+# openapiGeneratorIgnoreList in generator/gen-config.yaml, so a regeneration leaves it alone and a
+# Dependabot bump to it survives. The same holds for Directory.Build.props at the repo root, which
+# the generator never writes to.
+
+version: 2
+
+updates:
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
+
+    # The library's four references are declared twice each, once per target framework, with the
+    # major tracking the framework: 8.0.x under net8.0 and 10.0.x under net10.0. A major bump would
+    # put a net10-era package on the net8.0 line, which is not what those conditions mean. Patch and
+    # minor updates still open, so the net8.0 line keeps moving inside 8.0.x. Raising a major here
+    # is a deliberate edit to src/Whisparr3.Net/Whisparr3.Net.csproj alongside a TargetFrameworks
+    # change in Directory.Build.props, not something to accept from a pull request.
+    #
+    # These rules are scoped by package name rather than by path, because Dependabot has no way to
+    # limit an ignore rule to one directory. Neither test project references any of the four, so
+    # nothing else is affected.
+    ignore:
+      - dependency-name: Microsoft.Extensions.Http
+        update-types: [version-update:semver-major]
+      - dependency-name: Microsoft.Extensions.Hosting
+        update-types: [version-update:semver-major]
+      - dependency-name: Microsoft.Extensions.Http.Polly
+        update-types: [version-update:semver-major]
+      - dependency-name: Microsoft.Net.Http.Headers
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+      include: scope
