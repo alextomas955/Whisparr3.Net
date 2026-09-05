@@ -1,17 +1,18 @@
 # What this library returns, and what it does not
 
-The Whisparr 3 API declares 272 operations and this library generates all of them except the one
-malformed root path. Not all of them are equally useful, and a large minority return no value at
-all.
+The Whisparr 3 API declares 273 operations. One of them is a malformed root path, removed during
+spec pre-processing, and this library generates all 272 that remain. Not all of them are equally
+useful, and a large minority return no value at all.
 
 A reader who calls a generated method, gets nothing back, and finds no explanation has to guess
 whether that is a defect in this library or a property of the API it was generated from. It is the
 second, and this document is the evidence.
 
 Nothing below is hand-counted. `scripts/assert_surface.py` re-derives every number here from
-`spec/openapi.generated.json` and set-compares it against these tables. That script runs on every
-push and pull request, so a spec refresh that moves a count turns the build red instead of leaving
-this document quietly wrong.
+`spec/openapi.raw.json` and `spec/openapi.generated.json`, requires every sentence that states a
+count to appear verbatim, and compares both tables against the spec row by row. That script runs on
+every push and pull request, so a spec refresh that moves a count turns the build red instead of
+leaving this document quietly wrong.
 
 ## The operations that return nothing
 
@@ -28,10 +29,12 @@ The call still happens. The request is sent, the server answers, and whatever bo
 arrives. The generated method discards it, because the spec named no type to deserialize it into.
 
 Rebuilding those response schemas from observed real bodies is deliberately out of scope for this
-release and is tracked as `SCHEMA-F1`. It is a known and deferred gap, not an oversight.
+release. It is a known and deferred gap, not an oversight.
 
-The third column is the operation identifier the generated client uses for its method name. The
-order is a function of the spec alone, so a diff on this section means the spec changed.
+The third column is the operation identifier the generated client uses for its method name. Both
+tables in this document are sorted by path and then by method, and the gate compares their rows
+against the spec in that order rather than as a set, so a diff on this section means the spec
+changed.
 
 | Method | Path | Operation |
 | --- | --- | --- |
