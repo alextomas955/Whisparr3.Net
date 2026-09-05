@@ -54,3 +54,9 @@ jobs:
       # where python3 does not resolve.
       - name: Assert the package ships its documentation and a resolvable repository url
         run: python3 scripts/assert_package.py artifacts/Whisparr3.Net.0.1.0.nupkg artifacts/Whisparr3.Net.0.1.0.snupkg
+
+      # The second repository gate. docs/SURFACE.md states counts derived from the committed
+      # spec, so a spec refresh that moves any of them has to turn this red rather than leave a
+      # shipped document quietly wrong.
+      - name: Assert the documented surface still matches the committed spec
+        run: python3 scripts/assert_surface.py
