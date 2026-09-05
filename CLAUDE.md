@@ -3,6 +3,29 @@
 C# SDK for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI spec. The repo lives at
 `i:\cove-dev\Whisparr3.Net\` alongside `cove\` and `extensions\`.
 
+## Upstream
+
+Upstream is `Whisparr/Whisparr-Eros`. That repository is Whisparr 3, and it is the only source of
+truth for anything this library generates from. Its active branch is `eros-develop`, and `eros`
+carries the releases.
+
+`Whisparr/Whisparr` is Whisparr 2. It is a different codebase and it is not this project's
+upstream. Do not read it to answer a question about v3 behaviour, and do not open a pull request
+against it.
+
+Two things make the wrong repository look right, and neither is evidence.
+
+- Both repositories carry a branch named `eros`. Measured 2026-09-05: `Whisparr/Whisparr` is at
+  `cc3fb2ab` and `Whisparr/Whisparr-Eros` is at `c3e56023`. The name alone identifies nothing.
+- The captured spec names the wrong repository itself. `info.license.url` in
+  `spec/openapi.raw.json` reads `https://github.com/Whisparr/Whisparr/blob/develop/LICENSE`. That
+  string is hardcoded in the Eros source and is an upstream defect, not a pointer to follow.
+
+`spec/PROVENANCE.json` is what settles which commit a question is about. It records the version,
+the branch and the build time of the image the spec was captured from. The 3.4.0.1387 build
+recorded there is commit `c3e5602` in `Whisparr/Whisparr-Eros`, committed thirty minutes before
+the image was built. Match on those three fields rather than on a branch name.
+
 ## Writing style
 
 The environment instructions at `i:\cove-dev\.claude\CLAUDE.md` are authoritative and are not
