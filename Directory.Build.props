@@ -42,8 +42,28 @@
     <SourceLinkGitHubHost Include="github.com-alex" ContentUrl="https://raw.githubusercontent.com" />
   </ItemGroup>
 
-  <!-- NuGet package metadata. RepositoryUrl and RepositoryType are deliberately absent;
-       SourceLink injects both plus the commit SHA from PublishRepositoryUrl=true. -->
+  <!-- NuGet package metadata.
+
+       RepositoryUrl and RepositoryType are set here rather than left to SourceLink.
+
+       The problem this solves: SourceLink derives the nuspec repository url from origin, and
+       origin here is the git@github.com-alex SSH alias, so it wrote
+       url="https://github.com-alex/alextomas955/Whisparr3.Net.git" into the package. That host
+       does not resolve. The SourceLinkGitHubHost mapping above fixes the source map and does not
+       touch this value, and the defect was invisible from this file because it only appears in
+       the produced nuspec. Setting the two properties was held off because the library csproj
+       warns that a RepositoryUrl/RepositoryType pair overrides the SDK's built-in SourceLink and
+       ships a .snupkg with no commit SHA. That warning was made about the generator's own csproj
+       and was never measured for this file, so it was measured before it was acted on.
+
+       Measured on SDK 10.0.400, packing this props file with and without the two properties, at
+       commit ed94b04. Both packs emitted 0 warnings and both .snupkg files carried both PDBs.
+         property pair absent   nuspec url https://github.com-alex/alextomas955/Whisparr3.Net.git
+                                nuspec commit ed94b048, source map to raw.githubusercontent.com
+         property pair present  nuspec url https://github.com/alextomas955/Whisparr3.Net
+                                nuspec commit ed94b048, source map to raw.githubusercontent.com
+       The commit attribute, the source map and the commit-pinned url embedded in both shipped
+       PDBs are byte-identical across the two packs, so the warning does not apply here. -->
   <PropertyGroup>
     <PackageId>Whisparr3.Net</PackageId>
     <Version>0.1.0</Version>
@@ -52,6 +72,8 @@
     <Copyright>Copyright (c) 2026 alextomas955</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/alextomas955/Whisparr3.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/alextomas955/Whisparr3.Net</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>whisparr;arr;openapi;sdk;rest;client</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnablePackageValidation>true</EnablePackageValidation>
