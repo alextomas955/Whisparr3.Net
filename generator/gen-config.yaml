@@ -29,6 +29,30 @@ gitRepoId: Whisparr3.Net
 # Suppression by denylist. Never allowlist supportingFiles: for apis, models and supportingFiles
 # the value is a colon-separated allowlist, and naming one file restricts generation to it, which
 # measurably deleted the entire runtime.
+#
+# apiDocs and modelDocs are off because the markdown this generator writes describes methods that
+# do not exist. Measured 2026-09-05 by generating with them enabled and comparing every documented
+# signature against the code from the same run: not one matched. Every documented name lacks the
+# Async suffix, every declared return type is wrong, docs saying List<MovieResource> where the code
+# has Task<IListCalendarApiResponse>. Parameters differ too, DateTime start = null against
+# Option<DateTime> start = default, which is not even valid C#.
+#
+# The cause is upstream and is not a misconfiguration here. csharp/libraries/generichost ships its
+# own api.mustache and no api_doc.mustache or model_doc.mustache. Docs
+# therefore fall back to the shared csharp/api_doc.mustache, written for the older restsharp and
+# httpclient libraries, which prints the synchronous shape. Verified against openapi-generator
+# master: both files are absent for every csharp library, and the project's own generichost
+# Petstore sample carries the same mismatch, `void AddPet (Pet pet)` in the doc against
+# Task<IAddPetApiResponse> AddPetAsync in the code beside it.
+#
+# apiTests and modelTests are off because the generated suite asserts nothing. Every model test
+# body is a TODO comment and every api test carries [Fact (Skip = "not implemented")], so the whole
+# suite runs green having verified nothing. It also emits its own csproj into src/, which this
+# repository keeps free of test projects, and names the assembly Whisparr3.Net.Test, which does not
+# exist here.
+#
+# A consumer's API reference is the XML documentation the package already ships, which the compiler
+# derives from the assembly and so cannot contradict it.
 globalProperties:
   apiTests: "false"
   modelTests: "false"
