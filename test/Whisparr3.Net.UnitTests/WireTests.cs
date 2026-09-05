@@ -20,6 +20,18 @@ namespace Whisparr3.Net.UnitTests
         /// </summary>
         private const string SentinelKey = "SENTINEL-Key-123";
 
+        /// <summary>How many calls the concurrency tests issue at once.</summary>
+        private const int Concurrency = 8;
+
+        /// <summary>
+        /// A base URL for tests that resolve clients without issuing a request. Port 1 is not a
+        /// port anything on this machine serves, and nothing here connects to it in any case.
+        /// </summary>
+        private const string UnusedBaseUrl = "http://127.0.0.1:1";
+
+        /// <summary>How long a capture waits for its expected requests before failing.</summary>
+        private static readonly TimeSpan CaptureTimeout = TimeSpan.FromSeconds(30);
+
         /// <summary>
         /// The credential Whisparr accepts, in the shape Whisparr accepts it.
         /// </summary>
@@ -79,6 +91,150 @@ namespace Whisparr3.Net.UnitTests
             IReadOnlyList<string> headers = CapturedRequest.HeaderLines(request, "X-Api-Key");
             string only = Assert.Single(headers);
             Assert.Equal("X-Api-Key: Bearer " + SentinelKey, only);
+        }
+
+        /// <summary>
+        /// Eight requests in flight at once all carry one identical, unprefixed credential.
+        /// That is what pins the raw header value to being computed once when the token is built
+        /// rather than assembled per call. Asserting one request line per recorded text is what
+        /// shows the capture recorded each connection separately instead of interleaving bytes
+        /// from concurrent sockets into a single buffer.
+        /// </summary>
+        [Fact]
+        public async Task Eight_concurrent_calls_all_carry_the_identical_key_and_no_prefix()
+        {
+            using LoopbackCapture capture = new();
+
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options
+            {
+                BaseUrl = capture.BaseUrl,
+                ApiKey = SentinelKey,
+            });
+
+            await using ServiceProvider provider = services.BuildServiceProvider();
+            ISystemApi api = provider.GetRequiredService<ISystemApi>();
+
+            await Task.WhenAll(Enumerable.Range(0, Concurrency).Select(_ => api.GetSystemStatusAsync()));
+
+            IReadOnlyList<string> requests = await capture.WaitForRequestsAsync(Concurrency, CaptureTimeout);
+
+            Assert.Equal(Concurrency, requests.Count);
+            Assert.All(requests, request =>
+            {
+                Assert.Single(CapturedRequest.RequestLines(request));
+                string only = Assert.Single(CapturedRequest.HeaderLines(request, "X-Api-Key"));
+                Assert.Equal("X-Api-Key: " + SentinelKey, only);
+                Assert.DoesNotContain("Bearer", request, StringComparison.Ordinal);
+                Assert.DoesNotContain("apikey", request, StringComparison.OrdinalIgnoreCase);
+            });
+        }
+
+        /// <summary>
+        /// A collection on which only AddWhisparr3 was called resolves typed clients, with no
+        /// AddLogging call of its own and no Generic Host. Three of the generated interfaces are
+        /// resolved as a sample; a sweep of all of them is not claimed.
+        /// </summary>
+        [Fact]
+        public void Registration_resolves_three_named_typed_clients()
+        {
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options
+            {
+                BaseUrl = UnusedBaseUrl,
+                ApiKey = SentinelKey,
+            });
+
+            using ServiceProvider provider = services.BuildServiceProvider();
+
+            Assert.NotNull(provider.GetRequiredService<ISystemApi>());
+            Assert.NotNull(provider.GetRequiredService<IPerformerApi>());
+            Assert.NotNull(provider.GetRequiredService<IQualityProfileApi>());
+        }
+
+        /// <summary>
+        /// The retry, timeout and circuit-breaker policies are the generated builder extensions,
+        /// retained and passed through rather than rebuilt. With all three attached through the
+        /// options hook, eight concurrent calls still complete and all eight arrive.
+        /// </summary>
+        [Fact]
+        public async Task Polly_policies_attach_and_concurrent_calls_still_complete()
+        {
+            using LoopbackCapture capture = new();
+
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options
+            {
+                BaseUrl = capture.BaseUrl,
+                ApiKey = SentinelKey,
+                ConfigureHttpClient = AttachPolicies,
+            });
+
+            await using ServiceProvider provider = services.BuildServiceProvider();
+            ISystemApi api = provider.GetRequiredService<ISystemApi>();
+
+            await Task.WhenAll(Enumerable.Range(0, Concurrency).Select(_ => api.GetSystemStatusAsync()));
+
+            IReadOnlyList<string> requests = await capture.WaitForRequestsAsync(Concurrency, CaptureTimeout);
+
+            Assert.Equal(Concurrency, requests.Count);
+            Assert.All(requests, request =>
+                Assert.Equal(
+                    "X-Api-Key: " + SentinelKey,
+                    Assert.Single(CapturedRequest.HeaderLines(request, "X-Api-Key"))));
+        }
+
+        /// <summary>
+        /// A measured limitation of the generated registration layer, recorded as a fact rather
+        /// than left an undocumented surprise. Both the named client configuration and the token
+        /// provider registration are last-wins and there is no keyed-instance concept, so a second
+        /// call silently replaces the first for both the base address and the key. Two Whisparr
+        /// instances need two service collections.
+        /// </summary>
+        [Fact]
+        public async Task A_second_AddWhisparr3_last_wins_including_the_polly_configuration()
+        {
+            using LoopbackCapture first = new();
+            using LoopbackCapture second = new();
+
+            const string SecondKey = "SECOND-Key-456";
+
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options
+            {
+                BaseUrl = first.BaseUrl,
+                ApiKey = SentinelKey,
+                ConfigureHttpClient = AttachPolicies,
+            });
+            services.AddWhisparr3(new Whisparr3Options
+            {
+                BaseUrl = second.BaseUrl,
+                ApiKey = SecondKey,
+                ConfigureHttpClient = AttachPolicies,
+            });
+
+            await using ServiceProvider provider = services.BuildServiceProvider();
+            await provider.GetRequiredService<ISystemApi>().GetSystemStatusAsync();
+
+            string request = await second.FirstRequest;
+
+            Assert.Equal(
+                "X-Api-Key: " + SecondKey,
+                Assert.Single(CapturedRequest.HeaderLines(request, "X-Api-Key")));
+            Assert.Empty(first.Requests);
+        }
+
+        /// <summary>
+        /// The three generated Polly builder extensions, attached in one place so both tests that
+        /// need them exercise the same configuration.
+        /// </summary>
+        /// <param name="builder">The builder for one typed client.</param>
+        private static void AttachPolicies(IHttpClientBuilder builder)
+        {
+            builder
+                .AddRetryPolicy(2)
+                .AddTimeoutPolicy(TimeSpan.FromSeconds(30))
+                .AddCircuitBreakerPolicy(5, TimeSpan.FromSeconds(30));
         }
 
         /// <summary>
