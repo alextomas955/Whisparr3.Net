@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Pre-process the captured Whisparr 3 (Eros) OpenAPI document into the spec the generator reads.
 
-T1 repairs root security, T2 deletes the malformed paths["/"] so 273 operations become 272, and T3
-derives an operationId for every operation from the document itself.
+T1 repairs root security, T2 deletes the malformed paths["/"], and T3 derives an operationId for
+every operation from the document itself.
 
 The derivation is devopsarr's assign_operation_id.py, the algorithm behind the Go, Python and
 TypeScript *arr clients. OPERATION_ID_OVERRIDES names the 13 operations it cannot get right from
@@ -10,7 +10,7 @@ the URL alone, mostly abbreviations only a human can expand: alttitle is Alterna
 
 Nothing here pins a name against upstream change. If Whisparr renames a path, the derived method
 name follows it and the break surfaces in a consumer's build. That trade was accepted in exchange
-for deleting a 272-entry committed map that had to be reviewed on every version bump.
+for deleting a committed name map that had to be reviewed on every version bump.
 
     python generator/preprocess_spec.py
 """
@@ -28,11 +28,10 @@ from _common import die, resolve_repo_path, sha256_file, write_json_lf
 # permissive configuration. A leading empty requirement is the OpenAPI spelling for "optional".
 # Header only, though Whisparr also declares the query scheme: generichost does not treat the two as
 # alternatives but emits a call to every declared scheme, so the both-schemes form put the key in
-# the URL of all 272 requests, where it reaches access logs, proxy logs and Referer headers
+# the URL of every request, where it reaches access logs, proxy logs and Referer headers
 # (upstream openapi-generator issue 24138).
 SECURITY = [{"X-Api-Key": []}]
 
-EXPECTED_OPERATIONS = 272
 HTTP_METHODS = ("get", "put", "post", "delete", "options", "head", "patch", "trace")
 # A valid C# identifier of the shape this library's public method names take. Anchored on purpose.
 OPERATION_ID_PATTERN = re.compile(r"[A-Z][A-Za-z0-9]*")
@@ -155,15 +154,22 @@ def main():
 
     # --- 3. T2, the malformed root path ---
     # Assert the key was there. Deleting a key that was already gone would produce a plausible
-    # 272-operation spec from a document this pipeline has never seen.
+    # spec from a document this pipeline has never seen.
     paths = document["paths"]
+    # Counted before the delete, so step 7 can check the output against this input rather than
+    # against a number typed into this file. Whisparr adds and removes operations between releases;
+    # what has to hold is that this script removed exactly the root path and nothing else.
+    operations_in = sum(1 for item in paths.values() for m in item if m in HTTP_METHODS)
     if "/" not in paths:
         die(
             'ERROR: REFUSED - paths["/"] is not present, so ' + raw_path
             + " is not what this pipeline expects. Nothing was written."
         )
+    root_operations = sum(1 for m in paths["/"] if m in HTTP_METHODS)
     del paths["/"]
-    print('  + T2 deleted paths["/"], {} path items remain'.format(len(paths)))
+    expected_operations = operations_in - root_operations
+    print('  + T2 deleted paths["/"] and its {} operation(s), {} path items remain'.format(
+        root_operations, len(paths)))
 
     # --- 4. Derive a name for every operation ---
     operations = []
@@ -245,11 +251,17 @@ def main():
     print("  + T3 assigned {} operationIds".format(len(operations)))
 
     # --- 7. The census ---
-    if len(operations) != EXPECTED_OPERATIONS:
+    # Against the input, not against a pinned total. This asserts that T2 is the only thing that
+    # changed the operation count, which is the property that matters. A release that adds ten
+    # operations passes; a bug that drops one does not.
+    if len(operations) != expected_operations:
         die(
-            "ERROR: REFUSED - the patched document carries {} operations, expected {}. Nothing was "
-            "staged.".format(len(operations), EXPECTED_OPERATIONS)
+            "ERROR: REFUSED - the patched document carries {} operations. The input carried {} and "
+            "T2 removed {}, so {} were expected. Nothing was staged.".format(
+                len(operations), operations_in, root_operations, expected_operations)
         )
+    print("  + census: {} in, {} removed by T2, {} out".format(
+        operations_in, root_operations, len(operations)))
 
     # --- 8. Write ---
     # Every assertion above has already passed, so this is the first write to anything committed.

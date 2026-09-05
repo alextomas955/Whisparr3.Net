@@ -1,8 +1,8 @@
 # Whisparr3.Net
 
 A C# client for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI specification. It covers
-every operation in that specification except the one malformed root path, which is 272 operations.
-The package targets `net8.0` and `net10.0`.
+every operation in that specification except the one malformed root path. The package targets
+`net8.0` and `net10.0`.
 
 ## Quickstart
 

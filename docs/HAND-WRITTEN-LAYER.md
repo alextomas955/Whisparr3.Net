@@ -359,7 +359,7 @@ The spec's documented codes describe what the server was thought to do, not what
 in this layer makes the tag create's body readable, and a round trip must assert through
 `EnsureSuccess` rather than through the generated success accessor.
 
-The count of operations whose response type carries no typed success accessor is measured at 92
-over the current generated tree. The requirements record for this library says 93. Whoever writes
-the published README owns that number and should reconcile it before publishing, so the
-documentation does not state a count the assembly contradicts.
+The operations whose response type carries no typed success accessor are listed in
+[SURFACE.md](SURFACE.md), which is generated from the committed specification. Do not copy the
+count out of it into prose here or into the published README: it moves with every Whisparr release,
+and a copy goes stale silently. Link to the document instead.
