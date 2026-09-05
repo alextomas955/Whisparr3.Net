@@ -1,0 +1,46 @@
+# Builds both target frameworks and runs both test suites, with the live suite required to
+# reach a real Whisparr container rather than allowed to skip itself.
+name: build-and-test
+
+on:
+  # push is narrowed to main on purpose. Left open, a commit on a branch with an open pull
+  # request fires both push and pull_request and charges two runs for one commit.
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# The repository default is read. Declaring it here stops a later change to that default
+# from widening what this workflow can do.
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Both lines are required. Building net8.0 needs only reference assemblies, but running
+      # a net8.0 test host needs the .NET 8 runtime, and roll-forward does not cross a major.
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Build
+        run: dotnet build Whisparr3.Net.slnx -c Release --nologo
+
+      # The two suites are separate steps so a red mark names which one failed.
+      - name: Unit tests
+        run: dotnet test test/Whisparr3.Net.UnitTests -c Release --no-build --nologo
+
+      # WHISPARR3NET_REQUIRE_DOCKER turns an unreachable daemon from a green skip into a
+      # failure. It is quoted so YAML makes it a string, which is what the fixture compares
+      # ordinal, and it sits on this step so a later edit cannot move a test out from under it.
+      - name: Integration tests against a seeded Whisparr container
+        env:
+          WHISPARR3NET_REQUIRE_DOCKER: "1"
+        run: dotnet test test/Whisparr3.Net.IntegrationTests -c Release --no-build --nologo
+        timeout-minutes: 15
