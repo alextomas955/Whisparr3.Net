@@ -80,10 +80,11 @@ namespace Whisparr3.Net.UnitTests
         /// This is the client half of the content-type evidence, observed over a real socket rather
         /// than read off the generated contentTypes array. The observed value is the bare media
         /// type with no charset parameter, because the operation overwrites the StringContent
-        /// default header with a MediaTypeHeaderValue that carries none. The assertion is a prefix
-        /// rather than an equality so that a parameter appearing later reads as a change to the
-        /// header rather than as a change to the selected media type, which is what this test is
-        /// about.
+        /// default header with a MediaTypeHeaderValue that carries none. The assertion accepts the
+        /// bare media type or the media type followed by a parameter separator, and nothing else. A
+        /// parameter is always introduced by a semicolon, so tolerating a parameter appearing later
+        /// does not require tolerating a longer media type. An open-ended prefix is what accepted
+        /// application/json5 and application/jsonx, neither of which is what this test is about.
         /// </remarks>
         [Fact]
         public async Task Request_content_type_is_application_json()
@@ -98,7 +99,12 @@ namespace Whisparr3.Net.UnitTests
 
             string only = Assert.Single(CapturedRequest.HeaderLines(request, "Content-Type"));
 
-            Assert.StartsWith("Content-Type: application/json", only, StringComparison.Ordinal);
+            string value = only["Content-Type:".Length..].Trim();
+
+            Assert.True(
+                string.Equals(value, "application/json", StringComparison.Ordinal)
+                    || value.StartsWith("application/json;", StringComparison.Ordinal),
+                $"The request declared Content-Type '{value}'.");
         }
 
         /// <summary>

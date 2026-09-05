@@ -13,21 +13,41 @@ namespace Whisparr3.Net.UnitTests
     /// A loopback HTTP listener that records the literal bytes of every request it receives.
     /// </summary>
     /// <remarks>
+    /// <para>
     /// A mocked HttpMessageHandler cannot stand in for this. A mock returns whatever it was
     /// configured to return and would pass identically whether the header carried the key or the
     /// key behind a bearer scheme prefix, which is the exact defect these tests exist to catch.
     /// The listener binds an ephemeral port on the loopback interface only, and the port is read
     /// back from LocalEndpoint rather than assumed.
+    /// </para>
+    /// <para>
+    /// The head and the body are both decoded as ASCII, one byte to one character, which is what
+    /// makes a captured character count and a declared byte count the same number. A payload
+    /// carrying any byte above 127 is therefore captured as replacement characters, so a test
+    /// asserting a non-ASCII value would need a different decoding. That decoding is not changed
+    /// here, because nothing in this project sends a non-ASCII value today.
+    /// </para>
     /// </remarks>
     internal sealed class LoopbackCapture : IDisposable
     {
+        /// <summary>How long teardown waits for a background task before giving up on it.</summary>
+        /// <remarks>
+        /// Bounded on purpose. An unbounded wait on a hung peer would hang the whole test run,
+        /// which is worse than the leaked task this teardown exists to prevent.
+        /// </remarks>
+        private static readonly TimeSpan TeardownTimeout = TimeSpan.FromSeconds(5);
+
         private readonly TcpListener _listener;
         private readonly int _status;
         private readonly string _body;
         private readonly ConcurrentQueue<string> _requests = new();
+        private readonly ConcurrentBag<Task> _serving = new();
+        private readonly CancellationTokenSource _stopping = new();
         private readonly SemaphoreSlim _recorded = new(0);
+        private readonly Task _accepting;
         private readonly TaskCompletionSource<string> _first =
             new(TaskCreationOptions.RunContinuationsAsynchronously);
+        private bool _disposed;
 
         /// <summary>The ephemeral port the listener actually bound.</summary>
         public int Port { get; }
@@ -42,6 +62,16 @@ namespace Whisparr3.Net.UnitTests
         public IReadOnlyCollection<string> Requests => _requests;
 
         /// <summary>
+        /// The first failure a connection-serving task hit, or null when none has failed.
+        /// </summary>
+        /// <remarks>
+        /// A peer that closes before the canned response is written faults the serving task. That
+        /// failure is recorded here rather than left on a fire-and-forget task, where nobody sees
+        /// it and a later capture timeout has no explanation.
+        /// </remarks>
+        public Exception? ServeFailure { get; private set; }
+
+        /// <summary>
         /// Starts the listener.
         /// </summary>
         /// <param name="status">The status code every canned response carries.</param>
@@ -53,7 +83,7 @@ namespace Whisparr3.Net.UnitTests
             _listener = new TcpListener(IPAddress.Loopback, 0);
             _listener.Start();
             Port = ((IPEndPoint)_listener.LocalEndpoint).Port;
-            _ = Task.Run(AcceptLoopAsync);
+            _accepting = Task.Run(AcceptLoopAsync);
         }
 
         /// <summary>
@@ -85,24 +115,71 @@ namespace Whisparr3.Net.UnitTests
 
         private async Task AcceptLoopAsync()
         {
-            while (true)
+            while (!_stopping.IsCancellationRequested)
             {
                 TcpClient client;
 
                 try
                 {
-                    client = await _listener.AcceptTcpClientAsync().ConfigureAwait(false);
+                    client = await _listener.AcceptTcpClientAsync(_stopping.Token).ConfigureAwait(false);
                 }
-                catch (Exception)
+                catch (OperationCanceledException)
+                {
+                    return;
+                }
+                catch (ObjectDisposedException)
+                {
+                    // The listener was stopped. That is the ordinary teardown path and the only
+                    // reason this loop ends. Every other failure propagates to the accept-loop
+                    // task, which Dispose observes, because a socket failure absorbed here is the
+                    // explanation a later capture timeout would otherwise not have.
+                    return;
+                }
+                catch (SocketException)
                 {
                     return;
                 }
 
-                _ = Task.Run(() => ServeAsync(client));
+                _serving.Add(Task.Run(() => ServeAsync(client)));
             }
         }
 
         private async Task ServeAsync(TcpClient client)
+        {
+            try
+            {
+                await ServeCoreAsync(client).ConfigureAwait(false);
+            }
+            catch (IOException e)
+            {
+                RecordServeFailure(e);
+            }
+            catch (SocketException e)
+            {
+                RecordServeFailure(e);
+            }
+            catch (ObjectDisposedException e)
+            {
+                RecordServeFailure(e);
+            }
+            catch (OperationCanceledException e)
+            {
+                RecordServeFailure(e);
+            }
+        }
+
+        /// <summary>
+        /// Keeps a serving failure where an assertion can reach it, instead of losing it on a
+        /// task nobody awaits.
+        /// </summary>
+        /// <param name="failure">What went wrong while serving one connection.</param>
+        private void RecordServeFailure(Exception failure)
+        {
+            ServeFailure ??= failure;
+            _first.TrySetException(failure);
+        }
+
+        private async Task ServeCoreAsync(TcpClient client)
         {
             using (client)
             using (NetworkStream stream = client.GetStream())
@@ -144,6 +221,22 @@ namespace Whisparr3.Net.UnitTests
 
                     text.Append(Encoding.ASCII.GetString(buffer, 0, read));
                     request = text.ToString();
+                }
+
+                // Refuse to publish a fragment. The head loop above ends when the peer closes,
+                // whether or not the blank line arrived, and the body loop ends the same way. A
+                // fragment handed to an assertion produces a result about the fragment, and the
+                // parsing helpers below read a short header list as a short header list rather
+                // than as an incomplete capture.
+                bool complete = separator >= 0 && request.Length - (separator + 4) >= declared;
+
+                if (!complete)
+                {
+                    _first.TrySetException(new InvalidOperationException(
+                        "The connection closed before a complete request arrived. Captured "
+                            + $"{request.Length} characters."));
+
+                    return;
                 }
 
                 _requests.Enqueue(request);
@@ -188,11 +281,31 @@ namespace Whisparr3.Net.UnitTests
             return 0;
         }
 
-        /// <summary>Stops the listener.</summary>
+        /// <summary>
+        /// Stops the listener and waits for the background tasks before disposing what they use.
+        /// </summary>
+        /// <remarks>
+        /// The order matters. A serving task releases the semaphore, so disposing the semaphore
+        /// while one is in flight throws on a task nobody observes. Both waits are bounded, because
+        /// an unbounded wait on a hung peer would hang the whole test run.
+        /// </remarks>
         public void Dispose()
         {
+            if (_disposed)
+            {
+                return;
+            }
+
+            _disposed = true;
+
+            _stopping.Cancel();
             _listener.Stop();
+
+            Task.WaitAll(new[] { _accepting }, TeardownTimeout);
+            Task.WaitAll(_serving.ToArray(), TeardownTimeout);
+
             _recorded.Dispose();
+            _stopping.Dispose();
         }
     }
 

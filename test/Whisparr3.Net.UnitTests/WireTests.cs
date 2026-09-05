@@ -221,6 +221,10 @@ namespace Whisparr3.Net.UnitTests
             Assert.Equal(
                 "X-Api-Key: " + SecondKey,
                 Assert.Single(CapturedRequest.HeaderLines(request, "X-Api-Key")));
+            // The shape helper is used freely here because no wording constrains this line. The
+            // live read test states its three counts as equalities instead, and suppresses
+            // xUnit2013 to do it, because the requirement those assertions answer to names the
+            // helper it does not accept. The two forms otherwise prove the same thing.
             Assert.Empty(first.Requests);
         }
 
