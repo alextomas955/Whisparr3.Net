@@ -5,11 +5,13 @@ Stages the two inputs into a temporary root, runs the pinned generator image aga
 staged tree, then deletes the five generated subdirectories and copies the new ones back. The
 generator never prunes, so the delete is the pruner.
 
-Docker on this machine cannot bind-mount the I: drive. Measured 2026-09-04: a bind mount of an I:
-path lists an empty directory and exits 0, so it looks like it worked and is not. Generation
-therefore stages under the user temp directory on C:. gen-config.yaml needs no edit, because its
-/local-rooted paths already resolve against a mirrored staging root. Do not repair the mount by
-restarting Docker Desktop or running wsl --shutdown: this machine hosts live containers.
+Generation never bind-mounts the repository. It stages the two inputs under the system temp
+directory and mounts that instead, for two reasons. The generator writes into the root it is given
+and never prunes, so a run against the repository in place would mix its output into the working
+tree before any check had seen it. A repository on a mapped or network drive may also not be
+bind-mountable at all, and Docker reports that as an empty mount and exit 0 rather than as an
+error. gen-config.yaml needs no edit either way, because its /local-rooted paths resolve against
+the staging root.
 
 There is no output-root parameter on purpose. The destination is the whole repository tree, and a
 redirect without a promote guard is the fail-open shape this pipeline is hardened against.
