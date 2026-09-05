@@ -95,10 +95,9 @@ returning `null`. That variant destroys the same distinction. Call the plain var
 
 ## Where to look next
 
-- [docs/SURFACE.md](docs/SURFACE.md) lists the operations that return nothing, with the count and
-  the reason in the specification, and the six operations that exist but are not useful from C#.
-- [docs/DO-NOT-CALL.md](docs/DO-NOT-CALL.md) lists every operation that changes state on the
-  instance, and names the seven that are worse than the rest.
+- [docs/SURFACE.md](docs/SURFACE.md) lists the operations that return nothing and why, the ones
+  that serve Whisparr's web interface, the responses that carry credentials, and the operations
+  whose effect the specification does not describe.
 - [docs/HAND-WRITTEN-LAYER.md](docs/HAND-WRITTEN-LAYER.md) describes what this repository adds on
   top of the generated code, and what it deliberately leaves alone.
 - [docs/REGENERATION.md](docs/REGENERATION.md) is the procedure for reproducing the generated tree
