@@ -1,16 +1,26 @@
-# Operations this repository does not call
+# State-mutating operations, and the two the suite calls
 
 The Whisparr 3 API has 272 operations and 131 of them change state on the instance. This
 document lists all 131, so that anyone adding a test can check a call against the list before
-writing it.
+writing it. The suite calls two of them, both on tags, and both are named below.
 
-The list is documentation. Nothing reads it at build time and nothing enforces it. What
-protects the integration suite is that its container is published on a random loopback port,
-so it cannot reach any Whisparr but its own, and that the suite is small enough to read in
-full.
+The list is documentation. Nothing reads it at build time and nothing enforces it. What keeps
+the suite off any instance but the one it created is that every client in it is built from
+`WhisparrFixture.BaseUrl`, which is read back from the daemon after the container starts. No
+host port and no host name is written into the test project, so a test cannot address anything
+else. The container is separately published on a random loopback port, which is a different
+protection: it keeps the container's key off every interface but the loopback one.
 
-The one write the suite performs is `POST /api/v3/tag`, and the tag it creates it deletes
-again in the same test.
+The distinction matters. Where a container publishes its own port places no constraint on what
+address a client in the test process dials, so a reader who trusts the port binding for that
+could add a test carrying a literal URL and believe the binding still protects them. This
+machine runs a real Whisparr of its own on another port.
+
+The suite's write inventory, counted from the tests rather than described: it creates two tags
+through the client with `POST /api/v3/tag`, `CreateTag`, and deletes two tags with
+`DELETE /api/v3/tag/{id}`, `DeleteTag`. Both are listed below. It also attempts one further
+create by hand with a `text/json` content type, which the server refuses with 415 and which
+creates nothing.
 
 ## Never call these under any circumstances
 
@@ -464,9 +474,11 @@ dangerous list. The two totals are 131 and 141, and they add up to 272.
 Nothing structurally prevents a contributor adding a call to one of these operations. There is
 no allowlist type, no source analyzer over the test project and no run-time check of this list.
 
-The mitigations are what the opening paragraph says they are: the container is published on a
-random loopback port, this list is committed, and the suite is small enough that reading it is
-the verification. Those are real and they are not the same as enforcement.
+The mitigations are what the opening paragraph says they are: every client is built from
+`WhisparrFixture.BaseUrl` and no host port or host name is written into the test project, the
+container is published on a random loopback port so its key stays off every other interface,
+this list is committed, and the suite is small enough that reading it is the verification.
+Those are real and they are not the same as enforcement.
 
 If standing enforcement is ever wanted, the honest form is a source analyzer over the test
 project that fails the build on a call to a named operation. A run-time harness is the wrong
