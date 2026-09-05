@@ -21,6 +21,14 @@ Customisation goes to one of three places instead:
   nullable, the warning policy, the deterministic-build flags and all NuGet package metadata.
 - A hand-written directory outside the generated tree.
 
+That directory is `src/hand-written/`, and what it holds is documented in
+`docs/HAND-WRITTEN-LAYER.md`. One join makes it real: `src/Whisparr3.Net/Whisparr3.Net.csproj`
+carries the `Compile` glob that pulls the directory into the library assembly. Without that glob,
+files there compile into nothing while the build stays green and every test passes against
+generated code alone. The glob lives in the library csproj and deliberately not in
+`Directory.Build.props`, which would also compile those sources into the test assembly and define
+every hand-written type twice.
+
 `Directory.Build.props` sits at the repo root, which is outside every directory the generator writes to.
 That is the property this repo currently has. The generator emits no props file at any setting,
 measured 2026-09-04 by running it with `openapiGeneratorIgnoreList` removed entirely and listing
@@ -40,14 +48,37 @@ Two related facts a reader of this file needs.
 
 ## Build and packaging
 
-Two traps that a reader copying the sibling `extensions\` repo would walk into.
+Traps that a reader copying the sibling `extensions\` repo would walk into.
 
-- Any future test or sample project must set `<IsPackable>false</IsPackable>`. `PackageId` is set
-  in `Directory.Build.props` and therefore applies to every project in the tree, so a second
-  packable project claims the same package id.
+- A test or sample project needs three things in its csproj, and the first two were each found by
+  a measured failure rather than by reading.
+  - `<IsPackable>false</IsPackable>`. `PackageId` is set in `Directory.Build.props` and therefore
+    applies to every project in the tree, so a second packable project claims the same package id.
+  - `<PackageId>$(MSBuildProjectName)</PackageId>`. The packable flag alone is necessary and not
+    sufficient: restore still fails with `Ambiguous project name 'Whisparr3.Net'`, because the
+    inherited `PackageId` applies whether or not the project packs.
+  - No `<TargetFramework>` element at all. `Directory.Build.props` sets the plural
+    `TargetFrameworks`, and a project that also sets the singular one builds green while the test
+    runner reports `No test is available`. That is a silent zero-test pass. Omit the element and
+    let the project cross-target.
 - Do not adopt central package management. `extensions\` has a `Directory.Packages.props`; this
   repo must not. The generated csproj writes versioned `PackageReference` elements, and central
   package management turns a versioned `PackageReference` into a hard `NU1008` error.
+
+## Tests
+
+`test/Whisparr3.Net.UnitTests/` is the only test project. It sits outside `src/` deliberately, so
+the generator's sweep cannot reach it, and it is not packed.
+
+The generator writes no tests of its own. It does write
+`[assembly: InternalsVisibleTo("Whisparr3.Net.Test")]` into `Client/ClientUtils.cs`, naming a
+project this repo does not have and will not add. Tests therefore stay on the public surface. Do
+not add a second `InternalsVisibleTo` and do not rename the test project to match that attribute.
+
+The test project references the library project and calls `AddWhisparr3` directly. That coupling is
+load-bearing: it is what turns a broken `Compile` glob into a build error instead of a green build
+over a hand-written layer that was never compiled. Do not test through an intermediate abstraction
+and do not copy hand-written sources into the test project.
 
 ## Planning
 
