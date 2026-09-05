@@ -97,7 +97,11 @@ namespace Whisparr3.Net.IntegrationTests
         /// covers the whole path from the request builder through the response to the exception
         /// and catches a leak whatever mechanism introduced it. The assertion is made on a
         /// captured failure rather than on an exception the test constructed, because an exception
-        /// built by the test proves only what the test put into it.
+        /// built by the test proves only what the test put into it. The control covers RawContent
+        /// as well as the request URI and the message, because RawContent is the property
+        /// Whisparr3ApiException's own documentation names as the surface that carries
+        /// instance-controlled bytes. A Whisparr 401 has an empty body today, so that pair is a
+        /// guard against a future body rather than an observation of a leak.
         /// </remarks>
         [SkippableFact]
         public async Task Wrong_key_failure_carries_no_credential()
@@ -118,14 +122,21 @@ namespace Whisparr3.Net.IntegrationTests
 
             string requestUri = thrown.RequestUri?.ToString() ?? string.Empty;
 
-            // Both keys, in both places, four comparisons. The fixture's key is checked as well as
-            // the wrong one because a leak of the configured credential is the failure that
+            // Both keys, in all three places, six comparisons. The fixture's key is checked as well
+            // as the wrong one because a leak of the configured credential is the failure that
             // matters, and this client is configured with the wrong key while the real one is live
             // in the same process.
             Assert.DoesNotContain(WrongApiKey, requestUri, StringComparison.Ordinal);
             Assert.DoesNotContain(fixture.ApiKey, requestUri, StringComparison.Ordinal);
             Assert.DoesNotContain(WrongApiKey, thrown.Message, StringComparison.Ordinal);
             Assert.DoesNotContain(fixture.ApiKey, thrown.Message, StringComparison.Ordinal);
+
+            // RawContent is the third place, and it is the one Whisparr3ApiException's own
+            // documentation singles out as dangerous: it carries the instance's bytes verbatim,
+            // and the message embeds those bytes only up to a cap. A Whisparr 401 has an empty
+            // body today, so these two are a guard rather than an observation of a leak.
+            Assert.DoesNotContain(WrongApiKey, thrown.RawContent, StringComparison.Ordinal);
+            Assert.DoesNotContain(fixture.ApiKey, thrown.RawContent, StringComparison.Ordinal);
         }
 
         /// <summary>

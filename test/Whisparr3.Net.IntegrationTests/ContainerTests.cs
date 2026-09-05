@@ -53,9 +53,17 @@ namespace Whisparr3.Net.IntegrationTests
             using Process query = Process.Start(start)
                 ?? throw new InvalidOperationException("Could not start the docker client process.");
 
-            string output = await query.StandardOutput.ReadToEndAsync();
-            string errors = await query.StandardError.ReadToEndAsync();
+            // Both reads are started before either is awaited. Draining one pipe to end while the
+            // other fills is the shape that deadlocks: the child blocks writing to the full pipe
+            // and never closes the one being read. Reversing the two reads is the same defect
+            // pointed the other way, so neither is read to end on its own.
+            Task<string> outputRead = query.StandardOutput.ReadToEndAsync();
+            Task<string> errorRead = query.StandardError.ReadToEndAsync();
+
             await query.WaitForExitAsync();
+
+            string output = await outputRead;
+            string errors = await errorRead;
 
             Assert.True(
                 query.ExitCode == 0,

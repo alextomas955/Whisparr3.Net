@@ -15,12 +15,20 @@ namespace Whisparr3.Net.IntegrationTests
     /// </summary>
     /// <remarks>
     /// <para>
-    /// This fixture never throws. When Docker is unreachable it records a skip reason and returns,
-    /// and every test in the collection starts by skipping on that reason. The alternative fails
-    /// rather than skips: an xunit 2.x collection fixture that throws during InitializeAsync
+    /// One failure path is deliberately kept out of the throwing path: an unreachable Docker
+    /// daemon. When Docker is unreachable this fixture records a skip reason and returns, and every
+    /// test in the collection starts by skipping on that reason. Throwing there would fail rather
+    /// than skip, because an xunit 2.x collection fixture that throws during InitializeAsync
     /// reports every test in the collection as failed, and Build() is exactly where Testcontainers
     /// throws DockerUnavailableException. A green build on a machine without Docker is the whole
-    /// point of the arrangement.
+    /// point of that arrangement.
+    /// </para>
+    /// <para>
+    /// Every other failure here throws, and should. There are four: a provenance key that is
+    /// absent, a provenance value that is blank, a container that will not start, and a run that
+    /// declared through WHISPARR3NET_REQUIRE_DOCKER that it requires a live container while none is
+    /// reachable. The last one relies on the same collection-wide failure described above, on
+    /// purpose rather than in spite of it.
     /// </para>
     /// <para>
     /// The key below is not a credential. It is a constant handed to a container that this run
@@ -77,10 +85,24 @@ namespace Whisparr3.Net.IntegrationTests
         private const string ForceNoDockerVariable = "WHISPARR3NET_FORCE_NO_DOCKER";
 
         /// <summary>
-        /// The wait budget. The pinned digest was measured ready in 20 seconds by direct polling
-        /// and capture_spec.py allows 90, but Testcontainers adds an image check and a reaper
-        /// start ahead of the container, and a cross-targeted run boots two containers at once.
-        /// The value is set explicitly rather than left to a library default nobody measured.
+        /// Set to "1" to declare that this run must produce live evidence. A run that declares it
+        /// and then finds no reachable daemon fails instead of reporting a green skip.
+        /// </summary>
+        /// <remarks>
+        /// A workflow that exists to carry the live evidence sets this. Without it the default is
+        /// unchanged, and a machine with no Docker still gets a green build. The trigger is this
+        /// one explicit variable and nothing ambient, because a variable that silently decides
+        /// whether a run can fail is the thing this lever guards against.
+        /// </remarks>
+        private const string RequireDockerVariable = "WHISPARR3NET_REQUIRE_DOCKER";
+
+        /// <summary>
+        /// The wait budget, per wait strategy. Two strategies are chained and Testcontainers
+        /// evaluates them in sequence, so the worst case before the start call gives up is twice
+        /// this value, which is 240 seconds. The pinned digest was measured ready in 20 seconds by
+        /// direct polling and capture_spec.py allows 90, but Testcontainers adds an image check and
+        /// a reaper start ahead of the container, and a cross-targeted run boots two containers at
+        /// once. The value is set explicitly rather than left to a library default nobody measured.
         /// </summary>
         private static readonly TimeSpan ReadinessTimeout = TimeSpan.FromSeconds(120);
 
@@ -119,12 +141,42 @@ namespace Whisparr3.Net.IntegrationTests
             && TestcontainersSettings.OS.DockerEndpointAuthConfig is not null;
 
         /// <summary>
+        /// Whether this run declared that it requires a live container.
+        /// </summary>
+        /// <remarks>
+        /// True only when WHISPARR3NET_REQUIRE_DOCKER is exactly "1", compared ordinal. A run that
+        /// declares this and finds no daemon is an error rather than a green skip, which is what a
+        /// workflow carrying the live evidence needs. It adds no test, so the skip transcript of a
+        /// run that does not declare it is unchanged.
+        /// </remarks>
+        public static bool DockerIsRequired =>
+            string.Equals(
+                Environment.GetEnvironmentVariable(RequireDockerVariable),
+                "1",
+                StringComparison.Ordinal);
+
+        /// <summary>
         /// Starts the container, or records why it could not be started.
         /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// The run declared that it requires a live container and none is reachable, or the
+        /// provenance document is missing a key or carries a blank value.
+        /// </exception>
         public async Task InitializeAsync()
         {
             if (!DockerIsAvailable)
             {
+                if (DockerIsRequired)
+                {
+                    // Deliberately a throw. An xunit 2.x collection fixture that throws during
+                    // initialization fails every test in the collection, which is what turns an
+                    // evidence-free run into an error rather than a green skip.
+                    throw new InvalidOperationException(
+                        $"{RequireDockerVariable} is set, so this run declared that it requires a "
+                            + "live Whisparr container, and no Docker daemon is reachable from this "
+                            + "process. Nothing was started and nothing was proven.");
+                }
+
                 SkipReason = "Docker is not reachable from this process, so no Whisparr container was started.";
                 return;
             }
