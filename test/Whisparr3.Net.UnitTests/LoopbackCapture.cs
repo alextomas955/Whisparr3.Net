@@ -124,7 +124,28 @@ namespace Whisparr3.Net.UnitTests
                     }
                 }
 
+                // Then read the body, if the request declared one. The loop above stops at the
+                // blank line, and whether the body bytes happened to arrive in the same segment as
+                // the head is a property of the network stack rather than of the client. An
+                // assertion over the body written against that coincidence passes most of the time
+                // and fails on the run that splits the write.
                 string request = text.ToString();
+                int separator = request.IndexOf("\r\n\r\n", StringComparison.Ordinal);
+                int declared = DeclaredContentLength(request);
+
+                while (separator >= 0 && request.Length - (separator + 4) < declared)
+                {
+                    read = await stream.ReadAsync(buffer.AsMemory()).ConfigureAwait(false);
+
+                    if (read <= 0)
+                    {
+                        break;
+                    }
+
+                    text.Append(Encoding.ASCII.GetString(buffer, 0, read));
+                    request = text.ToString();
+                }
+
                 _requests.Enqueue(request);
                 _first.TrySetResult(request);
                 _recorded.Release();
@@ -139,6 +160,32 @@ namespace Whisparr3.Net.UnitTests
                 await stream.WriteAsync(payload.AsMemory()).ConfigureAwait(false);
                 await stream.FlushAsync().ConfigureAwait(false);
             }
+        }
+
+        /// <summary>
+        /// Reads the declared body length out of a captured request head.
+        /// </summary>
+        /// <param name="captured">The captured text so far.</param>
+        /// <returns>The declared length, or 0 when the request declared none.</returns>
+        /// <remarks>
+        /// The head is decoded as ASCII, one byte to one character, so a character count and the
+        /// declared byte count are the same number.
+        /// </remarks>
+        private static int DeclaredContentLength(string captured)
+        {
+            foreach (string line in CapturedRequest.HeaderLines(captured, "Content-Length"))
+            {
+                if (int.TryParse(
+                        line["Content-Length:".Length..].Trim(),
+                        System.Globalization.NumberStyles.None,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        out int length))
+                {
+                    return length;
+                }
+            }
+
+            return 0;
         }
 
         /// <summary>Stops the listener.</summary>
@@ -171,6 +218,18 @@ namespace Whisparr3.Net.UnitTests
                 .TakeWhile(line => line.Length > 0)
                 .Where(line => line.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                 .ToArray();
+        }
+
+        /// <summary>
+        /// Returns everything after the blank line that ends the request head.
+        /// </summary>
+        /// <param name="captured">The captured request text.</param>
+        /// <returns>The body, or an empty string when the request carried none.</returns>
+        public static string Body(string captured)
+        {
+            int separator = captured.IndexOf("\r\n\r\n", StringComparison.Ordinal);
+
+            return separator < 0 ? string.Empty : captured[(separator + 4)..];
         }
 
         /// <summary>

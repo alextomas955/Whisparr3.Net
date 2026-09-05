@@ -3,6 +3,7 @@
 #nullable enable
 
 using System.Net;
+using System.Net.Http.Headers;
 using Microsoft.Extensions.DependencyInjection;
 using Whisparr3.Net.Api;
 using Whisparr3.Net.Model;
@@ -144,6 +145,47 @@ namespace Whisparr3.Net.IntegrationTests
 
             Assert.Equal(HttpStatusCode.NotFound, error.StatusCode);
             Assert.False(error.IsSuccessStatusCode);
+        }
+
+        /// <summary>
+        /// The server refuses <c>text/json</c> on the tag create with 415.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This does not go through the generated client, and it cannot. SelectHeaderContentType
+        /// returns the first declared media type matching its JSON regex, and text/json is neither
+        /// application/json nor a plus-json suffix type, so it matches nothing and the client can
+        /// never select it under any declaration order. The only way to observe what the server
+        /// does with it is to set the header by hand.
+        /// </para>
+        /// <para>
+        /// It closes the criterion's text/json clause from the server's side rather than only from
+        /// the client's. It is one request on the only operation in this phase's safe-POST set, it
+        /// creates nothing because the request is refused before a tag is made, and it touches
+        /// nothing on the do-not-call list.
+        /// </para>
+        /// <para>
+        /// The base URL and the key come from the fixture, never from a literal and never from the
+        /// environment, so this plain HttpClient can only reach the container this run created.
+        /// The response body is deliberately not asserted: it is an ASP.NET Core error payload
+        /// whose shape belongs to the framework rather than to Whisparr.
+        /// </para>
+        /// </remarks>
+        [SkippableFact]
+        public async Task Text_json_is_refused_with_415()
+        {
+            Skip.If(fixture.SkipReason is not null, fixture.SkipReason);
+
+            using HttpClient client = new() { BaseAddress = new Uri(fixture.BaseUrl) };
+            client.DefaultRequestHeaders.Add("X-Api-Key", fixture.ApiKey);
+
+            using StringContent content = new("{\"label\":\"w3n-text-json-probe\"}");
+            content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
+
+            using HttpResponseMessage response =
+                await client.PostAsync(new Uri("/api/v3/tag", UriKind.Relative), content);
+
+            Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
         }
 
         /// <summary>
