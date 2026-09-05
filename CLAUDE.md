@@ -37,6 +37,17 @@ sentence.
 Nothing under `src/Whisparr3.Net/` is ever hand-edited. That directory is openapi-generator output
 and every edit inside it is destroyed on the next regeneration.
 
+`docs/SURFACE.md` is not hand-edited either. `generator/render_docs.py` writes it from the
+committed spec and from the prose template at `generator/templates/SURFACE.md.in`, so an edit made
+in `docs/` is overwritten on the next render. Edit the template. Both CI workflows run the renderer
+with `--check`, so a hand edit fails the build before anyone notices it was lost.
+
+Three lists in that script are judgement rather than derivation: which paths serve Whisparr's web
+interface, which responses carry credentials, and which operations have effects the spec does
+not describe. Each is checked against the spec on every run, so a path Whisparr removes fails
+the render instead of leaving prose about an operation that no longer exists. The document
+describes and does not instruct: what a caller does with an operation is their decision.
+
 Customisation goes to one of three places instead:
 
 - Spec pre-processing, before the generator runs.
