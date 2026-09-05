@@ -1,0 +1,43 @@
+# Regenerates the client tree from the committed spec on a fresh checkout and refuses any
+# difference from what is committed. This is the same command a developer runs locally, which
+# is what makes a byte-identical reproduction something a stranger can perform.
+name: determinism
+
+on:
+  # push is narrowed to main on purpose, matching build-and-test.yml. Left open, a commit on a
+  # branch with an open pull request fires both push and pull_request and charges two runs.
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# This workflow reads and compares. It writes nothing back to the repository.
+permissions:
+  contents: read
+
+jobs:
+  determinism:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # generate.py takes no arguments. The generator image is pinned by digest inside the
+      # script and there is deliberately no output-root parameter, so it writes over the tree
+      # it was invoked from.
+      - name: Regenerate the client tree and compare it against what is committed
+        run: |
+          python3 generator/generate.py
+
+          # Stage before diffing. A bare git diff compares the working tree to the index and
+          # reports nothing for an untracked path, so a generation that emitted a file the
+          # committed tree does not have would pass an unstaged gate.
+          git add -A -- src/Whisparr3.Net .openapi-generator .openapi-generator-ignore
+
+          git diff --cached --exit-code || {
+            echo "The regenerated tree differs from the committed tree."
+            # core.fileMode is false on the owner's Windows machine and defaults to true on
+            # Linux, so a difference in file mode alone can appear only here. The porcelain
+            # status is what makes that readable from this log rather than from a rerun.
+            git status --porcelain
+            exit 1
+          }
