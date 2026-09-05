@@ -82,6 +82,11 @@ def main():
         ("generate", script("generate.py"),
          "Generation refused or the generator container failed. Its own message says whether the "
          "generated tree was left touched or untouched; read that before re-running."),
+        ("render-docs", script("render_docs.py"),
+         "The render refused. Most often a path named in render_docs.py has left the spec, which "
+         "means Whisparr moved or removed it: the message names which list and which path. Fix the "
+         "list and the prose that describes it together, then run this script again. The spec and "
+         "the generated tree above are already committed."),
         ("build", ["dotnet", "build", SOLUTION, "-c", "Release", "--nologo"],
          "The regenerated surface does not compile on both target frameworks. "
          "Directory.Build.props treats warnings as errors, so a new warning stops here too. A build "
