@@ -17,7 +17,7 @@ indent_size = 2
 indent_size = 2
 
 # ---------- Generated code ----------
-# src/Whisparr3.Net/ is openapi-generator output from Phase 20 on. Ordering here is load-bearing,
+# src/Whisparr3.Net/ is openapi-generator output. Ordering here is load-bearing,
 # because a later section wins. The general generated-code section must stay below the formatting
 # sections above, and the csproj exclusion must stay below the general section.
 #
@@ -31,6 +31,6 @@ generated_code = true
 # The hand-owned Whisparr3.Net.csproj is the one file in that directory that is not generated, so
 # the classification above is wrong for it. Analyzer coverage over a csproj is near-empty, which
 # makes this low impact and not optional: the classification is what a reader and a tool both go
-# by, and D-06 hands this file to hand ownership.
+# by, and this csproj is hand-owned rather than generated.
 [src/Whisparr3.Net/*.csproj]
 generated_code = false

@@ -16,8 +16,8 @@
 # Deliberately not the binary macro: it expands to -diff -merge -text, which would render the spec
 # delta as "Binary files differ" and destroy the reviewability the capture exists for. That reason
 # applies to the patched spec's refresh diff exactly as it applies to the capture.
-# spec/transform-report.txt is deliberately absent from this list. It is generated, but D-13 makes
-# it a review artifact for a human reading a spec-refresh PR and therefore something that must be
+# spec/transform-report.txt is deliberately absent from this list. It is generated, but it is a
+# review artifact for a human reading a spec-refresh PR and therefore something that must be
 # read as a diff, which is the one thing linguist-generated takes away.
 src/Whisparr3.Net/** linguist-generated
 spec/openapi.raw.json linguist-generated
@@ -26,7 +26,7 @@ spec/openapi.generated.json linguist-generated
 
 # The one exception inside src/Whisparr3.Net/. The wide glob above matches the hand-owned
 # Whisparr3.Net.csproj too, confirmed with git check-attr, and that file is the one thing in that
-# directory a reviewer must read line by line: D-06 makes its content the difference between a
+# directory a reviewer must read line by line: its content is the difference between a
 # working .snupkg and a dead one. Later lines win, so this narrower line releases it.
 src/Whisparr3.Net/Whisparr3.Net.csproj -linguist-generated
 

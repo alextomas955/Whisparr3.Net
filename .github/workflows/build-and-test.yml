@@ -60,3 +60,9 @@ jobs:
       # shipped document quietly wrong.
       - name: Assert the documented surface still matches the committed spec
         run: python3 scripts/assert_surface.py
+
+      # The third repository gate. It reads the tracked file list rather than the working tree,
+      # so untracked build output can neither turn it red nor hide a hit, and the ignored
+      # planning tree is out of its scope by construction.
+      - name: Assert no tracked file cites a planning identifier
+        run: python3 scripts/assert_no_planning_refs.py

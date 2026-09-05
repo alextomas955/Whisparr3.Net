@@ -1,4 +1,5 @@
-# The complete openapi-generator invocation, in one committed file (PREP-07, D-26).
+# The complete openapi-generator invocation, in one committed file, so a regeneration is
+# reproducible from this repository rather than from someone's shell history.
 #
 # Run it as `generate -c /local/generator/gen-config.yaml` inside the pinned image
 # openapitools/openapi-generator-cli@sha256:2ab0a9680222de65dc9d3baf861aa02b99e1b80c211d8221ebf3ae8f8a102524.
@@ -8,7 +9,7 @@
 #
 # Generation must always run inside the image, on a dev machine and in CI alike:
 # .openapi-generator/FILES is written with the platform line separator, so a host run and a
-# container run differ in that one file for a reason that has nothing to do with the spec (D-28).
+# container run differ in that one file for a reason that has nothing to do with the spec.
 generatorName: csharp
 library: generichost
 inputSpec: /local/spec/openapi.generated.json
@@ -37,7 +38,7 @@ globalProperties:
 # The scaffolding this repository owns by hand or does not want at all. This is the config-file
 # equivalent of the ignore file, and unlike the ignore file it is rewritten on every run.
 #
-# "**/*.csproj" is here because the project file is hand-owned from Phase 20 on (D-06). Measured
+# "**/*.csproj" is here because the project file is hand-owned rather than generated. Measured
 # 2026-09-04 against the csproj this generator actually emits: it carries six placeholder metadata
 # values that Directory.Build.props exists to correct, Authors, Company, Description, Copyright,
 # Version and PackageReleaseNotes. It also hardcodes RepositoryUrl and RepositoryType, and a
@@ -72,22 +73,22 @@ additionalProperties:
   # `Ignored /local/Whisparr3.Net.sln (Ignored by rule in ignore file.)`. Remove "*.sln" from that
   # list and two unpinned runs then differ in exactly one file, Whisparr3.Net.sln.
   #
-  # The pin stays, for two reasons. It is what PREP-07 asks for, and it becomes load-bearing the
-  # moment anyone stops suppressing the solution file. What is NOT true is that it is currently
-  # what makes generation deterministic - the ignore list is. Do not delete the ignore entry on the
-  # assumption that this pin covers it.
+  # The pin stays, for two reasons. It is what keeps this invocation complete and pinned, and it
+  # becomes load-bearing the moment anyone stops suppressing the solution file. What is NOT true
+  # is that it is currently what makes generation deterministic - the ignore list is. Do not
+  # delete the ignore entry on the assumption that this pin covers it.
   packageGuid: "{1EDF3552-B7CE-4C36-A15C-810845C3F203}"
 
 # Deliberately absent, each with its reason. The three normalizers are also recorded in
 # spec/transform-report.txt section 4:
 #   - the three normalizers (duplicate-operationId repair, security-scheme filter, path allowlist)
 #   - the generation-timestamp option, which already defaults to the value this repository wants
-#     for this generator and injects a build-date line when set the other way (D-27)
+#     for this generator and injects a build-date line when set the other way
 #   - useSourceGeneration, a generichost-only option whose generator default is false. Read from
 #     `config-help -g csharp` inside the pinned image on 2026-09-04: `Use source generation where
 #     available (only generichost library supports this option). (Default: false)`. It stays at
 #     that default here because turning it on has not been verified against either target
-#     framework, and verifying it is deferred work rather than this phase's. The recorded reason is
+#     framework, and verifying it is deferred work. The recorded reason is
 #     the deliverable, so do not add the key in order to satisfy the requirement.
 #   - modelNameMappings, because the collision count is zero. Measured 2026-09-04: a collision needs
 #     a schema name that is also a real BCL type, Command and Field are schemas in this spec but no

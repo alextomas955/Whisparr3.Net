@@ -92,10 +92,10 @@ namespace Whisparr3.Net.IntegrationTests
         /// exception message.
         /// </summary>
         /// <remarks>
-        /// Phase 21 asserted this against a loopback stub that answered with a canned 401. This is
-        /// the same assertion against a real socket, a real Whisparr and a real rejection, so it
-        /// covers the whole path from the request builder through the response to the exception
-        /// and catches a leak whatever mechanism introduced it. The assertion is made on a
+        /// This was previously asserted against a loopback stub that answered with a canned 401.
+        /// This is the same assertion against a real socket, a real Whisparr and a real
+        /// rejection, so it covers the whole path from the request builder through the response
+        /// to the exception and catches a leak whatever mechanism introduced it. The assertion is made on a
         /// captured failure rather than on an exception the test constructed, because an exception
         /// built by the test proves only what the test put into it. The control covers RawContent
         /// as well as the request URI and the message, because RawContent is the property
