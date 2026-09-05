@@ -49,6 +49,12 @@ namespace Whisparr3.Net.IntegrationTests
         private const string ControlLabel = "w3n-deleted-id-probe";
 
         /// <summary>
+        /// The label the text/json probe sends. The request and the assertion that no tag carries
+        /// it both read this constant, so the two cannot drift apart.
+        /// </summary>
+        private const string TextJsonProbeLabel = "w3n-text-json-probe";
+
+        /// <summary>
         /// Create, read back, delete and list, against a real instance, every leg through the
         /// hand-written layer.
         /// </summary>
@@ -103,14 +109,16 @@ namespace Whisparr3.Net.IntegrationTests
             (await tags.DeleteTagAsync(createdId)).EnsureSuccess();
 
             // Leg 4, list. The delete's own status code does not prove the row is gone, and this
-            // is what does. It stays an equality: xUnit2013 prefers Assert.Empty here and this repo
-            // treats that as an error, but a shape helper would read the same whether the list came
-            // back empty or the assertion had nothing to say about a count at all.
+            // is what does. The assertion is about this test's row, by id and by label, rather than
+            // about every tag on the instance. Three tests in this class post to /api/v3/tag and
+            // xUnit does not specify method order, so a row left behind by one of the others would
+            // otherwise fail this trip with a message about its delete leg.
             List<TagResource> remaining = (await tags.ListTagAsync()).EnsureSuccess();
 
-#pragma warning disable xUnit2013
-            Assert.Equal(0, remaining.Count);
-#pragma warning restore xUnit2013
+            Assert.DoesNotContain(remaining, tag => tag.Id == createdId);
+            Assert.DoesNotContain(
+                remaining,
+                tag => string.Equals(RoundTripLabel, tag.Label, StringComparison.Ordinal));
         }
 
         /// <summary>
@@ -154,15 +162,19 @@ namespace Whisparr3.Net.IntegrationTests
         /// <para>
         /// This does not go through the generated client, and it cannot. SelectHeaderContentType
         /// returns the first declared media type matching its JSON regex, and text/json is neither
-        /// application/json nor a plus-json suffix type, so it matches nothing and the client can
-        /// never select it under any declaration order. The only way to observe what the server
-        /// does with it is to set the header by hand.
+        /// application/json nor a plus-json suffix type, so it matches nothing. The claim holds for
+        /// this operation because the tag create declares application/json and nothing else, in
+        /// src/Whisparr3.Net/Api/TagApi.cs, so the JSON branch always fires here. It is not a claim
+        /// about every operation: when nothing matches, that helper falls back to the first
+        /// declared media type, so an operation declaring text/json alone would select it. The only
+        /// way to observe what the server does with the header is to set it by hand.
         /// </para>
         /// <para>
         /// It closes the criterion's text/json clause from the server's side rather than only from
-        /// the client's. It is one request on the only operation in this phase's safe-POST set, it
-        /// creates nothing because the request is refused before a tag is made, and it touches
-        /// nothing on the do-not-call list.
+        /// the client's. It is one request on the only operation in this phase's safe-POST set, and
+        /// it touches nothing on the do-not-call list. That the refused request creates nothing is
+        /// asserted below by listing tags and finding no row carrying the probe label, rather than
+        /// stated here.
         /// </para>
         /// <para>
         /// The base URL and the key come from the fixture, never from a literal and never from the
@@ -179,13 +191,28 @@ namespace Whisparr3.Net.IntegrationTests
             using HttpClient client = new() { BaseAddress = new Uri(fixture.BaseUrl) };
             client.DefaultRequestHeaders.Add("X-Api-Key", fixture.ApiKey);
 
-            using StringContent content = new("{\"label\":\"w3n-text-json-probe\"}");
+            using StringContent content = new($"{{\"label\":\"{TextJsonProbeLabel}\"}}");
             content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
 
             using HttpResponseMessage response =
                 await client.PostAsync(new Uri("/api/v3/tag", UriKind.Relative), content);
 
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
+
+            // The refusal status alone does not prove nothing was written. ListTag is a GET and is
+            // not on the do-not-call list, so listing is what turns the no-write claim above into
+            // an assertion. Only this probe's own label is looked for, so a row another test left
+            // behind fails that test rather than this one.
+            await using ServiceProvider provider = BuildProvider();
+
+            List<TagResource> tags = (await provider
+                .GetRequiredService<ITagApi>()
+                .ListTagAsync())
+                .EnsureSuccess();
+
+            Assert.DoesNotContain(
+                tags,
+                tag => string.Equals(TextJsonProbeLabel, tag.Label, StringComparison.Ordinal));
         }
 
         /// <summary>
