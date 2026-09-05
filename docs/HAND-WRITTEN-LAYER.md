@@ -9,7 +9,7 @@ assembly by one `Compile` glob in the library project file. It is four files:
 | `Whisparr3Options.cs` | The settings a consumer supplies, and the validation that refuses a bad one |
 | `Whisparr3ServiceCollectionExtensions.cs` | `AddWhisparr3`, the single registration entry point, and the token provider behind it |
 | `Whisparr3ApiException.cs` | The typed error, carrying status, route template, request URI and raw body |
-| `ApiResponseExtensions.cs` | `EnsureSuccess`, plus the two hooks that make a 201 and a 202 body readable |
+| `ApiResponseExtensions.cs` | `EnsureSuccess`, plus three response hooks: the performer create's 201, the performer update's 202, and the tag create's 201 |
 
 This document records what that layer does, what it costs, and what it deliberately leaves alone.
 
@@ -87,11 +87,17 @@ are roughly a third of the operations, and returns `void`.
 var status = (await system.GetSystemStatusAsync()).EnsureSuccess();
 ```
 
-The create and update performer operations are a special case worth knowing about. This layer adds
-a response hook to both, so their real 201 and 202 bodies are now reachable through the generated
-success accessor. The generated documentation comments on those two operations were written before
-the hook existed and say less than the accessor now does, so a reader of those comments alone would
-not expect a body there.
+Three operations are a special case worth knowing about: the performer create, the performer update
+and the tag create. This layer adds a response hook to each, so their real 201, 202 and 201 bodies
+are now reachable through the generated success accessor. The generated documentation comments on
+those operations were written before the hooks existed and say less than the accessor now does, so
+a reader of those comments alone would not expect a body there.
+
+The two performer hooks read a status the spec documents, so the generator emits an `IsCreated` and
+an `IsAccepted` member for them and each hook reads its own. The tag create hook has no such member
+to read. The generator emits `IsCreated` only where the spec documents 201, the tag create's spec
+documents 200 only, and the instance answers 201 anyway, so that hook compares the status code
+directly. Writing the performer guard there would not compile.
 
 `Whisparr3ApiException.RawContent` is the verbatim response body and is deliberately not truncated.
 For `GET /api/v3/config/host` that body contains the instance API key and the admin password in
@@ -342,12 +348,16 @@ afterwards.
 
 ## Carried forward
 
-Two items are recorded here rather than acted on.
+Two items are recorded here. The first was carried forward and has since been measured and acted
+on; it is kept because the measurement contradicts the spec and a reader needs to know that. The
+second is still open.
 
-A create, read-back and delete round-trip against a real instance has to be written carefully. A
-performer create returns 201, which the generated success accessor reports as null, so a naive
-assertion would read a successful create as a failure. Either assert through `EnsureSuccess`, or
-pick a resource whose create returns 200.
+A create, read-back and delete round-trip against a real instance has to be written carefully, and
+picking a resource whose create the spec documents as 200 is not the way out. Measured against the
+pinned image: a tag create answers **201** whatever the spec says, and a tag update answers **202**.
+The spec's documented codes describe what the server was thought to do, not what it does. The hook
+in this layer makes the tag create's body readable, and a round trip must assert through
+`EnsureSuccess` rather than through the generated success accessor.
 
 The count of operations whose response type carries no typed success accessor is measured at 92
 over the current generated tree. The requirements record for this library says 93. Whoever writes

@@ -53,6 +53,20 @@ namespace Whisparr3.Net.UnitTests
         private const string PerformerId = "7";
 
         /// <summary>
+        /// The tag payload the create operation answers with, in the shape the live instance sends
+        /// it: label first, then the id the server assigned. The label carries a hyphen and lower
+        /// case letters so an ordinal comparison over it means something.
+        /// </summary>
+        private const string CreatedTagBody =
+            "{\"label\":\"created-tag\",\"id\":5}";
+
+        /// <summary>The id inside <see cref="CreatedTagBody"/>.</summary>
+        private const int CreatedTagId = 5;
+
+        /// <summary>The label inside <see cref="CreatedTagBody"/>.</summary>
+        private const string CreatedTagLabel = "created-tag";
+
+        /// <summary>
         /// The bodiless 401 is the shape the live instance actually returns for a prefixed key,
         /// measured against a real Whisparr instance. It is the case that hands the caller nothing
         /// at all, so it is the strongest form of the failure this layer exists to surface.
@@ -295,6 +309,69 @@ namespace Whisparr3.Net.UnitTests
 
             Assert.Equal(9, updated.Id);
             Assert.Equal("Accepted Performer", updated.FullName);
+        }
+
+        /// <summary>
+        /// The tag create is the operation the live instance answers 201 on while its spec
+        /// documents 200 only, so without the hook its body is unreachable through any typed
+        /// accessor. This is the synthetic form of the live round trip's first leg.
+        /// </summary>
+        [Fact]
+        public async Task Created_tag_body_is_readable_through_EnsureSuccess()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CreatedTagBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreateTagApiResponse response =
+                await provider.GetRequiredService<ITagApi>().CreateTagAsync();
+
+            TagResource created = response.EnsureSuccess();
+
+            Assert.Equal(CreatedTagId, created.Id);
+            Assert.Equal(CreatedTagLabel, created.Label);
+        }
+
+        /// <summary>
+        /// The negative control, and the one test here that must not be dropped. The hook's only
+        /// real risk is taking over the ordinary 200 path, and every other tag test would still
+        /// pass if it did. The status guard is what leaves this path on the generated default.
+        /// </summary>
+        [Fact]
+        public async Task Ordinary_200_tag_body_still_takes_the_generated_default()
+        {
+            using LoopbackCapture capture = new(status: 200, body: CreatedTagBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreateTagApiResponse response =
+                await provider.GetRequiredService<ITagApi>().CreateTagAsync();
+
+            TagResource created = response.EnsureSuccess();
+
+            Assert.Equal(CreatedTagId, created.Id);
+            Assert.Equal(CreatedTagLabel, created.Label);
+        }
+
+        /// <summary>
+        /// The empty-body case, which without the body guard in the hook throws a raw serialization
+        /// exception straight out of the accessor and escapes the typed layer untyped.
+        /// </summary>
+        [Fact]
+        public async Task Empty_201_tag_body_surfaces_the_typed_error()
+        {
+            using LoopbackCapture capture = new(status: 201, body: string.Empty);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreateTagApiResponse response =
+                await provider.GetRequiredService<ITagApi>().CreateTagAsync();
+
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
+
+            Assert.Equal(HttpStatusCode.Created, error.StatusCode);
+            Assert.Equal("/api/v3/tag", error.Path);
+            Assert.True(error.IsSuccessStatusCode);
+            Assert.Contains("201", error.Message, StringComparison.Ordinal);
+            Assert.Contains("/api/v3/tag", error.Message, StringComparison.Ordinal);
         }
 
         /// <summary>

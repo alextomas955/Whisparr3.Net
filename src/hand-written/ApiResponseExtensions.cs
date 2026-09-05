@@ -194,3 +194,67 @@ namespace Whisparr3.Net.Api
         }
     }
 }
+
+namespace Whisparr3.Net.Api
+{
+    /// <summary>
+    /// The second part of the generated tag api, holding the hook that makes the live create's
+    /// undocumented 201 readable.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// This part must stay under src/hand-written/ even though its namespace belongs to the
+    /// generated tree. Nothing under src/Whisparr3.Net/ is ever hand-edited, because the generator
+    /// deletes its output subdirectories wholesale on every run, and the repo CLAUDE.md states
+    /// that rule. Writing this method into TagApi.cs would work today and vanish on the next
+    /// regeneration, silently, with the tests going red long after the change that caused it.
+    /// </para>
+    /// <para>
+    /// The hook is used rather than an extension method because the serializer options field it
+    /// needs is protected on the response base class, so only code inside the class can reach it.
+    /// It also adds nothing to the public surface.
+    /// </para>
+    /// <para>
+    /// It fails loudly by design. The generator emits the hook signature only for the response
+    /// codes the spec documents, so if a future spec refresh documents 201 for this operation the
+    /// generated signature changes shape and this file stops compiling. That is the wanted
+    /// behaviour. Do not add a defensive conditional to keep it compiling.
+    /// </para>
+    /// </remarks>
+    public sealed partial class TagApi
+    {
+        /// <summary>
+        /// The create operation's response, which documents 200 while the instance answers 201.
+        /// </summary>
+        public partial class CreateTagApiResponse
+        {
+            /// <summary>
+            /// Reads the body of a real 201, which the generated accessor cannot.
+            /// </summary>
+            /// <param name="suppressDefault">Set when this method produced the result itself.</param>
+            /// <param name="result">Receives the created resource.</param>
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.TagResource? result)
+            {
+                // The status is compared directly rather than through an IsCreated member. The
+                // generator emits IsCreated only for operations whose spec documents 201, this
+                // operation's spec documents 200 only, and no such member exists here. That is a
+                // difference from the performer hooks above, not a style choice: their guard
+                // would not compile on this class.
+                //
+                // Two guards, and both matter. The status check leaves the ordinary 200 path
+                // running the generated default, which is the one path this hook must not
+                // disturb. The body check is what stops an empty 201 throwing a raw serialization
+                // exception out of the accessor and escaping the typed layer untyped.
+                if ((int)StatusCode != 201 || string.IsNullOrWhiteSpace(RawContent))
+                {
+                    return;
+                }
+
+                suppressDefault = true;
+
+                result = System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.TagResource>(
+                    RawContent, _jsonSerializerOptions);
+            }
+        }
+    }
+}
