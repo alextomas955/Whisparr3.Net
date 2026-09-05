@@ -30,6 +30,13 @@ jobs:
       # First, before a checkout and before anything reaches a docker command line. The value
       # crosses into the step through env rather than through ${{ }} inside run:, because an
       # interpolated workflow input is a command-injection path.
+      #
+      # The newline test below is not decoration. grep is line oriented: grep -q exits 0 when any
+      # line matches, and ^ and $ bracket a line rather than the whole value. Without the test,
+      # a multi-line value in which one line happens to be a valid digest was accepted, measured
+      # both ways round: a valid digest followed by a newline and a payload, and a payload
+      # followed by a newline and a valid digest. Rejecting a newline first leaves the pattern
+      # matching a value that is one line, which is what the error message below claims.
       - name: Validate the image digest input
         env:
           IMAGE_DIGEST: ${{ inputs.image_digest }}
@@ -37,6 +44,13 @@ jobs:
           if [ -z "$IMAGE_DIGEST" ]; then
             echo "No digest supplied. This is the re-verify path against the pinned digest."
             exit 0
+          fi
+          # wc -l counts newline characters, and printf '%s' adds none, so a non-zero count means
+          # the value carries a newline of its own. Separate message from the pattern refusal, so
+          # a failed run says which rule was broken.
+          if [ "$(printf '%s' "$IMAGE_DIGEST" | wc -l)" -ne 0 ]; then
+            echo "ERROR: image_digest must be a single line. This value contains a newline."
+            exit 1
           fi
           if printf '%s' "$IMAGE_DIGEST" | grep -qE '^sha256:[0-9a-f]{64}$'; then
             echo "Digest accepted."
