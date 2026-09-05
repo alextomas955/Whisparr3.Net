@@ -106,8 +106,8 @@ namespace Whisparr3.Net.IntegrationTests
         }
 
         /// <summary>
-        /// The three types Whisparr 3 adds over Radarr answer, deserialize into their typed lists,
-        /// and are observed empty.
+        /// The three endpoints Whisparr 3 adds over Radarr answer 200, and each answer binds to its
+        /// typed list, which is observed empty.
         /// </summary>
         /// <remarks>
         /// Empty is the true state of a fresh instance, and it cannot be changed from here. Credit
@@ -116,10 +116,11 @@ namespace Whisparr3.Net.IntegrationTests
         /// does not pin, so seeding either one would make this suite depend on a third party and
         /// would carry that dependency into CI. The emptiness is therefore stated as a fact. It is
         /// not asserted with a non-empty or a non-null helper, both of which would pass here while
-        /// proving nothing about deserialization.
+        /// saying nothing about the count. The element types are covered against canned bodies in
+        /// the unit project instead.
         /// </remarks>
         [SkippableFact]
-        public async Task Whisparr3_only_types_deserialize_and_are_empty()
+        public async Task Whisparr3_only_endpoints_answer_with_empty_typed_lists()
         {
             Skip.If(fixture.SkipReason is not null, fixture.SkipReason);
 
@@ -140,14 +141,20 @@ namespace Whisparr3.Net.IntegrationTests
                 .ListCreditAsync())
                 .EnsureSuccess();
 
-            // Reaching this line is already the deserialization evidence: EnsureSuccess throws
-            // unless the status was a success and a body came back, so a typed list in hand means a
-            // 200 that deserialized. What is left is to state the count that was observed.
+            // What reaching this line proves: EnsureSuccess throws unless the status was a success
+            // and a body came back, so a typed list in hand means a 200 whose body bound a List of
+            // the element type. It does not prove the element type deserializes. All three bodies
+            // are empty, and deserializing an empty array enters the element converter zero times,
+            // measured on this codebase rather than reasoned about. The element-level evidence for
+            // the three types lives in the unit project against canned one-element bodies, in
+            // Performer_list_body_deserializes_with_asserted_field_values and its studio and credit
+            // siblings. What is left here is to state the count that was observed.
             //
             // xUnit2013 prefers Assert.Empty for these three lines and this repo treats it as an
-            // error. It is suppressed here and only here, because a shape helper is precisely what
-            // the requirement rules out: Assert.Empty would read the same whether the list came
-            // back empty or the assertion had nothing to say about a count at all.
+            // error. It is suppressed here and only here, and the reason is compliance with the
+            // wording these three assertions are written against, which names the shape helper it
+            // does not accept. Assert.Empty(list) and Assert.Equal(0, list.Count) otherwise pass
+            // and fail on identical inputs, so the choice is not a difference in what is proven.
 #pragma warning disable xUnit2013
             Assert.Equal(0, performers.Count);
             Assert.Equal(0, studios.Count);

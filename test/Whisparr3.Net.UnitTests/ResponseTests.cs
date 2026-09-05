@@ -67,6 +67,75 @@ namespace Whisparr3.Net.UnitTests
         private const string CreatedTagLabel = "created-tag";
 
         /// <summary>
+        /// A one-element performer list body, taken member by member from
+        /// components.schemas.PerformerResource in spec/openapi.generated.json, with the nested
+        /// cover taken from components.schemas.MediaCover.
+        /// </summary>
+        /// <remarks>
+        /// sizeOnDisk is above int32 range on purpose. The schema declares it int64 and a value
+        /// inside int32 range would pass whether or not the converter performed a 64-bit read.
+        /// </remarks>
+        private const string PerformerListBody =
+            "[{\"id\":5,"
+                + "\"fullName\":\"Probe Performer\","
+                + "\"name\":\"Probe\","
+                + "\"gender\":\"female\","
+                + "\"status\":\"active\","
+                + "\"country\":\"NL\","
+                + "\"height\":170,"
+                + "\"sceneCount\":3,"
+                + "\"sizeOnDisk\":4294967296,"
+                + "\"aliases\":[\"Probe\"],"
+                + "\"images\":[{\"coverType\":\"headshot\",\"url\":\"/probe/headshot.jpg\"}]}]";
+
+        /// <summary>
+        /// A one-element studio list body, taken member by member from
+        /// components.schemas.StudioResource, with the nested cover taken from
+        /// components.schemas.MediaCover.
+        /// </summary>
+        /// <remarks>
+        /// sizeOnDisk is above int32 range for the same reason as the performer body, and years is
+        /// a second collection of a primitive so the list-of-scalars path is entered as well.
+        /// </remarks>
+        private const string StudioListBody =
+            "[{\"id\":3,"
+                + "\"title\":\"Probe Studio\","
+                + "\"sortTitle\":\"probe studio\","
+                + "\"foreignId\":\"probe-studio-1\","
+                + "\"status\":\"active\","
+                + "\"monitored\":true,"
+                + "\"moviesMonitored\":false,"
+                + "\"qualityProfileId\":1,"
+                + "\"sceneCount\":2,"
+                + "\"sizeOnDisk\":4294967296,"
+                + "\"aliases\":[\"Probe\"],"
+                + "\"years\":[2024],"
+                + "\"images\":[{\"coverType\":\"poster\",\"url\":\"/probe/poster.jpg\"}]}]";
+
+        /// <summary>
+        /// A one-element credit list body, taken member by member from
+        /// components.schemas.CreditResource, with the nested cover taken from
+        /// components.schemas.MediaCover.
+        /// </summary>
+        /// <remarks>
+        /// CreditResource declares no 64-bit member, so this body carries no value above int32
+        /// range. It carries a string enum and a nested cover like the other two.
+        /// </remarks>
+        private const string CreditListBody =
+            "[{\"id\":11,"
+                + "\"personName\":\"Probe Person\","
+                + "\"performerId\":4,"
+                + "\"foreignId\":\"probe-person-1\","
+                + "\"movieMetadataId\":9,"
+                + "\"job\":\"Director\","
+                + "\"character\":\"Herself\","
+                + "\"order\":0,"
+                + "\"type\":\"crew\","
+                + "\"canMonitor\":true,"
+                + "\"monitored\":false,"
+                + "\"images\":[{\"coverType\":\"headshot\",\"url\":\"/probe/person.jpg\"}]}]";
+
+        /// <summary>
         /// The bodiless 401 is the shape the live instance actually returns for a prefixed key,
         /// measured against a real Whisparr instance. It is the case that hands the caller nothing
         /// at all, so it is the strongest form of the failure this layer exists to surface.
@@ -309,6 +378,164 @@ namespace Whisparr3.Net.UnitTests
 
             Assert.Equal(9, updated.Id);
             Assert.Equal("Accepted Performer", updated.FullName);
+        }
+
+        /// <summary>
+        /// PerformerResource is deserialized on the list path, from a body carrying one element.
+        /// </summary>
+        /// <remarks>
+        /// The live suite cannot produce this evidence. The endpoint answers with an empty array on
+        /// a fresh instance, an empty array binds the List shell and enters the element converter
+        /// zero times, and that was measured on this codebase rather than reasoned about. The two
+        /// create and update cases above deserialize a single object, so this is the only case that
+        /// covers the same list operation the live test calls.
+        /// </remarks>
+        [Fact]
+        public async Task Performer_list_body_deserializes_with_asserted_field_values()
+        {
+            using LoopbackCapture capture = new(status: 200, body: PerformerListBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IListPerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().ListPerformerAsync();
+
+            List<PerformerResource> performers = response.EnsureSuccess();
+
+            PerformerResource performer = Assert.Single(performers);
+
+            Assert.Equal(5, performer.Id);
+            Assert.True(
+                string.Equals("Probe Performer", performer.FullName, StringComparison.Ordinal),
+                $"fullName deserialized as '{performer.FullName}'.");
+            Assert.True(
+                string.Equals("Probe", performer.Name, StringComparison.Ordinal),
+                $"name deserialized as '{performer.Name}'.");
+            Assert.Equal(Gender.Female, performer.Gender);
+            Assert.Equal(PerformerStatus.Active, performer.Status);
+            Assert.True(
+                string.Equals("NL", performer.Country, StringComparison.Ordinal),
+                $"country deserialized as '{performer.Country}'.");
+            Assert.Equal(170, performer.Height);
+            Assert.Equal(3, performer.SceneCount);
+            Assert.Equal(4294967296L, performer.SizeOnDisk);
+
+            string alias = Assert.Single(performer.Aliases!);
+            Assert.True(
+                string.Equals("Probe", alias, StringComparison.Ordinal),
+                $"the single alias deserialized as '{alias}'.");
+
+            MediaCover cover = Assert.Single(performer.Images!);
+            Assert.Equal(MediaCoverTypes.Headshot, cover.CoverType);
+            Assert.True(
+                string.Equals("/probe/headshot.jpg", cover.Url, StringComparison.Ordinal),
+                $"the nested cover url deserialized as '{cover.Url}'.");
+        }
+
+        /// <summary>
+        /// StudioResource is deserialized, which before this case happened nowhere in this
+        /// repository, from any body, by any test.
+        /// </summary>
+        /// <remarks>
+        /// The live suite cannot produce this evidence. The endpoint answers with an empty array on
+        /// a fresh instance, an empty array binds the List shell and enters the element converter
+        /// zero times, and that was measured on this codebase rather than reasoned about. Creating a
+        /// studio routes through an external metadata service, so seeding one would make the live
+        /// suite depend on a third party.
+        /// </remarks>
+        [Fact]
+        public async Task Studio_list_body_deserializes_with_asserted_field_values()
+        {
+            using LoopbackCapture capture = new(status: 200, body: StudioListBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IListStudioApiResponse response =
+                await provider.GetRequiredService<IStudioApi>().ListStudioAsync();
+
+            List<StudioResource> studios = response.EnsureSuccess();
+
+            StudioResource studio = Assert.Single(studios);
+
+            Assert.Equal(3, studio.Id);
+            Assert.True(
+                string.Equals("Probe Studio", studio.Title, StringComparison.Ordinal),
+                $"title deserialized as '{studio.Title}'.");
+            Assert.True(
+                string.Equals("probe studio", studio.SortTitle, StringComparison.Ordinal),
+                $"sortTitle deserialized as '{studio.SortTitle}'.");
+            Assert.True(
+                string.Equals("probe-studio-1", studio.ForeignId, StringComparison.Ordinal),
+                $"foreignId deserialized as '{studio.ForeignId}'.");
+            Assert.Equal(StudioStatus.Active, studio.Status);
+            Assert.True(studio.Monitored);
+            Assert.False(studio.MoviesMonitored);
+            Assert.Equal(1, studio.QualityProfileId);
+            Assert.Equal(2, studio.SceneCount);
+            Assert.Equal(4294967296L, studio.SizeOnDisk);
+
+            string alias = Assert.Single(studio.Aliases!);
+            Assert.True(
+                string.Equals("Probe", alias, StringComparison.Ordinal),
+                $"the single alias deserialized as '{alias}'.");
+
+            int year = Assert.Single(studio.Years!);
+            Assert.Equal(2024, year);
+
+            MediaCover cover = Assert.Single(studio.Images!);
+            Assert.Equal(MediaCoverTypes.Poster, cover.CoverType);
+            Assert.True(
+                string.Equals("/probe/poster.jpg", cover.Url, StringComparison.Ordinal),
+                $"the nested cover url deserialized as '{cover.Url}'.");
+        }
+
+        /// <summary>
+        /// CreditResource is deserialized, which before this case happened nowhere in this
+        /// repository, from any body, by any test.
+        /// </summary>
+        /// <remarks>
+        /// A canned body is the only evidence that can exist for this type. The spec declares
+        /// exactly two credit operations and both are GET, so no live body can ever be made to
+        /// carry an element. The live endpoint answers with an empty array, an empty array binds the
+        /// List shell and enters the element converter zero times, and that was measured on this
+        /// codebase rather than reasoned about.
+        /// </remarks>
+        [Fact]
+        public async Task Credit_list_body_deserializes_with_asserted_field_values()
+        {
+            using LoopbackCapture capture = new(status: 200, body: CreditListBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IListCreditApiResponse response =
+                await provider.GetRequiredService<ICreditApi>().ListCreditAsync();
+
+            List<CreditResource> credits = response.EnsureSuccess();
+
+            CreditResource credit = Assert.Single(credits);
+
+            Assert.Equal(11, credit.Id);
+            Assert.True(
+                string.Equals("Probe Person", credit.PersonName, StringComparison.Ordinal),
+                $"personName deserialized as '{credit.PersonName}'.");
+            Assert.Equal(4, credit.PerformerId);
+            Assert.True(
+                string.Equals("probe-person-1", credit.ForeignId, StringComparison.Ordinal),
+                $"foreignId deserialized as '{credit.ForeignId}'.");
+            Assert.Equal(9, credit.MovieMetadataId);
+            Assert.True(
+                string.Equals("Director", credit.Job, StringComparison.Ordinal),
+                $"job deserialized as '{credit.Job}'.");
+            Assert.True(
+                string.Equals("Herself", credit.Character, StringComparison.Ordinal),
+                $"character deserialized as '{credit.Character}'.");
+            Assert.Equal(0, credit.Order);
+            Assert.Equal(CreditType.Crew, credit.Type);
+            Assert.True(credit.CanMonitor);
+            Assert.False(credit.Monitored);
+
+            MediaCover cover = Assert.Single(credit.Images!);
+            Assert.Equal(MediaCoverTypes.Headshot, cover.CoverType);
+            Assert.True(
+                string.Equals("/probe/person.jpg", cover.Url, StringComparison.Ordinal),
+                $"the nested cover url deserialized as '{cover.Url}'.");
         }
 
         /// <summary>
