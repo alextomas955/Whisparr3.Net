@@ -112,6 +112,114 @@ namespace Whisparr3.Net
     }
 }
 
+namespace Whisparr3.Net.Client
+{
+    /// <summary>
+    /// The second part of the generated response base, holding the accessor that reads a body the
+    /// spec never described.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// 92 of Whisparr's operations declare a 2xx and declare no content for it, so the generator
+    /// emits no typed accessor for them. The body is not lost: every one of those operations reads
+    /// the whole response with ReadAsStringAsync and stores it, so RawContent already carries
+    /// whatever the server sent. What is missing is a way to turn that string into a type using
+    /// the client's own serializer options.
+    /// </para>
+    /// <para>
+    /// This is a partial rather than an extension method for the same reason the two api hooks in
+    /// this file are: _jsonSerializerOptions is protected on this class, so only code inside the
+    /// class can reach it. An extension method would have to take the options from its caller, and
+    /// a caller that passes plain defaults loses every converter the client registered, which
+    /// silently changes how a date is read.
+    /// </para>
+    /// <para>
+    /// It must stay under src/hand-written/ even though its namespace belongs to the generated
+    /// tree. Nothing under src/Whisparr3.Net/ is ever hand-edited, because the generator deletes
+    /// its output subdirectories wholesale on every run.
+    /// </para>
+    /// </remarks>
+    public partial class ApiResponse
+    {
+        /// <summary>
+        /// Reads the response body as the type the caller names.
+        /// </summary>
+        /// <typeparam name="T">The shape the caller expects the body to have.</typeparam>
+        /// <returns>The deserialized body, never null.</returns>
+        /// <exception cref="Whisparr3ApiException">
+        /// The status was not a success, or it was a success whose body was empty or could not be
+        /// read as T. Read Whisparr3ApiException.IsSuccessStatusCode to tell those apart.
+        /// </exception>
+        /// <remarks>
+        /// <para>
+        /// The three outcomes are the same ones EnsureSuccess classifies, so a caller reads both
+        /// the same way. The type is the caller's to name, because the spec does not name it.
+        /// </para>
+        /// <para>
+        /// Not every one of these operations answers with JSON. Measured against the pinned image,
+        /// GET /api/v3/system/routes answers with a Graphviz graph and GET /feed/v3/calendar
+        /// answers with iCalendar. Read RawContent directly for those; this method is for the ones
+        /// that do send JSON.
+        /// </para>
+        /// <para>
+        /// T needs a JsonPropertyName on every member it expects to bind. The client builds its
+        /// options as a bare JsonSerializerOptions plus a converter list, with no naming policy and
+        /// no case-insensitive matching, so a camel-cased body binds nothing to a Pascal-cased
+        /// member. That failure is silent: the object is returned with every property at its
+        /// default and nothing is thrown. The generated models in Whisparr3.Net.Model already carry
+        /// the attributes; a type written by a caller does not.
+        /// </para>
+        /// </remarks>
+        public T ReadAs<T>()
+            where T : class
+        {
+            if (!IsSuccessStatusCode)
+            {
+                throw new Whisparr3ApiException(this, "The request failed.");
+            }
+
+            // Separated from the deserialization failure below on purpose. A DELETE that answers
+            // an empty 200 is the ordinary case for many of these operations, and reporting it as
+            // a malformed body would send a reader looking for a defect that is not there.
+            if (string.IsNullOrWhiteSpace(RawContent))
+            {
+                throw new Whisparr3ApiException(this, "The request succeeded and its body was empty.");
+            }
+
+            T? body;
+
+            try
+            {
+                body = System.Text.Json.JsonSerializer.Deserialize<T>(RawContent, _jsonSerializerOptions);
+            }
+            catch (System.Text.Json.JsonException e)
+            {
+                // Without this the serializer's own exception escapes the typed layer carrying no
+                // status, no route template and no URI, which is the same hole EnsureSuccess
+                // closes.
+                throw new Whisparr3ApiException(
+                    this,
+                    "The request succeeded but its body could not be read as " + typeof(T).Name + ".",
+                    e);
+            }
+            catch (NotSupportedException e)
+            {
+                throw new Whisparr3ApiException(
+                    this,
+                    "The request succeeded but its body could not be read as " + typeof(T).Name + ".",
+                    e);
+            }
+
+            if (body is null)
+            {
+                throw new Whisparr3ApiException(this, "The request succeeded but no body could be read.");
+            }
+
+            return body;
+        }
+    }
+}
+
 namespace Whisparr3.Net.Api
 {
     /// <summary>
