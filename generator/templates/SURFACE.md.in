@@ -21,18 +21,38 @@ adds or removes operations, and that is expected rather than a defect.
 
 @@VOID_COUNT@@ of the @@TOTAL@@ operations declare no response body. Their generated methods return a
 response object like every other method, and that object carries no typed accessor for a body:
-`IsOk` and the status, and nothing to read.
+`IsOk` and the status, and no `Ok()` to call.
 
 The reason is the same for all of them, and it is in the spec rather than in this library. Each
 declares a 2xx response and declares no `content` for that response. With no media type and no
 schema, the generator has nothing to bind a return type to. No operation lacks a 2xx response
 entirely, so they all fall into that single category.
 
-The call still happens. The request is sent, the server answers, and whatever body it sends
-arrives. The generated method discards it, because the spec named no type to deserialize it into.
+The body is not lost. Every one of these operations reads the whole response with
+`ReadAsStringAsync` and stores it, so `RawContent` on the returned object carries whatever the
+server sent. What the spec costs them is the typed accessor, not the data.
 
-Rebuilding those response schemas from observed real bodies is deliberately out of scope for this
-release. It is a known and deferred gap, not an oversight.
+`ReadAs<T>()` deserializes that content with the client's own serializer options, so a caller who
+knows the shape names it and gets it:
+
+```csharp
+var response = await customFormat.GetCustomFormatSchemaAsync();
+var schema = response.ReadAs<List<CustomFormatResource>>();
+```
+
+A type the caller writes needs a `JsonPropertyName` on every member it expects to bind. The client
+registers no naming policy and no case-insensitive matching, so a camel-cased body binds nothing to
+a Pascal-cased member, and it does so without raising anything. The generated models already carry
+the attributes.
+
+Measured against the pinned image, 18 of these operations were called and every one answered with
+a body. Twelve returned JSON. The rest returned plain text, iCalendar, HTML or a binary image, so
+the type a caller names is not always a model: `GET /api/v3/system/routes` answers with a Graphviz
+graph as `text/plain`, and `RawContent` is the whole of it.
+
+Rebuilding response schemas into the spec is deliberately out of scope. A third of the measured
+bodies are not JSON at all, so a schema would be wrong for them, and the rest would need
+re-verifying against every refresh. It is a known and deferred gap, not an oversight.
 
 The third column is the operation identifier the generated client uses for its method name. Both
 tables in this document are sorted by path and then by method, so a diff on this section means the
@@ -59,7 +79,7 @@ What each one does.
   authenticates every request with the API key header instead.
 - `GetLogout` ends that browser session.
 - `GetCalendarFeed` returns a working iCalendar document. It declares no content, so the generated
-  method discards the feed it just fetched; a calendar application pointed at the URL gets it.
+  method exposes no typed accessor for it; the feed itself arrives in `RawContent`.
 
 ## Responses that carry credentials
 
