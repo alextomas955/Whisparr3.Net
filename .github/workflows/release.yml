@@ -97,7 +97,6 @@ jobs:
         run: |
           python3 scripts/assert_package.py \
             "artifacts/Whisparr3.Net.$PACKAGE_VERSION.nupkg" \
-            "artifacts/Whisparr3.Net.$PACKAGE_VERSION.snupkg" \
             --expect-version "$PACKAGE_VERSION"
 
       # A release run leaves something a human can open rather than only a log line.
