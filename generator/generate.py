@@ -18,6 +18,7 @@ redirect without a promote guard is the fail-open shape this pipeline is hardene
 """
 
 import argparse
+import json
 import os
 import shutil
 import subprocess
@@ -33,10 +34,34 @@ DEFAULT_IMAGE_DIGEST = "sha256:2ab0a9680222de65dc9d3baf861aa02b99e1b80c211d8221e
 # csproj sits beside them and survives every run. One list, so the delete set and the copy set cannot
 # drift apart.
 GENERATED_SUBDIRS = ("Api", "Client", "Extensions", "Logging", "Model")
-# What the pinned image produces from the committed spec. A constant and never a parameter, since a
-# caller-supplied count makes the gate a tautology. Without it a generation emitting ten files
-# replaces the committed 262 at exit 0. Move it in the same commit that moves the tree.
-EXPECTED_CS = 262
+# The two generated subdirectories whose contents are a function of the spec, one file per schema
+# and one per tag. Everything under Client, Extensions and Logging is generator scaffolding whose
+# file list depends on the pinned image rather than on the API.
+SPEC_DRIVEN_SUBDIRS = ("Model", "Api")
+# The generator emits one extra file into Api/ that belongs to no tag: the shared IApi marker.
+UNTAGGED_API_FILES = frozenset({"IApi.cs"})
+HTTP_METHODS = ("get", "put", "post", "delete", "options", "head", "patch", "trace")
+
+
+def expected_from_spec(spec_path):
+    """The Model/ and Api/ file names the committed spec implies.
+
+    Derived, never pinned. The count of operations Whisparr declares moves between releases and
+    this repository has no business asserting a particular one. What it can assert is the mapping,
+    which is exact in both directions: one Model/<Schema>.cs per schema in components.schemas, and
+    one Api/<Tag>Api.cs per tag any operation carries. A generation that stops early fails this
+    because names are missing, which is the failure the old pinned count existed to catch.
+    """
+    with open(spec_path, "r", encoding="utf-8") as handle:
+        spec = json.load(handle)
+
+    models = {name + ".cs" for name in spec.get("components", {}).get("schemas", {})}
+    tags = set()
+    for item in spec["paths"].values():
+        for method, operation in item.items():
+            if method in HTTP_METHODS:
+                tags.update(operation.get("tags") or [])
+    return {"Model": models, "Api": {tag + "Api.cs" for tag in tags} | set(UNTAGGED_API_FILES)}
 
 
 def generated_cs_files(package_root):
@@ -100,13 +125,34 @@ def main():
         # generated_cs_files walks a missing one as empty. Step 4 would then fail partway through the
         # copy, after the delete, which is the expensive place to find out.
         missing = [d for d in GENERATED_SUBDIRS if not os.path.isdir(os.path.join(stage_pkg_dir, d))]
-        if len(staged_cs) != EXPECTED_CS or missing:
+        if missing:
             die(
-                "ERROR: REFUSED - the staged tree holds {} .cs files across the five generated "
-                "subdirectories, expected {}, with {} subdirectories absent. Nothing in {} was "
-                "touched.".format(len(staged_cs), EXPECTED_CS, len(missing), pkg_dir)
+                "ERROR: REFUSED - the staged tree is missing {} of the five generated "
+                "subdirectories: {}. Nothing in {} was touched.".format(
+                    len(missing), ", ".join(missing), pkg_dir)
             )
-        print("  + generator exited 0, staged {} .cs files".format(len(staged_cs)))
+        # Name-for-name against the spec, not a count against a literal. Whisparr moves its
+        # operation count between releases and this repository asserts no particular one.
+        expected = expected_from_spec(os.path.join(stage, "spec", "openapi.generated.json"))
+        problems = []
+        for subdir, want in expected.items():
+            have = {f for f in os.listdir(os.path.join(stage_pkg_dir, subdir)) if f.endswith(".cs")}
+            for name in sorted(want - have):
+                problems.append("    {}/{} is implied by the spec and was not generated".format(subdir, name))
+            for name in sorted(have - want):
+                problems.append("    {}/{} was generated and the spec implies no such file".format(subdir, name))
+        if problems:
+            die(
+                "ERROR: REFUSED - the staged tree does not match the spec it was generated from, "
+                "in {} file(s). Nothing in {} was touched.".format(len(problems), pkg_dir),
+                *problems[:20]
+            )
+        for subdir in ("Client", "Extensions", "Logging"):
+            if not any(f.endswith(".cs") for f in os.listdir(os.path.join(stage_pkg_dir, subdir))):
+                die("ERROR: REFUSED - {}/ holds no .cs file. Nothing in {} was touched.".format(
+                    subdir, pkg_dir))
+        print("  + generator exited 0, staged {} .cs files, every Model/ and Api/ name matches "
+              "the spec".format(len(staged_cs)))
 
         # --- 3. Replace, never merge ---
         # Copying into an existing target merges: it neither replaces the target nor nests inside
@@ -145,9 +191,9 @@ def main():
             present = generated_cs_files(pkg_dir)
             die(
                 "ERROR: generate.py stopped after it had begun replacing the tree: {}".format(error),
-                "  {} now holds {} .cs files where a complete tree holds {}. Recovery is to re-run "
+                "  {} now holds {} .cs files and the tree is incomplete. Recovery is to re-run "
                 "generate.py, or git -C {} checkout -- src/Whisparr3.Net .openapi-generator "
-                ".openapi-generator-ignore".format(pkg_dir, len(present), EXPECTED_CS, REPO_ROOT),
+                ".openapi-generator-ignore".format(pkg_dir, len(present), REPO_ROOT),
             )
         die(
             "ERROR: generate.py stopped before it had begun replacing the tree: {}. Nothing in {} "

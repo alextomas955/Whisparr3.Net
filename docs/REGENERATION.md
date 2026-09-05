@@ -69,9 +69,11 @@ than passed on the command line, and there is deliberately no output-root option
 destination is the repository tree the script was invoked from.
 
 What it does, in order: stages the committed specification and the generator configuration into a
-temporary root, runs the pinned image against that root, refuses if the staged tree does not hold
-the expected 262 generated `.cs` files across the five generated subdirectories, then deletes those
-five subdirectories in the repository and copies the new ones back. The delete is what prunes a
+temporary root, runs the pinned image against that root, refuses unless every `Model/` and `Api/`
+file the specification implies was generated and nothing else was, then deletes those five
+subdirectories in the repository and copies the new ones back. That check is derived from the
+specification rather than pinned to a file count, so a Whisparr release that adds an operation
+passes it. The delete is what prunes a
 file the generator no longer emits, since the generator itself never prunes.
 
 ## Move to a new Whisparr version

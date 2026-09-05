@@ -76,10 +76,11 @@ jobs:
         run: dotnet test test/Whisparr3.Net.IntegrationTests -c Release --no-build --nologo
         timeout-minutes: 15
 
-      # docs/SURFACE.md states counts derived from the committed spec, so a spec refresh that
-      # moves any of them has to turn this red rather than leave a shipped document quietly wrong.
-      - name: Assert the documented surface still matches the committed spec
-        run: python3 scripts/assert_surface.py
+      # docs/SURFACE.md and docs/DO-NOT-CALL.md are generated from the committed spec. Re-render
+      # and diff rather than assert counts: a release that adds an operation should update these
+      # documents, not fail the build.
+      - name: Assert the generated documents match the committed spec
+        run: python3 generator/render_docs.py --check
 
       # --no-build keeps one compilation for the whole job, so the bytes the tests ran against
       # are the bytes that get packed.
