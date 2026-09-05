@@ -1,0 +1,173 @@
+# Re-runs the whole generation pipeline against a Whisparr image and proposes the result as a
+# pull request. It never merges and never writes to the default branch.
+#
+# There is deliberately no schedule trigger. A re-verify run rewrites the capture wall clock in
+# spec/PROVENANCE.json every single time, so an unattended timer would be a standing invitation
+# to open a pull request whose entire diff is one timestamp line, at the cost of runner minutes
+# nobody asked to spend.
+name: refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_digest:
+        description: "Whisparr 3 (eros) image digest, sha256: plus 64 hex characters. Leave empty to re-verify the digest capture_spec.py pins."
+        required: false
+        type: string
+
+# contents: write pushes the refresh branch, pull-requests: write opens the pull request. The
+# repository default is read, so neither is inherited. The token is permitted to write to the
+# default branch and this workflow deliberately never does; that restraint is a property of the
+# steps below, not of what the token allows.
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      # First, before a checkout and before anything reaches a docker command line. The value
+      # crosses into the step through env rather than through ${{ }} inside run:, because an
+      # interpolated workflow input is a command-injection path.
+      - name: Validate the image digest input
+        env:
+          IMAGE_DIGEST: ${{ inputs.image_digest }}
+        run: |
+          if [ -z "$IMAGE_DIGEST" ]; then
+            echo "No digest supplied. This is the re-verify path against the pinned digest."
+            exit 0
+          fi
+          if printf '%s' "$IMAGE_DIGEST" | grep -qE '^sha256:[0-9a-f]{64}$'; then
+            echo "Digest accepted."
+            exit 0
+          fi
+          echo "ERROR: image_digest must be sha256: followed by exactly 64 lowercase hex characters."
+          exit 1
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Both lines, for the same reason build-and-test.yml installs both: refresh.py runs a
+      # Release build of the whole solution, which cross-targets net8.0 and net10.0.
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      # --image-digest is forwarded only when the input is non-empty, which is how refresh.py
+      # itself forwards it. The pin then stays in capture_spec.py alone rather than being copied
+      # here where the two could drift apart.
+      - name: Capture, regenerate, build and audit
+        env:
+          IMAGE_DIGEST: ${{ inputs.image_digest }}
+        run: |
+          if [ -n "$IMAGE_DIGEST" ]; then
+            python3 generator/refresh.py --image-digest "$IMAGE_DIGEST"
+          else
+            python3 generator/refresh.py
+          fi
+
+      # capture_spec.py stamps a fresh capturedAt into spec/PROVENANCE.json on every run, so a
+      # bare git status reports a difference every time and would open a pull request that proves
+      # nothing. A run is material when something outside the provenance document moved, or when
+      # the provenance document moved in a key other than the wall clock. The other keys are
+      # stable for a fixed digest.
+      - name: Decide whether the refresh changed anything material
+        id: detect
+        run: |
+          MATERIAL=false
+
+          # substr($0, 4) drops the two status columns and the space. That offset is the same
+          # for a tracked modification and for an untracked ?? entry.
+          OTHER=$(git status --porcelain | awk 'NF { print substr($0, 4) }' \
+                  | grep -v '^spec/PROVENANCE\.json$' || true)
+          if [ -n "$OTHER" ]; then
+            echo "Changed outside the provenance document:"
+            printf '%s\n' "$OTHER"
+            MATERIAL=true
+          fi
+
+          set +e
+          python3 - <<'PY'
+          import json
+          import subprocess
+          import sys
+
+          committed = json.loads(subprocess.run(
+              ["git", "show", "HEAD:spec/PROVENANCE.json"],
+              capture_output=True, text=True, check=True).stdout)
+          current = json.load(open("spec/PROVENANCE.json", encoding="utf-8"))
+
+          committed.pop("capturedAt", None)
+          current.pop("capturedAt", None)
+
+          moved = sorted(
+              key for key in set(committed) | set(current)
+              if committed.get(key) != current.get(key)
+          )
+          if moved:
+              for key in moved:
+                  print("  {}: {!r} -> {!r}".format(key, committed.get(key), current.get(key)))
+              sys.exit(1)
+          sys.exit(0)
+          PY
+          PROVENANCE_MOVED=$?
+          set -e
+
+          if [ "$PROVENANCE_MOVED" -ne 0 ]; then
+            echo "The provenance document moved in a key other than the capture wall clock."
+            MATERIAL=true
+          fi
+
+          if [ "$MATERIAL" = "false" ]; then
+            echo "Nothing material changed. Restoring the provenance document and opening nothing."
+            git checkout -- spec/PROVENANCE.json
+          fi
+
+          # $GITHUB_OUTPUT, not the set-output command, which was removed in 2022 and now does
+          # nothing at all.
+          echo "material=$MATERIAL" >> "$GITHUB_OUTPUT"
+
+      # gh is preinstalled on the runner at 2.98.0. A third-party action would add a supply-chain
+      # dependency this repository does not otherwise have and would hit the same repository
+      # permission setting anyway.
+      - name: Propose the refresh as a pull request
+        if: steps.detect.outputs.material == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_DIGEST: ${{ inputs.image_digest }}
+        run: |
+          DIGEST="$IMAGE_DIGEST"
+          if [ -z "$DIGEST" ]; then
+            DIGEST=$(python3 -c "import json; print(json.load(open('spec/PROVENANCE.json'))['imageDigest'])")
+          fi
+
+          # The runner has no includeIf include, so the identity the repository contract mandates
+          # has to be set here.
+          git config user.name "alextomas955"
+          git config user.email "295956354+alextomas955@users.noreply.github.com"
+
+          BRANCH="spec-refresh/$(date -u +%Y%m%d-%H%M%S)"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore(spec): refresh from $DIGEST"
+          git push origin "$BRANCH"
+
+          cat > /tmp/pr-body.md <<BODY
+          This pull request was opened by the refresh workflow, from run $GITHUB_RUN_ID.
+
+          Source image: \`$DIGEST\`
+
+          Checks did not run on this pull request. Events triggered by the built-in GITHUB_TOKEN
+          do not create workflow runs, so this is documented GitHub behaviour rather than a
+          failure. To get checks, close and reopen this pull request, or push an empty commit
+          to its branch.
+
+          Read the diff before accepting it. The integration suite boots the image digest named
+          in spec/PROVENANCE.json, so accepting this changes what every live test runs against.
+          BODY
+
+          gh pr create --base main --head "$BRANCH" \
+            --title "Spec refresh from $DIGEST" \
+            --body-file /tmp/pr-body.md
