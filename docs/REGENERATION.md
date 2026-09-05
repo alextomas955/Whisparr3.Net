@@ -73,14 +73,20 @@ temporary root, runs the pinned image against that root, refuses unless every `M
 file the specification implies was generated and nothing else was, then deletes those five
 subdirectories in the repository and copies the new ones back. That check is derived from the
 specification rather than pinned to a file count, so a Whisparr release that adds an operation
-passes it. The delete is what prunes a
-file the generator no longer emits, since the generator itself never prunes.
+passes it. The delete is what prunes a file the generator no longer emits, since the generator
+itself never prunes.
+
+`generate.py` does not write `docs/SURFACE.md`. That document is written by
+`generator/render_docs.py` from the same committed specification, and `refresh.py` runs it as its
+own step. Running `generate.py` alone leaves the document behind, and continuous integration then
+fails on `render_docs.py --check`. Run the renderer too, or use `refresh.py`, which runs both.
 
 ## Move to a new Whisparr version
 
 `generator/refresh.py` is the entry point for changing which Whisparr the library is generated
 from. It runs the whole pipeline in order and stops at the first failure, naming the step that
-failed and what to do about it: capture, preprocess, generate, build, package audit.
+failed and what to do about it: capture, preprocess, generate, render docs, build, package
+audit.
 
 ```
 python3 generator/refresh.py --image-digest sha256:0123abcd...

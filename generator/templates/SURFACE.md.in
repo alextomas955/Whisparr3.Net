@@ -17,16 +17,16 @@ fails the build.
 The counts below describe the spec this library was last generated from. They move when Whisparr
 adds or removes operations, and that is expected rather than a defect.
 
-## The operations that return nothing
+## Operations that return nothing
 
-@@VOID_COUNT@@ of the @@TOTAL@@ operations return no value. The generated method for each of them is declared void or
-returns only the HTTP status.
+@@VOID_COUNT@@ of the @@TOTAL@@ operations declare no response body. Their generated methods return a
+response object like every other method, and that object carries no typed accessor for a body:
+`IsOk` and the status, and nothing to read.
 
 The reason is the same for all of them, and it is in the spec rather than in this library. Each
 declares a 2xx response and declares no `content` for that response. With no media type and no
-schema, the generator has nothing to bind a return type to, so it emits a method that returns
-nothing. No operation lacks a 2xx response entirely, so they all fall into that single
-category.
+schema, the generator has nothing to bind a return type to. No operation lacks a 2xx response
+entirely, so they all fall into that single category.
 
 The call still happens. The request is sent, the server answers, and whatever body it sends
 arrives. The generated method discards it, because the spec named no type to deserialize it into.
@@ -40,24 +40,56 @@ spec changed.
 
 @@VOID_TABLE@@
 
-## The operations that are generated but not useful
+## Operations that serve the web interface
 
-The operations below are generated because this library covers every operation in the spec, not
-because anyone expects a C# caller to use them. They serve Whisparr's own web interface or a
-calendar subscriber. The paths are a hand-kept judgement in `generator/render_docs.py`; the rows and
-the count come from the spec.
+The operations below exist for Whisparr's own browser interface and for calendar subscribers. They
+are generated because this library covers every operation in the spec. Whether any of them is
+useful to you is your call; what follows is what each one does. The paths are a hand-kept list in
+`generator/render_docs.py`, and the rows come from the spec.
 
-@@NOT_USEFUL_TABLE@@
-What each one is for, and why it is not useful from C#.
+@@WEB_INTERFACE_TABLE@@
+What each one does.
 
 - `GetStaticResourceByPath` serves any file from Whisparr's web root by path. It answers a browser
   with HTML, JavaScript or images.
 - `GetContentByPath` serves the same web assets under the `/content` prefix.
-- `GetLoginPage` returns the HTML login form. A C# caller authenticates with an API key header and
-  never sees this page.
-- `CreateLogin` submits that form and establishes a browser session. This library authenticates
-  every request with an API key instead, so a session cookie buys it nothing.
-- `GetLogout` ends that browser session. There is no browser session to end.
-- `GetCalendarFeed` returns an iCalendar document for a calendar client to subscribe to. It declares
-  no content, so the generated method discards the calendar it just fetched. Point a calendar
-  application at the URL rather than calling this from C#.
+- `GetLoginPage` returns the HTML login form. Authenticating with the API key header does not go
+  through it.
+- `CreateLogin` submits that form and establishes a browser session cookie. This library
+  authenticates every request with the API key header instead.
+- `GetLogout` ends that browser session.
+- `GetCalendarFeed` returns a working iCalendar document. It declares no content, so the generated
+  method discards the feed it just fetched; a calendar application pointed at the URL gets it.
+
+## Responses that carry credentials
+
+These operations change nothing and are safe to call. Their responses carry secrets, so a log
+line, a test transcript or an exception body from one of them writes a credential somewhere this
+library never had it and cannot strip it.
+
+@@CREDENTIAL_TABLE@@
+
+`Whisparr3ApiException.RawContent` is the verbatim response body and is deliberately not redacted,
+because this library cannot know which fields of an arbitrary body are secret. Redaction, if you
+want it, belongs in whatever writes your logs.
+
+## Operations whose effect the spec does not describe
+
+The spec constrains request shapes, not consequences. For most operations the two line up: `DELETE
+/api/v3/tag/{id}` deletes a tag. These are the ones where the signature tells you least about what
+happens, so they are written down.
+
+- `POST /api/v3/command` takes a `name` declared `{"type": "string", "nullable": true}` and nothing
+  more. No `enum`, no `const`, no pattern anywhere in the spec, so the generated client offers no
+  type-level constraint and the value alone decides what the instance does. It selects between
+  refreshing a movie's metadata and renaming every file on disk. `GET /api/v3/command` reports what
+  an instance is currently running.
+- `POST /api/v3/release` pushes a release to a download client. It reaches outside the instance,
+  starts a real download and writes to the file system the instance manages, so its effect outlives
+  the request and deleting anything through the API does not undo it.
+- `DELETE /api/v3/moviefile/{id}` and `DELETE /api/v3/moviefile/bulk` delete files from disk, not
+  just database rows. The API has no undo and no recycle step. The two read like one operation and
+  are two, and the bulk form does the most per request.
+- `PUT /api/v3/moviefile/{id}`, `PUT /api/v3/moviefile/bulk` and `PUT /api/v3/moviefile/editor` move
+  or rewrite the files they name. They are as consequential as the deletes and easier to overlook,
+  because a warning about deleting movie files does not cover them.

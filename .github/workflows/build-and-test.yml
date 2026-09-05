@@ -55,8 +55,8 @@ jobs:
       - name: Assert the package ships its documentation and a resolvable repository url
         run: python3 scripts/assert_package.py artifacts/Whisparr3.Net.0.1.0.nupkg
 
-      # docs/SURFACE.md and docs/DO-NOT-CALL.md are generated from the committed spec. Re-render
-      # and diff rather than assert counts: a Whisparr release that adds an operation should
-      # update these documents, not fail the build.
-      - name: Assert the generated documents match the committed spec
+      # docs/SURFACE.md is generated from the committed spec. Re-render and diff rather
+      # than assert counts: a Whisparr release that adds an operation should update the
+      # document, not fail the build.
+      - name: Assert the generated document matches the committed spec
         run: python3 generator/render_docs.py --check
