@@ -1,4 +1,4 @@
-// Hand-written. Nothing in this directory is generator output; see CLAUDE.md, section
+﻿// Hand-written. Nothing in this directory is generator output; see CLAUDE.md, section
 // "Generated vs hand-written". Do not add the generator's file-marker header to this file:
 // it is a false statement here, and it switches off the analyzer coverage that .editorconfig
 // gives this directory and gives nothing else in the repository.
@@ -18,9 +18,11 @@ namespace Whisparr3.Net
     /// <para>
     /// The generated success accessor deserializes on exactly 200 and returns null on anything
     /// else, so a 401, a documented 201 and an empty collection are all reported to a caller as
-    /// null. These two methods classify the same response into three outcomes instead: a success
+    /// null. That matters because Whisparr answers 201 to every create and 202 to every update.
+    /// These two methods classify the same response into three outcomes instead: a success
     /// carrying a body, a success whose body cannot be read, and a failure. The last two both
-    /// throw, and Whisparr3ApiException.IsSuccessStatusCode is what tells them apart.
+    /// throw, and Whisparr3ApiException.IsSuccessStatusCode is what tells them apart. A body is
+    /// read on any success status, not on 200 alone.
     /// </para>
     /// <para>
     /// Every operation also exposes an OrDefaultAsync variant that wraps its whole body in a
@@ -31,7 +33,7 @@ namespace Whisparr3.Net
     public static class ApiResponseExtensions
     {
         /// <summary>
-        /// Returns the body of a successful response, or throws.
+        /// Returns the body of a response with any success status, or throws.
         /// </summary>
         /// <typeparam name="T">The resource the operation returns.</typeparam>
         /// <param name="response">The response to classify.</param>
@@ -42,8 +44,24 @@ namespace Whisparr3.Net
         /// Whisparr3ApiException.IsSuccessStatusCode to tell those two apart.
         /// </exception>
         /// <remarks>
+        /// <para>
         /// This overload covers the response interfaces that carry a typed success accessor. The
         /// ones that do not are covered by the non-generic overload below.
+        /// </para>
+        /// <para>
+        /// The body is read through ApiResponse.ReadAs rather than through the generated accessor,
+        /// which is what makes a 201 and a 202 readable. Every response class this library produces
+        /// derives from Whisparr3.Net.Client.ApiResponse, 272 of 272, so the pattern match below is
+        /// total in practice. A response some other code implemented against IOk stays on the
+        /// accessor path, which is why the match is a pattern rather than a cast.
+        /// </para>
+        /// <para>
+        /// The three OnOk hooks elsewhere in this file are deliberately left in place even though
+        /// this method no longer reaches them. A caller reading the generated Ok() or TryOk()
+        /// directly still needs them, and removing them would silently return that caller to null
+        /// on a 201. On a 200 each hook returns early, and on a 201 or 202 each performs the same
+        /// deserialization ReadAs performs, so bypassing them changes no value.
+        /// </para>
         /// </remarks>
         public static T EnsureSuccess<T>(this IOk<T?> response)
             where T : class
@@ -55,6 +73,17 @@ namespace Whisparr3.Net
                 throw new Whisparr3ApiException(response, "The request failed.");
             }
 
+            if (response is ApiResponse apiResponse)
+            {
+                // The generated accessor gates on exactly 200, so it returns null on the 201 every
+                // Whisparr create answers with and on the 202 every update answers with. ReadAs
+                // gates on IsSuccessStatusCode and reads RawContent through the client's own
+                // serializer options, producing the same value on a 200 and a body on the rest.
+                return apiResponse.ReadAs<T>();
+            }
+
+            // Below is the path for an IOk this library did not produce. It cannot reach ReadAs,
+            // because the serializer options that method needs are protected on ApiResponse.
             T? body;
 
             try
