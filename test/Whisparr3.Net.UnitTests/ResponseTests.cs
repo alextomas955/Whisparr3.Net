@@ -1,4 +1,4 @@
-// Hand-written test code. See CLAUDE.md, section "Generated vs hand-written".
+﻿// Hand-written test code. See CLAUDE.md, section "Generated vs hand-written".
 
 #nullable enable
 
@@ -54,6 +54,19 @@ namespace Whisparr3.Net.UnitTests
 
         /// <summary>The id the update tests address, which the route template does not carry.</summary>
         private const string PerformerId = "7";
+
+        /// <summary>The studio payload the create operation answers with.</summary>
+        private const string CreatedStudioBody =
+            "{\"id\":11,\"title\":\"Created Studio\"}";
+
+        /// <summary>The studio payload the update operation answers with.</summary>
+        private const string AcceptedStudioBody =
+            "{\"id\":11,\"title\":\"Accepted Studio\"}";
+
+        /// <summary>
+        /// The id the studio update test addresses, which the route template does not carry.
+        /// </summary>
+        private const string StudioId = "11";
 
         /// <summary>
         /// The tag payload the create operation answers with, in the shape the live instance sends
@@ -381,6 +394,49 @@ namespace Whisparr3.Net.UnitTests
 
             Assert.Equal(9, updated.Id);
             Assert.Equal("Accepted Performer", updated.FullName);
+        }
+
+        /// <summary>
+        /// A 201 on an operation that carries no response hook. The studio create carries a typed
+        /// success accessor and no OnOk hook, so a hook cannot be what makes this case pass: the
+        /// body is reachable only because EnsureSuccess reads a body on any success status.
+        /// </summary>
+        [Fact]
+        public async Task Created_201_on_an_unhooked_operation_is_returned_by_EnsureSuccess()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CreatedStudioBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            ICreateStudioApiResponse response =
+                await provider.GetRequiredService<IStudioApi>().CreateStudioAsync();
+
+            StudioResource created = response.EnsureSuccess();
+
+            Assert.Equal(11, created.Id);
+            Assert.True(
+                string.Equals("Created Studio", created.Title, StringComparison.Ordinal),
+                $"Expected the title 'Created Studio', got '{created.Title}'.");
+        }
+
+        /// <summary>
+        /// The same for a 202, on the studio update. It too carries a typed success accessor and
+        /// no OnOk hook.
+        /// </summary>
+        [Fact]
+        public async Task Accepted_202_on_an_unhooked_operation_is_returned_by_EnsureSuccess()
+        {
+            using LoopbackCapture capture = new(status: 202, body: AcceptedStudioBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IUpdateStudioApiResponse response =
+                await provider.GetRequiredService<IStudioApi>().UpdateStudioAsync(StudioId);
+
+            StudioResource updated = response.EnsureSuccess();
+
+            Assert.Equal(11, updated.Id);
+            Assert.True(
+                string.Equals("Accepted Studio", updated.Title, StringComparison.Ordinal),
+                $"Expected the title 'Accepted Studio', got '{updated.Title}'.");
         }
 
         /// <summary>
