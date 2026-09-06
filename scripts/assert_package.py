@@ -18,7 +18,10 @@ well formed and empty.
 The nuspec id must be the package id this repository publishes, and its version must match the one
 supplied when one is supplied, so a mispacked archive cannot be pushed under the wrong identity.
 
-    python scripts/assert_package.py artifacts/Whisparr3.Net.0.1.0.nupkg --expect-version 0.1.0
+    python scripts/assert_package.py artifacts/Whisparr3.Net.VERSION.nupkg --expect-version VERSION
+
+VERSION stands for whatever Directory.Build.props sets, rather than a release, so this line does
+not go stale on the next bump. Both workflows read that value instead of writing it out.
 """
 
 import argparse
