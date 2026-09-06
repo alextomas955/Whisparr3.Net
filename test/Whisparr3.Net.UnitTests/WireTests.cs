@@ -87,9 +87,7 @@ namespace Whisparr3.Net.UnitTests
 
             await using ServiceProvider provider = services.BuildServiceProvider();
 
-            // The cast is needed because ICommandApi is generated, is not partial, and therefore
-            // cannot declare the hand-written dispatch method. A consumer makes the same cast.
-            CommandApi api = (CommandApi)provider.GetRequiredService<ICommandApi>();
+            CommandApi api = provider.GetRequiredService<CommandApi>();
             await api.SendCommandAsync("RefreshStudios", new { studioIds = new[] { 7 } });
 
             string request = await capture.FirstRequest;

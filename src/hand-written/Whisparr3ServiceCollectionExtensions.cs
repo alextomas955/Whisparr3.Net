@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Whisparr3.Net.Api;
 using Whisparr3.Net.Client;
 using Whisparr3.Net.Extensions;
 
@@ -106,6 +107,11 @@ namespace Whisparr3.Net
         /// registered, so a misconfiguration fails here rather than on the first request.
         /// </para>
         /// <para>
+        /// Each generated api is injectable by its interface, and the command api is injectable by
+        /// its class as well. Take <see cref="ICommandApi"/> for the generated operations, and
+        /// <see cref="CommandApi"/> when the caller also needs SendCommandAsync.
+        /// </para>
+        /// <para>
         /// Every generated operation also exposes an OrDefaultAsync variant that swallows every
         /// exception into null. Prefer the plain variant; the OrDefaultAsync form cannot tell a
         /// failure from an empty result.
@@ -130,6 +136,12 @@ namespace Whisparr3.Net
             services.AddApi(cfg => cfg.AddApiHttpClients(
                 client => client.BaseAddress = baseUri,
                 options.ConfigureHttpClient));
+
+            // SendCommandAsync lives on the concrete class because ICommandApi is generator output
+            // and cannot be extended, so the concrete type is registered to spare every caller a
+            // cast. The factory delegates to the registration above rather than constructing
+            // anything, so the lifetime AddHttpClient set is the lifetime this hands out.
+            services.AddTransient<CommandApi>(sp => (CommandApi)sp.GetRequiredService<ICommandApi>());
 
             return services;
         }
