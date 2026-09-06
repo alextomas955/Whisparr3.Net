@@ -92,6 +92,120 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
+        /// A command that takes no arguments is dispatched by omitting the payload, and its body
+        /// carries the name and nothing else.
+        /// </summary>
+        [Fact]
+        public async Task Command_dispatch_with_no_payload_sends_the_name_alone()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            await Dispatcher(provider).SendCommandAsync(DispatchedCommandName);
+
+            string request = await capture.FirstRequest;
+
+            using JsonDocument body = JsonDocument.Parse(CapturedRequest.Body(request));
+
+            Assert.True(
+                body.RootElement.TryGetProperty("name", out JsonElement name),
+                $"The captured request body carries no name member. Body: {CapturedRequest.Body(request)}");
+
+            Assert.Equal(DispatchedCommandName, name.GetString());
+
+            Assert.Single(body.RootElement.EnumerateObject());
+        }
+
+        /// <summary>
+        /// A payload carrying its own name member is refused before a socket is opened.
+        /// </summary>
+        /// <remarks>
+        /// The indexer overwrites an exact-case name in place, but a differently-cased key survives
+        /// alongside it and both reach the wire, leaving the server two candidates for one
+        /// property. Refusing is the alternative to silently dropping or duplicating a caller's
+        /// field at a public boundary.
+        /// </remarks>
+        [Fact]
+        public async Task Command_payload_carrying_its_own_name_key_is_refused()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+
+            ArgumentException error = await Assert.ThrowsAsync<ArgumentException>(
+                () => Dispatcher(provider).SendCommandAsync(
+                    DispatchedCommandName,
+                    new { Name = "collision", studioIds = new[] { 7 } }));
+
+            Assert.Equal("payload", error.ParamName);
+            Assert.Contains("Name", error.Message, StringComparison.Ordinal);
+
+            Assert.Empty(capture.Requests);
+        }
+
+        /// <summary>
+        /// A payload that is not a JSON object is refused before a socket is opened.
+        /// </summary>
+        /// <remarks>
+        /// The parameter is object, which admits scalars, arrays and strings. A boxed scalar
+        /// serializes to a JsonValue, and without this guard the cast to JsonObject would raise a
+        /// NullReferenceException from inside the library.
+        /// </remarks>
+        [Fact]
+        public async Task Command_payload_that_is_not_a_json_object_is_refused()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+
+            ArgumentException error = await Assert.ThrowsAsync<ArgumentException>(
+                () => Dispatcher(provider).SendCommandAsync(DispatchedCommandName, 42));
+
+            Assert.Equal("payload", error.ParamName);
+
+            Assert.Empty(capture.Requests);
+        }
+
+        /// <summary>
+        /// The payload is written with the serializer options the client registered, not plain
+        /// defaults.
+        /// </summary>
+        /// <remarks>
+        /// An enum is the discriminator. The client registers a JsonStringEnumConverter, so the
+        /// member reaches the wire as a string, while the same payload under a bare
+        /// JsonSerializerOptions writes a number. The negative control is what shows the first
+        /// assertion is not passing on options a caller could have supplied.
+        /// </remarks>
+        [Fact]
+        public async Task Command_payload_serializes_through_the_client_registered_options()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            var payload = new { studioIds = new[] { 7 }, kind = PayloadProbeKind.Enabled };
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            await Dispatcher(provider).SendCommandAsync(DispatchedCommandName, payload);
+
+            string request = await capture.FirstRequest;
+
+            using JsonDocument body = JsonDocument.Parse(CapturedRequest.Body(request));
+
+            Assert.True(
+                body.RootElement.TryGetProperty("kind", out JsonElement kind),
+                $"The captured request body carries no kind member. Body: {CapturedRequest.Body(request)}");
+
+            Assert.Equal(JsonValueKind.String, kind.ValueKind);
+            Assert.Equal("Enabled", kind.GetString());
+
+            using JsonDocument defaults =
+                JsonDocument.Parse(JsonSerializer.Serialize(payload, new JsonSerializerOptions()));
+
+            Assert.Equal(
+                JsonValueKind.Number,
+                defaults.RootElement.GetProperty("kind").ValueKind);
+        }
+
+        /// <summary>
         /// An unset Option&lt;T&gt; emits no JSON member at all, proven on the bytes the client put
         /// on a socket.
         /// </summary>
@@ -164,6 +278,19 @@ namespace Whisparr3.Net.UnitTests
                 string.Equals(value, "application/json", StringComparison.Ordinal)
                     || value.StartsWith("application/json;", StringComparison.Ordinal),
                 $"The request declared Content-Type '{value}'.");
+        }
+
+        /// <summary>
+        /// An enum the client's registered converter writes as a string and plain serializer
+        /// defaults write as a number.
+        /// </summary>
+        private enum PayloadProbeKind
+        {
+            /// <summary>The default, present so Enabled is not the zero value.</summary>
+            Unset = 0,
+
+            /// <summary>The value the dispatch case sends.</summary>
+            Enabled = 1,
         }
 
         /// <summary>
