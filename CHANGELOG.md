@@ -3,9 +3,23 @@
 Every release of Whisparr3.Net is recorded here, newest first. The stability policy the version
 numbers refer to is at the bottom of this file and does not move.
 
+## 0.2.0
+
+Adds command dispatch, and corrects how a response body is read.
+
+- `CommandApi.SendCommandAsync` dispatches a command with its arguments. The generated create
+  cannot: `CommandResource` declares no additional properties, so its writer emits a fixed property
+  list, and 25 of Whisparr's 42 commands take arguments that no part of the specification describes.
+  The arguments go on the wire as siblings of `name`, which is the shape the instance accepts.
+- `AddWhisparr3` now registers the concrete `CommandApi` alongside `ICommandApi`. Inject
+  `CommandApi` to reach `SendCommandAsync`; the interface is generator output and cannot carry it.
+- `EnsureSuccess` reads a body on any success status rather than on 200 alone. The instance answers
+  201 to a create and 202 to an update while the specification declares 200 for both, so every
+  create and update previously reported a successful call as a failure.
+
 ## 0.1.0
 
-The first release. Not yet published to nuget.org.
+The first release. Never published to nuget.org.
 
 - Covers every operation the Whisparr 3 (Eros) API declares, generated from Whisparr's own
   OpenAPI specification. The one malformed root path is excluded.
@@ -14,12 +28,7 @@ The first release. Not yet published to nuget.org.
   registers nothing until both pass.
 - One typed error, `Whisparr3ApiException`, carrying the status, the route template, the request
   URI and the raw body, and distinguishing a failed request from a success with no readable body.
-- `EnsureSuccess` classifies a response, which the generated success accessor does not. It reads a
-  body on any success status, because the instance answers 201 to a create and 202 to an update
-  while the specification declares 200 for both.
-- `CommandApi.SendCommandAsync` dispatches a command with its arguments. The generated create
-  cannot: `CommandResource` declares no additional properties, so its writer emits a fixed property
-  list, and 25 of Whisparr's 42 commands take arguments that no part of the specification describes.
+- `EnsureSuccess` classifies a response, which the generated success accessor does not.
 - A large minority of operations return no value, because the specification declares no response
   content for them. They are listed with their cause in [docs/SURFACE.md](docs/SURFACE.md), along
   with the operations that are generated but not useful from C#.

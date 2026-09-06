@@ -66,7 +66,7 @@
        PDBs are byte-identical across the two packs, so the warning does not apply here. -->
   <PropertyGroup>
     <PackageId>Whisparr3.Net</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>alextomas955</Authors>
     <Description>C# SDK for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI spec.</Description>
     <Copyright>Copyright (c) 2026 alextomas955</Copyright>
