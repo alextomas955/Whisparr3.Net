@@ -81,114 +81,144 @@ namespace Whisparr3.Net.Api
             object? payload = null,
             CancellationToken cancellationToken = default)
         {
-            ArgumentException.ThrowIfNullOrWhiteSpace(name);
-
-            JsonObject body;
-
-            if (payload is null)
-            {
-                body = new JsonObject();
-            }
-            else
-            {
-                JsonNode? node = JsonSerializer.SerializeToNode(payload, _jsonSerializerOptions);
-
-                // A boxed scalar serializes to a JsonValue, so this is reachable from a caller and
-                // an unguarded null-forgiving operator here would raise a NullReferenceException
-                // from inside the library.
-                body = node as JsonObject
-                    ?? throw new ArgumentException(
-                        "A command payload must serialize to a JSON object.", nameof(payload));
-
-                // The loop only reads and the name member is set after it, so the collection is
-                // never mutated while it is enumerated.
-                foreach (KeyValuePair<string, JsonNode?> member in body)
-                {
-                    if (string.Equals(member.Key, "name", StringComparison.OrdinalIgnoreCase))
-                    {
-                        throw new ArgumentException(
-                            "A command payload must not carry a member named '" + member.Key
-                                + "'. The command name is the name parameter.",
-                            nameof(payload));
-                    }
-                }
-            }
-
-            body["name"] = JsonValue.Create(name);
-
+            // uriBuilder is declared outside the try so the error hook below can report the path
+            // the request had reached. It carries UriBuilder's default path, "/", when the throw
+            // came before the assignment, which is what the generated operation reports too.
             UriBuilder uriBuilder = new();
 
-            using HttpRequestMessage httpRequestMessage = new();
-
-            uriBuilder.Host = HttpClient.BaseAddress!.Host;
-            uriBuilder.Port = HttpClient.BaseAddress.Port;
-            uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
-            uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                ? "/api/v3/command"
-                : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/command");
-
-            httpRequestMessage.Content = new StringContent(body.ToJsonString());
-
-            // StringContent defaults to text/plain and the server answers 415 to that, so the
-            // header is overwritten once the content exists.
-            string? contentType = ClientUtils.SelectHeaderContentType(new string[] { "application/json" });
-
-            if (contentType != null)
+            try
             {
-                httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
-            }
+                ArgumentException.ThrowIfNullOrWhiteSpace(name);
 
-            // The credential is applied per request rather than by a handler, which is what the
-            // generated operations do. A DelegatingHandler here would be a second mechanism and
-            // would double the header.
-            List<TokenBase> tokens = new();
-            ApiKeyToken apiKeyToken =
-                (ApiKeyToken)await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-            tokens.Add(apiKeyToken);
-            apiKeyToken.UseInHeader(httpRequestMessage);
+                JsonObject body;
 
-            foreach (MediaTypeWithQualityHeaderValue accept in
-                ClientUtils.SelectHeaderAcceptArray(new string[] { "application/json" }))
-            {
-                httpRequestMessage.Headers.Accept.Add(accept);
-            }
-
-            httpRequestMessage.Method = HttpMethod.Post;
-            httpRequestMessage.RequestUri = uriBuilder.Uri;
-
-            DateTime requestedAt = DateTime.UtcNow;
-
-            using HttpResponseMessage httpResponseMessage =
-                await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false);
-
-            string rawContent =
-                await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-
-            CreateCommandApiResponse apiResponse = new(
-                Logger,
-                httpRequestMessage,
-                httpResponseMessage,
-                rawContent,
-                "/api/v3/command",
-                requestedAt,
-                _jsonSerializerOptions);
-
-            // The token provider is shared across every api class, so skipping this would make the
-            // client's rate-limit accounting depend on which method met the 429.
-            if (apiResponse.StatusCode == (HttpStatusCode)429)
-            {
-                foreach (TokenBase token in tokens)
+                if (payload is null)
                 {
-                    token.BeginRateLimit();
+                    body = new JsonObject();
                 }
-            }
+                else
+                {
+                    JsonNode? node = JsonSerializer.SerializeToNode(payload, _jsonSerializerOptions);
 
-            // The response is returned rather than the deserialized body, so this method classifies
-            // the same way every generated operation does. Returning the model instead would leave
-            // a caller no status on the accepted path and force it to read one off an exception on
-            // the refusal path. The HttpResponseMessage is disposed as this returns, which is what
-            // every generated operation also does: the body was already read into RawContent.
-            return apiResponse;
+                    // A boxed scalar serializes to a JsonValue, so this is reachable from a caller and
+                    // an unguarded null-forgiving operator here would raise a NullReferenceException
+                    // from inside the library.
+                    body = node as JsonObject
+                        ?? throw new ArgumentException(
+                            "A command payload must serialize to a JSON object.", nameof(payload));
+
+                    // The loop only reads and the name member is set after it, so the collection is
+                    // never mutated while it is enumerated.
+                    foreach (KeyValuePair<string, JsonNode?> member in body)
+                    {
+                        if (string.Equals(member.Key, "name", StringComparison.OrdinalIgnoreCase))
+                        {
+                            throw new ArgumentException(
+                                "A command payload must not carry a member named '" + member.Key
+                                    + "'. The command name is the name parameter.",
+                                nameof(payload));
+                        }
+                    }
+                }
+
+                body["name"] = JsonValue.Create(name);
+
+                using HttpRequestMessage httpRequestMessage = new();
+
+                uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                uriBuilder.Port = HttpClient.BaseAddress.Port;
+                uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                    ? "/api/v3/command"
+                    : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/command");
+
+                httpRequestMessage.Content = new StringContent(body.ToJsonString());
+
+                // StringContent defaults to text/plain and the server answers 415 to that, so the
+                // header is overwritten once the content exists.
+                string? contentType = ClientUtils.SelectHeaderContentType(new string[] { "application/json" });
+
+                if (contentType != null)
+                {
+                    httpRequestMessage.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+                }
+
+                // The credential is applied per request rather than by a handler, which is what the
+                // generated operations do. A DelegatingHandler here would be a second mechanism and
+                // would double the header.
+                List<TokenBase> tokens = new();
+                ApiKeyToken apiKeyToken =
+                    (ApiKeyToken)await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                tokens.Add(apiKeyToken);
+                apiKeyToken.UseInHeader(httpRequestMessage);
+
+                foreach (MediaTypeWithQualityHeaderValue accept in
+                    ClientUtils.SelectHeaderAcceptArray(new string[] { "application/json" }))
+                {
+                    httpRequestMessage.Headers.Accept.Add(accept);
+                }
+
+                httpRequestMessage.Method = HttpMethod.Post;
+                httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                DateTime requestedAt = DateTime.UtcNow;
+
+                using HttpResponseMessage httpResponseMessage =
+                    await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false);
+
+                string rawContent =
+                    await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+
+                CreateCommandApiResponse apiResponse = new(
+                    Logger,
+                    httpRequestMessage,
+                    httpResponseMessage,
+                    rawContent,
+                    "/api/v3/command",
+                    requestedAt,
+                    _jsonSerializerOptions);
+
+                // The same two post-response steps the generated operation runs, in its order.
+                // The first writes the completion log line every other operation writes, and the
+                // second raises CommandApiEvents.OnCreateCommand. Skipping them made a dispatch the
+                // one call a consumer watching the api's logs or events could not see.
+                //
+                // The Option<CommandResource> argument is unset, and that is accurate rather than a
+                // placeholder: this method takes a name and a loose payload because CommandResource
+                // cannot express command arguments, so there is no resource to pass.
+                AfterCreateCommandDefaultImplementation(apiResponse, default);
+
+                Events.ExecuteOnCreateCommand(apiResponse);
+
+                // The token provider is shared across every api class, so skipping this would make the
+                // client's rate-limit accounting depend on which method met the 429.
+                if (apiResponse.StatusCode == (HttpStatusCode)429)
+                {
+                    foreach (TokenBase token in tokens)
+                    {
+                        token.BeginRateLimit();
+                    }
+                }
+
+                // The response is returned rather than the deserialized body, so this method classifies
+                // the same way every generated operation does. Returning the model instead would leave
+                // a caller no status on the accepted path and force it to read one off an exception on
+                // the refusal path. The HttpResponseMessage is disposed as this returns, which is what
+                // every generated operation also does: the body was already read into RawContent.
+                return apiResponse;
+            }
+            catch (Exception e)
+            {
+                // The generated operation logs, raises the error event and rethrows. This does the
+                // same, so a consumer subscribed to the api's event stream sees a failed dispatch
+                // as it sees every other failed operation. Nothing a caller observes changes: the
+                // original exception propagates unwrapped.
+                OnErrorCreateCommandDefaultImplementation(e, "/api/v3/command", uriBuilder.Path, default);
+
+                Events.ExecuteOnErrorCreateCommand(e);
+
+                throw;
+            }
         }
     }
 }

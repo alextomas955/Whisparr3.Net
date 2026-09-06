@@ -6,6 +6,7 @@ using System.Net;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Whisparr3.Net.Api;
+using Whisparr3.Net.Client;
 using Whisparr3.Net.Model;
 
 namespace Whisparr3.Net.UnitTests
@@ -330,6 +331,64 @@ namespace Whisparr3.Net.UnitTests
 
             /// <summary>The value the dispatch case sends.</summary>
             Enabled = 1,
+        }
+
+        /// <summary>
+        /// A dispatch raises the same response event a generated operation raises.
+        /// </summary>
+        /// <remarks>
+        /// The dispatch assembles its own request rather than going through the generated create,
+        /// so the two post-response steps that generated method runs are ones this method has to
+        /// run itself. Without them a dispatch was the one call a consumer watching
+        /// CommandApiEvents could not see.
+        /// </remarks>
+        [Fact]
+        public async Task Command_dispatch_raises_the_response_event()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+
+            List<ApiResponseEventArgs> raised = [];
+            provider.GetRequiredService<CommandApiEvents>().OnCreateCommand += (_, args) => raised.Add(args);
+
+            ICreateCommandApiResponse response = await Dispatcher(provider)
+                .SendCommandAsync(DispatchedCommandName, new { studioIds = new[] { 7 } });
+
+            ApiResponseEventArgs only = Assert.Single(raised);
+
+            // The event must carry the response the caller got, not a second one built for it.
+            Assert.Same(response, only.ApiResponse);
+        }
+
+        /// <summary>
+        /// A dispatch that throws raises the error event and rethrows unchanged.
+        /// </summary>
+        /// <remarks>
+        /// The colliding payload is used because it fails before a socket is opened, which is where
+        /// the generated operation's own validation failures land too: its validate call sits
+        /// inside the try that raises this event.
+        /// </remarks>
+        [Fact]
+        public async Task Command_dispatch_failure_raises_the_error_event_and_rethrows()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+
+            List<ExceptionEventArgs> raised = [];
+            provider.GetRequiredService<CommandApiEvents>().OnErrorCreateCommand += (_, args) => raised.Add(args);
+
+            ArgumentException thrown = await Assert.ThrowsAsync<ArgumentException>(
+                () => Dispatcher(provider).SendCommandAsync(
+                    DispatchedCommandName,
+                    new { Name = "collision" }));
+
+            ExceptionEventArgs only = Assert.Single(raised);
+
+            Assert.Same(thrown, only.Exception);
+
+            Assert.Empty(capture.Requests);
         }
 
         /// <summary>
