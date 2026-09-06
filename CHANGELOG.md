@@ -3,6 +3,46 @@
 Every release of Whisparr3.Net is recorded here, newest first. The stability policy the version
 numbers refer to is at the bottom of this file and does not move.
 
+## 0.3.0
+
+Two breaking changes, both from integrating the package into its first real consumer.
+
+- **Breaking.** `CommandApi.SendCommandAsync` now returns `Task<ICreateCommandApiResponse>` instead
+  of `Task<CommandResource>`, and reports a refused command through the returned status instead of
+  by throwing. It is the shape every generated operation returns, so a command is classified the
+  same way as every other call. Call `EnsureSuccess()` on the result to get the `CommandResource`
+  and keep the previous throwing behaviour.
+
+  Returning the model gave a caller no status on the accepted path and a status only on the refusal
+  path, off a caught exception. A caller that must not re-issue a command, such as a search, had
+  nothing to record for the call it made and had to compose a status it never received. Measured
+  against 3.4.0.1387: the instance answers 201 to an accepted command and 400 to an unrecognised
+  one, and the specification declares only 200, so the generated `Ok()` accessor returns null even
+  on the accepted path. `EnsureSuccess()` reads the body on any success status and is what a caller
+  wanting the model should use.
+
+- **Breaking.** `Microsoft.Extensions.Http.Polly` is no longer a dependency, and the three generated
+  builder extensions `AddRetryPolicy`, `AddTimeoutPolicy` and `AddCircuitBreakerPolicy` are gone.
+  They were one-line wrappers over `AddPolicyHandler`, and keeping them added `Polly.dll`,
+  `Polly.Extensions.Http.dll` and `Microsoft.Extensions.Http.Polly.dll`, 327 KB in total, to every
+  consumer whether or not it called any of the three. The reference also resolved Polly 7.2.4,
+  pinning the previous Polly major on a consumer that wanted Polly 8 through
+  `Microsoft.Extensions.Http.Resilience`.
+
+  `Whisparr3Options.ConfigureHttpClient` is unchanged and still hands out the `IHttpClientBuilder`
+  those wrappers took, so a consumer attaches retry, timeout or a circuit breaker from whichever
+  resilience package it already uses. Replace `.AddRetryPolicy(3)` with
+  `.AddPolicyHandler(HttpPolicyExtensions.HandleTransientHttpError().RetryAsync(3))` and add
+  `Microsoft.Extensions.Http.Polly` to your own project, or use the policy shape of whatever
+  resilience package you prefer.
+
+- `CommandApi.SendCommandAsync` now raises `CommandApiEvents.OnCreateCommand` and
+  `OnErrorCreateCommand`, and writes the request-completion log line, the same three things the
+  generated `CreateCommandAsync` does. The dispatch assembles its own request, so it was skipping
+  the generated post-response steps, which made a command the one call a consumer watching the
+  api's logs or events could not see. Nothing a caller observes changes: an exception still
+  propagates unwrapped.
+
 ## 0.2.0
 
 Adds command dispatch, and corrects how a response body is read.
