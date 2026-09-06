@@ -95,16 +95,16 @@ returning `null`. That variant destroys the same distinction. Call the plain var
 
 ## Where to look next
 
-- [docs/SURFACE.md](docs/SURFACE.md) lists the operations that return nothing and why, the ones
+- [docs/SURFACE.md](https://github.com/alextomas955/Whisparr3.Net/blob/main/docs/SURFACE.md) lists the operations that return nothing and why, the ones
   that serve Whisparr's web interface, the responses that carry credentials, and the operations
   whose effect the specification does not describe.
-- [docs/HAND-WRITTEN-LAYER.md](docs/HAND-WRITTEN-LAYER.md) describes what this repository adds on
+- [docs/HAND-WRITTEN-LAYER.md](https://github.com/alextomas955/Whisparr3.Net/blob/main/docs/HAND-WRITTEN-LAYER.md) describes what this repository adds on
   top of the generated code, and what it deliberately leaves alone.
-- [docs/REGENERATION.md](docs/REGENERATION.md) is the procedure for reproducing the generated tree
+- [docs/REGENERATION.md](https://github.com/alextomas955/Whisparr3.Net/blob/main/docs/REGENERATION.md) is the procedure for reproducing the generated tree
   from the committed specification.
-- [Public API stability policy](CHANGELOG.md#public-api-stability-policy) states what a version
+- [Public API stability policy](https://github.com/alextomas955/Whisparr3.Net/blob/main/CHANGELOG.md#public-api-stability-policy) states what a version
   bump promises, and what happens when a specification refresh renames a generated method.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/alextomas955/Whisparr3.Net/blob/main/LICENSE).

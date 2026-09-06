@@ -5,7 +5,7 @@ numbers refer to is at the bottom of this file and does not move.
 
 ## 0.1.0
 
-The first release. Not yet published to nuget.org.
+The first release.
 
 - Covers every operation the Whisparr 3 (Eros) API declares, generated from Whisparr's own
   OpenAPI specification. The one malformed root path is excluded.
@@ -15,9 +15,13 @@ The first release. Not yet published to nuget.org.
 - One typed error, `Whisparr3ApiException`, carrying the status, the route template, the request
   URI and the raw body, and distinguishing a failed request from a success with no readable body.
 - `EnsureSuccess` classifies a response, which the generated success accessor does not.
-- A large minority of operations return no value, because the specification declares no response
-  content for them. They are listed with their cause in [docs/SURFACE.md](docs/SURFACE.md), along
-  with the operations that are generated but not useful from C#.
+- `ReadAs<T>` reads the body of an operation the specification gave no response type. A large
+  minority declare no response content, so the generated method exposes no typed accessor, but the
+  body still arrives and `RawContent` carries it.
+- [docs/SURFACE.md](https://github.com/alextomas955/Whisparr3.Net/blob/main/docs/SURFACE.md)
+  lists those operations with their cause, the ones that serve Whisparr's web interface, the
+  responses that carry credentials, and the operations whose effect the specification does not
+  describe.
 
 ## Public API stability policy
 
