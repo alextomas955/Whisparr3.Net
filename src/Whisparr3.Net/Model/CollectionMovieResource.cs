@@ -33,25 +33,25 @@ namespace Whisparr3.Net.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CollectionMovieResource" /> class.
         /// </summary>
-        /// <param name="imdbId">The IMDb identifier for the movie (e.g. \&quot;tt1234567\&quot;).</param>
-        /// <param name="tmdbId">The TMDB identifier for the movie.</param>
-        /// <param name="tpdbId">The TPDB identifier for the movie, if available.</param>
-        /// <param name="foreignId">The external provider&#39;s foreign identifier for the movie.</param>
-        /// <param name="stashId">The StashDB identifier associated with the movie, if any.</param>
-        /// <param name="title">The movie&#39;s title.</param>
-        /// <param name="cleanTitle">Normalized/clean title used for internal comparisons.</param>
-        /// <param name="sortTitle">Title used for sorting purposes.</param>
+        /// <param name="imdbId">imdbId</param>
+        /// <param name="tmdbId">tmdbId</param>
+        /// <param name="tpdbId">tpdbId</param>
+        /// <param name="foreignId">foreignId</param>
+        /// <param name="stashId">stashId</param>
+        /// <param name="title">title</param>
+        /// <param name="cleanTitle">cleanTitle</param>
+        /// <param name="sortTitle">sortTitle</param>
         /// <param name="status">status</param>
-        /// <param name="overview">A short synopsis or overview of the movie.</param>
-        /// <param name="runtime">Runtime in minutes.</param>
-        /// <param name="images">Collection of media cover images for the movie.</param>
-        /// <param name="year">Release year of the movie.</param>
+        /// <param name="overview">overview</param>
+        /// <param name="runtime">runtime</param>
+        /// <param name="images">images</param>
+        /// <param name="year">year</param>
         /// <param name="ratings">ratings</param>
-        /// <param name="genres">List of genre names associated with the movie.</param>
+        /// <param name="genres">genres</param>
         /// <param name="itemType">itemType</param>
-        /// <param name="folder">Calculated folder path for the movie (naming conventions applied).</param>
-        /// <param name="isExisting">Indicates whether the movie already exists in the library.</param>
-        /// <param name="isExcluded">Indicates whether the movie is excluded from import lists.</param>
+        /// <param name="folder">folder</param>
+        /// <param name="isExisting">isExisting</param>
+        /// <param name="isExcluded">isExcluded</param>
         [JsonConstructor]
         public CollectionMovieResource(Option<string?> imdbId = default, Option<int?> tmdbId = default, Option<string?> tpdbId = default, Option<string?> foreignId = default, Option<string?> stashId = default, Option<string?> title = default, Option<string?> cleanTitle = default, Option<string?> sortTitle = default, Option<MovieStatusType?> status = default, Option<string?> overview = default, Option<int?> runtime = default, Option<List<MediaCover>?> images = default, Option<int?> year = default, Option<Ratings?> ratings = default, Option<List<string>?> genres = default, Option<ItemType?> itemType = default, Option<string?> folder = default, Option<bool?> isExisting = default, Option<bool?> isExcluded = default)
         {
@@ -113,9 +113,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> ImdbIdOption { get; private set; }
 
         /// <summary>
-        /// The IMDb identifier for the movie (e.g. \&quot;tt1234567\&quot;).
+        /// Gets or Sets ImdbId
         /// </summary>
-        /// <value>The IMDb identifier for the movie (e.g. \&quot;tt1234567\&quot;).</value>
         [JsonPropertyName("imdbId")]
         public string? ImdbId { get { return this.ImdbIdOption.Value; } set { this.ImdbIdOption = new(value); } }
 
@@ -127,9 +126,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> TmdbIdOption { get; private set; }
 
         /// <summary>
-        /// The TMDB identifier for the movie.
+        /// Gets or Sets TmdbId
         /// </summary>
-        /// <value>The TMDB identifier for the movie.</value>
         [JsonPropertyName("tmdbId")]
         public int? TmdbId { get { return this.TmdbIdOption.Value; } set { this.TmdbIdOption = new(value); } }
 
@@ -141,9 +139,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> TpdbIdOption { get; private set; }
 
         /// <summary>
-        /// The TPDB identifier for the movie, if available.
+        /// Gets or Sets TpdbId
         /// </summary>
-        /// <value>The TPDB identifier for the movie, if available.</value>
         [JsonPropertyName("tpdbId")]
         public string? TpdbId { get { return this.TpdbIdOption.Value; } set { this.TpdbIdOption = new(value); } }
 
@@ -155,9 +152,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> ForeignIdOption { get; private set; }
 
         /// <summary>
-        /// The external provider&#39;s foreign identifier for the movie.
+        /// Gets or Sets ForeignId
         /// </summary>
-        /// <value>The external provider&#39;s foreign identifier for the movie.</value>
         [JsonPropertyName("foreignId")]
         public string? ForeignId { get { return this.ForeignIdOption.Value; } set { this.ForeignIdOption = new(value); } }
 
@@ -169,9 +165,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> StashIdOption { get; private set; }
 
         /// <summary>
-        /// The StashDB identifier associated with the movie, if any.
+        /// Gets or Sets StashId
         /// </summary>
-        /// <value>The StashDB identifier associated with the movie, if any.</value>
         [JsonPropertyName("stashId")]
         public string? StashId { get { return this.StashIdOption.Value; } set { this.StashIdOption = new(value); } }
 
@@ -183,9 +178,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> TitleOption { get; private set; }
 
         /// <summary>
-        /// The movie&#39;s title.
+        /// Gets or Sets Title
         /// </summary>
-        /// <value>The movie&#39;s title.</value>
         [JsonPropertyName("title")]
         public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
@@ -197,9 +191,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> CleanTitleOption { get; private set; }
 
         /// <summary>
-        /// Normalized/clean title used for internal comparisons.
+        /// Gets or Sets CleanTitle
         /// </summary>
-        /// <value>Normalized/clean title used for internal comparisons.</value>
         [JsonPropertyName("cleanTitle")]
         public string? CleanTitle { get { return this.CleanTitleOption.Value; } set { this.CleanTitleOption = new(value); } }
 
@@ -211,9 +204,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> SortTitleOption { get; private set; }
 
         /// <summary>
-        /// Title used for sorting purposes.
+        /// Gets or Sets SortTitle
         /// </summary>
-        /// <value>Title used for sorting purposes.</value>
         [JsonPropertyName("sortTitle")]
         public string? SortTitle { get { return this.SortTitleOption.Value; } set { this.SortTitleOption = new(value); } }
 
@@ -225,9 +217,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> OverviewOption { get; private set; }
 
         /// <summary>
-        /// A short synopsis or overview of the movie.
+        /// Gets or Sets Overview
         /// </summary>
-        /// <value>A short synopsis or overview of the movie.</value>
         [JsonPropertyName("overview")]
         public string? Overview { get { return this.OverviewOption.Value; } set { this.OverviewOption = new(value); } }
 
@@ -239,9 +230,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> RuntimeOption { get; private set; }
 
         /// <summary>
-        /// Runtime in minutes.
+        /// Gets or Sets Runtime
         /// </summary>
-        /// <value>Runtime in minutes.</value>
         [JsonPropertyName("runtime")]
         public int? Runtime { get { return this.RuntimeOption.Value; } set { this.RuntimeOption = new(value); } }
 
@@ -253,9 +243,8 @@ namespace Whisparr3.Net.Model
         public Option<List<MediaCover>?> ImagesOption { get; private set; }
 
         /// <summary>
-        /// Collection of media cover images for the movie.
+        /// Gets or Sets Images
         /// </summary>
-        /// <value>Collection of media cover images for the movie.</value>
         [JsonPropertyName("images")]
         public List<MediaCover>? Images { get { return this.ImagesOption.Value; } set { this.ImagesOption = new(value); } }
 
@@ -267,9 +256,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> YearOption { get; private set; }
 
         /// <summary>
-        /// Release year of the movie.
+        /// Gets or Sets Year
         /// </summary>
-        /// <value>Release year of the movie.</value>
         [JsonPropertyName("year")]
         public int? Year { get { return this.YearOption.Value; } set { this.YearOption = new(value); } }
 
@@ -294,9 +282,8 @@ namespace Whisparr3.Net.Model
         public Option<List<string>?> GenresOption { get; private set; }
 
         /// <summary>
-        /// List of genre names associated with the movie.
+        /// Gets or Sets Genres
         /// </summary>
-        /// <value>List of genre names associated with the movie.</value>
         [JsonPropertyName("genres")]
         public List<string>? Genres { get { return this.GenresOption.Value; } set { this.GenresOption = new(value); } }
 
@@ -308,9 +295,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> FolderOption { get; private set; }
 
         /// <summary>
-        /// Calculated folder path for the movie (naming conventions applied).
+        /// Gets or Sets Folder
         /// </summary>
-        /// <value>Calculated folder path for the movie (naming conventions applied).</value>
         [JsonPropertyName("folder")]
         public string? Folder { get { return this.FolderOption.Value; } set { this.FolderOption = new(value); } }
 
@@ -322,9 +308,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> IsExistingOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether the movie already exists in the library.
+        /// Gets or Sets IsExisting
         /// </summary>
-        /// <value>Indicates whether the movie already exists in the library.</value>
         [JsonPropertyName("isExisting")]
         public bool? IsExisting { get { return this.IsExistingOption.Value; } set { this.IsExistingOption = new(value); } }
 
@@ -336,9 +321,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> IsExcludedOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether the movie is excluded from import lists.
+        /// Gets or Sets IsExcluded
         /// </summary>
-        /// <value>Indicates whether the movie is excluded from import lists.</value>
         [JsonPropertyName("isExcluded")]
         public bool? IsExcluded { get { return this.IsExcludedOption.Value; } set { this.IsExcludedOption = new(value); } }
 

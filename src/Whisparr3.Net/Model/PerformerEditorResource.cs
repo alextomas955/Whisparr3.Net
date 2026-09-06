@@ -26,23 +26,23 @@ using Whisparr3.Net.Client;
 namespace Whisparr3.Net.Model
 {
     /// <summary>
-    /// A resource for editing multiple performers.
+    /// PerformerEditorResource
     /// </summary>
     public partial class PerformerEditorResource : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PerformerEditorResource" /> class.
         /// </summary>
-        /// <param name="performerIds">The IDs of the performers to be edited.</param>
-        /// <param name="monitored">Whether the performers&#39; scenes are monitored.</param>
-        /// <param name="moviesMonitored">Whether the performers&#39; movies are monitored.</param>
-        /// <param name="qualityProfileId">The quality profile ID to set for the performers&#39; movies.</param>
-        /// <param name="rootFolderPath">The root folder path to set for the performers&#39; movies.</param>
-        /// <param name="searchOnAdd">Whether to search for new content after it is added to the performers.</param>
-        /// <param name="tags">The IDs of the tags to apply to the performers.</param>
+        /// <param name="performerIds">performerIds</param>
+        /// <param name="monitored">monitored</param>
+        /// <param name="moviesMonitored">moviesMonitored</param>
+        /// <param name="qualityProfileId">qualityProfileId</param>
+        /// <param name="rootFolderPath">rootFolderPath</param>
+        /// <param name="searchOnAdd">searchOnAdd</param>
+        /// <param name="tags">tags</param>
         /// <param name="applyTags">applyTags</param>
-        /// <param name="deleteFiles">Whether to delete the performers&#39; files from disk.</param>
-        /// <param name="addImportExclusion">Whether to add an import exclusion for the deleted performers.</param>
+        /// <param name="deleteFiles">deleteFiles</param>
+        /// <param name="addImportExclusion">addImportExclusion</param>
         [JsonConstructor]
         public PerformerEditorResource(Option<List<int>?> performerIds = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<int?> qualityProfileId = default, Option<string?> rootFolderPath = default, Option<bool?> searchOnAdd = default, Option<List<int>?> tags = default, Option<ApplyTags?> applyTags = default, Option<bool?> deleteFiles = default, Option<bool?> addImportExclusion = default)
         {
@@ -82,9 +82,8 @@ namespace Whisparr3.Net.Model
         public Option<List<int>?> PerformerIdsOption { get; private set; }
 
         /// <summary>
-        /// The IDs of the performers to be edited.
+        /// Gets or Sets PerformerIds
         /// </summary>
-        /// <value>The IDs of the performers to be edited.</value>
         [JsonPropertyName("performerIds")]
         public List<int>? PerformerIds { get { return this.PerformerIdsOption.Value; } set { this.PerformerIdsOption = new(value); } }
 
@@ -96,9 +95,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether the performers&#39; scenes are monitored.
+        /// Gets or Sets Monitored
         /// </summary>
-        /// <value>Whether the performers&#39; scenes are monitored.</value>
         [JsonPropertyName("monitored")]
         public bool? Monitored { get { return this.MonitoredOption.Value; } set { this.MonitoredOption = new(value); } }
 
@@ -110,9 +108,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MoviesMonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether the performers&#39; movies are monitored.
+        /// Gets or Sets MoviesMonitored
         /// </summary>
-        /// <value>Whether the performers&#39; movies are monitored.</value>
         [JsonPropertyName("moviesMonitored")]
         public bool? MoviesMonitored { get { return this.MoviesMonitoredOption.Value; } set { this.MoviesMonitoredOption = new(value); } }
 
@@ -124,9 +121,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> QualityProfileIdOption { get; private set; }
 
         /// <summary>
-        /// The quality profile ID to set for the performers&#39; movies.
+        /// Gets or Sets QualityProfileId
         /// </summary>
-        /// <value>The quality profile ID to set for the performers&#39; movies.</value>
         [JsonPropertyName("qualityProfileId")]
         public int? QualityProfileId { get { return this.QualityProfileIdOption.Value; } set { this.QualityProfileIdOption = new(value); } }
 
@@ -138,9 +134,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> RootFolderPathOption { get; private set; }
 
         /// <summary>
-        /// The root folder path to set for the performers&#39; movies.
+        /// Gets or Sets RootFolderPath
         /// </summary>
-        /// <value>The root folder path to set for the performers&#39; movies.</value>
         [JsonPropertyName("rootFolderPath")]
         public string? RootFolderPath { get { return this.RootFolderPathOption.Value; } set { this.RootFolderPathOption = new(value); } }
 
@@ -152,9 +147,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> SearchOnAddOption { get; private set; }
 
         /// <summary>
-        /// Whether to search for new content after it is added to the performers.
+        /// Gets or Sets SearchOnAdd
         /// </summary>
-        /// <value>Whether to search for new content after it is added to the performers.</value>
         [JsonPropertyName("searchOnAdd")]
         public bool? SearchOnAdd { get { return this.SearchOnAddOption.Value; } set { this.SearchOnAddOption = new(value); } }
 
@@ -166,9 +160,8 @@ namespace Whisparr3.Net.Model
         public Option<List<int>?> TagsOption { get; private set; }
 
         /// <summary>
-        /// The IDs of the tags to apply to the performers.
+        /// Gets or Sets Tags
         /// </summary>
-        /// <value>The IDs of the tags to apply to the performers.</value>
         [JsonPropertyName("tags")]
         public List<int>? Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new(value); } }
 
@@ -180,9 +173,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> DeleteFilesOption { get; private set; }
 
         /// <summary>
-        /// Whether to delete the performers&#39; files from disk.
+        /// Gets or Sets DeleteFiles
         /// </summary>
-        /// <value>Whether to delete the performers&#39; files from disk.</value>
         [JsonPropertyName("deleteFiles")]
         public bool? DeleteFiles { get { return this.DeleteFilesOption.Value; } set { this.DeleteFilesOption = new(value); } }
 
@@ -194,9 +186,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> AddImportExclusionOption { get; private set; }
 
         /// <summary>
-        /// Whether to add an import exclusion for the deleted performers.
+        /// Gets or Sets AddImportExclusion
         /// </summary>
-        /// <value>Whether to add an import exclusion for the deleted performers.</value>
         [JsonPropertyName("addImportExclusion")]
         public bool? AddImportExclusion { get { return this.AddImportExclusionOption.Value; } set { this.AddImportExclusionOption = new(value); } }
 

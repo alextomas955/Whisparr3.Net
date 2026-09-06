@@ -26,20 +26,20 @@ using Whisparr3.Net.Client;
 namespace Whisparr3.Net.Model
 {
     /// <summary>
-    /// A resource for editing multiple studios
+    /// StudioEditorResource
     /// </summary>
     public partial class StudioEditorResource : IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StudioEditorResource" /> class.
         /// </summary>
-        /// <param name="studioIds">The IDs of the studios to be edited</param>
-        /// <param name="monitored">Whether the studios&#39; scenes are monitored</param>
-        /// <param name="moviesMonitored">Whether the studios&#39; movies are monitored</param>
-        /// <param name="qualityProfileId">The quality profile ID to set on the studios</param>
-        /// <param name="rootFolderPath">The root folder path to set on the studios</param>
-        /// <param name="searchOnAdd">Whether to search for new items when added to studio</param>
-        /// <param name="tags">The tags to apply to the studios</param>
+        /// <param name="studioIds">studioIds</param>
+        /// <param name="monitored">monitored</param>
+        /// <param name="moviesMonitored">moviesMonitored</param>
+        /// <param name="qualityProfileId">qualityProfileId</param>
+        /// <param name="rootFolderPath">rootFolderPath</param>
+        /// <param name="searchOnAdd">searchOnAdd</param>
+        /// <param name="tags">tags</param>
         /// <param name="applyTags">applyTags</param>
         [JsonConstructor]
         public StudioEditorResource(Option<List<int>?> studioIds = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<int?> qualityProfileId = default, Option<string?> rootFolderPath = default, Option<bool?> searchOnAdd = default, Option<List<int>?> tags = default, Option<ApplyTags?> applyTags = default)
@@ -78,9 +78,8 @@ namespace Whisparr3.Net.Model
         public Option<List<int>?> StudioIdsOption { get; private set; }
 
         /// <summary>
-        /// The IDs of the studios to be edited
+        /// Gets or Sets StudioIds
         /// </summary>
-        /// <value>The IDs of the studios to be edited</value>
         [JsonPropertyName("studioIds")]
         public List<int>? StudioIds { get { return this.StudioIdsOption.Value; } set { this.StudioIdsOption = new(value); } }
 
@@ -92,9 +91,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether the studios&#39; scenes are monitored
+        /// Gets or Sets Monitored
         /// </summary>
-        /// <value>Whether the studios&#39; scenes are monitored</value>
         [JsonPropertyName("monitored")]
         public bool? Monitored { get { return this.MonitoredOption.Value; } set { this.MonitoredOption = new(value); } }
 
@@ -106,9 +104,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MoviesMonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether the studios&#39; movies are monitored
+        /// Gets or Sets MoviesMonitored
         /// </summary>
-        /// <value>Whether the studios&#39; movies are monitored</value>
         [JsonPropertyName("moviesMonitored")]
         public bool? MoviesMonitored { get { return this.MoviesMonitoredOption.Value; } set { this.MoviesMonitoredOption = new(value); } }
 
@@ -120,9 +117,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> QualityProfileIdOption { get; private set; }
 
         /// <summary>
-        /// The quality profile ID to set on the studios
+        /// Gets or Sets QualityProfileId
         /// </summary>
-        /// <value>The quality profile ID to set on the studios</value>
         [JsonPropertyName("qualityProfileId")]
         public int? QualityProfileId { get { return this.QualityProfileIdOption.Value; } set { this.QualityProfileIdOption = new(value); } }
 
@@ -134,9 +130,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> RootFolderPathOption { get; private set; }
 
         /// <summary>
-        /// The root folder path to set on the studios
+        /// Gets or Sets RootFolderPath
         /// </summary>
-        /// <value>The root folder path to set on the studios</value>
         [JsonPropertyName("rootFolderPath")]
         public string? RootFolderPath { get { return this.RootFolderPathOption.Value; } set { this.RootFolderPathOption = new(value); } }
 
@@ -148,9 +143,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> SearchOnAddOption { get; private set; }
 
         /// <summary>
-        /// Whether to search for new items when added to studio
+        /// Gets or Sets SearchOnAdd
         /// </summary>
-        /// <value>Whether to search for new items when added to studio</value>
         [JsonPropertyName("searchOnAdd")]
         public bool? SearchOnAdd { get { return this.SearchOnAddOption.Value; } set { this.SearchOnAddOption = new(value); } }
 
@@ -162,9 +156,8 @@ namespace Whisparr3.Net.Model
         public Option<List<int>?> TagsOption { get; private set; }
 
         /// <summary>
-        /// The tags to apply to the studios
+        /// Gets or Sets Tags
         /// </summary>
-        /// <value>The tags to apply to the studios</value>
         [JsonPropertyName("tags")]
         public List<int>? Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new(value); } }
 

@@ -39,79 +39,79 @@ namespace Whisparr3.Net.Api
         MovieApiEvents Events { get; }
 
         /// <summary>
-        /// POST /movie
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource">The movie resource to add (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieApiResponse"/>&gt;</returns>
         Task<ICreateMovieApiResponse> CreateMovieAsync(Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieResource">The movie resource to add (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieApiResponse"/>?&gt;</returns>
         Task<ICreateMovieApiResponse?> CreateMovieOrDefaultAsync(Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/list
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody">List of movie IDs to retrieve (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieBulkApiResponse"/>&gt;</returns>
         Task<ICreateMovieBulkApiResponse> CreateMovieBulkAsync(Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/list
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="requestBody">List of movie IDs to retrieve (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieBulkApiResponse"/>?&gt;</returns>
         Task<ICreateMovieBulkApiResponse?> CreateMovieBulkOrDefaultAsync(Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/list
+        /// 
         /// </summary>
         /// <remarks>
-        /// Look up movies by a list of foreignIds
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody">List of foreign IDs to look up (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieListApiResponse"/>&gt;</returns>
         Task<ICreateMovieListApiResponse> CreateMovieListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/list
+        /// 
         /// </summary>
         /// <remarks>
-        /// Look up movies by a list of foreignIds
+        /// 
         /// </remarks>
-        /// <param name="requestBody">List of foreign IDs to look up (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieListApiResponse"/>?&gt;</returns>
         Task<ICreateMovieListApiResponse?> CreateMovieListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/paged
+        /// 
         /// </summary>
         /// <remarks>
-        /// Paged, filtered, and sorted movie/scene results
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="moviePagingRequestResource"> (optional)</param>
@@ -120,10 +120,10 @@ namespace Whisparr3.Net.Api
         Task<ICreateMoviePagedApiResponse> CreateMoviePagedAsync(Option<MoviePagingRequestResource> moviePagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/paged
+        /// 
         /// </summary>
         /// <remarks>
-        /// Paged, filtered, and sorted movie/scene results
+        /// 
         /// </remarks>
         /// <param name="moviePagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -131,37 +131,37 @@ namespace Whisparr3.Net.Api
         Task<ICreateMoviePagedApiResponse?> CreateMoviePagedOrDefaultAsync(Option<MoviePagingRequestResource> moviePagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// DELETE /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the movie to delete</param>
-        /// <param name="deleteFiles">Whether to delete the movie files from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">Whether to add an import exclusion for the movie&#39;s path to prevent re-importing if files are left on disk (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieApiResponse"/>&gt;</returns>
         Task<IDeleteMovieApiResponse> DeleteMovieAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// DELETE /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id">The ID of the movie to delete</param>
-        /// <param name="deleteFiles">Whether to delete the movie files from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">Whether to add an import exclusion for the movie&#39;s path to prevent re-importing if files are left on disk (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieApiResponse"/>?&gt;</returns>
         Task<IDeleteMovieApiResponse?> DeleteMovieOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
-        /// Get a single movie by foreign Id or internal Id. If the ID starts with \&quot;tmdb:\&quot;, it will be treated as a TMDB ID. Otherwise, it will first attempt to find by foreign ID, then fallback to internal ID for backward compatibility.
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -170,10 +170,10 @@ namespace Whisparr3.Net.Api
         Task<IGetMovieByIdApiResponse> GetMovieByIdAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
-        /// Get a single movie by foreign Id or internal Id. If the ID starts with \&quot;tmdb:\&quot;, it will be treated as a TMDB ID. Otherwise, it will first attempt to find by foreign ID, then fallback to internal ID for backward compatibility.
+        /// 
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -181,33 +181,33 @@ namespace Whisparr3.Net.Api
         Task<IGetMovieByIdApiResponse?> GetMovieByIdOrDefaultAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/stats?itemType&#x3D;movie|scene
+        /// 
         /// </summary>
         /// <remarks>
-        /// Returns statistics for the item type, including total count, monitored count, file count, and total file size.             If itemType is specified, returns stats for that item type instead of movies + scenes.
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="itemType">Optional query parameter to specify whether to return stats for movies or scenes. Defaults to movies if not provided. (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieStatsApiResponse"/>&gt;</returns>
         Task<IGetMovieStatsApiResponse> GetMovieStatsAsync(Option<string> itemType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/stats?itemType&#x3D;movie|scene
+        /// 
         /// </summary>
         /// <remarks>
-        /// Returns statistics for the item type, including total count, monitored count, file count, and total file size.             If itemType is specified, returns stats for that item type instead of movies + scenes.
+        /// 
         /// </remarks>
-        /// <param name="itemType">Optional query parameter to specify whether to return stats for movies or scenes. Defaults to movies if not provided. (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieStatsApiResponse"/>?&gt;</returns>
         Task<IGetMovieStatsApiResponse?> GetMovieStatsOrDefaultAsync(Option<string> itemType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie?tmdbId&#x3D;12345 OR /movie?tpdbId&#x3D;tpdb-12345 OR /movie?stashId&#x3D;stash-12345
+        /// 
         /// </summary>
         /// <remarks>
-        /// Look up movies by TMDB ID, TPDB ID, or Stash ID. If no query parameters are provided, returns all movies.
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="tmdbId"> (optional)</param>
@@ -219,10 +219,10 @@ namespace Whisparr3.Net.Api
         Task<IListMovieApiResponse> ListMovieAsync(Option<int> tmdbId = default, Option<string> tpdbId = default, Option<string> stashId = default, Option<bool> excludeLocalCovers = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie?tmdbId&#x3D;12345 OR /movie?tpdbId&#x3D;tpdb-12345 OR /movie?stashId&#x3D;stash-12345
+        /// 
         /// </summary>
         /// <remarks>
-        /// Look up movies by TMDB ID, TPDB ID, or Stash ID. If no query parameters are provided, returns all movies.
+        /// 
         /// </remarks>
         /// <param name="tmdbId"> (optional)</param>
         /// <param name="tpdbId"> (optional)</param>
@@ -233,53 +233,53 @@ namespace Whisparr3.Net.Api
         Task<IListMovieApiResponse?> ListMovieOrDefaultAsync(Option<int> tmdbId = default, Option<string> tpdbId = default, Option<string> stashId = default, Option<bool> excludeLocalCovers = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/listByPerformerForeignId?performerForeignId&#x3D;tmdb-12345
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerForeignId">The foreign ID of the performer (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByPerformerForeignIdApiResponse"/>&gt;</returns>
         Task<IListMovieByPerformerForeignIdApiResponse> ListMovieByPerformerForeignIdAsync(Option<string> performerForeignId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/listByPerformerForeignId?performerForeignId&#x3D;tmdb-12345
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="performerForeignId">The foreign ID of the performer (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByPerformerForeignIdApiResponse"/>?&gt;</returns>
         Task<IListMovieByPerformerForeignIdApiResponse?> ListMovieByPerformerForeignIdOrDefaultAsync(Option<string> performerForeignId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/listByStudioForeignId?studioForeignId&#x3D;tmdb-12345
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioForeignId">The foreign ID of the studio (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByStudioForeignIdApiResponse"/>&gt;</returns>
         Task<IListMovieByStudioForeignIdApiResponse> ListMovieByStudioForeignIdAsync(Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/listByStudioForeignId?studioForeignId&#x3D;tmdb-12345
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="studioForeignId">The foreign ID of the studio (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByStudioForeignIdApiResponse"/>?&gt;</returns>
         Task<IListMovieByStudioForeignIdApiResponse?> ListMovieByStudioForeignIdOrDefaultAsync(Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/list
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -290,7 +290,7 @@ namespace Whisparr3.Net.Api
         Task<IListMovieListApiResponse> ListMovieListAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// POST /movie/list
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -300,103 +300,103 @@ namespace Whisparr3.Net.Api
         Task<IListMovieListApiResponse?> ListMovieListOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/search?query&#x3D;term
+        /// 
         /// </summary>
         /// <remarks>
-        /// Search movies by clean title (or foreign ID)
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">The search query, which can be a clean title or a foreign ID (optional)</param>
-        /// <param name="limit">The maximum number of search results to return (default is 100) (optional, default to 100)</param>
+        /// <param name="query"> (optional)</param>
+        /// <param name="limit"> (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieSearchApiResponse"/>&gt;</returns>
         Task<IListMovieSearchApiResponse> ListMovieSearchAsync(Option<string> query = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// GET /movie/search?query&#x3D;term
+        /// 
         /// </summary>
         /// <remarks>
-        /// Search movies by clean title (or foreign ID)
+        /// 
         /// </remarks>
-        /// <param name="query">The search query, which can be a clean title or a foreign ID (optional)</param>
-        /// <param name="limit">The maximum number of search results to return (default is 100) (optional, default to 100)</param>
+        /// <param name="query"> (optional)</param>
+        /// <param name="limit"> (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieSearchApiResponse"/>?&gt;</returns>
         Task<IListMovieSearchApiResponse?> ListMovieSearchOrDefaultAsync(Option<string> query = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// PATCH /movie/monitor
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="monitored">The monitored value to set for the specified movies (optional)</param>
-        /// <param name="requestBody">List of movie IDs to update (optional)</param>
+        /// <param name="monitored"> (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieBulkMonitorApiResponse"/>&gt;</returns>
         Task<IPatchMovieBulkMonitorApiResponse> PatchMovieBulkMonitorAsync(Option<bool> monitored = default, Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// PATCH /movie/monitor
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="monitored">The monitored value to set for the specified movies (optional)</param>
-        /// <param name="requestBody">List of movie IDs to update (optional)</param>
+        /// <param name="monitored"> (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieBulkMonitorApiResponse"/>?&gt;</returns>
         Task<IPatchMovieBulkMonitorApiResponse?> PatchMovieBulkMonitorOrDefaultAsync(Option<bool> monitored = default, Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// PATCH /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the movie to update</param>
-        /// <param name="moviePatchResource">The patch request containing the monitored flag (optional)</param>
+        /// <param name="id"></param>
+        /// <param name="moviePatchResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieByIdApiResponse"/>&gt;</returns>
         Task<IPatchMovieByIdApiResponse> PatchMovieByIdAsync(int id, Option<MoviePatchResource> moviePatchResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// PATCH /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id">The ID of the movie to update</param>
-        /// <param name="moviePatchResource">The patch request containing the monitored flag (optional)</param>
+        /// <param name="id"></param>
+        /// <param name="moviePatchResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieByIdApiResponse"/>?&gt;</returns>
         Task<IPatchMovieByIdApiResponse?> PatchMovieByIdOrDefaultAsync(int id, Option<MoviePatchResource> moviePatchResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// PUT /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="moveFiles">Whether to move the movie files to a new location (optional, default to false)</param>
-        /// <param name="movieResource">The movie resource with updated information. The ID in the resource must match the ID in the URL. (optional)</param>
+        /// <param name="moveFiles"> (optional, default to false)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieApiResponse"/>&gt;</returns>
         Task<IUpdateMovieApiResponse> UpdateMovieAsync(string id, Option<bool> moveFiles = default, Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// PUT /movie/{id}
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="moveFiles">Whether to move the movie files to a new location (optional, default to false)</param>
-        /// <param name="movieResource">The movie resource with updated information. The ID in the resource must match the ID in the URL. (optional)</param>
+        /// <param name="moveFiles"> (optional, default to false)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieApiResponse"/>?&gt;</returns>
         Task<IUpdateMovieApiResponse?> UpdateMovieOrDefaultAsync(string id, Option<bool> moveFiles = default, Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
@@ -989,9 +989,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieResource> movieResource);
 
         /// <summary>
-        /// POST /movie 
+        ///  
         /// </summary>
-        /// <param name="movieResource">The movie resource to add (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieApiResponse?> CreateMovieOrDefaultAsync(Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1007,10 +1007,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// POST /movie 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource">The movie resource to add (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieApiResponse> CreateMovieAsync(Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1266,9 +1266,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateMovieBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> requestBody);
 
         /// <summary>
-        /// POST /movie/list 
+        ///  
         /// </summary>
-        /// <param name="requestBody">List of movie IDs to retrieve (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieBulkApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieBulkApiResponse?> CreateMovieBulkOrDefaultAsync(Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1284,10 +1284,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// POST /movie/list 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody">List of movie IDs to retrieve (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieBulkApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieBulkApiResponse> CreateMovieBulkAsync(Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1547,9 +1547,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateMovieList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody);
 
         /// <summary>
-        /// POST /movie/list Look up movies by a list of foreignIds
+        ///  
         /// </summary>
-        /// <param name="requestBody">List of foreign IDs to look up (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieListApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieListApiResponse?> CreateMovieListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1565,10 +1565,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// POST /movie/list Look up movies by a list of foreignIds
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody">List of foreign IDs to look up (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieListApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieListApiResponse> CreateMovieListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1826,7 +1826,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateMoviePaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MoviePagingRequestResource> moviePagingRequestResource);
 
         /// <summary>
-        /// POST /movie/paged Paged, filtered, and sorted movie/scene results
+        ///  
         /// </summary>
         /// <param name="moviePagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1844,7 +1844,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// POST /movie/paged Paged, filtered, and sorted movie/scene results
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="moviePagingRequestResource"> (optional)</param>
@@ -2102,11 +2102,11 @@ namespace Whisparr3.Net.Api
         partial void OnErrorDeleteMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
-        /// DELETE /movie/{id} 
+        ///  
         /// </summary>
-        /// <param name="id">The ID of the movie to delete</param>
-        /// <param name="deleteFiles">Whether to delete the movie files from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">Whether to add an import exclusion for the movie&#39;s path to prevent re-importing if files are left on disk (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieApiResponse"/>&gt;</returns>
         public async Task<IDeleteMovieApiResponse?> DeleteMovieOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2122,12 +2122,12 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// DELETE /movie/{id} 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the movie to delete</param>
-        /// <param name="deleteFiles">Whether to delete the movie files from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">Whether to add an import exclusion for the movie&#39;s path to prevent re-importing if files are left on disk (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieApiResponse"/>&gt;</returns>
         public async Task<IDeleteMovieApiResponse> DeleteMovieAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2323,7 +2323,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetMovieById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id);
 
         /// <summary>
-        /// GET /movie/{id} Get a single movie by foreign Id or internal Id. If the ID starts with \&quot;tmdb:\&quot;, it will be treated as a TMDB ID. Otherwise, it will first attempt to find by foreign ID, then fallback to internal ID for backward compatibility.
+        ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2341,7 +2341,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// GET /movie/{id} Get a single movie by foreign Id or internal Id. If the ID starts with \&quot;tmdb:\&quot;, it will be treated as a TMDB ID. Otherwise, it will first attempt to find by foreign ID, then fallback to internal ID for backward compatibility.
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -2587,9 +2587,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetMovieStats(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> itemType);
 
         /// <summary>
-        /// GET /movie/stats?itemType&#x3D;movie|scene Returns statistics for the item type, including total count, monitored count, file count, and total file size.             If itemType is specified, returns stats for that item type instead of movies + scenes.
+        ///  
         /// </summary>
-        /// <param name="itemType">Optional query parameter to specify whether to return stats for movies or scenes. Defaults to movies if not provided. (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieStatsApiResponse"/>&gt;</returns>
         public async Task<IGetMovieStatsApiResponse?> GetMovieStatsOrDefaultAsync(Option<string> itemType = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2605,10 +2605,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// GET /movie/stats?itemType&#x3D;movie|scene Returns statistics for the item type, including total count, monitored count, file count, and total file size.             If itemType is specified, returns stats for that item type instead of movies + scenes.
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="itemType">Optional query parameter to specify whether to return stats for movies or scenes. Defaults to movies if not provided. (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieStatsApiResponse"/>&gt;</returns>
         public async Task<IGetMovieStatsApiResponse> GetMovieStatsAsync(Option<string> itemType = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2873,7 +2873,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId, Option<string> tpdbId, Option<string> stashId, Option<bool> excludeLocalCovers);
 
         /// <summary>
-        /// GET /movie?tmdbId&#x3D;12345 OR /movie?tpdbId&#x3D;tpdb-12345 OR /movie?stashId&#x3D;stash-12345 Look up movies by TMDB ID, TPDB ID, or Stash ID. If no query parameters are provided, returns all movies.
+        ///  
         /// </summary>
         /// <param name="tmdbId"> (optional)</param>
         /// <param name="tpdbId"> (optional)</param>
@@ -2894,7 +2894,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// GET /movie?tmdbId&#x3D;12345 OR /movie?tpdbId&#x3D;tpdb-12345 OR /movie?stashId&#x3D;stash-12345 Look up movies by TMDB ID, TPDB ID, or Stash ID. If no query parameters are provided, returns all movies.
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="tmdbId"> (optional)</param>
@@ -3158,9 +3158,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListMovieByPerformerForeignId(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> performerForeignId);
 
         /// <summary>
-        /// GET /movie/listByPerformerForeignId?performerForeignId&#x3D;tmdb-12345 
+        ///  
         /// </summary>
-        /// <param name="performerForeignId">The foreign ID of the performer (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByPerformerForeignIdApiResponse"/>&gt;</returns>
         public async Task<IListMovieByPerformerForeignIdApiResponse?> ListMovieByPerformerForeignIdOrDefaultAsync(Option<string> performerForeignId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -3176,10 +3176,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// GET /movie/listByPerformerForeignId?performerForeignId&#x3D;tmdb-12345 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerForeignId">The foreign ID of the performer (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByPerformerForeignIdApiResponse"/>&gt;</returns>
         public async Task<IListMovieByPerformerForeignIdApiResponse> ListMovieByPerformerForeignIdAsync(Option<string> performerForeignId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -3428,9 +3428,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListMovieByStudioForeignId(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> studioForeignId);
 
         /// <summary>
-        /// GET /movie/listByStudioForeignId?studioForeignId&#x3D;tmdb-12345 
+        ///  
         /// </summary>
-        /// <param name="studioForeignId">The foreign ID of the studio (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByStudioForeignIdApiResponse"/>&gt;</returns>
         public async Task<IListMovieByStudioForeignIdApiResponse?> ListMovieByStudioForeignIdOrDefaultAsync(Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -3446,10 +3446,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// GET /movie/listByStudioForeignId?studioForeignId&#x3D;tmdb-12345 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioForeignId">The foreign ID of the studio (e.g. \&quot;tmdb-12345\&quot;) (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieByStudioForeignIdApiResponse"/>&gt;</returns>
         public async Task<IListMovieByStudioForeignIdApiResponse> ListMovieByStudioForeignIdAsync(Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -3681,7 +3681,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListMovieList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
-        /// POST /movie/list 
+        ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieListApiResponse"/>&gt;</returns>
@@ -3698,7 +3698,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// POST /movie/list 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -3942,10 +3942,10 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListMovieSearch(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> query, Option<int> limit);
 
         /// <summary>
-        /// GET /movie/search?query&#x3D;term Search movies by clean title (or foreign ID)
+        ///  
         /// </summary>
-        /// <param name="query">The search query, which can be a clean title or a foreign ID (optional)</param>
-        /// <param name="limit">The maximum number of search results to return (default is 100) (optional, default to 100)</param>
+        /// <param name="query"> (optional)</param>
+        /// <param name="limit"> (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieSearchApiResponse"/>&gt;</returns>
         public async Task<IListMovieSearchApiResponse?> ListMovieSearchOrDefaultAsync(Option<string> query = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -3961,11 +3961,11 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// GET /movie/search?query&#x3D;term Search movies by clean title (or foreign ID)
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="query">The search query, which can be a clean title or a foreign ID (optional)</param>
-        /// <param name="limit">The maximum number of search results to return (default is 100) (optional, default to 100)</param>
+        /// <param name="query"> (optional)</param>
+        /// <param name="limit"> (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieSearchApiResponse"/>&gt;</returns>
         public async Task<IListMovieSearchApiResponse> ListMovieSearchAsync(Option<string> query = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4219,10 +4219,10 @@ namespace Whisparr3.Net.Api
         partial void OnErrorPatchMovieBulkMonitor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> monitored, Option<List<int>> requestBody);
 
         /// <summary>
-        /// PATCH /movie/monitor 
+        ///  
         /// </summary>
-        /// <param name="monitored">The monitored value to set for the specified movies (optional)</param>
-        /// <param name="requestBody">List of movie IDs to update (optional)</param>
+        /// <param name="monitored"> (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieBulkMonitorApiResponse"/>&gt;</returns>
         public async Task<IPatchMovieBulkMonitorApiResponse?> PatchMovieBulkMonitorOrDefaultAsync(Option<bool> monitored = default, Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4238,11 +4238,11 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// PATCH /movie/monitor 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="monitored">The monitored value to set for the specified movies (optional)</param>
-        /// <param name="requestBody">List of movie IDs to update (optional)</param>
+        /// <param name="monitored"> (optional)</param>
+        /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieBulkMonitorApiResponse"/>&gt;</returns>
         public async Task<IPatchMovieBulkMonitorApiResponse> PatchMovieBulkMonitorAsync(Option<bool> monitored = default, Option<List<int>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4458,10 +4458,10 @@ namespace Whisparr3.Net.Api
         partial void OnErrorPatchMovieById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<MoviePatchResource> moviePatchResource);
 
         /// <summary>
-        /// PATCH /movie/{id} 
+        ///  
         /// </summary>
-        /// <param name="id">The ID of the movie to update</param>
-        /// <param name="moviePatchResource">The patch request containing the monitored flag (optional)</param>
+        /// <param name="id"></param>
+        /// <param name="moviePatchResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieByIdApiResponse"/>&gt;</returns>
         public async Task<IPatchMovieByIdApiResponse?> PatchMovieByIdOrDefaultAsync(int id, Option<MoviePatchResource> moviePatchResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4477,11 +4477,11 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// PATCH /movie/{id} 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The ID of the movie to update</param>
-        /// <param name="moviePatchResource">The patch request containing the monitored flag (optional)</param>
+        /// <param name="id"></param>
+        /// <param name="moviePatchResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPatchMovieByIdApiResponse"/>&gt;</returns>
         public async Task<IPatchMovieByIdApiResponse> PatchMovieByIdAsync(int id, Option<MoviePatchResource> moviePatchResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4697,11 +4697,11 @@ namespace Whisparr3.Net.Api
         partial void OnErrorUpdateMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<bool> moveFiles, Option<MovieResource> movieResource);
 
         /// <summary>
-        /// PUT /movie/{id} 
+        ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="moveFiles">Whether to move the movie files to a new location (optional, default to false)</param>
-        /// <param name="movieResource">The movie resource with updated information. The ID in the resource must match the ID in the URL. (optional)</param>
+        /// <param name="moveFiles"> (optional, default to false)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieApiResponse"/>&gt;</returns>
         public async Task<IUpdateMovieApiResponse?> UpdateMovieOrDefaultAsync(string id, Option<bool> moveFiles = default, Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4717,12 +4717,12 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// PUT /movie/{id} 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="moveFiles">Whether to move the movie files to a new location (optional, default to false)</param>
-        /// <param name="movieResource">The movie resource with updated information. The ID in the resource must match the ID in the URL. (optional)</param>
+        /// <param name="moveFiles"> (optional, default to false)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieApiResponse"/>&gt;</returns>
         public async Task<IUpdateMovieApiResponse> UpdateMovieAsync(string id, Option<bool> moveFiles = default, Option<MovieResource> movieResource = default, System.Threading.CancellationToken cancellationToken = default)

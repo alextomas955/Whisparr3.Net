@@ -62,10 +62,10 @@ namespace Whisparr3.Net.Api
         Task<ICreateStudioApiResponse?> CreateStudioOrDefaultAsync(Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestBody"> (optional)</param>
@@ -74,10 +74,10 @@ namespace Whisparr3.Net.Api
         Task<ICreateStudioListApiResponse> CreateStudioListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// 
         /// </remarks>
         /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -85,24 +85,24 @@ namespace Whisparr3.Net.Api
         Task<ICreateStudioListApiResponse?> CreateStudioListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="studioPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>&gt;</returns>
         Task<ICreateStudioPagedApiResponse> CreateStudioPagedAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="studioPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>?&gt;</returns>
         Task<ICreateStudioPagedApiResponse?> CreateStudioPagedOrDefaultAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
@@ -158,7 +158,7 @@ namespace Whisparr3.Net.Api
         Task<IGetStudioByIdApiResponse?> GetStudioByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -170,7 +170,7 @@ namespace Whisparr3.Net.Api
         Task<IGetStudioByStudioForeignIdApiResponse> GetStudioByStudioForeignIdAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -204,7 +204,7 @@ namespace Whisparr3.Net.Api
         Task<IListStudioApiResponse?> ListStudioOrDefaultAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -216,7 +216,7 @@ namespace Whisparr3.Net.Api
         Task<IListStudioWorksApiResponse> ListStudioWorksAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -936,7 +936,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateStudioList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody);
 
         /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        ///  
         /// </summary>
         /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -954,7 +954,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestBody"> (optional)</param>
@@ -1213,9 +1213,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateStudioPaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioPagingRequestResource> studioPagingRequestResource);
 
         /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options 
+        ///  
         /// </summary>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="studioPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>&gt;</returns>
         public async Task<ICreateStudioPagedApiResponse?> CreateStudioPagedOrDefaultAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1231,10 +1231,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="studioPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>&gt;</returns>
         public async Task<ICreateStudioPagedApiResponse> CreateStudioPagedAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1959,7 +1959,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetStudioByStudioForeignId(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId);
 
         /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <param name="studioForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1977,7 +1977,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="studioForeignId"></param>
@@ -2497,7 +2497,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListStudioWorks(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId);
 
         /// <summary>
-        /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <param name="studioForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2515,7 +2515,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="studioForeignId"></param>

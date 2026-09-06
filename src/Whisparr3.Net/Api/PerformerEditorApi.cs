@@ -62,7 +62,7 @@ namespace Whisparr3.Net.Api
         Task<IDeletePerformerEditorApiResponse?> DeletePerformerEditorOrDefaultAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Edits multiple performers
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -74,7 +74,7 @@ namespace Whisparr3.Net.Api
         Task<IPutPerformerEditorApiResponse> PutPerformerEditorAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Edits multiple performers
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -482,7 +482,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorPutPerformerEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerEditorResource> performerEditorResource);
 
         /// <summary>
-        /// Edits multiple performers 
+        ///  
         /// </summary>
         /// <param name="performerEditorResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -500,7 +500,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Edits multiple performers 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="performerEditorResource"> (optional)</param>

@@ -39,95 +39,95 @@ namespace Whisparr3.Net.Api
         MovieLookupApiEvents Events { get; }
 
         /// <summary>
-        /// Lookup movie metadata by IMDB id.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="imdbId">IMDB identifier. (optional)</param>
+        /// <param name="imdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupImdbApiResponse"/>&gt;</returns>
         Task<IGetMovieLookupImdbApiResponse> GetMovieLookupImdbAsync(Option<string> imdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Lookup movie metadata by IMDB id.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="imdbId">IMDB identifier. (optional)</param>
+        /// <param name="imdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupImdbApiResponse"/>?&gt;</returns>
         Task<IGetMovieLookupImdbApiResponse?> GetMovieLookupImdbOrDefaultAsync(Option<string> imdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Lookup movie metadata by TMDB id.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tmdbId">TMDB identifier. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTmdbApiResponse"/>&gt;</returns>
         Task<IGetMovieLookupTmdbApiResponse> GetMovieLookupTmdbAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Lookup movie metadata by TMDB id.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="tmdbId">TMDB identifier. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTmdbApiResponse"/>?&gt;</returns>
         Task<IGetMovieLookupTmdbApiResponse?> GetMovieLookupTmdbOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Lookup movie metadata by TPDB id.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tpdbId">TPDB identifier. (optional)</param>
+        /// <param name="tpdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTpdbApiResponse"/>&gt;</returns>
         Task<IGetMovieLookupTpdbApiResponse> GetMovieLookupTpdbAsync(Option<string> tpdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Lookup movie metadata by TPDB id.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="tpdbId">TPDB identifier. (optional)</param>
+        /// <param name="tpdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTpdbApiResponse"/>?&gt;</returns>
         Task<IGetMovieLookupTpdbApiResponse?> GetMovieLookupTpdbOrDefaultAsync(Option<string> tpdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="term"> (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>&gt;</returns>
         Task<IListMovieLookupApiResponse> ListMovieLookupAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="term"> (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>?&gt;</returns>
         Task<IListMovieLookupApiResponse?> ListMovieLookupOrDefaultAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default);
@@ -368,9 +368,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetMovieLookupImdb(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> imdbId);
 
         /// <summary>
-        /// Lookup movie metadata by IMDB id. 
+        ///  
         /// </summary>
-        /// <param name="imdbId">IMDB identifier. (optional)</param>
+        /// <param name="imdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupImdbApiResponse"/>&gt;</returns>
         public async Task<IGetMovieLookupImdbApiResponse?> GetMovieLookupImdbOrDefaultAsync(Option<string> imdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -386,10 +386,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Lookup movie metadata by IMDB id. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="imdbId">IMDB identifier. (optional)</param>
+        /// <param name="imdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupImdbApiResponse"/>&gt;</returns>
         public async Task<IGetMovieLookupImdbApiResponse> GetMovieLookupImdbAsync(Option<string> imdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -625,9 +625,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetMovieLookupTmdb(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId);
 
         /// <summary>
-        /// Lookup movie metadata by TMDB id. 
+        ///  
         /// </summary>
-        /// <param name="tmdbId">TMDB identifier. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTmdbApiResponse"/>&gt;</returns>
         public async Task<IGetMovieLookupTmdbApiResponse?> GetMovieLookupTmdbOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -643,10 +643,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Lookup movie metadata by TMDB id. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tmdbId">TMDB identifier. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTmdbApiResponse"/>&gt;</returns>
         public async Task<IGetMovieLookupTmdbApiResponse> GetMovieLookupTmdbAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -891,9 +891,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetMovieLookupTpdb(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> tpdbId);
 
         /// <summary>
-        /// Lookup movie metadata by TPDB id. 
+        ///  
         /// </summary>
-        /// <param name="tpdbId">TPDB identifier. (optional)</param>
+        /// <param name="tpdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTpdbApiResponse"/>&gt;</returns>
         public async Task<IGetMovieLookupTpdbApiResponse?> GetMovieLookupTpdbOrDefaultAsync(Option<string> tpdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -909,10 +909,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Lookup movie metadata by TPDB id. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tpdbId">TPDB identifier. (optional)</param>
+        /// <param name="tpdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTpdbApiResponse"/>&gt;</returns>
         public async Task<IGetMovieLookupTpdbApiResponse> GetMovieLookupTpdbAsync(Option<string> tpdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1163,10 +1163,10 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListMovieLookup(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> term, Option<ItemType> itemType);
 
         /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding. 
+        ///  
         /// </summary>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="term"> (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>&gt;</returns>
         public async Task<IListMovieLookupApiResponse?> ListMovieLookupOrDefaultAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1182,11 +1182,11 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="term"> (optional)</param>
+        /// <param name="itemType"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>&gt;</returns>
         public async Task<IListMovieLookupApiResponse> ListMovieLookupAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default)

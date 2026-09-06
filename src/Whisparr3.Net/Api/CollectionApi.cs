@@ -39,28 +39,28 @@ namespace Whisparr3.Net.Api
         CollectionApiEvents Events { get; }
 
         /// <summary>
-        /// Deletes a collection and their associated movies/scenes from Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The internal ID of the colection to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>&gt;</returns>
         Task<IDeleteCollectionApiResponse> DeleteCollectionAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes a collection and their associated movies/scenes from Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id">The internal ID of the colection to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>?&gt;</returns>
         Task<IDeleteCollectionApiResponse?> DeleteCollectionOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
@@ -89,72 +89,72 @@ namespace Whisparr3.Net.Api
         Task<IGetCollectionByIdApiResponse?> GetCollectionByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>&gt;</returns>
         Task<IListCollectionApiResponse> ListCollectionAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>?&gt;</returns>
         Task<IListCollectionApiResponse?> ListCollectionOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Bulk update for multiple collections. Only properties present in the request are applied.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>&gt;</returns>
         Task<IPutCollectionApiResponse> PutCollectionAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Bulk update for multiple collections. Only properties present in the request are applied.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>?&gt;</returns>
         Task<IPutCollectionApiResponse?> PutCollectionOrDefaultAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates a single collection.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>&gt;</returns>
         Task<IUpdateCollectionApiResponse> UpdateCollectionAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates a single collection.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>?&gt;</returns>
         Task<IUpdateCollectionApiResponse?> UpdateCollectionOrDefaultAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default);
@@ -424,11 +424,11 @@ namespace Whisparr3.Net.Api
         partial void OnErrorDeleteCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
-        /// Deletes a collection and their associated movies/scenes from Whisparr 
+        ///  
         /// </summary>
-        /// <param name="id">The internal ID of the colection to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>&gt;</returns>
         public async Task<IDeleteCollectionApiResponse?> DeleteCollectionOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
@@ -444,12 +444,12 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Deletes a collection and their associated movies/scenes from Whisparr 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The internal ID of the colection to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>&gt;</returns>
         public async Task<IDeleteCollectionApiResponse> DeleteCollectionAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
@@ -885,9 +885,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId);
 
         /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections. 
+        ///  
         /// </summary>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>&gt;</returns>
         public async Task<IListCollectionApiResponse?> ListCollectionOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -903,10 +903,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="tmdbId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>&gt;</returns>
         public async Task<IListCollectionApiResponse> ListCollectionAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1151,9 +1151,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorPutCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<CollectionUpdateResource> collectionUpdateResource);
 
         /// <summary>
-        /// Bulk update for multiple collections. Only properties present in the request are applied. 
+        ///  
         /// </summary>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>&gt;</returns>
         public async Task<IPutCollectionApiResponse?> PutCollectionOrDefaultAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1169,10 +1169,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Bulk update for multiple collections. Only properties present in the request are applied. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>&gt;</returns>
         public async Task<IPutCollectionApiResponse> PutCollectionAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1383,10 +1383,10 @@ namespace Whisparr3.Net.Api
         partial void OnErrorUpdateCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<CollectionResource> collectionResource);
 
         /// <summary>
-        /// Updates a single collection. 
+        ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>&gt;</returns>
         public async Task<IUpdateCollectionApiResponse?> UpdateCollectionOrDefaultAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1402,11 +1402,11 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Updates a single collection. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>&gt;</returns>
         public async Task<IUpdateCollectionApiResponse> UpdateCollectionAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default)

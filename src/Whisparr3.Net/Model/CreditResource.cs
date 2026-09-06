@@ -34,19 +34,19 @@ namespace Whisparr3.Net.Model
         /// Initializes a new instance of the <see cref="CreditResource" /> class.
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="personName">The full name of the person associated with this credit.</param>
-        /// <param name="performerId">Internal identifier of the performer.</param>
-        /// <param name="foreignId">External provider identifier for the performer (foreign id).</param>
-        /// <param name="movieMetadataId">Identifier of the associated movie metadata record.</param>
-        /// <param name="images">Collection of media covers (images) for the performer.</param>
-        /// <param name="job">Job or role title for the credit (e.g., \&quot;Director\&quot;, \&quot;Producer\&quot;).</param>
-        /// <param name="character">Character name portrayed by the performer (for cast credits).</param>
-        /// <param name="order">Sort order for the credit; lower values appear earlier.</param>
+        /// <param name="personName">personName</param>
+        /// <param name="performerId">performerId</param>
+        /// <param name="foreignId">foreignId</param>
+        /// <param name="movieMetadataId">movieMetadataId</param>
+        /// <param name="images">images</param>
+        /// <param name="job">job</param>
+        /// <param name="character">character</param>
+        /// <param name="order">order</param>
         /// <param name="type">type</param>
-        /// <param name="canMonitor">Indicates whether the performer can be monitored via StashDB.org.</param>
-        /// <param name="monitored">Whether the performer is currently monitored for Scenes.</param>
-        /// <param name="canMovieMonitor">Indicates whether movies for this performer can be monitored in the configured movie metadata source.</param>
-        /// <param name="moviesMonitored">Whether movies for this performer are currently monitored for Movies.</param>
+        /// <param name="canMonitor">canMonitor</param>
+        /// <param name="monitored">monitored</param>
+        /// <param name="canMovieMonitor">canMovieMonitor</param>
+        /// <param name="moviesMonitored">moviesMonitored</param>
         [JsonConstructor]
         public CreditResource(Option<int?> id = default, Option<string?> personName = default, Option<int?> performerId = default, Option<string?> foreignId = default, Option<int?> movieMetadataId = default, Option<List<MediaCover>?> images = default, Option<string?> job = default, Option<string?> character = default, Option<int?> order = default, Option<CreditType?> type = default, Option<bool?> canMonitor = default, Option<bool?> monitored = default, Option<bool?> canMovieMonitor = default, Option<bool?> moviesMonitored = default)
         {
@@ -103,9 +103,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> PersonNameOption { get; private set; }
 
         /// <summary>
-        /// The full name of the person associated with this credit.
+        /// Gets or Sets PersonName
         /// </summary>
-        /// <value>The full name of the person associated with this credit.</value>
         [JsonPropertyName("personName")]
         public string? PersonName { get { return this.PersonNameOption.Value; } set { this.PersonNameOption = new(value); } }
 
@@ -117,9 +116,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> PerformerIdOption { get; private set; }
 
         /// <summary>
-        /// Internal identifier of the performer.
+        /// Gets or Sets PerformerId
         /// </summary>
-        /// <value>Internal identifier of the performer.</value>
         [JsonPropertyName("performerId")]
         public int? PerformerId { get { return this.PerformerIdOption.Value; } set { this.PerformerIdOption = new(value); } }
 
@@ -131,9 +129,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> ForeignIdOption { get; private set; }
 
         /// <summary>
-        /// External provider identifier for the performer (foreign id).
+        /// Gets or Sets ForeignId
         /// </summary>
-        /// <value>External provider identifier for the performer (foreign id).</value>
         [JsonPropertyName("foreignId")]
         public string? ForeignId { get { return this.ForeignIdOption.Value; } set { this.ForeignIdOption = new(value); } }
 
@@ -145,9 +142,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> MovieMetadataIdOption { get; private set; }
 
         /// <summary>
-        /// Identifier of the associated movie metadata record.
+        /// Gets or Sets MovieMetadataId
         /// </summary>
-        /// <value>Identifier of the associated movie metadata record.</value>
         [JsonPropertyName("movieMetadataId")]
         public int? MovieMetadataId { get { return this.MovieMetadataIdOption.Value; } set { this.MovieMetadataIdOption = new(value); } }
 
@@ -159,9 +155,8 @@ namespace Whisparr3.Net.Model
         public Option<List<MediaCover>?> ImagesOption { get; private set; }
 
         /// <summary>
-        /// Collection of media covers (images) for the performer.
+        /// Gets or Sets Images
         /// </summary>
-        /// <value>Collection of media covers (images) for the performer.</value>
         [JsonPropertyName("images")]
         public List<MediaCover>? Images { get { return this.ImagesOption.Value; } set { this.ImagesOption = new(value); } }
 
@@ -173,9 +168,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> JobOption { get; private set; }
 
         /// <summary>
-        /// Job or role title for the credit (e.g., \&quot;Director\&quot;, \&quot;Producer\&quot;).
+        /// Gets or Sets Job
         /// </summary>
-        /// <value>Job or role title for the credit (e.g., \&quot;Director\&quot;, \&quot;Producer\&quot;).</value>
         [JsonPropertyName("job")]
         public string? Job { get { return this.JobOption.Value; } set { this.JobOption = new(value); } }
 
@@ -187,9 +181,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> CharacterOption { get; private set; }
 
         /// <summary>
-        /// Character name portrayed by the performer (for cast credits).
+        /// Gets or Sets Character
         /// </summary>
-        /// <value>Character name portrayed by the performer (for cast credits).</value>
         [JsonPropertyName("character")]
         public string? Character { get { return this.CharacterOption.Value; } set { this.CharacterOption = new(value); } }
 
@@ -201,9 +194,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> OrderOption { get; private set; }
 
         /// <summary>
-        /// Sort order for the credit; lower values appear earlier.
+        /// Gets or Sets Order
         /// </summary>
-        /// <value>Sort order for the credit; lower values appear earlier.</value>
         [JsonPropertyName("order")]
         public int? Order { get { return this.OrderOption.Value; } set { this.OrderOption = new(value); } }
 
@@ -215,9 +207,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> CanMonitorOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether the performer can be monitored via StashDB.org.
+        /// Gets or Sets CanMonitor
         /// </summary>
-        /// <value>Indicates whether the performer can be monitored via StashDB.org.</value>
         [JsonPropertyName("canMonitor")]
         public bool? CanMonitor { get { return this.CanMonitorOption.Value; } set { this.CanMonitorOption = new(value); } }
 
@@ -229,9 +220,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether the performer is currently monitored for Scenes.
+        /// Gets or Sets Monitored
         /// </summary>
-        /// <value>Whether the performer is currently monitored for Scenes.</value>
         [JsonPropertyName("monitored")]
         public bool? Monitored { get { return this.MonitoredOption.Value; } set { this.MonitoredOption = new(value); } }
 
@@ -243,9 +233,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> CanMovieMonitorOption { get; private set; }
 
         /// <summary>
-        /// Indicates whether movies for this performer can be monitored in the configured movie metadata source.
+        /// Gets or Sets CanMovieMonitor
         /// </summary>
-        /// <value>Indicates whether movies for this performer can be monitored in the configured movie metadata source.</value>
         [JsonPropertyName("canMovieMonitor")]
         public bool? CanMovieMonitor { get { return this.CanMovieMonitorOption.Value; } set { this.CanMovieMonitorOption = new(value); } }
 
@@ -257,9 +246,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MoviesMonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether movies for this performer are currently monitored for Movies.
+        /// Gets or Sets MoviesMonitored
         /// </summary>
-        /// <value>Whether movies for this performer are currently monitored for Movies.</value>
         [JsonPropertyName("moviesMonitored")]
         public bool? MoviesMonitored { get { return this.MoviesMonitoredOption.Value; } set { this.MoviesMonitoredOption = new(value); } }
 

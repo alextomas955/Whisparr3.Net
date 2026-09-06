@@ -786,12 +786,10 @@
         "tags": [
           "Collection"
         ],
-        "summary": "Retrieves collections. If tmdbId is provided returns the single matching collection;\notherwise returns all collections.",
         "parameters": [
           {
             "name": "tmdbId",
             "in": "query",
-            "description": "Optional TMDB collection id to filter by.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -819,9 +817,7 @@
         "tags": [
           "Collection"
         ],
-        "summary": "Bulk update for multiple collections. Only properties present in the request are applied.",
         "requestBody": {
-          "description": "The update resource containing collection ids and the properties to change.",
           "content": {
             "application/json": {
               "schema": {
@@ -843,7 +839,6 @@
         "tags": [
           "Collection"
         ],
-        "summary": "Updates a single collection.",
         "parameters": [
           {
             "name": "id",
@@ -855,7 +850,6 @@
           }
         ],
         "requestBody": {
-          "description": "The collection resource containing updated values. The resource's Id is used to locate the existing collection.",
           "content": {
             "application/json": {
               "schema": {
@@ -882,12 +876,10 @@
         "tags": [
           "Collection"
         ],
-        "summary": "Deletes a collection and their associated movies/scenes from Whisparr",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The internal ID of the colection to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -897,7 +889,6 @@
           {
             "name": "deleteFiles",
             "in": "query",
-            "description": "If true, associated movie/scene files will also be deleted from disk",
             "schema": {
               "type": "boolean",
               "default": false
@@ -906,7 +897,6 @@
           {
             "name": "addImportExclusion",
             "in": "query",
-            "description": "If true, an import exclusion will be added to prevent re-adding the collection in future imports",
             "schema": {
               "type": "boolean",
               "default": false
@@ -1094,12 +1084,10 @@
         "tags": [
           "Credit"
         ],
-        "summary": "Retrieves credits filtered by movie id, movie metadata id, or performer id.\nIf multiple filters are provided, precedence is: movieMetadataId, movieId, performerId.\nIf no filters are provided, all credits are returned.",
         "parameters": [
           {
             "name": "movieId",
             "in": "query",
-            "description": "Optional internal movie id to filter credits by movie.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1108,7 +1096,6 @@
           {
             "name": "movieMetadataId",
             "in": "query",
-            "description": "Optional movie metadata id to filter credits by metadata record.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -1117,7 +1104,6 @@
           {
             "name": "performerId",
             "in": "query",
-            "description": "Optional performer foreign id to filter credits by performer.",
             "schema": {
               "type": "string"
             }
@@ -4960,13 +4946,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "GET /movie/search?query=term",
-        "description": "Search movies by clean title (or foreign ID)",
         "parameters": [
           {
             "name": "query",
             "in": "query",
-            "description": "The search query, which can be a clean title or a foreign ID",
             "schema": {
               "type": "string"
             }
@@ -4974,7 +4957,6 @@
           {
             "name": "limit",
             "in": "query",
-            "description": "The maximum number of search results to return (default is 100)",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -5005,13 +4987,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "GET /movie?tmdbId=12345 OR /movie?tpdbId=tpdb-12345 OR /movie?stashId=stash-12345",
-        "description": "Look up movies by TMDB ID, TPDB ID, or Stash ID. If no query parameters are provided, returns all movies.",
         "parameters": [
           {
             "name": "tmdbId",
             "in": "query",
-            "description": "",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -5020,7 +4999,6 @@
           {
             "name": "tpdbId",
             "in": "query",
-            "description": "",
             "schema": {
               "type": "string"
             }
@@ -5028,7 +5006,6 @@
           {
             "name": "stashId",
             "in": "query",
-            "description": "",
             "schema": {
               "type": "string"
             }
@@ -5036,7 +5013,6 @@
           {
             "name": "excludeLocalCovers",
             "in": "query",
-            "description": "",
             "schema": {
               "type": "boolean",
               "default": false
@@ -5080,9 +5056,7 @@
         "tags": [
           "Movie"
         ],
-        "summary": "POST /movie",
         "requestBody": {
-          "description": "The movie resource to add",
           "content": {
             "application/json": {
               "schema": {
@@ -5111,13 +5085,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "GET /movie/{id}",
-        "description": "Get a single movie by foreign Id or internal Id. If the ID starts with \"tmdb:\", it will be treated as a TMDB ID. Otherwise, it will first attempt to find by foreign ID, then fallback to internal ID for backward compatibility.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "",
             "required": true,
             "schema": {
               "type": "string"
@@ -5152,12 +5123,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "PUT /movie/{id}",
         "parameters": [
           {
             "name": "moveFiles",
             "in": "query",
-            "description": "Whether to move the movie files to a new location",
             "schema": {
               "type": "boolean",
               "default": false
@@ -5173,7 +5142,6 @@
           }
         ],
         "requestBody": {
-          "description": "The movie resource with updated information. The ID in the resource must match the ID in the URL.",
           "content": {
             "application/json": {
               "schema": {
@@ -5200,12 +5168,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "PATCH /movie/{id}",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the movie to update",
             "required": true,
             "schema": {
               "type": "integer",
@@ -5214,7 +5180,6 @@
           }
         ],
         "requestBody": {
-          "description": "The patch request containing the monitored flag",
           "content": {
             "application/json": {
               "schema": {
@@ -5234,12 +5199,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "DELETE /movie/{id}",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The ID of the movie to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -5249,7 +5212,6 @@
           {
             "name": "deleteFiles",
             "in": "query",
-            "description": "Whether to delete the movie files from disk",
             "schema": {
               "type": "boolean",
               "default": false
@@ -5258,7 +5220,6 @@
           {
             "name": "addImportExclusion",
             "in": "query",
-            "description": "Whether to add an import exclusion for the movie's path to prevent re-importing if files are left on disk",
             "schema": {
               "type": "boolean",
               "default": false
@@ -5278,7 +5239,6 @@
         "tags": [
           "Movie"
         ],
-        "summary": "POST /movie/list",
         "responses": {
           "200": {
             "description": "OK",
@@ -5319,10 +5279,7 @@
         "tags": [
           "Movie"
         ],
-        "summary": "POST /movie/list",
-        "description": "Look up movies by a list of foreignIds",
         "requestBody": {
-          "description": "List of foreign IDs to look up",
           "content": {
             "application/json": {
               "schema": {
@@ -5373,13 +5330,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "GET /movie/stats?itemType=movie|scene",
-        "description": "Returns statistics for the item type, including total count, monitored count, file count, and total file size.\n            If itemType is specified, returns stats for that item type instead of movies + scenes.",
         "parameters": [
           {
             "name": "itemType",
             "in": "query",
-            "description": "Optional query parameter to specify whether to return stats for movies or scenes. Defaults to movies if not provided.",
             "schema": {
               "type": "string"
             }
@@ -5415,19 +5369,16 @@
         "tags": [
           "Movie"
         ],
-        "summary": "PATCH /movie/monitor",
         "parameters": [
           {
             "name": "monitored",
             "in": "query",
-            "description": "The monitored value to set for the specified movies",
             "schema": {
               "type": "boolean"
             }
           }
         ],
         "requestBody": {
-          "description": "List of movie IDs to update",
           "content": {
             "application/json": {
               "schema": {
@@ -5471,9 +5422,7 @@
         "tags": [
           "Movie"
         ],
-        "summary": "POST /movie/list",
         "requestBody": {
-          "description": "List of movie IDs to retrieve",
           "content": {
             "application/json": {
               "schema": {
@@ -5543,12 +5492,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "GET /movie/listByPerformerForeignId?performerForeignId=tmdb-12345",
         "parameters": [
           {
             "name": "performerForeignId",
             "in": "query",
-            "description": "The foreign ID of the performer (e.g. \"tmdb-12345\")",
             "schema": {
               "type": "string"
             }
@@ -5596,12 +5543,10 @@
         "tags": [
           "Movie"
         ],
-        "summary": "GET /movie/listByStudioForeignId?studioForeignId=tmdb-12345",
         "parameters": [
           {
             "name": "studioForeignId",
             "in": "query",
-            "description": "The foreign ID of the studio (e.g. \"tmdb-12345\")",
             "schema": {
               "type": "string"
             }
@@ -5649,8 +5594,6 @@
         "tags": [
           "Movie"
         ],
-        "summary": "POST /movie/paged",
-        "description": "Paged, filtered, and sorted movie/scene results",
         "requestBody": {
           "content": {
             "application/json": {
@@ -5998,9 +5941,7 @@
         "tags": [
           "MovieImport"
         ],
-        "summary": "Imports the provided list of movie resources into the application.\nEach resource must include a valid filesystem path to an existing movie file.\nFiles will be moved/renamed according to configured naming rules and root folders,\nmetadata will be augmented from configured providers, and the movies will be added to the library.",
         "requestBody": {
-          "description": "List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import.",
           "content": {
             "application/json": {
               "schema": {
@@ -6035,12 +5976,10 @@
         "tags": [
           "MovieLookup"
         ],
-        "summary": "Lookup movie metadata by TMDB id.",
         "parameters": [
           {
             "name": "tmdbId",
             "in": "query",
-            "description": "TMDB identifier.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -6067,12 +6006,10 @@
         "tags": [
           "MovieLookup"
         ],
-        "summary": "Lookup movie metadata by TPDB id.",
         "parameters": [
           {
             "name": "tpdbId",
             "in": "query",
-            "description": "TPDB identifier.",
             "schema": {
               "type": "string"
             }
@@ -6098,12 +6035,10 @@
         "tags": [
           "MovieLookup"
         ],
-        "summary": "Lookup movie metadata by IMDB id.",
         "parameters": [
           {
             "name": "imdbId",
             "in": "query",
-            "description": "IMDB identifier.",
             "schema": {
               "type": "string"
             }
@@ -6129,12 +6064,10 @@
         "tags": [
           "MovieLookup"
         ],
-        "summary": "Search for movies by free-text term. Returns candidates suitable for adding.",
         "parameters": [
           {
             "name": "term",
             "in": "query",
-            "description": "Search term (title, partial title, etc.).",
             "schema": {
               "type": "string"
             }
@@ -6142,7 +6075,6 @@
           {
             "name": "itemType",
             "in": "query",
-            "description": "Optional item type filter.",
             "schema": {
               "$ref": "#/components/schemas/ItemType"
             }
@@ -6706,7 +6638,6 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Retrieves a single performer by their external foreign ID (e.g., from StashDb)",
         "parameters": [
           {
             "name": "performerForeignId",
@@ -6719,7 +6650,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Performer found and returned",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -6729,7 +6660,7 @@
             }
           },
           "404": {
-            "description": "Performer with the specified foreign ID not found"
+            "description": "Not Found"
           }
         },
         "operationId": "GetPerformerByPerformerForeignId"
@@ -6740,8 +6671,6 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Retrieves a list of performers by their external foreign ID (e.g., from StashDb)",
-        "description": "If a foreign Id does not exist in Whisparr, it does not query StashDB on demand",
         "requestBody": {
           "content": {
             "application/json": {
@@ -6756,7 +6685,7 @@
         },
         "responses": {
           "200": {
-            "description": "Performers found and returned, or an empty array",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -6774,7 +6703,6 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb)",
         "parameters": [
           {
             "name": "performerForeignId",
@@ -6787,7 +6715,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Movies found and returned",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -6816,7 +6744,7 @@
             }
           },
           "404": {
-            "description": "Performer with the specified foreign ID not found"
+            "description": "Not Found"
           }
         },
         "operationId": "ListPerformerWorks"
@@ -6827,10 +6755,9 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Retrieves full list of performers",
         "responses": {
           "200": {
-            "description": "Performer found and returned",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -6843,7 +6770,7 @@
             }
           },
           "404": {
-            "description": "Performer with the specified foreign ID not found"
+            "description": "Not Found"
           }
         },
         "operationId": "ListPerformer"
@@ -6852,9 +6779,7 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Adds a new performer to Whisparr",
         "requestBody": {
-          "description": "The performer details to add",
           "content": {
             "application/json": {
               "schema": {
@@ -6875,10 +6800,10 @@
             }
           },
           "201": {
-            "description": "Performer successfully added"
+            "description": "Created"
           },
           "400": {
-            "description": "Invalid performer details provided"
+            "description": "Bad Request"
           }
         },
         "operationId": "CreatePerformer"
@@ -6889,7 +6814,6 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Updates an existing performer in Whisparr",
         "parameters": [
           {
             "name": "id",
@@ -6901,7 +6825,6 @@
           }
         ],
         "requestBody": {
-          "description": "The performer details to update",
           "content": {
             "application/json": {
               "schema": {
@@ -6922,13 +6845,13 @@
             }
           },
           "202": {
-            "description": "Performer successfully updated"
+            "description": "Accepted"
           },
           "400": {
-            "description": "Invalid performer details provided"
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Performer with the specified ID not found"
+            "description": "Not Found"
           }
         },
         "operationId": "UpdatePerformer"
@@ -6937,12 +6860,10 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Deletes a performer and their associated movies/scenes from Whisparr",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "The internal ID of the performer to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -6952,7 +6873,6 @@
           {
             "name": "deleteFiles",
             "in": "query",
-            "description": "If true, associated movie/scene files will also be deleted from disk",
             "schema": {
               "type": "boolean",
               "default": false
@@ -6961,7 +6881,6 @@
           {
             "name": "addImportExclusion",
             "in": "query",
-            "description": "If true, an import exclusion will be added to prevent re-adding the performer in future imports",
             "schema": {
               "type": "boolean",
               "default": false
@@ -7020,9 +6939,7 @@
         "tags": [
           "Performer"
         ],
-        "summary": "Retrieves a paged list of performers with advanced filtering options",
         "requestBody": {
-          "description": "Paging and filtering parameters",
           "content": {
             "application/json": {
               "schema": {
@@ -7051,9 +6968,7 @@
         "tags": [
           "PerformerEditor"
         ],
-        "summary": "Edits multiple performers",
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
@@ -8451,9 +8366,7 @@
         "tags": [
           "RootFolder"
         ],
-        "summary": "Creates a new root folder.",
         "requestBody": {
-          "description": "The root folder resource payload.",
           "content": {
             "application/json": {
               "schema": {
@@ -8490,7 +8403,6 @@
         "tags": [
           "RootFolder"
         ],
-        "summary": "Returns all configured root folders, including import file metadata.",
         "responses": {
           "200": {
             "description": "OK",
@@ -8530,12 +8442,10 @@
         "tags": [
           "RootFolder"
         ],
-        "summary": "Refreshes the specified root folder (e.g. re-scan for media).",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Id of the root folder to refresh.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -8573,12 +8483,10 @@
         "tags": [
           "RootFolder"
         ],
-        "summary": "Deletes the specified root folder.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Id of the root folder to delete.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -8774,7 +8682,6 @@
         "tags": [
           "Studio"
         ],
-        "summary": "Retrieves a single studio by their external foreign ID (e.g., from StashDb)",
         "parameters": [
           {
             "name": "studioForeignId",
@@ -8787,7 +8694,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Studio found and returned",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -8797,7 +8704,7 @@
             }
           },
           "404": {
-            "description": "Studio with the specified foreign ID not found"
+            "description": "Not Found"
           }
         },
         "operationId": "GetStudioByStudioForeignId"
@@ -8808,7 +8715,6 @@
         "tags": [
           "Studio"
         ],
-        "summary": "Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb)",
         "parameters": [
           {
             "name": "studioForeignId",
@@ -8821,7 +8727,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Movies found and returned",
+            "description": "OK",
             "content": {
               "text/plain": {
                 "schema": {
@@ -8850,7 +8756,7 @@
             }
           },
           "404": {
-            "description": "Studio with the specified foreign ID not found"
+            "description": "Not Found"
           }
         },
         "operationId": "ListStudioWorks"
@@ -8861,8 +8767,6 @@
         "tags": [
           "Studio"
         ],
-        "summary": "Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)",
-        "description": "If a foreign Id does not exist in Whisparr, it does not query StashDB on demand",
         "requestBody": {
           "content": {
             "application/json": {
@@ -8877,7 +8781,7 @@
         },
         "responses": {
           "200": {
-            "description": "Studios found and returned, or an empty array",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -8898,9 +8802,7 @@
         "tags": [
           "Studio"
         ],
-        "summary": "Retrieves a paged list of studios with advanced filtering options",
         "requestBody": {
-          "description": "Paging and filtering parameters",
           "content": {
             "application/json": {
               "schema": {
@@ -9120,9 +9022,7 @@
         "tags": [
           "StudioEditor"
         ],
-        "summary": "Edits multiple studios",
         "requestBody": {
-          "description": "",
           "content": {
             "application/json": {
               "schema": {
@@ -10101,42 +10001,34 @@
         "properties": {
           "imdbId": {
             "type": "string",
-            "description": "The IMDb identifier for the movie (e.g. \"tt1234567\").",
             "nullable": true
           },
           "tmdbId": {
             "type": "integer",
-            "description": "The TMDB identifier for the movie.",
             "format": "int32"
           },
           "tpdbId": {
             "type": "string",
-            "description": "The TPDB identifier for the movie, if available.",
             "nullable": true
           },
           "foreignId": {
             "type": "string",
-            "description": "The external provider's foreign identifier for the movie.",
             "nullable": true
           },
           "stashId": {
             "type": "string",
-            "description": "The StashDB identifier associated with the movie, if any.",
             "nullable": true
           },
           "title": {
             "type": "string",
-            "description": "The movie's title.",
             "nullable": true
           },
           "cleanTitle": {
             "type": "string",
-            "description": "Normalized/clean title used for internal comparisons.",
             "nullable": true
           },
           "sortTitle": {
             "type": "string",
-            "description": "Title used for sorting purposes.",
             "nullable": true
           },
           "status": {
@@ -10144,12 +10036,10 @@
           },
           "overview": {
             "type": "string",
-            "description": "A short synopsis or overview of the movie.",
             "nullable": true
           },
           "runtime": {
             "type": "integer",
-            "description": "Runtime in minutes.",
             "format": "int32"
           },
           "images": {
@@ -10157,12 +10047,10 @@
             "items": {
               "$ref": "#/components/schemas/MediaCover"
             },
-            "description": "Collection of media cover images for the movie.",
             "nullable": true
           },
           "year": {
             "type": "integer",
-            "description": "Release year of the movie.",
             "format": "int32"
           },
           "ratings": {
@@ -10173,7 +10061,6 @@
             "items": {
               "type": "string"
             },
-            "description": "List of genre names associated with the movie.",
             "nullable": true
           },
           "itemType": {
@@ -10181,16 +10068,13 @@
           },
           "folder": {
             "type": "string",
-            "description": "Calculated folder path for the movie (naming conventions applied).",
             "nullable": true
           },
           "isExisting": {
-            "type": "boolean",
-            "description": "Indicates whether the movie already exists in the library."
+            "type": "boolean"
           },
           "isExcluded": {
-            "type": "boolean",
-            "description": "Indicates whether the movie is excluded from import lists."
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -10204,17 +10088,14 @@
           },
           "title": {
             "type": "string",
-            "description": "The collection's title.",
             "nullable": true
           },
           "sortTitle": {
             "type": "string",
-            "description": "Title used for sorting the collection.",
             "nullable": true
           },
           "tmdbId": {
             "type": "integer",
-            "description": "The TMDB identifier for the collection.",
             "format": "int32"
           },
           "images": {
@@ -10222,43 +10103,35 @@
             "items": {
               "$ref": "#/components/schemas/MediaCover"
             },
-            "description": "A list of media cover images associated with the collection.",
             "nullable": true
           },
           "overview": {
             "type": "string",
-            "description": "A short overview or synopsis for the collection.",
             "nullable": true
           },
           "monitored": {
-            "type": "boolean",
-            "description": "Whether the collection is monitored for automatic actions (e.g., downloads)."
+            "type": "boolean"
           },
           "rootFolderPath": {
             "type": "string",
-            "description": "The configured root folder path where movies for this collection are stored.",
             "nullable": true
           },
           "qualityProfileId": {
             "type": "integer",
-            "description": "The quality profile id applied to movies in this collection.",
             "format": "int32"
           },
           "searchOnAdd": {
-            "type": "boolean",
-            "description": "Whether new movies in the collection should be searched for automatically when added."
+            "type": "boolean"
           },
           "movies": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CollectionMovieResource"
             },
-            "description": "Movies that belong to this collection.",
             "nullable": true
           },
           "missingMovies": {
             "type": "integer",
-            "description": "Number of movies from the collection that are missing from the local library.",
             "format": "int32"
           },
           "tags": {
@@ -10268,7 +10141,6 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "Set of tag ids associated with the collection.",
             "nullable": true
           }
         },
@@ -10605,22 +10477,18 @@
           },
           "personName": {
             "type": "string",
-            "description": "The full name of the person associated with this credit.",
             "nullable": true
           },
           "performerId": {
             "type": "integer",
-            "description": "Internal identifier of the performer.",
             "format": "int32"
           },
           "foreignId": {
             "type": "string",
-            "description": "External provider identifier for the performer (foreign id).",
             "nullable": true
           },
           "movieMetadataId": {
             "type": "integer",
-            "description": "Identifier of the associated movie metadata record.",
             "format": "int32"
           },
           "images": {
@@ -10628,42 +10496,34 @@
             "items": {
               "$ref": "#/components/schemas/MediaCover"
             },
-            "description": "Collection of media covers (images) for the performer.",
             "nullable": true
           },
           "job": {
             "type": "string",
-            "description": "Job or role title for the credit (e.g., \"Director\", \"Producer\").",
             "nullable": true
           },
           "character": {
             "type": "string",
-            "description": "Character name portrayed by the performer (for cast credits).",
             "nullable": true
           },
           "order": {
             "type": "integer",
-            "description": "Sort order for the credit; lower values appear earlier.",
             "format": "int32"
           },
           "type": {
             "$ref": "#/components/schemas/CreditType"
           },
           "canMonitor": {
-            "type": "boolean",
-            "description": "Indicates whether the performer can be monitored via StashDB.org."
+            "type": "boolean"
           },
           "monitored": {
-            "type": "boolean",
-            "description": "Whether the performer is currently monitored for Scenes."
+            "type": "boolean"
           },
           "canMovieMonitor": {
-            "type": "boolean",
-            "description": "Indicates whether movies for this performer can be monitored in the configured movie metadata source."
+            "type": "boolean"
           },
           "moviesMonitored": {
-            "type": "boolean",
-            "description": "Whether movies for this performer are currently monitored for Movies."
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -13520,33 +13380,27 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "The IDs of the performers to be edited.",
             "nullable": true
           },
           "monitored": {
             "type": "boolean",
-            "description": "Whether the performers' scenes are monitored.",
             "nullable": true
           },
           "moviesMonitored": {
             "type": "boolean",
-            "description": "Whether the performers' movies are monitored.",
             "nullable": true
           },
           "qualityProfileId": {
             "type": "integer",
-            "description": "The quality profile ID to set for the performers' movies.",
             "format": "int32",
             "nullable": true
           },
           "rootFolderPath": {
             "type": "string",
-            "description": "The root folder path to set for the performers' movies.",
             "nullable": true
           },
           "searchOnAdd": {
             "type": "boolean",
-            "description": "Whether to search for new content after it is added to the performers.",
             "nullable": true
           },
           "tags": {
@@ -13555,23 +13409,19 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "The IDs of the tags to apply to the performers.",
             "nullable": true
           },
           "applyTags": {
             "$ref": "#/components/schemas/ApplyTags"
           },
           "deleteFiles": {
-            "type": "boolean",
-            "description": "Whether to delete the performers' files from disk."
+            "type": "boolean"
           },
           "addImportExclusion": {
-            "type": "boolean",
-            "description": "Whether to add an import exclusion for the deleted performers."
+            "type": "boolean"
           }
         },
-        "additionalProperties": false,
-        "description": "A resource for editing multiple performers."
+        "additionalProperties": false
       },
       "PerformerFilterResource": {
         "type": "object",
@@ -13631,12 +13481,10 @@
           },
           "fullName": {
             "type": "string",
-            "description": "The performer's name with Disambiguation",
             "nullable": true
           },
           "name": {
             "type": "string",
-            "description": "The performer's name",
             "nullable": true
           },
           "aliases": {
@@ -13644,7 +13492,6 @@
             "items": {
               "type": "string"
             },
-            "description": "List of alternative names or aliases for the performer",
             "nullable": true
           },
           "gender": {
@@ -13661,7 +13508,6 @@
           },
           "country": {
             "type": "string",
-            "description": "The performer's country of origin (optional)  ISO 3166 codes",
             "nullable": true
           },
           "eyesColor": {
@@ -13672,30 +13518,25 @@
           },
           "height": {
             "type": "integer",
-            "description": "The performer's height in centimeters (optional)",
             "format": "int32",
             "nullable": true
           },
           "cupSize": {
             "type": "string",
-            "description": "The performer's cup size (optional)",
             "nullable": true
           },
           "bandSize": {
             "type": "integer",
-            "description": "The performer's band size (optional)",
             "format": "int32",
             "nullable": true
           },
           "waistSize": {
             "type": "integer",
-            "description": "The performer's waist size in centimeters (optional)",
             "format": "int32",
             "nullable": true
           },
           "hipSize": {
             "type": "integer",
-            "description": "The performer's hip size in centimeters (optional)",
             "format": "int32",
             "nullable": true
           },
@@ -13707,31 +13548,26 @@
           },
           "careerStart": {
             "type": "integer",
-            "description": "Four-digit Year the performer started their career (optional)",
             "format": "int32",
             "nullable": true
           },
           "careerEnd": {
             "type": "integer",
-            "description": "Year the performer ended their career (optional)",
             "format": "int32",
             "nullable": true
           },
           "birthDate": {
             "type": "string",
-            "description": "The performer's birth date (optional)",
             "format": "date-time",
             "nullable": true
           },
           "deathDate": {
             "type": "string",
-            "description": "The performer's death date (optional)",
             "format": "date-time",
             "nullable": true
           },
           "age": {
             "type": "integer",
-            "description": "Current age of the performer (optional)",
             "format": "int32",
             "nullable": true
           },
@@ -13740,7 +13576,6 @@
             "items": {
               "type": "string"
             },
-            "description": "List of the performer's tattoos (optional)",
             "nullable": true
           },
           "piercings": {
@@ -13748,22 +13583,18 @@
             "items": {
               "type": "string"
             },
-            "description": "List of the performer's piercings (optional)",
             "nullable": true
           },
           "foreignId": {
             "type": "string",
-            "description": "External foreign ID from metadata source (e.g., StashDB ID)",
             "nullable": true
           },
           "tmdbId": {
             "type": "integer",
-            "description": "The Movie Database (TMDB) identifier",
             "format": "int32"
           },
           "tpdbId": {
             "type": "string",
-            "description": "The Porn Database (TPDB) identifier",
             "nullable": true
           },
           "images": {
@@ -13771,30 +13602,24 @@
             "items": {
               "$ref": "#/components/schemas/MediaCover"
             },
-            "description": "Collection of performer images (posters, headshots, etc.)",
             "nullable": true
           },
           "monitored": {
-            "type": "boolean",
-            "description": "Whether this performer is being monitored for new content"
+            "type": "boolean"
           },
           "moviesMonitored": {
-            "type": "boolean",
-            "description": "Whether movies featuring this performer are monitored"
+            "type": "boolean"
           },
           "rootFolderPath": {
             "type": "string",
-            "description": "Root folder path where performer content is stored",
             "nullable": true
           },
           "qualityProfileId": {
             "type": "integer",
-            "description": "ID of the quality profile to use for this performer's content",
             "format": "int32"
           },
           "searchOnAdd": {
-            "type": "boolean",
-            "description": "Whether to automatically search for content when adding this performer"
+            "type": "boolean"
           },
           "tags": {
             "uniqueItems": true,
@@ -13803,57 +13628,46 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "Set of tag IDs associated with this performer",
             "nullable": true
           },
           "remotePoster": {
             "type": "string",
-            "description": "URL of the remote poster image from StashDb/TMDb/TPDb",
             "nullable": true,
             "readOnly": true
           },
           "added": {
             "type": "string",
-            "description": "Date and time when this performer was added to Whisparr",
             "format": "date-time",
             "readOnly": true
           },
           "hasMovies": {
-            "type": "boolean",
-            "description": "Indicates if the performer has any associated movies"
+            "type": "boolean"
           },
           "hasScenes": {
-            "type": "boolean",
-            "description": "Indicates if the performer has any associated scenes"
+            "type": "boolean"
           },
           "movieCount": {
             "type": "integer",
-            "description": "Number of movies (on disk)from this performer",
             "format": "int32"
           },
           "totalMovieCount": {
             "type": "integer",
-            "description": "Total number of movies associated with this performer",
             "format": "int32"
           },
           "totalSceneCount": {
             "type": "integer",
-            "description": "Total number of scenes associated with this performer",
             "format": "int32"
           },
           "sceneCount": {
             "type": "integer",
-            "description": "Number of scenes (on disk) from this performer",
             "format": "int32"
           },
           "sizeOnDisk": {
             "type": "integer",
-            "description": "Total size in bytes of all files on disk associated with this performer///",
             "format": "int64"
           }
         },
-        "additionalProperties": false,
-        "description": "Represents a performer (adult film actor/actress) in Whisparr"
+        "additionalProperties": false
       },
       "PerformerResourcePagingResource": {
         "type": "object",
@@ -14810,33 +14624,27 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "The IDs of the studios to be edited",
             "nullable": true
           },
           "monitored": {
             "type": "boolean",
-            "description": "Whether the studios' scenes are monitored",
             "nullable": true
           },
           "moviesMonitored": {
             "type": "boolean",
-            "description": "Whether the studios' movies are monitored",
             "nullable": true
           },
           "qualityProfileId": {
             "type": "integer",
-            "description": "The quality profile ID to set on the studios",
             "format": "int32",
             "nullable": true
           },
           "rootFolderPath": {
             "type": "string",
-            "description": "The root folder path to set on the studios",
             "nullable": true
           },
           "searchOnAdd": {
             "type": "boolean",
-            "description": "Whether to search for new items when added to studio",
             "nullable": true
           },
           "tags": {
@@ -14845,15 +14653,13 @@
               "type": "integer",
               "format": "int32"
             },
-            "description": "The tags to apply to the studios",
             "nullable": true
           },
           "applyTags": {
             "$ref": "#/components/schemas/ApplyTags"
           }
         },
-        "additionalProperties": false,
-        "description": "A resource for editing multiple studios"
+        "additionalProperties": false
       },
       "StudioFilterResource": {
         "type": "object",
@@ -15507,13 +15313,11 @@
     "securitySchemes": {
       "X-Api-Key": {
         "type": "apiKey",
-        "description": "Apikey passed as header",
         "name": "X-Api-Key",
         "in": "header"
       },
       "apikey": {
         "type": "apiKey",
-        "description": "Apikey passed as query parameter",
         "name": "apikey",
         "in": "query"
       }

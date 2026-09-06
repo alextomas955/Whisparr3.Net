@@ -26,7 +26,7 @@ using Whisparr3.Net.Client;
 namespace Whisparr3.Net.Model
 {
     /// <summary>
-    /// Represents a performer (adult film actor/actress) in Whisparr
+    /// PerformerResource
     /// </summary>
     public partial class PerformerResource : IValidatableObject
     {
@@ -34,49 +34,49 @@ namespace Whisparr3.Net.Model
         /// Initializes a new instance of the <see cref="PerformerResource" /> class.
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="fullName">The performer&#39;s name with Disambiguation</param>
-        /// <param name="name">The performer&#39;s name</param>
-        /// <param name="aliases">List of alternative names or aliases for the performer</param>
+        /// <param name="fullName">fullName</param>
+        /// <param name="name">name</param>
+        /// <param name="aliases">aliases</param>
         /// <param name="gender">gender</param>
         /// <param name="eyeColor">eyeColor</param>
         /// <param name="hairColor">hairColor</param>
         /// <param name="ethnicity">ethnicity</param>
-        /// <param name="country">The performer&#39;s country of origin (optional)  ISO 3166 codes</param>
+        /// <param name="country">country</param>
         /// <param name="eyesColor">eyesColor</param>
         /// <param name="hairColour">hairColour</param>
-        /// <param name="height">The performer&#39;s height in centimeters (optional)</param>
-        /// <param name="cupSize">The performer&#39;s cup size (optional)</param>
-        /// <param name="bandSize">The performer&#39;s band size (optional)</param>
-        /// <param name="waistSize">The performer&#39;s waist size in centimeters (optional)</param>
-        /// <param name="hipSize">The performer&#39;s hip size in centimeters (optional)</param>
+        /// <param name="height">height</param>
+        /// <param name="cupSize">cupSize</param>
+        /// <param name="bandSize">bandSize</param>
+        /// <param name="waistSize">waistSize</param>
+        /// <param name="hipSize">hipSize</param>
         /// <param name="breastType">breastType</param>
         /// <param name="status">status</param>
-        /// <param name="careerStart">Four-digit Year the performer started their career (optional)</param>
-        /// <param name="careerEnd">Year the performer ended their career (optional)</param>
-        /// <param name="birthDate">The performer&#39;s birth date (optional)</param>
-        /// <param name="deathDate">The performer&#39;s death date (optional)</param>
-        /// <param name="age">Current age of the performer (optional)</param>
-        /// <param name="tattoos">List of the performer&#39;s tattoos (optional)</param>
-        /// <param name="piercings">List of the performer&#39;s piercings (optional)</param>
-        /// <param name="foreignId">External foreign ID from metadata source (e.g., StashDB ID)</param>
-        /// <param name="tmdbId">The Movie Database (TMDB) identifier</param>
-        /// <param name="tpdbId">The Porn Database (TPDB) identifier</param>
-        /// <param name="images">Collection of performer images (posters, headshots, etc.)</param>
-        /// <param name="monitored">Whether this performer is being monitored for new content</param>
-        /// <param name="moviesMonitored">Whether movies featuring this performer are monitored</param>
-        /// <param name="rootFolderPath">Root folder path where performer content is stored</param>
-        /// <param name="qualityProfileId">ID of the quality profile to use for this performer&#39;s content</param>
-        /// <param name="searchOnAdd">Whether to automatically search for content when adding this performer</param>
-        /// <param name="tags">Set of tag IDs associated with this performer</param>
-        /// <param name="remotePoster">URL of the remote poster image from StashDb/TMDb/TPDb</param>
-        /// <param name="added">Date and time when this performer was added to Whisparr</param>
-        /// <param name="hasMovies">Indicates if the performer has any associated movies</param>
-        /// <param name="hasScenes">Indicates if the performer has any associated scenes</param>
-        /// <param name="movieCount">Number of movies (on disk)from this performer</param>
-        /// <param name="totalMovieCount">Total number of movies associated with this performer</param>
-        /// <param name="totalSceneCount">Total number of scenes associated with this performer</param>
-        /// <param name="sceneCount">Number of scenes (on disk) from this performer</param>
-        /// <param name="sizeOnDisk">Total size in bytes of all files on disk associated with this performer///</param>
+        /// <param name="careerStart">careerStart</param>
+        /// <param name="careerEnd">careerEnd</param>
+        /// <param name="birthDate">birthDate</param>
+        /// <param name="deathDate">deathDate</param>
+        /// <param name="age">age</param>
+        /// <param name="tattoos">tattoos</param>
+        /// <param name="piercings">piercings</param>
+        /// <param name="foreignId">foreignId</param>
+        /// <param name="tmdbId">tmdbId</param>
+        /// <param name="tpdbId">tpdbId</param>
+        /// <param name="images">images</param>
+        /// <param name="monitored">monitored</param>
+        /// <param name="moviesMonitored">moviesMonitored</param>
+        /// <param name="rootFolderPath">rootFolderPath</param>
+        /// <param name="qualityProfileId">qualityProfileId</param>
+        /// <param name="searchOnAdd">searchOnAdd</param>
+        /// <param name="tags">tags</param>
+        /// <param name="remotePoster">remotePoster</param>
+        /// <param name="added">added</param>
+        /// <param name="hasMovies">hasMovies</param>
+        /// <param name="hasScenes">hasScenes</param>
+        /// <param name="movieCount">movieCount</param>
+        /// <param name="totalMovieCount">totalMovieCount</param>
+        /// <param name="totalSceneCount">totalSceneCount</param>
+        /// <param name="sceneCount">sceneCount</param>
+        /// <param name="sizeOnDisk">sizeOnDisk</param>
         [JsonConstructor]
         public PerformerResource(Option<int?> id = default, Option<string?> fullName = default, Option<string?> name = default, Option<List<string>?> aliases = default, Option<Gender?> gender = default, Option<EyeColor?> eyeColor = default, Option<HairColor?> hairColor = default, Option<Ethnicity?> ethnicity = default, Option<string?> country = default, Option<EyeColor?> eyesColor = default, Option<HairColor?> hairColour = default, Option<int?> height = default, Option<string?> cupSize = default, Option<int?> bandSize = default, Option<int?> waistSize = default, Option<int?> hipSize = default, Option<BreastTypeEnum?> breastType = default, Option<PerformerStatus?> status = default, Option<int?> careerStart = default, Option<int?> careerEnd = default, Option<DateTime?> birthDate = default, Option<DateTime?> deathDate = default, Option<int?> age = default, Option<List<string>?> tattoos = default, Option<List<string>?> piercings = default, Option<string?> foreignId = default, Option<int?> tmdbId = default, Option<string?> tpdbId = default, Option<List<MediaCover>?> images = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<int>?> tags = default, Option<string?> remotePoster = default, Option<DateTime?> added = default, Option<bool?> hasMovies = default, Option<bool?> hasScenes = default, Option<int?> movieCount = default, Option<int?> totalMovieCount = default, Option<int?> totalSceneCount = default, Option<int?> sceneCount = default, Option<long?> sizeOnDisk = default)
         {
@@ -254,9 +254,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> FullNameOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s name with Disambiguation
+        /// Gets or Sets FullName
         /// </summary>
-        /// <value>The performer&#39;s name with Disambiguation</value>
         [JsonPropertyName("fullName")]
         public string? FullName { get { return this.FullNameOption.Value; } set { this.FullNameOption = new(value); } }
 
@@ -268,9 +267,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> NameOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s name
+        /// Gets or Sets Name
         /// </summary>
-        /// <value>The performer&#39;s name</value>
         [JsonPropertyName("name")]
         public string? Name { get { return this.NameOption.Value; } set { this.NameOption = new(value); } }
 
@@ -282,9 +280,8 @@ namespace Whisparr3.Net.Model
         public Option<List<string>?> AliasesOption { get; private set; }
 
         /// <summary>
-        /// List of alternative names or aliases for the performer
+        /// Gets or Sets Aliases
         /// </summary>
-        /// <value>List of alternative names or aliases for the performer</value>
         [JsonPropertyName("aliases")]
         public List<string>? Aliases { get { return this.AliasesOption.Value; } set { this.AliasesOption = new(value); } }
 
@@ -296,9 +293,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> CountryOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s country of origin (optional)  ISO 3166 codes
+        /// Gets or Sets Country
         /// </summary>
-        /// <value>The performer&#39;s country of origin (optional)  ISO 3166 codes</value>
         [JsonPropertyName("country")]
         public string? Country { get { return this.CountryOption.Value; } set { this.CountryOption = new(value); } }
 
@@ -310,9 +306,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> HeightOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s height in centimeters (optional)
+        /// Gets or Sets Height
         /// </summary>
-        /// <value>The performer&#39;s height in centimeters (optional)</value>
         [JsonPropertyName("height")]
         public int? Height { get { return this.HeightOption.Value; } set { this.HeightOption = new(value); } }
 
@@ -324,9 +319,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> CupSizeOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s cup size (optional)
+        /// Gets or Sets CupSize
         /// </summary>
-        /// <value>The performer&#39;s cup size (optional)</value>
         [JsonPropertyName("cupSize")]
         public string? CupSize { get { return this.CupSizeOption.Value; } set { this.CupSizeOption = new(value); } }
 
@@ -338,9 +332,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> BandSizeOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s band size (optional)
+        /// Gets or Sets BandSize
         /// </summary>
-        /// <value>The performer&#39;s band size (optional)</value>
         [JsonPropertyName("bandSize")]
         public int? BandSize { get { return this.BandSizeOption.Value; } set { this.BandSizeOption = new(value); } }
 
@@ -352,9 +345,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> WaistSizeOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s waist size in centimeters (optional)
+        /// Gets or Sets WaistSize
         /// </summary>
-        /// <value>The performer&#39;s waist size in centimeters (optional)</value>
         [JsonPropertyName("waistSize")]
         public int? WaistSize { get { return this.WaistSizeOption.Value; } set { this.WaistSizeOption = new(value); } }
 
@@ -366,9 +358,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> HipSizeOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s hip size in centimeters (optional)
+        /// Gets or Sets HipSize
         /// </summary>
-        /// <value>The performer&#39;s hip size in centimeters (optional)</value>
         [JsonPropertyName("hipSize")]
         public int? HipSize { get { return this.HipSizeOption.Value; } set { this.HipSizeOption = new(value); } }
 
@@ -380,9 +371,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> CareerStartOption { get; private set; }
 
         /// <summary>
-        /// Four-digit Year the performer started their career (optional)
+        /// Gets or Sets CareerStart
         /// </summary>
-        /// <value>Four-digit Year the performer started their career (optional)</value>
         [JsonPropertyName("careerStart")]
         public int? CareerStart { get { return this.CareerStartOption.Value; } set { this.CareerStartOption = new(value); } }
 
@@ -394,9 +384,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> CareerEndOption { get; private set; }
 
         /// <summary>
-        /// Year the performer ended their career (optional)
+        /// Gets or Sets CareerEnd
         /// </summary>
-        /// <value>Year the performer ended their career (optional)</value>
         [JsonPropertyName("careerEnd")]
         public int? CareerEnd { get { return this.CareerEndOption.Value; } set { this.CareerEndOption = new(value); } }
 
@@ -408,9 +397,8 @@ namespace Whisparr3.Net.Model
         public Option<DateTime?> BirthDateOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s birth date (optional)
+        /// Gets or Sets BirthDate
         /// </summary>
-        /// <value>The performer&#39;s birth date (optional)</value>
         [JsonPropertyName("birthDate")]
         public DateTime? BirthDate { get { return this.BirthDateOption.Value; } set { this.BirthDateOption = new(value); } }
 
@@ -422,9 +410,8 @@ namespace Whisparr3.Net.Model
         public Option<DateTime?> DeathDateOption { get; private set; }
 
         /// <summary>
-        /// The performer&#39;s death date (optional)
+        /// Gets or Sets DeathDate
         /// </summary>
-        /// <value>The performer&#39;s death date (optional)</value>
         [JsonPropertyName("deathDate")]
         public DateTime? DeathDate { get { return this.DeathDateOption.Value; } set { this.DeathDateOption = new(value); } }
 
@@ -436,9 +423,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> AgeOption { get; private set; }
 
         /// <summary>
-        /// Current age of the performer (optional)
+        /// Gets or Sets Age
         /// </summary>
-        /// <value>Current age of the performer (optional)</value>
         [JsonPropertyName("age")]
         public int? Age { get { return this.AgeOption.Value; } set { this.AgeOption = new(value); } }
 
@@ -450,9 +436,8 @@ namespace Whisparr3.Net.Model
         public Option<List<string>?> TattoosOption { get; private set; }
 
         /// <summary>
-        /// List of the performer&#39;s tattoos (optional)
+        /// Gets or Sets Tattoos
         /// </summary>
-        /// <value>List of the performer&#39;s tattoos (optional)</value>
         [JsonPropertyName("tattoos")]
         public List<string>? Tattoos { get { return this.TattoosOption.Value; } set { this.TattoosOption = new(value); } }
 
@@ -464,9 +449,8 @@ namespace Whisparr3.Net.Model
         public Option<List<string>?> PiercingsOption { get; private set; }
 
         /// <summary>
-        /// List of the performer&#39;s piercings (optional)
+        /// Gets or Sets Piercings
         /// </summary>
-        /// <value>List of the performer&#39;s piercings (optional)</value>
         [JsonPropertyName("piercings")]
         public List<string>? Piercings { get { return this.PiercingsOption.Value; } set { this.PiercingsOption = new(value); } }
 
@@ -478,9 +462,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> ForeignIdOption { get; private set; }
 
         /// <summary>
-        /// External foreign ID from metadata source (e.g., StashDB ID)
+        /// Gets or Sets ForeignId
         /// </summary>
-        /// <value>External foreign ID from metadata source (e.g., StashDB ID)</value>
         [JsonPropertyName("foreignId")]
         public string? ForeignId { get { return this.ForeignIdOption.Value; } set { this.ForeignIdOption = new(value); } }
 
@@ -492,9 +475,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> TmdbIdOption { get; private set; }
 
         /// <summary>
-        /// The Movie Database (TMDB) identifier
+        /// Gets or Sets TmdbId
         /// </summary>
-        /// <value>The Movie Database (TMDB) identifier</value>
         [JsonPropertyName("tmdbId")]
         public int? TmdbId { get { return this.TmdbIdOption.Value; } set { this.TmdbIdOption = new(value); } }
 
@@ -506,9 +488,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> TpdbIdOption { get; private set; }
 
         /// <summary>
-        /// The Porn Database (TPDB) identifier
+        /// Gets or Sets TpdbId
         /// </summary>
-        /// <value>The Porn Database (TPDB) identifier</value>
         [JsonPropertyName("tpdbId")]
         public string? TpdbId { get { return this.TpdbIdOption.Value; } set { this.TpdbIdOption = new(value); } }
 
@@ -520,9 +501,8 @@ namespace Whisparr3.Net.Model
         public Option<List<MediaCover>?> ImagesOption { get; private set; }
 
         /// <summary>
-        /// Collection of performer images (posters, headshots, etc.)
+        /// Gets or Sets Images
         /// </summary>
-        /// <value>Collection of performer images (posters, headshots, etc.)</value>
         [JsonPropertyName("images")]
         public List<MediaCover>? Images { get { return this.ImagesOption.Value; } set { this.ImagesOption = new(value); } }
 
@@ -534,9 +514,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether this performer is being monitored for new content
+        /// Gets or Sets Monitored
         /// </summary>
-        /// <value>Whether this performer is being monitored for new content</value>
         [JsonPropertyName("monitored")]
         public bool? Monitored { get { return this.MonitoredOption.Value; } set { this.MonitoredOption = new(value); } }
 
@@ -548,9 +527,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MoviesMonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether movies featuring this performer are monitored
+        /// Gets or Sets MoviesMonitored
         /// </summary>
-        /// <value>Whether movies featuring this performer are monitored</value>
         [JsonPropertyName("moviesMonitored")]
         public bool? MoviesMonitored { get { return this.MoviesMonitoredOption.Value; } set { this.MoviesMonitoredOption = new(value); } }
 
@@ -562,9 +540,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> RootFolderPathOption { get; private set; }
 
         /// <summary>
-        /// Root folder path where performer content is stored
+        /// Gets or Sets RootFolderPath
         /// </summary>
-        /// <value>Root folder path where performer content is stored</value>
         [JsonPropertyName("rootFolderPath")]
         public string? RootFolderPath { get { return this.RootFolderPathOption.Value; } set { this.RootFolderPathOption = new(value); } }
 
@@ -576,9 +553,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> QualityProfileIdOption { get; private set; }
 
         /// <summary>
-        /// ID of the quality profile to use for this performer&#39;s content
+        /// Gets or Sets QualityProfileId
         /// </summary>
-        /// <value>ID of the quality profile to use for this performer&#39;s content</value>
         [JsonPropertyName("qualityProfileId")]
         public int? QualityProfileId { get { return this.QualityProfileIdOption.Value; } set { this.QualityProfileIdOption = new(value); } }
 
@@ -590,9 +566,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> SearchOnAddOption { get; private set; }
 
         /// <summary>
-        /// Whether to automatically search for content when adding this performer
+        /// Gets or Sets SearchOnAdd
         /// </summary>
-        /// <value>Whether to automatically search for content when adding this performer</value>
         [JsonPropertyName("searchOnAdd")]
         public bool? SearchOnAdd { get { return this.SearchOnAddOption.Value; } set { this.SearchOnAddOption = new(value); } }
 
@@ -604,9 +579,8 @@ namespace Whisparr3.Net.Model
         public Option<List<int>?> TagsOption { get; private set; }
 
         /// <summary>
-        /// Set of tag IDs associated with this performer
+        /// Gets or Sets Tags
         /// </summary>
-        /// <value>Set of tag IDs associated with this performer</value>
         [JsonPropertyName("tags")]
         public List<int>? Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new(value); } }
 
@@ -618,9 +592,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> RemotePosterOption { get; }
 
         /// <summary>
-        /// URL of the remote poster image from StashDb/TMDb/TPDb
+        /// Gets or Sets RemotePoster
         /// </summary>
-        /// <value>URL of the remote poster image from StashDb/TMDb/TPDb</value>
         [JsonPropertyName("remotePoster")]
         public string? RemotePoster { get { return this.RemotePosterOption.Value; } }
 
@@ -632,9 +605,8 @@ namespace Whisparr3.Net.Model
         public Option<DateTime?> AddedOption { get; }
 
         /// <summary>
-        /// Date and time when this performer was added to Whisparr
+        /// Gets or Sets Added
         /// </summary>
-        /// <value>Date and time when this performer was added to Whisparr</value>
         [JsonPropertyName("added")]
         public DateTime? Added { get { return this.AddedOption.Value; } }
 
@@ -646,9 +618,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> HasMoviesOption { get; private set; }
 
         /// <summary>
-        /// Indicates if the performer has any associated movies
+        /// Gets or Sets HasMovies
         /// </summary>
-        /// <value>Indicates if the performer has any associated movies</value>
         [JsonPropertyName("hasMovies")]
         public bool? HasMovies { get { return this.HasMoviesOption.Value; } set { this.HasMoviesOption = new(value); } }
 
@@ -660,9 +631,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> HasScenesOption { get; private set; }
 
         /// <summary>
-        /// Indicates if the performer has any associated scenes
+        /// Gets or Sets HasScenes
         /// </summary>
-        /// <value>Indicates if the performer has any associated scenes</value>
         [JsonPropertyName("hasScenes")]
         public bool? HasScenes { get { return this.HasScenesOption.Value; } set { this.HasScenesOption = new(value); } }
 
@@ -674,9 +644,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> MovieCountOption { get; private set; }
 
         /// <summary>
-        /// Number of movies (on disk)from this performer
+        /// Gets or Sets MovieCount
         /// </summary>
-        /// <value>Number of movies (on disk)from this performer</value>
         [JsonPropertyName("movieCount")]
         public int? MovieCount { get { return this.MovieCountOption.Value; } set { this.MovieCountOption = new(value); } }
 
@@ -688,9 +657,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> TotalMovieCountOption { get; private set; }
 
         /// <summary>
-        /// Total number of movies associated with this performer
+        /// Gets or Sets TotalMovieCount
         /// </summary>
-        /// <value>Total number of movies associated with this performer</value>
         [JsonPropertyName("totalMovieCount")]
         public int? TotalMovieCount { get { return this.TotalMovieCountOption.Value; } set { this.TotalMovieCountOption = new(value); } }
 
@@ -702,9 +670,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> TotalSceneCountOption { get; private set; }
 
         /// <summary>
-        /// Total number of scenes associated with this performer
+        /// Gets or Sets TotalSceneCount
         /// </summary>
-        /// <value>Total number of scenes associated with this performer</value>
         [JsonPropertyName("totalSceneCount")]
         public int? TotalSceneCount { get { return this.TotalSceneCountOption.Value; } set { this.TotalSceneCountOption = new(value); } }
 
@@ -716,9 +683,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> SceneCountOption { get; private set; }
 
         /// <summary>
-        /// Number of scenes (on disk) from this performer
+        /// Gets or Sets SceneCount
         /// </summary>
-        /// <value>Number of scenes (on disk) from this performer</value>
         [JsonPropertyName("sceneCount")]
         public int? SceneCount { get { return this.SceneCountOption.Value; } set { this.SceneCountOption = new(value); } }
 
@@ -730,9 +696,8 @@ namespace Whisparr3.Net.Model
         public Option<long?> SizeOnDiskOption { get; private set; }
 
         /// <summary>
-        /// Total size in bytes of all files on disk associated with this performer///
+        /// Gets or Sets SizeOnDisk
         /// </summary>
-        /// <value>Total size in bytes of all files on disk associated with this performer///</value>
         [JsonPropertyName("sizeOnDisk")]
         public long? SizeOnDisk { get { return this.SizeOnDiskOption.Value; } set { this.SizeOnDiskOption = new(value); } }
 

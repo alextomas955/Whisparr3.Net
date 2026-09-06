@@ -62,28 +62,28 @@ namespace Whisparr3.Net.Api
         Task<IGetCreditByIdApiResponse?> GetCreditByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="movieMetadataId"> (optional)</param>
+        /// <param name="performerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>&gt;</returns>
         Task<IListCreditApiResponse> ListCreditAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="movieMetadataId"> (optional)</param>
+        /// <param name="performerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>?&gt;</returns>
         Task<IListCreditApiResponse?> ListCreditOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -519,11 +519,11 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListCredit(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId);
 
         /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned. 
+        ///  
         /// </summary>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="movieMetadataId"> (optional)</param>
+        /// <param name="performerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>&gt;</returns>
         public async Task<IListCreditApiResponse?> ListCreditOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -539,12 +539,12 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="movieMetadataId"> (optional)</param>
+        /// <param name="performerId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>&gt;</returns>
         public async Task<IListCreditApiResponse> ListCreditAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default)

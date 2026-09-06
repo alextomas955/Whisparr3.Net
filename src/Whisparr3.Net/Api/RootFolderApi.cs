@@ -39,70 +39,70 @@ namespace Whisparr3.Net.Api
         RootFolderApiEvents Events { get; }
 
         /// <summary>
-        /// Creates a new root folder.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rootFolderResource">The root folder resource payload. (optional)</param>
+        /// <param name="rootFolderResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderApiResponse"/>&gt;</returns>
         Task<ICreateRootFolderApiResponse> CreateRootFolderAsync(Option<RootFolderResource> rootFolderResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Creates a new root folder.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="rootFolderResource">The root folder resource payload. (optional)</param>
+        /// <param name="rootFolderResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderApiResponse"/>?&gt;</returns>
         Task<ICreateRootFolderApiResponse?> CreateRootFolderOrDefaultAsync(Option<RootFolderResource> rootFolderResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Refreshes the specified root folder (e.g. re-scan for media).
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Id of the root folder to refresh.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderRefreshByIdApiResponse"/>&gt;</returns>
         Task<ICreateRootFolderRefreshByIdApiResponse> CreateRootFolderRefreshByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Refreshes the specified root folder (e.g. re-scan for media).
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id">Id of the root folder to refresh.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderRefreshByIdApiResponse"/>?&gt;</returns>
         Task<ICreateRootFolderRefreshByIdApiResponse?> CreateRootFolderRefreshByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes the specified root folder.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Id of the root folder to delete.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRootFolderApiResponse"/>&gt;</returns>
         Task<IDeleteRootFolderApiResponse> DeleteRootFolderAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes the specified root folder.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id">Id of the root folder to delete.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRootFolderApiResponse"/>?&gt;</returns>
         Task<IDeleteRootFolderApiResponse?> DeleteRootFolderOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
@@ -131,7 +131,7 @@ namespace Whisparr3.Net.Api
         Task<IGetRootFolderByIdApiResponse?> GetRootFolderByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Returns all configured root folders, including import file metadata.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -142,7 +142,7 @@ namespace Whisparr3.Net.Api
         Task<IListRootFolderApiResponse> ListRootFolderAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Returns all configured root folders, including import file metadata.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -419,9 +419,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateRootFolder(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<RootFolderResource> rootFolderResource);
 
         /// <summary>
-        /// Creates a new root folder. 
+        ///  
         /// </summary>
-        /// <param name="rootFolderResource">The root folder resource payload. (optional)</param>
+        /// <param name="rootFolderResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderApiResponse"/>&gt;</returns>
         public async Task<ICreateRootFolderApiResponse?> CreateRootFolderOrDefaultAsync(Option<RootFolderResource> rootFolderResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -437,10 +437,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Creates a new root folder. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="rootFolderResource">The root folder resource payload. (optional)</param>
+        /// <param name="rootFolderResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderApiResponse"/>&gt;</returns>
         public async Task<ICreateRootFolderApiResponse> CreateRootFolderAsync(Option<RootFolderResource> rootFolderResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -687,9 +687,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateRootFolderRefreshById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
-        /// Refreshes the specified root folder (e.g. re-scan for media). 
+        ///  
         /// </summary>
-        /// <param name="id">Id of the root folder to refresh.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderRefreshByIdApiResponse"/>&gt;</returns>
         public async Task<ICreateRootFolderRefreshByIdApiResponse?> CreateRootFolderRefreshByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
@@ -705,10 +705,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Refreshes the specified root folder (e.g. re-scan for media). 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Id of the root folder to refresh.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateRootFolderRefreshByIdApiResponse"/>&gt;</returns>
         public async Task<ICreateRootFolderRefreshByIdApiResponse> CreateRootFolderRefreshByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
@@ -938,9 +938,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorDeleteRootFolder(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
-        /// Deletes the specified root folder. 
+        ///  
         /// </summary>
-        /// <param name="id">Id of the root folder to delete.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRootFolderApiResponse"/>&gt;</returns>
         public async Task<IDeleteRootFolderApiResponse?> DeleteRootFolderOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
@@ -956,10 +956,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Deletes the specified root folder. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Id of the root folder to delete.</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRootFolderApiResponse"/>&gt;</returns>
         public async Task<IDeleteRootFolderApiResponse> DeleteRootFolderAsync(int id, System.Threading.CancellationToken cancellationToken = default)
@@ -1379,7 +1379,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListRootFolder(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
-        /// Returns all configured root folders, including import file metadata. 
+        ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListRootFolderApiResponse"/>&gt;</returns>
@@ -1396,7 +1396,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Returns all configured root folders, including import file metadata. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

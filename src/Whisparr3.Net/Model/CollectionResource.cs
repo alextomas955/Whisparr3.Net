@@ -34,18 +34,18 @@ namespace Whisparr3.Net.Model
         /// Initializes a new instance of the <see cref="CollectionResource" /> class.
         /// </summary>
         /// <param name="id">id</param>
-        /// <param name="title">The collection&#39;s title.</param>
-        /// <param name="sortTitle">Title used for sorting the collection.</param>
-        /// <param name="tmdbId">The TMDB identifier for the collection.</param>
-        /// <param name="images">A list of media cover images associated with the collection.</param>
-        /// <param name="overview">A short overview or synopsis for the collection.</param>
-        /// <param name="monitored">Whether the collection is monitored for automatic actions (e.g., downloads).</param>
-        /// <param name="rootFolderPath">The configured root folder path where movies for this collection are stored.</param>
-        /// <param name="qualityProfileId">The quality profile id applied to movies in this collection.</param>
-        /// <param name="searchOnAdd">Whether new movies in the collection should be searched for automatically when added.</param>
-        /// <param name="movies">Movies that belong to this collection.</param>
-        /// <param name="missingMovies">Number of movies from the collection that are missing from the local library.</param>
-        /// <param name="tags">Set of tag ids associated with the collection.</param>
+        /// <param name="title">title</param>
+        /// <param name="sortTitle">sortTitle</param>
+        /// <param name="tmdbId">tmdbId</param>
+        /// <param name="images">images</param>
+        /// <param name="overview">overview</param>
+        /// <param name="monitored">monitored</param>
+        /// <param name="rootFolderPath">rootFolderPath</param>
+        /// <param name="qualityProfileId">qualityProfileId</param>
+        /// <param name="searchOnAdd">searchOnAdd</param>
+        /// <param name="movies">movies</param>
+        /// <param name="missingMovies">missingMovies</param>
+        /// <param name="tags">tags</param>
         [JsonConstructor]
         public CollectionResource(Option<int?> id = default, Option<string?> title = default, Option<string?> sortTitle = default, Option<int?> tmdbId = default, Option<List<MediaCover>?> images = default, Option<string?> overview = default, Option<bool?> monitored = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<CollectionMovieResource>?> movies = default, Option<int?> missingMovies = default, Option<List<int>?> tags = default)
         {
@@ -88,9 +88,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> TitleOption { get; private set; }
 
         /// <summary>
-        /// The collection&#39;s title.
+        /// Gets or Sets Title
         /// </summary>
-        /// <value>The collection&#39;s title.</value>
         [JsonPropertyName("title")]
         public string? Title { get { return this.TitleOption.Value; } set { this.TitleOption = new(value); } }
 
@@ -102,9 +101,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> SortTitleOption { get; private set; }
 
         /// <summary>
-        /// Title used for sorting the collection.
+        /// Gets or Sets SortTitle
         /// </summary>
-        /// <value>Title used for sorting the collection.</value>
         [JsonPropertyName("sortTitle")]
         public string? SortTitle { get { return this.SortTitleOption.Value; } set { this.SortTitleOption = new(value); } }
 
@@ -116,9 +114,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> TmdbIdOption { get; private set; }
 
         /// <summary>
-        /// The TMDB identifier for the collection.
+        /// Gets or Sets TmdbId
         /// </summary>
-        /// <value>The TMDB identifier for the collection.</value>
         [JsonPropertyName("tmdbId")]
         public int? TmdbId { get { return this.TmdbIdOption.Value; } set { this.TmdbIdOption = new(value); } }
 
@@ -130,9 +127,8 @@ namespace Whisparr3.Net.Model
         public Option<List<MediaCover>?> ImagesOption { get; private set; }
 
         /// <summary>
-        /// A list of media cover images associated with the collection.
+        /// Gets or Sets Images
         /// </summary>
-        /// <value>A list of media cover images associated with the collection.</value>
         [JsonPropertyName("images")]
         public List<MediaCover>? Images { get { return this.ImagesOption.Value; } set { this.ImagesOption = new(value); } }
 
@@ -144,9 +140,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> OverviewOption { get; private set; }
 
         /// <summary>
-        /// A short overview or synopsis for the collection.
+        /// Gets or Sets Overview
         /// </summary>
-        /// <value>A short overview or synopsis for the collection.</value>
         [JsonPropertyName("overview")]
         public string? Overview { get { return this.OverviewOption.Value; } set { this.OverviewOption = new(value); } }
 
@@ -158,9 +153,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> MonitoredOption { get; private set; }
 
         /// <summary>
-        /// Whether the collection is monitored for automatic actions (e.g., downloads).
+        /// Gets or Sets Monitored
         /// </summary>
-        /// <value>Whether the collection is monitored for automatic actions (e.g., downloads).</value>
         [JsonPropertyName("monitored")]
         public bool? Monitored { get { return this.MonitoredOption.Value; } set { this.MonitoredOption = new(value); } }
 
@@ -172,9 +166,8 @@ namespace Whisparr3.Net.Model
         public Option<string?> RootFolderPathOption { get; private set; }
 
         /// <summary>
-        /// The configured root folder path where movies for this collection are stored.
+        /// Gets or Sets RootFolderPath
         /// </summary>
-        /// <value>The configured root folder path where movies for this collection are stored.</value>
         [JsonPropertyName("rootFolderPath")]
         public string? RootFolderPath { get { return this.RootFolderPathOption.Value; } set { this.RootFolderPathOption = new(value); } }
 
@@ -186,9 +179,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> QualityProfileIdOption { get; private set; }
 
         /// <summary>
-        /// The quality profile id applied to movies in this collection.
+        /// Gets or Sets QualityProfileId
         /// </summary>
-        /// <value>The quality profile id applied to movies in this collection.</value>
         [JsonPropertyName("qualityProfileId")]
         public int? QualityProfileId { get { return this.QualityProfileIdOption.Value; } set { this.QualityProfileIdOption = new(value); } }
 
@@ -200,9 +192,8 @@ namespace Whisparr3.Net.Model
         public Option<bool?> SearchOnAddOption { get; private set; }
 
         /// <summary>
-        /// Whether new movies in the collection should be searched for automatically when added.
+        /// Gets or Sets SearchOnAdd
         /// </summary>
-        /// <value>Whether new movies in the collection should be searched for automatically when added.</value>
         [JsonPropertyName("searchOnAdd")]
         public bool? SearchOnAdd { get { return this.SearchOnAddOption.Value; } set { this.SearchOnAddOption = new(value); } }
 
@@ -214,9 +205,8 @@ namespace Whisparr3.Net.Model
         public Option<List<CollectionMovieResource>?> MoviesOption { get; private set; }
 
         /// <summary>
-        /// Movies that belong to this collection.
+        /// Gets or Sets Movies
         /// </summary>
-        /// <value>Movies that belong to this collection.</value>
         [JsonPropertyName("movies")]
         public List<CollectionMovieResource>? Movies { get { return this.MoviesOption.Value; } set { this.MoviesOption = new(value); } }
 
@@ -228,9 +218,8 @@ namespace Whisparr3.Net.Model
         public Option<int?> MissingMoviesOption { get; private set; }
 
         /// <summary>
-        /// Number of movies from the collection that are missing from the local library.
+        /// Gets or Sets MissingMovies
         /// </summary>
-        /// <value>Number of movies from the collection that are missing from the local library.</value>
         [JsonPropertyName("missingMovies")]
         public int? MissingMovies { get { return this.MissingMoviesOption.Value; } set { this.MissingMoviesOption = new(value); } }
 
@@ -242,9 +231,8 @@ namespace Whisparr3.Net.Model
         public Option<List<int>?> TagsOption { get; private set; }
 
         /// <summary>
-        /// Set of tag ids associated with the collection.
+        /// Gets or Sets Tags
         /// </summary>
-        /// <value>Set of tag ids associated with the collection.</value>
         [JsonPropertyName("tags")]
         public List<int>? Tags { get { return this.TagsOption.Value; } set { this.TagsOption = new(value); } }
 

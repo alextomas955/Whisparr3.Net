@@ -39,7 +39,7 @@ namespace Whisparr3.Net.Api
         StudioEditorApiEvents Events { get; }
 
         /// <summary>
-        /// Edits multiple studios
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -51,7 +51,7 @@ namespace Whisparr3.Net.Api
         Task<IPutStudioEditorApiResponse> PutStudioEditorAsync(Option<StudioEditorResource> studioEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Edits multiple studios
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -201,7 +201,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorPutStudioEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioEditorResource> studioEditorResource);
 
         /// <summary>
-        /// Edits multiple studios 
+        ///  
         /// </summary>
         /// <param name="studioEditorResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -219,7 +219,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Edits multiple studios 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="studioEditorResource"> (optional)</param>

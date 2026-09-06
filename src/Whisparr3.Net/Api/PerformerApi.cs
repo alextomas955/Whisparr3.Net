@@ -39,33 +39,33 @@ namespace Whisparr3.Net.Api
         PerformerApiEvents Events { get; }
 
         /// <summary>
-        /// Adds a new performer to Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerResource">The performer details to add (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>&gt;</returns>
         Task<ICreatePerformerApiResponse> CreatePerformerAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Adds a new performer to Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="performerResource">The performer details to add (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>?&gt;</returns>
         Task<ICreatePerformerApiResponse?> CreatePerformerOrDefaultAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestBody"> (optional)</param>
@@ -74,10 +74,10 @@ namespace Whisparr3.Net.Api
         Task<ICreatePerformerListApiResponse> CreatePerformerListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// 
         /// </remarks>
         /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -85,51 +85,51 @@ namespace Whisparr3.Net.Api
         Task<ICreatePerformerListApiResponse?> CreatePerformerListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="performerPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>&gt;</returns>
         Task<ICreatePerformerPagedApiResponse> CreatePerformerPagedAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="performerPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>?&gt;</returns>
         Task<ICreatePerformerPagedApiResponse?> CreatePerformerPagedOrDefaultAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes a performer and their associated movies/scenes from Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The internal ID of the performer to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>&gt;</returns>
         Task<IDeletePerformerApiResponse> DeletePerformerAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Deletes a performer and their associated movies/scenes from Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id">The internal ID of the performer to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>?&gt;</returns>
         Task<IDeletePerformerApiResponse?> DeletePerformerOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
@@ -158,7 +158,7 @@ namespace Whisparr3.Net.Api
         Task<IGetPerformerByIdApiResponse?> GetPerformerByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -170,7 +170,7 @@ namespace Whisparr3.Net.Api
         Task<IGetPerformerByPerformerForeignIdApiResponse> GetPerformerByPerformerForeignIdAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -181,7 +181,7 @@ namespace Whisparr3.Net.Api
         Task<IGetPerformerByPerformerForeignIdApiResponse?> GetPerformerByPerformerForeignIdOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves full list of performers
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -192,7 +192,7 @@ namespace Whisparr3.Net.Api
         Task<IListPerformerApiResponse> ListPerformerAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves full list of performers
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -202,7 +202,7 @@ namespace Whisparr3.Net.Api
         Task<IListPerformerApiResponse?> ListPerformerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -214,7 +214,7 @@ namespace Whisparr3.Net.Api
         Task<IListPerformerWorksApiResponse> ListPerformerWorksAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb)
+        /// 
         /// </summary>
         /// <remarks>
         /// 
@@ -225,26 +225,26 @@ namespace Whisparr3.Net.Api
         Task<IListPerformerWorksApiResponse?> ListPerformerWorksOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates an existing performer in Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>&gt;</returns>
         Task<IUpdatePerformerApiResponse> UpdatePerformerAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Updates an existing performer in Whisparr
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>?&gt;</returns>
         Task<IUpdatePerformerApiResponse?> UpdatePerformerOrDefaultAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
@@ -693,9 +693,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreatePerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerResource> performerResource);
 
         /// <summary>
-        /// Adds a new performer to Whisparr 
+        ///  
         /// </summary>
-        /// <param name="performerResource">The performer details to add (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>&gt;</returns>
         public async Task<ICreatePerformerApiResponse?> CreatePerformerOrDefaultAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -711,10 +711,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Adds a new performer to Whisparr 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerResource">The performer details to add (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>&gt;</returns>
         public async Task<ICreatePerformerApiResponse> CreatePerformerAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -982,7 +982,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreatePerformerList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody);
 
         /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        ///  
         /// </summary>
         /// <param name="requestBody"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1000,7 +1000,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="requestBody"> (optional)</param>
@@ -1259,9 +1259,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreatePerformerPaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerPagingRequestResource> performerPagingRequestResource);
 
         /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options 
+        ///  
         /// </summary>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="performerPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>&gt;</returns>
         public async Task<ICreatePerformerPagedApiResponse?> CreatePerformerPagedOrDefaultAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1277,10 +1277,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
+        /// <param name="performerPagingRequestResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>&gt;</returns>
         public async Task<ICreatePerformerPagedApiResponse> CreatePerformerPagedAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1533,11 +1533,11 @@ namespace Whisparr3.Net.Api
         partial void OnErrorDeletePerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
-        /// Deletes a performer and their associated movies/scenes from Whisparr 
+        ///  
         /// </summary>
-        /// <param name="id">The internal ID of the performer to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>&gt;</returns>
         public async Task<IDeletePerformerApiResponse?> DeletePerformerOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1553,12 +1553,12 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Deletes a performer and their associated movies/scenes from Whisparr 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">The internal ID of the performer to delete</param>
-        /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
-        /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>&gt;</returns>
         public async Task<IDeletePerformerApiResponse> DeletePerformerAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2005,7 +2005,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorGetPerformerByPerformerForeignId(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId);
 
         /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <param name="performerForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2023,7 +2023,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="performerForeignId"></param>
@@ -2256,7 +2256,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListPerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
-        /// Retrieves full list of performers 
+        ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerApiResponse"/>&gt;</returns>
@@ -2273,7 +2273,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves full list of performers 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2517,7 +2517,7 @@ namespace Whisparr3.Net.Api
         partial void OnErrorListPerformerWorks(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId);
 
         /// <summary>
-        /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <param name="performerForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -2535,7 +2535,7 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb) 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="performerForeignId"></param>
@@ -2795,10 +2795,10 @@ namespace Whisparr3.Net.Api
         partial void OnErrorUpdatePerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<PerformerResource> performerResource);
 
         /// <summary>
-        /// Updates an existing performer in Whisparr 
+        ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>&gt;</returns>
         public async Task<IUpdatePerformerApiResponse?> UpdatePerformerOrDefaultAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -2814,11 +2814,11 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Updates an existing performer in Whisparr 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>&gt;</returns>
         public async Task<IUpdatePerformerApiResponse> UpdatePerformerAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Pre-process the captured Whisparr 3 (Eros) OpenAPI document into the spec the generator reads.
 
-T1 repairs root security, T2 deletes the malformed paths["/"], and T3 derives an operationId for
-every operation from the document itself.
+T1 repairs root security, T2 deletes the malformed paths["/"], T3 derives an operationId for
+every operation from the document itself, and T4 removes the prose Whisparr authored.
 
 The derivation is devopsarr's assign_operation_id.py, the algorithm behind the Go, Python and
 TypeScript *arr clients. OPERATION_ID_OVERRIDES names the 13 operations it cannot get right from
@@ -16,6 +16,7 @@ for deleting a committed name map that had to be reviewed on every version bump.
 """
 
 import argparse
+import http
 import json
 import os
 import re
@@ -33,6 +34,73 @@ from _common import die, resolve_repo_path, sha256_file, write_json_lf
 SECURITY = [{"X-Api-Key": []}]
 
 HTTP_METHODS = ("get", "put", "post", "delete", "options", "head", "patch", "trace")
+
+# The two keys OpenAPI uses for human prose. T4 removes them, for a licensing reason rather than a
+# technical one: Whisparr is GPL-3.0, these strings are written by hand in its C# source, and
+# openapi-generator copies them verbatim into the XML documentation this MIT-licensed package
+# ships. Removing them here keeps that prose out of the package.
+#
+# What this does NOT remove, and cannot: schema names, property names and the shape of the API,
+# which the generated types are built from. Those carry a far weaker copyright claim than authored
+# prose, and T3 derives the operation names from the URLs rather than taking them from upstream.
+# The removal narrows the question rather than answering all of it.
+PROSE_KEYS = ("summary", "description")
+
+
+def reason_phrase(status):
+    """The standard phrase for a response status key, derived and never taken from the document."""
+    if not status.isdigit():
+        die(
+            "ERROR: REFUSED - the response key {!r} is not a numeric status, so T4 cannot derive a "
+            "description for it. Every key in the captured spec was numeric when this was written. "
+            "Decide what this response should say and add the rule. Nothing was staged.".format(
+                status)
+        )
+    return http.HTTPStatus(int(status)).phrase
+
+
+def strip_prose(node, kind="plain", status=None):
+    """Remove every authored summary and description from the document.
+
+    A Response Object must carry a description and openapi-generator validates what it is given, so
+    those are REPLACED rather than deleted, with the standard reason phrase for the status key they
+    sit under. That phrase is derived from the key, so nothing upstream wrote survives.
+
+    Replacing rather than keeping matters and was measured. 265 of the captured response
+    descriptions already read "OK", which made deletion-with-an-exemption look safe. The other 17
+    are authored sentences: "Performer with the specified foreign ID not found", "Studios found and
+    returned, or an empty array". Exempting response objects wholesale left all 17 in the package.
+
+    kind tracks position rather than content, because "responses" names a map whose VALUES are the
+    protected objects, not the map itself and not everything below it. A schema nested inside a
+    response object is still stripped.
+    """
+    removed = 0
+
+    if isinstance(node, dict):
+        if kind == "response-object":
+            derived = reason_phrase(status)
+            if node.get("description") != derived:
+                removed += 1
+            node["description"] = derived
+        else:
+            for key in PROSE_KEYS:
+                if key in node:
+                    del node[key]
+                    removed += 1
+
+        for key, value in node.items():
+            if kind == "responses-map":
+                removed += strip_prose(value, "response-object", key)
+            elif key == "responses":
+                removed += strip_prose(value, "responses-map")
+            else:
+                removed += strip_prose(value, "plain")
+    elif isinstance(node, list):
+        for value in node:
+            removed += strip_prose(value, kind, status)
+
+    return removed
 # A valid C# identifier of the shape this library's public method names take. Anchored on purpose.
 OPERATION_ID_PATTERN = re.compile(r"[A-Z][A-Za-z0-9]*")
 
@@ -250,7 +318,23 @@ def main():
         operation["operationId"] = operation_id
     print("  + T3 assigned {} operationIds".format(len(operations)))
 
-    # --- 7. The census ---
+    # --- 7. T4, remove the prose Whisparr authored ---
+    # After T3, so the operationIds it assigned are already in place; strip_prose does not touch
+    # them. The count is reported rather than asserted against a pinned number, for the same reason
+    # the census below is computed rather than pinned: Whisparr documents more of its API between
+    # releases, and that should not fail this pipeline.
+    # info is excluded. Its description reads "Whisparr API docs", three generic words naming the
+    # API rather than prose describing it, and the generator stamps that line into the header of
+    # every file it writes. Removing it does not substitute nothing: the generator falls back to
+    # "No description provided (generated by Openapi Generator ...)", which is a worse header in
+    # 246 files and buries the real change in a diff five times its size.
+    prose_removed = sum(
+        strip_prose(value) for key, value in document.items() if key != "info"
+    )
+    print("  + T4 removed or replaced {} authored prose fields, info untouched".format(
+        prose_removed))
+
+    # --- 8. The census ---
     # Against the input, not against a pinned total. This asserts that T2 is the only thing that
     # changed the operation count, which is the property that matters. A release that adds ten
     # operations passes; a bug that drops one does not.
@@ -263,7 +347,7 @@ def main():
     print("  + census: {} in, {} removed by T2, {} out".format(
         operations_in, root_operations, len(operations)))
 
-    # --- 8. Write ---
+    # --- 9. Write ---
     # Every assertion above has already passed, so this is the first write to anything committed.
     # There is no staging file: json.dumps either serializes the whole document or raises, so a
     # silently truncated write is not a failure mode that needs guarding here.
@@ -274,7 +358,7 @@ def main():
         "  + wrote {} bytes, sha256 {}".format(os.path.getsize(out_path), sha256_file(out_path))
     )
 
-    # --- 9. The manifest ---
+    # --- 10. The manifest ---
     # capture_spec.py rebuilds this file from its own observed fields, so a re-capture DROPS
     # generatedSpecSha256. Deliberate: a new capture invalidates the patched spec, and this script
     # is what puts the field back.

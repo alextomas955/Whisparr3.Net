@@ -39,24 +39,24 @@ namespace Whisparr3.Net.Api
         MovieImportApiEvents Events { get; }
 
         /// <summary>
-        /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>&gt;</returns>
         Task<ICreateMovieImportApiResponse> CreateMovieImportAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library.
+        /// 
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>?&gt;</returns>
         Task<ICreateMovieImportApiResponse?> CreateMovieImportOrDefaultAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
@@ -201,9 +201,9 @@ namespace Whisparr3.Net.Api
         partial void OnErrorCreateMovieImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieResource>> movieResource);
 
         /// <summary>
-        /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library. 
+        ///  
         /// </summary>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieImportApiResponse?> CreateMovieImportOrDefaultAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
@@ -219,10 +219,10 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library. 
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>&gt;</returns>
         public async Task<ICreateMovieImportApiResponse> CreateMovieImportAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
