@@ -103,7 +103,11 @@ happens, so they are written down.
   more. No `enum`, no `const`, no pattern anywhere in the spec, so the generated client offers no
   type-level constraint and the value alone decides what the instance does. It selects between
   refreshing a movie's metadata and renaming every file on disk. `GET /api/v3/command` reports what
-  an instance is currently running.
+  an instance is currently running. The per-command arguments are described nowhere in the spec
+  either. `CommandResource` is `additionalProperties: false` and its generated writer emits a fixed
+  property list, so the generated create operation cannot put a command argument on the wire at all.
+  `CommandApi.SendCommandAsync(name, payload)` is the hand-written method that can. It writes a flat
+  JSON object whose payload members are siblings of `name`, which is the shape the instance binds.
 - `POST /api/v3/release` pushes a release to a download client. It reaches outside the instance,
   starts a real download and writes to the file system the instance manages, so its effect outlives
   the request and deleting anything through the API does not undo it.
