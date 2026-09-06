@@ -35,7 +35,10 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ArgumentException">
         /// <paramref name="name"/> is null, empty or white space; or <paramref name="payload"/>
         /// does not serialize to a JSON object; or <paramref name="payload"/> carries a member
-        /// named <c>name</c> under a case-insensitive comparison.
+        /// named <c>name</c> under a case-insensitive comparison. A colliding member is refused
+        /// rather than merged because a differently-cased key would survive alongside the command
+        /// name and leave the server two candidates for one property. Dropping or duplicating a
+        /// caller's field at a public boundary is worse than refusing the call.
         /// </exception>
         /// <exception cref="Whisparr3ApiException">
         /// The status was not a success, or it was a success whose body could not be read.
@@ -87,6 +90,19 @@ namespace Whisparr3.Net.Api
                 body = node as JsonObject
                     ?? throw new ArgumentException(
                         "A command payload must serialize to a JSON object.", nameof(payload));
+
+                // The loop only reads and the name member is set after it, so the collection is
+                // never mutated while it is enumerated.
+                foreach (KeyValuePair<string, JsonNode?> member in body)
+                {
+                    if (string.Equals(member.Key, "name", StringComparison.OrdinalIgnoreCase))
+                    {
+                        throw new ArgumentException(
+                            "A command payload must not carry a member named '" + member.Key
+                                + "'. The command name is the name parameter.",
+                            nameof(payload));
+                    }
+                }
             }
 
             body["name"] = JsonValue.Create(name);
