@@ -330,14 +330,14 @@ namespace Whisparr3.Net.UnitTests
         /// <param name="provider">The provider to resolve from.</param>
         /// <returns>The registered command client, as the concrete class.</returns>
         /// <remarks>
-        /// The resolution goes through ICommandApi, which is what keeps the registration in the
+        /// The resolution goes through the container, which is what keeps the registration in the
         /// path: a hand-written directory that never compiled would fail here rather than pass.
-        /// The cast is needed because ICommandApi is generated, is not partial, and therefore
-        /// cannot declare the hand-written dispatch method. A consumer makes the same cast.
+        /// The class is resolved directly, as a consumer does, because AddWhisparr3 registers it
+        /// alongside the generated ICommandApi.
         /// </remarks>
         private static CommandApi Dispatcher(ServiceProvider provider)
         {
-            return (CommandApi)provider.GetRequiredService<ICommandApi>();
+            return provider.GetRequiredService<CommandApi>();
         }
 
         /// <summary>

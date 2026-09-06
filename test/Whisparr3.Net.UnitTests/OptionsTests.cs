@@ -166,6 +166,44 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
+        /// The command api resolves by its class and not only by its interface. SendCommandAsync
+        /// is declared on the class, because the generated ICommandApi is not partial and cannot
+        /// carry it, so without this registration every caller of the command primitive writes a
+        /// cast.
+        /// </summary>
+        [Fact]
+        public void AddWhisparr3_registers_the_concrete_command_api()
+        {
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options { BaseUrl = ValidBaseUrl, ApiKey = SentinelKey });
+
+            using ServiceProvider provider = services.BuildServiceProvider();
+
+            Assert.NotNull(provider.GetRequiredService<CommandApi>());
+        }
+
+        /// <summary>
+        /// The class registration delegates to the interface registration rather than constructing
+        /// anything, so it hands out whatever lifetime AddHttpClient set, which is transient. Two
+        /// resolutions returning one shared instance would mean that lifetime had changed, and a
+        /// changed lifetime is what would put a second HttpClient path under the command api. That
+        /// is the thing this case exists to detect.
+        /// </summary>
+        [Fact]
+        public void Resolved_command_api_instances_are_not_shared()
+        {
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options { BaseUrl = ValidBaseUrl, ApiKey = SentinelKey });
+
+            using ServiceProvider provider = services.BuildServiceProvider();
+
+            ICommandApi fromInterface = provider.GetRequiredService<ICommandApi>();
+            CommandApi fromClass = provider.GetRequiredService<CommandApi>();
+
+            Assert.NotSame(fromInterface, fromClass);
+        }
+
+        /// <summary>
         /// A token provider that answers with a token and nothing else, so the control above can
         /// wire the generated path without AddWhisparr3.
         /// </summary>
