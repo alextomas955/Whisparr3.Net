@@ -63,8 +63,9 @@ namespace Whisparr3.Net.Api
         /// </para>
         /// <para>
         /// ICommandApi is generated and is not declared partial, so it cannot carry this method.
-        /// A caller who injects the interface reaches the method by casting the resolved instance
-        /// to CommandApi.
+        /// AddWhisparr3 therefore registers the concrete CommandApi alongside the interface: inject
+        /// CommandApi to reach this method, and ICommandApi when the generated operations are all
+        /// that is needed.
         /// </para>
         /// </remarks>
         public async Task<CommandResource> SendCommandAsync(
