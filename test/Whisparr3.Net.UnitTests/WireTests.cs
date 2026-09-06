@@ -63,6 +63,47 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
+        /// The hand-built command dispatch carries the same credential in the same shape.
+        /// </summary>
+        /// <remarks>
+        /// The dispatch assembles its own request rather than going through a generated operation,
+        /// so the credential is applied by a line this case is the only witness to. Without it the
+        /// call answers 401 against a live instance, which reads as a permissions problem rather
+        /// than as a client defect.
+        /// </remarks>
+        [Fact]
+        public async Task Command_dispatch_carries_the_configured_key_as_X_Api_Key()
+        {
+            using LoopbackCapture capture = new(
+                status: 201,
+                body: "{\"id\":42,\"name\":\"RefreshStudios\"}");
+
+            ServiceCollection services = new();
+            services.AddWhisparr3(new Whisparr3Options
+            {
+                BaseUrl = capture.BaseUrl,
+                ApiKey = SentinelKey,
+            });
+
+            await using ServiceProvider provider = services.BuildServiceProvider();
+
+            // The cast is needed because ICommandApi is generated, is not partial, and therefore
+            // cannot declare the hand-written dispatch method. A consumer makes the same cast.
+            CommandApi api = (CommandApi)provider.GetRequiredService<ICommandApi>();
+            await api.SendCommandAsync("RefreshStudios", new { studioIds = new[] { 7 } });
+
+            string request = await capture.FirstRequest;
+
+            Assert.Contains("POST /api/v3/command HTTP/1.1", request, StringComparison.Ordinal);
+
+            string only = Assert.Single(CapturedRequest.HeaderLines(request, "X-Api-Key"));
+            Assert.Equal("X-Api-Key: " + SentinelKey, only);
+
+            Assert.DoesNotContain("Bearer", request, StringComparison.Ordinal);
+            Assert.DoesNotContain("apikey", request, StringComparison.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
         /// The negative control. It exists so the test above cannot pass by the assertion being
         /// blind to a prefix: the same listener and the same helper must be able to see one.
         /// The prefixed form is the generated constructor's default and is measured to return 401

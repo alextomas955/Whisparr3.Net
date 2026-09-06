@@ -281,6 +281,37 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
+        /// The command dispatch declares one content-type header and it is
+        /// <c>application/json</c>.
+        /// </summary>
+        /// <remarks>
+        /// The dispatch builds its own StringContent, whose default header is text/plain, and the
+        /// server answers 415 to that. The assertion accepts the bare media type or the media type
+        /// followed by a parameter separator, and nothing else, for the reason the tag case above
+        /// records.
+        /// </remarks>
+        [Fact]
+        public async Task Command_dispatch_content_type_is_application_json()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            await Dispatcher(provider)
+                .SendCommandAsync(DispatchedCommandName, new { studioIds = new[] { 7 } });
+
+            string request = await capture.FirstRequest;
+
+            string only = Assert.Single(CapturedRequest.HeaderLines(request, "Content-Type"));
+
+            string value = only["Content-Type:".Length..].Trim();
+
+            Assert.True(
+                string.Equals(value, "application/json", StringComparison.Ordinal)
+                    || value.StartsWith("application/json;", StringComparison.Ordinal),
+                $"The request declared Content-Type '{value}'.");
+        }
+
+        /// <summary>
         /// An enum the client's registered converter writes as a string and plain serializer
         /// defaults write as a number.
         /// </summary>
