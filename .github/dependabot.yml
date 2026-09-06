@@ -19,7 +19,7 @@ updates:
       prefix: chore
       include: scope
 
-    # The library's four references are declared twice each, once per target framework, with the
+    # The library's three references are declared twice each, once per target framework, with the
     # major tracking the framework: 8.0.x under net8.0 and 10.0.x under net10.0. A major bump would
     # put a net10-era package on the net8.0 line, which is not what those conditions mean. Patch and
     # minor updates still open, so the net8.0 line keeps moving inside 8.0.x. Raising a major here
@@ -27,14 +27,12 @@ updates:
     # change in Directory.Build.props, not something to accept from a pull request.
     #
     # These rules are scoped by package name rather than by path, because Dependabot has no way to
-    # limit an ignore rule to one directory. Neither test project references any of the four, so
+    # limit an ignore rule to one directory. Neither test project references any of the three, so
     # nothing else is affected.
     ignore:
       - dependency-name: Microsoft.Extensions.Http
         update-types: [version-update:semver-major]
       - dependency-name: Microsoft.Extensions.Hosting
-        update-types: [version-update:semver-major]
-      - dependency-name: Microsoft.Extensions.Http.Polly
         update-types: [version-update:semver-major]
       - dependency-name: Microsoft.Net.Http.Headers
         update-types: [version-update:semver-major]
