@@ -2,6 +2,7 @@
 
 #nullable enable
 
+using System.Net;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Whisparr3.Net.Api;
@@ -59,8 +60,15 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            CommandResource command = await Dispatcher(provider)
+            ICreateCommandApiResponse response = await Dispatcher(provider)
                 .SendCommandAsync(DispatchedCommandName, new { studioIds = new[] { 7 } });
+
+            // The status is read off the response rather than off a caught exception. A dispatch
+            // that succeeded reports 201 here, which is the status the instance sent and not one
+            // composed by the caller.
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+
+            CommandResource command = response.EnsureSuccess();
 
             Assert.True(command.Id == 42, $"The dispatch returned command id '{command.Id}'.");
             Assert.True(

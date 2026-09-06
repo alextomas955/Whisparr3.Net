@@ -218,9 +218,17 @@ namespace Whisparr3.Net.IntegrationTests
             await using ServiceProvider provider = BuildProvider();
             CommandApi commands = provider.GetRequiredService<CommandApi>();
 
-            CommandResource dispatched = await commands.SendCommandAsync(
+            ICreateCommandApiResponse response = await commands.SendCommandAsync(
                 DispatchedCommandName,
                 new { studioIds = new[] { UnknownStudioId } });
+
+            // The instance answers 201 to an accepted command while the specification declares 200,
+            // so the generated Ok accessor reads nothing here and EnsureSuccess is what reads the
+            // body. Asserting the status first is what pins that a caller no longer has to compose
+            // one for the accepted path.
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+
+            CommandResource dispatched = response.EnsureSuccess();
 
             Assert.True(dispatched.Id.HasValue, "The dispatch response carried no id.");
 
@@ -251,8 +259,17 @@ namespace Whisparr3.Net.IntegrationTests
             await using ServiceProvider provider = BuildProvider();
             CommandApi commands = provider.GetRequiredService<CommandApi>();
 
-            Whisparr3ApiException error = await Assert.ThrowsAsync<Whisparr3ApiException>(
-                () => commands.SendCommandAsync(UnknownCommandName));
+            ICreateCommandApiResponse response = await commands.SendCommandAsync(UnknownCommandName);
+
+            // The refusal is reported through the status and not by throwing, which is what lets a
+            // caller that must not re-issue a command classify the call it made. EnsureSuccess is
+            // what turns it into an exception, and that is the caller's choice rather than this
+            // method's.
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.False(response.IsSuccessStatusCode);
+
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
 
             Assert.Equal(HttpStatusCode.BadRequest, error.StatusCode);
             Assert.False(error.IsSuccessStatusCode);

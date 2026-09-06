@@ -23,7 +23,7 @@ namespace Whisparr3.Net.Api
     public sealed partial class CommandApi
     {
         /// <summary>
-        /// Dispatches a command with its arguments and returns the queued command.
+        /// Dispatches a command with its arguments.
         /// </summary>
         /// <param name="name">The command name, for example <c>RefreshStudios</c>.</param>
         /// <param name="payload">
@@ -31,7 +31,12 @@ namespace Whisparr3.Net.Api
         /// to a JSON object is accepted: an anonymous type, a record, or a dictionary.
         /// </param>
         /// <param name="cancellationToken">Cancels the request.</param>
-        /// <returns>The queued command as the server reports it.</returns>
+        /// <returns>
+        /// The response, in the same shape every generated operation returns. Read
+        /// <see cref="Client.IApiResponse.StatusCode"/> to classify it, or call
+        /// <see cref="ApiResponseExtensions.EnsureSuccess{T}"/> to get the queued
+        /// <see cref="CommandResource"/> and throw on anything else.
+        /// </returns>
         /// <exception cref="ArgumentException">
         /// <paramref name="name"/> is null, empty or white space; or <paramref name="payload"/>
         /// does not serialize to a JSON object; or <paramref name="payload"/> carries a member
@@ -40,10 +45,13 @@ namespace Whisparr3.Net.Api
         /// name and leave the server two candidates for one property. Dropping or duplicating a
         /// caller's field at a public boundary is worse than refusing the call.
         /// </exception>
-        /// <exception cref="Whisparr3ApiException">
-        /// The status was not a success, or it was a success whose body could not be read.
-        /// </exception>
         /// <remarks>
+        /// <para>
+        /// A refused command is reported through the returned status and not by throwing. The
+        /// instance answers 201 to an accepted command and 400 to an unrecognised one, measured
+        /// against 3.4.0.1387. A caller that must not re-issue a command needs the status of the
+        /// call it made, and reading it off a caught exception gives it on the refusal path only.
+        /// </para>
         /// <para>
         /// The payload members are written flat, as siblings of the name member. The server rewinds
         /// the request stream and deserializes the whole body into a concrete command type, so the
@@ -68,7 +76,7 @@ namespace Whisparr3.Net.Api
         /// that is needed.
         /// </para>
         /// </remarks>
-        public async Task<CommandResource> SendCommandAsync(
+        public async Task<ICreateCommandApiResponse> SendCommandAsync(
             string name,
             object? payload = null,
             CancellationToken cancellationToken = default)
@@ -175,7 +183,12 @@ namespace Whisparr3.Net.Api
                 }
             }
 
-            return apiResponse.ReadAs<CommandResource>();
+            // The response is returned rather than the deserialized body, so this method classifies
+            // the same way every generated operation does. Returning the model instead would leave
+            // a caller no status on the accepted path and force it to read one off an exception on
+            // the refusal path. The HttpResponseMessage is disposed as this returns, which is what
+            // every generated operation also does: the body was already read into RawContent.
+            return apiResponse;
         }
     }
 }
