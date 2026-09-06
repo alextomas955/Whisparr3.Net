@@ -33,6 +33,65 @@ namespace Whisparr3.Net.UnitTests
         private const string ProbeLabel = "identify-the-label";
 
         /// <summary>
+        /// The command the dispatch cases send. It takes arguments, which is what makes the flat
+        /// body assertions mean anything.
+        /// </summary>
+        private const string DispatchedCommandName = "RefreshStudios";
+
+        /// <summary>
+        /// The canned 201 body a dispatch reads back. It carries no JSON null member on purpose:
+        /// the generated converter throws for a member that is present and null.
+        /// </summary>
+        private const string CommandAcceptedBody = "{\"id\":42,\"name\":\"RefreshStudios\"}";
+
+        /// <summary>
+        /// The command arguments reach the wire as siblings of the name member, not nested under a
+        /// body member.
+        /// </summary>
+        /// <remarks>
+        /// The server rewinds the request stream and deserializes the whole body into a concrete
+        /// command type, so a nested arguments object would dispatch the command with no arguments
+        /// and still answer 201. The request bytes are the only place the difference is visible.
+        /// </remarks>
+        [Fact]
+        public async Task Command_dispatch_puts_a_flat_name_and_payload_body_on_the_wire()
+        {
+            using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            CommandResource command = await Dispatcher(provider)
+                .SendCommandAsync(DispatchedCommandName, new { studioIds = new[] { 7 } });
+
+            Assert.True(command.Id == 42, $"The dispatch returned command id '{command.Id}'.");
+            Assert.True(
+                command.Name == DispatchedCommandName,
+                $"The dispatch returned command name '{command.Name}'.");
+
+            string request = await capture.FirstRequest;
+
+            using JsonDocument body = JsonDocument.Parse(CapturedRequest.Body(request));
+
+            Assert.True(
+                body.RootElement.TryGetProperty("name", out JsonElement name),
+                $"The captured request body carries no name member. Body: {CapturedRequest.Body(request)}");
+
+            Assert.Equal(JsonValueKind.String, name.ValueKind);
+            Assert.Equal(DispatchedCommandName, name.GetString());
+
+            Assert.True(
+                body.RootElement.TryGetProperty("studioIds", out JsonElement studioIds),
+                $"The captured request body carries no studioIds member. Body: {CapturedRequest.Body(request)}");
+
+            JsonElement only = Assert.Single(studioIds.EnumerateArray());
+            Assert.Equal(7, only.GetInt32());
+
+            Assert.False(
+                body.RootElement.TryGetProperty("body", out _),
+                $"The captured request body nests the arguments under a body member. "
+                    + $"Body: {CapturedRequest.Body(request)}");
+        }
+
+        /// <summary>
         /// An unset Option&lt;T&gt; emits no JSON member at all, proven on the bytes the client put
         /// on a socket.
         /// </summary>
@@ -105,6 +164,22 @@ namespace Whisparr3.Net.UnitTests
                 string.Equals(value, "application/json", StringComparison.Ordinal)
                     || value.StartsWith("application/json;", StringComparison.Ordinal),
                 $"The request declared Content-Type '{value}'.");
+        }
+
+        /// <summary>
+        /// Resolves the command client the dispatch cases call.
+        /// </summary>
+        /// <param name="provider">The provider to resolve from.</param>
+        /// <returns>The registered command client, as the concrete class.</returns>
+        /// <remarks>
+        /// The resolution goes through ICommandApi, which is what keeps the registration in the
+        /// path: a hand-written directory that never compiled would fail here rather than pass.
+        /// The cast is needed because ICommandApi is generated, is not partial, and therefore
+        /// cannot declare the hand-written dispatch method. A consumer makes the same cast.
+        /// </remarks>
+        private static CommandApi Dispatcher(ServiceProvider provider)
+        {
+            return (CommandApi)provider.GetRequiredService<ICommandApi>();
         }
 
         /// <summary>
