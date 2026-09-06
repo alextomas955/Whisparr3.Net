@@ -19,7 +19,7 @@ Adds command dispatch, and corrects how a response body is read.
 
 ## 0.1.0
 
-The first release. Never published to nuget.org.
+The first release, and the first published to nuget.org.
 
 - Covers every operation the Whisparr 3 (Eros) API declares, generated from Whisparr's own
   OpenAPI specification. The one malformed root path is excluded.
