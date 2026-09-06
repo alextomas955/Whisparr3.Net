@@ -2,14 +2,15 @@
 
 `src/Whisparr3.Net/` is openapi-generator output and is rewritten on every regeneration.
 `src/hand-written/` is the small layer this repository owns by hand, compiled into the same
-assembly by one `Compile` glob in the library project file. It is four files:
+assembly by one `Compile` glob in the library project file. It is five files:
 
 | File | What it adds |
 |---|---|
 | `Whisparr3Options.cs` | The settings a consumer supplies, and the validation that refuses a bad one |
 | `Whisparr3ServiceCollectionExtensions.cs` | `AddWhisparr3`, the single registration entry point, and the token provider behind it |
 | `Whisparr3ApiException.cs` | The typed error, carrying status, route template, request URI and raw body |
-| `ApiResponseExtensions.cs` | `EnsureSuccess`, plus three response hooks: the performer create's 201, the performer update's 202, and the tag create's 201 |
+| `ApiResponseExtensions.cs` | `EnsureSuccess` and `ReadAs`, plus three response hooks: the performer create's 201, the performer update's 202, and the tag create's 201 |
+| `CommandApi.SendCommand.cs` | `SendCommandAsync`, the command dispatch that puts a flat body on the wire |
 
 This document records what that layer does, what it costs, and what it deliberately leaves alone.
 
@@ -87,11 +88,18 @@ are roughly a third of the operations, and returns `void`.
 var status = (await system.GetSystemStatusAsync()).EnsureSuccess();
 ```
 
-Three operations are a special case worth knowing about: the performer create, the performer update
-and the tag create. This layer adds a response hook to each, so their real 201, 202 and 201 bodies
-are now reachable through the generated success accessor. The generated documentation comments on
-those operations were written before the hooks existed and say less than the accessor now does, so
-a reader of those comments alone would not expect a body there.
+`EnsureSuccess` reads a body on any success status, for every operation. It routes a response this
+library produced through `ApiResponse.ReadAs`, which gates on `IsSuccessStatusCode` rather than on
+exactly 200, so a 201 and a 202 are as readable as a 200 with no per-operation help.
+
+Three operations also carry a response hook this layer adds: the performer create, the performer
+update and the tag create. The hooks make those operations' real 201, 202 and 201 bodies reachable
+through the generated success accessor, which is a separate path from `EnsureSuccess` and still
+gates on exactly 200 without them. They stay because a caller who reads the generated `Ok()` or
+`TryOk()` directly still needs them, and removing them would silently return that caller to `null`
+on a 201. The generated documentation comments on those operations were written before the hooks
+existed and say less than the accessor now does, so a reader of those comments alone would not
+expect a body there.
 
 The two performer hooks read a status the spec documents, so the generator emits an `IsCreated` and
 an `IsAccepted` member for them and each hook reads its own. The tag create hook has no such member
@@ -105,6 +113,36 @@ plaintext, and the log-file operations return raw log text that can contain the 
 Logging one of those exceptions verbatim writes a credential this library never asked for. The
 exception message embeds at most 512 characters of the body; the untruncated value is on the
 property, where the choice to log it is the consumer's own.
+
+## The command dispatch
+
+`POST /api/v3/command` is the one operation whose request body the spec describes wrongly rather
+than incompletely. `CommandResource` is `additionalProperties: false`, so the generated writer emits
+a fixed property list and the generated create operation cannot put a command argument on the wire
+at all. Whisparr declares 42 commands and 25 of them take arguments.
+
+`CommandApi.SendCommandAsync` is what closes that:
+
+```csharp
+CommandResource queued = await commands.SendCommandAsync(
+    "RefreshStudios", new { studioIds = new[] { 7 } });
+```
+
+The payload members are serialized flat, as siblings of `name`, because the server rewinds the
+request stream and deserializes the whole body into a concrete command type. Arguments placed under
+`CommandResource.Body` reach the server as a command with no arguments.
+
+The parameter is `object?` because no per-command shape is derivable from the spec. Anything that
+serializes to a JSON object is accepted, and a command that takes no arguments is dispatched by
+omitting the payload. Two payloads are refused with `ArgumentException` before a socket opens: one
+that does not serialize to a JSON object, and one carrying its own member named `name` under a
+case-insensitive comparison. The second is refused rather than merged, because a differently-cased
+key would survive alongside the command name and leave the server two candidates for one property.
+
+The method is declared on the concrete `CommandApi`. `ICommandApi` is generated and is not declared
+`partial`, so it cannot carry the method. `AddWhisparr3` registers the concrete type as a transient
+delegating to the generated interface registration, so a consumer resolves `CommandApi` and calls
+the method with no cast.
 
 ## What not to call
 

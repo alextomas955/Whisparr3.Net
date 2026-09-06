@@ -14,7 +14,12 @@ The first release. Not yet published to nuget.org.
   registers nothing until both pass.
 - One typed error, `Whisparr3ApiException`, carrying the status, the route template, the request
   URI and the raw body, and distinguishing a failed request from a success with no readable body.
-- `EnsureSuccess` classifies a response, which the generated success accessor does not.
+- `EnsureSuccess` classifies a response, which the generated success accessor does not. It reads a
+  body on any success status, because the instance answers 201 to a create and 202 to an update
+  while the specification declares 200 for both.
+- `CommandApi.SendCommandAsync` dispatches a command with its arguments. The generated create
+  cannot: `CommandResource` declares no additional properties, so its writer emits a fixed property
+  list, and 25 of Whisparr's 42 commands take arguments that no part of the specification describes.
 - A large minority of operations return no value, because the specification declares no response
   content for them. They are listed with their cause in [docs/SURFACE.md](docs/SURFACE.md), along
   with the operations that are generated but not useful from C#.
