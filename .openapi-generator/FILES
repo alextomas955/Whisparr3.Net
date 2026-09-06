@@ -95,7 +95,6 @@ src/Whisparr3.Net/Client/TokenBase.cs
 src/Whisparr3.Net/Client/TokenContainer`1.cs
 src/Whisparr3.Net/Client/TokenProvider`1.cs
 src/Whisparr3.Net/Extensions/IHostBuilderExtensions.cs
-src/Whisparr3.Net/Extensions/IHttpClientBuilderExtensions.cs
 src/Whisparr3.Net/Extensions/IServiceCollectionExtensions.cs
 src/Whisparr3.Net/Logging/RestLogEvents.cs
 src/Whisparr3.Net/Model/AddMovieMethod.cs

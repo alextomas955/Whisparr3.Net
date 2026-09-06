@@ -35,10 +35,15 @@ namespace Whisparr3.Net
         public required string ApiKey { get; init; }
 
         /// <summary>
-        /// An optional hook onto the builder for each typed client, where retry, timeout and
-        /// circuit-breaker policies attach.
+        /// An optional hook onto the builder for each typed client, where a message handler or a
+        /// resilience policy attaches.
         /// </summary>
         /// <value>An action invoked once per typed client, or null to attach nothing.</value>
+        /// <remarks>
+        /// The library ships no resilience dependency, so retry, timeout and circuit breaking come
+        /// from whichever package the consumer chose, attached here through the builder's own
+        /// extension methods.
+        /// </remarks>
         public Action<IHttpClientBuilder>? ConfigureHttpClient { get; init; }
 
         /// <summary>

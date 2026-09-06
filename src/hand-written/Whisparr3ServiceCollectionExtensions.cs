@@ -25,7 +25,9 @@ namespace Whisparr3.Net
     /// finds a container and no provider, and that provider starts a timer per token and reads
     /// each token through a bounded channel, which measures at roughly 23 requests per second
     /// against roughly 555 without it. The cost of skipping it is the only 429 backoff in the
-    /// stack, since the Polly transient-error handler covers 5xx and 408 but not 429.
+    /// stack. A consumer that needs one attaches it through
+    /// <see cref="Whisparr3Options.ConfigureHttpClient"/>; the usual transient-error definition
+    /// covers 5xx and 408 and does not cover 429, so it is not a substitute.
     /// </remarks>
     internal sealed class Whisparr3TokenProvider : TokenProvider<ApiKeyToken>
     {

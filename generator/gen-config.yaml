@@ -69,6 +69,15 @@ globalProperties:
 # hardcoded RepositoryUrl overrides the PublishRepositoryUrl auto-detection the props rely on, so
 # the shipped .snupkg carries no commit SHA and the source map is dead.
 #
+# src/Whisparr3.Net/Extensions/IHttpClientBuilderExtensions.cs is here because it is the only
+# file in the generated tree that uses Polly, and keeping it makes Microsoft.Extensions.Http.Polly
+# a hard dependency of the package. Measured 2026-09-06 by publishing a consumer: that reference
+# resolves Polly 7.2.4 and Polly.Extensions.Http 3.0.0, adding 327 KB across three assemblies to
+# every consumer, and pinning the previous Polly major on a consumer that wants Polly 8 through
+# Microsoft.Extensions.Http.Resilience. The three methods it holds are one-line wrappers over
+# AddPolicyHandler, and Whisparr3Options.ConfigureHttpClient already hands a consumer the
+# IHttpClientBuilder they need to call that themselves with whatever resilience package they chose.
+#
 # The .openapi-generator-ignore committed at the repository root is a record of what this key
 # produced, never an input. Generation stages only spec/openapi.generated.json and
 # generator/gen-config.yaml into a fresh root, so the generator never reads the committed file and
@@ -83,6 +92,7 @@ openapiGeneratorIgnoreList:
   - "docs/**"
   - api/openapi.yaml
   - "**/*.csproj"
+  - src/Whisparr3.Net/Extensions/IHttpClientBuilderExtensions.cs
 
 additionalProperties:
   packageName: Whisparr3.Net

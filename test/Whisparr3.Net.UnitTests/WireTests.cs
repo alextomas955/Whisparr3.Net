@@ -2,6 +2,7 @@
 
 #nullable enable
 
+using System.Runtime.CompilerServices;
 using Microsoft.Extensions.DependencyInjection;
 using Whisparr3.Net.Api;
 using Whisparr3.Net.Client;
@@ -192,21 +193,29 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The retry, timeout and circuit-breaker policies are the generated builder extensions,
-        /// retained and passed through rather than rebuilt. With all three attached through the
-        /// options hook, eight concurrent calls still complete and all eight arrive.
+        /// A handler attached through the options hook sits in the pipeline of the typed client
+        /// every call goes through, and eight concurrent calls still complete and all eight arrive.
         /// </summary>
+        /// <remarks>
+        /// This is what the package no longer shipping a Polly dependency rests on. The three
+        /// generated builder extensions were one-line wrappers over AddPolicyHandler, and the hook
+        /// asserted here is the same IHttpClientBuilder those wrappers took, so a consumer attaches
+        /// retry, timeout or a circuit breaker from whichever resilience package it chose. The
+        /// counter is what proves the handler was reached rather than merely registered.
+        /// </remarks>
         [Fact]
-        public async Task Polly_policies_attach_and_concurrent_calls_still_complete()
+        public async Task A_handler_attached_through_the_hook_sees_every_call()
         {
             using LoopbackCapture capture = new();
+
+            StrongBox<int> seen = new(0);
 
             ServiceCollection services = new();
             services.AddWhisparr3(new Whisparr3Options
             {
                 BaseUrl = capture.BaseUrl,
                 ApiKey = SentinelKey,
-                ConfigureHttpClient = AttachPolicies,
+                ConfigureHttpClient = builder => AttachCountingHandler(builder, seen),
             });
 
             await using ServiceProvider provider = services.BuildServiceProvider();
@@ -217,6 +226,7 @@ namespace Whisparr3.Net.UnitTests
             IReadOnlyList<string> requests = await capture.WaitForRequestsAsync(Concurrency, CaptureTimeout);
 
             Assert.Equal(Concurrency, requests.Count);
+            Assert.Equal(Concurrency, Volatile.Read(ref seen.Value));
             Assert.All(requests, request =>
                 Assert.Equal(
                     "X-Api-Key: " + SentinelKey,
@@ -231,25 +241,27 @@ namespace Whisparr3.Net.UnitTests
         /// instances need two service collections.
         /// </summary>
         [Fact]
-        public async Task A_second_AddWhisparr3_last_wins_including_the_polly_configuration()
+        public async Task A_second_AddWhisparr3_last_wins_including_the_client_configuration()
         {
             using LoopbackCapture first = new();
             using LoopbackCapture second = new();
 
             const string SecondKey = "SECOND-Key-456";
 
+            StrongBox<int> seen = new(0);
+
             ServiceCollection services = new();
             services.AddWhisparr3(new Whisparr3Options
             {
                 BaseUrl = first.BaseUrl,
                 ApiKey = SentinelKey,
-                ConfigureHttpClient = AttachPolicies,
+                ConfigureHttpClient = builder => AttachCountingHandler(builder, seen),
             });
             services.AddWhisparr3(new Whisparr3Options
             {
                 BaseUrl = second.BaseUrl,
                 ApiKey = SecondKey,
-                ConfigureHttpClient = AttachPolicies,
+                ConfigureHttpClient = builder => AttachCountingHandler(builder, seen),
             });
 
             await using ServiceProvider provider = services.BuildServiceProvider();
@@ -268,16 +280,32 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The three generated Polly builder extensions, attached in one place so both tests that
-        /// need them exercise the same configuration.
+        /// Attaches a handler that counts what passes through it, in one place so both tests that
+        /// need the hook exercise the same configuration.
         /// </summary>
         /// <param name="builder">The builder for one typed client.</param>
-        private static void AttachPolicies(IHttpClientBuilder builder)
+        /// <param name="seen">The counter every attached handler increments.</param>
+        private static void AttachCountingHandler(IHttpClientBuilder builder, StrongBox<int> seen)
         {
-            builder
-                .AddRetryPolicy(2)
-                .AddTimeoutPolicy(TimeSpan.FromSeconds(30))
-                .AddCircuitBreakerPolicy(5, TimeSpan.FromSeconds(30));
+            // A factory rather than an instance: the hook runs once per typed client, and a single
+            // DelegatingHandler cannot sit in two pipelines.
+            builder.AddHttpMessageHandler(() => new CountingHandler(seen));
+        }
+
+        /// <summary>
+        /// Counts the requests that reach it, which is how a test tells an attached handler from a
+        /// registered one.
+        /// </summary>
+        private sealed class CountingHandler(StrongBox<int> seen) : DelegatingHandler
+        {
+            protected override Task<HttpResponseMessage> SendAsync(
+                HttpRequestMessage request,
+                CancellationToken cancellationToken)
+            {
+                Interlocked.Increment(ref seen.Value);
+
+                return base.SendAsync(request, cancellationToken);
+            }
         }
 
         /// <summary>

@@ -156,34 +156,36 @@ call `EnsureSuccess` on the result.
 
 ## Resilience, and what it costs
 
-Three Polly policies ship with the generated tree as extension methods on `IHttpClientBuilder`:
-
-| Method | Signature |
-|---|---|
-| `AddRetryPolicy` | `(int retries)` |
-| `AddTimeoutPolicy` | `(TimeSpan timeout)` |
-| `AddCircuitBreakerPolicy` | `(int handledEventsAllowedBeforeBreaking, TimeSpan durationOfBreak)` |
-
-They live in the `Whisparr3.Net.Extensions` namespace, so reaching them needs one import beyond the
-root namespace:
+The library ships no resilience policy and no resilience dependency. `ConfigureHttpClient` hands a
+consumer the `IHttpClientBuilder` for each typed client, and whichever resilience package the
+consumer already uses attaches to it there:
 
 ```csharp
+using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 using Whisparr3.Net;
-using Whisparr3.Net.Extensions;
 
 services.AddWhisparr3(new Whisparr3Options
 {
     BaseUrl = "http://127.0.0.1:6969",
     ApiKey  = apiKey,
-    ConfigureHttpClient = builder => builder
-        .AddRetryPolicy(3)
-        .AddTimeoutPolicy(TimeSpan.FromSeconds(30))
-        .AddCircuitBreakerPolicy(5, TimeSpan.FromSeconds(30)),
+    ConfigureHttpClient = builder => builder.AddPolicyHandler(
+        HttpPolicyExtensions.HandleTransientHttpError().RetryAsync(3)),
 });
 ```
 
 `ConfigureHttpClient` is invoked once per typed client, so a policy set there applies to all of
 them.
+
+Until 0.3.0 the generated tree carried three one-line wrappers over `AddPolicyHandler`, and keeping
+them made `Microsoft.Extensions.Http.Polly` a hard dependency of the package. Measured 2026-09-06 by
+publishing a consumer: that reference added `Polly.dll`, `Polly.Extensions.Http.dll` and
+`Microsoft.Extensions.Http.Polly.dll`, 327 KB in total, to every consumer whether or not it called
+any of the three. It also resolved Polly 7.2.4, pinning the previous Polly major on a consumer that
+wanted Polly 8 through `Microsoft.Extensions.Http.Resilience`. The wrappers also took one policy for
+every typed client, which is the wrong shape for a consumer that needs a different policy per class
+of work. They are gone, and the hook that replaces them is the same builder they took.
 
 **What this layer gave up to get here.** `AddWhisparr3` registers its token provider directly as a
 singleton and registers no token container. The generated registration installs its own rate-limit
@@ -197,9 +199,8 @@ that rate limiter is never installed. Measured over 20 sequential loopback calls
 
 The rate limiter was a self-imposed throughput cap of roughly 23 requests per second, and removing
 it is most of why the client is usable. The cost is that it was also the only 429 backoff in the
-stack. Polly's transient-error helper, which the generated retry policy is built on, handles 5xx
-and 408 and does not handle 429, so nothing in the shipped configuration backs off when Whisparr
-answers 429.
+stack, and nothing in the shipped configuration backs off when Whisparr answers 429. A transient-
+error policy is not a substitute: the usual definition covers 5xx and 408 and does not cover 429.
 
 A consumer who needs that can add a policy through the same `ConfigureHttpClient` hook, handling
 `HttpStatusCode.TooManyRequests` and honouring `Retry-After`. Whisparr's own rate limits are
@@ -221,11 +222,11 @@ this section is the fix for that.
 
 ## Dependencies
 
-The library declares four package references, all published by Microsoft: three under
-`Microsoft.Extensions.` and `Microsoft.Net.Http.Headers`. The built assemblies reference nothing
-beyond the base class library, those packages, and the Polly assemblies they bring with them. That
-closure was inspected through the assembly metadata on both target frameworks rather than inferred
-from the project file.
+The library declares three package references, all published by Microsoft:
+`Microsoft.Extensions.Http`, `Microsoft.Extensions.Hosting` and `Microsoft.Net.Http.Headers`. The
+built assemblies reference nothing beyond the base class library and those packages. Measured
+2026-09-06 by publishing a consumer that calls `AddWhisparr3` and nothing else: no Polly assembly
+appears in the output and no Polly package appears in the transitive package list.
 
 Nothing in the public surface dictates how a consumer stores credentials. `Whisparr3Options.ApiKey`
 is a plain `string` with no interface behind it, no provider abstraction and no coupling to any
