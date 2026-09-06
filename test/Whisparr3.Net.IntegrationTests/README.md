@@ -13,6 +13,15 @@ Counted from the tests rather than described. It creates two tags with `POST /ap
 deletes two tags with `DELETE /api/v3/tag/{id}`. It also attempts one further create by hand with a
 `text/json` content type, which the server refuses with 415 and which creates nothing.
 
+It dispatches one `POST /api/v3/command` carrying `RefreshStudios` and an explicit `studioIds` list
+naming a single id a fresh instance cannot have assigned. The command is accepted with 201 and then
+terminates at the database lookup for that id, so it never reaches an external metadata service.
+The id list is never allowed to default, because a refresh with an empty or absent list is
+understood to refresh everything.
+
+It issues one further `POST /api/v3/command` carrying a name no build defines, which the server
+rejects with 400 and which runs nothing.
+
 That is the whole write inventory. A change to it should be visible in a diff to this file.
 
 ## What keeps the suite off any other instance

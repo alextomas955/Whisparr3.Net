@@ -22,10 +22,15 @@ namespace Whisparr3.Net.IntegrationTests
     /// tag create and the instance answers 201.
     /// </para>
     /// <para>
-    /// The create leg is the one operation in this phase's safe-POST set. Every other write in the
-    /// API is on the do-not-call list, POST /api/v3/command worst of all, because its name is a
+    /// POST /api/v3/command is the most consequential write in the API, because its name is a
     /// free-form string and the name alone decides between refreshing metadata and renaming every
-    /// file on disk. Nothing here calls anything but the four tag operations.
+    /// file on disk. That hazard has not gone away. This suite sends exactly one command,
+    /// RefreshStudios, and it sends it with an explicit studio id list naming an id a fresh
+    /// instance cannot have assigned. That is what makes the dispatch inert here: the command is
+    /// accepted, terminates at the database lookup for that id, and never reaches an external
+    /// metadata service. The id list is never allowed to default, because a refresh with an empty
+    /// or absent list is understood to refresh everything. Apart from that one command and the
+    /// unknown name the server rejects, nothing here calls anything but the four tag operations.
     /// </para>
     /// <para>
     /// Every response is classified by EnsureSuccess rather than by reading the generated success
@@ -53,6 +58,26 @@ namespace Whisparr3.Net.IntegrationTests
         /// it both read this constant, so the two cannot drift apart.
         /// </summary>
         private const string TextJsonProbeLabel = "w3n-text-json-probe";
+
+        /// <summary>
+        /// A studio id a fresh instance cannot have assigned. Whisparr assigns studio ids from 1
+        /// upward and a container that has imported nothing holds no studios at all, so this id
+        /// exists on no instance this suite can reach.
+        /// </summary>
+        private const int UnknownStudioId = 987654321;
+
+        /// <summary>
+        /// The one command name this suite dispatches. Measured against the pinned image: with the
+        /// id list below it is accepted with 201 and then terminates in under a second at
+        /// BasicRepository.Get, with a ModelNotFoundException naming the id. It dies at the
+        /// database lookup and never reaches an external metadata service.
+        /// </summary>
+        private const string DispatchedCommandName = "RefreshStudios";
+
+        /// <summary>
+        /// A command name no Whisparr build defines. The server has to reject it, so nothing runs.
+        /// </summary>
+        private const string UnknownCommandName = "NotARealCommand";
 
         /// <summary>
         /// Create, read back, delete and list, against a real instance, every leg through the
@@ -152,6 +177,84 @@ namespace Whisparr3.Net.IntegrationTests
                 Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
 
             Assert.Equal(HttpStatusCode.NotFound, error.StatusCode);
+            Assert.False(error.IsSuccessStatusCode);
+        }
+
+        /// <summary>
+        /// A real Whisparr accepts a flat command body and answers a readable 201.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The unit suite proves the flat body left the client, on the captured bytes. Only a real
+        /// instance proves the body is accepted, that the answer is 201, and that the 201 reads
+        /// back as a CommandResource through the hand-written layer. The generated create cannot
+        /// put a command argument on the wire at all, so this is the only path that can be proven
+        /// here.
+        /// </para>
+        /// <para>
+        /// CommandApi is resolved as the concrete type. SendCommandAsync is declared on it and not
+        /// on ICommandApi, which is generator output and is not partial, and AddWhisparr3 registers
+        /// the concrete type for exactly this reason. Resolving it here is what proves that
+        /// registration works from a consumer's position.
+        /// </para>
+        /// <para>
+        /// Nothing is asserted about the echoed studioIds. The typed CommandResource.Body is a
+        /// Command, which is additionalProperties false and whose generated reader ends
+        /// default: break;, so the argument is dropped on the way in and no assertion here could
+        /// see it. The wire shape is pinned instead by
+        /// SerializationTests.Command_dispatch_puts_a_flat_name_and_payload_body_on_the_wire.
+        /// </para>
+        /// <para>
+        /// Nothing is asserted about the outcome either. The 201 is a dispatch acknowledgement and
+        /// not a statement about execution, and this command's terminal status is failed by
+        /// design, because the id it names does not exist.
+        /// </para>
+        /// </remarks>
+        [SkippableFact]
+        public async Task Command_dispatch_is_accepted_and_reads_back_as_a_command_resource()
+        {
+            Skip.If(fixture.SkipReason is not null, fixture.SkipReason);
+
+            await using ServiceProvider provider = BuildProvider();
+            CommandApi commands = provider.GetRequiredService<CommandApi>();
+
+            CommandResource dispatched = await commands.SendCommandAsync(
+                DispatchedCommandName,
+                new { studioIds = new[] { UnknownStudioId } });
+
+            Assert.True(dispatched.Id.HasValue, "The dispatch response carried no id.");
+
+            Assert.True(
+                dispatched.Id!.Value > 0,
+                $"The server assigned command id {dispatched.Id!.Value}, which is not a positive integer.");
+
+            Assert.True(
+                string.Equals(DispatchedCommandName, dispatched.Name, StringComparison.Ordinal),
+                $"The dispatch returned name '{dispatched.Name}'. The request sent '{DispatchedCommandName}'.");
+        }
+
+        /// <summary>
+        /// A command name the server does not know is a typed 400, not a bodiless success.
+        /// </summary>
+        /// <remarks>
+        /// The status is named rather than only the exception type. The body's shape is
+        /// deliberately not asserted: the instance answers with the plain string
+        /// "Unknown command type: NotARealCommand", which is not a JSON object, so an assertion
+        /// built on a problem-details shape would encode a claim that is false. This case creates
+        /// nothing, so it adds nothing to the suite's write inventory beyond the dispatch itself.
+        /// </remarks>
+        [SkippableFact]
+        public async Task Unknown_command_name_surfaces_as_a_failure()
+        {
+            Skip.If(fixture.SkipReason is not null, fixture.SkipReason);
+
+            await using ServiceProvider provider = BuildProvider();
+            CommandApi commands = provider.GetRequiredService<CommandApi>();
+
+            Whisparr3ApiException error = await Assert.ThrowsAsync<Whisparr3ApiException>(
+                () => commands.SendCommandAsync(UnknownCommandName));
+
+            Assert.Equal(HttpStatusCode.BadRequest, error.StatusCode);
             Assert.False(error.IsSuccessStatusCode);
         }
 
