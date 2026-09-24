@@ -47,8 +47,8 @@ def main():
     print("  + root security narrowed to " + json.dumps(SECURITY, separators=(",", ":")))
 
     # The one assertion left. A name the generator cannot use verbatim is one it invents from the
-    # path instead, and the run still exits 0: measured 2026-09-24, an operation with no
-    # operationId is emitted as ApiV3TagGetAsync and the id "get-Tag.list" is emitted as
+    # path instead, and the run still exits 0. Measured against generator 7.25.0: an operation with
+    # no operationId is emitted as ApiV3TagGetAsync and the id "get-Tag.list" is emitted as
     # GetTagListAsync. Both silently rename public API, which is the one failure here that a
     # compile does not catch.
     #

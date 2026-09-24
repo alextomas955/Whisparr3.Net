@@ -19,7 +19,7 @@ outputDir: /local
 # carried an empty route alongside its {path} one, so the operation generated for "/" declared a
 # required path parameter nothing could resolve, and a validator rejects the whole file over it.
 # Whisparr excludes that controller from document generation as of 3.6.1, so the document validates
-# and this is a gate rather than a workaround. Measured 2026-09-24 against 3.6.2.1727: generation
+# and this is a gate rather than a workaround. Measured against 3.6.2.1727: generation
 # exits 0 and the five generated subdirectories are byte-identical to a run with validation off.
 #
 # The boolean config key is inverted from the CLI flag of the opposite name. The flag's own spelling
@@ -36,7 +36,7 @@ gitRepoId: Whisparr3.Net
 # measurably deleted the entire runtime.
 #
 # apiDocs and modelDocs are off because the markdown this generator writes describes methods that
-# do not exist. Measured 2026-09-05 by generating with them enabled and comparing every documented
+# do not exist. Measured against generator 7.25.0 by generating with them enabled and comparing every documented
 # signature against the code from the same run: not one matched. Every documented name lacks the
 # Async suffix, every declared return type is wrong, docs saying List<MovieResource> where the code
 # has Task<IListCalendarApiResponse>. Parameters differ too, DateTime start = null against
@@ -76,7 +76,7 @@ globalProperties:
 #
 # src/Whisparr3.Net/Extensions/IHttpClientBuilderExtensions.cs is here because it is the only
 # file in the generated tree that uses Polly, and keeping it makes Microsoft.Extensions.Http.Polly
-# a hard dependency of the package. Measured 2026-09-06 by publishing a consumer: that reference
+# a hard dependency of the package. Measured against generator 7.25.0 by publishing a consumer: that reference
 # resolves Polly 7.2.4 and Polly.Extensions.Http 3.0.0, adding 327 KB across three assemblies to
 # every consumer, and pinning the previous Polly major on a consumer that wants Polly 8 through
 # Microsoft.Extensions.Http.Resilience. The three methods it holds are one-line wrappers over
@@ -105,8 +105,7 @@ additionalProperties:
   # Arbitrary when it was generated and fixed forever now. Left unset the generator emits a fresh
   # random GUID on every run, which rewrites the solution and project GUID.
   #
-  # Measured 2026-09-04, and the honest answer is narrower than it first looked: with this
-  # configuration the pin is currently INERT. Two runs differ in 0 files whether the GUID is pinned
+  # With this configuration the pin is INERT. Two runs differ in 0 files whether the GUID is pinned
   # or not, because the only file it reaches is the solution, and "*.sln" is suppressed by
   # openapiGeneratorIgnoreList four keys above. The generator log states it outright:
   # `Ignored /local/Whisparr3.Net.sln (Ignored by rule in ignore file.)`. Remove "*.sln" from that
@@ -122,19 +121,26 @@ additionalProperties:
 #   - the duplicate-operationId repair, because it de-duplicates by appending a positional suffix.
 #     That masks the collision assertion in generator/preprocess_spec.py, and inserting an operation
 #     upstream then moves the suffix onto a different method and renames public API with no diff.
-#     Measured 2026-09-24: this document carries no duplicate operationId to repair.
+#     Measured against 3.6.2.1727: this document carries no duplicate operationId to repair.
 #   - the security-scheme filter, because generator/preprocess_spec.py narrows the root requirement
 #     to the header scheme instead, before the generator sees the document
 #   - the generation-timestamp option, which already defaults to the value this repository wants
 #     for this generator and injects a build-date line when set the other way
-#   - useSourceGeneration, a generichost-only option whose generator default is false. Read from
-#     `config-help -g csharp` inside the pinned image on 2026-09-04: `Use source generation where
-#     available (only generichost library supports this option). (Default: false)`. It stays at
-#     that default here because turning it on has not been verified against either target
-#     framework, and verifying it is deferred work. The recorded reason is
-#     the deliverable, so do not add the key in order to satisfy the requirement.
+#   - useSourceGeneration, a generichost-only option whose generator default is false. It works:
+#     turned on against 3.6.2.1727 it compiles with 0 errors and 0 warnings on both net8.0 and
+#     net10.0 and passes all 63 tests, and the generated contexts are wired, because
+#     HostConfiguration combines them into _jsonOptions.TypeInfoResolver with a
+#     DefaultJsonTypeInfoResolver fallback. It stays off because it adds 191 public
+#     <Model>SerializationContext types to the package surface and the benefit it buys here has not
+#     been measured. Turn it on as its own change with a benchmark, not as a flag flip.
+#   - disallowAdditionalPropertiesIfNotPresent, whose false value is the OAS-compliant one. Setting
+#     it changes exactly one model against 3.6.2.1727, CommandResource, which is the only schema
+#     Whisparr leaves unconstrained. What it adds there is dead: a public
+#     [JsonExtensionData] AdditionalProperties dictionary that the generated JsonConverter neither
+#     reads into nor writes from, so it is always empty and prints in ToString. It does not make
+#     CommandApi.SendCommandAsync unnecessary.
 #   - modelNameMappings, because the collision count is zero. A collision needs a schema name that
-#     is also a real BCL type. Re-measured 2026-09-24 against the 191 schemas of 3.6.2.1727:
+#     is also a real BCL type. Measured against the 191 schemas of 3.6.2.1727:
 #     Command, Field and Severity are schemas here and no System.Command, System.Field or
 #     System.Severity exists, while TimeSpan and Version are BCL types that are not schemas here.
 #     The generated tree compiles with 0 errors on both net8.0 and net10.0 with no mappings at all.

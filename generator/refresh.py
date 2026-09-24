@@ -33,9 +33,8 @@ def script(name, *extra):
 def package_audit():
     """The verdict is read from the transcript text and never from the exit code.
 
-    Measured 2026-09-04: against a probe referencing System.Text.RegularExpressions 4.3.0 this
-    command printed a High severity advisory and exited 0, so a gate on the exit code passes a
-    finding. --include-transitive covers both frameworks in one pass. The continuous gate is
+    Against a probe referencing System.Text.RegularExpressions 4.3.0 this command printed a High
+    severity advisory and exited 0, so a gate on the exit code passes a finding. --include-transitive covers both frameworks in one pass. The continuous gate is
     Directory.Build.props, where NuGetAudit plus TreatWarningsAsErrors turns NU1901 through NU1904
     into restore errors; this is the point-in-time confirmation of it.
     """

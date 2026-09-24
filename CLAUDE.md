@@ -54,7 +54,7 @@ every hand-written type twice.
 
 `Directory.Build.props` sits at the repo root, which is outside every directory the generator writes to.
 That is the property this repo currently has. The generator emits no props file at any setting,
-measured 2026-09-04 by running it with `openapiGeneratorIgnoreList` removed entirely and listing
+measured against generator 7.25.0 by running it with `openapiGeneratorIgnoreList` removed entirely and listing
 what it wrote: thirteen paths outside the five generated subdirectories, none of them a props file.
 The props therefore survive a regeneration because they sit at a path the generator never writes
 to, not because an ignore file protects them.

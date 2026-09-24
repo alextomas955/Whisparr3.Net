@@ -57,8 +57,8 @@ def main():
     parser = argparse.ArgumentParser(description="Capture the Whisparr 3 OpenAPI document.")
     parser.add_argument("--image-digest", default=DEFAULT_IMAGE_DIGEST)
     parser.add_argument("--out-file", default="spec/openapi.raw.json")
-    # The pinned digest answers in 4s, measured 2026-09-24 over three boots. Whisparr 2 never
-    # becomes ready and consumes the whole budget, which is the refusal working rather than a hang.
+    # The pinned digest answers in 4s, measured over three boots. Whisparr 2 never becomes ready
+    # and consumes the whole budget, which is the refusal working rather than a hang.
     parser.add_argument("--timeout-sec", type=int, default=90)
     args = parser.parse_args()
 
