@@ -68,12 +68,9 @@ namespace Whisparr3.Net
             // that regression into a loud failure. The accepted name is derived from the generated
             // enum rather than written as a literal, so the two cannot drift.
             //
-            // This refusal has no test that calls it, and that is a constraint rather than an
-            // omission. The base member is protected internal, so the test project, which sits
-            // outside this assembly, cannot reach it, and the public surface is not widened to
-            // make it reachable. What is verified instead is the outcome it protects: a census of
-            // the generated call sites, and a wire assertion that no query parameter carries the
-            // key.
+            // No test calls this directly: the base member is protected internal and the public
+            // surface is not widened to reach it. What is tested is the outcome, that no request
+            // carries the key in its query string.
             if (!StringComparer.Ordinal.Equals(header, _header))
             {
                 throw new KeyNotFoundException($"Could not locate a token for header '{header}'.");

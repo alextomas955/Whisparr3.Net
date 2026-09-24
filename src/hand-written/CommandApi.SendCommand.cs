@@ -60,22 +60,18 @@ namespace Whisparr3.Net.Api
         /// </para>
         /// <para>
         /// The parameter is object rather than a type per command because the specification
-        /// describes none of the per-command fields. Whisparr has 42 commands and 25 of them take
-        /// arguments, and no shape for any of them appears in the specification this client is
-        /// generated from.
+        /// describes none of the per-command fields. Many Whisparr commands take arguments and no
+        /// shape for any of them appears in the specification this client is generated from.
         /// </para>
         /// <para>
-        /// This file stays under src/hand-written/ even though its namespace belongs to the
-        /// generated tree. A partial declared here reaches the private serializer options on the
-        /// generated class without the file being destroyed on the next regeneration.
-        /// </para>
-        /// <para>
-        /// ICommandApi is generated and is not declared partial, so it cannot carry this method.
-        /// AddWhisparr3 therefore registers the concrete CommandApi alongside the interface: inject
-        /// CommandApi to reach this method, and ICommandApi when the generated operations are all
-        /// that is needed.
+        /// Inject <see cref="CommandApi"/> to reach this method, and <c>ICommandApi</c> when the
+        /// generated operations are all that is needed. The interface is generator output and is
+        /// not declared partial, so it cannot carry this method.
         /// </para>
         /// </remarks>
+        // The partial lives here, outside the generated tree, because a partial declared in this
+        // namespace reaches the private serializer options on the generated class without being
+        // destroyed on the next regeneration.
         public async Task<IPostCommandApiResponse> SendCommandAsync(
             string name,
             object? payload = null,

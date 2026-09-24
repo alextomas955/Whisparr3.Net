@@ -378,7 +378,7 @@ namespace Whisparr3.Net.UnitTests
         /// as null, so an upstream status regression is loud.
         /// </summary>
         /// <remarks>
-        /// The create documents 201 and the instance answers 201, measured against 3.6.1.1703. It
+        /// The create documents 201 and the instance answers 201, measured against 3.6.2.1727. It
         /// documented 200 and answered 201 before the OpenAPI accuracy pass, which is how every
         /// create previously reported a successful call as a failure. Should that drift return,
         /// this is what a caller sees: an exception naming the status, with IsSuccessStatusCode

@@ -39,7 +39,7 @@ gitRepoId: Whisparr3.Net
 # do not exist. Measured against generator 7.25.0 by generating with them enabled and comparing every documented
 # signature against the code from the same run: not one matched. Every documented name lacks the
 # Async suffix, every declared return type is wrong, docs saying List<MovieResource> where the code
-# has Task<IListCalendarApiResponse>. Parameters differ too, DateTime start = null against
+# has Task<IGetCalendarApiResponse>. Parameters differ too, DateTime start = null against
 # Option<DateTime> start = default, which is not even valid C#.
 #
 # The cause is upstream and is not a misconfiguration here. csharp/libraries/generichost ships its

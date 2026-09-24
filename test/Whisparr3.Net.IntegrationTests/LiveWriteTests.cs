@@ -222,10 +222,9 @@ namespace Whisparr3.Net.IntegrationTests
                 DispatchedCommandName,
                 new { studioIds = new[] { UnknownStudioId } });
 
-            // The instance answers 201 to an accepted command while the specification declares 200,
-            // so the generated Ok accessor reads nothing here and EnsureSuccess is what reads the
-            // body. Asserting the status first is what pins that a caller no longer has to compose
-            // one for the accepted path.
+            // Asserting the status first pins that a caller does not have to compose one for the
+            // accepted path. The specification declares 201 and the instance answers 201, so the
+            // response carries ICreated and EnsureSuccess reads the body through it.
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
             CommandResource dispatched = response.EnsureSuccess();
