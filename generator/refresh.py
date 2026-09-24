@@ -87,7 +87,7 @@ def main():
          "Fix it in the spec pre-processing or in the hand-written layer, never inside "
          "src/Whisparr3.Net/."),
         ("package-audit", package_audit,
-         "A finding is a finding to report, never a dependency to remove on reflex. All four "
+         "A finding is a finding to report, never a dependency to remove on reflex. All three "
          "shipped packages are required. The transcript above names the package and its advisory."),
     ]
 

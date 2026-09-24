@@ -15,8 +15,8 @@ against it.
 
 Two things make the wrong repository look right, and neither is evidence.
 
-- Both repositories carry a branch named `eros`. Measured 2026-09-05: `Whisparr/Whisparr` is at
-  `cc3fb2ab` and `Whisparr/Whisparr-Eros` is at `c3e56023`. The name alone identifies nothing.
+- Both repositories carry a branch named `eros`, and the two point at unrelated commits. The name
+  alone identifies nothing, so resolve the repository before resolving the branch.
 - The captured spec names the wrong repository itself. `info.license.url` in
   `spec/openapi.raw.json` reads `https://github.com/Whisparr/Whisparr/blob/develop/LICENSE`. That
   string is hardcoded in the Eros source and is an upstream defect, not a pointer to follow.
@@ -89,7 +89,8 @@ python generator/refresh.py --image-digest sha256:...
 ```
 
 Then set that digest as `DEFAULT_IMAGE_DIGEST` in `capture_spec.py`, so the pin and the committed
-spec stay in step.
+spec stay in step, and update the Whisparr version README.md names at the top. That version is the
+one fact about the capture written by hand rather than read from `spec/PROVENANCE.json`.
 
 Generation alone is `python generator/generate.py`. It stages the committed spec and
 `gen-config.yaml` into a temp root, runs the pinned generator image there, gates the output against
@@ -150,7 +151,7 @@ and do not copy hand-written sources into a test project.
 
 Milestone v1.5 is planned at the environment tier, in `i:\cove-dev\.planning\`, because the
 environment created this repo. Post-v1.5 work on this repo plans in this repo's own `.planning\`.
-Do not migrate the v1.5 planning tree mid-milestone. See `.planning/README.md`.
+Do not migrate the v1.5 planning tree mid-milestone.
 
 ## Secret hygiene
 

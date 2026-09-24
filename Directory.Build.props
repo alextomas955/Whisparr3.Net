@@ -68,13 +68,16 @@
     <PackageId>Whisparr3.Net</PackageId>
     <Version>0.4.0</Version>
     <Authors>alextomas955</Authors>
-    <Description>C# SDK for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI spec.</Description>
+    <Description>C# SDK for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI specification. Covers every operation in the v3 API, with XML documentation and IServiceCollection registration.</Description>
     <Copyright>Copyright (c) 2026 alextomas955</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/alextomas955/Whisparr3.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/alextomas955/Whisparr3.Net</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageTags>whisparr;arr;openapi;sdk;rest;client</PackageTags>
+    <PackageTags>whisparr;whisparr3;eros;arr;openapi;sdk;rest;client</PackageTags>
+    <!-- A stable pointer rather than the notes themselves. Per-release notes here would be a
+         second copy of the changelog that only the release path ever updates. -->
+    <PackageReleaseNotes>Release notes: https://github.com/alextomas955/Whisparr3.Net/blob/main/CHANGELOG.md</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>

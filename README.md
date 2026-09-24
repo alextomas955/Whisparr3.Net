@@ -1,7 +1,13 @@
 # Whisparr3.Net
 
 A C# client for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI specification. It covers
-every operation in that specification. The package targets `net8.0` and `net10.0`.
+all 273 operations in that specification, ships XML documentation for every one of them, and
+targets `net8.0` and `net10.0`.
+
+Generated against **Whisparr 3.6.2.1727**. Method names are the operation identifiers Whisparr
+assigns, so an older instance serving a different document may name an operation differently. The
+exact build the specification was captured from is recorded in
+[spec/PROVENANCE.json](https://github.com/alextomas955/Whisparr3.Net/blob/main/spec/PROVENANCE.json).
 
 ## Quickstart
 
@@ -128,10 +134,12 @@ you call them.
 
 ## Where to look next
 
-- [CHANGELOG.md](CHANGELOG.md) records every release, and the [public API stability
-  policy](CHANGELOG.md#public-api-stability-policy) at the bottom states what a version bump
-  promises when a specification refresh renames a generated method.
+- [CHANGELOG.md](https://github.com/alextomas955/Whisparr3.Net/blob/main/CHANGELOG.md) records
+  every release, and the [public API stability
+  policy](https://github.com/alextomas955/Whisparr3.Net/blob/main/CHANGELOG.md#public-api-stability-policy)
+  at the bottom states what a version bump promises when a specification refresh renames a
+  generated method.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/alextomas955/Whisparr3.Net/blob/main/LICENSE).
