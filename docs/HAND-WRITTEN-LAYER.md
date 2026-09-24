@@ -9,7 +9,7 @@ assembly by one `Compile` glob in the library project file. It is five files:
 | `Whisparr3Options.cs` | The settings a consumer supplies, and the validation that refuses a bad one |
 | `Whisparr3ServiceCollectionExtensions.cs` | `AddWhisparr3`, the single registration entry point, and the token provider behind it |
 | `Whisparr3ApiException.cs` | The typed error, carrying status, route template, request URI and raw body |
-| `ApiResponseExtensions.cs` | `EnsureSuccess` and `ReadAs`, plus three response hooks: the performer create's 201, the performer update's 202, and the tag create's 201 |
+| `ApiResponseExtensions.cs` | `EnsureSuccess`, one overload per documented success status |
 | `CommandApi.SendCommand.cs` | `SendCommandAsync`, the command dispatch that puts a flat body on the wire |
 
 This document records what that layer does, what it costs, and what it deliberately leaves alone.
@@ -70,9 +70,9 @@ than answering with a token that does not belong to it.
 
 ## The three outcomes
 
-The generated success accessor deserializes on exactly 200 and returns `null` on anything else. A
-401, a 200 whose body is JSON null, and a genuine 201 are therefore the same value to a caller.
-`EnsureSuccess` classifies them apart:
+The generated success accessor deserializes on the one status its operation documents and returns
+`null` on anything else. A 401 and a 200 whose body is JSON null are therefore the same value to a
+caller. `EnsureSuccess` classifies them apart:
 
 | Outcome | Result | `IsSuccessStatusCode` on the exception |
 |---|---|---|
@@ -80,32 +80,30 @@ The generated success accessor deserializes on exactly 200 and returns `null` on
 | Success, body unreadable | throws `Whisparr3ApiException` | `true` |
 | Success, body readable | returns the body | not applicable |
 
-Two overloads cover the two response shapes the generated tree emits. The generic one binds to the
-response interfaces that carry a typed success accessor. The non-generic one covers the rest, which
-are roughly a third of the operations, and returns `void`.
+Four overloads cover the response shapes the generated tree emits. Three generic ones bind to the
+typed success accessors, one per documented status: `IOk<T>` for the reads, `ICreated<T>` for the
+creates and `IAccepted<T>` for the updates. No response type carries two of the three, so a call
+site reaches exactly one. The non-generic overload covers the operations that declare no response
+body and returns `void`.
 
 ```csharp
 var status = (await system.GetSystemStatusAsync()).EnsureSuccess();
 ```
 
-`EnsureSuccess` reads a body on any success status, for every operation. It routes a response this
-library produced through `ApiResponse.ReadAs`, which gates on `IsSuccessStatusCode` rather than on
-exactly 200, so a 201 and a 202 are as readable as a 200 with no per-operation help.
+Each overload calls the generated accessor and classifies what comes back. It adds no reading of
+its own, because the document now declares the status each operation really answers.
 
-Three operations also carry a response hook this layer adds: the performer create, the performer
-update and the tag create. The hooks make those operations' real 201, 202 and 201 bodies reachable
-through the generated success accessor, which is a separate path from `EnsureSuccess` and still
-gates on exactly 200 without them. They stay because a caller who reads the generated `Ok()` or
-`TryOk()` directly still needs them, and removing them would silently return that caller to `null`
-on a 201. The generated documentation comments on those operations were written before the hooks
-existed and say less than the accessor now does, so a reader of those comments alone would not
-expect a body there.
+Two things this file used to carry are gone, and both for the same reason. Three response hooks
+made the performer create's real 201, the performer update's real 202 and the tag create's real 201
+readable through accessors that gated on 200, and a `ReadAs<T>` partial on the response base let a
+caller name a shape for the 92 operations that declared a 2xx with no content. Whisparr 3.6.1
+corrects 46 status codes and types every response, so 228 of the 273 operations bind to a generated
+model and the other 45 genuinely return nothing. Neither piece had a job left.
 
-The two performer hooks read a status the spec documents, so the generator emits an `IsCreated` and
-an `IsAccepted` member for them and each hook reads its own. The tag create hook has no such member
-to read. The generator emits `IsCreated` only where the spec documents 201, the tag create's spec
-documents 200 only, and the instance answers 201 anyway, so that hook compares the status code
-directly. Writing the performer guard there would not compile.
+One overload is not generic. Six operations declare a `string` body and send the text itself rather
+than a JSON string literal, so the generated accessor raises on the first character.
+`EnsureSuccess(IOk<string?>)` returns `RawContent` instead, and being non-generic it wins overload
+resolution against the `IOk<T>` one, so a caller writes the same call as anywhere else.
 
 `Whisparr3ApiException.RawContent` is the verbatim response body and is deliberately not truncated.
 For `GET /api/v3/config/host` that body contains the instance API key and the admin password in
@@ -117,9 +115,11 @@ property, where the choice to log it is the consumer's own.
 ## The command dispatch
 
 `POST /api/v3/command` is the one operation whose request body the spec describes wrongly rather
-than incompletely. `CommandResource` is `additionalProperties: false`, so the generated writer emits
-a fixed property list and the generated create operation cannot put a command argument on the wire
-at all. Whisparr declares 42 commands and 25 of them take arguments.
+than incompletely. `CommandResource` declares a fixed property list and the generated writer emits
+exactly those properties, so the generated create operation cannot put a command argument on the
+wire at all. Whisparr declares 42 commands and 25 of them take arguments. Until 3.6.1 the schema
+also carried `additionalProperties: false`; dropping it changes nothing here, because the
+constraint was the generated writer rather than the schema keyword.
 
 `CommandApi.SendCommandAsync` is what closes that:
 
@@ -387,16 +387,13 @@ afterwards.
 
 ## Carried forward
 
-Two items are recorded here. The first was carried forward and has since been measured and acted
-on; it is kept because the measurement contradicts the spec and a reader needs to know that. The
-second is still open.
+Two notes for whoever writes the next test or the next doc.
 
-A create, read-back and delete round-trip against a real instance has to be written carefully, and
-picking a resource whose create the spec documents as 200 is not the way out. Measured against the
-pinned image: a tag create answers **201** whatever the spec says, and a tag update answers **202**.
-The spec's documented codes describe what the server was thought to do, not what it does. The hook
-in this layer makes the tag create's body readable, and a round trip must assert through
-`EnsureSuccess` rather than through the generated success accessor.
+A create, read-back and delete round-trip against a real instance has to be written carefully. A
+tag create answers **201** and a tag update answers **202**, measured against the pinned release,
+and the spec now documents both. It did not before 3.6.1, and a round trip written against the
+older document asserted a 200 that never arrived. Assert through `EnsureSuccess` rather than
+through the generated success accessor.
 
 The operations whose response type carries no typed success accessor are listed in
 [SURFACE.md](SURFACE.md), which is generated from the committed specification. Do not copy the

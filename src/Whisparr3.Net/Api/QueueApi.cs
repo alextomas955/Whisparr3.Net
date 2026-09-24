@@ -45,14 +45,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"> (optional, default to true)</param>
         /// <param name="blocklist"> (optional, default to false)</param>
         /// <param name="skipRedownload"> (optional, default to false)</param>
         /// <param name="changeCategory"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueApiResponse"/>&gt;</returns>
-        Task<IDeleteQueueApiResponse> DeleteQueueAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueBulkApiResponse"/>&gt;</returns>
+        Task<IDeleteQueueBulkApiResponse> DeleteQueueBulkAsync(QueueBulkResource queueBulkResource, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -60,14 +60,14 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id"></param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"> (optional, default to true)</param>
         /// <param name="blocklist"> (optional, default to false)</param>
         /// <param name="skipRedownload"> (optional, default to false)</param>
         /// <param name="changeCategory"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueApiResponse"/>?&gt;</returns>
-        Task<IDeleteQueueApiResponse?> DeleteQueueOrDefaultAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueBulkApiResponse"/>?&gt;</returns>
+        Task<IDeleteQueueBulkApiResponse?> DeleteQueueBulkOrDefaultAsync(QueueBulkResource queueBulkResource, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -76,14 +76,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
         /// <param name="removeFromClient"> (optional, default to true)</param>
         /// <param name="blocklist"> (optional, default to false)</param>
         /// <param name="skipRedownload"> (optional, default to false)</param>
         /// <param name="changeCategory"> (optional, default to false)</param>
-        /// <param name="queueBulkResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueBulkApiResponse"/>&gt;</returns>
-        Task<IDeleteQueueBulkApiResponse> DeleteQueueBulkAsync(Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteQueueByIdApiResponse> DeleteQueueByIdAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -91,14 +91,14 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="id"></param>
         /// <param name="removeFromClient"> (optional, default to true)</param>
         /// <param name="blocklist"> (optional, default to false)</param>
         /// <param name="skipRedownload"> (optional, default to false)</param>
         /// <param name="changeCategory"> (optional, default to false)</param>
-        /// <param name="queueBulkResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueBulkApiResponse"/>?&gt;</returns>
-        Task<IDeleteQueueBulkApiResponse?> DeleteQueueBulkOrDefaultAsync(Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteQueueByIdApiResponse?> DeleteQueueByIdOrDefaultAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -145,9 +145,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteQueueApiResponse"/>
+    /// The <see cref="IDeleteQueueBulkApiResponse"/>
     /// </summary>
-    public interface IDeleteQueueApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteQueueBulkApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -157,9 +157,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteQueueBulkApiResponse"/>
+    /// The <see cref="IDeleteQueueByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteQueueBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteQueueByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -188,26 +188,6 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteQueue;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteQueue;
-
-        internal void ExecuteOnDeleteQueue(QueueApi.DeleteQueueApiResponse apiResponse)
-        {
-            OnDeleteQueue?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeleteQueue(Exception exception)
-        {
-            OnErrorDeleteQueue?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
         public event EventHandler<ApiResponseEventArgs>? OnDeleteQueueBulk;
 
         /// <summary>
@@ -223,6 +203,26 @@ namespace Whisparr3.Net.Api
         internal void ExecuteOnErrorDeleteQueueBulk(Exception exception)
         {
             OnErrorDeleteQueueBulk?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteQueueById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteQueueById;
+
+        internal void ExecuteOnDeleteQueueById(QueueApi.DeleteQueueByIdApiResponse apiResponse)
+        {
+            OnDeleteQueueById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorDeleteQueueById(Exception exception)
+        {
+            OnErrorDeleteQueueById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -287,252 +287,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatDeleteQueue(ref int id, ref Option<bool> removeFromClient, ref Option<bool> blocklist, ref Option<bool> skipRedownload, ref Option<bool> changeCategory);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="removeFromClient"></param>
-        /// <param name="blocklist"></param>
-        /// <param name="skipRedownload"></param>
-        /// <param name="changeCategory"></param>
-        private void AfterDeleteQueueDefaultImplementation(IDeleteQueueApiResponse apiResponseLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteQueue(ref suppressDefaultLog, apiResponseLocalVar, id, removeFromClient, blocklist, skipRedownload, changeCategory);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="removeFromClient"></param>
-        /// <param name="blocklist"></param>
-        /// <param name="skipRedownload"></param>
-        /// <param name="changeCategory"></param>
-        partial void AfterDeleteQueue(ref bool suppressDefaultLog, IDeleteQueueApiResponse apiResponseLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="removeFromClient"></param>
-        /// <param name="blocklist"></param>
-        /// <param name="skipRedownload"></param>
-        /// <param name="changeCategory"></param>
-        private void OnErrorDeleteQueueDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteQueue(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, removeFromClient, blocklist, skipRedownload, changeCategory);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="removeFromClient"></param>
-        /// <param name="blocklist"></param>
-        /// <param name="skipRedownload"></param>
-        /// <param name="changeCategory"></param>
-        partial void OnErrorDeleteQueue(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="removeFromClient"> (optional, default to true)</param>
-        /// <param name="blocklist"> (optional, default to false)</param>
-        /// <param name="skipRedownload"> (optional, default to false)</param>
-        /// <param name="changeCategory"> (optional, default to false)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueApiResponse"/>&gt;</returns>
-        public async Task<IDeleteQueueApiResponse?> DeleteQueueOrDefaultAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteQueueAsync(id, removeFromClient, blocklist, skipRedownload, changeCategory, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="removeFromClient"> (optional, default to true)</param>
-        /// <param name="blocklist"> (optional, default to false)</param>
-        /// <param name="skipRedownload"> (optional, default to false)</param>
-        /// <param name="changeCategory"> (optional, default to false)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueApiResponse"/>&gt;</returns>
-        public async Task<IDeleteQueueApiResponse> DeleteQueueAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteQueue(ref id, ref removeFromClient, ref blocklist, ref skipRedownload, ref changeCategory);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/queue/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/queue/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (removeFromClient.IsSet)
-                        parseQueryStringLocalVar["removeFromClient"] = ClientUtils.ParameterToString(removeFromClient.Value);
-
-                    if (blocklist.IsSet)
-                        parseQueryStringLocalVar["blocklist"] = ClientUtils.ParameterToString(blocklist.Value);
-
-                    if (skipRedownload.IsSet)
-                        parseQueryStringLocalVar["skipRedownload"] = ClientUtils.ParameterToString(skipRedownload.Value);
-
-                    if (changeCategory.IsSet)
-                        parseQueryStringLocalVar["changeCategory"] = ClientUtils.ParameterToString(changeCategory.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteQueueApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/queue/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteQueueDefaultImplementation(apiResponseLocalVar, id, removeFromClient, blocklist, skipRedownload, changeCategory);
-
-                        Events.ExecuteOnDeleteQueue(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteQueueDefaultImplementation(e, "/api/v3/queue/{id}", uriBuilderLocalVar.Path, id, removeFromClient, blocklist, skipRedownload, changeCategory);
-                Events.ExecuteOnErrorDeleteQueue(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteQueueApiResponse"/>
-        /// </summary>
-        public partial class DeleteQueueApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteQueueApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<QueueApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteQueueApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteQueueApiResponse(ILogger<QueueApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteQueueApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteQueueApiResponse(ILogger<QueueApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteQueueBulk(ref Option<bool> removeFromClient, ref Option<bool> blocklist, ref Option<bool> skipRedownload, ref Option<bool> changeCategory, Option<QueueBulkResource> queueBulkResource);
+        partial void FormatDeleteQueueBulk(QueueBulkResource queueBulkResource, ref Option<bool> removeFromClient, ref Option<bool> blocklist, ref Option<bool> skipRedownload, ref Option<bool> changeCategory);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="queueBulkResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteQueueBulk(Option<QueueBulkResource> queueBulkResource)
+        private void ValidateDeleteQueueBulk(QueueBulkResource queueBulkResource)
         {
-            if (queueBulkResource.IsSet && queueBulkResource.Value == null)
+            if (queueBulkResource == null)
                 throw new ArgumentNullException(nameof(queueBulkResource));
         }
 
@@ -540,15 +304,15 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"></param>
         /// <param name="blocklist"></param>
         /// <param name="skipRedownload"></param>
         /// <param name="changeCategory"></param>
-        /// <param name="queueBulkResource"></param>
-        private void AfterDeleteQueueBulkDefaultImplementation(IDeleteQueueBulkApiResponse apiResponseLocalVar, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory, Option<QueueBulkResource> queueBulkResource)
+        private void AfterDeleteQueueBulkDefaultImplementation(IDeleteQueueBulkApiResponse apiResponseLocalVar, QueueBulkResource queueBulkResource, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteQueueBulk(ref suppressDefaultLog, apiResponseLocalVar, removeFromClient, blocklist, skipRedownload, changeCategory, queueBulkResource);
+            AfterDeleteQueueBulk(ref suppressDefaultLog, apiResponseLocalVar, queueBulkResource, removeFromClient, blocklist, skipRedownload, changeCategory);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -558,12 +322,12 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"></param>
         /// <param name="blocklist"></param>
         /// <param name="skipRedownload"></param>
         /// <param name="changeCategory"></param>
-        /// <param name="queueBulkResource"></param>
-        partial void AfterDeleteQueueBulk(ref bool suppressDefaultLog, IDeleteQueueBulkApiResponse apiResponseLocalVar, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory, Option<QueueBulkResource> queueBulkResource);
+        partial void AfterDeleteQueueBulk(ref bool suppressDefaultLog, IDeleteQueueBulkApiResponse apiResponseLocalVar, QueueBulkResource queueBulkResource, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -571,15 +335,15 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"></param>
         /// <param name="blocklist"></param>
         /// <param name="skipRedownload"></param>
         /// <param name="changeCategory"></param>
-        /// <param name="queueBulkResource"></param>
-        private void OnErrorDeleteQueueBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory, Option<QueueBulkResource> queueBulkResource)
+        private void OnErrorDeleteQueueBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, QueueBulkResource queueBulkResource, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteQueueBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, removeFromClient, blocklist, skipRedownload, changeCategory, queueBulkResource);
+            OnErrorDeleteQueueBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, queueBulkResource, removeFromClient, blocklist, skipRedownload, changeCategory);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -591,28 +355,28 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"></param>
         /// <param name="blocklist"></param>
         /// <param name="skipRedownload"></param>
         /// <param name="changeCategory"></param>
-        /// <param name="queueBulkResource"></param>
-        partial void OnErrorDeleteQueueBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory, Option<QueueBulkResource> queueBulkResource);
+        partial void OnErrorDeleteQueueBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, QueueBulkResource queueBulkResource, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"> (optional, default to true)</param>
         /// <param name="blocklist"> (optional, default to false)</param>
         /// <param name="skipRedownload"> (optional, default to false)</param>
         /// <param name="changeCategory"> (optional, default to false)</param>
-        /// <param name="queueBulkResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteQueueBulkApiResponse?> DeleteQueueBulkOrDefaultAsync(Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteQueueBulkApiResponse?> DeleteQueueBulkOrDefaultAsync(QueueBulkResource queueBulkResource, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteQueueBulkAsync(removeFromClient, blocklist, skipRedownload, changeCategory, queueBulkResource, cancellationToken).ConfigureAwait(false);
+                return await DeleteQueueBulkAsync(queueBulkResource, removeFromClient, blocklist, skipRedownload, changeCategory, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -624,14 +388,14 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="queueBulkResource"></param>
         /// <param name="removeFromClient"> (optional, default to true)</param>
         /// <param name="blocklist"> (optional, default to false)</param>
         /// <param name="skipRedownload"> (optional, default to false)</param>
         /// <param name="changeCategory"> (optional, default to false)</param>
-        /// <param name="queueBulkResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteQueueBulkApiResponse> DeleteQueueBulkAsync(Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteQueueBulkApiResponse> DeleteQueueBulkAsync(QueueBulkResource queueBulkResource, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -639,7 +403,7 @@ namespace Whisparr3.Net.Api
             {
                 ValidateDeleteQueueBulk(queueBulkResource);
 
-                FormatDeleteQueueBulk(ref removeFromClient, ref blocklist, ref skipRedownload, ref changeCategory, queueBulkResource);
+                FormatDeleteQueueBulk(queueBulkResource, ref removeFromClient, ref blocklist, ref skipRedownload, ref changeCategory);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -666,12 +430,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (queueBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (queueBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (queueBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(queueBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(queueBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -706,7 +467,7 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteQueueBulkDefaultImplementation(apiResponseLocalVar, removeFromClient, blocklist, skipRedownload, changeCategory, queueBulkResource);
+                        AfterDeleteQueueBulkDefaultImplementation(apiResponseLocalVar, queueBulkResource, removeFromClient, blocklist, skipRedownload, changeCategory);
 
                         Events.ExecuteOnDeleteQueueBulk(apiResponseLocalVar);
 
@@ -720,7 +481,7 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteQueueBulkDefaultImplementation(e, "/api/v3/queue/bulk", uriBuilderLocalVar.Path, removeFromClient, blocklist, skipRedownload, changeCategory, queueBulkResource);
+                OnErrorDeleteQueueBulkDefaultImplementation(e, "/api/v3/queue/bulk", uriBuilderLocalVar.Path, queueBulkResource, removeFromClient, blocklist, skipRedownload, changeCategory);
                 Events.ExecuteOnErrorDeleteQueueBulk(e);
                 throw;
             }
@@ -763,6 +524,242 @@ namespace Whisparr3.Net.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public DeleteQueueBulkApiResponse(ILogger<QueueApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatDeleteQueueById(ref int id, ref Option<bool> removeFromClient, ref Option<bool> blocklist, ref Option<bool> skipRedownload, ref Option<bool> changeCategory);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="removeFromClient"></param>
+        /// <param name="blocklist"></param>
+        /// <param name="skipRedownload"></param>
+        /// <param name="changeCategory"></param>
+        private void AfterDeleteQueueByIdDefaultImplementation(IDeleteQueueByIdApiResponse apiResponseLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory)
+        {
+            bool suppressDefaultLog = false;
+            AfterDeleteQueueById(ref suppressDefaultLog, apiResponseLocalVar, id, removeFromClient, blocklist, skipRedownload, changeCategory);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="removeFromClient"></param>
+        /// <param name="blocklist"></param>
+        /// <param name="skipRedownload"></param>
+        /// <param name="changeCategory"></param>
+        partial void AfterDeleteQueueById(ref bool suppressDefaultLog, IDeleteQueueByIdApiResponse apiResponseLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="removeFromClient"></param>
+        /// <param name="blocklist"></param>
+        /// <param name="skipRedownload"></param>
+        /// <param name="changeCategory"></param>
+        private void OnErrorDeleteQueueByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorDeleteQueueById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, removeFromClient, blocklist, skipRedownload, changeCategory);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="removeFromClient"></param>
+        /// <param name="blocklist"></param>
+        /// <param name="skipRedownload"></param>
+        /// <param name="changeCategory"></param>
+        partial void OnErrorDeleteQueueById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> removeFromClient, Option<bool> blocklist, Option<bool> skipRedownload, Option<bool> changeCategory);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="removeFromClient"> (optional, default to true)</param>
+        /// <param name="blocklist"> (optional, default to false)</param>
+        /// <param name="skipRedownload"> (optional, default to false)</param>
+        /// <param name="changeCategory"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteQueueByIdApiResponse?> DeleteQueueByIdOrDefaultAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await DeleteQueueByIdAsync(id, removeFromClient, blocklist, skipRedownload, changeCategory, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="removeFromClient"> (optional, default to true)</param>
+        /// <param name="blocklist"> (optional, default to false)</param>
+        /// <param name="skipRedownload"> (optional, default to false)</param>
+        /// <param name="changeCategory"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQueueByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteQueueByIdApiResponse> DeleteQueueByIdAsync(int id, Option<bool> removeFromClient = default, Option<bool> blocklist = default, Option<bool> skipRedownload = default, Option<bool> changeCategory = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatDeleteQueueById(ref id, ref removeFromClient, ref blocklist, ref skipRedownload, ref changeCategory);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/queue/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/queue/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (removeFromClient.IsSet)
+                        parseQueryStringLocalVar["removeFromClient"] = ClientUtils.ParameterToString(removeFromClient.Value);
+
+                    if (blocklist.IsSet)
+                        parseQueryStringLocalVar["blocklist"] = ClientUtils.ParameterToString(blocklist.Value);
+
+                    if (skipRedownload.IsSet)
+                        parseQueryStringLocalVar["skipRedownload"] = ClientUtils.ParameterToString(skipRedownload.Value);
+
+                    if (changeCategory.IsSet)
+                        parseQueryStringLocalVar["changeCategory"] = ClientUtils.ParameterToString(changeCategory.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        DeleteQueueByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/queue/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterDeleteQueueByIdDefaultImplementation(apiResponseLocalVar, id, removeFromClient, blocklist, skipRedownload, changeCategory);
+
+                        Events.ExecuteOnDeleteQueueById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorDeleteQueueByIdDefaultImplementation(e, "/api/v3/queue/{id}", uriBuilderLocalVar.Path, id, removeFromClient, blocklist, skipRedownload, changeCategory);
+                Events.ExecuteOnErrorDeleteQueueById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="DeleteQueueByIdApiResponse"/>
+        /// </summary>
+        public partial class DeleteQueueByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteQueueByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QueueApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="DeleteQueueByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteQueueByIdApiResponse(ILogger<QueueApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteQueueByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteQueueByIdApiResponse(ILogger<QueueApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

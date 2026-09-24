@@ -39,75 +39,6 @@ namespace Whisparr3.Net.Api
         PerformerApiEvents Events { get; }
 
         /// <summary>
-        /// Adds a new performer to Whisparr
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerResource">The performer details to add (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>&gt;</returns>
-        Task<ICreatePerformerApiResponse> CreatePerformerAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Adds a new performer to Whisparr
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="performerResource">The performer details to add (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>?&gt;</returns>
-        Task<ICreatePerformerApiResponse?> CreatePerformerOrDefaultAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerListApiResponse"/>&gt;</returns>
-        Task<ICreatePerformerListApiResponse> CreatePerformerListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
-        /// </remarks>
-        /// <param name="requestBody"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerListApiResponse"/>?&gt;</returns>
-        Task<ICreatePerformerListApiResponse?> CreatePerformerListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>&gt;</returns>
-        Task<ICreatePerformerPagedApiResponse> CreatePerformerPagedAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>?&gt;</returns>
-        Task<ICreatePerformerPagedApiResponse?> CreatePerformerPagedOrDefaultAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Deletes a performer and their associated movies/scenes from Whisparr
         /// </summary>
         /// <remarks>
@@ -118,8 +49,8 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>&gt;</returns>
-        Task<IDeletePerformerApiResponse> DeletePerformerAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerByIdApiResponse"/>&gt;</returns>
+        Task<IDeletePerformerByIdApiResponse> DeletePerformerByIdAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a performer and their associated movies/scenes from Whisparr
@@ -131,75 +62,52 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>?&gt;</returns>
-        Task<IDeletePerformerApiResponse?> DeletePerformerOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerByIdApiResponse"/>?&gt;</returns>
+        Task<IDeletePerformerByIdApiResponse?> DeletePerformerByIdOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// 
+        /// Retrieves full list of performers
         /// </summary>
         /// <remarks>
         /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerApiResponse"/>&gt;</returns>
+        Task<IGetPerformerApiResponse> GetPerformerAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves full list of performers
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerApiResponse"/>?&gt;</returns>
+        Task<IGetPerformerApiResponse?> GetPerformerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb)
+        /// </summary>
+        /// <remarks>
+        /// A numeric value is routed to the internal ID lookup instead.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByIdApiResponse"/>&gt;</returns>
-        Task<IGetPerformerByIdApiResponse> GetPerformerByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPerformerByIdApiResponse> GetPerformerByIdAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// 
+        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb)
         /// </summary>
         /// <remarks>
-        /// 
+        /// A numeric value is routed to the internal ID lookup instead.
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByIdApiResponse"/>?&gt;</returns>
-        Task<IGetPerformerByIdApiResponse?> GetPerformerByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdApiResponse"/>&gt;</returns>
-        Task<IGetPerformerByPerformerForeignIdApiResponse> GetPerformerByPerformerForeignIdAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="performerForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdApiResponse"/>?&gt;</returns>
-        Task<IGetPerformerByPerformerForeignIdApiResponse?> GetPerformerByPerformerForeignIdOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves full list of performers
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerApiResponse"/>&gt;</returns>
-        Task<IListPerformerApiResponse> ListPerformerAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves full list of performers
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerApiResponse"/>?&gt;</returns>
-        Task<IListPerformerApiResponse?> ListPerformerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPerformerByIdApiResponse?> GetPerformerByIdOrDefaultAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb)
@@ -210,8 +118,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="performerForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerWorksApiResponse"/>&gt;</returns>
-        Task<IListPerformerWorksApiResponse> ListPerformerWorksAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdWorksApiResponse"/>&gt;</returns>
+        Task<IGetPerformerByPerformerForeignIdWorksApiResponse> GetPerformerByPerformerForeignIdWorksAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb)
@@ -221,8 +129,77 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="performerForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerWorksApiResponse"/>?&gt;</returns>
-        Task<IListPerformerWorksApiResponse?> ListPerformerWorksOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdWorksApiResponse"/>?&gt;</returns>
+        Task<IGetPerformerByPerformerForeignIdWorksApiResponse?> GetPerformerByPerformerForeignIdWorksOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Adds a new performer to Whisparr
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="performerResource">The performer details to add</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerApiResponse"/>&gt;</returns>
+        Task<IPostPerformerApiResponse> PostPerformerAsync(PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Adds a new performer to Whisparr
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="performerResource">The performer details to add</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerApiResponse"/>?&gt;</returns>
+        Task<IPostPerformerApiResponse?> PostPerformerOrDefaultAsync(PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb)
+        /// </summary>
+        /// <remarks>
+        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerListApiResponse"/>&gt;</returns>
+        Task<IPostPerformerListApiResponse> PostPerformerListAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb)
+        /// </summary>
+        /// <remarks>
+        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </remarks>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerListApiResponse"/>?&gt;</returns>
+        Task<IPostPerformerListApiResponse?> PostPerformerListOrDefaultAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a paged list of performers with advanced filtering options
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="performerPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerPagedApiResponse"/>&gt;</returns>
+        Task<IPostPerformerPagedApiResponse> PostPerformerPagedAsync(PerformerPagingRequestResource performerPagingRequestResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a paged list of performers with advanced filtering options
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="performerPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerPagedApiResponse"/>?&gt;</returns>
+        Task<IPostPerformerPagedApiResponse?> PostPerformerPagedOrDefaultAsync(PerformerPagingRequestResource performerPagingRequestResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates an existing performer in Whisparr
@@ -232,10 +209,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource">The performer details to update</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>&gt;</returns>
-        Task<IUpdatePerformerApiResponse> UpdatePerformerAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerByIdApiResponse"/>&gt;</returns>
+        Task<IPutPerformerByIdApiResponse> PutPerformerByIdAsync(string id, PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates an existing performer in Whisparr
@@ -244,16 +221,28 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource">The performer details to update</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>?&gt;</returns>
-        Task<IUpdatePerformerApiResponse?> UpdatePerformerOrDefaultAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerByIdApiResponse"/>?&gt;</returns>
+        Task<IPutPerformerByIdApiResponse?> PutPerformerByIdOrDefaultAsync(string id, PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreatePerformerApiResponse"/>
+    /// The <see cref="IDeletePerformerByIdApiResponse"/>
     /// </summary>
-    public interface ICreatePerformerApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
+    public interface IDeletePerformerByIdApiResponse : Whisparr3.Net.Client.IApiResponse
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetPerformerApiResponse"/>
+    /// </summary>
+    public interface IGetPerformerApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<PerformerResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -261,6 +250,54 @@ namespace Whisparr3.Net.Api
         /// <returns></returns>
         bool IsOk { get; }
 
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetPerformerByIdApiResponse"/>
+    /// </summary>
+    public interface IGetPerformerByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetPerformerByPerformerForeignIdWorksApiResponse"/>
+    /// </summary>
+    public interface IGetPerformerByPerformerForeignIdWorksApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostPerformerApiResponse"/>
+    /// </summary>
+    public interface IPostPerformerApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.PerformerResource?>
+    {
         /// <summary>
         /// Returns true if the response is 201 Created
         /// </summary>
@@ -275,9 +312,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreatePerformerListApiResponse"/>
+    /// The <see cref="IPostPerformerListApiResponse"/>
     /// </summary>
-    public interface ICreatePerformerListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
+    public interface IPostPerformerListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -287,9 +324,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreatePerformerPagedApiResponse"/>
+    /// The <see cref="IPostPerformerPagedApiResponse"/>
     /// </summary>
-    public interface ICreatePerformerPagedApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResourcePagingResource?>
+    public interface IPostPerformerPagedApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResourcePagingResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -299,94 +336,10 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeletePerformerApiResponse"/>
+    /// The <see cref="IPutPerformerByIdApiResponse"/>
     /// </summary>
-    public interface IDeletePerformerApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutPerformerByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.PerformerResource?>
     {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IGetPerformerByIdApiResponse"/>
-    /// </summary>
-    public interface IGetPerformerByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IGetPerformerByPerformerForeignIdApiResponse"/>
-    /// </summary>
-    public interface IGetPerformerByPerformerForeignIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 404 NotFound
-        /// </summary>
-        /// <returns></returns>
-        bool IsNotFound { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IListPerformerApiResponse"/>
-    /// </summary>
-    public interface IListPerformerApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<PerformerResource>?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 404 NotFound
-        /// </summary>
-        /// <returns></returns>
-        bool IsNotFound { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IListPerformerWorksApiResponse"/>
-    /// </summary>
-    public interface IListPerformerWorksApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 404 NotFound
-        /// </summary>
-        /// <returns></returns>
-        bool IsNotFound { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IUpdatePerformerApiResponse"/>
-    /// </summary>
-    public interface IUpdatePerformerApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.PerformerResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-
         /// <summary>
         /// Returns true if the response is 202 Accepted
         /// </summary>
@@ -414,81 +367,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreatePerformer;
+        public event EventHandler<ApiResponseEventArgs>? OnDeletePerformerById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreatePerformer;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeletePerformerById;
 
-        internal void ExecuteOnCreatePerformer(PerformerApi.CreatePerformerApiResponse apiResponse)
+        internal void ExecuteOnDeletePerformerById(PerformerApi.DeletePerformerByIdApiResponse apiResponse)
         {
-            OnCreatePerformer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeletePerformerById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreatePerformer(Exception exception)
+        internal void ExecuteOnErrorDeletePerformerById(Exception exception)
         {
-            OnErrorCreatePerformer?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeletePerformerById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreatePerformerList;
+        public event EventHandler<ApiResponseEventArgs>? OnGetPerformer;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreatePerformerList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetPerformer;
 
-        internal void ExecuteOnCreatePerformerList(PerformerApi.CreatePerformerListApiResponse apiResponse)
+        internal void ExecuteOnGetPerformer(PerformerApi.GetPerformerApiResponse apiResponse)
         {
-            OnCreatePerformerList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetPerformer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreatePerformerList(Exception exception)
+        internal void ExecuteOnErrorGetPerformer(Exception exception)
         {
-            OnErrorCreatePerformerList?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreatePerformerPaged;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreatePerformerPaged;
-
-        internal void ExecuteOnCreatePerformerPaged(PerformerApi.CreatePerformerPagedApiResponse apiResponse)
-        {
-            OnCreatePerformerPaged?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorCreatePerformerPaged(Exception exception)
-        {
-            OnErrorCreatePerformerPaged?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeletePerformer;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeletePerformer;
-
-        internal void ExecuteOnDeletePerformer(PerformerApi.DeletePerformerApiResponse apiResponse)
-        {
-            OnDeletePerformer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeletePerformer(Exception exception)
-        {
-            OnErrorDeletePerformer?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetPerformer?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -514,81 +427,101 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetPerformerByPerformerForeignId;
+        public event EventHandler<ApiResponseEventArgs>? OnGetPerformerByPerformerForeignIdWorks;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetPerformerByPerformerForeignId;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetPerformerByPerformerForeignIdWorks;
 
-        internal void ExecuteOnGetPerformerByPerformerForeignId(PerformerApi.GetPerformerByPerformerForeignIdApiResponse apiResponse)
+        internal void ExecuteOnGetPerformerByPerformerForeignIdWorks(PerformerApi.GetPerformerByPerformerForeignIdWorksApiResponse apiResponse)
         {
-            OnGetPerformerByPerformerForeignId?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetPerformerByPerformerForeignIdWorks?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetPerformerByPerformerForeignId(Exception exception)
+        internal void ExecuteOnErrorGetPerformerByPerformerForeignIdWorks(Exception exception)
         {
-            OnErrorGetPerformerByPerformerForeignId?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetPerformerByPerformerForeignIdWorks?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListPerformer;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPerformer;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListPerformer;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPerformer;
 
-        internal void ExecuteOnListPerformer(PerformerApi.ListPerformerApiResponse apiResponse)
+        internal void ExecuteOnPostPerformer(PerformerApi.PostPerformerApiResponse apiResponse)
         {
-            OnListPerformer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPerformer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListPerformer(Exception exception)
+        internal void ExecuteOnErrorPostPerformer(Exception exception)
         {
-            OnErrorListPerformer?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPerformer?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListPerformerWorks;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPerformerList;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListPerformerWorks;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPerformerList;
 
-        internal void ExecuteOnListPerformerWorks(PerformerApi.ListPerformerWorksApiResponse apiResponse)
+        internal void ExecuteOnPostPerformerList(PerformerApi.PostPerformerListApiResponse apiResponse)
         {
-            OnListPerformerWorks?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPerformerList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListPerformerWorks(Exception exception)
+        internal void ExecuteOnErrorPostPerformerList(Exception exception)
         {
-            OnErrorListPerformerWorks?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPerformerList?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdatePerformer;
+        public event EventHandler<ApiResponseEventArgs>? OnPostPerformerPaged;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdatePerformer;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostPerformerPaged;
 
-        internal void ExecuteOnUpdatePerformer(PerformerApi.UpdatePerformerApiResponse apiResponse)
+        internal void ExecuteOnPostPerformerPaged(PerformerApi.PostPerformerPagedApiResponse apiResponse)
         {
-            OnUpdatePerformer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostPerformerPaged?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdatePerformer(Exception exception)
+        internal void ExecuteOnErrorPostPerformerPaged(Exception exception)
         {
-            OnErrorUpdatePerformer?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostPerformerPaged?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutPerformerById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutPerformerById;
+
+        internal void ExecuteOnPutPerformerById(PerformerApi.PutPerformerByIdApiResponse apiResponse)
+        {
+            OnPutPerformerById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutPerformerById(Exception exception)
+        {
+            OnErrorPutPerformerById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -633,850 +566,7 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreatePerformer(Option<PerformerResource> performerResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="performerResource"></param>
-        /// <returns></returns>
-        private void ValidateCreatePerformer(Option<PerformerResource> performerResource)
-        {
-            if (performerResource.IsSet && performerResource.Value == null)
-                throw new ArgumentNullException(nameof(performerResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="performerResource"></param>
-        private void AfterCreatePerformerDefaultImplementation(ICreatePerformerApiResponse apiResponseLocalVar, Option<PerformerResource> performerResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreatePerformer(ref suppressDefaultLog, apiResponseLocalVar, performerResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="performerResource"></param>
-        partial void AfterCreatePerformer(ref bool suppressDefaultLog, ICreatePerformerApiResponse apiResponseLocalVar, Option<PerformerResource> performerResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="performerResource"></param>
-        private void OnErrorCreatePerformerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerResource> performerResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreatePerformer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="performerResource"></param>
-        partial void OnErrorCreatePerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerResource> performerResource);
-
-        /// <summary>
-        /// Adds a new performer to Whisparr 
-        /// </summary>
-        /// <param name="performerResource">The performer details to add (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>&gt;</returns>
-        public async Task<ICreatePerformerApiResponse?> CreatePerformerOrDefaultAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreatePerformerAsync(performerResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Adds a new performer to Whisparr 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerResource">The performer details to add (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerApiResponse"/>&gt;</returns>
-        public async Task<ICreatePerformerApiResponse> CreatePerformerAsync(Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreatePerformer(performerResource);
-
-                FormatCreatePerformer(performerResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/performer"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer");
-
-                    if (performerResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (performerResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreatePerformerApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreatePerformerDefaultImplementation(apiResponseLocalVar, performerResource);
-
-                        Events.ExecuteOnCreatePerformer(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreatePerformerDefaultImplementation(e, "/api/v3/performer", uriBuilderLocalVar.Path, performerResource);
-                Events.ExecuteOnErrorCreatePerformer(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreatePerformerApiResponse"/>
-        /// </summary>
-        public partial class CreatePerformerApiResponse : Whisparr3.Net.Client.ApiResponse, ICreatePerformerApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<PerformerApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreatePerformerApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreatePerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreatePerformerApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreatePerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.PerformerResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.PerformerResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.PerformerResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 201 Created
-            /// </summary>
-            /// <returns></returns>
-            public bool IsCreated => 201 == (int)StatusCode;
-
-            /// <summary>
-            /// Returns true if the response is 400 BadRequest
-            /// </summary>
-            /// <returns></returns>
-            public bool IsBadRequest => 400 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreatePerformerList(Option<List<string>> requestBody);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="requestBody"></param>
-        /// <returns></returns>
-        private void ValidateCreatePerformerList(Option<List<string>> requestBody)
-        {
-            if (requestBody.IsSet && requestBody.Value == null)
-                throw new ArgumentNullException(nameof(requestBody));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="requestBody"></param>
-        private void AfterCreatePerformerListDefaultImplementation(ICreatePerformerListApiResponse apiResponseLocalVar, Option<List<string>> requestBody)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreatePerformerList(ref suppressDefaultLog, apiResponseLocalVar, requestBody);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="requestBody"></param>
-        partial void AfterCreatePerformerList(ref bool suppressDefaultLog, ICreatePerformerListApiResponse apiResponseLocalVar, Option<List<string>> requestBody);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="requestBody"></param>
-        private void OnErrorCreatePerformerListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreatePerformerList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, requestBody);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="requestBody"></param>
-        partial void OnErrorCreatePerformerList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody);
-
-        /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
-        /// </summary>
-        /// <param name="requestBody"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerListApiResponse"/>&gt;</returns>
-        public async Task<ICreatePerformerListApiResponse?> CreatePerformerListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreatePerformerListAsync(requestBody, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerListApiResponse"/>&gt;</returns>
-        public async Task<ICreatePerformerListApiResponse> CreatePerformerListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreatePerformerList(requestBody);
-
-                FormatCreatePerformerList(requestBody);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/performer/list"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/list");
-
-                    if (requestBody.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (requestBody.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(requestBody.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreatePerformerListApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/list", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreatePerformerListDefaultImplementation(apiResponseLocalVar, requestBody);
-
-                        Events.ExecuteOnCreatePerformerList(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreatePerformerListDefaultImplementation(e, "/api/v3/performer/list", uriBuilderLocalVar.Path, requestBody);
-                Events.ExecuteOnErrorCreatePerformerList(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreatePerformerListApiResponse"/>
-        /// </summary>
-        public partial class CreatePerformerListApiResponse : Whisparr3.Net.Client.ApiResponse, ICreatePerformerListApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<PerformerApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreatePerformerListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreatePerformerListApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreatePerformerListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreatePerformerListApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.PerformerResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.PerformerResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.PerformerResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreatePerformerPaged(Option<PerformerPagingRequestResource> performerPagingRequestResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="performerPagingRequestResource"></param>
-        /// <returns></returns>
-        private void ValidateCreatePerformerPaged(Option<PerformerPagingRequestResource> performerPagingRequestResource)
-        {
-            if (performerPagingRequestResource.IsSet && performerPagingRequestResource.Value == null)
-                throw new ArgumentNullException(nameof(performerPagingRequestResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="performerPagingRequestResource"></param>
-        private void AfterCreatePerformerPagedDefaultImplementation(ICreatePerformerPagedApiResponse apiResponseLocalVar, Option<PerformerPagingRequestResource> performerPagingRequestResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreatePerformerPaged(ref suppressDefaultLog, apiResponseLocalVar, performerPagingRequestResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="performerPagingRequestResource"></param>
-        partial void AfterCreatePerformerPaged(ref bool suppressDefaultLog, ICreatePerformerPagedApiResponse apiResponseLocalVar, Option<PerformerPagingRequestResource> performerPagingRequestResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="performerPagingRequestResource"></param>
-        private void OnErrorCreatePerformerPagedDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerPagingRequestResource> performerPagingRequestResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreatePerformerPaged(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerPagingRequestResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="performerPagingRequestResource"></param>
-        partial void OnErrorCreatePerformerPaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerPagingRequestResource> performerPagingRequestResource);
-
-        /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options 
-        /// </summary>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>&gt;</returns>
-        public async Task<ICreatePerformerPagedApiResponse?> CreatePerformerPagedOrDefaultAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreatePerformerPagedAsync(performerPagingRequestResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves a paged list of performers with advanced filtering options 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreatePerformerPagedApiResponse"/>&gt;</returns>
-        public async Task<ICreatePerformerPagedApiResponse> CreatePerformerPagedAsync(Option<PerformerPagingRequestResource> performerPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreatePerformerPaged(performerPagingRequestResource);
-
-                FormatCreatePerformerPaged(performerPagingRequestResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/performer/paged"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/paged");
-
-                    if (performerPagingRequestResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (performerPagingRequestResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerPagingRequestResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreatePerformerPagedApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/paged", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreatePerformerPagedDefaultImplementation(apiResponseLocalVar, performerPagingRequestResource);
-
-                        Events.ExecuteOnCreatePerformerPaged(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreatePerformerPagedDefaultImplementation(e, "/api/v3/performer/paged", uriBuilderLocalVar.Path, performerPagingRequestResource);
-                Events.ExecuteOnErrorCreatePerformerPaged(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreatePerformerPagedApiResponse"/>
-        /// </summary>
-        public partial class CreatePerformerPagedApiResponse : Whisparr3.Net.Client.ApiResponse, ICreatePerformerPagedApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<PerformerApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreatePerformerPagedApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreatePerformerPagedApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreatePerformerPagedApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreatePerformerPagedApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.PerformerResourcePagingResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.PerformerResourcePagingResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.PerformerResourcePagingResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResourcePagingResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResourcePagingResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResourcePagingResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeletePerformer(ref int id, ref Option<bool> deleteFiles, ref Option<bool> addImportExclusion);
+        partial void FormatDeletePerformerById(ref int id, ref Option<bool> deleteFiles, ref Option<bool> addImportExclusion);
 
         /// <summary>
         /// Processes the server response
@@ -1485,10 +575,10 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        private void AfterDeletePerformerDefaultImplementation(IDeletePerformerApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
+        private void AfterDeletePerformerByIdDefaultImplementation(IDeletePerformerByIdApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
         {
             bool suppressDefaultLog = false;
-            AfterDeletePerformer(ref suppressDefaultLog, apiResponseLocalVar, id, deleteFiles, addImportExclusion);
+            AfterDeletePerformerById(ref suppressDefaultLog, apiResponseLocalVar, id, deleteFiles, addImportExclusion);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1501,7 +591,7 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        partial void AfterDeletePerformer(ref bool suppressDefaultLog, IDeletePerformerApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
+        partial void AfterDeletePerformerById(ref bool suppressDefaultLog, IDeletePerformerByIdApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1512,10 +602,10 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        private void OnErrorDeletePerformerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
+        private void OnErrorDeletePerformerByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeletePerformer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, deleteFiles, addImportExclusion);
+            OnErrorDeletePerformerById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, deleteFiles, addImportExclusion);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1530,7 +620,7 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        partial void OnErrorDeletePerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
+        partial void OnErrorDeletePerformerById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
         /// Deletes a performer and their associated movies/scenes from Whisparr 
@@ -1539,12 +629,12 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>&gt;</returns>
-        public async Task<IDeletePerformerApiResponse?> DeletePerformerOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeletePerformerByIdApiResponse?> DeletePerformerByIdOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeletePerformerAsync(id, deleteFiles, addImportExclusion, cancellationToken).ConfigureAwait(false);
+                return await DeletePerformerByIdAsync(id, deleteFiles, addImportExclusion, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1560,14 +650,14 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the performer in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerApiResponse"/>&gt;</returns>
-        public async Task<IDeletePerformerApiResponse> DeletePerformerAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeletePerformerByIdApiResponse> DeletePerformerByIdAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeletePerformer(ref id, ref deleteFiles, ref addImportExclusion);
+                FormatDeletePerformerById(ref id, ref deleteFiles, ref addImportExclusion);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1602,7 +692,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeletePerformerApiResponse apiResponseLocalVar;
+                        DeletePerformerByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1613,9 +703,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeletePerformerDefaultImplementation(apiResponseLocalVar, id, deleteFiles, addImportExclusion);
+                        AfterDeletePerformerByIdDefaultImplementation(apiResponseLocalVar, id, deleteFiles, addImportExclusion);
 
-                        Events.ExecuteOnDeletePerformer(apiResponseLocalVar);
+                        Events.ExecuteOnDeletePerformerById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1627,16 +717,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeletePerformerDefaultImplementation(e, "/api/v3/performer/{id}", uriBuilderLocalVar.Path, id, deleteFiles, addImportExclusion);
-                Events.ExecuteOnErrorDeletePerformer(e);
+                OnErrorDeletePerformerByIdDefaultImplementation(e, "/api/v3/performer/{id}", uriBuilderLocalVar.Path, id, deleteFiles, addImportExclusion);
+                Events.ExecuteOnErrorDeletePerformerById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeletePerformerApiResponse"/>
+        /// The <see cref="DeletePerformerByIdApiResponse"/>
         /// </summary>
-        public partial class DeletePerformerApiResponse : Whisparr3.Net.Client.ApiResponse, IDeletePerformerApiResponse
+        public partial class DeletePerformerByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeletePerformerByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1644,7 +734,7 @@ namespace Whisparr3.Net.Api
             public ILogger<PerformerApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeletePerformerApiResponse"/>
+            /// The <see cref="DeletePerformerByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1653,14 +743,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeletePerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeletePerformerByIdApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeletePerformerApiResponse"/>
+            /// The <see cref="DeletePerformerByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1669,7 +759,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeletePerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeletePerformerByIdApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1694,14 +784,269 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetPerformerById(ref int id);
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetPerformerDefaultImplementation(IGetPerformerApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetPerformer(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetPerformer(ref bool suppressDefaultLog, IGetPerformerApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetPerformerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetPerformer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetPerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        /// Retrieves full list of performers 
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerApiResponse"/>&gt;</returns>
+        public async Task<IGetPerformerApiResponse?> GetPerformerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetPerformerAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves full list of performers 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerApiResponse"/>&gt;</returns>
+        public async Task<IGetPerformerApiResponse> GetPerformerAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/performer"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetPerformerApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetPerformerDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnGetPerformer(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetPerformerDefaultImplementation(e, "/api/v3/performer", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetPerformer(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetPerformerApiResponse"/>
+        /// </summary>
+        public partial class GetPerformerApiResponse : Whisparr3.Net.Client.ApiResponse, IGetPerformerApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PerformerApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetPerformerApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetPerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetPerformerApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetPerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<PerformerResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<PerformerResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<PerformerResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<PerformerResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<PerformerResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<PerformerResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetPerformerById(ref string id);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private void ValidateGetPerformerById(string id)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+        }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetPerformerByIdDefaultImplementation(IGetPerformerByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetPerformerByIdDefaultImplementation(IGetPerformerByIdApiResponse apiResponseLocalVar, string id)
         {
             bool suppressDefaultLog = false;
             AfterGetPerformerById(ref suppressDefaultLog, apiResponseLocalVar, id);
@@ -1715,7 +1060,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetPerformerById(ref bool suppressDefaultLog, IGetPerformerByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetPerformerById(ref bool suppressDefaultLog, IGetPerformerByIdApiResponse apiResponseLocalVar, string id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1724,7 +1069,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetPerformerByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetPerformerByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorGetPerformerById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
@@ -1740,15 +1085,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetPerformerById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetPerformerById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id);
 
         /// <summary>
-        ///  
+        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb) A numeric value is routed to the internal ID lookup instead.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetPerformerByIdApiResponse?> GetPerformerByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetPerformerByIdApiResponse?> GetPerformerByIdOrDefaultAsync(string id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -1761,18 +1106,20 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        ///  
+        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb) A numeric value is routed to the internal ID lookup instead.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetPerformerByIdApiResponse> GetPerformerByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetPerformerByIdApiResponse> GetPerformerByIdAsync(string id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
+                ValidateGetPerformerById(id);
+
                 FormatGetPerformerById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
@@ -1793,9 +1140,7 @@ namespace Whisparr3.Net.Api
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
                     string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
+                        "application/json"
                     };
 
                     IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
@@ -1934,268 +1279,6 @@ namespace Whisparr3.Net.Api
                 return result != null;
             }
 
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatGetPerformerByPerformerForeignId(ref string performerForeignId);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="performerForeignId"></param>
-        /// <returns></returns>
-        private void ValidateGetPerformerByPerformerForeignId(string performerForeignId)
-        {
-            if (performerForeignId == null)
-                throw new ArgumentNullException(nameof(performerForeignId));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="performerForeignId"></param>
-        private void AfterGetPerformerByPerformerForeignIdDefaultImplementation(IGetPerformerByPerformerForeignIdApiResponse apiResponseLocalVar, string performerForeignId)
-        {
-            bool suppressDefaultLog = false;
-            AfterGetPerformerByPerformerForeignId(ref suppressDefaultLog, apiResponseLocalVar, performerForeignId);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="performerForeignId"></param>
-        partial void AfterGetPerformerByPerformerForeignId(ref bool suppressDefaultLog, IGetPerformerByPerformerForeignIdApiResponse apiResponseLocalVar, string performerForeignId);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="performerForeignId"></param>
-        private void OnErrorGetPerformerByPerformerForeignIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorGetPerformerByPerformerForeignId(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerForeignId);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="performerForeignId"></param>
-        partial void OnErrorGetPerformerByPerformerForeignId(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId);
-
-        /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb) 
-        /// </summary>
-        /// <param name="performerForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdApiResponse"/>&gt;</returns>
-        public async Task<IGetPerformerByPerformerForeignIdApiResponse?> GetPerformerByPerformerForeignIdOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetPerformerByPerformerForeignIdAsync(performerForeignId, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves a single performer by their external foreign ID (e.g., from StashDb) 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdApiResponse"/>&gt;</returns>
-        public async Task<IGetPerformerByPerformerForeignIdApiResponse> GetPerformerByPerformerForeignIdAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateGetPerformerByPerformerForeignId(performerForeignId);
-
-                FormatGetPerformerByPerformerForeignId(ref performerForeignId);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/performer/{performerForeignId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/{performerForeignId}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BperformerForeignId%7D", Uri.EscapeDataString(performerForeignId.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetPerformerByPerformerForeignIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/{performerForeignId}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetPerformerByPerformerForeignIdDefaultImplementation(apiResponseLocalVar, performerForeignId);
-
-                        Events.ExecuteOnGetPerformerByPerformerForeignId(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetPerformerByPerformerForeignIdDefaultImplementation(e, "/api/v3/performer/{performerForeignId}", uriBuilderLocalVar.Path, performerForeignId);
-                Events.ExecuteOnErrorGetPerformerByPerformerForeignId(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetPerformerByPerformerForeignIdApiResponse"/>
-        /// </summary>
-        public partial class GetPerformerByPerformerForeignIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetPerformerByPerformerForeignIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<PerformerApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetPerformerByPerformerForeignIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetPerformerByPerformerForeignIdApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetPerformerByPerformerForeignIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetPerformerByPerformerForeignIdApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.PerformerResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.PerformerResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.PerformerResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
             /// <summary>
             /// Returns true if the response is 404 NotFound
             /// </summary>
@@ -2213,258 +1296,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListPerformerDefaultImplementation(IListPerformerApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListPerformer(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListPerformer(ref bool suppressDefaultLog, IListPerformerApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListPerformerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListPerformer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListPerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        /// Retrieves full list of performers 
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerApiResponse"/>&gt;</returns>
-        public async Task<IListPerformerApiResponse?> ListPerformerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListPerformerAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves full list of performers 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerApiResponse"/>&gt;</returns>
-        public async Task<IListPerformerApiResponse> ListPerformerAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/performer"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListPerformerApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListPerformerDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnListPerformer(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListPerformerDefaultImplementation(e, "/api/v3/performer", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListPerformer(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListPerformerApiResponse"/>
-        /// </summary>
-        public partial class ListPerformerApiResponse : Whisparr3.Net.Client.ApiResponse, IListPerformerApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<PerformerApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListPerformerApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListPerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListPerformerApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListPerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<PerformerResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<PerformerResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<PerformerResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<PerformerResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<PerformerResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<PerformerResource>? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            /// <summary>
-            /// Returns true if the response is 404 NotFound
-            /// </summary>
-            /// <returns></returns>
-            public bool IsNotFound => 404 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListPerformerWorks(ref string performerForeignId);
+        partial void FormatGetPerformerByPerformerForeignIdWorks(ref string performerForeignId);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="performerForeignId"></param>
         /// <returns></returns>
-        private void ValidateListPerformerWorks(string performerForeignId)
+        private void ValidateGetPerformerByPerformerForeignIdWorks(string performerForeignId)
         {
             if (performerForeignId == null)
                 throw new ArgumentNullException(nameof(performerForeignId));
@@ -2475,10 +1314,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="performerForeignId"></param>
-        private void AfterListPerformerWorksDefaultImplementation(IListPerformerWorksApiResponse apiResponseLocalVar, string performerForeignId)
+        private void AfterGetPerformerByPerformerForeignIdWorksDefaultImplementation(IGetPerformerByPerformerForeignIdWorksApiResponse apiResponseLocalVar, string performerForeignId)
         {
             bool suppressDefaultLog = false;
-            AfterListPerformerWorks(ref suppressDefaultLog, apiResponseLocalVar, performerForeignId);
+            AfterGetPerformerByPerformerForeignIdWorks(ref suppressDefaultLog, apiResponseLocalVar, performerForeignId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2489,7 +1328,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="performerForeignId"></param>
-        partial void AfterListPerformerWorks(ref bool suppressDefaultLog, IListPerformerWorksApiResponse apiResponseLocalVar, string performerForeignId);
+        partial void AfterGetPerformerByPerformerForeignIdWorks(ref bool suppressDefaultLog, IGetPerformerByPerformerForeignIdWorksApiResponse apiResponseLocalVar, string performerForeignId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2498,10 +1337,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="performerForeignId"></param>
-        private void OnErrorListPerformerWorksDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId)
+        private void OnErrorGetPerformerByPerformerForeignIdWorksDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListPerformerWorks(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerForeignId);
+            OnErrorGetPerformerByPerformerForeignIdWorks(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerForeignId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2514,19 +1353,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="performerForeignId"></param>
-        partial void OnErrorListPerformerWorks(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId);
+        partial void OnErrorGetPerformerByPerformerForeignIdWorks(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string performerForeignId);
 
         /// <summary>
         /// Retrieves all movies associated with a performer by their external foreign ID (e.g., from StashDb) 
         /// </summary>
         /// <param name="performerForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerWorksApiResponse"/>&gt;</returns>
-        public async Task<IListPerformerWorksApiResponse?> ListPerformerWorksOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdWorksApiResponse"/>&gt;</returns>
+        public async Task<IGetPerformerByPerformerForeignIdWorksApiResponse?> GetPerformerByPerformerForeignIdWorksOrDefaultAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListPerformerWorksAsync(performerForeignId, cancellationToken).ConfigureAwait(false);
+                return await GetPerformerByPerformerForeignIdWorksAsync(performerForeignId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2540,16 +1379,16 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="performerForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListPerformerWorksApiResponse"/>&gt;</returns>
-        public async Task<IListPerformerWorksApiResponse> ListPerformerWorksAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetPerformerByPerformerForeignIdWorksApiResponse"/>&gt;</returns>
+        public async Task<IGetPerformerByPerformerForeignIdWorksApiResponse> GetPerformerByPerformerForeignIdWorksAsync(string performerForeignId, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListPerformerWorks(performerForeignId);
+                ValidateGetPerformerByPerformerForeignIdWorks(performerForeignId);
 
-                FormatListPerformerWorks(ref performerForeignId);
+                FormatGetPerformerByPerformerForeignIdWorks(ref performerForeignId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2585,7 +1424,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListPerformerWorksApiResponse apiResponseLocalVar;
+                        GetPerformerByPerformerForeignIdWorksApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2596,9 +1435,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListPerformerWorksDefaultImplementation(apiResponseLocalVar, performerForeignId);
+                        AfterGetPerformerByPerformerForeignIdWorksDefaultImplementation(apiResponseLocalVar, performerForeignId);
 
-                        Events.ExecuteOnListPerformerWorks(apiResponseLocalVar);
+                        Events.ExecuteOnGetPerformerByPerformerForeignIdWorks(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2610,16 +1449,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListPerformerWorksDefaultImplementation(e, "/api/v3/performer/{performerForeignId}/works", uriBuilderLocalVar.Path, performerForeignId);
-                Events.ExecuteOnErrorListPerformerWorks(e);
+                OnErrorGetPerformerByPerformerForeignIdWorksDefaultImplementation(e, "/api/v3/performer/{performerForeignId}/works", uriBuilderLocalVar.Path, performerForeignId);
+                Events.ExecuteOnErrorGetPerformerByPerformerForeignIdWorks(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListPerformerWorksApiResponse"/>
+        /// The <see cref="GetPerformerByPerformerForeignIdWorksApiResponse"/>
         /// </summary>
-        public partial class ListPerformerWorksApiResponse : Whisparr3.Net.Client.ApiResponse, IListPerformerWorksApiResponse
+        public partial class GetPerformerByPerformerForeignIdWorksApiResponse : Whisparr3.Net.Client.ApiResponse, IGetPerformerByPerformerForeignIdWorksApiResponse
         {
             /// <summary>
             /// The logger
@@ -2627,7 +1466,7 @@ namespace Whisparr3.Net.Api
             public ILogger<PerformerApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListPerformerWorksApiResponse"/>
+            /// The <see cref="GetPerformerByPerformerForeignIdWorksApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2636,14 +1475,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListPerformerWorksApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetPerformerByPerformerForeignIdWorksApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListPerformerWorksApiResponse"/>
+            /// The <see cref="GetPerformerByPerformerForeignIdWorksApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2652,7 +1491,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListPerformerWorksApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetPerformerByPerformerForeignIdWorksApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2727,20 +1566,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdatePerformer(ref string id, Option<PerformerResource> performerResource);
+        partial void FormatPostPerformer(PerformerResource performerResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="performerResource"></param>
         /// <returns></returns>
-        private void ValidateUpdatePerformer(string id, Option<PerformerResource> performerResource)
+        private void ValidatePostPerformer(PerformerResource performerResource)
         {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            if (performerResource.IsSet && performerResource.Value == null)
+            if (performerResource == null)
                 throw new ArgumentNullException(nameof(performerResource));
         }
 
@@ -2748,12 +1583,11 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
         /// <param name="performerResource"></param>
-        private void AfterUpdatePerformerDefaultImplementation(IUpdatePerformerApiResponse apiResponseLocalVar, string id, Option<PerformerResource> performerResource)
+        private void AfterPostPerformerDefaultImplementation(IPostPerformerApiResponse apiResponseLocalVar, PerformerResource performerResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdatePerformer(ref suppressDefaultLog, apiResponseLocalVar, id, performerResource);
+            AfterPostPerformer(ref suppressDefaultLog, apiResponseLocalVar, performerResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2763,9 +1597,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
         /// <param name="performerResource"></param>
-        partial void AfterUpdatePerformer(ref bool suppressDefaultLog, IUpdatePerformerApiResponse apiResponseLocalVar, string id, Option<PerformerResource> performerResource);
+        partial void AfterPostPerformer(ref bool suppressDefaultLog, IPostPerformerApiResponse apiResponseLocalVar, PerformerResource performerResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2773,12 +1606,11 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
         /// <param name="performerResource"></param>
-        private void OnErrorUpdatePerformerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<PerformerResource> performerResource)
+        private void OnErrorPostPerformerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerResource performerResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdatePerformer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, performerResource);
+            OnErrorPostPerformer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2790,22 +1622,20 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
         /// <param name="performerResource"></param>
-        partial void OnErrorUpdatePerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<PerformerResource> performerResource);
+        partial void OnErrorPostPerformer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerResource performerResource);
 
         /// <summary>
-        /// Updates an existing performer in Whisparr 
+        /// Adds a new performer to Whisparr 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource">The performer details to add</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>&gt;</returns>
-        public async Task<IUpdatePerformerApiResponse?> UpdatePerformerOrDefaultAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerApiResponse"/>&gt;</returns>
+        public async Task<IPostPerformerApiResponse?> PostPerformerOrDefaultAsync(PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdatePerformerAsync(id, performerResource, cancellationToken).ConfigureAwait(false);
+                return await PostPerformerAsync(performerResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2814,22 +1644,21 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Updates an existing performer in Whisparr 
+        /// Adds a new performer to Whisparr 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="performerResource">The performer details to update (optional)</param>
+        /// <param name="performerResource">The performer details to add</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdatePerformerApiResponse"/>&gt;</returns>
-        public async Task<IUpdatePerformerApiResponse> UpdatePerformerAsync(string id, Option<PerformerResource> performerResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerApiResponse"/>&gt;</returns>
+        public async Task<IPostPerformerApiResponse> PostPerformerAsync(PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdatePerformer(id, performerResource);
+                ValidatePostPerformer(performerResource);
 
-                FormatUpdatePerformer(ref id, performerResource);
+                FormatPostPerformer(performerResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2837,16 +1666,12 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/performer/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/api/v3/performer"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer");
 
-                    if (performerResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (performerResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (performerResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2873,26 +1698,26 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdatePerformerApiResponse apiResponseLocalVar;
+                        PostPerformerApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterUpdatePerformerDefaultImplementation(apiResponseLocalVar, id, performerResource);
+                        AfterPostPerformerDefaultImplementation(apiResponseLocalVar, performerResource);
 
-                        Events.ExecuteOnUpdatePerformer(apiResponseLocalVar);
+                        Events.ExecuteOnPostPerformer(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2904,16 +1729,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdatePerformerDefaultImplementation(e, "/api/v3/performer/{id}", uriBuilderLocalVar.Path, id, performerResource);
-                Events.ExecuteOnErrorUpdatePerformer(e);
+                OnErrorPostPerformerDefaultImplementation(e, "/api/v3/performer", uriBuilderLocalVar.Path, performerResource);
+                Events.ExecuteOnErrorPostPerformer(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdatePerformerApiResponse"/>
+        /// The <see cref="PostPerformerApiResponse"/>
         /// </summary>
-        public partial class UpdatePerformerApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdatePerformerApiResponse
+        public partial class PostPerformerApiResponse : Whisparr3.Net.Client.ApiResponse, IPostPerformerApiResponse
         {
             /// <summary>
             /// The logger
@@ -2921,7 +1746,7 @@ namespace Whisparr3.Net.Api
             public ILogger<PerformerApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdatePerformerApiResponse"/>
+            /// The <see cref="PostPerformerApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2930,14 +1755,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdatePerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostPerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdatePerformerApiResponse"/>
+            /// The <see cref="PostPerformerApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2946,7 +1771,287 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdatePerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostPerformerApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.PerformerResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.PerformerResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.PerformerResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostPerformerList(List<string> requestBody);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="requestBody"></param>
+        /// <returns></returns>
+        private void ValidatePostPerformerList(List<string> requestBody)
+        {
+            if (requestBody == null)
+                throw new ArgumentNullException(nameof(requestBody));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="requestBody"></param>
+        private void AfterPostPerformerListDefaultImplementation(IPostPerformerListApiResponse apiResponseLocalVar, List<string> requestBody)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostPerformerList(ref suppressDefaultLog, apiResponseLocalVar, requestBody);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="requestBody"></param>
+        partial void AfterPostPerformerList(ref bool suppressDefaultLog, IPostPerformerListApiResponse apiResponseLocalVar, List<string> requestBody);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="requestBody"></param>
+        private void OnErrorPostPerformerListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<string> requestBody)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostPerformerList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, requestBody);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="requestBody"></param>
+        partial void OnErrorPostPerformerList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<string> requestBody);
+
+        /// <summary>
+        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </summary>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerListApiResponse"/>&gt;</returns>
+        public async Task<IPostPerformerListApiResponse?> PostPerformerListOrDefaultAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostPerformerListAsync(requestBody, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a list of performers by their external foreign ID (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerListApiResponse"/>&gt;</returns>
+        public async Task<IPostPerformerListApiResponse> PostPerformerListAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostPerformerList(requestBody);
+
+                FormatPostPerformerList(requestBody);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/performer/list"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/list");
+
+                    httpRequestMessageLocalVar.Content = (requestBody as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(requestBody, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostPerformerListApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/list", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostPerformerListDefaultImplementation(apiResponseLocalVar, requestBody);
+
+                        Events.ExecuteOnPostPerformerList(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostPerformerListDefaultImplementation(e, "/api/v3/performer/list", uriBuilderLocalVar.Path, requestBody);
+                Events.ExecuteOnErrorPostPerformerList(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostPerformerListApiResponse"/>
+        /// </summary>
+        public partial class PostPerformerListApiResponse : Whisparr3.Net.Client.ApiResponse, IPostPerformerListApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PerformerApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostPerformerListApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostPerformerListApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostPerformerListApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostPerformerListApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3004,11 +2109,564 @@ namespace Whisparr3.Net.Api
                 return result != null;
             }
 
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostPerformerPaged(PerformerPagingRequestResource performerPagingRequestResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="performerPagingRequestResource"></param>
+        /// <returns></returns>
+        private void ValidatePostPerformerPaged(PerformerPagingRequestResource performerPagingRequestResource)
+        {
+            if (performerPagingRequestResource == null)
+                throw new ArgumentNullException(nameof(performerPagingRequestResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="performerPagingRequestResource"></param>
+        private void AfterPostPerformerPagedDefaultImplementation(IPostPerformerPagedApiResponse apiResponseLocalVar, PerformerPagingRequestResource performerPagingRequestResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostPerformerPaged(ref suppressDefaultLog, apiResponseLocalVar, performerPagingRequestResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="performerPagingRequestResource"></param>
+        partial void AfterPostPerformerPaged(ref bool suppressDefaultLog, IPostPerformerPagedApiResponse apiResponseLocalVar, PerformerPagingRequestResource performerPagingRequestResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="performerPagingRequestResource"></param>
+        private void OnErrorPostPerformerPagedDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerPagingRequestResource performerPagingRequestResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostPerformerPaged(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerPagingRequestResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="performerPagingRequestResource"></param>
+        partial void OnErrorPostPerformerPaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerPagingRequestResource performerPagingRequestResource);
+
+        /// <summary>
+        /// Retrieves a paged list of performers with advanced filtering options 
+        /// </summary>
+        /// <param name="performerPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerPagedApiResponse"/>&gt;</returns>
+        public async Task<IPostPerformerPagedApiResponse?> PostPerformerPagedOrDefaultAsync(PerformerPagingRequestResource performerPagingRequestResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostPerformerPagedAsync(performerPagingRequestResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a paged list of performers with advanced filtering options 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="performerPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostPerformerPagedApiResponse"/>&gt;</returns>
+        public async Task<IPostPerformerPagedApiResponse> PostPerformerPagedAsync(PerformerPagingRequestResource performerPagingRequestResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostPerformerPaged(performerPagingRequestResource);
+
+                FormatPostPerformerPaged(performerPagingRequestResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/performer/paged"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/paged");
+
+                    httpRequestMessageLocalVar.Content = (performerPagingRequestResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerPagingRequestResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostPerformerPagedApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/paged", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostPerformerPagedDefaultImplementation(apiResponseLocalVar, performerPagingRequestResource);
+
+                        Events.ExecuteOnPostPerformerPaged(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostPerformerPagedDefaultImplementation(e, "/api/v3/performer/paged", uriBuilderLocalVar.Path, performerPagingRequestResource);
+                Events.ExecuteOnErrorPostPerformerPaged(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostPerformerPagedApiResponse"/>
+        /// </summary>
+        public partial class PostPerformerPagedApiResponse : Whisparr3.Net.Client.ApiResponse, IPostPerformerPagedApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PerformerApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostPerformerPagedApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostPerformerPagedApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostPerformerPagedApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostPerformerPagedApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.PerformerResourcePagingResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.PerformerResourcePagingResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.PerformerResourcePagingResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResourcePagingResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResourcePagingResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResourcePagingResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutPerformerById(ref string id, PerformerResource performerResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="performerResource"></param>
+        /// <returns></returns>
+        private void ValidatePutPerformerById(string id, PerformerResource performerResource)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (performerResource == null)
+                throw new ArgumentNullException(nameof(performerResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="performerResource"></param>
+        private void AfterPutPerformerByIdDefaultImplementation(IPutPerformerByIdApiResponse apiResponseLocalVar, string id, PerformerResource performerResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutPerformerById(ref suppressDefaultLog, apiResponseLocalVar, id, performerResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="performerResource"></param>
+        partial void AfterPutPerformerById(ref bool suppressDefaultLog, IPutPerformerByIdApiResponse apiResponseLocalVar, string id, PerformerResource performerResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="performerResource"></param>
+        private void OnErrorPutPerformerByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, PerformerResource performerResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutPerformerById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, performerResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="performerResource"></param>
+        partial void OnErrorPutPerformerById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, PerformerResource performerResource);
+
+        /// <summary>
+        /// Updates an existing performer in Whisparr 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="performerResource">The performer details to update</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutPerformerByIdApiResponse?> PutPerformerByIdOrDefaultAsync(string id, PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutPerformerByIdAsync(id, performerResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Updates an existing performer in Whisparr 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="performerResource">The performer details to update</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutPerformerByIdApiResponse> PutPerformerByIdAsync(string id, PerformerResource performerResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutPerformerById(id, performerResource);
+
+                FormatPutPerformerById(ref id, performerResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/performer/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (performerResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutPerformerByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/performer/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutPerformerByIdDefaultImplementation(apiResponseLocalVar, id, performerResource);
+
+                        Events.ExecuteOnPutPerformerById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutPerformerByIdDefaultImplementation(e, "/api/v3/performer/{id}", uriBuilderLocalVar.Path, id, performerResource);
+                Events.ExecuteOnErrorPutPerformerById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutPerformerByIdApiResponse"/>
+        /// </summary>
+        public partial class PutPerformerByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutPerformerByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<PerformerApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutPerformerByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutPerformerByIdApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutPerformerByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutPerformerByIdApiResponse(ILogger<PerformerApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
             /// <summary>
             /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
             public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.PerformerResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.PerformerResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.PerformerResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.PerformerResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
 
             /// <summary>
             /// Returns true if the response is 400 BadRequest

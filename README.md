@@ -1,8 +1,7 @@
 # Whisparr3.Net
 
 A C# client for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI specification. It covers
-every operation in that specification except the one malformed root path. The package targets
-`net8.0` and `net10.0`.
+every operation in that specification. The package targets `net8.0` and `net10.0`.
 
 ## Quickstart
 
@@ -84,10 +83,12 @@ through a member named `VarVersion`, not `Version`. The generator renames a memb
 name collides with a reserved one, and this is that rename surfacing on the first type you meet.
 
 **`EnsureSuccess` is the classifier, and the generated success accessor is not.** The generated
-accessor deserializes on exactly 200 and returns `null` on anything else, so a rejected API key and
-an empty collection read the same to a caller. `EnsureSuccess` separates the three outcomes. It
-returns the body on a success that carries one, and otherwise throws a `Whisparr3ApiException`
-whose `IsSuccessStatusCode` tells a failed request apart from a success with nothing to read.
+accessor deserializes on the one status its operation documents and returns `null` on anything
+else, so a rejected API key and an empty collection read the same to a caller. `EnsureSuccess`
+separates the three outcomes. It returns the body on a success that carries one, and otherwise
+throws a `Whisparr3ApiException` whose `IsSuccessStatusCode` tells a failed request apart from a
+success with nothing to read. There is an overload per documented status, so it reads a create's
+201 and an update's 202 the same way it reads a 200.
 
 Every operation also exposes an `OrDefaultAsync` variant that wraps its whole body in a catch-all
 returning `null`. That variant destroys the same distinction. Call the plain variant and use

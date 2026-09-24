@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigApiResponse"/>&gt;</returns>
-        Task<IGetIndexerConfigApiResponse> GetIndexerConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerApiResponse"/>&gt;</returns>
+        Task<IGetConfigIndexerApiResponse> GetConfigIndexerAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,31 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigApiResponse"/>?&gt;</returns>
-        Task<IGetIndexerConfigApiResponse?> GetIndexerConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetIndexerConfigByIdApiResponse> GetIndexerConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetIndexerConfigByIdApiResponse?> GetIndexerConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerApiResponse"/>?&gt;</returns>
+        Task<IGetConfigIndexerApiResponse?> GetConfigIndexerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -90,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="indexerConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateIndexerConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateIndexerConfigApiResponse> UpdateIndexerConfigAsync(string id, Option<IndexerConfigResource> indexerConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigIndexerByIdApiResponse> GetConfigIndexerByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,16 +78,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="indexerConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateIndexerConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateIndexerConfigApiResponse?> UpdateIndexerConfigOrDefaultAsync(string id, Option<IndexerConfigResource> indexerConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigIndexerByIdApiResponse?> GetConfigIndexerByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="indexerConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigIndexerByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigIndexerByIdApiResponse> PutConfigIndexerByIdAsync(string id, IndexerConfigResource indexerConfigResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="indexerConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigIndexerByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigIndexerByIdApiResponse?> PutConfigIndexerByIdOrDefaultAsync(string id, IndexerConfigResource indexerConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetIndexerConfigApiResponse"/>
+    /// The <see cref="IGetConfigIndexerApiResponse"/>
     /// </summary>
-    public interface IGetIndexerConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.IndexerConfigResource?>
+    public interface IGetConfigIndexerApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.IndexerConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -121,9 +121,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetIndexerConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigIndexerByIdApiResponse"/>
     /// </summary>
-    public interface IGetIndexerConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.IndexerConfigResource?>
+    public interface IGetConfigIndexerByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.IndexerConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -133,15 +133,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateIndexerConfigApiResponse"/>
+    /// The <see cref="IPutConfigIndexerByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateIndexerConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.IndexerConfigResource?>
+    public interface IPutConfigIndexerByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.IndexerConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -152,61 +152,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetIndexerConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigIndexer;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetIndexerConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigIndexer;
 
-        internal void ExecuteOnGetIndexerConfig(IndexerConfigApi.GetIndexerConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigIndexer(IndexerConfigApi.GetConfigIndexerApiResponse apiResponse)
         {
-            OnGetIndexerConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigIndexer?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetIndexerConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigIndexer(Exception exception)
         {
-            OnErrorGetIndexerConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigIndexer?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetIndexerConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigIndexerById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetIndexerConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigIndexerById;
 
-        internal void ExecuteOnGetIndexerConfigById(IndexerConfigApi.GetIndexerConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigIndexerById(IndexerConfigApi.GetConfigIndexerByIdApiResponse apiResponse)
         {
-            OnGetIndexerConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigIndexerById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetIndexerConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigIndexerById(Exception exception)
         {
-            OnErrorGetIndexerConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigIndexerById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateIndexerConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigIndexerById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateIndexerConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigIndexerById;
 
-        internal void ExecuteOnUpdateIndexerConfig(IndexerConfigApi.UpdateIndexerConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigIndexerById(IndexerConfigApi.PutConfigIndexerByIdApiResponse apiResponse)
         {
-            OnUpdateIndexerConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigIndexerById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateIndexerConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigIndexerById(Exception exception)
         {
-            OnErrorUpdateIndexerConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigIndexerById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -255,10 +255,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetIndexerConfigDefaultImplementation(IGetIndexerConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigIndexerDefaultImplementation(IGetConfigIndexerApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetIndexerConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigIndexer(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -268,7 +268,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetIndexerConfig(ref bool suppressDefaultLog, IGetIndexerConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigIndexer(ref bool suppressDefaultLog, IGetConfigIndexerApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -276,10 +276,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetIndexerConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigIndexerDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetIndexerConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigIndexer(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -291,18 +291,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetIndexerConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigIndexer(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetIndexerConfigApiResponse?> GetIndexerConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigIndexerApiResponse?> GetConfigIndexerOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetIndexerConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigIndexerAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -315,8 +315,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetIndexerConfigApiResponse> GetIndexerConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigIndexerApiResponse> GetConfigIndexerAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -353,7 +353,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetIndexerConfigApiResponse apiResponseLocalVar;
+                        GetConfigIndexerApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -364,9 +364,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetIndexerConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigIndexerDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetIndexerConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigIndexer(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -378,16 +378,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetIndexerConfigDefaultImplementation(e, "/api/v3/config/indexer", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetIndexerConfig(e);
+                OnErrorGetConfigIndexerDefaultImplementation(e, "/api/v3/config/indexer", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigIndexer(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetIndexerConfigApiResponse"/>
+        /// The <see cref="GetConfigIndexerApiResponse"/>
         /// </summary>
-        public partial class GetIndexerConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetIndexerConfigApiResponse
+        public partial class GetConfigIndexerApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigIndexerApiResponse
         {
             /// <summary>
             /// The logger
@@ -395,7 +395,7 @@ namespace Whisparr3.Net.Api
             public ILogger<IndexerConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetIndexerConfigApiResponse"/>
+            /// The <see cref="GetConfigIndexerApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -404,14 +404,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetIndexerConfigApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigIndexerApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetIndexerConfigApiResponse"/>
+            /// The <see cref="GetConfigIndexerApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -420,7 +420,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetIndexerConfigApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigIndexerApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -489,17 +489,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetIndexerConfigById(ref int id);
+        partial void FormatGetConfigIndexerById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetIndexerConfigByIdDefaultImplementation(IGetIndexerConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigIndexerByIdDefaultImplementation(IGetConfigIndexerByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetIndexerConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigIndexerById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -510,7 +510,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetIndexerConfigById(ref bool suppressDefaultLog, IGetIndexerConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigIndexerById(ref bool suppressDefaultLog, IGetConfigIndexerByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -519,10 +519,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetIndexerConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigIndexerByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetIndexerConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigIndexerById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -535,19 +535,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetIndexerConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigIndexerById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetIndexerConfigByIdApiResponse?> GetIndexerConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigIndexerByIdApiResponse?> GetConfigIndexerByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetIndexerConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigIndexerByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -561,14 +561,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetIndexerConfigByIdApiResponse> GetIndexerConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigIndexerByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigIndexerByIdApiResponse> GetConfigIndexerByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetIndexerConfigById(ref id);
+                FormatGetConfigIndexerById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -604,7 +604,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetIndexerConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigIndexerByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -615,9 +615,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetIndexerConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigIndexerByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetIndexerConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigIndexerById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -629,16 +629,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetIndexerConfigByIdDefaultImplementation(e, "/api/v3/config/indexer/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetIndexerConfigById(e);
+                OnErrorGetConfigIndexerByIdDefaultImplementation(e, "/api/v3/config/indexer/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigIndexerById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetIndexerConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigIndexerByIdApiResponse"/>
         /// </summary>
-        public partial class GetIndexerConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetIndexerConfigByIdApiResponse
+        public partial class GetConfigIndexerByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigIndexerByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -646,7 +646,7 @@ namespace Whisparr3.Net.Api
             public ILogger<IndexerConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetIndexerConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigIndexerByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -655,14 +655,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetIndexerConfigByIdApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigIndexerByIdApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetIndexerConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigIndexerByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -671,7 +671,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetIndexerConfigByIdApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigIndexerByIdApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -740,7 +740,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateIndexerConfig(ref string id, Option<IndexerConfigResource> indexerConfigResource);
+        partial void FormatPutConfigIndexerById(ref string id, IndexerConfigResource indexerConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -748,12 +748,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="indexerConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateIndexerConfig(string id, Option<IndexerConfigResource> indexerConfigResource)
+        private void ValidatePutConfigIndexerById(string id, IndexerConfigResource indexerConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (indexerConfigResource.IsSet && indexerConfigResource.Value == null)
+            if (indexerConfigResource == null)
                 throw new ArgumentNullException(nameof(indexerConfigResource));
         }
 
@@ -763,10 +763,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="indexerConfigResource"></param>
-        private void AfterUpdateIndexerConfigDefaultImplementation(IUpdateIndexerConfigApiResponse apiResponseLocalVar, string id, Option<IndexerConfigResource> indexerConfigResource)
+        private void AfterPutConfigIndexerByIdDefaultImplementation(IPutConfigIndexerByIdApiResponse apiResponseLocalVar, string id, IndexerConfigResource indexerConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateIndexerConfig(ref suppressDefaultLog, apiResponseLocalVar, id, indexerConfigResource);
+            AfterPutConfigIndexerById(ref suppressDefaultLog, apiResponseLocalVar, id, indexerConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -778,7 +778,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="indexerConfigResource"></param>
-        partial void AfterUpdateIndexerConfig(ref bool suppressDefaultLog, IUpdateIndexerConfigApiResponse apiResponseLocalVar, string id, Option<IndexerConfigResource> indexerConfigResource);
+        partial void AfterPutConfigIndexerById(ref bool suppressDefaultLog, IPutConfigIndexerByIdApiResponse apiResponseLocalVar, string id, IndexerConfigResource indexerConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -788,10 +788,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="indexerConfigResource"></param>
-        private void OnErrorUpdateIndexerConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<IndexerConfigResource> indexerConfigResource)
+        private void OnErrorPutConfigIndexerByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, IndexerConfigResource indexerConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateIndexerConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, indexerConfigResource);
+            OnErrorPutConfigIndexerById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, indexerConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -805,20 +805,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="indexerConfigResource"></param>
-        partial void OnErrorUpdateIndexerConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<IndexerConfigResource> indexerConfigResource);
+        partial void OnErrorPutConfigIndexerById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, IndexerConfigResource indexerConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="indexerConfigResource"> (optional)</param>
+        /// <param name="indexerConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateIndexerConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateIndexerConfigApiResponse?> UpdateIndexerConfigOrDefaultAsync(string id, Option<IndexerConfigResource> indexerConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigIndexerByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigIndexerByIdApiResponse?> PutConfigIndexerByIdOrDefaultAsync(string id, IndexerConfigResource indexerConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateIndexerConfigAsync(id, indexerConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigIndexerByIdAsync(id, indexerConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -831,18 +831,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="indexerConfigResource"> (optional)</param>
+        /// <param name="indexerConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateIndexerConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateIndexerConfigApiResponse> UpdateIndexerConfigAsync(string id, Option<IndexerConfigResource> indexerConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigIndexerByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigIndexerByIdApiResponse> PutConfigIndexerByIdAsync(string id, IndexerConfigResource indexerConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateIndexerConfig(id, indexerConfigResource);
+                ValidatePutConfigIndexerById(id, indexerConfigResource);
 
-                FormatUpdateIndexerConfig(ref id, indexerConfigResource);
+                FormatPutConfigIndexerById(ref id, indexerConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -854,12 +854,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/indexer/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (indexerConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (indexerConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (indexerConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(indexerConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(indexerConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -894,7 +891,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateIndexerConfigApiResponse apiResponseLocalVar;
+                        PutConfigIndexerByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -905,9 +902,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateIndexerConfigDefaultImplementation(apiResponseLocalVar, id, indexerConfigResource);
+                        AfterPutConfigIndexerByIdDefaultImplementation(apiResponseLocalVar, id, indexerConfigResource);
 
-                        Events.ExecuteOnUpdateIndexerConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigIndexerById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -919,16 +916,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateIndexerConfigDefaultImplementation(e, "/api/v3/config/indexer/{id}", uriBuilderLocalVar.Path, id, indexerConfigResource);
-                Events.ExecuteOnErrorUpdateIndexerConfig(e);
+                OnErrorPutConfigIndexerByIdDefaultImplementation(e, "/api/v3/config/indexer/{id}", uriBuilderLocalVar.Path, id, indexerConfigResource);
+                Events.ExecuteOnErrorPutConfigIndexerById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateIndexerConfigApiResponse"/>
+        /// The <see cref="PutConfigIndexerByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateIndexerConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateIndexerConfigApiResponse
+        public partial class PutConfigIndexerByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigIndexerByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -936,7 +933,7 @@ namespace Whisparr3.Net.Api
             public ILogger<IndexerConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateIndexerConfigApiResponse"/>
+            /// The <see cref="PutConfigIndexerByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -945,14 +942,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateIndexerConfigApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigIndexerByIdApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateIndexerConfigApiResponse"/>
+            /// The <see cref="PutConfigIndexerByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -961,7 +958,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateIndexerConfigApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigIndexerByIdApiResponse(ILogger<IndexerConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -970,50 +967,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.IndexerConfigResource? Ok()
+            public Whisparr3.Net.Model.IndexerConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.IndexerConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.IndexerConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.IndexerConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.IndexerConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.IndexerConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.IndexerConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.IndexerConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.IndexerConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

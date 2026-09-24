@@ -34,7 +34,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "generator" / "templates"
-RAW_SPEC = ROOT / "spec" / "openapi.raw.json"
 SPEC = ROOT / "spec" / "openapi.generated.json"
 
 HTTP_METHODS = ("get", "put", "post", "delete", "patch", "head", "options", "trace")
@@ -42,8 +41,6 @@ HTTP_METHODS = ("get", "put", "post", "delete", "patch", "head", "options", "tra
 # Paths that serve Whisparr's browser interface or a calendar subscriber. A path list rather than
 # an operation list, so a new method on one of these paths is picked up.
 WEB_INTERFACE_PATHS = (
-    "/{path}",
-    "/content/{path}",
     "/login",
     "/logout",
     "/feed/v3/calendar/whisparr.ics",
@@ -60,7 +57,6 @@ DESCRIBED_BY_NAME = (
     ("DELETE", "/api/v3/moviefile/bulk"),
     ("PUT", "/api/v3/moviefile/{id}"),
     ("PUT", "/api/v3/moviefile/bulk"),
-    ("PUT", "/api/v3/moviefile/editor"),
 )
 
 # Operations whose responses carry credentials. Which responses leak is a property of the schemas
@@ -109,7 +105,8 @@ def table(rows):
     return "\n".join(out)
 
 
-def render_surface(raw_ops, ops):
+def render_surface(ops):
+
     void = [r for r in ops if not any(
         "content" in response
         for code, response in r[3].get("responses", {}).items()
@@ -137,7 +134,6 @@ def render_surface(raw_ops, ops):
 
     text = (TEMPLATES / "SURFACE.md.in").read_text(encoding="utf-8")
     for token, value in (
-        ("@@RAW_TOTAL@@", str(len(raw_ops))),
         ("@@TOTAL@@", str(len(ops))),
         ("@@VOID_COUNT@@", str(len(void))),
         ("@@VOID_TABLE@@", table(in_document_order(void))),
@@ -154,16 +150,14 @@ def main():
                         help="do not write; exit 1 if the document on disk differs")
     args = parser.parse_args()
 
-    for path in (RAW_SPEC, SPEC):
-        if not path.exists():
-            die("%s does not exist. There is nothing to render from." % path)
+    if not SPEC.exists():
+        die("%s does not exist. There is nothing to render from." % SPEC)
 
-    raw_ops = operations(json.load(RAW_SPEC.open(encoding="utf-8")))
     ops = operations(json.load(SPEC.open(encoding="utf-8")))
 
-    surface, void_count, web_count = render_surface(raw_ops, ops)
+    surface, void_count, web_count = render_surface(ops)
 
-    print("spec declares %d operations raw, %d generated" % (len(raw_ops), len(ops)))
+    print("spec declares %d operations" % len(ops))
     print("  SURFACE.md  %d return nothing, %d serve the web interface" % (void_count, web_count))
 
     stale = []

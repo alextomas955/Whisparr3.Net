@@ -10,20 +10,21 @@ one comparison tells you whether what came out matches what is committed.
 
 The committed specification was captured from one digest-pinned Whisparr container, and the
 committed tree was produced from that specification by one digest-pinned generator image. Both pins
-are recorded, and neither is a moving tag.
+are content addresses, and neither is a moving tag.
 
 | Field | Value |
 | --- | --- |
-| Whisparr image | `ghcr.io/hotio/whisparr@sha256:fab920114a75f1c86bbadf24c66f1e35a912ace9c7527e971f1032a569589ee6` |
-| Whisparr version | `3.4.0.1387` |
+| Whisparr image | `ghcr.io/hotio/whisparr@sha256:0f2af8b840e937f1e7f06aa535179692428f8c4b3f2dc139591f1640e9b4c6fb` |
+| Whisparr release | `v3.6.2-release.1727` |
+| Whisparr version | `3.6.2.1727` |
 | Whisparr branch | `eros` |
-| Whisparr build time | `2026-08-30T11:26:49Z` |
-| Whisparr package version | `v3-7f610bc` |
+| Whisparr build time | `2026-09-24T02:45:36Z` |
+| Whisparr package version | `v3-0a2e672` |
 | Spec endpoint | `/docs/v3/openapi.json` |
-| Raw spec SHA-256 | `8ac2dbceedf65de542c6a8d2c7bb8d8f8fa6e155b651956079f9b192e8bedf18` |
-| Raw spec bytes | `381380` |
+| Raw spec SHA-256 | `5cb377a22c5678e824440cac9be7a520773380c70c90d166d952d21d07fb74a9` |
+| Raw spec bytes | `447817` |
 | Spec OpenAPI version | `3.0.4` |
-| Processed spec SHA-256 | `665f8dcf872cae6168039850e1ff030a11955346754236867a05f83662c2fcb6` |
+| Processed spec SHA-256 | `25969dfd21fe35b2ad67c540866841fb3fd24c22593c342528a9f33827bc97b1` |
 | Generator image | `openapitools/openapi-generator-cli@sha256:2ab0a9680222de65dc9d3baf861aa02b99e1b80c211d8221ebf3ae8f8a102524` |
 | Generator version | openapi-generator-cli 7.25.0 |
 
@@ -85,8 +86,7 @@ fails on `render_docs.py --check`. Run the renderer too, or use `refresh.py`, wh
 
 `generator/refresh.py` is the entry point for changing which Whisparr the library is generated
 from. It runs the whole pipeline in order and stops at the first failure, naming the step that
-failed and what to do about it: capture, preprocess, generate, render docs, build, package
-audit.
+failed and what to do about it: capture, preprocess, generate, render docs, build, package audit.
 
 ```
 python3 generator/refresh.py --image-digest sha256:0123abcd...
@@ -95,12 +95,21 @@ python3 generator/refresh.py --image-digest sha256:0123abcd...
 Run with no digest, it re-verifies the one that is already pinned. Every gate is exercised and
 nothing changes except the capture wall clock in `spec/PROVENANCE.json`.
 
-Expect the preprocess step to refuse when a new Whisparr version has moved a path. Method names are
-derived from the specification's paths rather than read from a committed map, so a moved path
-either produces a name the derivation cannot form, or collides with another, or leaves a stale
-override pointing at a path that no longer exists. The assertion names which of those it hit. The
-fix is to edit `OPERATION_ID_OVERRIDES` in `generator/preprocess_spec.py` and run the script again.
-The committed specification is not replaced until the step passes.
+Resolve the digest from hotio's moving `v3` tag rather than pulling that tag, because it moves:
+
+```
+docker buildx imagetools inspect ghcr.io/hotio/whisparr:v3 --format "{{.Manifest.Digest}}"
+```
+
+Method names come from the `operationId` Whisparr assigns each operation, so a moved path renames a
+method and the break surfaces in a consumer's build rather than here. The preprocess step refuses
+only when the document itself is unusable: an operation with no `operationId`, two operations
+sharing one, or a name that is not a C# identifier. All three are upstream defects to report rather
+than to patch here. The committed specification is not replaced until the step passes.
+
+`generator/render_docs.py` holds three hand-kept lists of paths, and the render refuses when one of
+them names a path the specification no longer declares. The message names which list. Fix the list
+and the prose in `generator/templates/SURFACE.md.in` that describes it together.
 
 ## Check the result
 

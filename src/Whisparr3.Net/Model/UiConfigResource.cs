@@ -40,12 +40,13 @@ namespace Whisparr3.Net.Model
         /// <param name="shortDateFormat">shortDateFormat</param>
         /// <param name="longDateFormat">longDateFormat</param>
         /// <param name="timeFormat">timeFormat</param>
+        /// <param name="varTimeZone">varTimeZone</param>
         /// <param name="showRelativeDates">showRelativeDates</param>
         /// <param name="enableColorImpairedMode">enableColorImpairedMode</param>
         /// <param name="uiLanguage">uiLanguage</param>
         /// <param name="theme">theme</param>
         [JsonConstructor]
-        public UiConfigResource(Option<int?> id = default, Option<int?> firstDayOfWeek = default, Option<string?> calendarWeekColumnHeader = default, Option<MovieRuntimeFormatType?> movieRuntimeFormat = default, Option<string?> shortDateFormat = default, Option<string?> longDateFormat = default, Option<string?> timeFormat = default, Option<bool?> showRelativeDates = default, Option<bool?> enableColorImpairedMode = default, Option<int?> uiLanguage = default, Option<string?> theme = default)
+        public UiConfigResource(Option<int?> id = default, Option<int?> firstDayOfWeek = default, Option<string?> calendarWeekColumnHeader = default, Option<MovieRuntimeFormatType?> movieRuntimeFormat = default, Option<string?> shortDateFormat = default, Option<string?> longDateFormat = default, Option<string?> timeFormat = default, Option<string?> varTimeZone = default, Option<bool?> showRelativeDates = default, Option<bool?> enableColorImpairedMode = default, Option<int?> uiLanguage = default, Option<string?> theme = default)
         {
             IdOption = id;
             FirstDayOfWeekOption = firstDayOfWeek;
@@ -54,6 +55,7 @@ namespace Whisparr3.Net.Model
             ShortDateFormatOption = shortDateFormat;
             LongDateFormatOption = longDateFormat;
             TimeFormatOption = timeFormat;
+            VarTimeZoneOption = varTimeZone;
             ShowRelativeDatesOption = showRelativeDates;
             EnableColorImpairedModeOption = enableColorImpairedMode;
             UiLanguageOption = uiLanguage;
@@ -155,6 +157,19 @@ namespace Whisparr3.Net.Model
         public string? TimeFormat { get { return this.TimeFormatOption.Value; } set { this.TimeFormatOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of VarTimeZone
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> VarTimeZoneOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets VarTimeZone
+        /// </summary>
+        [JsonPropertyName("timeZone")]
+        public string? VarTimeZone { get { return this.VarTimeZoneOption.Value; } set { this.VarTimeZoneOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of ShowRelativeDates
         /// </summary>
         [JsonIgnore]
@@ -221,6 +236,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  ShortDateFormat: ").Append(ShortDateFormat).Append("\n");
             sb.Append("  LongDateFormat: ").Append(LongDateFormat).Append("\n");
             sb.Append("  TimeFormat: ").Append(TimeFormat).Append("\n");
+            sb.Append("  VarTimeZone: ").Append(VarTimeZone).Append("\n");
             sb.Append("  ShowRelativeDates: ").Append(ShowRelativeDates).Append("\n");
             sb.Append("  EnableColorImpairedMode: ").Append(EnableColorImpairedMode).Append("\n");
             sb.Append("  UiLanguage: ").Append(UiLanguage).Append("\n");
@@ -279,6 +295,7 @@ namespace Whisparr3.Net.Model
             Option<string?> shortDateFormat = default;
             Option<string?> longDateFormat = default;
             Option<string?> timeFormat = default;
+            Option<string?> varTimeZone = default;
             Option<bool?> showRelativeDates = default;
             Option<bool?> enableColorImpairedMode = default;
             Option<int?> uiLanguage = default;
@@ -320,6 +337,9 @@ namespace Whisparr3.Net.Model
                         case "timeFormat":
                             timeFormat = new Option<string?>(utf8JsonReader.GetString());
                             break;
+                        case "timeZone":
+                            varTimeZone = new Option<string?>(utf8JsonReader.GetString());
+                            break;
                         case "showRelativeDates":
                             showRelativeDates = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -356,7 +376,7 @@ namespace Whisparr3.Net.Model
             if (uiLanguage.IsSet && uiLanguage.Value == null)
                 throw new ArgumentNullException(nameof(uiLanguage), "Property is not nullable for class UiConfigResource.");
 
-            return new UiConfigResource(id, firstDayOfWeek, calendarWeekColumnHeader, movieRuntimeFormat, shortDateFormat, longDateFormat, timeFormat, showRelativeDates, enableColorImpairedMode, uiLanguage, theme);
+            return new UiConfigResource(id, firstDayOfWeek, calendarWeekColumnHeader, movieRuntimeFormat, shortDateFormat, longDateFormat, timeFormat, varTimeZone, showRelativeDates, enableColorImpairedMode, uiLanguage, theme);
         }
 
         /// <summary>
@@ -417,6 +437,12 @@ namespace Whisparr3.Net.Model
                     writer.WriteString("timeFormat", uiConfigResource.TimeFormat);
                 else
                     writer.WriteNull("timeFormat");
+
+            if (uiConfigResource.VarTimeZoneOption.IsSet)
+                if (uiConfigResource.VarTimeZoneOption.Value != null)
+                    writer.WriteString("timeZone", uiConfigResource.VarTimeZone);
+                else
+                    writer.WriteNull("timeZone");
 
             if (uiConfigResource.ShowRelativeDatesOption.IsSet)
                 writer.WriteBoolean("showRelativeDates", uiConfigResource.ShowRelativeDatesOption.Value!.Value);

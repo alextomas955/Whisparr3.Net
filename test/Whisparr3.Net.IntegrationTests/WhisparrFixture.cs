@@ -186,7 +186,7 @@ namespace Whisparr3.Net.IntegrationTests
                 ExpectedVersion = RequiredString(provenance, "whisparrVersion");
                 ExpectedBranch = RequiredString(provenance, "whisparrBranch");
 
-                _container = new ContainerBuilder(RequiredString(provenance, "imageDigest"))
+                _container = new ContainerBuilder(RequiredString(provenance, "image"))
                     .WithEnvironment("WHISPARR__AUTH__APIKEY", ContainerApiKey)
                     .WithPortBinding(ContainerPort, true)
                     .WithCreateParameterModifier(parameters =>

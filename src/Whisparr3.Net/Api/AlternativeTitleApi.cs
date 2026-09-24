@@ -45,10 +45,11 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="movieMetadataId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlternativeTitleByIdApiResponse"/>&gt;</returns>
-        Task<IGetAlternativeTitleByIdApiResponse> GetAlternativeTitleByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleApiResponse"/>&gt;</returns>
+        Task<IGetAlttitleApiResponse> GetAlttitleAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +57,11 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id"></param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="movieMetadataId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlternativeTitleByIdApiResponse"/>?&gt;</returns>
-        Task<IGetAlternativeTitleByIdApiResponse?> GetAlternativeTitleByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleApiResponse"/>?&gt;</returns>
+        Task<IGetAlttitleApiResponse?> GetAlttitleOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,11 +70,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieId"> (optional)</param>
-        /// <param name="movieMetadataId"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListAlternativeTitleApiResponse"/>&gt;</returns>
-        Task<IListAlternativeTitleApiResponse> ListAlternativeTitleAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleByIdApiResponse"/>&gt;</returns>
+        Task<IGetAlttitleByIdApiResponse> GetAlttitleByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -80,17 +81,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieId"> (optional)</param>
-        /// <param name="movieMetadataId"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListAlternativeTitleApiResponse"/>?&gt;</returns>
-        Task<IListAlternativeTitleApiResponse?> ListAlternativeTitleOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleByIdApiResponse"/>?&gt;</returns>
+        Task<IGetAlttitleByIdApiResponse?> GetAlttitleByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetAlternativeTitleByIdApiResponse"/>
+    /// The <see cref="IGetAlttitleApiResponse"/>
     /// </summary>
-    public interface IGetAlternativeTitleByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.AlternativeTitleResource?>
+    public interface IGetAlttitleApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<AlternativeTitleResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -100,9 +100,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListAlternativeTitleApiResponse"/>
+    /// The <see cref="IGetAlttitleByIdApiResponse"/>
     /// </summary>
-    public interface IListAlternativeTitleApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<AlternativeTitleResource>?>
+    public interface IGetAlttitleByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.AlternativeTitleResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -119,41 +119,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetAlternativeTitleById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetAlttitle;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetAlternativeTitleById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetAlttitle;
 
-        internal void ExecuteOnGetAlternativeTitleById(AlternativeTitleApi.GetAlternativeTitleByIdApiResponse apiResponse)
+        internal void ExecuteOnGetAlttitle(AlternativeTitleApi.GetAlttitleApiResponse apiResponse)
         {
-            OnGetAlternativeTitleById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetAlttitle?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetAlternativeTitleById(Exception exception)
+        internal void ExecuteOnErrorGetAlttitle(Exception exception)
         {
-            OnErrorGetAlternativeTitleById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetAlttitle?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListAlternativeTitle;
+        public event EventHandler<ApiResponseEventArgs>? OnGetAlttitleById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListAlternativeTitle;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetAlttitleById;
 
-        internal void ExecuteOnListAlternativeTitle(AlternativeTitleApi.ListAlternativeTitleApiResponse apiResponse)
+        internal void ExecuteOnGetAlttitleById(AlternativeTitleApi.GetAlttitleByIdApiResponse apiResponse)
         {
-            OnListAlternativeTitle?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetAlttitleById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListAlternativeTitle(Exception exception)
+        internal void ExecuteOnErrorGetAlttitleById(Exception exception)
         {
-            OnErrorListAlternativeTitle?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetAlttitleById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -198,258 +198,7 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetAlternativeTitleById(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterGetAlternativeTitleByIdDefaultImplementation(IGetAlternativeTitleByIdApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterGetAlternativeTitleById(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterGetAlternativeTitleById(ref bool suppressDefaultLog, IGetAlternativeTitleByIdApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorGetAlternativeTitleByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorGetAlternativeTitleById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorGetAlternativeTitleById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlternativeTitleByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetAlternativeTitleByIdApiResponse?> GetAlternativeTitleByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetAlternativeTitleByIdAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlternativeTitleByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetAlternativeTitleByIdApiResponse> GetAlternativeTitleByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatGetAlternativeTitleById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/alttitle/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/alttitle/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetAlternativeTitleByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/alttitle/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetAlternativeTitleByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnGetAlternativeTitleById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetAlternativeTitleByIdDefaultImplementation(e, "/api/v3/alttitle/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetAlternativeTitleById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetAlternativeTitleByIdApiResponse"/>
-        /// </summary>
-        public partial class GetAlternativeTitleByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetAlternativeTitleByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<AlternativeTitleApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetAlternativeTitleByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetAlternativeTitleByIdApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetAlternativeTitleByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetAlternativeTitleByIdApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.AlternativeTitleResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.AlternativeTitleResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.AlternativeTitleResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.AlternativeTitleResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.AlternativeTitleResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.AlternativeTitleResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListAlternativeTitle(ref Option<int> movieId, ref Option<int> movieMetadataId);
+        partial void FormatGetAlttitle(ref Option<int> movieId, ref Option<int> movieMetadataId);
 
         /// <summary>
         /// Processes the server response
@@ -457,10 +206,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="movieMetadataId"></param>
-        private void AfterListAlternativeTitleDefaultImplementation(IListAlternativeTitleApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId)
+        private void AfterGetAlttitleDefaultImplementation(IGetAlttitleApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId)
         {
             bool suppressDefaultLog = false;
-            AfterListAlternativeTitle(ref suppressDefaultLog, apiResponseLocalVar, movieId, movieMetadataId);
+            AfterGetAlttitle(ref suppressDefaultLog, apiResponseLocalVar, movieId, movieMetadataId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -472,7 +221,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="movieMetadataId"></param>
-        partial void AfterListAlternativeTitle(ref bool suppressDefaultLog, IListAlternativeTitleApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId);
+        partial void AfterGetAlttitle(ref bool suppressDefaultLog, IGetAlttitleApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -482,10 +231,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="movieMetadataId"></param>
-        private void OnErrorListAlternativeTitleDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId)
+        private void OnErrorGetAlttitleDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListAlternativeTitle(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, movieMetadataId);
+            OnErrorGetAlttitle(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, movieMetadataId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -499,7 +248,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="movieMetadataId"></param>
-        partial void OnErrorListAlternativeTitle(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId);
+        partial void OnErrorGetAlttitle(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId);
 
         /// <summary>
         ///  
@@ -507,12 +256,12 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="movieMetadataId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListAlternativeTitleApiResponse"/>&gt;</returns>
-        public async Task<IListAlternativeTitleApiResponse?> ListAlternativeTitleOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleApiResponse"/>&gt;</returns>
+        public async Task<IGetAlttitleApiResponse?> GetAlttitleOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListAlternativeTitleAsync(movieId, movieMetadataId, cancellationToken).ConfigureAwait(false);
+                return await GetAlttitleAsync(movieId, movieMetadataId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -527,14 +276,14 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="movieMetadataId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListAlternativeTitleApiResponse"/>&gt;</returns>
-        public async Task<IListAlternativeTitleApiResponse> ListAlternativeTitleAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleApiResponse"/>&gt;</returns>
+        public async Task<IGetAlttitleApiResponse> GetAlttitleAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListAlternativeTitle(ref movieId, ref movieMetadataId);
+                FormatGetAlttitle(ref movieId, ref movieMetadataId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -579,7 +328,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListAlternativeTitleApiResponse apiResponseLocalVar;
+                        GetAlttitleApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -590,9 +339,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListAlternativeTitleDefaultImplementation(apiResponseLocalVar, movieId, movieMetadataId);
+                        AfterGetAlttitleDefaultImplementation(apiResponseLocalVar, movieId, movieMetadataId);
 
-                        Events.ExecuteOnListAlternativeTitle(apiResponseLocalVar);
+                        Events.ExecuteOnGetAlttitle(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -604,16 +353,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListAlternativeTitleDefaultImplementation(e, "/api/v3/alttitle", uriBuilderLocalVar.Path, movieId, movieMetadataId);
-                Events.ExecuteOnErrorListAlternativeTitle(e);
+                OnErrorGetAlttitleDefaultImplementation(e, "/api/v3/alttitle", uriBuilderLocalVar.Path, movieId, movieMetadataId);
+                Events.ExecuteOnErrorGetAlttitle(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListAlternativeTitleApiResponse"/>
+        /// The <see cref="GetAlttitleApiResponse"/>
         /// </summary>
-        public partial class ListAlternativeTitleApiResponse : Whisparr3.Net.Client.ApiResponse, IListAlternativeTitleApiResponse
+        public partial class GetAlttitleApiResponse : Whisparr3.Net.Client.ApiResponse, IGetAlttitleApiResponse
         {
             /// <summary>
             /// The logger
@@ -621,7 +370,7 @@ namespace Whisparr3.Net.Api
             public ILogger<AlternativeTitleApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListAlternativeTitleApiResponse"/>
+            /// The <see cref="GetAlttitleApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -630,14 +379,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListAlternativeTitleApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetAlttitleApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListAlternativeTitleApiResponse"/>
+            /// The <see cref="GetAlttitleApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -646,7 +395,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListAlternativeTitleApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetAlttitleApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -690,6 +439,257 @@ namespace Whisparr3.Net.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk([NotNullWhen(true)]out List<AlternativeTitleResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetAlttitleById(ref int id);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        private void AfterGetAlttitleByIdDefaultImplementation(IGetAlttitleByIdApiResponse apiResponseLocalVar, int id)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetAlttitleById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        partial void AfterGetAlttitleById(ref bool suppressDefaultLog, IGetAlttitleByIdApiResponse apiResponseLocalVar, int id);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        private void OnErrorGetAlttitleByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetAlttitleById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        partial void OnErrorGetAlttitleById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetAlttitleByIdApiResponse?> GetAlttitleByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetAlttitleByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetAlttitleByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetAlttitleByIdApiResponse> GetAlttitleByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetAlttitleById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/alttitle/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/alttitle/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetAlttitleByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/alttitle/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetAlttitleByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnGetAlttitleById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetAlttitleByIdDefaultImplementation(e, "/api/v3/alttitle/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetAlttitleById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetAlttitleByIdApiResponse"/>
+        /// </summary>
+        public partial class GetAlttitleByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetAlttitleByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<AlternativeTitleApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetAlttitleByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetAlttitleByIdApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetAlttitleByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetAlttitleByIdApiResponse(ILogger<AlternativeTitleApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.AlternativeTitleResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.AlternativeTitleResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.AlternativeTitleResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.AlternativeTitleResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.AlternativeTitleResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.AlternativeTitleResource? result)
             {
                 result = null;
 

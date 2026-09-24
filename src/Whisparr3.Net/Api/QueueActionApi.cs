@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queueBulkResource"> (optional)</param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabBulkApiResponse"/>&gt;</returns>
-        Task<ICreateQueueGrabBulkApiResponse> CreateQueueGrabBulkAsync(Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabBulkApiResponse"/>&gt;</returns>
+        Task<IPostQueueGrabBulkApiResponse> PostQueueGrabBulkAsync(QueueBulkResource queueBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="queueBulkResource"> (optional)</param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabBulkApiResponse"/>?&gt;</returns>
-        Task<ICreateQueueGrabBulkApiResponse?> CreateQueueGrabBulkOrDefaultAsync(Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabBulkApiResponse"/>?&gt;</returns>
+        Task<IPostQueueGrabBulkApiResponse?> PostQueueGrabBulkOrDefaultAsync(QueueBulkResource queueBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -70,8 +70,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabByIdApiResponse"/>&gt;</returns>
-        Task<ICreateQueueGrabByIdApiResponse> CreateQueueGrabByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabByIdApiResponse"/>&gt;</returns>
+        Task<IPostQueueGrabByIdApiResponse> PostQueueGrabByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -81,14 +81,14 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabByIdApiResponse"/>?&gt;</returns>
-        Task<ICreateQueueGrabByIdApiResponse?> CreateQueueGrabByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabByIdApiResponse"/>?&gt;</returns>
+        Task<IPostQueueGrabByIdApiResponse?> PostQueueGrabByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateQueueGrabBulkApiResponse"/>
+    /// The <see cref="IPostQueueGrabBulkApiResponse"/>
     /// </summary>
-    public interface ICreateQueueGrabBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostQueueGrabBulkApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -98,9 +98,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateQueueGrabByIdApiResponse"/>
+    /// The <see cref="IPostQueueGrabByIdApiResponse"/>
     /// </summary>
-    public interface ICreateQueueGrabByIdApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostQueueGrabByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -117,41 +117,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateQueueGrabBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnPostQueueGrabBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateQueueGrabBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostQueueGrabBulk;
 
-        internal void ExecuteOnCreateQueueGrabBulk(QueueActionApi.CreateQueueGrabBulkApiResponse apiResponse)
+        internal void ExecuteOnPostQueueGrabBulk(QueueActionApi.PostQueueGrabBulkApiResponse apiResponse)
         {
-            OnCreateQueueGrabBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostQueueGrabBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateQueueGrabBulk(Exception exception)
+        internal void ExecuteOnErrorPostQueueGrabBulk(Exception exception)
         {
-            OnErrorCreateQueueGrabBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostQueueGrabBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateQueueGrabById;
+        public event EventHandler<ApiResponseEventArgs>? OnPostQueueGrabById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateQueueGrabById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostQueueGrabById;
 
-        internal void ExecuteOnCreateQueueGrabById(QueueActionApi.CreateQueueGrabByIdApiResponse apiResponse)
+        internal void ExecuteOnPostQueueGrabById(QueueActionApi.PostQueueGrabByIdApiResponse apiResponse)
         {
-            OnCreateQueueGrabById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostQueueGrabById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateQueueGrabById(Exception exception)
+        internal void ExecuteOnErrorPostQueueGrabById(Exception exception)
         {
-            OnErrorCreateQueueGrabById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostQueueGrabById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -196,16 +196,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateQueueGrabBulk(Option<QueueBulkResource> queueBulkResource);
+        partial void FormatPostQueueGrabBulk(QueueBulkResource queueBulkResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="queueBulkResource"></param>
         /// <returns></returns>
-        private void ValidateCreateQueueGrabBulk(Option<QueueBulkResource> queueBulkResource)
+        private void ValidatePostQueueGrabBulk(QueueBulkResource queueBulkResource)
         {
-            if (queueBulkResource.IsSet && queueBulkResource.Value == null)
+            if (queueBulkResource == null)
                 throw new ArgumentNullException(nameof(queueBulkResource));
         }
 
@@ -214,10 +214,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="queueBulkResource"></param>
-        private void AfterCreateQueueGrabBulkDefaultImplementation(ICreateQueueGrabBulkApiResponse apiResponseLocalVar, Option<QueueBulkResource> queueBulkResource)
+        private void AfterPostQueueGrabBulkDefaultImplementation(IPostQueueGrabBulkApiResponse apiResponseLocalVar, QueueBulkResource queueBulkResource)
         {
             bool suppressDefaultLog = false;
-            AfterCreateQueueGrabBulk(ref suppressDefaultLog, apiResponseLocalVar, queueBulkResource);
+            AfterPostQueueGrabBulk(ref suppressDefaultLog, apiResponseLocalVar, queueBulkResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -228,7 +228,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="queueBulkResource"></param>
-        partial void AfterCreateQueueGrabBulk(ref bool suppressDefaultLog, ICreateQueueGrabBulkApiResponse apiResponseLocalVar, Option<QueueBulkResource> queueBulkResource);
+        partial void AfterPostQueueGrabBulk(ref bool suppressDefaultLog, IPostQueueGrabBulkApiResponse apiResponseLocalVar, QueueBulkResource queueBulkResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -237,10 +237,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="queueBulkResource"></param>
-        private void OnErrorCreateQueueGrabBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<QueueBulkResource> queueBulkResource)
+        private void OnErrorPostQueueGrabBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, QueueBulkResource queueBulkResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateQueueGrabBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, queueBulkResource);
+            OnErrorPostQueueGrabBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, queueBulkResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -253,19 +253,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="queueBulkResource"></param>
-        partial void OnErrorCreateQueueGrabBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<QueueBulkResource> queueBulkResource);
+        partial void OnErrorPostQueueGrabBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, QueueBulkResource queueBulkResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="queueBulkResource"> (optional)</param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabBulkApiResponse"/>&gt;</returns>
-        public async Task<ICreateQueueGrabBulkApiResponse?> CreateQueueGrabBulkOrDefaultAsync(Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabBulkApiResponse"/>&gt;</returns>
+        public async Task<IPostQueueGrabBulkApiResponse?> PostQueueGrabBulkOrDefaultAsync(QueueBulkResource queueBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateQueueGrabBulkAsync(queueBulkResource, cancellationToken).ConfigureAwait(false);
+                return await PostQueueGrabBulkAsync(queueBulkResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -277,18 +277,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="queueBulkResource"> (optional)</param>
+        /// <param name="queueBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabBulkApiResponse"/>&gt;</returns>
-        public async Task<ICreateQueueGrabBulkApiResponse> CreateQueueGrabBulkAsync(Option<QueueBulkResource> queueBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabBulkApiResponse"/>&gt;</returns>
+        public async Task<IPostQueueGrabBulkApiResponse> PostQueueGrabBulkAsync(QueueBulkResource queueBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateQueueGrabBulk(queueBulkResource);
+                ValidatePostQueueGrabBulk(queueBulkResource);
 
-                FormatCreateQueueGrabBulk(queueBulkResource);
+                FormatPostQueueGrabBulk(queueBulkResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -299,12 +299,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/queue/grab/bulk"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/queue/grab/bulk");
 
-                    if (queueBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (queueBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (queueBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(queueBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(queueBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -328,7 +325,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateQueueGrabBulkApiResponse apiResponseLocalVar;
+                        PostQueueGrabBulkApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -339,9 +336,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterCreateQueueGrabBulkDefaultImplementation(apiResponseLocalVar, queueBulkResource);
+                        AfterPostQueueGrabBulkDefaultImplementation(apiResponseLocalVar, queueBulkResource);
 
-                        Events.ExecuteOnCreateQueueGrabBulk(apiResponseLocalVar);
+                        Events.ExecuteOnPostQueueGrabBulk(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -353,16 +350,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateQueueGrabBulkDefaultImplementation(e, "/api/v3/queue/grab/bulk", uriBuilderLocalVar.Path, queueBulkResource);
-                Events.ExecuteOnErrorCreateQueueGrabBulk(e);
+                OnErrorPostQueueGrabBulkDefaultImplementation(e, "/api/v3/queue/grab/bulk", uriBuilderLocalVar.Path, queueBulkResource);
+                Events.ExecuteOnErrorPostQueueGrabBulk(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateQueueGrabBulkApiResponse"/>
+        /// The <see cref="PostQueueGrabBulkApiResponse"/>
         /// </summary>
-        public partial class CreateQueueGrabBulkApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateQueueGrabBulkApiResponse
+        public partial class PostQueueGrabBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPostQueueGrabBulkApiResponse
         {
             /// <summary>
             /// The logger
@@ -370,7 +367,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QueueActionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateQueueGrabBulkApiResponse"/>
+            /// The <see cref="PostQueueGrabBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -379,14 +376,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateQueueGrabBulkApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostQueueGrabBulkApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateQueueGrabBulkApiResponse"/>
+            /// The <see cref="PostQueueGrabBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -395,7 +392,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateQueueGrabBulkApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostQueueGrabBulkApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -420,17 +417,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateQueueGrabById(ref int id);
+        partial void FormatPostQueueGrabById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterCreateQueueGrabByIdDefaultImplementation(ICreateQueueGrabByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterPostQueueGrabByIdDefaultImplementation(IPostQueueGrabByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterCreateQueueGrabById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterPostQueueGrabById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -441,7 +438,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterCreateQueueGrabById(ref bool suppressDefaultLog, ICreateQueueGrabByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterPostQueueGrabById(ref bool suppressDefaultLog, IPostQueueGrabByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -450,10 +447,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorCreateQueueGrabByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorPostQueueGrabByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateQueueGrabById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorPostQueueGrabById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -466,19 +463,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorCreateQueueGrabById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorPostQueueGrabById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabByIdApiResponse"/>&gt;</returns>
-        public async Task<ICreateQueueGrabByIdApiResponse?> CreateQueueGrabByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabByIdApiResponse"/>&gt;</returns>
+        public async Task<IPostQueueGrabByIdApiResponse?> PostQueueGrabByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateQueueGrabByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await PostQueueGrabByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -492,14 +489,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQueueGrabByIdApiResponse"/>&gt;</returns>
-        public async Task<ICreateQueueGrabByIdApiResponse> CreateQueueGrabByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQueueGrabByIdApiResponse"/>&gt;</returns>
+        public async Task<IPostQueueGrabByIdApiResponse> PostQueueGrabByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatCreateQueueGrabById(ref id);
+                FormatPostQueueGrabById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -524,7 +521,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateQueueGrabByIdApiResponse apiResponseLocalVar;
+                        PostQueueGrabByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -535,9 +532,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterCreateQueueGrabByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterPostQueueGrabByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnCreateQueueGrabById(apiResponseLocalVar);
+                        Events.ExecuteOnPostQueueGrabById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -549,16 +546,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateQueueGrabByIdDefaultImplementation(e, "/api/v3/queue/grab/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorCreateQueueGrabById(e);
+                OnErrorPostQueueGrabByIdDefaultImplementation(e, "/api/v3/queue/grab/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorPostQueueGrabById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateQueueGrabByIdApiResponse"/>
+        /// The <see cref="PostQueueGrabByIdApiResponse"/>
         /// </summary>
-        public partial class CreateQueueGrabByIdApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateQueueGrabByIdApiResponse
+        public partial class PostQueueGrabByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPostQueueGrabByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -566,7 +563,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QueueActionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateQueueGrabByIdApiResponse"/>
+            /// The <see cref="PostQueueGrabByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -575,14 +572,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateQueueGrabByIdApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostQueueGrabByIdApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateQueueGrabByIdApiResponse"/>
+            /// The <see cref="PostQueueGrabByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -591,7 +588,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateQueueGrabByIdApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostQueueGrabByIdApiResponse(ILogger<QueueActionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

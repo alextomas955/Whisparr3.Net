@@ -40,8 +40,9 @@ namespace Whisparr3.Net.Model
         /// <param name="enableAuto">enableAuto</param>
         /// <param name="rootFolderPath">rootFolderPath</param>
         /// <param name="qualityProfileId">qualityProfileId</param>
+        /// <param name="tagExisting">tagExisting</param>
         [JsonConstructor]
-        public ImportListBulkResource(Option<List<int>?> ids = default, Option<List<int>?> tags = default, Option<ApplyTags?> applyTags = default, Option<bool?> enabled = default, Option<bool?> enableAuto = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default)
+        public ImportListBulkResource(Option<List<int>?> ids = default, Option<List<int>?> tags = default, Option<ApplyTags?> applyTags = default, Option<bool?> enabled = default, Option<bool?> enableAuto = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> tagExisting = default)
         {
             IdsOption = ids;
             TagsOption = tags;
@@ -50,6 +51,7 @@ namespace Whisparr3.Net.Model
             EnableAutoOption = enableAuto;
             RootFolderPathOption = rootFolderPath;
             QualityProfileIdOption = qualityProfileId;
+            TagExistingOption = tagExisting;
             OnCreated();
         }
 
@@ -147,6 +149,19 @@ namespace Whisparr3.Net.Model
         public int? QualityProfileId { get { return this.QualityProfileIdOption.Value; } set { this.QualityProfileIdOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of TagExisting
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> TagExistingOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TagExisting
+        /// </summary>
+        [JsonPropertyName("tagExisting")]
+        public bool? TagExisting { get { return this.TagExistingOption.Value; } set { this.TagExistingOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -161,6 +176,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  EnableAuto: ").Append(EnableAuto).Append("\n");
             sb.Append("  RootFolderPath: ").Append(RootFolderPath).Append("\n");
             sb.Append("  QualityProfileId: ").Append(QualityProfileId).Append("\n");
+            sb.Append("  TagExisting: ").Append(TagExisting).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -215,6 +231,7 @@ namespace Whisparr3.Net.Model
             Option<bool?> enableAuto = default;
             Option<string?> rootFolderPath = default;
             Option<int?> qualityProfileId = default;
+            Option<bool?> tagExisting = default;
 
             while (utf8JsonReader.Read())
             {
@@ -252,6 +269,9 @@ namespace Whisparr3.Net.Model
                         case "qualityProfileId":
                             qualityProfileId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
+                        case "tagExisting":
+                            tagExisting = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -261,7 +281,7 @@ namespace Whisparr3.Net.Model
             if (applyTags.IsSet && applyTags.Value == null)
                 throw new ArgumentNullException(nameof(applyTags), "Property is not nullable for class ImportListBulkResource.");
 
-            return new ImportListBulkResource(ids, tags, applyTags, enabled, enableAuto, rootFolderPath, qualityProfileId);
+            return new ImportListBulkResource(ids, tags, applyTags, enabled, enableAuto, rootFolderPath, qualityProfileId, tagExisting);
         }
 
         /// <summary>
@@ -332,6 +352,12 @@ namespace Whisparr3.Net.Model
                     writer.WriteNumber("qualityProfileId", importListBulkResource.QualityProfileIdOption.Value!.Value);
                 else
                     writer.WriteNull("qualityProfileId");
+
+            if (importListBulkResource.TagExistingOption.IsSet)
+                if (importListBulkResource.TagExistingOption.Value != null)
+                    writer.WriteBoolean("tagExisting", importListBulkResource.TagExistingOption.Value!.Value);
+                else
+                    writer.WriteNull("tagExisting");
         }
     }
 }

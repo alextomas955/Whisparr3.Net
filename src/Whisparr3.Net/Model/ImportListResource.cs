@@ -53,8 +53,9 @@ namespace Whisparr3.Net.Model
         /// <param name="listOrder">listOrder</param>
         /// <param name="minRefreshInterval">minRefreshInterval</param>
         /// <param name="lastInfoSync">lastInfoSync</param>
+        /// <param name="tagExisting">tagExisting</param>
         [JsonConstructor]
-        public ImportListResource(Option<int?> id = default, Option<string?> name = default, Option<List<Field>?> fields = default, Option<string?> implementationName = default, Option<string?> implementation = default, Option<string?> configContract = default, Option<string?> infoLink = default, Option<ProviderMessage?> message = default, Option<List<int>?> tags = default, Option<List<ImportListResource>?> presets = default, Option<bool?> enabled = default, Option<bool?> enableAuto = default, Option<MonitorTypes?> monitor = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<ImportListType?> listType = default, Option<int?> listOrder = default, Option<string?> minRefreshInterval = default, Option<DateTime?> lastInfoSync = default)
+        public ImportListResource(Option<int?> id = default, Option<string?> name = default, Option<List<Field>?> fields = default, Option<string?> implementationName = default, Option<string?> implementation = default, Option<string?> configContract = default, Option<string?> infoLink = default, Option<ProviderMessage?> message = default, Option<List<int>?> tags = default, Option<List<ImportListResource>?> presets = default, Option<bool?> enabled = default, Option<bool?> enableAuto = default, Option<MonitorTypes?> monitor = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<ImportListType?> listType = default, Option<int?> listOrder = default, Option<string?> minRefreshInterval = default, Option<DateTime?> lastInfoSync = default, Option<bool?> tagExisting = default)
         {
             IdOption = id;
             NameOption = name;
@@ -76,6 +77,7 @@ namespace Whisparr3.Net.Model
             ListOrderOption = listOrder;
             MinRefreshIntervalOption = minRefreshInterval;
             LastInfoSyncOption = lastInfoSync;
+            TagExistingOption = tagExisting;
             OnCreated();
         }
 
@@ -342,6 +344,19 @@ namespace Whisparr3.Net.Model
         public DateTime? LastInfoSync { get { return this.LastInfoSyncOption.Value; } set { this.LastInfoSyncOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of TagExisting
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> TagExistingOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TagExisting
+        /// </summary>
+        [JsonPropertyName("tagExisting")]
+        public bool? TagExisting { get { return this.TagExistingOption.Value; } set { this.TagExistingOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -369,6 +384,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  ListOrder: ").Append(ListOrder).Append("\n");
             sb.Append("  MinRefreshInterval: ").Append(MinRefreshInterval).Append("\n");
             sb.Append("  LastInfoSync: ").Append(LastInfoSync).Append("\n");
+            sb.Append("  TagExisting: ").Append(TagExisting).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -441,6 +457,7 @@ namespace Whisparr3.Net.Model
             Option<int?> listOrder = default;
             Option<string?> minRefreshInterval = default;
             Option<DateTime?> lastInfoSync = default;
+            Option<bool?> tagExisting = default;
 
             while (utf8JsonReader.Read())
             {
@@ -517,6 +534,9 @@ namespace Whisparr3.Net.Model
                         case "lastInfoSync":
                             lastInfoSync = new Option<DateTime?>(JsonSerializer.Deserialize<DateTime?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "tagExisting":
+                            tagExisting = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         default:
                             break;
                     }
@@ -553,7 +573,10 @@ namespace Whisparr3.Net.Model
             if (minRefreshInterval.IsSet && minRefreshInterval.Value == null)
                 throw new ArgumentNullException(nameof(minRefreshInterval), "Property is not nullable for class ImportListResource.");
 
-            return new ImportListResource(id, name, fields, implementationName, implementation, configContract, infoLink, message, tags, presets, enabled, enableAuto, monitor, rootFolderPath, qualityProfileId, searchOnAdd, listType, listOrder, minRefreshInterval, lastInfoSync);
+            if (tagExisting.IsSet && tagExisting.Value == null)
+                throw new ArgumentNullException(nameof(tagExisting), "Property is not nullable for class ImportListResource.");
+
+            return new ImportListResource(id, name, fields, implementationName, implementation, configContract, infoLink, message, tags, presets, enabled, enableAuto, monitor, rootFolderPath, qualityProfileId, searchOnAdd, listType, listOrder, minRefreshInterval, lastInfoSync, tagExisting);
         }
 
         /// <summary>
@@ -687,6 +710,9 @@ namespace Whisparr3.Net.Model
                     writer.WriteString("lastInfoSync", importListResource.LastInfoSyncOption.Value!.Value.ToString(LastInfoSyncFormat));
                 else
                     writer.WriteNull("lastInfoSync");
+
+            if (importListResource.TagExistingOption.IsSet)
+                writer.WriteBoolean("tagExisting", importListResource.TagExistingOption.Value!.Value);
         }
     }
 }

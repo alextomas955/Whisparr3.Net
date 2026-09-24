@@ -1,8 +1,7 @@
 # What this library returns, and what it does not
 
-The Whisparr 3 API declares @@RAW_TOTAL@@ operations. One of them is a malformed root path, removed during
-spec pre-processing, and this library generates all @@TOTAL@@ that remain. Not all of them are equally
-useful, and a large minority return no value at all.
+The Whisparr 3 API declares @@TOTAL@@ operations and this library generates all of them. Not all of
+them are equally useful, and some return no value at all.
 
 A reader who calls a generated method, gets nothing back, and finds no explanation has to guess
 whether that is a defect in this library or a property of the API it was generated from. It is the
@@ -23,42 +22,43 @@ adds or removes operations, and that is expected rather than a defect.
 response object like every other method, and that object carries no typed accessor for a body:
 `IsOk` and the status, and no `Ok()` to call.
 
-The reason is the same for all of them, and it is in the spec rather than in this library. Each
-declares a 2xx response and declares no `content` for that response. With no media type and no
-schema, the generator has nothing to bind a return type to. No operation lacks a 2xx response
-entirely, so they all fall into that single category.
+The spec is accurate about them. They are the deletes, the five provider `test` endpoints, the two
+queue grabs, the bulk monitor patch and the two authentication routes, and on success each answers
+with an empty body. Measured against this release: `DELETE /api/v3/tag/{id}` answers 200 with zero
+bytes and no content type at all.
 
-The body is not lost. Every one of these operations reads the whole response with
+Where a body does arrive it is not lost. Every operation reads the whole response with
 `ReadAsStringAsync` and stores it, so `RawContent` on the returned object carries whatever the
-server sent. What the spec costs them is the typed accessor, not the data.
-
-`ReadAs<T>()` deserializes that content with the client's own serializer options, so a caller who
-knows the shape names it and gets it:
-
-```csharp
-var response = await customFormat.GetCustomFormatSchemaAsync();
-var schema = response.ReadAs<List<CustomFormatResource>>();
-```
-
-A type the caller writes needs a `JsonPropertyName` on every member it expects to bind. The client
-registers no naming policy and no case-insensitive matching, so a camel-cased body binds nothing to
-a Pascal-cased member, and it does so without raising anything. The generated models already carry
-the attributes.
-
-Measured against the pinned image, 18 of these operations were called and every one answered with
-a body. Twelve returned JSON. The rest returned plain text, iCalendar, HTML or a binary image, so
-the type a caller names is not always a model: `GET /api/v3/system/routes` answers with a Graphviz
-graph as `text/plain`, and `RawContent` is the whole of it.
-
-Rebuilding response schemas into the spec is deliberately out of scope. A third of the measured
-bodies are not JSON at all, so a schema would be wrong for them, and the rest would need
-re-verifying against every refresh. It is a known and deferred gap, not an oversight.
+server sent. `POST /api/v3/indexer/test` is the case to know: a failing test answers 400 with a
+JSON array of validation failures, which is an error status rather than one of the 2xx responses
+counted here. Measured against this release, that array names each failed validator.
 
 The third column is the operation identifier the generated client uses for its method name. Both
 tables in this document are sorted by path and then by method, so a diff on this section means the
 spec changed.
 
 @@VOID_TABLE@@
+
+## Operations that do not answer with JSON
+
+Six operations declare a `string` body: `GET /api/v3/system/routes` and the two log file routes
+answer `text/plain`, the calendar feed answers `text/calendar`, mediacover answers an image, and
+localization answers a document the spec types as a string. What arrives is the text itself rather
+than a JSON string literal, so the generated accessor raises on the first character.
+
+`EnsureSuccess` has an overload for them that returns the text as it arrived:
+
+```csharp
+var response = await system.GetSystemRoutesAsync();
+string graph = response.EnsureSuccess();
+```
+
+Measured against this release, that route answers 243 KB of Graphviz source. `RawContent` carries
+the same string and is there for a caller who wants the body without the status check.
+
+Every other operation binds to a generated model. That was not true before Whisparr 3.6.1, where
+92 operations declared a 2xx with no content at all and a caller had to name a shape of their
+own.
 
 ## Operations that serve the web interface
 
@@ -70,16 +70,15 @@ useful to you is your call; what follows is what each one does. The paths are a 
 @@WEB_INTERFACE_TABLE@@
 What each one does.
 
-- `GetStaticResourceByPath` serves any file from Whisparr's web root by path. It answers a browser
-  with HTML, JavaScript or images.
-- `GetContentByPath` serves the same web assets under the `/content` prefix.
-- `GetLoginPage` returns the HTML login form. Authenticating with the API key header does not go
-  through it.
-- `CreateLogin` submits that form and establishes a browser session cookie. This library
-  authenticates every request with the API key header instead.
-- `GetLogout` ends that browser session.
-- `GetCalendarFeed` returns a working iCalendar document. It declares no content, so the generated
-  method exposes no typed accessor for it; the feed itself arrives in `RawContent`.
+- `PostLogin` submits the browser login form and establishes a session cookie. This library
+  authenticates every request with the API key header instead. It declares an empty security
+  requirement, so the generated method sends no key.
+- `GetLogout` ends that browser session, and likewise takes no key.
+- `GetFeedV3CalendarWhisparrIcs` returns an iCalendar document as `text/calendar`.
+
+Whisparr's static assets, its SPA shell and its login page are no longer in the spec at all. The
+controller that serves them is excluded from document generation upstream, so this library
+generates no method for them.
 
 ## Responses that carry credentials
 
@@ -104,8 +103,8 @@ happens, so they are written down.
   type-level constraint and the value alone decides what the instance does. It selects between
   refreshing a movie's metadata and renaming every file on disk. `GET /api/v3/command` reports what
   an instance is currently running. The per-command arguments are described nowhere in the spec
-  either. `CommandResource` is `additionalProperties: false` and its generated writer emits a fixed
-  property list, so the generated create operation cannot put a command argument on the wire at all.
+  either. `CommandResource` declares a fixed property list and its generated writer emits exactly
+  those properties, so the generated create operation cannot put a command argument on the wire.
   `CommandApi.SendCommandAsync(name, payload)` is the hand-written method that can. It writes a flat
   JSON object whose payload members are siblings of `name`, which is the shape the instance binds.
 - `POST /api/v3/release` pushes a release to a download client. It reaches outside the instance,
@@ -114,6 +113,6 @@ happens, so they are written down.
 - `DELETE /api/v3/moviefile/{id}` and `DELETE /api/v3/moviefile/bulk` delete files from disk, not
   just database rows. The API has no undo and no recycle step. The two read like one operation and
   are two, and the bulk form does the most per request.
-- `PUT /api/v3/moviefile/{id}`, `PUT /api/v3/moviefile/bulk` and `PUT /api/v3/moviefile/editor` move
-  or rewrite the files they name. They are as consequential as the deletes and easier to overlook,
-  because a warning about deleting movie files does not cover them.
+- `PUT /api/v3/moviefile/{id}` and `PUT /api/v3/moviefile/bulk` move or rewrite the files they name.
+  They are as consequential as the deletes and easier to overlook, because a warning about deleting
+  movie files does not cover them.

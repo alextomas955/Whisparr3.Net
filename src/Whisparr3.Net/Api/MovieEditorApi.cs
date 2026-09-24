@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieEditorApiResponse"/>&gt;</returns>
-        Task<IDeleteMovieEditorApiResponse> DeleteMovieEditorAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteMovieEditorApiResponse> DeleteMovieEditorAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieEditorApiResponse"/>?&gt;</returns>
-        Task<IDeleteMovieEditorApiResponse?> DeleteMovieEditorOrDefaultAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteMovieEditorApiResponse?> DeleteMovieEditorOrDefaultAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,10 +68,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieEditorApiResponse"/>&gt;</returns>
-        Task<IPutMovieEditorApiResponse> PutMovieEditorAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutMovieEditorApiResponse> PutMovieEditorAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,10 +79,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieEditorApiResponse"/>?&gt;</returns>
-        Task<IPutMovieEditorApiResponse?> PutMovieEditorOrDefaultAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutMovieEditorApiResponse?> PutMovieEditorOrDefaultAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -100,13 +100,13 @@ namespace Whisparr3.Net.Api
     /// <summary>
     /// The <see cref="IPutMovieEditorApiResponse"/>
     /// </summary>
-    public interface IPutMovieEditorApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutMovieEditorApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<MovieResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -196,16 +196,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatDeleteMovieEditor(Option<MovieEditorResource> movieEditorResource);
+        partial void FormatDeleteMovieEditor(MovieEditorResource movieEditorResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="movieEditorResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteMovieEditor(Option<MovieEditorResource> movieEditorResource)
+        private void ValidateDeleteMovieEditor(MovieEditorResource movieEditorResource)
         {
-            if (movieEditorResource.IsSet && movieEditorResource.Value == null)
+            if (movieEditorResource == null)
                 throw new ArgumentNullException(nameof(movieEditorResource));
         }
 
@@ -214,7 +214,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        private void AfterDeleteMovieEditorDefaultImplementation(IDeleteMovieEditorApiResponse apiResponseLocalVar, Option<MovieEditorResource> movieEditorResource)
+        private void AfterDeleteMovieEditorDefaultImplementation(IDeleteMovieEditorApiResponse apiResponseLocalVar, MovieEditorResource movieEditorResource)
         {
             bool suppressDefaultLog = false;
             AfterDeleteMovieEditor(ref suppressDefaultLog, apiResponseLocalVar, movieEditorResource);
@@ -228,7 +228,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        partial void AfterDeleteMovieEditor(ref bool suppressDefaultLog, IDeleteMovieEditorApiResponse apiResponseLocalVar, Option<MovieEditorResource> movieEditorResource);
+        partial void AfterDeleteMovieEditor(ref bool suppressDefaultLog, IDeleteMovieEditorApiResponse apiResponseLocalVar, MovieEditorResource movieEditorResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -237,7 +237,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        private void OnErrorDeleteMovieEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieEditorResource> movieEditorResource)
+        private void OnErrorDeleteMovieEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MovieEditorResource movieEditorResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorDeleteMovieEditor(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieEditorResource);
@@ -253,15 +253,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        partial void OnErrorDeleteMovieEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieEditorResource> movieEditorResource);
+        partial void OnErrorDeleteMovieEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MovieEditorResource movieEditorResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieEditorApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMovieEditorApiResponse?> DeleteMovieEditorOrDefaultAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteMovieEditorApiResponse?> DeleteMovieEditorOrDefaultAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -277,10 +277,10 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieEditorApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMovieEditorApiResponse> DeleteMovieEditorAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteMovieEditorApiResponse> DeleteMovieEditorAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -299,12 +299,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/movie/editor"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/movie/editor");
 
-                    if (movieEditorResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieEditorResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (movieEditorResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieEditorResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieEditorResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -422,16 +419,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatPutMovieEditor(Option<MovieEditorResource> movieEditorResource);
+        partial void FormatPutMovieEditor(MovieEditorResource movieEditorResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="movieEditorResource"></param>
         /// <returns></returns>
-        private void ValidatePutMovieEditor(Option<MovieEditorResource> movieEditorResource)
+        private void ValidatePutMovieEditor(MovieEditorResource movieEditorResource)
         {
-            if (movieEditorResource.IsSet && movieEditorResource.Value == null)
+            if (movieEditorResource == null)
                 throw new ArgumentNullException(nameof(movieEditorResource));
         }
 
@@ -440,7 +437,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        private void AfterPutMovieEditorDefaultImplementation(IPutMovieEditorApiResponse apiResponseLocalVar, Option<MovieEditorResource> movieEditorResource)
+        private void AfterPutMovieEditorDefaultImplementation(IPutMovieEditorApiResponse apiResponseLocalVar, MovieEditorResource movieEditorResource)
         {
             bool suppressDefaultLog = false;
             AfterPutMovieEditor(ref suppressDefaultLog, apiResponseLocalVar, movieEditorResource);
@@ -454,7 +451,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        partial void AfterPutMovieEditor(ref bool suppressDefaultLog, IPutMovieEditorApiResponse apiResponseLocalVar, Option<MovieEditorResource> movieEditorResource);
+        partial void AfterPutMovieEditor(ref bool suppressDefaultLog, IPutMovieEditorApiResponse apiResponseLocalVar, MovieEditorResource movieEditorResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -463,7 +460,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        private void OnErrorPutMovieEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieEditorResource> movieEditorResource)
+        private void OnErrorPutMovieEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MovieEditorResource movieEditorResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorPutMovieEditor(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieEditorResource);
@@ -479,15 +476,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieEditorResource"></param>
-        partial void OnErrorPutMovieEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieEditorResource> movieEditorResource);
+        partial void OnErrorPutMovieEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MovieEditorResource movieEditorResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutMovieEditorApiResponse?> PutMovieEditorOrDefaultAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutMovieEditorApiResponse?> PutMovieEditorOrDefaultAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -503,10 +500,10 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieEditorResource"> (optional)</param>
+        /// <param name="movieEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutMovieEditorApiResponse> PutMovieEditorAsync(Option<MovieEditorResource> movieEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutMovieEditorApiResponse> PutMovieEditorAsync(MovieEditorResource movieEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -525,12 +522,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/movie/editor"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/movie/editor");
 
-                    if (movieEditorResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieEditorResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (movieEditorResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieEditorResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieEditorResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -547,6 +541,17 @@ namespace Whisparr3.Net.Api
 
                     if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
                         httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Put;
 
@@ -630,10 +635,54 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public List<MovieResource>? Accepted()
+            {
+                bool suppressDefault = false;
+                List<MovieResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private List<MovieResource>? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<MovieResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref List<MovieResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out List<MovieResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

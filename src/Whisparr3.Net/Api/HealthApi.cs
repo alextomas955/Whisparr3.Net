@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHealthApiResponse"/>&gt;</returns>
-        Task<IListHealthApiResponse> ListHealthAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHealthApiResponse"/>&gt;</returns>
+        Task<IGetHealthApiResponse> GetHealthAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,14 +56,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHealthApiResponse"/>?&gt;</returns>
-        Task<IListHealthApiResponse?> ListHealthOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHealthApiResponse"/>?&gt;</returns>
+        Task<IGetHealthApiResponse?> GetHealthOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListHealthApiResponse"/>
+    /// The <see cref="IGetHealthApiResponse"/>
     /// </summary>
-    public interface IListHealthApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<HealthResource>?>
+    public interface IGetHealthApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<HealthResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -80,21 +80,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListHealth;
+        public event EventHandler<ApiResponseEventArgs>? OnGetHealth;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListHealth;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetHealth;
 
-        internal void ExecuteOnListHealth(HealthApi.ListHealthApiResponse apiResponse)
+        internal void ExecuteOnGetHealth(HealthApi.GetHealthApiResponse apiResponse)
         {
-            OnListHealth?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetHealth?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListHealth(Exception exception)
+        internal void ExecuteOnErrorGetHealth(Exception exception)
         {
-            OnErrorListHealth?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetHealth?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,10 +143,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListHealthDefaultImplementation(IListHealthApiResponse apiResponseLocalVar)
+        private void AfterGetHealthDefaultImplementation(IGetHealthApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListHealth(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetHealth(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -156,7 +156,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListHealth(ref bool suppressDefaultLog, IListHealthApiResponse apiResponseLocalVar);
+        partial void AfterGetHealth(ref bool suppressDefaultLog, IGetHealthApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -164,10 +164,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListHealthDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetHealthDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListHealth(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetHealth(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -179,18 +179,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListHealth(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetHealth(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHealthApiResponse"/>&gt;</returns>
-        public async Task<IListHealthApiResponse?> ListHealthOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHealthApiResponse"/>&gt;</returns>
+        public async Task<IGetHealthApiResponse?> GetHealthOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListHealthAsync(cancellationToken).ConfigureAwait(false);
+                return await GetHealthAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -203,8 +203,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHealthApiResponse"/>&gt;</returns>
-        public async Task<IListHealthApiResponse> ListHealthAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHealthApiResponse"/>&gt;</returns>
+        public async Task<IGetHealthApiResponse> GetHealthAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -243,7 +243,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListHealthApiResponse apiResponseLocalVar;
+                        GetHealthApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -254,9 +254,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListHealthDefaultImplementation(apiResponseLocalVar);
+                        AfterGetHealthDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListHealth(apiResponseLocalVar);
+                        Events.ExecuteOnGetHealth(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -268,16 +268,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListHealthDefaultImplementation(e, "/api/v3/health", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListHealth(e);
+                OnErrorGetHealthDefaultImplementation(e, "/api/v3/health", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetHealth(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListHealthApiResponse"/>
+        /// The <see cref="GetHealthApiResponse"/>
         /// </summary>
-        public partial class ListHealthApiResponse : Whisparr3.Net.Client.ApiResponse, IListHealthApiResponse
+        public partial class GetHealthApiResponse : Whisparr3.Net.Client.ApiResponse, IGetHealthApiResponse
         {
             /// <summary>
             /// The logger
@@ -285,7 +285,7 @@ namespace Whisparr3.Net.Api
             public ILogger<HealthApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListHealthApiResponse"/>
+            /// The <see cref="GetHealthApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -294,14 +294,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListHealthApiResponse(ILogger<HealthApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetHealthApiResponse(ILogger<HealthApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListHealthApiResponse"/>
+            /// The <see cref="GetHealthApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -310,7 +310,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListHealthApiResponse(ILogger<HealthApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetHealthApiResponse(ILogger<HealthApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

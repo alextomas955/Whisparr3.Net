@@ -17,8 +17,8 @@ namespace Whisparr3.Net.UnitTests
     /// </summary>
     /// <remarks>
     /// The generated success accessor collapses two of those outcomes into null: it deserializes
-    /// only on exactly 200 and returns null otherwise, so a 401 and an empty collection read the
-    /// same to a caller. These tests pin the replacement, and they run a real client against a
+    /// only on the one status its operation documents and returns null otherwise, so a 401 and an
+    /// empty collection read the same to a caller. These tests pin the replacement, and they run a real client against a
     /// real listener rather than a mocked handler, so nothing between the call and the socket can
     /// hide behind the assertion.
     /// </remarks>
@@ -202,27 +202,42 @@ namespace Whisparr3.Net.UnitTests
         /// accessor at all.
         /// </summary>
         /// <remarks>
-        /// GetSystemRoutes was chosen for two reasons. Its response interface is declared
-        /// IGetSystemRoutesApiResponse : Whisparr3.Net.Client.IApiResponse with no IOk in the base
-        /// list, so the generic overload cannot bind to it and the non-generic one is the only path
-        /// that exists. And it is a read-shaped operation rather than one of the state-mutating
-        /// content-less ones, so the test reads the way a consumer's own call would.
+        /// The tag delete is one of the 45 operations that declare a 2xx with no content, so
+        /// IDeleteTagByIdApiResponse derives from IApiResponse alone and no generic overload can
+        /// bind to it. There is no body to return, so the only thing to assert is the
+        /// classification.
         /// </remarks>
         [Fact]
-        public async Task Content_less_operation_failure_throws_through_the_non_generic_overload()
+        public async Task Void_operation_failure_throws_through_the_non_generic_overload()
         {
             using LoopbackCapture capture = new(status: 500, body: string.Empty);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IGetSystemRoutesApiResponse response =
-                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+            IDeleteTagByIdApiResponse response =
+                await provider.GetRequiredService<ITagApi>().DeleteTagByIdAsync(1);
 
             Whisparr3ApiException error =
                 Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
 
             Assert.Equal(HttpStatusCode.InternalServerError, error.StatusCode);
-            Assert.Equal("/api/v3/system/routes", error.Path);
+            Assert.Equal("/api/v3/tag/{id}", error.Path);
             Assert.False(error.IsSuccessStatusCode);
+        }
+
+        /// <summary>
+        /// The success path of the same overload. A void operation returns normally and there is
+        /// nothing to read.
+        /// </summary>
+        [Fact]
+        public async Task Void_operation_success_returns_normally()
+        {
+            using LoopbackCapture capture = new(status: 200, body: string.Empty);
+
+            await using ServiceProvider provider = BuildProvider(capture);
+            IDeleteTagByIdApiResponse response =
+                await provider.GetRequiredService<ITagApi>().DeleteTagByIdAsync(1);
+
+            response.EnsureSuccess();
         }
 
         /// <summary>
@@ -299,9 +314,8 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// A real 201 is a documented success on this operation, and without the hook its body is
-        /// unreachable through any typed accessor because the generated one deserializes on
-        /// exactly 200.
+        /// 201 is the status this operation documents, so its response carries ICreated rather
+        /// than IOk and EnsureSuccess binds to the ICreated overload.
         /// </summary>
         [Fact]
         public async Task Created_201_body_is_reachable_and_EnsureSuccess_returns_it()
@@ -309,8 +323,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 201, body: CreatedPerformerBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreatePerformerApiResponse response =
-                await provider.GetRequiredService<IPerformerApi>().CreatePerformerAsync();
+            IPostPerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().PostPerformerAsync(new PerformerResource());
 
             PerformerResource created = response.EnsureSuccess();
 
@@ -327,8 +341,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 202, body: UpdatedPerformerBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IUpdatePerformerApiResponse response =
-                await provider.GetRequiredService<IPerformerApi>().UpdatePerformerAsync(PerformerId);
+            IPutPerformerByIdApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().PutPerformerByIdAsync(PerformerId, new PerformerResource());
 
             PerformerResource updated = response.EnsureSuccess();
 
@@ -337,8 +351,8 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The empty-body case, which without a guard in the hook throws a raw serialization
-        /// exception straight out of the accessor and escapes the typed layer untyped.
+        /// The empty-body case. The generated accessor returns null for it, which EnsureSuccess
+        /// reports as a success carrying nothing rather than as a failure.
         /// </summary>
         [Fact]
         public async Task Created_201_with_an_empty_body_throws_the_typed_error()
@@ -346,8 +360,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 201, body: string.Empty);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreatePerformerApiResponse response =
-                await provider.GetRequiredService<IPerformerApi>().CreatePerformerAsync();
+            IPostPerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().PostPerformerAsync(new PerformerResource());
 
             Whisparr3ApiException error =
                 Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
@@ -360,55 +374,44 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The hook's one real risk is disturbing the path it is not meant to touch, so the
-        /// ordinary 200 is asserted on each affected operation separately rather than sampled.
+        /// A success status the operation does not document surfaces as a typed error rather than
+        /// as null, so an upstream status regression is loud.
         /// </summary>
+        /// <remarks>
+        /// The create documents 201 and the instance answers 201, measured against 3.6.1.1703. It
+        /// documented 200 and answered 201 before the OpenAPI accuracy pass, which is how every
+        /// create previously reported a successful call as a failure. Should that drift return,
+        /// this is what a caller sees: an exception naming the status, with IsSuccessStatusCode
+        /// true to tell it from a rejected request.
+        /// </remarks>
         [Fact]
-        public async Task Ok_200_on_the_create_operation_still_returns_the_body()
+        public async Task An_undocumented_success_status_surfaces_as_the_typed_error()
         {
             using LoopbackCapture capture = new(status: 200, body: CreatedPerformerBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreatePerformerApiResponse response =
-                await provider.GetRequiredService<IPerformerApi>().CreatePerformerAsync();
+            IPostPerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().PostPerformerAsync(new PerformerResource());
 
-            PerformerResource created = response.EnsureSuccess();
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
 
-            Assert.Equal(7, created.Id);
-            Assert.Equal("Created Performer", created.FullName);
+            Assert.Equal(HttpStatusCode.OK, error.StatusCode);
+            Assert.True(error.IsSuccessStatusCode);
         }
 
         /// <summary>
-        /// The same assertion for the update operation.
+        /// The same on a second operation. Asserted separately rather than sampled, because the
+        /// two creates reach the overload through different generated response types.
         /// </summary>
         [Fact]
-        public async Task Ok_200_on_the_update_operation_still_returns_the_body()
-        {
-            using LoopbackCapture capture = new(status: 200, body: UpdatedPerformerBody);
-
-            await using ServiceProvider provider = BuildProvider(capture);
-            IUpdatePerformerApiResponse response =
-                await provider.GetRequiredService<IPerformerApi>().UpdatePerformerAsync(PerformerId);
-
-            PerformerResource updated = response.EnsureSuccess();
-
-            Assert.Equal(9, updated.Id);
-            Assert.Equal("Accepted Performer", updated.FullName);
-        }
-
-        /// <summary>
-        /// A 201 on an operation that carries no response hook. The studio create carries a typed
-        /// success accessor and no OnOk hook, so a hook cannot be what makes this case pass: the
-        /// body is reachable only because EnsureSuccess reads a body on any success status.
-        /// </summary>
-        [Fact]
-        public async Task Created_201_on_an_unhooked_operation_is_returned_by_EnsureSuccess()
+        public async Task Created_201_on_a_second_operation_is_returned_by_EnsureSuccess()
         {
             using LoopbackCapture capture = new(status: 201, body: CreatedStudioBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreateStudioApiResponse response =
-                await provider.GetRequiredService<IStudioApi>().CreateStudioAsync();
+            IPostStudioApiResponse response =
+                await provider.GetRequiredService<IStudioApi>().PostStudioAsync(new StudioResource());
 
             StudioResource created = response.EnsureSuccess();
 
@@ -419,17 +422,16 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The same for a 202, on the studio update. It too carries a typed success accessor and
-        /// no OnOk hook.
+        /// The same for a 202, on the studio update.
         /// </summary>
         [Fact]
-        public async Task Accepted_202_on_an_unhooked_operation_is_returned_by_EnsureSuccess()
+        public async Task Accepted_202_on_a_second_operation_is_returned_by_EnsureSuccess()
         {
             using LoopbackCapture capture = new(status: 202, body: AcceptedStudioBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IUpdateStudioApiResponse response =
-                await provider.GetRequiredService<IStudioApi>().UpdateStudioAsync(StudioId);
+            IPutStudioByIdApiResponse response =
+                await provider.GetRequiredService<IStudioApi>().PutStudioByIdAsync(StudioId, new StudioResource());
 
             StudioResource updated = response.EnsureSuccess();
 
@@ -455,8 +457,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 200, body: PerformerListBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IListPerformerApiResponse response =
-                await provider.GetRequiredService<IPerformerApi>().ListPerformerAsync();
+            IGetPerformerApiResponse response =
+                await provider.GetRequiredService<IPerformerApi>().GetPerformerAsync();
 
             List<PerformerResource> performers = response.EnsureSuccess();
 
@@ -507,8 +509,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 200, body: StudioListBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IListStudioApiResponse response =
-                await provider.GetRequiredService<IStudioApi>().ListStudioAsync();
+            IGetStudioApiResponse response =
+                await provider.GetRequiredService<IStudioApi>().GetStudioAsync();
 
             List<StudioResource> studios = response.EnsureSuccess();
 
@@ -563,8 +565,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 200, body: CreditListBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IListCreditApiResponse response =
-                await provider.GetRequiredService<ICreditApi>().ListCreditAsync();
+            IGetCreditApiResponse response =
+                await provider.GetRequiredService<ICreditApi>().GetCreditAsync();
 
             List<CreditResource> credits = response.EnsureSuccess();
 
@@ -598,9 +600,8 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The tag create is the operation the live instance answers 201 on while its spec
-        /// documents 200 only, so without the hook its body is unreachable through any typed
-        /// accessor. This is the synthetic form of the live round trip's first leg.
+        /// The tag create answers 201 and its spec documents 201, so its response carries
+        /// ICreated. This is the synthetic form of the live round trip's first leg.
         /// </summary>
         [Fact]
         public async Task Created_tag_body_is_readable_through_EnsureSuccess()
@@ -608,8 +609,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 201, body: CreatedTagBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreateTagApiResponse response =
-                await provider.GetRequiredService<ITagApi>().CreateTagAsync();
+            IPostTagApiResponse response =
+                await provider.GetRequiredService<ITagApi>().PostTagAsync(new TagResource());
 
             TagResource created = response.EnsureSuccess();
 
@@ -618,28 +619,8 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The negative control, and the one test here that must not be dropped. The hook's only
-        /// real risk is taking over the ordinary 200 path, and every other tag test would still
-        /// pass if it did. The status guard is what leaves this path on the generated default.
-        /// </summary>
-        [Fact]
-        public async Task Ordinary_200_tag_body_still_takes_the_generated_default()
-        {
-            using LoopbackCapture capture = new(status: 200, body: CreatedTagBody);
-
-            await using ServiceProvider provider = BuildProvider(capture);
-            ICreateTagApiResponse response =
-                await provider.GetRequiredService<ITagApi>().CreateTagAsync();
-
-            TagResource created = response.EnsureSuccess();
-
-            Assert.Equal(CreatedTagId, created.Id);
-            Assert.Equal(CreatedTagLabel, created.Label);
-        }
-
-        /// <summary>
-        /// The empty-body case, which without the body guard in the hook throws a raw serialization
-        /// exception straight out of the accessor and escapes the typed layer untyped.
+        /// The empty-body case. The generated accessor returns null for it, which EnsureSuccess
+        /// reports as a success carrying nothing rather than as a failure.
         /// </summary>
         [Fact]
         public async Task Empty_201_tag_body_surfaces_the_typed_error()
@@ -647,8 +628,8 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 201, body: string.Empty);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreateTagApiResponse response =
-                await provider.GetRequiredService<ITagApi>().CreateTagAsync();
+            IPostTagApiResponse response =
+                await provider.GetRequiredService<ITagApi>().PostTagAsync(new TagResource());
 
             Whisparr3ApiException error =
                 Assert.Throws<Whisparr3ApiException>(() => { response.EnsureSuccess(); });
@@ -661,43 +642,17 @@ namespace Whisparr3.Net.UnitTests
         }
 
         /// <summary>
-        /// The ordinary path for an operation the spec gave no response body. The server sends
-        /// JSON, the generated method exposes no typed accessor for it, and ReadAs names the shape.
+        /// A string-typed operation returns its text verbatim. What the server sends is the text
+        /// itself and not a JSON string literal, so the generated accessor raises on the first
+        /// character and the non-generic overload returns RawContent instead.
         /// </summary>
         /// <remarks>
-        /// GetSystemRoutes is the content-less example the tests above already use: its response
-        /// interface carries no IOk in its base list, so no generated accessor exists to fall back
-        /// on. Field values are asserted rather than a non-null check, which would pass against a
-        /// list of empty objects.
+        /// GetSystemRoutes answers Graphviz as text/plain, which is what the spec declares for it.
+        /// The payload here is not JSON on purpose: under the generic overload this body is what
+        /// raises.
         /// </remarks>
         [Fact]
-        public async Task Content_less_operation_body_is_readable_as_the_type_the_caller_names()
-        {
-            using LoopbackCapture capture = new(
-                status: 200,
-                body: "[{\"implementation\":\"ReleaseTitleSpecification\",\"negate\":false}]");
-
-            await using ServiceProvider provider = BuildProvider(capture);
-            IGetSystemRoutesApiResponse response =
-                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
-
-            List<RouteProbe> routes = ((ApiResponse)response).ReadAs<List<RouteProbe>>();
-
-            Assert.Single(routes);
-            Assert.Equal("ReleaseTitleSpecification", routes[0].Implementation);
-            Assert.False(routes[0].Negate);
-        }
-
-        /// <summary>
-        /// The body reaches RawContent whether or not it can be deserialized, which is the fact the
-        /// surface document states and the reason ReadAs can exist at all.
-        /// </summary>
-        /// <remarks>
-        /// Asserted over a payload that is not JSON, because a third of these operations answer
-        /// with plain text, iCalendar, HTML or an image rather than a document any type describes.
-        /// </remarks>
-        [Fact]
-        public async Task Content_less_operation_delivers_a_non_json_body_through_raw_content()
+        public async Task String_typed_operation_returns_its_text_verbatim()
         {
             const string Graph = "digraph DFA { 0 [label=\"/api/v3/movie/\"]; }";
 
@@ -707,17 +662,16 @@ namespace Whisparr3.Net.UnitTests
             IGetSystemRoutesApiResponse response =
                 await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
 
-            response.EnsureSuccess();
-
+            Assert.Equal(Graph, response.EnsureSuccess());
             Assert.Equal(Graph, response.RawContent);
         }
 
         /// <summary>
-        /// A failing status throws before any deserialization is attempted, and reports itself as a
-        /// failure rather than as an unreadable body.
+        /// A failing status on a string-typed operation reports itself as a failure rather than as
+        /// an unreadable body.
         /// </summary>
         [Fact]
-        public async Task ReadAs_reports_a_failing_status_as_a_failure()
+        public async Task String_typed_operation_reports_a_failing_status_as_a_failure()
         {
             using LoopbackCapture capture = new(status: 401, body: string.Empty);
 
@@ -725,19 +679,18 @@ namespace Whisparr3.Net.UnitTests
             IGetSystemRoutesApiResponse response =
                 await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
 
-            Whisparr3ApiException error = Assert.Throws<Whisparr3ApiException>(
-                () => ((ApiResponse)response).ReadAs<List<RouteProbe>>());
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => response.EnsureSuccess());
 
             Assert.Equal(HttpStatusCode.Unauthorized, error.StatusCode);
             Assert.False(error.IsSuccessStatusCode);
         }
 
         /// <summary>
-        /// An empty 200 is a success with nothing to read, not a malformed body. Many of the
-        /// content-less operations are deletes that answer exactly this way.
+        /// An empty 200 is a success with nothing to read, not a failure.
         /// </summary>
         [Fact]
-        public async Task ReadAs_separates_an_empty_success_from_a_malformed_one()
+        public async Task String_typed_operation_separates_an_empty_success_from_a_failure()
         {
             using LoopbackCapture capture = new(status: 200, body: string.Empty);
 
@@ -745,143 +698,30 @@ namespace Whisparr3.Net.UnitTests
             IGetSystemRoutesApiResponse response =
                 await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
 
-            Whisparr3ApiException error = Assert.Throws<Whisparr3ApiException>(
-                () => ((ApiResponse)response).ReadAs<List<RouteProbe>>());
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => response.EnsureSuccess());
 
             Assert.True(error.IsSuccessStatusCode);
-            Assert.Contains("empty", error.Message, StringComparison.Ordinal);
         }
 
         /// <summary>
-        /// A body that is not the named shape throws the typed error rather than letting the
-        /// serializer exception escape, which is the same hole EnsureSuccess closes.
+        /// A body that is not the shape the operation declares throws the typed error rather than
+        /// letting the serializer exception escape carrying no status, route template or URI.
         /// </summary>
         [Fact]
-        public async Task ReadAs_wraps_a_deserialization_failure_in_the_typed_error()
+        public async Task A_malformed_body_surfaces_as_the_typed_error()
         {
             using LoopbackCapture capture = new(status: 200, body: "not json at all");
 
             await using ServiceProvider provider = BuildProvider(capture);
-            IGetSystemRoutesApiResponse response =
-                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
+            IGetTagApiResponse response =
+                await provider.GetRequiredService<ITagApi>().GetTagAsync();
 
-            Whisparr3ApiException error = Assert.Throws<Whisparr3ApiException>(
-                () => ((ApiResponse)response).ReadAs<List<RouteProbe>>());
+            Whisparr3ApiException error =
+                Assert.Throws<Whisparr3ApiException>(() => response.EnsureSuccess());
 
             Assert.True(error.IsSuccessStatusCode);
             Assert.IsType<JsonException>(error.InnerException);
-        }
-
-        /// <summary>
-        /// ReadAs binds through the serializer options the client registered, not plain defaults.
-        /// That is the whole reason it is a partial on the response class rather than an extension
-        /// method, which could only take options from its caller.
-        /// </summary>
-        /// <remarks>
-        /// An enum written as a string is the discriminator. A bare JsonSerializerOptions reads an
-        /// enum only from a number and throws on a string, so this payload cannot bind under plain
-        /// defaults at all. The client registers a JsonStringEnumConverter, so it binds here. A
-        /// property-name assertion would not have worked: the client registers no naming policy
-        /// either, which is measured by the second assertion below.
-        /// </remarks>
-        [Fact]
-        public async Task ReadAs_uses_the_serializer_options_the_client_registered()
-        {
-            using LoopbackCapture capture = new(
-                status: 200,
-                body: "[{\"implementation\":\"Probe\",\"negate\":true,\"kind\":\"Enabled\"}]");
-
-            await using ServiceProvider provider = BuildProvider(capture);
-            IGetSystemRoutesApiResponse response =
-                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
-
-            List<RouteProbe> routes = ((ApiResponse)response).ReadAs<List<RouteProbe>>();
-
-            Assert.Equal(ProbeKind.Enabled, routes[0].Kind);
-
-            // The same payload under plain defaults, to show the assertion above is not passing on
-            // options a caller could have supplied themselves.
-            Assert.Throws<JsonException>(
-                () => JsonSerializer.Deserialize<List<RouteProbe>>(response.RawContent, new JsonSerializerOptions()));
-        }
-
-        /// <summary>
-        /// The client registers no naming policy and no case-insensitive matching, so a caller
-        /// type without JsonPropertyName binds nothing and raises nothing.
-        /// </summary>
-        /// <remarks>
-        /// This is the trap ReadAs hands a caller, so it is pinned rather than described. A reader
-        /// who assumes camel-case matching gets a fully-populated object graph of defaults and no
-        /// error to explain it.
-        /// </remarks>
-        [Fact]
-        public async Task ReadAs_binds_nothing_when_the_caller_type_omits_property_names()
-        {
-            using LoopbackCapture capture = new(
-                status: 200,
-                body: "[{\"implementation\":\"Probe\",\"negate\":true}]");
-
-            await using ServiceProvider provider = BuildProvider(capture);
-            IGetSystemRoutesApiResponse response =
-                await provider.GetRequiredService<ISystemApi>().GetSystemRoutesAsync();
-
-            List<UnnamedProbe> probes = ((ApiResponse)response).ReadAs<List<UnnamedProbe>>();
-
-            Assert.Single(probes);
-            Assert.Null(probes[0].Implementation);
-            Assert.False(probes[0].Negate);
-        }
-
-        /// <summary>
-        /// The same shape as RouteProbe with the property names left off, which is what a caller
-        /// writes by default and what silently binds nothing.
-        /// </summary>
-        public sealed class UnnamedProbe
-        {
-            /// <summary>Never bound, because the payload spells it in camel case.</summary>
-            public string? Implementation { get; set; }
-
-            /// <summary>Never bound, for the same reason.</summary>
-            public bool Negate { get; set; }
-        }
-
-        /// <summary>
-        /// A shape a caller supplies for a body the spec never described. Declared here rather than
-        /// taken from Whisparr3.Net.Model on purpose: the point of ReadAs is that the type belongs
-        /// to the caller, because the spec names none.
-        /// </summary>
-        /// <remarks>
-        /// The JsonPropertyName attributes are required, not decoration. The client builds its
-        /// options as a bare JsonSerializerOptions plus a converter list, with no naming policy and
-        /// no case-insensitive matching, so a camel-cased payload binds nothing to a Pascal-cased
-        /// member. That failure is silent: every property keeps its default and no exception is
-        /// raised. Measured by writing this type without the attributes first.
-        /// </remarks>
-        public sealed class RouteProbe
-        {
-            /// <summary>The implementation name the payload carries.</summary>
-            [JsonPropertyName("implementation")]
-            public string? Implementation { get; set; }
-
-            /// <summary>The negate flag the payload carries.</summary>
-            [JsonPropertyName("negate")]
-            public bool Negate { get; set; }
-
-            /// <summary>The enum the serializer-options test reads as a string.</summary>
-            [JsonPropertyName("kind")]
-            public ProbeKind Kind { get; set; }
-        }
-
-        /// <summary>
-        /// An enum whose string form only binds when a JsonStringEnumConverter is registered.
-        /// </summary>
-        public enum ProbeKind
-        {
-            /// <summary>The default, which a failed bind would leave in place.</summary>
-            Unset = 0,
-
-            /// <summary>The value the serializer-options payload names.</summary>
-            Enabled = 1,
         }
 
         /// <summary>

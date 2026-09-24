@@ -21,8 +21,10 @@ from datetime import datetime, timezone
 
 from _common import die, resolve_repo_path, sha256_file, write_json_lf
 
-# The pinned Whisparr 3.4.0.1387 (eros) digest.
-DEFAULT_IMAGE_DIGEST = "sha256:fab920114a75f1c86bbadf24c66f1e35a912ace9c7527e971f1032a569589ee6"
+# The pinned Whisparr 3.6.2.1727 (eros) digest, which hotio's moving v3 tag resolved to on
+# 2026-09-24. Resolved to a digest here so a retag cannot change what this library is generated
+# from.
+DEFAULT_IMAGE_DIGEST = "sha256:0f2af8b840e937f1e7f06aa535179692428f8c4b3f2dc139591f1640e9b4c6fb"
 CONTAINER_NAME = "whisparr3-capture"
 # Not a credential: a constant handed to a container destroyed at the end of the run and published
 # on 127.0.0.1 only. Needed for the status read that feeds provenance; the spec endpoint itself is
@@ -55,8 +57,8 @@ def main():
     parser = argparse.ArgumentParser(description="Capture the Whisparr 3 OpenAPI document.")
     parser.add_argument("--image-digest", default=DEFAULT_IMAGE_DIGEST)
     parser.add_argument("--out-file", default="spec/openapi.raw.json")
-    # The pinned digest is ready in 13 to 19s. Whisparr 2 never becomes ready and consumes the whole
-    # budget, which is the refusal working rather than a hang.
+    # The pinned digest answers in 4s, measured 2026-09-24 over three boots. Whisparr 2 never
+    # becomes ready and consumes the whole budget, which is the refusal working rather than a hang.
     parser.add_argument("--timeout-sec", type=int, default=90)
     args = parser.parse_args()
 
@@ -107,7 +109,7 @@ def main():
             )
             die(
                 "ERROR: REFUSED - {} returned HTTP {}, not 200, within {}s for {}.".format(
-                    SPEC_URL, last_status, args.timeout_sec, args.image_digest
+                    SPEC_URL, last_status, args.timeout_sec, image
                 ),
                 "  A 404 across the whole window means this is not Whisparr 3 (Eros). No spec was "
                 "written to " + spec_path + ".",
@@ -158,7 +160,7 @@ def main():
         provenance = {
             "capturedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
             "capturedFrom": SPEC_URL,
-            "imageDigest": image,
+            "image": image,
             "whisparrVersion": version,
             "whisparrBranch": branch,
             "whisparrBuildTime": status.get("buildTime"),

@@ -1,4 +1,4 @@
-﻿// Hand-written. Nothing in this directory is generator output; see CLAUDE.md, section
+// Hand-written. Nothing in this directory is generator output; see CLAUDE.md, section
 // "Generated vs hand-written". Do not add the generator's file-marker header to this file:
 // it is a false statement here, and it switches off the analyzer coverage that .editorconfig
 // gives this directory and gives nothing else in the repository.
@@ -16,13 +16,16 @@ namespace Whisparr3.Net
     /// </summary>
     /// <remarks>
     /// <para>
-    /// The generated success accessor deserializes on exactly 200 and returns null on anything
-    /// else, so a 401, a documented 201 and an empty collection are all reported to a caller as
-    /// null. That matters because Whisparr answers 201 to every create and 202 to every update.
-    /// These two methods classify the same response into three outcomes instead: a success
-    /// carrying a body, a success whose body cannot be read, and a failure. The last two both
-    /// throw, and Whisparr3ApiException.IsSuccessStatusCode is what tells them apart. A body is
-    /// read on any success status, not on 200 alone.
+    /// The generated success accessor returns null on anything but its own documented status, so a
+    /// 401 and a body of JSON null are the same value to a caller. These methods classify the same
+    /// response into three outcomes instead: a success carrying a body, a success whose body cannot
+    /// be read, and a failure. The last two both throw, and Whisparr3ApiException.IsSuccessStatusCode
+    /// is what tells them apart.
+    /// </para>
+    /// <para>
+    /// There is one overload per success interface the generator emits, because a create answers
+    /// 201 and an update answers 202 and the generated response types say so. No response type
+    /// carries two of the three, so a call site reaches exactly one overload.
     /// </para>
     /// <para>
     /// Every operation also exposes an OrDefaultAsync variant that wraps its whole body in a
@@ -33,7 +36,7 @@ namespace Whisparr3.Net
     public static class ApiResponseExtensions
     {
         /// <summary>
-        /// Returns the body of a response with any success status, or throws.
+        /// Returns the body of a successful response, or throws.
         /// </summary>
         /// <typeparam name="T">The resource the operation returns.</typeparam>
         /// <param name="response">The response to classify.</param>
@@ -43,28 +46,72 @@ namespace Whisparr3.Net
         /// The status was not a success, or it was a success whose body could not be read. Read
         /// Whisparr3ApiException.IsSuccessStatusCode to tell those two apart.
         /// </exception>
-        /// <remarks>
-        /// <para>
-        /// This overload covers the response interfaces that carry a typed success accessor. The
-        /// ones that do not are covered by the non-generic overload below.
-        /// </para>
-        /// <para>
-        /// The body is read through ApiResponse.ReadAs rather than through the generated accessor,
-        /// which is what makes a 201 and a 202 readable. Every response class this library produces
-        /// derives from Whisparr3.Net.Client.ApiResponse, 272 of 272, so the pattern match below is
-        /// total in practice. A response some other code implemented against IOk stays on the
-        /// accessor path, which is why the match is a pattern rather than a cast.
-        /// </para>
-        /// <para>
-        /// The three OnOk hooks elsewhere in this file are deliberately left in place even though
-        /// this method no longer reaches them. A caller reading the generated Ok() or TryOk()
-        /// directly still needs them, and removing them would silently return that caller to null
-        /// on a 201. On a 200 each hook returns early, and on a 201 or 202 each performs the same
-        /// deserialization ReadAs performs, so bypassing them changes no value.
-        /// </para>
-        /// </remarks>
+        /// <remarks>The overload for the operations that answer 200.</remarks>
         public static T EnsureSuccess<T>(this IOk<T?> response)
             where T : class
+        {
+            ArgumentNullException.ThrowIfNull(response);
+
+            return Read(response, response.Ok);
+        }
+
+        /// <summary>
+        /// Returns the body of a successful response, or throws.
+        /// </summary>
+        /// <typeparam name="T">The resource the operation returns.</typeparam>
+        /// <param name="response">The response to classify.</param>
+        /// <returns>The deserialized body, never null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="response"/> is null.</exception>
+        /// <exception cref="Whisparr3ApiException">
+        /// The status was not a success, or it was a success whose body could not be read. Read
+        /// Whisparr3ApiException.IsSuccessStatusCode to tell those two apart.
+        /// </exception>
+        /// <remarks>The overload for the operations that answer 201, which are the creates.</remarks>
+        public static T EnsureSuccess<T>(this ICreated<T?> response)
+            where T : class
+        {
+            ArgumentNullException.ThrowIfNull(response);
+
+            return Read(response, response.Created);
+        }
+
+        /// <summary>
+        /// Returns the body of a successful response, or throws.
+        /// </summary>
+        /// <typeparam name="T">The resource the operation returns.</typeparam>
+        /// <param name="response">The response to classify.</param>
+        /// <returns>The deserialized body, never null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="response"/> is null.</exception>
+        /// <exception cref="Whisparr3ApiException">
+        /// The status was not a success, or it was a success whose body could not be read. Read
+        /// Whisparr3ApiException.IsSuccessStatusCode to tell those two apart.
+        /// </exception>
+        /// <remarks>The overload for the operations that answer 202, which are the updates.</remarks>
+        public static T EnsureSuccess<T>(this IAccepted<T?> response)
+            where T : class
+        {
+            ArgumentNullException.ThrowIfNull(response);
+
+            return Read(response, response.Accepted);
+        }
+
+        /// <summary>
+        /// Returns the body of a successful response whose declared type is a string.
+        /// </summary>
+        /// <param name="response">The response to classify.</param>
+        /// <returns>The response text, exactly as it arrived.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="response"/> is null.</exception>
+        /// <exception cref="Whisparr3ApiException">
+        /// The status was not a success, or the body was empty.
+        /// </exception>
+        /// <remarks>
+        /// Six operations declare a string body: system/routes, the two log file routes, the
+        /// calendar feed, mediacover and localization. What they send is the text itself and not a
+        /// JSON string literal, so the generated accessor raises on the first character.
+        /// RawContent is the value, and this returns it. Being a non-generic overload it wins
+        /// resolution against the IOk one above, so a caller writes the same call as anywhere else.
+        /// </remarks>
+        public static string EnsureSuccess(this IOk<string?> response)
         {
             ArgumentNullException.ThrowIfNull(response);
 
@@ -73,22 +120,51 @@ namespace Whisparr3.Net
                 throw new Whisparr3ApiException(response, "The request failed.");
             }
 
-            if (response is ApiResponse apiResponse)
+            if (response is not ApiResponse apiResponse || string.IsNullOrEmpty(apiResponse.RawContent))
             {
-                // The generated accessor gates on exactly 200, so it returns null on the 201 every
-                // Whisparr create answers with and on the 202 every update answers with. ReadAs
-                // gates on IsSuccessStatusCode and reads RawContent through the client's own
-                // serializer options, producing the same value on a 200 and a body on the rest.
-                return apiResponse.ReadAs<T>();
+                throw new Whisparr3ApiException(response, "The request succeeded but no body could be read.");
             }
 
-            // Below is the path for an IOk this library did not produce. It cannot reach ReadAs,
-            // because the serializer options that method needs are protected on ApiResponse.
+            return apiResponse.RawContent;
+        }
+
+        /// <summary>
+        /// Throws when a response failed, and returns normally when it succeeded.
+        /// </summary>
+        /// <param name="response">The response to classify.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="response"/> is null.</exception>
+        /// <exception cref="Whisparr3ApiException">The status was not a success.</exception>
+        /// <remarks>
+        /// This overload covers the response interfaces that carry no typed success accessor, which
+        /// is where the spec documents no response content. There is no body to return, so a
+        /// success is simply a normal return.
+        /// </remarks>
+        public static void EnsureSuccess(this IApiResponse response)
+        {
+            ArgumentNullException.ThrowIfNull(response);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Whisparr3ApiException(response, "The request failed.");
+            }
+        }
+
+        /// <summary>
+        /// The body the three typed overloads share, with the generated accessor passed in.
+        /// </summary>
+        private static T Read<T>(IApiResponse response, Func<T?> accessor)
+            where T : class
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Whisparr3ApiException(response, "The request failed.");
+            }
+
             T? body;
 
             try
             {
-                body = response.Ok();
+                body = accessor();
             }
             catch (JsonException e)
             {
@@ -116,282 +192,6 @@ namespace Whisparr3.Net
             }
 
             return body;
-        }
-
-        /// <summary>
-        /// Throws when a response failed, and returns normally when it succeeded.
-        /// </summary>
-        /// <param name="response">The response to classify.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="response"/> is null.</exception>
-        /// <exception cref="Whisparr3ApiException">The status was not a success.</exception>
-        /// <remarks>
-        /// This overload covers the response interfaces that carry no typed success accessor, which
-        /// is where the spec documents no response content. There is no body to return, so a
-        /// success is simply a normal return.
-        /// </remarks>
-        public static void EnsureSuccess(this IApiResponse response)
-        {
-            ArgumentNullException.ThrowIfNull(response);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Whisparr3ApiException(response, "The request failed.");
-            }
-        }
-    }
-}
-
-namespace Whisparr3.Net.Client
-{
-    /// <summary>
-    /// The second part of the generated response base, holding the accessor that reads a body the
-    /// spec never described.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// 92 of Whisparr's operations declare a 2xx and declare no content for it, so the generator
-    /// emits no typed accessor for them. The body is not lost: every one of those operations reads
-    /// the whole response with ReadAsStringAsync and stores it, so RawContent already carries
-    /// whatever the server sent. What is missing is a way to turn that string into a type using
-    /// the client's own serializer options.
-    /// </para>
-    /// <para>
-    /// This is a partial rather than an extension method for the same reason the two api hooks in
-    /// this file are: _jsonSerializerOptions is protected on this class, so only code inside the
-    /// class can reach it. An extension method would have to take the options from its caller, and
-    /// a caller that passes plain defaults loses every converter the client registered, which
-    /// silently changes how a date is read.
-    /// </para>
-    /// <para>
-    /// It must stay under src/hand-written/ even though its namespace belongs to the generated
-    /// tree. Nothing under src/Whisparr3.Net/ is ever hand-edited, because the generator deletes
-    /// its output subdirectories wholesale on every run.
-    /// </para>
-    /// </remarks>
-    public partial class ApiResponse
-    {
-        /// <summary>
-        /// Reads the response body as the type the caller names.
-        /// </summary>
-        /// <typeparam name="T">The shape the caller expects the body to have.</typeparam>
-        /// <returns>The deserialized body, never null.</returns>
-        /// <exception cref="Whisparr3ApiException">
-        /// The status was not a success, or it was a success whose body was empty or could not be
-        /// read as T. Read Whisparr3ApiException.IsSuccessStatusCode to tell those apart.
-        /// </exception>
-        /// <remarks>
-        /// <para>
-        /// The three outcomes are the same ones EnsureSuccess classifies, so a caller reads both
-        /// the same way. The type is the caller's to name, because the spec does not name it.
-        /// </para>
-        /// <para>
-        /// Not every one of these operations answers with JSON. Measured against the pinned image,
-        /// GET /api/v3/system/routes answers with a Graphviz graph and GET /feed/v3/calendar
-        /// answers with iCalendar. Read RawContent directly for those; this method is for the ones
-        /// that do send JSON.
-        /// </para>
-        /// <para>
-        /// T needs a JsonPropertyName on every member it expects to bind. The client builds its
-        /// options as a bare JsonSerializerOptions plus a converter list, with no naming policy and
-        /// no case-insensitive matching, so a camel-cased body binds nothing to a Pascal-cased
-        /// member. That failure is silent: the object is returned with every property at its
-        /// default and nothing is thrown. The generated models in Whisparr3.Net.Model already carry
-        /// the attributes; a type written by a caller does not.
-        /// </para>
-        /// </remarks>
-        public T ReadAs<T>()
-            where T : class
-        {
-            if (!IsSuccessStatusCode)
-            {
-                throw new Whisparr3ApiException(this, "The request failed.");
-            }
-
-            // Separated from the deserialization failure below on purpose. A DELETE that answers
-            // an empty 200 is the ordinary case for many of these operations, and reporting it as
-            // a malformed body would send a reader looking for a defect that is not there.
-            if (string.IsNullOrWhiteSpace(RawContent))
-            {
-                throw new Whisparr3ApiException(this, "The request succeeded and its body was empty.");
-            }
-
-            T? body;
-
-            try
-            {
-                body = System.Text.Json.JsonSerializer.Deserialize<T>(RawContent, _jsonSerializerOptions);
-            }
-            catch (System.Text.Json.JsonException e)
-            {
-                // Without this the serializer's own exception escapes the typed layer carrying no
-                // status, no route template and no URI, which is the same hole EnsureSuccess
-                // closes.
-                throw new Whisparr3ApiException(
-                    this,
-                    "The request succeeded but its body could not be read as " + typeof(T).Name + ".",
-                    e);
-            }
-            catch (NotSupportedException e)
-            {
-                throw new Whisparr3ApiException(
-                    this,
-                    "The request succeeded but its body could not be read as " + typeof(T).Name + ".",
-                    e);
-            }
-
-            if (body is null)
-            {
-                throw new Whisparr3ApiException(this, "The request succeeded but no body could be read.");
-            }
-
-            return body;
-        }
-    }
-}
-
-namespace Whisparr3.Net.Api
-{
-    /// <summary>
-    /// The second part of the generated performer api, holding the two hooks that make its
-    /// documented non-200 successes readable.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// This part must stay under src/hand-written/ even though its namespace belongs to the
-    /// generated tree. Nothing under src/Whisparr3.Net/ is ever hand-edited, because the generator
-    /// deletes its output subdirectories wholesale on every run, and the repo CLAUDE.md states
-    /// that rule. Writing these two methods into PerformerApi.cs would work today and vanish on
-    /// the next regeneration, silently, with the tests going red long after the change that caused
-    /// it.
-    /// </para>
-    /// <para>
-    /// The hook is used rather than an extension method because the serializer options field it
-    /// needs is protected on the response base class, so only code inside the class can reach it.
-    /// It also adds nothing to the public surface.
-    /// </para>
-    /// <para>
-    /// It fails loudly by design. The generator emits the hook signature only for the response
-    /// codes the spec documents, so if a future spec refresh changes either operation's documented
-    /// codes this file stops compiling. That is the wanted behaviour. Do not add a defensive
-    /// conditional to keep it compiling.
-    /// </para>
-    /// </remarks>
-    public sealed partial class PerformerApi
-    {
-        /// <summary>
-        /// The create operation's response, which documents 201 alongside 200.
-        /// </summary>
-        public partial class CreatePerformerApiResponse
-        {
-            /// <summary>
-            /// Reads the body of a real 201, which the generated accessor cannot.
-            /// </summary>
-            /// <param name="suppressDefault">Set when this method produced the result itself.</param>
-            /// <param name="result">Receives the created resource.</param>
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result)
-            {
-                // Two guards, and both matter. The status check leaves the ordinary 200 path
-                // running the generated default, which is the one path this hook must not
-                // disturb. The body check is what stops an empty 201 throwing a raw serialization
-                // exception out of the accessor and escaping the typed layer untyped.
-                if (!IsCreated || string.IsNullOrWhiteSpace(RawContent))
-                {
-                    return;
-                }
-
-                suppressDefault = true;
-
-                result = System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(
-                    RawContent, _jsonSerializerOptions);
-            }
-        }
-
-        /// <summary>
-        /// The update operation's response, which documents 202 alongside 200.
-        /// </summary>
-        public partial class UpdatePerformerApiResponse
-        {
-            /// <summary>
-            /// Reads the body of a real 202, which the generated accessor cannot.
-            /// </summary>
-            /// <param name="suppressDefault">Set when this method produced the result itself.</param>
-            /// <param name="result">Receives the updated resource.</param>
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.PerformerResource? result)
-            {
-                if (!IsAccepted || string.IsNullOrWhiteSpace(RawContent))
-                {
-                    return;
-                }
-
-                suppressDefault = true;
-
-                result = System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.PerformerResource>(
-                    RawContent, _jsonSerializerOptions);
-            }
-        }
-    }
-}
-
-namespace Whisparr3.Net.Api
-{
-    /// <summary>
-    /// The second part of the generated tag api, holding the hook that makes the live create's
-    /// undocumented 201 readable.
-    /// </summary>
-    /// <remarks>
-    /// <para>
-    /// This part must stay under src/hand-written/ even though its namespace belongs to the
-    /// generated tree. Nothing under src/Whisparr3.Net/ is ever hand-edited, because the generator
-    /// deletes its output subdirectories wholesale on every run, and the repo CLAUDE.md states
-    /// that rule. Writing this method into TagApi.cs would work today and vanish on the next
-    /// regeneration, silently, with the tests going red long after the change that caused it.
-    /// </para>
-    /// <para>
-    /// The hook is used rather than an extension method because the serializer options field it
-    /// needs is protected on the response base class, so only code inside the class can reach it.
-    /// It also adds nothing to the public surface.
-    /// </para>
-    /// <para>
-    /// It fails loudly by design. The generator emits the hook signature only for the response
-    /// codes the spec documents, so if a future spec refresh documents 201 for this operation the
-    /// generated signature changes shape and this file stops compiling. That is the wanted
-    /// behaviour. Do not add a defensive conditional to keep it compiling.
-    /// </para>
-    /// </remarks>
-    public sealed partial class TagApi
-    {
-        /// <summary>
-        /// The create operation's response, which documents 200 while the instance answers 201.
-        /// </summary>
-        public partial class CreateTagApiResponse
-        {
-            /// <summary>
-            /// Reads the body of a real 201, which the generated accessor cannot.
-            /// </summary>
-            /// <param name="suppressDefault">Set when this method produced the result itself.</param>
-            /// <param name="result">Receives the created resource.</param>
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.TagResource? result)
-            {
-                // The status is compared directly rather than through an IsCreated member. The
-                // generator emits IsCreated only for operations whose spec documents 201, this
-                // operation's spec documents 200 only, and no such member exists here. That is a
-                // difference from the performer hooks above, not a style choice: their guard
-                // would not compile on this class.
-                //
-                // Two guards, and both matter. The status check leaves the ordinary 200 path
-                // running the generated default, which is the one path this hook must not
-                // disturb. The body check is what stops an empty 201 throwing a raw serialization
-                // exception out of the accessor and escaping the typed layer untyped.
-                if ((int)StatusCode != 201 || string.IsNullOrWhiteSpace(RawContent))
-                {
-                    return;
-                }
-
-                suppressDefault = true;
-
-                result = System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.TagResource>(
-                    RawContent, _jsonSerializerOptions);
-            }
         }
     }
 }

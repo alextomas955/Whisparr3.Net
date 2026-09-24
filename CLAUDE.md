@@ -22,9 +22,9 @@ Two things make the wrong repository look right, and neither is evidence.
   string is hardcoded in the Eros source and is an upstream defect, not a pointer to follow.
 
 `spec/PROVENANCE.json` is what settles which commit a question is about. It records the version,
-the branch and the build time of the image the spec was captured from. The 3.4.0.1387 build
-recorded there is commit `c3e5602` in `Whisparr/Whisparr-Eros`, committed thirty minutes before
-the image was built. Match on those three fields rather than on a branch name.
+the branch and the build time of the image the spec was captured from. The 3.6.2.1727 build
+recorded there is release `v3.6.2-release.1727`, commit `b88e972` in `Whisparr/Whisparr-Eros`.
+Match on those three fields rather than on a branch name, which names nothing on its own.
 
 ## Writing style
 

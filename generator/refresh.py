@@ -10,8 +10,7 @@ rather than being copied here where the two could drift apart. Each step runs as
 a child that fails arrives here as an exit code rather than as a traceback.
 
     python generator/refresh.py --image-digest sha256:0123abcd...
-    # Move to a new Whisparr image. Expect an operationId assertion to refuse if the new version
-    # moved a path; see its message. Omit --image-digest to re-verify the pinned one.
+    # Move to a new Whisparr image. Omit --image-digest to re-verify the pinned one.
 """
 
 import argparse
@@ -74,10 +73,9 @@ def main():
          "digest names a Whisparr 3 (eros) image and that Docker can pull and boot it. Nothing "
          "downstream ran."),
         ("preprocess-spec", script("preprocess_spec.py"),
-         "Most often this is an assertion on the derived operationIds, which means this Whisparr "
-         "moved a path. Read which assertion refused: a stale override names a path that has moved, "
-         "and a shape or collision failure names an operation that needs an override. Edit "
-         "OPERATION_ID_OVERRIDES in preprocess_spec.py and run this script again. The committed "
+         "Most often this is an assertion on the operationIds Whisparr assigns: one missing, two "
+         "operations sharing a name, or a name that is not a C# identifier. The message names "
+         "which. All three are defects to report upstream rather than to patch here. The committed "
          "spec was not replaced."),
         ("generate", script("generate.py"),
          "Generation refused or the generator container failed. Its own message says whether the "

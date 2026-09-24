@@ -181,6 +181,10 @@ namespace Whisparr3.Net.Client
                 return EyeColorValueConverter.ToJsonValue(eyeColor);
             if (obj is FileDateType fileDateType)
                 return FileDateTypeValueConverter.ToJsonValue(fileDateType);
+            if (obj is FileSystemEntityType fileSystemEntityType)
+                return FileSystemEntityTypeValueConverter.ToJsonValue(fileSystemEntityType);
+            if (obj is FileSystemPathType fileSystemPathType)
+                return FileSystemPathTypeValueConverter.ToJsonValue(fileSystemPathType);
             if (obj is Gender gender)
                 return GenderValueConverter.ToJsonValue(gender);
             if (obj is HairColor hairColor)
@@ -233,6 +237,8 @@ namespace Whisparr3.Net.Client
                 return SearchDateFormatTypeValueConverter.ToJsonValue(searchDateFormatType);
             if (obj is SearchStudioFormatType searchStudioFormatType)
                 return SearchStudioFormatTypeValueConverter.ToJsonValue(searchStudioFormatType);
+            if (obj is Severity severity)
+                return SeverityValueConverter.ToJsonValue(severity);
             if (obj is SortDirection sortDirection)
                 return SortDirectionValueConverter.ToJsonValue(sortDirection);
             if (obj is SourceType sourceType)
