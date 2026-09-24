@@ -94,17 +94,43 @@ Every operation also exposes an `OrDefaultAsync` variant that wraps its whole bo
 returning `null`. That variant destroys the same distinction. Call the plain variant and use
 `EnsureSuccess`.
 
+## Responses that carry credentials
+
+These operations change nothing and are safe to call, but their responses carry secrets. A log
+line, a test transcript or an exception body from one of them writes a credential somewhere this
+library never had it and cannot strip it.
+
+| Operation | What its response carries |
+| --- | --- |
+| `GET /api/v3/config/host` | The instance API key and the admin password, both in plaintext. `HostConfigResource` declares `apiKey`, `password`, `passwordConfirmation`, `proxyPassword` and `sslCertPassword`. |
+| `GET /api/v3/config/host/{id}` | The same resource, reached by id. |
+| `GET /api/v3/log` | Log records from the instance database. Log text can contain the key. |
+| `GET /api/v3/log/file/{filename}` | Raw log file text. |
+| `GET /api/v3/log/file/update/{filename}` | The same, for the updater's log files. |
+
+`Whisparr3ApiException.RawContent` is the verbatim response body and is deliberately not redacted,
+because this library cannot know which fields of an arbitrary body are secret. Redaction, if you
+want it, belongs in whatever writes your logs.
+
+## Operations whose effect the specification does not describe
+
+The specification constrains request shapes, not consequences. Three cases are worth knowing before
+you call them.
+
+- `POST /api/v3/command` takes a free-form `name` and nothing constrains it. The value alone selects
+  between refreshing a movie's metadata and renaming every file on disk. `CommandApi.SendCommandAsync`
+  is the hand-written method that can also carry a command's arguments, which no part of the
+  specification describes.
+- `POST /api/v3/release` pushes a release to a download client. It starts a real download and writes
+  to the file system the instance manages, so its effect outlives the request.
+- `DELETE /api/v3/moviefile/{id}` and `DELETE /api/v3/moviefile/bulk` delete files from disk, not just
+  database rows, and `PUT` on either moves or rewrites them. There is no undo and no recycle step.
+
 ## Where to look next
 
-- [docs/SURFACE.md](docs/SURFACE.md) lists the operations that return nothing and why, the ones
-  that serve Whisparr's web interface, the responses that carry credentials, and the operations
-  whose effect the specification does not describe.
-- [docs/HAND-WRITTEN-LAYER.md](docs/HAND-WRITTEN-LAYER.md) describes what this repository adds on
-  top of the generated code, and what it deliberately leaves alone.
-- [docs/REGENERATION.md](docs/REGENERATION.md) is the procedure for reproducing the generated tree
-  from the committed specification.
-- [Public API stability policy](CHANGELOG.md#public-api-stability-policy) states what a version
-  bump promises, and what happens when a specification refresh renames a generated method.
+- [CHANGELOG.md](CHANGELOG.md) records every release, and the [public API stability
+  policy](CHANGELOG.md#public-api-stability-policy) at the bottom states what a version bump
+  promises when a specification refresh renames a generated method.
 
 ## License
 

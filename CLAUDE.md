@@ -37,17 +37,6 @@ sentence.
 Nothing under `src/Whisparr3.Net/` is ever hand-edited. That directory is openapi-generator output
 and every edit inside it is destroyed on the next regeneration.
 
-`docs/SURFACE.md` is not hand-edited either. `generator/render_docs.py` writes it from the
-committed spec and from the prose template at `generator/templates/SURFACE.md.in`, so an edit made
-in `docs/` is overwritten on the next render. Edit the template. Both CI workflows run the renderer
-with `--check`, so a hand edit fails the build before anyone notices it was lost.
-
-Three lists in that script are judgement rather than derivation: which paths serve Whisparr's web
-interface, which responses carry credentials, and which operations have effects the spec does
-not describe. Each is checked against the spec on every run, so a path Whisparr removes fails
-the render instead of leaving prose about an operation that no longer exists. The document
-describes and does not instruct: what a caller does with an operation is their decision.
-
 Customisation goes to one of three places instead:
 
 - Spec pre-processing, before the generator runs.
@@ -55,8 +44,8 @@ Customisation goes to one of three places instead:
   nullable, the warning policy, the deterministic-build flags and all NuGet package metadata.
 - A hand-written directory outside the generated tree.
 
-That directory is `src/hand-written/`, and what it holds is documented in
-`docs/HAND-WRITTEN-LAYER.md`. One join makes it real: `src/Whisparr3.Net/Whisparr3.Net.csproj`
+That directory is `src/hand-written/`, and the XML documentation comments in it are the reference
+for what it holds. One join makes it real: `src/Whisparr3.Net/Whisparr3.Net.csproj`
 carries the `Compile` glob that pulls the directory into the library assembly. Without that glob,
 files there compile into nothing while the build stays green and every test passes against
 generated code alone. The glob lives in the library csproj and deliberately not in
@@ -79,6 +68,46 @@ Two related facts a reader of this file needs.
   Edit the config key instead.
 - `useSourceGeneration` is left at its generator default of `false`. The reason is recorded in
   `generator/gen-config.yaml`.
+
+## Regenerating
+
+`generator/refresh.py` runs the whole pipeline and stops at the first failure, naming the step and
+what to do about it: capture, preprocess, generate, build, package audit. It needs Docker, Python 3
+and both .NET SDKs.
+
+```
+python generator/refresh.py
+```
+
+With no arguments it re-verifies the digest `generator/capture_spec.py` pins, and nothing changes
+but the `capturedAt` wall clock in `spec/PROVENANCE.json`. To move to a new Whisparr, resolve
+hotio's moving tag to a digest and pass it:
+
+```
+docker buildx imagetools inspect ghcr.io/hotio/whisparr:v3 --format "{{.Manifest.Digest}}"
+python generator/refresh.py --image-digest sha256:...
+```
+
+Then set that digest as `DEFAULT_IMAGE_DIGEST` in `capture_spec.py`, so the pin and the committed
+spec stay in step.
+
+Generation alone is `python generator/generate.py`. It stages the committed spec and
+`gen-config.yaml` into a temp root, runs the pinned generator image there, gates the output against
+the spec, then deletes the five generated subdirectories and copies the new ones back. It never
+bind-mounts the repository: the generator does not prune, and a repository on a mapped drive is not
+always bind-mountable, which Docker reports as an empty mount and exit 0.
+
+To confirm a regeneration reproduces what is committed:
+
+```
+python generator/generate.py
+git add -A -- src/Whisparr3.Net .openapi-generator .openapi-generator-ignore
+git diff --cached --exit-code
+```
+
+Staging before diffing is required rather than tidy: a bare `git diff` reports nothing for an
+untracked path, so a run that emitted a new file would pass an unstaged comparison. This is what
+`.github/workflows/determinism.yml` runs on every push.
 
 ## Build and packaging
 

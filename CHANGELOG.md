@@ -10,8 +10,10 @@ Whisparr's OpenAPI accuracy work. The served document now validates, names every
 declares the status each one really answers. Almost everything below follows from that rather than
 from a decision taken here.
 
-**If you are upgrading, read [docs/MIGRATION-0.4.0.md](docs/MIGRATION-0.4.0.md).** It lists all 212
-renamed methods, old name beside new.
+**If you are upgrading, expect your build to stop compiling.** Every rename is a missing-name
+error at your own call site, never a silent behaviour change. The new name is the `operationId`
+Whisparr assigns the operation, so `git diff` between the two committed copies of
+`spec/openapi.generated.json` gives the complete old-to-new mapping.
 
 ### Breaking
 
@@ -140,8 +142,7 @@ The first release, and the first published to nuget.org.
   URI and the raw body, and distinguishing a failed request from a success with no readable body.
 - `EnsureSuccess` classifies a response, which the generated success accessor does not.
 - A large minority of operations return no value, because the specification declares no response
-  content for them. They are listed with their cause in [docs/SURFACE.md](docs/SURFACE.md), along
-  with the operations that are generated but not useful from C#.
+  content for them.
 
 ## Public API stability policy
 
@@ -170,9 +171,11 @@ When it happens:
 
 - The rename moves the minor version component while the major version is 0, and will move the
   major component once the major version reaches 1.
-- Every renamed method is listed individually, old name and new name, either in the changelog entry
-  for the release that carries the rename or in a migration document that entry links to. A refresh
-  is never summarised as a version bump alone.
+- The changelog entry names the rule that produced the renames and gives worked examples. It does
+  not reproduce the full list, because the list is derivable: method names are the specification's
+  operation identifiers, and both the old and the new `spec/openapi.generated.json` are committed,
+  so a diff between the two tags is the complete mapping. A refresh is never summarised as a
+  version bump alone.
 
 ### How you find out
 
