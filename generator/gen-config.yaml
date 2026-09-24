@@ -15,11 +15,16 @@ library: generichost
 inputSpec: /local/spec/openapi.generated.json
 outputDir: /local
 
-# The boolean config key, inverted from the CLI flag of the opposite name. The flag's own spelling
-# is NOT a key here: an unrecognised key is swallowed silently into a dynamic-properties bag and
-# the run then fails with the very validation error it was meant to bypass. Validation also runs
-# before normalization, so this has to be false rather than merely absent.
-validateSpec: false
+# On, and it passes. It was off because the served document did not validate: StaticResourceController
+# carried an empty route alongside its {path} one, so the operation generated for "/" declared a
+# required path parameter nothing could resolve, and a validator rejects the whole file over it.
+# Whisparr excludes that controller from document generation as of 3.6.1, so the document validates
+# and this is a gate rather than a workaround. Measured 2026-09-24 against 3.6.2.1727: generation
+# exits 0 and the five generated subdirectories are byte-identical to a run with validation off.
+#
+# The boolean config key is inverted from the CLI flag of the opposite name. The flag's own spelling
+# is NOT a key here: an unrecognised key is swallowed silently into a dynamic-properties bag.
+validateSpec: true
 
 # RepositoryUrl in the generated csproj is assembled from these three and from nothing else.
 gitHost: github.com
@@ -113,9 +118,13 @@ additionalProperties:
   # delete the ignore entry on the assumption that this pin covers it.
   packageGuid: "{1EDF3552-B7CE-4C36-A15C-810845C3F203}"
 
-# Deliberately absent, each with its reason. The three normalizers are also recorded in
-# spec/transform-report.txt section 4:
-#   - the three normalizers (duplicate-operationId repair, security-scheme filter, path allowlist)
+# Deliberately absent, each with its reason:
+#   - the duplicate-operationId repair, because it de-duplicates by appending a positional suffix.
+#     That masks the collision assertion in generator/preprocess_spec.py, and inserting an operation
+#     upstream then moves the suffix onto a different method and renames public API with no diff.
+#     Measured 2026-09-24: this document carries no duplicate operationId to repair.
+#   - the security-scheme filter, because generator/preprocess_spec.py narrows the root requirement
+#     to the header scheme instead, before the generator sees the document
 #   - the generation-timestamp option, which already defaults to the value this repository wants
 #     for this generator and injects a build-date line when set the other way
 #   - useSourceGeneration, a generichost-only option whose generator default is false. Read from
@@ -124,10 +133,9 @@ additionalProperties:
 #     that default here because turning it on has not been verified against either target
 #     framework, and verifying it is deferred work. The recorded reason is
 #     the deliverable, so do not add the key in order to satisfy the requirement.
-#   - modelNameMappings, because the collision count is zero. Measured 2026-09-04: a collision needs
-#     a schema name that is also a real BCL type, Command and Field are schemas in this spec but no
-#     System.Command or System.Field exists, and TimeSpan and Version are BCL types that are not
-#     schemas in this spec. The generated tree compiles with 0 errors on both net8.0 and net10.0
-#     with Command and Field present and no mappings at all. That compile is what settled it. The
-#     count was recorded wrong twice before, first at five names and then at two, so what is written
-#     here is the measurement rather than a third estimate.
+#   - modelNameMappings, because the collision count is zero. A collision needs a schema name that
+#     is also a real BCL type. Re-measured 2026-09-24 against the 191 schemas of 3.6.2.1727:
+#     Command, Field and Severity are schemas here and no System.Command, System.Field or
+#     System.Severity exists, while TimeSpan and Version are BCL types that are not schemas here.
+#     The generated tree compiles with 0 errors on both net8.0 and net10.0 with no mappings at all.
+#     That compile is what settled it, and it is what re-settles it on every refresh.
