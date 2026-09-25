@@ -43,7 +43,12 @@ namespace Whisparr3.Net.Model
         /// <summary>
         /// Enum Unsuccessful for value: unsuccessful
         /// </summary>
-        Unsuccessful
+        Unsuccessful,
+
+        /// <summary>
+        /// Enum Indeterminate for value: indeterminate
+        /// </summary>
+        Indeterminate
     }
 
     /// <summary>
@@ -67,6 +72,9 @@ namespace Whisparr3.Net.Model
             if (value.Equals("unsuccessful"))
                 return CommandResult.Unsuccessful;
 
+            if (value.Equals("indeterminate"))
+                return CommandResult.Indeterminate;
+
             throw new NotImplementedException($"Could not convert value to type CommandResult: '{value}'");
         }
 
@@ -85,6 +93,9 @@ namespace Whisparr3.Net.Model
 
             if (value.Equals("unsuccessful"))
                 return CommandResult.Unsuccessful;
+
+            if (value.Equals("indeterminate"))
+                return CommandResult.Indeterminate;
 
             return null;
         }
@@ -105,6 +116,9 @@ namespace Whisparr3.Net.Model
 
             if (value == CommandResult.Unsuccessful)
                 return "unsuccessful";
+
+            if (value == CommandResult.Indeterminate)
+                return "indeterminate";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

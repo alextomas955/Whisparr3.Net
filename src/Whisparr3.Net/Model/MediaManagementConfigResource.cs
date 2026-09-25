@@ -47,6 +47,7 @@ namespace Whisparr3.Net.Model
         /// <param name="setPermissionsLinux">setPermissionsLinux</param>
         /// <param name="chmodFolder">chmodFolder</param>
         /// <param name="chownGroup">chownGroup</param>
+        /// <param name="skipFreeSpaceCheckWhenGrabbing">skipFreeSpaceCheckWhenGrabbing</param>
         /// <param name="skipFreeSpaceCheckWhenImporting">skipFreeSpaceCheckWhenImporting</param>
         /// <param name="minimumFreeSpaceWhenImporting">minimumFreeSpaceWhenImporting</param>
         /// <param name="copyUsingHardlinks">copyUsingHardlinks</param>
@@ -57,7 +58,7 @@ namespace Whisparr3.Net.Model
         /// <param name="enableMediaInfo">enableMediaInfo</param>
         /// <param name="whisparrFolderLimit">whisparrFolderLimit</param>
         [JsonConstructor]
-        public MediaManagementConfigResource(Option<int?> id = default, Option<bool?> autoUnmonitorPreviouslyDownloadedMovies = default, Option<string?> recycleBin = default, Option<int?> recycleBinCleanupDays = default, Option<ProperDownloadTypes?> downloadPropersAndRepacks = default, Option<bool?> createEmptyMovieFolders = default, Option<bool?> deleteEmptyFolders = default, Option<FileDateType?> fileDate = default, Option<RescanAfterRefreshType?> rescanAfterRefresh = default, Option<bool?> autoRenameFolders = default, Option<bool?> pathsDefaultStatic = default, Option<bool?> setPermissionsLinux = default, Option<string?> chmodFolder = default, Option<string?> chownGroup = default, Option<bool?> skipFreeSpaceCheckWhenImporting = default, Option<int?> minimumFreeSpaceWhenImporting = default, Option<bool?> copyUsingHardlinks = default, Option<bool?> useScriptImport = default, Option<string?> scriptImportPath = default, Option<bool?> importExtraFiles = default, Option<string?> extraFileExtensions = default, Option<bool?> enableMediaInfo = default, Option<int?> whisparrFolderLimit = default)
+        public MediaManagementConfigResource(Option<int?> id = default, Option<bool?> autoUnmonitorPreviouslyDownloadedMovies = default, Option<string?> recycleBin = default, Option<int?> recycleBinCleanupDays = default, Option<ProperDownloadTypes?> downloadPropersAndRepacks = default, Option<bool?> createEmptyMovieFolders = default, Option<bool?> deleteEmptyFolders = default, Option<FileDateType?> fileDate = default, Option<RescanAfterRefreshType?> rescanAfterRefresh = default, Option<bool?> autoRenameFolders = default, Option<bool?> pathsDefaultStatic = default, Option<bool?> setPermissionsLinux = default, Option<string?> chmodFolder = default, Option<string?> chownGroup = default, Option<bool?> skipFreeSpaceCheckWhenGrabbing = default, Option<bool?> skipFreeSpaceCheckWhenImporting = default, Option<int?> minimumFreeSpaceWhenImporting = default, Option<bool?> copyUsingHardlinks = default, Option<bool?> useScriptImport = default, Option<string?> scriptImportPath = default, Option<bool?> importExtraFiles = default, Option<string?> extraFileExtensions = default, Option<bool?> enableMediaInfo = default, Option<int?> whisparrFolderLimit = default)
         {
             IdOption = id;
             AutoUnmonitorPreviouslyDownloadedMoviesOption = autoUnmonitorPreviouslyDownloadedMovies;
@@ -73,6 +74,7 @@ namespace Whisparr3.Net.Model
             SetPermissionsLinuxOption = setPermissionsLinux;
             ChmodFolderOption = chmodFolder;
             ChownGroupOption = chownGroup;
+            SkipFreeSpaceCheckWhenGrabbingOption = skipFreeSpaceCheckWhenGrabbing;
             SkipFreeSpaceCheckWhenImportingOption = skipFreeSpaceCheckWhenImporting;
             MinimumFreeSpaceWhenImportingOption = minimumFreeSpaceWhenImporting;
             CopyUsingHardlinksOption = copyUsingHardlinks;
@@ -270,6 +272,19 @@ namespace Whisparr3.Net.Model
         public string? ChownGroup { get { return this.ChownGroupOption.Value; } set { this.ChownGroupOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of SkipFreeSpaceCheckWhenGrabbing
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> SkipFreeSpaceCheckWhenGrabbingOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets SkipFreeSpaceCheckWhenGrabbing
+        /// </summary>
+        [JsonPropertyName("skipFreeSpaceCheckWhenGrabbing")]
+        public bool? SkipFreeSpaceCheckWhenGrabbing { get { return this.SkipFreeSpaceCheckWhenGrabbingOption.Value; } set { this.SkipFreeSpaceCheckWhenGrabbingOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of SkipFreeSpaceCheckWhenImporting
         /// </summary>
         [JsonIgnore]
@@ -408,6 +423,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  SetPermissionsLinux: ").Append(SetPermissionsLinux).Append("\n");
             sb.Append("  ChmodFolder: ").Append(ChmodFolder).Append("\n");
             sb.Append("  ChownGroup: ").Append(ChownGroup).Append("\n");
+            sb.Append("  SkipFreeSpaceCheckWhenGrabbing: ").Append(SkipFreeSpaceCheckWhenGrabbing).Append("\n");
             sb.Append("  SkipFreeSpaceCheckWhenImporting: ").Append(SkipFreeSpaceCheckWhenImporting).Append("\n");
             sb.Append("  MinimumFreeSpaceWhenImporting: ").Append(MinimumFreeSpaceWhenImporting).Append("\n");
             sb.Append("  CopyUsingHardlinks: ").Append(CopyUsingHardlinks).Append("\n");
@@ -478,6 +494,7 @@ namespace Whisparr3.Net.Model
             Option<bool?> setPermissionsLinux = default;
             Option<string?> chmodFolder = default;
             Option<string?> chownGroup = default;
+            Option<bool?> skipFreeSpaceCheckWhenGrabbing = default;
             Option<bool?> skipFreeSpaceCheckWhenImporting = default;
             Option<int?> minimumFreeSpaceWhenImporting = default;
             Option<bool?> copyUsingHardlinks = default;
@@ -545,6 +562,9 @@ namespace Whisparr3.Net.Model
                         case "chownGroup":
                             chownGroup = new Option<string?>(utf8JsonReader.GetString());
                             break;
+                        case "skipFreeSpaceCheckWhenGrabbing":
+                            skipFreeSpaceCheckWhenGrabbing = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "skipFreeSpaceCheckWhenImporting":
                             skipFreeSpaceCheckWhenImporting = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -611,6 +631,9 @@ namespace Whisparr3.Net.Model
             if (setPermissionsLinux.IsSet && setPermissionsLinux.Value == null)
                 throw new ArgumentNullException(nameof(setPermissionsLinux), "Property is not nullable for class MediaManagementConfigResource.");
 
+            if (skipFreeSpaceCheckWhenGrabbing.IsSet && skipFreeSpaceCheckWhenGrabbing.Value == null)
+                throw new ArgumentNullException(nameof(skipFreeSpaceCheckWhenGrabbing), "Property is not nullable for class MediaManagementConfigResource.");
+
             if (skipFreeSpaceCheckWhenImporting.IsSet && skipFreeSpaceCheckWhenImporting.Value == null)
                 throw new ArgumentNullException(nameof(skipFreeSpaceCheckWhenImporting), "Property is not nullable for class MediaManagementConfigResource.");
 
@@ -632,7 +655,7 @@ namespace Whisparr3.Net.Model
             if (whisparrFolderLimit.IsSet && whisparrFolderLimit.Value == null)
                 throw new ArgumentNullException(nameof(whisparrFolderLimit), "Property is not nullable for class MediaManagementConfigResource.");
 
-            return new MediaManagementConfigResource(id, autoUnmonitorPreviouslyDownloadedMovies, recycleBin, recycleBinCleanupDays, downloadPropersAndRepacks, createEmptyMovieFolders, deleteEmptyFolders, fileDate, rescanAfterRefresh, autoRenameFolders, pathsDefaultStatic, setPermissionsLinux, chmodFolder, chownGroup, skipFreeSpaceCheckWhenImporting, minimumFreeSpaceWhenImporting, copyUsingHardlinks, useScriptImport, scriptImportPath, importExtraFiles, extraFileExtensions, enableMediaInfo, whisparrFolderLimit);
+            return new MediaManagementConfigResource(id, autoUnmonitorPreviouslyDownloadedMovies, recycleBin, recycleBinCleanupDays, downloadPropersAndRepacks, createEmptyMovieFolders, deleteEmptyFolders, fileDate, rescanAfterRefresh, autoRenameFolders, pathsDefaultStatic, setPermissionsLinux, chmodFolder, chownGroup, skipFreeSpaceCheckWhenGrabbing, skipFreeSpaceCheckWhenImporting, minimumFreeSpaceWhenImporting, copyUsingHardlinks, useScriptImport, scriptImportPath, importExtraFiles, extraFileExtensions, enableMediaInfo, whisparrFolderLimit);
         }
 
         /// <summary>
@@ -715,6 +738,9 @@ namespace Whisparr3.Net.Model
                     writer.WriteString("chownGroup", mediaManagementConfigResource.ChownGroup);
                 else
                     writer.WriteNull("chownGroup");
+
+            if (mediaManagementConfigResource.SkipFreeSpaceCheckWhenGrabbingOption.IsSet)
+                writer.WriteBoolean("skipFreeSpaceCheckWhenGrabbing", mediaManagementConfigResource.SkipFreeSpaceCheckWhenGrabbingOption.Value!.Value);
 
             if (mediaManagementConfigResource.SkipFreeSpaceCheckWhenImportingOption.IsSet)
                 writer.WriteBoolean("skipFreeSpaceCheckWhenImporting", mediaManagementConfigResource.SkipFreeSpaceCheckWhenImportingOption.Value!.Value);

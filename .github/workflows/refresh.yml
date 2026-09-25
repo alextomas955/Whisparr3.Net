@@ -150,12 +150,11 @@ jobs:
         if: steps.detect.outputs.material == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          IMAGE_DIGEST: ${{ inputs.image_digest }}
         run: |
-          DIGEST="$IMAGE_DIGEST"
-          if [ -z "$DIGEST" ]; then
-            DIGEST=$(python3 -c "import json; print(json.load(open('spec/PROVENANCE.json'))['imageDigest'])")
-          fi
+          # The provenance document records whichever image the capture actually used, so it is
+          # the source of the name in the commit and the pull request whether or not a digest was
+          # supplied.
+          IMAGE=$(python3 -c "import json; print(json.load(open('spec/PROVENANCE.json'))['image'])")
 
           # The runner has no includeIf include, so the identity the repository contract mandates
           # has to be set here.
@@ -165,23 +164,23 @@ jobs:
           BRANCH="spec-refresh/$(date -u +%Y%m%d-%H%M%S)"
           git checkout -b "$BRANCH"
           git add -A
-          git commit -m "chore(spec): refresh from $DIGEST"
+          git commit -m "chore(spec): refresh from $IMAGE"
           git push origin "$BRANCH"
 
           cat > /tmp/pr-body.md <<BODY
           This pull request was opened by the refresh workflow, from run $GITHUB_RUN_ID.
 
-          Source image: \`$DIGEST\`
+          Source image: \`$IMAGE\`
 
           Checks did not run on this pull request. Events triggered by the built-in GITHUB_TOKEN
           do not create workflow runs, so this is documented GitHub behaviour rather than a
           failure. To get checks, close and reopen this pull request, or push an empty commit
           to its branch.
 
-          Read the diff before accepting it. The integration suite boots the image digest named
-          in spec/PROVENANCE.json, so accepting this changes what every live test runs against.
+          Read the diff before accepting it. The integration suite boots the image named in
+          spec/PROVENANCE.json, so accepting this changes what every live test runs against.
           BODY
 
           gh pr create --base main --head "$BRANCH" \
-            --title "Spec refresh from $DIGEST" \
+            --title "Spec refresh from $IMAGE" \
             --body-file /tmp/pr-body.md

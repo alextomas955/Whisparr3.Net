@@ -61,7 +61,7 @@ namespace Whisparr3.Net.UnitTests
             using LoopbackCapture capture = new(status: 201, body: CommandAcceptedBody);
 
             await using ServiceProvider provider = BuildProvider(capture);
-            ICreateCommandApiResponse response = await Dispatcher(provider)
+            IPostCommandApiResponse response = await Dispatcher(provider)
                 .SendCommandAsync(DispatchedCommandName, new { studioIds = new[] { 7 } });
 
             // The status is read off the response rather than off a caught exception. A dispatch
@@ -236,7 +236,7 @@ namespace Whisparr3.Net.UnitTests
 
             await using ServiceProvider provider = BuildProvider(capture);
             await provider.GetRequiredService<ITagApi>()
-                .CreateTagAsync(new TagResource(label: ProbeLabel));
+                .PostTagAsync(new TagResource(label: ProbeLabel));
 
             string request = await capture.FirstRequest;
 
@@ -275,7 +275,7 @@ namespace Whisparr3.Net.UnitTests
 
             await using ServiceProvider provider = BuildProvider(capture);
             await provider.GetRequiredService<ITagApi>()
-                .CreateTagAsync(new TagResource(label: ProbeLabel));
+                .PostTagAsync(new TagResource(label: ProbeLabel));
 
             string request = await capture.FirstRequest;
 
@@ -350,9 +350,9 @@ namespace Whisparr3.Net.UnitTests
             await using ServiceProvider provider = BuildProvider(capture);
 
             List<ApiResponseEventArgs> raised = [];
-            provider.GetRequiredService<CommandApiEvents>().OnCreateCommand += (_, args) => raised.Add(args);
+            provider.GetRequiredService<CommandApiEvents>().OnPostCommand += (_, args) => raised.Add(args);
 
-            ICreateCommandApiResponse response = await Dispatcher(provider)
+            IPostCommandApiResponse response = await Dispatcher(provider)
                 .SendCommandAsync(DispatchedCommandName, new { studioIds = new[] { 7 } });
 
             ApiResponseEventArgs only = Assert.Single(raised);
@@ -377,7 +377,7 @@ namespace Whisparr3.Net.UnitTests
             await using ServiceProvider provider = BuildProvider(capture);
 
             List<ExceptionEventArgs> raised = [];
-            provider.GetRequiredService<CommandApiEvents>().OnErrorCreateCommand += (_, args) => raised.Add(args);
+            provider.GetRequiredService<CommandApiEvents>().OnErrorPostCommand += (_, args) => raised.Add(args);
 
             ArgumentException thrown = await Assert.ThrowsAsync<ArgumentException>(
                 () => Dispatcher(provider).SendCommandAsync(

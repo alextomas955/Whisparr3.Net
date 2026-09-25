@@ -38,6 +38,7 @@ namespace Whisparr3.Net.Model
         /// <param name="quality">quality</param>
         /// <param name="customFormats">customFormats</param>
         /// <param name="customFormatScore">customFormatScore</param>
+        /// <param name="history">history</param>
         /// <param name="qualityWeight">qualityWeight</param>
         /// <param name="age">age</param>
         /// <param name="ageHours">ageHours</param>
@@ -78,13 +79,14 @@ namespace Whisparr3.Net.Model
         /// <param name="downloadClient">downloadClient</param>
         /// <param name="shouldOverride">shouldOverride</param>
         [JsonConstructor]
-        public ReleaseResource(Option<int?> id = default, Option<string?> guid = default, Option<QualityModel?> quality = default, Option<List<CustomFormatResource>?> customFormats = default, Option<int?> customFormatScore = default, Option<int?> qualityWeight = default, Option<int?> age = default, Option<double?> ageHours = default, Option<double?> ageMinutes = default, Option<long?> size = default, Option<int?> indexerId = default, Option<string?> indexer = default, Option<string?> releaseGroup = default, Option<string?> subGroup = default, Option<string?> releaseHash = default, Option<string?> title = default, Option<bool?> sceneSource = default, Option<List<string>?> movieTitles = default, Option<List<Language>?> languages = default, Option<int?> mappedMovieId = default, Option<bool?> approved = default, Option<bool?> temporarilyRejected = default, Option<bool?> rejected = default, Option<int?> tmdbId = default, Option<int?> imdbId = default, Option<List<string>?> rejections = default, Option<DateTime?> publishDate = default, Option<string?> commentUrl = default, Option<string?> downloadUrl = default, Option<string?> infoUrl = default, Option<bool?> movieRequested = default, Option<bool?> downloadAllowed = default, Option<int?> releaseWeight = default, Option<string?> edition = default, Option<string?> magnetUrl = default, Option<string?> infoHash = default, Option<int?> seeders = default, Option<int?> leechers = default, Option<DownloadProtocol?> protocol = default, Option<Object?> indexerFlags = default, Option<int?> movieId = default, Option<int?> downloadClientId = default, Option<string?> downloadClient = default, Option<bool?> shouldOverride = default)
+        public ReleaseResource(Option<int?> id = default, Option<string?> guid = default, Option<QualityModel?> quality = default, Option<List<CustomFormatResource>?> customFormats = default, Option<int?> customFormatScore = default, Option<ReleaseHistoryResource?> history = default, Option<int?> qualityWeight = default, Option<int?> age = default, Option<double?> ageHours = default, Option<double?> ageMinutes = default, Option<long?> size = default, Option<int?> indexerId = default, Option<string?> indexer = default, Option<string?> releaseGroup = default, Option<string?> subGroup = default, Option<string?> releaseHash = default, Option<string?> title = default, Option<bool?> sceneSource = default, Option<List<string>?> movieTitles = default, Option<List<Language>?> languages = default, Option<int?> mappedMovieId = default, Option<bool?> approved = default, Option<bool?> temporarilyRejected = default, Option<bool?> rejected = default, Option<int?> tmdbId = default, Option<int?> imdbId = default, Option<List<string>?> rejections = default, Option<DateTime?> publishDate = default, Option<string?> commentUrl = default, Option<string?> downloadUrl = default, Option<string?> infoUrl = default, Option<bool?> movieRequested = default, Option<bool?> downloadAllowed = default, Option<int?> releaseWeight = default, Option<string?> edition = default, Option<string?> magnetUrl = default, Option<string?> infoHash = default, Option<int?> seeders = default, Option<int?> leechers = default, Option<DownloadProtocol?> protocol = default, Option<Object?> indexerFlags = default, Option<int?> movieId = default, Option<int?> downloadClientId = default, Option<string?> downloadClient = default, Option<bool?> shouldOverride = default)
         {
             IdOption = id;
             GuidOption = guid;
             QualityOption = quality;
             CustomFormatsOption = customFormats;
             CustomFormatScoreOption = customFormatScore;
+            HistoryOption = history;
             QualityWeightOption = qualityWeight;
             AgeOption = age;
             AgeHoursOption = ageHours;
@@ -206,6 +208,19 @@ namespace Whisparr3.Net.Model
         /// </summary>
         [JsonPropertyName("customFormatScore")]
         public int? CustomFormatScore { get { return this.CustomFormatScoreOption.Value; } set { this.CustomFormatScoreOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of History
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ReleaseHistoryResource?> HistoryOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets History
+        /// </summary>
+        [JsonPropertyName("history")]
+        public ReleaseHistoryResource? History { get { return this.HistoryOption.Value; } set { this.HistoryOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of QualityWeight
@@ -714,6 +729,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  Quality: ").Append(Quality).Append("\n");
             sb.Append("  CustomFormats: ").Append(CustomFormats).Append("\n");
             sb.Append("  CustomFormatScore: ").Append(CustomFormatScore).Append("\n");
+            sb.Append("  History: ").Append(History).Append("\n");
             sb.Append("  QualityWeight: ").Append(QualityWeight).Append("\n");
             sb.Append("  Age: ").Append(Age).Append("\n");
             sb.Append("  AgeHours: ").Append(AgeHours).Append("\n");
@@ -810,6 +826,7 @@ namespace Whisparr3.Net.Model
             Option<QualityModel?> quality = default;
             Option<List<CustomFormatResource>?> customFormats = default;
             Option<int?> customFormatScore = default;
+            Option<ReleaseHistoryResource?> history = default;
             Option<int?> qualityWeight = default;
             Option<int?> age = default;
             Option<double?> ageHours = default;
@@ -879,6 +896,9 @@ namespace Whisparr3.Net.Model
                             break;
                         case "customFormatScore":
                             customFormatScore = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "history":
+                            history = new Option<ReleaseHistoryResource?>(JsonSerializer.Deserialize<ReleaseHistoryResource>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "qualityWeight":
                             qualityWeight = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
@@ -1012,6 +1032,9 @@ namespace Whisparr3.Net.Model
             if (customFormatScore.IsSet && customFormatScore.Value == null)
                 throw new ArgumentNullException(nameof(customFormatScore), "Property is not nullable for class ReleaseResource.");
 
+            if (history.IsSet && history.Value == null)
+                throw new ArgumentNullException(nameof(history), "Property is not nullable for class ReleaseResource.");
+
             if (qualityWeight.IsSet && qualityWeight.Value == null)
                 throw new ArgumentNullException(nameof(qualityWeight), "Property is not nullable for class ReleaseResource.");
 
@@ -1063,7 +1086,7 @@ namespace Whisparr3.Net.Model
             if (protocol.IsSet && protocol.Value == null)
                 throw new ArgumentNullException(nameof(protocol), "Property is not nullable for class ReleaseResource.");
 
-            return new ReleaseResource(id, guid, quality, customFormats, customFormatScore, qualityWeight, age, ageHours, ageMinutes, size, indexerId, indexer, releaseGroup, subGroup, releaseHash, title, sceneSource, movieTitles, languages, mappedMovieId, approved, temporarilyRejected, rejected, tmdbId, imdbId, rejections, publishDate, commentUrl, downloadUrl, infoUrl, movieRequested, downloadAllowed, releaseWeight, edition, magnetUrl, infoHash, seeders, leechers, protocol, indexerFlags, movieId, downloadClientId, downloadClient, shouldOverride);
+            return new ReleaseResource(id, guid, quality, customFormats, customFormatScore, history, qualityWeight, age, ageHours, ageMinutes, size, indexerId, indexer, releaseGroup, subGroup, releaseHash, title, sceneSource, movieTitles, languages, mappedMovieId, approved, temporarilyRejected, rejected, tmdbId, imdbId, rejections, publishDate, commentUrl, downloadUrl, infoUrl, movieRequested, downloadAllowed, releaseWeight, edition, magnetUrl, infoHash, seeders, leechers, protocol, indexerFlags, movieId, downloadClientId, downloadClient, shouldOverride);
         }
 
         /// <summary>
@@ -1093,6 +1116,9 @@ namespace Whisparr3.Net.Model
             if (releaseResource.QualityOption.IsSet && releaseResource.Quality == null)
                 throw new ArgumentNullException(nameof(releaseResource.Quality), "Property is required for class ReleaseResource.");
 
+            if (releaseResource.HistoryOption.IsSet && releaseResource.History == null)
+                throw new ArgumentNullException(nameof(releaseResource.History), "Property is required for class ReleaseResource.");
+
             if (releaseResource.IdOption.IsSet)
                 writer.WriteNumber("id", releaseResource.IdOption.Value!.Value);
 
@@ -1118,6 +1144,11 @@ namespace Whisparr3.Net.Model
             if (releaseResource.CustomFormatScoreOption.IsSet)
                 writer.WriteNumber("customFormatScore", releaseResource.CustomFormatScoreOption.Value!.Value);
 
+            if (releaseResource.HistoryOption.IsSet)
+            {
+                writer.WritePropertyName("history");
+                JsonSerializer.Serialize(writer, releaseResource.History, jsonSerializerOptions);
+            }
             if (releaseResource.QualityWeightOption.IsSet)
                 writer.WriteNumber("qualityWeight", releaseResource.QualityWeightOption.Value!.Value);
 

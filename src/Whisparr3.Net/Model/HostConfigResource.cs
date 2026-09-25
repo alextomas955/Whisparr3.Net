@@ -41,6 +41,7 @@ namespace Whisparr3.Net.Model
         /// <param name="launchBrowser">launchBrowser</param>
         /// <param name="authenticationMethod">authenticationMethod</param>
         /// <param name="authenticationRequired">authenticationRequired</param>
+        /// <param name="allowedHosts">allowedHosts</param>
         /// <param name="analyticsEnabled">analyticsEnabled</param>
         /// <param name="username">username</param>
         /// <param name="password">password</param>
@@ -53,6 +54,7 @@ namespace Whisparr3.Net.Model
         /// <param name="sslCertPath">sslCertPath</param>
         /// <param name="sslCertPassword">sslCertPassword</param>
         /// <param name="urlBase">urlBase</param>
+        /// <param name="trustedNetworks">trustedNetworks</param>
         /// <param name="instanceName">instanceName</param>
         /// <param name="applicationUrl">applicationUrl</param>
         /// <param name="updateAutomatically">updateAutomatically</param>
@@ -73,6 +75,7 @@ namespace Whisparr3.Net.Model
         /// <param name="trustCgnatIpAddresses">trustCgnatIpAddresses</param>
         /// <param name="whisparrAlwaysExcludeCollectionsTag">whisparrAlwaysExcludeCollectionsTag</param>
         /// <param name="whisparrAlwaysExcludePerformersTag">whisparrAlwaysExcludePerformersTag</param>
+        /// <param name="whisparrAlwaysExcludePerformersAfterTag">whisparrAlwaysExcludePerformersAfterTag</param>
         /// <param name="whisparrAlwaysExcludeStudiosTag">whisparrAlwaysExcludeStudiosTag</param>
         /// <param name="whisparrAlwaysExcludeStudiosAfterTag">whisparrAlwaysExcludeStudiosAfterTag</param>
         /// <param name="whisparrAlwaysExcludeTagsTag">whisparrAlwaysExcludeTagsTag</param>
@@ -83,11 +86,12 @@ namespace Whisparr3.Net.Model
         /// <param name="whisparrCacheStudioAPI">whisparrCacheStudioAPI</param>
         /// <param name="whisparrCorruptFileDetection">whisparrCorruptFileDetection</param>
         /// <param name="whisparrFuzzyTitleMatchingThreshold">whisparrFuzzyTitleMatchingThreshold</param>
+        /// <param name="whisparrMonitorNewItems">whisparrMonitorNewItems</param>
         /// <param name="whisparrMovieMetadataSource">whisparrMovieMetadataSource</param>
         /// <param name="whisparrValidateRuntime">whisparrValidateRuntime</param>
         /// <param name="whisparrValidateRuntimeLimit">whisparrValidateRuntimeLimit</param>
         [JsonConstructor]
-        public HostConfigResource(Option<int?> id = default, Option<string?> bindAddress = default, Option<int?> port = default, Option<int?> sslPort = default, Option<bool?> enableSsl = default, Option<bool?> launchBrowser = default, Option<AuthenticationType?> authenticationMethod = default, Option<AuthenticationRequiredType?> authenticationRequired = default, Option<bool?> analyticsEnabled = default, Option<string?> username = default, Option<string?> password = default, Option<string?> passwordConfirmation = default, Option<string?> logLevel = default, Option<int?> logSizeLimit = default, Option<string?> consoleLogLevel = default, Option<string?> branch = default, Option<string?> apiKey = default, Option<string?> sslCertPath = default, Option<string?> sslCertPassword = default, Option<string?> urlBase = default, Option<string?> instanceName = default, Option<string?> applicationUrl = default, Option<bool?> updateAutomatically = default, Option<UpdateMechanism?> updateMechanism = default, Option<string?> updateScriptPath = default, Option<bool?> proxyEnabled = default, Option<ProxyType?> proxyType = default, Option<string?> proxyHostname = default, Option<int?> proxyPort = default, Option<string?> proxyUsername = default, Option<string?> proxyPassword = default, Option<string?> proxyBypassFilter = default, Option<bool?> proxyBypassLocalAddresses = default, Option<CertificateValidationType?> certificateValidation = default, Option<string?> backupFolder = default, Option<int?> backupInterval = default, Option<int?> backupRetention = default, Option<bool?> trustCgnatIpAddresses = default, Option<string?> whisparrAlwaysExcludeCollectionsTag = default, Option<string?> whisparrAlwaysExcludePerformersTag = default, Option<string?> whisparrAlwaysExcludeStudiosTag = default, Option<string?> whisparrAlwaysExcludeStudiosAfterTag = default, Option<string?> whisparrAlwaysExcludeTagsTag = default, Option<bool?> whisparrAutoMatchOnDate = default, Option<bool?> whisparrCacheExclusionAPI = default, Option<bool?> whisparrCacheMovieAPI = default, Option<bool?> whisparrCachePerformerAPI = default, Option<bool?> whisparrCacheStudioAPI = default, Option<bool?> whisparrCorruptFileDetection = default, Option<int?> whisparrFuzzyTitleMatchingThreshold = default, Option<MovieMetadataType?> whisparrMovieMetadataSource = default, Option<bool?> whisparrValidateRuntime = default, Option<int?> whisparrValidateRuntimeLimit = default)
+        public HostConfigResource(Option<int?> id = default, Option<string?> bindAddress = default, Option<int?> port = default, Option<int?> sslPort = default, Option<bool?> enableSsl = default, Option<bool?> launchBrowser = default, Option<AuthenticationType?> authenticationMethod = default, Option<AuthenticationRequiredType?> authenticationRequired = default, Option<string?> allowedHosts = default, Option<bool?> analyticsEnabled = default, Option<string?> username = default, Option<string?> password = default, Option<string?> passwordConfirmation = default, Option<string?> logLevel = default, Option<int?> logSizeLimit = default, Option<string?> consoleLogLevel = default, Option<string?> branch = default, Option<string?> apiKey = default, Option<string?> sslCertPath = default, Option<string?> sslCertPassword = default, Option<string?> urlBase = default, Option<string?> trustedNetworks = default, Option<string?> instanceName = default, Option<string?> applicationUrl = default, Option<bool?> updateAutomatically = default, Option<UpdateMechanism?> updateMechanism = default, Option<string?> updateScriptPath = default, Option<bool?> proxyEnabled = default, Option<ProxyType?> proxyType = default, Option<string?> proxyHostname = default, Option<int?> proxyPort = default, Option<string?> proxyUsername = default, Option<string?> proxyPassword = default, Option<string?> proxyBypassFilter = default, Option<bool?> proxyBypassLocalAddresses = default, Option<CertificateValidationType?> certificateValidation = default, Option<string?> backupFolder = default, Option<int?> backupInterval = default, Option<int?> backupRetention = default, Option<bool?> trustCgnatIpAddresses = default, Option<string?> whisparrAlwaysExcludeCollectionsTag = default, Option<string?> whisparrAlwaysExcludePerformersTag = default, Option<string?> whisparrAlwaysExcludePerformersAfterTag = default, Option<string?> whisparrAlwaysExcludeStudiosTag = default, Option<string?> whisparrAlwaysExcludeStudiosAfterTag = default, Option<string?> whisparrAlwaysExcludeTagsTag = default, Option<bool?> whisparrAutoMatchOnDate = default, Option<bool?> whisparrCacheExclusionAPI = default, Option<bool?> whisparrCacheMovieAPI = default, Option<bool?> whisparrCachePerformerAPI = default, Option<bool?> whisparrCacheStudioAPI = default, Option<bool?> whisparrCorruptFileDetection = default, Option<int?> whisparrFuzzyTitleMatchingThreshold = default, Option<bool?> whisparrMonitorNewItems = default, Option<MovieMetadataType?> whisparrMovieMetadataSource = default, Option<bool?> whisparrValidateRuntime = default, Option<int?> whisparrValidateRuntimeLimit = default)
         {
             IdOption = id;
             BindAddressOption = bindAddress;
@@ -97,6 +101,7 @@ namespace Whisparr3.Net.Model
             LaunchBrowserOption = launchBrowser;
             AuthenticationMethodOption = authenticationMethod;
             AuthenticationRequiredOption = authenticationRequired;
+            AllowedHostsOption = allowedHosts;
             AnalyticsEnabledOption = analyticsEnabled;
             UsernameOption = username;
             PasswordOption = password;
@@ -109,6 +114,7 @@ namespace Whisparr3.Net.Model
             SslCertPathOption = sslCertPath;
             SslCertPasswordOption = sslCertPassword;
             UrlBaseOption = urlBase;
+            TrustedNetworksOption = trustedNetworks;
             InstanceNameOption = instanceName;
             ApplicationUrlOption = applicationUrl;
             UpdateAutomaticallyOption = updateAutomatically;
@@ -129,6 +135,7 @@ namespace Whisparr3.Net.Model
             TrustCgnatIpAddressesOption = trustCgnatIpAddresses;
             WhisparrAlwaysExcludeCollectionsTagOption = whisparrAlwaysExcludeCollectionsTag;
             WhisparrAlwaysExcludePerformersTagOption = whisparrAlwaysExcludePerformersTag;
+            WhisparrAlwaysExcludePerformersAfterTagOption = whisparrAlwaysExcludePerformersAfterTag;
             WhisparrAlwaysExcludeStudiosTagOption = whisparrAlwaysExcludeStudiosTag;
             WhisparrAlwaysExcludeStudiosAfterTagOption = whisparrAlwaysExcludeStudiosAfterTag;
             WhisparrAlwaysExcludeTagsTagOption = whisparrAlwaysExcludeTagsTag;
@@ -139,6 +146,7 @@ namespace Whisparr3.Net.Model
             WhisparrCacheStudioAPIOption = whisparrCacheStudioAPI;
             WhisparrCorruptFileDetectionOption = whisparrCorruptFileDetection;
             WhisparrFuzzyTitleMatchingThresholdOption = whisparrFuzzyTitleMatchingThreshold;
+            WhisparrMonitorNewItemsOption = whisparrMonitorNewItems;
             WhisparrMovieMetadataSourceOption = whisparrMovieMetadataSource;
             WhisparrValidateRuntimeOption = whisparrValidateRuntime;
             WhisparrValidateRuntimeLimitOption = whisparrValidateRuntimeLimit;
@@ -304,6 +312,19 @@ namespace Whisparr3.Net.Model
         public bool? LaunchBrowser { get { return this.LaunchBrowserOption.Value; } set { this.LaunchBrowserOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of AllowedHosts
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> AllowedHostsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets AllowedHosts
+        /// </summary>
+        [JsonPropertyName("allowedHosts")]
+        public string? AllowedHosts { get { return this.AllowedHostsOption.Value; } set { this.AllowedHostsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of AnalyticsEnabled
         /// </summary>
         [JsonIgnore]
@@ -458,6 +479,19 @@ namespace Whisparr3.Net.Model
         /// </summary>
         [JsonPropertyName("urlBase")]
         public string? UrlBase { get { return this.UrlBaseOption.Value; } set { this.UrlBaseOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of TrustedNetworks
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> TrustedNetworksOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets TrustedNetworks
+        /// </summary>
+        [JsonPropertyName("trustedNetworks")]
+        public string? TrustedNetworks { get { return this.TrustedNetworksOption.Value; } set { this.TrustedNetworksOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of InstanceName
@@ -681,6 +715,19 @@ namespace Whisparr3.Net.Model
         public string? WhisparrAlwaysExcludePerformersTag { get { return this.WhisparrAlwaysExcludePerformersTagOption.Value; } set { this.WhisparrAlwaysExcludePerformersTagOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of WhisparrAlwaysExcludePerformersAfterTag
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> WhisparrAlwaysExcludePerformersAfterTagOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets WhisparrAlwaysExcludePerformersAfterTag
+        /// </summary>
+        [JsonPropertyName("whisparrAlwaysExcludePerformersAfterTag")]
+        public string? WhisparrAlwaysExcludePerformersAfterTag { get { return this.WhisparrAlwaysExcludePerformersAfterTagOption.Value; } set { this.WhisparrAlwaysExcludePerformersAfterTagOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of WhisparrAlwaysExcludeStudiosTag
         /// </summary>
         [JsonIgnore]
@@ -811,6 +858,19 @@ namespace Whisparr3.Net.Model
         public int? WhisparrFuzzyTitleMatchingThreshold { get { return this.WhisparrFuzzyTitleMatchingThresholdOption.Value; } set { this.WhisparrFuzzyTitleMatchingThresholdOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of WhisparrMonitorNewItems
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> WhisparrMonitorNewItemsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets WhisparrMonitorNewItems
+        /// </summary>
+        [JsonPropertyName("whisparrMonitorNewItems")]
+        public bool? WhisparrMonitorNewItems { get { return this.WhisparrMonitorNewItemsOption.Value; } set { this.WhisparrMonitorNewItemsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of WhisparrValidateRuntime
         /// </summary>
         [JsonIgnore]
@@ -852,6 +912,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  LaunchBrowser: ").Append(LaunchBrowser).Append("\n");
             sb.Append("  AuthenticationMethod: ").Append(AuthenticationMethod).Append("\n");
             sb.Append("  AuthenticationRequired: ").Append(AuthenticationRequired).Append("\n");
+            sb.Append("  AllowedHosts: ").Append(AllowedHosts).Append("\n");
             sb.Append("  AnalyticsEnabled: ").Append(AnalyticsEnabled).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Password: ").Append(Password).Append("\n");
@@ -864,6 +925,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  SslCertPath: ").Append(SslCertPath).Append("\n");
             sb.Append("  SslCertPassword: ").Append(SslCertPassword).Append("\n");
             sb.Append("  UrlBase: ").Append(UrlBase).Append("\n");
+            sb.Append("  TrustedNetworks: ").Append(TrustedNetworks).Append("\n");
             sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
             sb.Append("  ApplicationUrl: ").Append(ApplicationUrl).Append("\n");
             sb.Append("  UpdateAutomatically: ").Append(UpdateAutomatically).Append("\n");
@@ -884,6 +946,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  TrustCgnatIpAddresses: ").Append(TrustCgnatIpAddresses).Append("\n");
             sb.Append("  WhisparrAlwaysExcludeCollectionsTag: ").Append(WhisparrAlwaysExcludeCollectionsTag).Append("\n");
             sb.Append("  WhisparrAlwaysExcludePerformersTag: ").Append(WhisparrAlwaysExcludePerformersTag).Append("\n");
+            sb.Append("  WhisparrAlwaysExcludePerformersAfterTag: ").Append(WhisparrAlwaysExcludePerformersAfterTag).Append("\n");
             sb.Append("  WhisparrAlwaysExcludeStudiosTag: ").Append(WhisparrAlwaysExcludeStudiosTag).Append("\n");
             sb.Append("  WhisparrAlwaysExcludeStudiosAfterTag: ").Append(WhisparrAlwaysExcludeStudiosAfterTag).Append("\n");
             sb.Append("  WhisparrAlwaysExcludeTagsTag: ").Append(WhisparrAlwaysExcludeTagsTag).Append("\n");
@@ -894,6 +957,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  WhisparrCacheStudioAPI: ").Append(WhisparrCacheStudioAPI).Append("\n");
             sb.Append("  WhisparrCorruptFileDetection: ").Append(WhisparrCorruptFileDetection).Append("\n");
             sb.Append("  WhisparrFuzzyTitleMatchingThreshold: ").Append(WhisparrFuzzyTitleMatchingThreshold).Append("\n");
+            sb.Append("  WhisparrMonitorNewItems: ").Append(WhisparrMonitorNewItems).Append("\n");
             sb.Append("  WhisparrMovieMetadataSource: ").Append(WhisparrMovieMetadataSource).Append("\n");
             sb.Append("  WhisparrValidateRuntime: ").Append(WhisparrValidateRuntime).Append("\n");
             sb.Append("  WhisparrValidateRuntimeLimit: ").Append(WhisparrValidateRuntimeLimit).Append("\n");
@@ -952,6 +1016,7 @@ namespace Whisparr3.Net.Model
             Option<bool?> launchBrowser = default;
             Option<AuthenticationType?> authenticationMethod = default;
             Option<AuthenticationRequiredType?> authenticationRequired = default;
+            Option<string?> allowedHosts = default;
             Option<bool?> analyticsEnabled = default;
             Option<string?> username = default;
             Option<string?> password = default;
@@ -964,6 +1029,7 @@ namespace Whisparr3.Net.Model
             Option<string?> sslCertPath = default;
             Option<string?> sslCertPassword = default;
             Option<string?> urlBase = default;
+            Option<string?> trustedNetworks = default;
             Option<string?> instanceName = default;
             Option<string?> applicationUrl = default;
             Option<bool?> updateAutomatically = default;
@@ -984,6 +1050,7 @@ namespace Whisparr3.Net.Model
             Option<bool?> trustCgnatIpAddresses = default;
             Option<string?> whisparrAlwaysExcludeCollectionsTag = default;
             Option<string?> whisparrAlwaysExcludePerformersTag = default;
+            Option<string?> whisparrAlwaysExcludePerformersAfterTag = default;
             Option<string?> whisparrAlwaysExcludeStudiosTag = default;
             Option<string?> whisparrAlwaysExcludeStudiosAfterTag = default;
             Option<string?> whisparrAlwaysExcludeTagsTag = default;
@@ -994,6 +1061,7 @@ namespace Whisparr3.Net.Model
             Option<bool?> whisparrCacheStudioAPI = default;
             Option<bool?> whisparrCorruptFileDetection = default;
             Option<int?> whisparrFuzzyTitleMatchingThreshold = default;
+            Option<bool?> whisparrMonitorNewItems = default;
             Option<MovieMetadataType?> whisparrMovieMetadataSource = default;
             Option<bool?> whisparrValidateRuntime = default;
             Option<int?> whisparrValidateRuntimeLimit = default;
@@ -1037,6 +1105,9 @@ namespace Whisparr3.Net.Model
                         case "authenticationRequired":
                             authenticationRequired = new Option<AuthenticationRequiredType?>(JsonSerializer.Deserialize<AuthenticationRequiredType?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
+                        case "allowedHosts":
+                            allowedHosts = new Option<string?>(utf8JsonReader.GetString());
+                            break;
                         case "analyticsEnabled":
                             analyticsEnabled = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
@@ -1072,6 +1143,9 @@ namespace Whisparr3.Net.Model
                             break;
                         case "urlBase":
                             urlBase = new Option<string?>(utf8JsonReader.GetString());
+                            break;
+                        case "trustedNetworks":
+                            trustedNetworks = new Option<string?>(utf8JsonReader.GetString());
                             break;
                         case "instanceName":
                             instanceName = new Option<string?>(utf8JsonReader.GetString());
@@ -1133,6 +1207,9 @@ namespace Whisparr3.Net.Model
                         case "whisparrAlwaysExcludePerformersTag":
                             whisparrAlwaysExcludePerformersTag = new Option<string?>(utf8JsonReader.GetString());
                             break;
+                        case "whisparrAlwaysExcludePerformersAfterTag":
+                            whisparrAlwaysExcludePerformersAfterTag = new Option<string?>(utf8JsonReader.GetString());
+                            break;
                         case "whisparrAlwaysExcludeStudiosTag":
                             whisparrAlwaysExcludeStudiosTag = new Option<string?>(utf8JsonReader.GetString());
                             break;
@@ -1162,6 +1239,9 @@ namespace Whisparr3.Net.Model
                             break;
                         case "whisparrFuzzyTitleMatchingThreshold":
                             whisparrFuzzyTitleMatchingThreshold = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
+                            break;
+                        case "whisparrMonitorNewItems":
+                            whisparrMonitorNewItems = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
                         case "whisparrMovieMetadataSource":
                             whisparrMovieMetadataSource = new Option<MovieMetadataType?>(JsonSerializer.Deserialize<MovieMetadataType?>(ref utf8JsonReader, jsonSerializerOptions));
@@ -1256,6 +1336,9 @@ namespace Whisparr3.Net.Model
             if (whisparrFuzzyTitleMatchingThreshold.IsSet && whisparrFuzzyTitleMatchingThreshold.Value == null)
                 throw new ArgumentNullException(nameof(whisparrFuzzyTitleMatchingThreshold), "Property is not nullable for class HostConfigResource.");
 
+            if (whisparrMonitorNewItems.IsSet && whisparrMonitorNewItems.Value == null)
+                throw new ArgumentNullException(nameof(whisparrMonitorNewItems), "Property is not nullable for class HostConfigResource.");
+
             if (whisparrMovieMetadataSource.IsSet && whisparrMovieMetadataSource.Value == null)
                 throw new ArgumentNullException(nameof(whisparrMovieMetadataSource), "Property is not nullable for class HostConfigResource.");
 
@@ -1265,7 +1348,7 @@ namespace Whisparr3.Net.Model
             if (whisparrValidateRuntimeLimit.IsSet && whisparrValidateRuntimeLimit.Value == null)
                 throw new ArgumentNullException(nameof(whisparrValidateRuntimeLimit), "Property is not nullable for class HostConfigResource.");
 
-            return new HostConfigResource(id, bindAddress, port, sslPort, enableSsl, launchBrowser, authenticationMethod, authenticationRequired, analyticsEnabled, username, password, passwordConfirmation, logLevel, logSizeLimit, consoleLogLevel, branch, apiKey, sslCertPath, sslCertPassword, urlBase, instanceName, applicationUrl, updateAutomatically, updateMechanism, updateScriptPath, proxyEnabled, proxyType, proxyHostname, proxyPort, proxyUsername, proxyPassword, proxyBypassFilter, proxyBypassLocalAddresses, certificateValidation, backupFolder, backupInterval, backupRetention, trustCgnatIpAddresses, whisparrAlwaysExcludeCollectionsTag, whisparrAlwaysExcludePerformersTag, whisparrAlwaysExcludeStudiosTag, whisparrAlwaysExcludeStudiosAfterTag, whisparrAlwaysExcludeTagsTag, whisparrAutoMatchOnDate, whisparrCacheExclusionAPI, whisparrCacheMovieAPI, whisparrCachePerformerAPI, whisparrCacheStudioAPI, whisparrCorruptFileDetection, whisparrFuzzyTitleMatchingThreshold, whisparrMovieMetadataSource, whisparrValidateRuntime, whisparrValidateRuntimeLimit);
+            return new HostConfigResource(id, bindAddress, port, sslPort, enableSsl, launchBrowser, authenticationMethod, authenticationRequired, allowedHosts, analyticsEnabled, username, password, passwordConfirmation, logLevel, logSizeLimit, consoleLogLevel, branch, apiKey, sslCertPath, sslCertPassword, urlBase, trustedNetworks, instanceName, applicationUrl, updateAutomatically, updateMechanism, updateScriptPath, proxyEnabled, proxyType, proxyHostname, proxyPort, proxyUsername, proxyPassword, proxyBypassFilter, proxyBypassLocalAddresses, certificateValidation, backupFolder, backupInterval, backupRetention, trustCgnatIpAddresses, whisparrAlwaysExcludeCollectionsTag, whisparrAlwaysExcludePerformersTag, whisparrAlwaysExcludePerformersAfterTag, whisparrAlwaysExcludeStudiosTag, whisparrAlwaysExcludeStudiosAfterTag, whisparrAlwaysExcludeTagsTag, whisparrAutoMatchOnDate, whisparrCacheExclusionAPI, whisparrCacheMovieAPI, whisparrCachePerformerAPI, whisparrCacheStudioAPI, whisparrCorruptFileDetection, whisparrFuzzyTitleMatchingThreshold, whisparrMonitorNewItems, whisparrMovieMetadataSource, whisparrValidateRuntime, whisparrValidateRuntimeLimit);
         }
 
         /// <summary>
@@ -1323,6 +1406,12 @@ namespace Whisparr3.Net.Model
                 var authenticationRequiredRawValue = AuthenticationRequiredTypeValueConverter.ToJsonValue(hostConfigResource.AuthenticationRequired!.Value);
                 writer.WriteString("authenticationRequired", authenticationRequiredRawValue);
             }
+            if (hostConfigResource.AllowedHostsOption.IsSet)
+                if (hostConfigResource.AllowedHostsOption.Value != null)
+                    writer.WriteString("allowedHosts", hostConfigResource.AllowedHosts);
+                else
+                    writer.WriteNull("allowedHosts");
+
             if (hostConfigResource.AnalyticsEnabledOption.IsSet)
                 writer.WriteBoolean("analyticsEnabled", hostConfigResource.AnalyticsEnabledOption.Value!.Value);
 
@@ -1388,6 +1477,12 @@ namespace Whisparr3.Net.Model
                     writer.WriteString("urlBase", hostConfigResource.UrlBase);
                 else
                     writer.WriteNull("urlBase");
+
+            if (hostConfigResource.TrustedNetworksOption.IsSet)
+                if (hostConfigResource.TrustedNetworksOption.Value != null)
+                    writer.WriteString("trustedNetworks", hostConfigResource.TrustedNetworks);
+                else
+                    writer.WriteNull("trustedNetworks");
 
             if (hostConfigResource.InstanceNameOption.IsSet)
                 if (hostConfigResource.InstanceNameOption.Value != null)
@@ -1485,6 +1580,12 @@ namespace Whisparr3.Net.Model
                 else
                     writer.WriteNull("whisparrAlwaysExcludePerformersTag");
 
+            if (hostConfigResource.WhisparrAlwaysExcludePerformersAfterTagOption.IsSet)
+                if (hostConfigResource.WhisparrAlwaysExcludePerformersAfterTagOption.Value != null)
+                    writer.WriteString("whisparrAlwaysExcludePerformersAfterTag", hostConfigResource.WhisparrAlwaysExcludePerformersAfterTag);
+                else
+                    writer.WriteNull("whisparrAlwaysExcludePerformersAfterTag");
+
             if (hostConfigResource.WhisparrAlwaysExcludeStudiosTagOption.IsSet)
                 if (hostConfigResource.WhisparrAlwaysExcludeStudiosTagOption.Value != null)
                     writer.WriteString("whisparrAlwaysExcludeStudiosTag", hostConfigResource.WhisparrAlwaysExcludeStudiosTag);
@@ -1523,6 +1624,9 @@ namespace Whisparr3.Net.Model
 
             if (hostConfigResource.WhisparrFuzzyTitleMatchingThresholdOption.IsSet)
                 writer.WriteNumber("whisparrFuzzyTitleMatchingThreshold", hostConfigResource.WhisparrFuzzyTitleMatchingThresholdOption.Value!.Value);
+
+            if (hostConfigResource.WhisparrMonitorNewItemsOption.IsSet)
+                writer.WriteBoolean("whisparrMonitorNewItems", hostConfigResource.WhisparrMonitorNewItemsOption.Value!.Value);
 
             if (hostConfigResource.WhisparrMovieMetadataSourceOption.IsSet)
             {

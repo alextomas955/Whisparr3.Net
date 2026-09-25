@@ -63,7 +63,12 @@ namespace Whisparr3.Net.Model
         /// <summary>
         /// Enum CollectionExclusion for value: collectionExclusion
         /// </summary>
-        CollectionExclusion = 7
+        CollectionExclusion = 7,
+
+        /// <summary>
+        /// Enum PerformerAfterDate for value: performerAfterDate
+        /// </summary>
+        PerformerAfterDate = 8
     }
 
     /// <summary>
@@ -99,6 +104,9 @@ namespace Whisparr3.Net.Model
             if (value.Equals("collectionExclusion"))
                 return ImportExclusionReason.CollectionExclusion;
 
+            if (value.Equals("performerAfterDate"))
+                return ImportExclusionReason.PerformerAfterDate;
+
             throw new NotImplementedException($"Could not convert value to type ImportExclusionReason: '{value}'");
         }
 
@@ -129,6 +137,9 @@ namespace Whisparr3.Net.Model
 
             if (value.Equals("collectionExclusion"))
                 return ImportExclusionReason.CollectionExclusion;
+
+            if (value.Equals("performerAfterDate"))
+                return ImportExclusionReason.PerformerAfterDate;
 
             return null;
         }
@@ -161,6 +172,9 @@ namespace Whisparr3.Net.Model
 
             if (value == ImportExclusionReason.CollectionExclusion)
                 return "collectionExclusion";
+
+            if (value == ImportExclusionReason.PerformerAfterDate)
+                return "performerAfterDate";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

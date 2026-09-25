@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileSchemaApiResponse"/>&gt;</returns>
-        Task<IGetQualityProfileSchemaApiResponse> GetQualityProfileSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileSchemaApiResponse"/>&gt;</returns>
+        Task<IGetQualityprofileSchemaApiResponse> GetQualityprofileSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,14 +56,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileSchemaApiResponse"/>?&gt;</returns>
-        Task<IGetQualityProfileSchemaApiResponse?> GetQualityProfileSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileSchemaApiResponse"/>?&gt;</returns>
+        Task<IGetQualityprofileSchemaApiResponse?> GetQualityprofileSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetQualityProfileSchemaApiResponse"/>
+    /// The <see cref="IGetQualityprofileSchemaApiResponse"/>
     /// </summary>
-    public interface IGetQualityProfileSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileResource?>
+    public interface IGetQualityprofileSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -80,21 +80,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetQualityProfileSchema;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualityprofileSchema;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityProfileSchema;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityprofileSchema;
 
-        internal void ExecuteOnGetQualityProfileSchema(QualityProfileSchemaApi.GetQualityProfileSchemaApiResponse apiResponse)
+        internal void ExecuteOnGetQualityprofileSchema(QualityProfileSchemaApi.GetQualityprofileSchemaApiResponse apiResponse)
         {
-            OnGetQualityProfileSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualityprofileSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetQualityProfileSchema(Exception exception)
+        internal void ExecuteOnErrorGetQualityprofileSchema(Exception exception)
         {
-            OnErrorGetQualityProfileSchema?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualityprofileSchema?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,10 +143,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetQualityProfileSchemaDefaultImplementation(IGetQualityProfileSchemaApiResponse apiResponseLocalVar)
+        private void AfterGetQualityprofileSchemaDefaultImplementation(IGetQualityprofileSchemaApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetQualityProfileSchema(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetQualityprofileSchema(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -156,7 +156,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetQualityProfileSchema(ref bool suppressDefaultLog, IGetQualityProfileSchemaApiResponse apiResponseLocalVar);
+        partial void AfterGetQualityprofileSchema(ref bool suppressDefaultLog, IGetQualityprofileSchemaApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -164,10 +164,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetQualityProfileSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetQualityprofileSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetQualityProfileSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetQualityprofileSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -179,18 +179,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetQualityProfileSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetQualityprofileSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileSchemaApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityProfileSchemaApiResponse?> GetQualityProfileSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileSchemaApiResponse?> GetQualityprofileSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetQualityProfileSchemaAsync(cancellationToken).ConfigureAwait(false);
+                return await GetQualityprofileSchemaAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -203,8 +203,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileSchemaApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityProfileSchemaApiResponse> GetQualityProfileSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileSchemaApiResponse> GetQualityprofileSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -243,7 +243,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetQualityProfileSchemaApiResponse apiResponseLocalVar;
+                        GetQualityprofileSchemaApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -254,9 +254,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetQualityProfileSchemaDefaultImplementation(apiResponseLocalVar);
+                        AfterGetQualityprofileSchemaDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetQualityProfileSchema(apiResponseLocalVar);
+                        Events.ExecuteOnGetQualityprofileSchema(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -268,16 +268,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetQualityProfileSchemaDefaultImplementation(e, "/api/v3/qualityprofile/schema", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetQualityProfileSchema(e);
+                OnErrorGetQualityprofileSchemaDefaultImplementation(e, "/api/v3/qualityprofile/schema", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetQualityprofileSchema(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetQualityProfileSchemaApiResponse"/>
+        /// The <see cref="GetQualityprofileSchemaApiResponse"/>
         /// </summary>
-        public partial class GetQualityProfileSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityProfileSchemaApiResponse
+        public partial class GetQualityprofileSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityprofileSchemaApiResponse
         {
             /// <summary>
             /// The logger
@@ -285,7 +285,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QualityProfileSchemaApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetQualityProfileSchemaApiResponse"/>
+            /// The <see cref="GetQualityprofileSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -294,14 +294,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetQualityProfileSchemaApiResponse(ILogger<QualityProfileSchemaApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetQualityprofileSchemaApiResponse(ILogger<QualityProfileSchemaApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetQualityProfileSchemaApiResponse"/>
+            /// The <see cref="GetQualityprofileSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -310,7 +310,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetQualityProfileSchemaApiResponse(ILogger<QualityProfileSchemaApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetQualityprofileSchemaApiResponse(ILogger<QualityProfileSchemaApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

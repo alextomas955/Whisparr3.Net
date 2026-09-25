@@ -13,8 +13,8 @@ namespace Whisparr3.Net.IntegrationTests
     /// </summary>
     /// <remarks>
     /// <para>
-    /// The generated success accessor deserializes on exactly 200 and returns null on anything
-    /// else, so it reports a 401 the same way it reports an empty collection. Reading it raw would
+    /// The generated success accessor returns null on anything but the status its operation
+    /// documents, so it reports a 401 the same way it reports an empty collection. Reading it raw would
     /// make an authentication failure indistinguishable from an empty result, and a suite that
     /// authenticated as nobody and read empty lists would look identical to a suite that
     /// authenticated correctly and read empty lists.

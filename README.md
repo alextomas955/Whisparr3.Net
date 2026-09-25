@@ -1,8 +1,13 @@
 # Whisparr3.Net
 
 A C# client for Whisparr 3 (Eros), generated from Whisparr's own OpenAPI specification. It covers
-every operation in that specification except the one malformed root path. The package targets
-`net8.0` and `net10.0`.
+all 273 operations in that specification, ships XML documentation for every one of them, and
+targets `net8.0` and `net10.0`.
+
+Generated against **Whisparr 3.6.2.1727**. Method names are the operation identifiers Whisparr
+assigns, so an older instance serving a different document may name an operation differently. The
+exact build the specification was captured from is recorded in
+[spec/PROVENANCE.json](https://github.com/alextomas955/Whisparr3.Net/blob/main/spec/PROVENANCE.json).
 
 ## Quickstart
 
@@ -84,27 +89,57 @@ through a member named `VarVersion`, not `Version`. The generator renames a memb
 name collides with a reserved one, and this is that rename surfacing on the first type you meet.
 
 **`EnsureSuccess` is the classifier, and the generated success accessor is not.** The generated
-accessor deserializes on exactly 200 and returns `null` on anything else, so a rejected API key and
-an empty collection read the same to a caller. `EnsureSuccess` separates the three outcomes. It
-returns the body on a success that carries one, and otherwise throws a `Whisparr3ApiException`
-whose `IsSuccessStatusCode` tells a failed request apart from a success with nothing to read.
+accessor deserializes on the one status its operation documents and returns `null` on anything
+else, so a rejected API key and an empty collection read the same to a caller. `EnsureSuccess`
+separates the three outcomes. It returns the body on a success that carries one, and otherwise
+throws a `Whisparr3ApiException` whose `IsSuccessStatusCode` tells a failed request apart from a
+success with nothing to read. There is an overload per documented status, so it reads a create's
+201 and an update's 202 the same way it reads a 200.
 
 Every operation also exposes an `OrDefaultAsync` variant that wraps its whole body in a catch-all
 returning `null`. That variant destroys the same distinction. Call the plain variant and use
 `EnsureSuccess`.
 
+## Responses that carry credentials
+
+These operations change nothing and are safe to call, but their responses carry secrets. A log
+line, a test transcript or an exception body from one of them writes a credential somewhere this
+library never had it and cannot strip it.
+
+| Operation | What its response carries |
+| --- | --- |
+| `GET /api/v3/config/host` | The instance API key and the admin password, both in plaintext. `HostConfigResource` declares `apiKey`, `password`, `passwordConfirmation`, `proxyPassword` and `sslCertPassword`. |
+| `GET /api/v3/config/host/{id}` | The same resource, reached by id. |
+| `GET /api/v3/log` | Log records from the instance database. Log text can contain the key. |
+| `GET /api/v3/log/file/{filename}` | Raw log file text. |
+| `GET /api/v3/log/file/update/{filename}` | The same, for the updater's log files. |
+
+`Whisparr3ApiException.RawContent` is the verbatim response body and is deliberately not redacted,
+because this library cannot know which fields of an arbitrary body are secret. Redaction, if you
+want it, belongs in whatever writes your logs.
+
+## Operations whose effect the specification does not describe
+
+The specification constrains request shapes, not consequences. Three cases are worth knowing before
+you call them.
+
+- `POST /api/v3/command` takes a free-form `name` and nothing constrains it. The value alone selects
+  between refreshing a movie's metadata and renaming every file on disk. `CommandApi.SendCommandAsync`
+  is the hand-written method that can also carry a command's arguments, which no part of the
+  specification describes.
+- `POST /api/v3/release` pushes a release to a download client. It starts a real download and writes
+  to the file system the instance manages, so its effect outlives the request.
+- `DELETE /api/v3/moviefile/{id}` and `DELETE /api/v3/moviefile/bulk` delete files from disk, not just
+  database rows, and `PUT` on either moves or rewrites them. There is no undo and no recycle step.
+
 ## Where to look next
 
-- [docs/SURFACE.md](docs/SURFACE.md) lists the operations that return nothing and why, the ones
-  that serve Whisparr's web interface, the responses that carry credentials, and the operations
-  whose effect the specification does not describe.
-- [docs/HAND-WRITTEN-LAYER.md](docs/HAND-WRITTEN-LAYER.md) describes what this repository adds on
-  top of the generated code, and what it deliberately leaves alone.
-- [docs/REGENERATION.md](docs/REGENERATION.md) is the procedure for reproducing the generated tree
-  from the committed specification.
-- [Public API stability policy](CHANGELOG.md#public-api-stability-policy) states what a version
-  bump promises, and what happens when a specification refresh renames a generated method.
+- [CHANGELOG.md](https://github.com/alextomas955/Whisparr3.Net/blob/main/CHANGELOG.md) records
+  every release, and the [public API stability
+  policy](https://github.com/alextomas955/Whisparr3.Net/blob/main/CHANGELOG.md#public-api-stability-policy)
+  at the bottom states what a version bump promises when a specification refresh renames a
+  generated method.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/alextomas955/Whisparr3.Net/blob/main/LICENSE).

@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="blocklistBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistApiResponse"/>&gt;</returns>
-        Task<IDeleteBlocklistApiResponse> DeleteBlocklistAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistBulkApiResponse"/>&gt;</returns>
+        Task<IDeleteBlocklistBulkApiResponse> DeleteBlocklistBulkAsync(BlocklistBulkResource blocklistBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id"></param>
+        /// <param name="blocklistBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistApiResponse"/>?&gt;</returns>
-        Task<IDeleteBlocklistApiResponse?> DeleteBlocklistOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistBulkApiResponse"/>?&gt;</returns>
+        Task<IDeleteBlocklistBulkApiResponse?> DeleteBlocklistBulkOrDefaultAsync(BlocklistBulkResource blocklistBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,10 +68,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="blocklistBulkResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistBulkApiResponse"/>&gt;</returns>
-        Task<IDeleteBlocklistBulkApiResponse> DeleteBlocklistBulkAsync(Option<BlocklistBulkResource> blocklistBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteBlocklistByIdApiResponse> DeleteBlocklistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,10 +79,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="blocklistBulkResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistBulkApiResponse"/>?&gt;</returns>
-        Task<IDeleteBlocklistBulkApiResponse?> DeleteBlocklistBulkOrDefaultAsync(Option<BlocklistBulkResource> blocklistBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteBlocklistByIdApiResponse?> DeleteBlocklistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -126,8 +126,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListBlocklistMovieApiResponse"/>&gt;</returns>
-        Task<IListBlocklistMovieApiResponse> ListBlocklistMovieAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetBlocklistMovieApiResponse"/>&gt;</returns>
+        Task<IGetBlocklistMovieApiResponse> GetBlocklistMovieAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -137,14 +137,14 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListBlocklistMovieApiResponse"/>?&gt;</returns>
-        Task<IListBlocklistMovieApiResponse?> ListBlocklistMovieOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetBlocklistMovieApiResponse"/>?&gt;</returns>
+        Task<IGetBlocklistMovieApiResponse?> GetBlocklistMovieOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IDeleteBlocklistApiResponse"/>
+    /// The <see cref="IDeleteBlocklistBulkApiResponse"/>
     /// </summary>
-    public interface IDeleteBlocklistApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteBlocklistBulkApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -154,9 +154,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteBlocklistBulkApiResponse"/>
+    /// The <see cref="IDeleteBlocklistByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteBlocklistBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteBlocklistByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -178,9 +178,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListBlocklistMovieApiResponse"/>
+    /// The <see cref="IGetBlocklistMovieApiResponse"/>
     /// </summary>
-    public interface IListBlocklistMovieApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<BlocklistResource>?>
+    public interface IGetBlocklistMovieApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<BlocklistResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -194,26 +194,6 @@ namespace Whisparr3.Net.Api
     /// </summary>
     public class BlocklistApiEvents
     {
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteBlocklist;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteBlocklist;
-
-        internal void ExecuteOnDeleteBlocklist(BlocklistApi.DeleteBlocklistApiResponse apiResponse)
-        {
-            OnDeleteBlocklist?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeleteBlocklist(Exception exception)
-        {
-            OnErrorDeleteBlocklist?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -232,6 +212,26 @@ namespace Whisparr3.Net.Api
         internal void ExecuteOnErrorDeleteBlocklistBulk(Exception exception)
         {
             OnErrorDeleteBlocklistBulk?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteBlocklistById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteBlocklistById;
+
+        internal void ExecuteOnDeleteBlocklistById(BlocklistApi.DeleteBlocklistByIdApiResponse apiResponse)
+        {
+            OnDeleteBlocklistById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorDeleteBlocklistById(Exception exception)
+        {
+            OnErrorDeleteBlocklistById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -257,21 +257,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListBlocklistMovie;
+        public event EventHandler<ApiResponseEventArgs>? OnGetBlocklistMovie;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListBlocklistMovie;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetBlocklistMovie;
 
-        internal void ExecuteOnListBlocklistMovie(BlocklistApi.ListBlocklistMovieApiResponse apiResponse)
+        internal void ExecuteOnGetBlocklistMovie(BlocklistApi.GetBlocklistMovieApiResponse apiResponse)
         {
-            OnListBlocklistMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetBlocklistMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListBlocklistMovie(Exception exception)
+        internal void ExecuteOnErrorGetBlocklistMovie(Exception exception)
         {
-            OnErrorListBlocklistMovie?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetBlocklistMovie?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -316,212 +316,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatDeleteBlocklist(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterDeleteBlocklistDefaultImplementation(IDeleteBlocklistApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteBlocklist(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterDeleteBlocklist(ref bool suppressDefaultLog, IDeleteBlocklistApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorDeleteBlocklistDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteBlocklist(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorDeleteBlocklist(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistApiResponse"/>&gt;</returns>
-        public async Task<IDeleteBlocklistApiResponse?> DeleteBlocklistOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteBlocklistAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistApiResponse"/>&gt;</returns>
-        public async Task<IDeleteBlocklistApiResponse> DeleteBlocklistAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteBlocklist(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/blocklist/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/blocklist/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteBlocklistApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/blocklist/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteBlocklistDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnDeleteBlocklist(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteBlocklistDefaultImplementation(e, "/api/v3/blocklist/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteBlocklist(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteBlocklistApiResponse"/>
-        /// </summary>
-        public partial class DeleteBlocklistApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteBlocklistApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<BlocklistApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteBlocklistApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteBlocklistApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteBlocklistApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteBlocklistApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteBlocklistBulk(Option<BlocklistBulkResource> blocklistBulkResource);
+        partial void FormatDeleteBlocklistBulk(BlocklistBulkResource blocklistBulkResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="blocklistBulkResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteBlocklistBulk(Option<BlocklistBulkResource> blocklistBulkResource)
+        private void ValidateDeleteBlocklistBulk(BlocklistBulkResource blocklistBulkResource)
         {
-            if (blocklistBulkResource.IsSet && blocklistBulkResource.Value == null)
+            if (blocklistBulkResource == null)
                 throw new ArgumentNullException(nameof(blocklistBulkResource));
         }
 
@@ -530,7 +334,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="blocklistBulkResource"></param>
-        private void AfterDeleteBlocklistBulkDefaultImplementation(IDeleteBlocklistBulkApiResponse apiResponseLocalVar, Option<BlocklistBulkResource> blocklistBulkResource)
+        private void AfterDeleteBlocklistBulkDefaultImplementation(IDeleteBlocklistBulkApiResponse apiResponseLocalVar, BlocklistBulkResource blocklistBulkResource)
         {
             bool suppressDefaultLog = false;
             AfterDeleteBlocklistBulk(ref suppressDefaultLog, apiResponseLocalVar, blocklistBulkResource);
@@ -544,7 +348,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="blocklistBulkResource"></param>
-        partial void AfterDeleteBlocklistBulk(ref bool suppressDefaultLog, IDeleteBlocklistBulkApiResponse apiResponseLocalVar, Option<BlocklistBulkResource> blocklistBulkResource);
+        partial void AfterDeleteBlocklistBulk(ref bool suppressDefaultLog, IDeleteBlocklistBulkApiResponse apiResponseLocalVar, BlocklistBulkResource blocklistBulkResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -553,7 +357,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="blocklistBulkResource"></param>
-        private void OnErrorDeleteBlocklistBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<BlocklistBulkResource> blocklistBulkResource)
+        private void OnErrorDeleteBlocklistBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, BlocklistBulkResource blocklistBulkResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorDeleteBlocklistBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, blocklistBulkResource);
@@ -569,15 +373,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="blocklistBulkResource"></param>
-        partial void OnErrorDeleteBlocklistBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<BlocklistBulkResource> blocklistBulkResource);
+        partial void OnErrorDeleteBlocklistBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, BlocklistBulkResource blocklistBulkResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="blocklistBulkResource"> (optional)</param>
+        /// <param name="blocklistBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteBlocklistBulkApiResponse?> DeleteBlocklistBulkOrDefaultAsync(Option<BlocklistBulkResource> blocklistBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteBlocklistBulkApiResponse?> DeleteBlocklistBulkOrDefaultAsync(BlocklistBulkResource blocklistBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -593,10 +397,10 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="blocklistBulkResource"> (optional)</param>
+        /// <param name="blocklistBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteBlocklistBulkApiResponse> DeleteBlocklistBulkAsync(Option<BlocklistBulkResource> blocklistBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteBlocklistBulkApiResponse> DeleteBlocklistBulkAsync(BlocklistBulkResource blocklistBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -615,12 +419,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/blocklist/bulk"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/blocklist/bulk");
 
-                    if (blocklistBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (blocklistBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (blocklistBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(blocklistBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(blocklistBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -712,6 +513,202 @@ namespace Whisparr3.Net.Api
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
             public DeleteBlocklistBulkApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatDeleteBlocklistById(ref int id);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        private void AfterDeleteBlocklistByIdDefaultImplementation(IDeleteBlocklistByIdApiResponse apiResponseLocalVar, int id)
+        {
+            bool suppressDefaultLog = false;
+            AfterDeleteBlocklistById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        partial void AfterDeleteBlocklistById(ref bool suppressDefaultLog, IDeleteBlocklistByIdApiResponse apiResponseLocalVar, int id);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        private void OnErrorDeleteBlocklistByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorDeleteBlocklistById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        partial void OnErrorDeleteBlocklistById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteBlocklistByIdApiResponse?> DeleteBlocklistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await DeleteBlocklistByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteBlocklistByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteBlocklistByIdApiResponse> DeleteBlocklistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatDeleteBlocklistById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/blocklist/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/blocklist/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        DeleteBlocklistByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/blocklist/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterDeleteBlocklistByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnDeleteBlocklistById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorDeleteBlocklistByIdDefaultImplementation(e, "/api/v3/blocklist/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteBlocklistById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="DeleteBlocklistByIdApiResponse"/>
+        /// </summary>
+        public partial class DeleteBlocklistByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteBlocklistByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<BlocklistApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="DeleteBlocklistByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteBlocklistByIdApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteBlocklistByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteBlocklistByIdApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1057,17 +1054,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListBlocklistMovie(ref Option<int> movieId);
+        partial void FormatGetBlocklistMovie(ref Option<int> movieId);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        private void AfterListBlocklistMovieDefaultImplementation(IListBlocklistMovieApiResponse apiResponseLocalVar, Option<int> movieId)
+        private void AfterGetBlocklistMovieDefaultImplementation(IGetBlocklistMovieApiResponse apiResponseLocalVar, Option<int> movieId)
         {
             bool suppressDefaultLog = false;
-            AfterListBlocklistMovie(ref suppressDefaultLog, apiResponseLocalVar, movieId);
+            AfterGetBlocklistMovie(ref suppressDefaultLog, apiResponseLocalVar, movieId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1078,7 +1075,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void AfterListBlocklistMovie(ref bool suppressDefaultLog, IListBlocklistMovieApiResponse apiResponseLocalVar, Option<int> movieId);
+        partial void AfterGetBlocklistMovie(ref bool suppressDefaultLog, IGetBlocklistMovieApiResponse apiResponseLocalVar, Option<int> movieId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1087,10 +1084,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        private void OnErrorListBlocklistMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId)
+        private void OnErrorGetBlocklistMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListBlocklistMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
+            OnErrorGetBlocklistMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1103,19 +1100,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void OnErrorListBlocklistMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId);
+        partial void OnErrorGetBlocklistMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListBlocklistMovieApiResponse"/>&gt;</returns>
-        public async Task<IListBlocklistMovieApiResponse?> ListBlocklistMovieOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetBlocklistMovieApiResponse"/>&gt;</returns>
+        public async Task<IGetBlocklistMovieApiResponse?> GetBlocklistMovieOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListBlocklistMovieAsync(movieId, cancellationToken).ConfigureAwait(false);
+                return await GetBlocklistMovieAsync(movieId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1129,14 +1126,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListBlocklistMovieApiResponse"/>&gt;</returns>
-        public async Task<IListBlocklistMovieApiResponse> ListBlocklistMovieAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetBlocklistMovieApiResponse"/>&gt;</returns>
+        public async Task<IGetBlocklistMovieApiResponse> GetBlocklistMovieAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListBlocklistMovie(ref movieId);
+                FormatGetBlocklistMovie(ref movieId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1178,7 +1175,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListBlocklistMovieApiResponse apiResponseLocalVar;
+                        GetBlocklistMovieApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1189,9 +1186,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListBlocklistMovieDefaultImplementation(apiResponseLocalVar, movieId);
+                        AfterGetBlocklistMovieDefaultImplementation(apiResponseLocalVar, movieId);
 
-                        Events.ExecuteOnListBlocklistMovie(apiResponseLocalVar);
+                        Events.ExecuteOnGetBlocklistMovie(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1203,16 +1200,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListBlocklistMovieDefaultImplementation(e, "/api/v3/blocklist/movie", uriBuilderLocalVar.Path, movieId);
-                Events.ExecuteOnErrorListBlocklistMovie(e);
+                OnErrorGetBlocklistMovieDefaultImplementation(e, "/api/v3/blocklist/movie", uriBuilderLocalVar.Path, movieId);
+                Events.ExecuteOnErrorGetBlocklistMovie(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListBlocklistMovieApiResponse"/>
+        /// The <see cref="GetBlocklistMovieApiResponse"/>
         /// </summary>
-        public partial class ListBlocklistMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IListBlocklistMovieApiResponse
+        public partial class GetBlocklistMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IGetBlocklistMovieApiResponse
         {
             /// <summary>
             /// The logger
@@ -1220,7 +1217,7 @@ namespace Whisparr3.Net.Api
             public ILogger<BlocklistApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListBlocklistMovieApiResponse"/>
+            /// The <see cref="GetBlocklistMovieApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1229,14 +1226,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListBlocklistMovieApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetBlocklistMovieApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListBlocklistMovieApiResponse"/>
+            /// The <see cref="GetBlocklistMovieApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1245,7 +1242,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListBlocklistMovieApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetBlocklistMovieApiResponse(ILogger<BlocklistApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

@@ -64,6 +64,8 @@ namespace Whisparr3.Net.Model
         /// <param name="images">Collection of performer images (posters, headshots, etc.)</param>
         /// <param name="monitored">Whether this performer is being monitored for new content</param>
         /// <param name="moviesMonitored">Whether movies featuring this performer are monitored</param>
+        /// <param name="whisparrMonitorNewItems">Whether newly discovered works are added monitored</param>
+        /// <param name="afterDate">Only add this performer&#39;s items released on or after this date, as yyyy-MM-dd</param>
         /// <param name="rootFolderPath">Root folder path where performer content is stored</param>
         /// <param name="qualityProfileId">ID of the quality profile to use for this performer&#39;s content</param>
         /// <param name="searchOnAdd">Whether to automatically search for content when adding this performer</param>
@@ -78,7 +80,7 @@ namespace Whisparr3.Net.Model
         /// <param name="sceneCount">Number of scenes (on disk) from this performer</param>
         /// <param name="sizeOnDisk">Total size in bytes of all files on disk associated with this performer///</param>
         [JsonConstructor]
-        public PerformerResource(Option<int?> id = default, Option<string?> fullName = default, Option<string?> name = default, Option<List<string>?> aliases = default, Option<Gender?> gender = default, Option<EyeColor?> eyeColor = default, Option<HairColor?> hairColor = default, Option<Ethnicity?> ethnicity = default, Option<string?> country = default, Option<EyeColor?> eyesColor = default, Option<HairColor?> hairColour = default, Option<int?> height = default, Option<string?> cupSize = default, Option<int?> bandSize = default, Option<int?> waistSize = default, Option<int?> hipSize = default, Option<BreastTypeEnum?> breastType = default, Option<PerformerStatus?> status = default, Option<int?> careerStart = default, Option<int?> careerEnd = default, Option<DateTime?> birthDate = default, Option<DateTime?> deathDate = default, Option<int?> age = default, Option<List<string>?> tattoos = default, Option<List<string>?> piercings = default, Option<string?> foreignId = default, Option<int?> tmdbId = default, Option<string?> tpdbId = default, Option<List<MediaCover>?> images = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<int>?> tags = default, Option<string?> remotePoster = default, Option<DateTime?> added = default, Option<bool?> hasMovies = default, Option<bool?> hasScenes = default, Option<int?> movieCount = default, Option<int?> totalMovieCount = default, Option<int?> totalSceneCount = default, Option<int?> sceneCount = default, Option<long?> sizeOnDisk = default)
+        public PerformerResource(Option<int?> id = default, Option<string?> fullName = default, Option<string?> name = default, Option<List<string>?> aliases = default, Option<Gender?> gender = default, Option<EyeColor?> eyeColor = default, Option<HairColor?> hairColor = default, Option<Ethnicity?> ethnicity = default, Option<string?> country = default, Option<EyeColor?> eyesColor = default, Option<HairColor?> hairColour = default, Option<int?> height = default, Option<string?> cupSize = default, Option<int?> bandSize = default, Option<int?> waistSize = default, Option<int?> hipSize = default, Option<BreastTypeEnum?> breastType = default, Option<PerformerStatus?> status = default, Option<int?> careerStart = default, Option<int?> careerEnd = default, Option<DateTime?> birthDate = default, Option<DateTime?> deathDate = default, Option<int?> age = default, Option<List<string>?> tattoos = default, Option<List<string>?> piercings = default, Option<string?> foreignId = default, Option<int?> tmdbId = default, Option<string?> tpdbId = default, Option<List<MediaCover>?> images = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<bool?> whisparrMonitorNewItems = default, Option<string?> afterDate = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<int>?> tags = default, Option<string?> remotePoster = default, Option<DateTime?> added = default, Option<bool?> hasMovies = default, Option<bool?> hasScenes = default, Option<int?> movieCount = default, Option<int?> totalMovieCount = default, Option<int?> totalSceneCount = default, Option<int?> sceneCount = default, Option<long?> sizeOnDisk = default)
         {
             IdOption = id;
             FullNameOption = fullName;
@@ -111,6 +113,8 @@ namespace Whisparr3.Net.Model
             ImagesOption = images;
             MonitoredOption = monitored;
             MoviesMonitoredOption = moviesMonitored;
+            WhisparrMonitorNewItemsOption = whisparrMonitorNewItems;
+            AfterDateOption = afterDate;
             RootFolderPathOption = rootFolderPath;
             QualityProfileIdOption = qualityProfileId;
             SearchOnAddOption = searchOnAdd;
@@ -555,6 +559,34 @@ namespace Whisparr3.Net.Model
         public bool? MoviesMonitored { get { return this.MoviesMonitoredOption.Value; } set { this.MoviesMonitoredOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of WhisparrMonitorNewItems
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> WhisparrMonitorNewItemsOption { get; private set; }
+
+        /// <summary>
+        /// Whether newly discovered works are added monitored
+        /// </summary>
+        /// <value>Whether newly discovered works are added monitored</value>
+        [JsonPropertyName("whisparrMonitorNewItems")]
+        public bool? WhisparrMonitorNewItems { get { return this.WhisparrMonitorNewItemsOption.Value; } set { this.WhisparrMonitorNewItemsOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of AfterDate
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> AfterDateOption { get; private set; }
+
+        /// <summary>
+        /// Only add this performer&#39;s items released on or after this date, as yyyy-MM-dd
+        /// </summary>
+        /// <value>Only add this performer&#39;s items released on or after this date, as yyyy-MM-dd</value>
+        [JsonPropertyName("afterDate")]
+        public string? AfterDate { get { return this.AfterDateOption.Value; } set { this.AfterDateOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of RootFolderPath
         /// </summary>
         [JsonIgnore]
@@ -775,6 +807,8 @@ namespace Whisparr3.Net.Model
             sb.Append("  Images: ").Append(Images).Append("\n");
             sb.Append("  Monitored: ").Append(Monitored).Append("\n");
             sb.Append("  MoviesMonitored: ").Append(MoviesMonitored).Append("\n");
+            sb.Append("  WhisparrMonitorNewItems: ").Append(WhisparrMonitorNewItems).Append("\n");
+            sb.Append("  AfterDate: ").Append(AfterDate).Append("\n");
             sb.Append("  RootFolderPath: ").Append(RootFolderPath).Append("\n");
             sb.Append("  QualityProfileId: ").Append(QualityProfileId).Append("\n");
             sb.Append("  SearchOnAdd: ").Append(SearchOnAdd).Append("\n");
@@ -881,6 +915,8 @@ namespace Whisparr3.Net.Model
             Option<List<MediaCover>?> images = default;
             Option<bool?> monitored = default;
             Option<bool?> moviesMonitored = default;
+            Option<bool?> whisparrMonitorNewItems = default;
+            Option<string?> afterDate = default;
             Option<string?> rootFolderPath = default;
             Option<int?> qualityProfileId = default;
             Option<bool?> searchOnAdd = default;
@@ -1003,6 +1039,12 @@ namespace Whisparr3.Net.Model
                         case "moviesMonitored":
                             moviesMonitored = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "whisparrMonitorNewItems":
+                            whisparrMonitorNewItems = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
+                        case "afterDate":
+                            afterDate = new Option<string?>(utf8JsonReader.GetString());
+                            break;
                         case "rootFolderPath":
                             rootFolderPath = new Option<string?>(utf8JsonReader.GetString());
                             break;
@@ -1084,6 +1126,9 @@ namespace Whisparr3.Net.Model
             if (moviesMonitored.IsSet && moviesMonitored.Value == null)
                 throw new ArgumentNullException(nameof(moviesMonitored), "Property is not nullable for class PerformerResource.");
 
+            if (whisparrMonitorNewItems.IsSet && whisparrMonitorNewItems.Value == null)
+                throw new ArgumentNullException(nameof(whisparrMonitorNewItems), "Property is not nullable for class PerformerResource.");
+
             if (qualityProfileId.IsSet && qualityProfileId.Value == null)
                 throw new ArgumentNullException(nameof(qualityProfileId), "Property is not nullable for class PerformerResource.");
 
@@ -1114,7 +1159,7 @@ namespace Whisparr3.Net.Model
             if (sizeOnDisk.IsSet && sizeOnDisk.Value == null)
                 throw new ArgumentNullException(nameof(sizeOnDisk), "Property is not nullable for class PerformerResource.");
 
-            return new PerformerResource(id, fullName, name, aliases, gender, eyeColor, hairColor, ethnicity, country, eyesColor, hairColour, height, cupSize, bandSize, waistSize, hipSize, breastType, status, careerStart, careerEnd, birthDate, deathDate, age, tattoos, piercings, foreignId, tmdbId, tpdbId, images, monitored, moviesMonitored, rootFolderPath, qualityProfileId, searchOnAdd, tags, remotePoster, added, hasMovies, hasScenes, movieCount, totalMovieCount, totalSceneCount, sceneCount, sizeOnDisk);
+            return new PerformerResource(id, fullName, name, aliases, gender, eyeColor, hairColor, ethnicity, country, eyesColor, hairColour, height, cupSize, bandSize, waistSize, hipSize, breastType, status, careerStart, careerEnd, birthDate, deathDate, age, tattoos, piercings, foreignId, tmdbId, tpdbId, images, monitored, moviesMonitored, whisparrMonitorNewItems, afterDate, rootFolderPath, qualityProfileId, searchOnAdd, tags, remotePoster, added, hasMovies, hasScenes, movieCount, totalMovieCount, totalSceneCount, sceneCount, sizeOnDisk);
         }
 
         /// <summary>
@@ -1314,6 +1359,15 @@ namespace Whisparr3.Net.Model
 
             if (performerResource.MoviesMonitoredOption.IsSet)
                 writer.WriteBoolean("moviesMonitored", performerResource.MoviesMonitoredOption.Value!.Value);
+
+            if (performerResource.WhisparrMonitorNewItemsOption.IsSet)
+                writer.WriteBoolean("whisparrMonitorNewItems", performerResource.WhisparrMonitorNewItemsOption.Value!.Value);
+
+            if (performerResource.AfterDateOption.IsSet)
+                if (performerResource.AfterDateOption.Value != null)
+                    writer.WriteString("afterDate", performerResource.AfterDate);
+                else
+                    writer.WriteNull("afterDate");
 
             if (performerResource.RootFolderPathOption.IsSet)
                 if (performerResource.RootFolderPathOption.Value != null)

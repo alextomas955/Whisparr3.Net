@@ -27,12 +27,7 @@ namespace Whisparr3.Net.UnitTests
         [Fact]
         public void AddWhisparr3_throws_when_the_api_key_is_blank()
         {
-            ArgumentNullException fromNull = Assert.Throws<ArgumentNullException>(
-                () => new ServiceCollection().AddWhisparr3(
-                    new Whisparr3Options { BaseUrl = ValidBaseUrl, ApiKey = null! }));
-            Assert.Contains("ApiKey", fromNull.Message, StringComparison.Ordinal);
-
-            foreach (string blank in new[] { string.Empty, "   " })
+            foreach (string blank in new[] { null!, string.Empty, "   " })
             {
                 ArgumentException thrown = Assert.Throws<ArgumentException>(
                     () => new ServiceCollection().AddWhisparr3(
@@ -49,12 +44,7 @@ namespace Whisparr3.Net.UnitTests
         [Fact]
         public void AddWhisparr3_throws_when_the_base_url_is_blank()
         {
-            ArgumentNullException fromNull = Assert.Throws<ArgumentNullException>(
-                () => new ServiceCollection().AddWhisparr3(
-                    new Whisparr3Options { BaseUrl = null!, ApiKey = SentinelKey }));
-            Assert.Contains("BaseUrl", fromNull.Message, StringComparison.Ordinal);
-
-            foreach (string blank in new[] { string.Empty, "   " })
+            foreach (string blank in new[] { null!, string.Empty, "   " })
             {
                 ArgumentException thrown = Assert.Throws<ArgumentException>(
                     () => new ServiceCollection().AddWhisparr3(

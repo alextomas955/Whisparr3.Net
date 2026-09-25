@@ -45,10 +45,9 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListMovieApiResponse"/>&gt;</returns>
-        Task<ICreateImportListMovieApiResponse> CreateImportListMovieAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistMovieApiResponse"/>&gt;</returns>
+        Task<IGetImportlistMovieApiResponse> GetImportlistMovieAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +55,9 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListMovieApiResponse"/>?&gt;</returns>
-        Task<ICreateImportListMovieApiResponse?> CreateImportListMovieOrDefaultAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistMovieApiResponse"/>?&gt;</returns>
+        Task<IGetImportlistMovieApiResponse?> GetImportlistMovieOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,9 +66,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="movieResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListMovieApiResponse"/>&gt;</returns>
-        Task<IGetImportListMovieApiResponse> GetImportListMovieAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistMovieApiResponse"/>&gt;</returns>
+        Task<IPostImportlistMovieApiResponse> PostImportlistMovieAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -78,15 +77,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="movieResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListMovieApiResponse"/>?&gt;</returns>
-        Task<IGetImportListMovieApiResponse?> GetImportListMovieOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistMovieApiResponse"/>?&gt;</returns>
+        Task<IPostImportlistMovieApiResponse?> PostImportlistMovieOrDefaultAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateImportListMovieApiResponse"/>
+    /// The <see cref="IGetImportlistMovieApiResponse"/>
     /// </summary>
-    public interface ICreateImportListMovieApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetImportlistMovieApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListMoviesResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -96,9 +96,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetImportListMovieApiResponse"/>
+    /// The <see cref="IPostImportlistMovieApiResponse"/>
     /// </summary>
-    public interface IGetImportListMovieApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostImportlistMovieApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -115,41 +115,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateImportListMovie;
+        public event EventHandler<ApiResponseEventArgs>? OnGetImportlistMovie;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateImportListMovie;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportlistMovie;
 
-        internal void ExecuteOnCreateImportListMovie(ImportListMoviesApi.CreateImportListMovieApiResponse apiResponse)
+        internal void ExecuteOnGetImportlistMovie(ImportListMoviesApi.GetImportlistMovieApiResponse apiResponse)
         {
-            OnCreateImportListMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetImportlistMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateImportListMovie(Exception exception)
+        internal void ExecuteOnErrorGetImportlistMovie(Exception exception)
         {
-            OnErrorCreateImportListMovie?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetImportlistMovie?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetImportListMovie;
+        public event EventHandler<ApiResponseEventArgs>? OnPostImportlistMovie;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportListMovie;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostImportlistMovie;
 
-        internal void ExecuteOnGetImportListMovie(ImportListMoviesApi.GetImportListMovieApiResponse apiResponse)
+        internal void ExecuteOnPostImportlistMovie(ImportListMoviesApi.PostImportlistMovieApiResponse apiResponse)
         {
-            OnGetImportListMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostImportlistMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetImportListMovie(Exception exception)
+        internal void ExecuteOnErrorPostImportlistMovie(Exception exception)
         {
-            OnErrorGetImportListMovie?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostImportlistMovie?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -194,16 +194,256 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateImportListMovie(Option<List<MovieResource>> movieResource);
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetImportlistMovieDefaultImplementation(IGetImportlistMovieApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetImportlistMovie(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetImportlistMovie(ref bool suppressDefaultLog, IGetImportlistMovieApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetImportlistMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetImportlistMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetImportlistMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistMovieApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistMovieApiResponse?> GetImportlistMovieOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetImportlistMovieAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistMovieApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistMovieApiResponse> GetImportlistMovieAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/importlist/movie"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/movie");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetImportlistMovieApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/movie", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetImportlistMovieDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnGetImportlistMovie(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetImportlistMovieDefaultImplementation(e, "/api/v3/importlist/movie", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetImportlistMovie(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetImportlistMovieApiResponse"/>
+        /// </summary>
+        public partial class GetImportlistMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportlistMovieApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListMoviesApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetImportlistMovieApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetImportlistMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetImportlistMovieApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetImportlistMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ImportListMoviesResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ImportListMoviesResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ImportListMoviesResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ImportListMoviesResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ImportListMoviesResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ImportListMoviesResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostImportlistMovie(List<MovieResource> movieResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="movieResource"></param>
         /// <returns></returns>
-        private void ValidateCreateImportListMovie(Option<List<MovieResource>> movieResource)
+        private void ValidatePostImportlistMovie(List<MovieResource> movieResource)
         {
-            if (movieResource.IsSet && movieResource.Value == null)
+            if (movieResource == null)
                 throw new ArgumentNullException(nameof(movieResource));
         }
 
@@ -212,10 +452,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieResource"></param>
-        private void AfterCreateImportListMovieDefaultImplementation(ICreateImportListMovieApiResponse apiResponseLocalVar, Option<List<MovieResource>> movieResource)
+        private void AfterPostImportlistMovieDefaultImplementation(IPostImportlistMovieApiResponse apiResponseLocalVar, List<MovieResource> movieResource)
         {
             bool suppressDefaultLog = false;
-            AfterCreateImportListMovie(ref suppressDefaultLog, apiResponseLocalVar, movieResource);
+            AfterPostImportlistMovie(ref suppressDefaultLog, apiResponseLocalVar, movieResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -226,7 +466,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieResource"></param>
-        partial void AfterCreateImportListMovie(ref bool suppressDefaultLog, ICreateImportListMovieApiResponse apiResponseLocalVar, Option<List<MovieResource>> movieResource);
+        partial void AfterPostImportlistMovie(ref bool suppressDefaultLog, IPostImportlistMovieApiResponse apiResponseLocalVar, List<MovieResource> movieResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -235,10 +475,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieResource"></param>
-        private void OnErrorCreateImportListMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieResource>> movieResource)
+        private void OnErrorPostImportlistMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<MovieResource> movieResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateImportListMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieResource);
+            OnErrorPostImportlistMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -251,19 +491,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieResource"></param>
-        partial void OnErrorCreateImportListMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieResource>> movieResource);
+        partial void OnErrorPostImportlistMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<MovieResource> movieResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="movieResource"> (optional)</param>
+        /// <param name="movieResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListMovieApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportListMovieApiResponse?> CreateImportListMovieOrDefaultAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistMovieApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistMovieApiResponse?> PostImportlistMovieOrDefaultAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateImportListMovieAsync(movieResource, cancellationToken).ConfigureAwait(false);
+                return await PostImportlistMovieAsync(movieResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -275,18 +515,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource"> (optional)</param>
+        /// <param name="movieResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListMovieApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportListMovieApiResponse> CreateImportListMovieAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistMovieApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistMovieApiResponse> PostImportlistMovieAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateImportListMovie(movieResource);
+                ValidatePostImportlistMovie(movieResource);
 
-                FormatCreateImportListMovie(movieResource);
+                FormatPostImportlistMovie(movieResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -297,12 +537,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/importlist/movie"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/movie");
 
-                    if (movieResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (movieResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -322,13 +559,24 @@ namespace Whisparr3.Net.Api
                     if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
                         httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateImportListMovieApiResponse apiResponseLocalVar;
+                        PostImportlistMovieApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -339,9 +587,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterCreateImportListMovieDefaultImplementation(apiResponseLocalVar, movieResource);
+                        AfterPostImportlistMovieDefaultImplementation(apiResponseLocalVar, movieResource);
 
-                        Events.ExecuteOnCreateImportListMovie(apiResponseLocalVar);
+                        Events.ExecuteOnPostImportlistMovie(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -353,16 +601,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateImportListMovieDefaultImplementation(e, "/api/v3/importlist/movie", uriBuilderLocalVar.Path, movieResource);
-                Events.ExecuteOnErrorCreateImportListMovie(e);
+                OnErrorPostImportlistMovieDefaultImplementation(e, "/api/v3/importlist/movie", uriBuilderLocalVar.Path, movieResource);
+                Events.ExecuteOnErrorPostImportlistMovie(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateImportListMovieApiResponse"/>
+        /// The <see cref="PostImportlistMovieApiResponse"/>
         /// </summary>
-        public partial class CreateImportListMovieApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateImportListMovieApiResponse
+        public partial class PostImportlistMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IPostImportlistMovieApiResponse
         {
             /// <summary>
             /// The logger
@@ -370,7 +618,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListMoviesApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateImportListMovieApiResponse"/>
+            /// The <see cref="PostImportlistMovieApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -379,14 +627,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImportListMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostImportlistMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateImportListMovieApiResponse"/>
+            /// The <see cref="PostImportlistMovieApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -395,7 +643,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateImportListMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostImportlistMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -409,190 +657,49 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<MovieResource>? Ok()
             {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+                bool suppressDefault = false;
+                List<MovieResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
             }
 
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetImportListMovieDefaultImplementation(IGetImportListMovieApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterGetImportListMovie(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetImportListMovie(ref bool suppressDefaultLog, IGetImportListMovieApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorGetImportListMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorGetImportListMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetImportListMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListMovieApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListMovieApiResponse?> GetImportListMovieOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
+            private List<MovieResource>? DefaultOk()
             {
-                return await GetImportListMovieAsync(cancellationToken).ConfigureAwait(false);
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<MovieResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
             }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
 
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListMovieApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListMovieApiResponse> GetImportListMovieAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
+            partial void OnOk(ref bool suppressDefault, ref List<MovieResource>? result);
 
-            try
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<MovieResource>? result)
             {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                result = null;
+
+                try
                 {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist/movie"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/movie");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetImportListMovieApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/movie", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetImportListMovieDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnGetImportListMovie(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
                 }
+
+                return result != null;
             }
-            catch(Exception e)
-            {
-                OnErrorGetImportListMovieDefaultImplementation(e, "/api/v3/importlist/movie", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetImportListMovie(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetImportListMovieApiResponse"/>
-        /// </summary>
-        public partial class GetImportListMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportListMovieApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListMoviesApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetImportListMovieApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetImportListMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetImportListMovieApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetImportListMovieApiResponse(ILogger<ImportListMoviesApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

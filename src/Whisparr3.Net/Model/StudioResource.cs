@@ -45,6 +45,7 @@ namespace Whisparr3.Net.Model
         /// <param name="images">images</param>
         /// <param name="monitored">monitored</param>
         /// <param name="moviesMonitored">moviesMonitored</param>
+        /// <param name="whisparrMonitorNewItems">whisparrMonitorNewItems</param>
         /// <param name="status">status</param>
         /// <param name="afterDate">afterDate</param>
         /// <param name="rootFolderPath">rootFolderPath</param>
@@ -62,7 +63,7 @@ namespace Whisparr3.Net.Model
         /// <param name="sizeOnDisk">sizeOnDisk</param>
         /// <param name="remotePoster">remotePoster</param>
         [JsonConstructor]
-        public StudioResource(Option<int?> id = default, Option<string?> title = default, Option<string?> sortTitle = default, Option<string?> searchTitle = default, Option<string?> foreignId = default, Option<int?> tmdbId = default, Option<string?> tpdbId = default, Option<string?> website = default, Option<string?> network = default, Option<List<MediaCover>?> images = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<StudioStatus?> status = default, Option<string?> afterDate = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<string>?> aliases = default, Option<List<int>?> tags = default, Option<bool?> hasMovies = default, Option<bool?> hasScenes = default, Option<int?> totalMovieCount = default, Option<int?> totalSceneCount = default, Option<int?> movieCount = default, Option<int?> sceneCount = default, Option<List<int>?> years = default, Option<long?> sizeOnDisk = default, Option<string?> remotePoster = default)
+        public StudioResource(Option<int?> id = default, Option<string?> title = default, Option<string?> sortTitle = default, Option<string?> searchTitle = default, Option<string?> foreignId = default, Option<int?> tmdbId = default, Option<string?> tpdbId = default, Option<string?> website = default, Option<string?> network = default, Option<List<MediaCover>?> images = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<bool?> whisparrMonitorNewItems = default, Option<StudioStatus?> status = default, Option<string?> afterDate = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<string>?> aliases = default, Option<List<int>?> tags = default, Option<bool?> hasMovies = default, Option<bool?> hasScenes = default, Option<int?> totalMovieCount = default, Option<int?> totalSceneCount = default, Option<int?> movieCount = default, Option<int?> sceneCount = default, Option<List<int>?> years = default, Option<long?> sizeOnDisk = default, Option<string?> remotePoster = default)
         {
             IdOption = id;
             TitleOption = title;
@@ -76,6 +77,7 @@ namespace Whisparr3.Net.Model
             ImagesOption = images;
             MonitoredOption = monitored;
             MoviesMonitoredOption = moviesMonitored;
+            WhisparrMonitorNewItemsOption = whisparrMonitorNewItems;
             StatusOption = status;
             AfterDateOption = afterDate;
             RootFolderPathOption = rootFolderPath;
@@ -265,6 +267,19 @@ namespace Whisparr3.Net.Model
         /// </summary>
         [JsonPropertyName("moviesMonitored")]
         public bool? MoviesMonitored { get { return this.MoviesMonitoredOption.Value; } set { this.MoviesMonitoredOption = new(value); } }
+
+        /// <summary>
+        /// Used to track the state of WhisparrMonitorNewItems
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> WhisparrMonitorNewItemsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets WhisparrMonitorNewItems
+        /// </summary>
+        [JsonPropertyName("whisparrMonitorNewItems")]
+        public bool? WhisparrMonitorNewItems { get { return this.WhisparrMonitorNewItemsOption.Value; } set { this.WhisparrMonitorNewItemsOption = new(value); } }
 
         /// <summary>
         /// Used to track the state of AfterDate
@@ -481,6 +496,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  Images: ").Append(Images).Append("\n");
             sb.Append("  Monitored: ").Append(Monitored).Append("\n");
             sb.Append("  MoviesMonitored: ").Append(MoviesMonitored).Append("\n");
+            sb.Append("  WhisparrMonitorNewItems: ").Append(WhisparrMonitorNewItems).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AfterDate: ").Append(AfterDate).Append("\n");
             sb.Append("  RootFolderPath: ").Append(RootFolderPath).Append("\n");
@@ -556,6 +572,7 @@ namespace Whisparr3.Net.Model
             Option<List<MediaCover>?> images = default;
             Option<bool?> monitored = default;
             Option<bool?> moviesMonitored = default;
+            Option<bool?> whisparrMonitorNewItems = default;
             Option<StudioStatus?> status = default;
             Option<string?> afterDate = default;
             Option<string?> rootFolderPath = default;
@@ -624,6 +641,9 @@ namespace Whisparr3.Net.Model
                         case "moviesMonitored":
                             moviesMonitored = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "whisparrMonitorNewItems":
+                            whisparrMonitorNewItems = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "status":
                             status = new Option<StudioStatus?>(JsonSerializer.Deserialize<StudioStatus?>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -690,6 +710,9 @@ namespace Whisparr3.Net.Model
             if (moviesMonitored.IsSet && moviesMonitored.Value == null)
                 throw new ArgumentNullException(nameof(moviesMonitored), "Property is not nullable for class StudioResource.");
 
+            if (whisparrMonitorNewItems.IsSet && whisparrMonitorNewItems.Value == null)
+                throw new ArgumentNullException(nameof(whisparrMonitorNewItems), "Property is not nullable for class StudioResource.");
+
             if (status.IsSet && status.Value == null)
                 throw new ArgumentNullException(nameof(status), "Property is not nullable for class StudioResource.");
 
@@ -720,7 +743,7 @@ namespace Whisparr3.Net.Model
             if (sizeOnDisk.IsSet && sizeOnDisk.Value == null)
                 throw new ArgumentNullException(nameof(sizeOnDisk), "Property is not nullable for class StudioResource.");
 
-            return new StudioResource(id, title, sortTitle, searchTitle, foreignId, tmdbId, tpdbId, website, network, images, monitored, moviesMonitored, status, afterDate, rootFolderPath, qualityProfileId, searchOnAdd, aliases, tags, hasMovies, hasScenes, totalMovieCount, totalSceneCount, movieCount, sceneCount, years, sizeOnDisk, remotePoster);
+            return new StudioResource(id, title, sortTitle, searchTitle, foreignId, tmdbId, tpdbId, website, network, images, monitored, moviesMonitored, whisparrMonitorNewItems, status, afterDate, rootFolderPath, qualityProfileId, searchOnAdd, aliases, tags, hasMovies, hasScenes, totalMovieCount, totalSceneCount, movieCount, sceneCount, years, sizeOnDisk, remotePoster);
         }
 
         /// <summary>
@@ -808,6 +831,9 @@ namespace Whisparr3.Net.Model
 
             if (studioResource.MoviesMonitoredOption.IsSet)
                 writer.WriteBoolean("moviesMonitored", studioResource.MoviesMonitoredOption.Value!.Value);
+
+            if (studioResource.WhisparrMonitorNewItemsOption.IsSet)
+                writer.WriteBoolean("whisparrMonitorNewItems", studioResource.WhisparrMonitorNewItemsOption.Value!.Value);
 
             if (studioResource.StatusOption.IsSet)
             {

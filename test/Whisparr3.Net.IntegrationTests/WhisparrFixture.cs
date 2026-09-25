@@ -57,16 +57,12 @@ namespace Whisparr3.Net.IntegrationTests
         /// the spec endpoint is not.
         /// </summary>
         /// <remarks>
-        /// Whisparr serves the spec while it is still seeding its database. Measured on this
-        /// digest: the spec endpoint answered 200 at 13 seconds with 0 quality profiles present in
-        /// one boot and 5 in another, and 7 arrived a second or four later. A suite that starts
-        /// asserting at the spec signal therefore reads a half-seeded instance, which is how the
-        /// profile count assertion first failed against a live container reporting 2. The default
-        /// profiles are created by a handler of the application-started event, and this line is
-        /// logged by a later handler of the same event, so it cannot be written before the seeding
-        /// it follows has returned. Measured over three consecutive boots: at the instant this line
-        /// appeared, the instance reported 7 profiles and 29 definitions every time. The thread
-        /// count in the full line varies with the host, so it is not matched.
+        /// Whisparr serves the spec while it is still seeding its database, so a suite that
+        /// starts asserting at the spec signal reads a half-seeded instance and the profile count
+        /// assertion fails. The default profiles are created by a handler of the application-started
+        /// event and this line is logged by a later handler of the same event, so it cannot be
+        /// written before that seeding has returned. The thread count in the full line varies with
+        /// the host, so it is not matched.
         /// </remarks>
         private const string StartupTasksMarker = "CommandExecutor: Starting";
 
@@ -99,10 +95,10 @@ namespace Whisparr3.Net.IntegrationTests
         /// <summary>
         /// The wait budget, per wait strategy. Two strategies are chained and Testcontainers
         /// evaluates them in sequence, so the worst case before the start call gives up is twice
-        /// this value, which is 240 seconds. The pinned digest was measured ready in 20 seconds by
-        /// direct polling and capture_spec.py allows 90, but Testcontainers adds an image check and
-        /// a reaper start ahead of the container, and a cross-targeted run boots two containers at
-        /// once. The value is set explicitly rather than left to a library default nobody measured.
+        /// this value, which is 240 seconds. The pinned digest answers in seconds by direct polling
+        /// and capture_spec.py allows 90, but Testcontainers adds an image check and a reaper start
+        /// ahead of the container, and a cross-targeted run boots two containers at once. The value
+        /// is set explicitly rather than left to a library default nobody measured.
         /// </summary>
         private static readonly TimeSpan ReadinessTimeout = TimeSpan.FromSeconds(120);
 
@@ -186,7 +182,7 @@ namespace Whisparr3.Net.IntegrationTests
                 ExpectedVersion = RequiredString(provenance, "whisparrVersion");
                 ExpectedBranch = RequiredString(provenance, "whisparrBranch");
 
-                _container = new ContainerBuilder(RequiredString(provenance, "imageDigest"))
+                _container = new ContainerBuilder(RequiredString(provenance, "image"))
                     .WithEnvironment("WHISPARR__AUTH__APIKEY", ContainerApiKey)
                     .WithPortBinding(ContainerPort, true)
                     .WithCreateParameterModifier(parameters =>

@@ -21,9 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # generate.py takes no arguments. The generator image is pinned by digest inside the
-      # script and there is deliberately no output-root parameter, so it writes over the tree
-      # it was invoked from.
+      # Invoked with no arguments, which is the reproducing form. The generator image is pinned
+      # by digest inside the script and there is deliberately no output-root parameter, so it
+      # writes over the tree it was invoked from.
       - name: Regenerate the client tree and compare it against what is committed
         run: |
           python3 generator/generate.py

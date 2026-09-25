@@ -40,6 +40,7 @@ namespace Whisparr3.Net.Model
         /// <param name="images">A list of media cover images associated with the collection.</param>
         /// <param name="overview">A short overview or synopsis for the collection.</param>
         /// <param name="monitored">Whether the collection is monitored for automatic actions (e.g., downloads).</param>
+        /// <param name="whisparrMonitorNewItems">Whether newly discovered movies in the collection are added monitored.</param>
         /// <param name="rootFolderPath">The configured root folder path where movies for this collection are stored.</param>
         /// <param name="qualityProfileId">The quality profile id applied to movies in this collection.</param>
         /// <param name="searchOnAdd">Whether new movies in the collection should be searched for automatically when added.</param>
@@ -47,7 +48,7 @@ namespace Whisparr3.Net.Model
         /// <param name="missingMovies">Number of movies from the collection that are missing from the local library.</param>
         /// <param name="tags">Set of tag ids associated with the collection.</param>
         [JsonConstructor]
-        public CollectionResource(Option<int?> id = default, Option<string?> title = default, Option<string?> sortTitle = default, Option<int?> tmdbId = default, Option<List<MediaCover>?> images = default, Option<string?> overview = default, Option<bool?> monitored = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<CollectionMovieResource>?> movies = default, Option<int?> missingMovies = default, Option<List<int>?> tags = default)
+        public CollectionResource(Option<int?> id = default, Option<string?> title = default, Option<string?> sortTitle = default, Option<int?> tmdbId = default, Option<List<MediaCover>?> images = default, Option<string?> overview = default, Option<bool?> monitored = default, Option<bool?> whisparrMonitorNewItems = default, Option<string?> rootFolderPath = default, Option<int?> qualityProfileId = default, Option<bool?> searchOnAdd = default, Option<List<CollectionMovieResource>?> movies = default, Option<int?> missingMovies = default, Option<List<int>?> tags = default)
         {
             IdOption = id;
             TitleOption = title;
@@ -56,6 +57,7 @@ namespace Whisparr3.Net.Model
             ImagesOption = images;
             OverviewOption = overview;
             MonitoredOption = monitored;
+            WhisparrMonitorNewItemsOption = whisparrMonitorNewItems;
             RootFolderPathOption = rootFolderPath;
             QualityProfileIdOption = qualityProfileId;
             SearchOnAddOption = searchOnAdd;
@@ -165,6 +167,20 @@ namespace Whisparr3.Net.Model
         public bool? Monitored { get { return this.MonitoredOption.Value; } set { this.MonitoredOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of WhisparrMonitorNewItems
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<bool?> WhisparrMonitorNewItemsOption { get; private set; }
+
+        /// <summary>
+        /// Whether newly discovered movies in the collection are added monitored.
+        /// </summary>
+        /// <value>Whether newly discovered movies in the collection are added monitored.</value>
+        [JsonPropertyName("whisparrMonitorNewItems")]
+        public bool? WhisparrMonitorNewItems { get { return this.WhisparrMonitorNewItemsOption.Value; } set { this.WhisparrMonitorNewItemsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of RootFolderPath
         /// </summary>
         [JsonIgnore]
@@ -263,6 +279,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  Images: ").Append(Images).Append("\n");
             sb.Append("  Overview: ").Append(Overview).Append("\n");
             sb.Append("  Monitored: ").Append(Monitored).Append("\n");
+            sb.Append("  WhisparrMonitorNewItems: ").Append(WhisparrMonitorNewItems).Append("\n");
             sb.Append("  RootFolderPath: ").Append(RootFolderPath).Append("\n");
             sb.Append("  QualityProfileId: ").Append(QualityProfileId).Append("\n");
             sb.Append("  SearchOnAdd: ").Append(SearchOnAdd).Append("\n");
@@ -323,6 +340,7 @@ namespace Whisparr3.Net.Model
             Option<List<MediaCover>?> images = default;
             Option<string?> overview = default;
             Option<bool?> monitored = default;
+            Option<bool?> whisparrMonitorNewItems = default;
             Option<string?> rootFolderPath = default;
             Option<int?> qualityProfileId = default;
             Option<bool?> searchOnAdd = default;
@@ -366,6 +384,9 @@ namespace Whisparr3.Net.Model
                         case "monitored":
                             monitored = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "whisparrMonitorNewItems":
+                            whisparrMonitorNewItems = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
+                            break;
                         case "rootFolderPath":
                             rootFolderPath = new Option<string?>(utf8JsonReader.GetString());
                             break;
@@ -399,6 +420,9 @@ namespace Whisparr3.Net.Model
             if (monitored.IsSet && monitored.Value == null)
                 throw new ArgumentNullException(nameof(monitored), "Property is not nullable for class CollectionResource.");
 
+            if (whisparrMonitorNewItems.IsSet && whisparrMonitorNewItems.Value == null)
+                throw new ArgumentNullException(nameof(whisparrMonitorNewItems), "Property is not nullable for class CollectionResource.");
+
             if (qualityProfileId.IsSet && qualityProfileId.Value == null)
                 throw new ArgumentNullException(nameof(qualityProfileId), "Property is not nullable for class CollectionResource.");
 
@@ -408,7 +432,7 @@ namespace Whisparr3.Net.Model
             if (missingMovies.IsSet && missingMovies.Value == null)
                 throw new ArgumentNullException(nameof(missingMovies), "Property is not nullable for class CollectionResource.");
 
-            return new CollectionResource(id, title, sortTitle, tmdbId, images, overview, monitored, rootFolderPath, qualityProfileId, searchOnAdd, movies, missingMovies, tags);
+            return new CollectionResource(id, title, sortTitle, tmdbId, images, overview, monitored, whisparrMonitorNewItems, rootFolderPath, qualityProfileId, searchOnAdd, movies, missingMovies, tags);
         }
 
         /// <summary>
@@ -469,6 +493,9 @@ namespace Whisparr3.Net.Model
 
             if (collectionResource.MonitoredOption.IsSet)
                 writer.WriteBoolean("monitored", collectionResource.MonitoredOption.Value!.Value);
+
+            if (collectionResource.WhisparrMonitorNewItemsOption.IsSet)
+                writer.WriteBoolean("whisparrMonitorNewItems", collectionResource.WhisparrMonitorNewItemsOption.Value!.Value);
 
             if (collectionResource.RootFolderPathOption.IsSet)
                 if (collectionResource.RootFolderPathOption.Value != null)

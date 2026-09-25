@@ -45,11 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
+        /// <param name="importListBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListApiResponse"/>&gt;</returns>
-        Task<ICreateImportListApiResponse> CreateImportListAsync(Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistBulkApiResponse"/>&gt;</returns>
+        Task<IDeleteImportlistBulkApiResponse> DeleteImportlistBulkAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -57,11 +56,123 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
+        /// <param name="importListBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListApiResponse"/>?&gt;</returns>
-        Task<ICreateImportListApiResponse?> CreateImportListOrDefaultAsync(Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistBulkApiResponse"/>?&gt;</returns>
+        Task<IDeleteImportlistBulkApiResponse?> DeleteImportlistBulkOrDefaultAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteImportlistByIdApiResponse> DeleteImportlistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteImportlistByIdApiResponse?> DeleteImportlistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistApiResponse"/>&gt;</returns>
+        Task<IGetImportlistApiResponse> GetImportlistAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistApiResponse"/>?&gt;</returns>
+        Task<IGetImportlistApiResponse?> GetImportlistOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistByIdApiResponse"/>&gt;</returns>
+        Task<IGetImportlistByIdApiResponse> GetImportlistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistByIdApiResponse"/>?&gt;</returns>
+        Task<IGetImportlistByIdApiResponse?> GetImportlistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistSchemaApiResponse"/>&gt;</returns>
+        Task<IGetImportlistSchemaApiResponse> GetImportlistSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistSchemaApiResponse"/>?&gt;</returns>
+        Task<IGetImportlistSchemaApiResponse?> GetImportlistSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistApiResponse"/>&gt;</returns>
+        Task<IPostImportlistApiResponse> PostImportlistAsync(ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistApiResponse"/>?&gt;</returns>
+        Task<IPostImportlistApiResponse?> PostImportlistOrDefaultAsync(ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -71,10 +182,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
-        /// <param name="importListResource"> (optional)</param>
+        /// <param name="importListResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListActionByNameApiResponse"/>&gt;</returns>
-        Task<ICreateImportListActionByNameApiResponse> CreateImportListActionByNameAsync(string name, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistActionByNameApiResponse"/>&gt;</returns>
+        Task<IPostImportlistActionByNameApiResponse> PostImportlistActionByNameAsync(string name, ImportListResource importListResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -83,10 +194,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="name"></param>
-        /// <param name="importListResource"> (optional)</param>
+        /// <param name="importListResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListActionByNameApiResponse"/>?&gt;</returns>
-        Task<ICreateImportListActionByNameApiResponse?> CreateImportListActionByNameOrDefaultAsync(string name, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistActionByNameApiResponse"/>?&gt;</returns>
+        Task<IPostImportlistActionByNameApiResponse?> PostImportlistActionByNameOrDefaultAsync(string name, ImportListResource importListResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -95,166 +206,11 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListApiResponse"/>&gt;</returns>
-        Task<IDeleteImportListApiResponse> DeleteImportListAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListApiResponse"/>?&gt;</returns>
-        Task<IDeleteImportListApiResponse?> DeleteImportListOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListBulkApiResponse"/>&gt;</returns>
-        Task<IDeleteImportListBulkApiResponse> DeleteImportListBulkAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="importListBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListBulkApiResponse"/>?&gt;</returns>
-        Task<IDeleteImportListBulkApiResponse?> DeleteImportListBulkOrDefaultAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListByIdApiResponse"/>&gt;</returns>
-        Task<IGetImportListByIdApiResponse> GetImportListByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListByIdApiResponse"/>?&gt;</returns>
-        Task<IGetImportListByIdApiResponse?> GetImportListByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListApiResponse"/>&gt;</returns>
-        Task<IListImportListApiResponse> ListImportListAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListApiResponse"/>?&gt;</returns>
-        Task<IListImportListApiResponse?> ListImportListOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListSchemaApiResponse"/>&gt;</returns>
-        Task<IListImportListSchemaApiResponse> ListImportListSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListSchemaApiResponse"/>?&gt;</returns>
-        Task<IListImportListSchemaApiResponse?> ListImportListSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportListBulkApiResponse"/>&gt;</returns>
-        Task<IPutImportListBulkApiResponse> PutImportListBulkAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="importListBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportListBulkApiResponse"/>?&gt;</returns>
-        Task<IPutImportListBulkApiResponse?> PutImportListBulkOrDefaultAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllImportListApiResponse"/>&gt;</returns>
-        Task<ITestAllImportListApiResponse> TestAllImportListAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllImportListApiResponse"/>?&gt;</returns>
-        Task<ITestAllImportListApiResponse?> TestAllImportListOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestImportListApiResponse"/>&gt;</returns>
-        Task<ITestImportListApiResponse> TestImportListAsync(Option<bool> forceTest = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestApiResponse"/>&gt;</returns>
+        Task<IPostImportlistTestApiResponse> PostImportlistTestAsync(ImportListResource importListResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -262,11 +218,55 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="importListResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestImportListApiResponse"/>?&gt;</returns>
-        Task<ITestImportListApiResponse?> TestImportListOrDefaultAsync(Option<bool> forceTest = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestApiResponse"/>?&gt;</returns>
+        Task<IPostImportlistTestApiResponse?> PostImportlistTestOrDefaultAsync(ImportListResource importListResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestallApiResponse"/>&gt;</returns>
+        Task<IPostImportlistTestallApiResponse> PostImportlistTestallAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestallApiResponse"/>?&gt;</returns>
+        Task<IPostImportlistTestallApiResponse?> PostImportlistTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistBulkApiResponse"/>&gt;</returns>
+        Task<IPutImportlistBulkApiResponse> PutImportlistBulkAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="importListBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistBulkApiResponse"/>?&gt;</returns>
+        Task<IPutImportlistBulkApiResponse?> PutImportlistBulkOrDefaultAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -276,11 +276,11 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="importListResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListApiResponse"/>&gt;</returns>
-        Task<IUpdateImportListApiResponse> UpdateImportListAsync(int id, Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistByIdApiResponse"/>&gt;</returns>
+        Task<IPutImportlistByIdApiResponse> PutImportlistByIdAsync(int id, ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -289,17 +289,17 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
+        /// <param name="importListResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListApiResponse"/>?&gt;</returns>
-        Task<IUpdateImportListApiResponse?> UpdateImportListOrDefaultAsync(int id, Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistByIdApiResponse"/>?&gt;</returns>
+        Task<IPutImportlistByIdApiResponse?> PutImportlistByIdOrDefaultAsync(int id, ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateImportListApiResponse"/>
+    /// The <see cref="IDeleteImportlistBulkApiResponse"/>
     /// </summary>
-    public interface ICreateImportListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListResource?>
+    public interface IDeleteImportlistBulkApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -309,9 +309,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateImportListActionByNameApiResponse"/>
+    /// The <see cref="IDeleteImportlistByIdApiResponse"/>
     /// </summary>
-    public interface ICreateImportListActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteImportlistByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -321,9 +321,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteImportListApiResponse"/>
+    /// The <see cref="IGetImportlistApiResponse"/>
     /// </summary>
-    public interface IDeleteImportListApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetImportlistApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -333,9 +333,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteImportListBulkApiResponse"/>
+    /// The <see cref="IGetImportlistByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteImportListBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetImportlistByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -345,9 +345,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetImportListByIdApiResponse"/>
+    /// The <see cref="IGetImportlistSchemaApiResponse"/>
     /// </summary>
-    public interface IGetImportListByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListResource?>
+    public interface IGetImportlistSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -357,9 +357,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListImportListApiResponse"/>
+    /// The <see cref="IPostImportlistApiResponse"/>
     /// </summary>
-    public interface IListImportListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListResource>?>
+    public interface IPostImportlistApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.ImportListResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostImportlistActionByNameApiResponse"/>
+    /// </summary>
+    public interface IPostImportlistActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Object?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -369,9 +381,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListImportListSchemaApiResponse"/>
+    /// The <see cref="IPostImportlistTestApiResponse"/>
     /// </summary>
-    public interface IListImportListSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListResource>?>
+    public interface IPostImportlistTestApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -381,51 +393,45 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IPutImportListBulkApiResponse"/>
+    /// The <see cref="IPostImportlistTestallApiResponse"/>
     /// </summary>
-    public interface IPutImportListBulkApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListResource?>
+    public interface IPostImportlistTestallApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ProviderTestAllResult>?>, IBadRequest<List<ProviderTestAllResult>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
     }
 
     /// <summary>
-    /// The <see cref="ITestAllImportListApiResponse"/>
+    /// The <see cref="IPutImportlistBulkApiResponse"/>
     /// </summary>
-    public interface ITestAllImportListApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutImportlistBulkApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<ImportListResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
-    /// The <see cref="ITestImportListApiResponse"/>
+    /// The <see cref="IPutImportlistByIdApiResponse"/>
     /// </summary>
-    public interface ITestImportListApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutImportlistByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.ImportListResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IUpdateImportListApiResponse"/>
-    /// </summary>
-    public interface IUpdateImportListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -436,221 +442,221 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateImportList;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteImportlistBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateImportList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteImportlistBulk;
 
-        internal void ExecuteOnCreateImportList(ImportListApi.CreateImportListApiResponse apiResponse)
+        internal void ExecuteOnDeleteImportlistBulk(ImportListApi.DeleteImportlistBulkApiResponse apiResponse)
         {
-            OnCreateImportList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteImportlistBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateImportList(Exception exception)
+        internal void ExecuteOnErrorDeleteImportlistBulk(Exception exception)
         {
-            OnErrorCreateImportList?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteImportlistBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateImportListActionByName;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteImportlistById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateImportListActionByName;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteImportlistById;
 
-        internal void ExecuteOnCreateImportListActionByName(ImportListApi.CreateImportListActionByNameApiResponse apiResponse)
+        internal void ExecuteOnDeleteImportlistById(ImportListApi.DeleteImportlistByIdApiResponse apiResponse)
         {
-            OnCreateImportListActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteImportlistById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateImportListActionByName(Exception exception)
+        internal void ExecuteOnErrorDeleteImportlistById(Exception exception)
         {
-            OnErrorCreateImportListActionByName?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteImportlistById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteImportList;
+        public event EventHandler<ApiResponseEventArgs>? OnGetImportlist;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteImportList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportlist;
 
-        internal void ExecuteOnDeleteImportList(ImportListApi.DeleteImportListApiResponse apiResponse)
+        internal void ExecuteOnGetImportlist(ImportListApi.GetImportlistApiResponse apiResponse)
         {
-            OnDeleteImportList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetImportlist?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteImportList(Exception exception)
+        internal void ExecuteOnErrorGetImportlist(Exception exception)
         {
-            OnErrorDeleteImportList?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetImportlist?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteImportListBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnGetImportlistById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteImportListBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportlistById;
 
-        internal void ExecuteOnDeleteImportListBulk(ImportListApi.DeleteImportListBulkApiResponse apiResponse)
+        internal void ExecuteOnGetImportlistById(ImportListApi.GetImportlistByIdApiResponse apiResponse)
         {
-            OnDeleteImportListBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetImportlistById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteImportListBulk(Exception exception)
+        internal void ExecuteOnErrorGetImportlistById(Exception exception)
         {
-            OnErrorDeleteImportListBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetImportlistById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetImportListById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetImportlistSchema;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportListById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportlistSchema;
 
-        internal void ExecuteOnGetImportListById(ImportListApi.GetImportListByIdApiResponse apiResponse)
+        internal void ExecuteOnGetImportlistSchema(ImportListApi.GetImportlistSchemaApiResponse apiResponse)
         {
-            OnGetImportListById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetImportlistSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetImportListById(Exception exception)
+        internal void ExecuteOnErrorGetImportlistSchema(Exception exception)
         {
-            OnErrorGetImportListById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetImportlistSchema?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListImportList;
+        public event EventHandler<ApiResponseEventArgs>? OnPostImportlist;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListImportList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostImportlist;
 
-        internal void ExecuteOnListImportList(ImportListApi.ListImportListApiResponse apiResponse)
+        internal void ExecuteOnPostImportlist(ImportListApi.PostImportlistApiResponse apiResponse)
         {
-            OnListImportList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostImportlist?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListImportList(Exception exception)
+        internal void ExecuteOnErrorPostImportlist(Exception exception)
         {
-            OnErrorListImportList?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostImportlist?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListImportListSchema;
+        public event EventHandler<ApiResponseEventArgs>? OnPostImportlistActionByName;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListImportListSchema;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostImportlistActionByName;
 
-        internal void ExecuteOnListImportListSchema(ImportListApi.ListImportListSchemaApiResponse apiResponse)
+        internal void ExecuteOnPostImportlistActionByName(ImportListApi.PostImportlistActionByNameApiResponse apiResponse)
         {
-            OnListImportListSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostImportlistActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListImportListSchema(Exception exception)
+        internal void ExecuteOnErrorPostImportlistActionByName(Exception exception)
         {
-            OnErrorListImportListSchema?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostImportlistActionByName?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnPutImportListBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnPostImportlistTest;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorPutImportListBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostImportlistTest;
 
-        internal void ExecuteOnPutImportListBulk(ImportListApi.PutImportListBulkApiResponse apiResponse)
+        internal void ExecuteOnPostImportlistTest(ImportListApi.PostImportlistTestApiResponse apiResponse)
         {
-            OnPutImportListBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostImportlistTest?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorPutImportListBulk(Exception exception)
+        internal void ExecuteOnErrorPostImportlistTest(Exception exception)
         {
-            OnErrorPutImportListBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostImportlistTest?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestAllImportList;
+        public event EventHandler<ApiResponseEventArgs>? OnPostImportlistTestall;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestAllImportList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostImportlistTestall;
 
-        internal void ExecuteOnTestAllImportList(ImportListApi.TestAllImportListApiResponse apiResponse)
+        internal void ExecuteOnPostImportlistTestall(ImportListApi.PostImportlistTestallApiResponse apiResponse)
         {
-            OnTestAllImportList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostImportlistTestall?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestAllImportList(Exception exception)
+        internal void ExecuteOnErrorPostImportlistTestall(Exception exception)
         {
-            OnErrorTestAllImportList?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostImportlistTestall?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestImportList;
+        public event EventHandler<ApiResponseEventArgs>? OnPutImportlistBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestImportList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutImportlistBulk;
 
-        internal void ExecuteOnTestImportList(ImportListApi.TestImportListApiResponse apiResponse)
+        internal void ExecuteOnPutImportlistBulk(ImportListApi.PutImportlistBulkApiResponse apiResponse)
         {
-            OnTestImportList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutImportlistBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestImportList(Exception exception)
+        internal void ExecuteOnErrorPutImportlistBulk(Exception exception)
         {
-            OnErrorTestImportList?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutImportlistBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateImportList;
+        public event EventHandler<ApiResponseEventArgs>? OnPutImportlistById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateImportList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutImportlistById;
 
-        internal void ExecuteOnUpdateImportList(ImportListApi.UpdateImportListApiResponse apiResponse)
+        internal void ExecuteOnPutImportlistById(ImportListApi.PutImportlistByIdApiResponse apiResponse)
         {
-            OnUpdateImportList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutImportlistById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateImportList(Exception exception)
+        internal void ExecuteOnErrorPutImportlistById(Exception exception)
         {
-            OnErrorUpdateImportList?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutImportlistById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -695,737 +701,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateImportList(ref Option<bool> forceSave, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="importListResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateImportList(Option<ImportListResource> importListResource)
-        {
-            if (importListResource.IsSet && importListResource.Value == null)
-                throw new ArgumentNullException(nameof(importListResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        private void AfterCreateImportListDefaultImplementation(ICreateImportListApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<ImportListResource> importListResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateImportList(ref suppressDefaultLog, apiResponseLocalVar, forceSave, importListResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        partial void AfterCreateImportList(ref bool suppressDefaultLog, ICreateImportListApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        private void OnErrorCreateImportListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<ImportListResource> importListResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateImportList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceSave, importListResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        partial void OnErrorCreateImportList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportListApiResponse?> CreateImportListOrDefaultAsync(Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateImportListAsync(forceSave, importListResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportListApiResponse> CreateImportListAsync(Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateImportList(importListResource);
-
-                FormatCreateImportList(ref forceSave, importListResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (forceSave.IsSet)
-                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    if (importListResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateImportListApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateImportListDefaultImplementation(apiResponseLocalVar, forceSave, importListResource);
-
-                        Events.ExecuteOnCreateImportList(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateImportListDefaultImplementation(e, "/api/v3/importlist", uriBuilderLocalVar.Path, forceSave, importListResource);
-                Events.ExecuteOnErrorCreateImportList(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateImportListApiResponse"/>
-        /// </summary>
-        public partial class CreateImportListApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateImportListApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateImportListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateImportListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.ImportListResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.ImportListResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreateImportListActionByName(ref string name, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="importListResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateImportListActionByName(string name, Option<ImportListResource> importListResource)
-        {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
-
-            if (importListResource.IsSet && importListResource.Value == null)
-                throw new ArgumentNullException(nameof(importListResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="importListResource"></param>
-        private void AfterCreateImportListActionByNameDefaultImplementation(ICreateImportListActionByNameApiResponse apiResponseLocalVar, string name, Option<ImportListResource> importListResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateImportListActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, importListResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="importListResource"></param>
-        partial void AfterCreateImportListActionByName(ref bool suppressDefaultLog, ICreateImportListActionByNameApiResponse apiResponseLocalVar, string name, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="importListResource"></param>
-        private void OnErrorCreateImportListActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<ImportListResource> importListResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateImportListActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, importListResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="importListResource"></param>
-        partial void OnErrorCreateImportListActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="importListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportListActionByNameApiResponse?> CreateImportListActionByNameOrDefaultAsync(string name, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateImportListActionByNameAsync(name, importListResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="importListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateImportListActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateImportListActionByNameApiResponse> CreateImportListActionByNameAsync(string name, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateImportListActionByName(name, importListResource);
-
-                FormatCreateImportListActionByName(ref name, importListResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist/action/{name}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/action/{name}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
-
-                    if (importListResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateImportListActionByNameApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateImportListActionByNameDefaultImplementation(apiResponseLocalVar, name, importListResource);
-
-                        Events.ExecuteOnCreateImportListActionByName(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateImportListActionByNameDefaultImplementation(e, "/api/v3/importlist/action/{name}", uriBuilderLocalVar.Path, name, importListResource);
-                Events.ExecuteOnErrorCreateImportListActionByName(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateImportListActionByNameApiResponse"/>
-        /// </summary>
-        public partial class CreateImportListActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateImportListActionByNameApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateImportListActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateImportListActionByNameApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateImportListActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateImportListActionByNameApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteImportList(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterDeleteImportListDefaultImplementation(IDeleteImportListApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteImportList(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterDeleteImportList(ref bool suppressDefaultLog, IDeleteImportListApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorDeleteImportListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteImportList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorDeleteImportList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListApiResponse"/>&gt;</returns>
-        public async Task<IDeleteImportListApiResponse?> DeleteImportListOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteImportListAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListApiResponse"/>&gt;</returns>
-        public async Task<IDeleteImportListApiResponse> DeleteImportListAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteImportList(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteImportListApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteImportListDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnDeleteImportList(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteImportListDefaultImplementation(e, "/api/v3/importlist/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteImportList(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteImportListApiResponse"/>
-        /// </summary>
-        public partial class DeleteImportListApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteImportListApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteImportListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteImportListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteImportListBulk(Option<ImportListBulkResource> importListBulkResource);
+        partial void FormatDeleteImportlistBulk(ImportListBulkResource importListBulkResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="importListBulkResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteImportListBulk(Option<ImportListBulkResource> importListBulkResource)
+        private void ValidateDeleteImportlistBulk(ImportListBulkResource importListBulkResource)
         {
-            if (importListBulkResource.IsSet && importListBulkResource.Value == null)
+            if (importListBulkResource == null)
                 throw new ArgumentNullException(nameof(importListBulkResource));
         }
 
@@ -1434,10 +719,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="importListBulkResource"></param>
-        private void AfterDeleteImportListBulkDefaultImplementation(IDeleteImportListBulkApiResponse apiResponseLocalVar, Option<ImportListBulkResource> importListBulkResource)
+        private void AfterDeleteImportlistBulkDefaultImplementation(IDeleteImportlistBulkApiResponse apiResponseLocalVar, ImportListBulkResource importListBulkResource)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteImportListBulk(ref suppressDefaultLog, apiResponseLocalVar, importListBulkResource);
+            AfterDeleteImportlistBulk(ref suppressDefaultLog, apiResponseLocalVar, importListBulkResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1448,7 +733,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="importListBulkResource"></param>
-        partial void AfterDeleteImportListBulk(ref bool suppressDefaultLog, IDeleteImportListBulkApiResponse apiResponseLocalVar, Option<ImportListBulkResource> importListBulkResource);
+        partial void AfterDeleteImportlistBulk(ref bool suppressDefaultLog, IDeleteImportlistBulkApiResponse apiResponseLocalVar, ImportListBulkResource importListBulkResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1457,10 +742,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="importListBulkResource"></param>
-        private void OnErrorDeleteImportListBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListBulkResource> importListBulkResource)
+        private void OnErrorDeleteImportlistBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListBulkResource importListBulkResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteImportListBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListBulkResource);
+            OnErrorDeleteImportlistBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListBulkResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1473,19 +758,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="importListBulkResource"></param>
-        partial void OnErrorDeleteImportListBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListBulkResource> importListBulkResource);
+        partial void OnErrorDeleteImportlistBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListBulkResource importListBulkResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="importListBulkResource"> (optional)</param>
+        /// <param name="importListBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteImportListBulkApiResponse?> DeleteImportListBulkOrDefaultAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistBulkApiResponse"/>&gt;</returns>
+        public async Task<IDeleteImportlistBulkApiResponse?> DeleteImportlistBulkOrDefaultAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteImportListBulkAsync(importListBulkResource, cancellationToken).ConfigureAwait(false);
+                return await DeleteImportlistBulkAsync(importListBulkResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1497,18 +782,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListBulkResource"> (optional)</param>
+        /// <param name="importListBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportListBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteImportListBulkApiResponse> DeleteImportListBulkAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistBulkApiResponse"/>&gt;</returns>
+        public async Task<IDeleteImportlistBulkApiResponse> DeleteImportlistBulkAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateDeleteImportListBulk(importListBulkResource);
+                ValidateDeleteImportlistBulk(importListBulkResource);
 
-                FormatDeleteImportListBulk(importListBulkResource);
+                FormatDeleteImportlistBulk(importListBulkResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1519,12 +804,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/importlist/bulk"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/bulk");
 
-                    if (importListBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importListBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1548,7 +830,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteImportListBulkApiResponse apiResponseLocalVar;
+                        DeleteImportlistBulkApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1559,9 +841,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteImportListBulkDefaultImplementation(apiResponseLocalVar, importListBulkResource);
+                        AfterDeleteImportlistBulkDefaultImplementation(apiResponseLocalVar, importListBulkResource);
 
-                        Events.ExecuteOnDeleteImportListBulk(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteImportlistBulk(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1573,16 +855,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteImportListBulkDefaultImplementation(e, "/api/v3/importlist/bulk", uriBuilderLocalVar.Path, importListBulkResource);
-                Events.ExecuteOnErrorDeleteImportListBulk(e);
+                OnErrorDeleteImportlistBulkDefaultImplementation(e, "/api/v3/importlist/bulk", uriBuilderLocalVar.Path, importListBulkResource);
+                Events.ExecuteOnErrorDeleteImportlistBulk(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteImportListBulkApiResponse"/>
+        /// The <see cref="DeleteImportlistBulkApiResponse"/>
         /// </summary>
-        public partial class DeleteImportListBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteImportListBulkApiResponse
+        public partial class DeleteImportlistBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteImportlistBulkApiResponse
         {
             /// <summary>
             /// The logger
@@ -1590,7 +872,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteImportListBulkApiResponse"/>
+            /// The <see cref="DeleteImportlistBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1599,14 +881,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteImportListBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteImportlistBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteImportListBulkApiResponse"/>
+            /// The <see cref="DeleteImportlistBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1615,7 +897,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteImportListBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteImportlistBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1640,17 +922,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetImportListById(ref int id);
+        partial void FormatDeleteImportlistById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetImportListByIdDefaultImplementation(IGetImportListByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteImportlistByIdDefaultImplementation(IDeleteImportlistByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetImportListById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteImportlistById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1661,7 +943,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetImportListById(ref bool suppressDefaultLog, IGetImportListByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteImportlistById(ref bool suppressDefaultLog, IDeleteImportlistByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1670,10 +952,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetImportListByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteImportlistByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetImportListById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteImportlistById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1686,19 +968,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetImportListById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteImportlistById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListByIdApiResponse?> GetImportListByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteImportlistByIdApiResponse?> DeleteImportlistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetImportListByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteImportlistByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1712,14 +994,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListByIdApiResponse> GetImportListByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteImportlistByIdApiResponse> DeleteImportlistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetImportListById(ref id);
+                FormatDeleteImportlistById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1738,24 +1020,13 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetImportListByIdApiResponse apiResponseLocalVar;
+                        DeleteImportlistByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1766,9 +1037,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetImportListByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteImportlistByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetImportListById(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteImportlistById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1780,16 +1051,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetImportListByIdDefaultImplementation(e, "/api/v3/importlist/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetImportListById(e);
+                OnErrorDeleteImportlistByIdDefaultImplementation(e, "/api/v3/importlist/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteImportlistById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetImportListByIdApiResponse"/>
+        /// The <see cref="DeleteImportlistByIdApiResponse"/>
         /// </summary>
-        public partial class GetImportListByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportListByIdApiResponse
+        public partial class DeleteImportlistByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteImportlistByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1797,7 +1068,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetImportListByIdApiResponse"/>
+            /// The <see cref="DeleteImportlistByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1806,14 +1077,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetImportListByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteImportlistByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetImportListByIdApiResponse"/>
+            /// The <see cref="DeleteImportlistByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1822,7 +1093,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetImportListByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteImportlistByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1835,50 +1106,6 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.ImportListResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.ImportListResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -1895,10 +1122,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListImportListDefaultImplementation(IListImportListApiResponse apiResponseLocalVar)
+        private void AfterGetImportlistDefaultImplementation(IGetImportlistApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListImportList(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetImportlist(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1908,7 +1135,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListImportList(ref bool suppressDefaultLog, IListImportListApiResponse apiResponseLocalVar);
+        partial void AfterGetImportlist(ref bool suppressDefaultLog, IGetImportlistApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1916,10 +1143,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListImportListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetImportlistDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListImportList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetImportlist(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1931,18 +1158,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListImportList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetImportlist(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListApiResponse"/>&gt;</returns>
-        public async Task<IListImportListApiResponse?> ListImportListOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistApiResponse?> GetImportlistOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListImportListAsync(cancellationToken).ConfigureAwait(false);
+                return await GetImportlistAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1955,8 +1182,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListApiResponse"/>&gt;</returns>
-        public async Task<IListImportListApiResponse> ListImportListAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistApiResponse> GetImportlistAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1993,7 +1220,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListImportListApiResponse apiResponseLocalVar;
+                        GetImportlistApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2004,9 +1231,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListImportListDefaultImplementation(apiResponseLocalVar);
+                        AfterGetImportlistDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListImportList(apiResponseLocalVar);
+                        Events.ExecuteOnGetImportlist(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2018,16 +1245,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListImportListDefaultImplementation(e, "/api/v3/importlist", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListImportList(e);
+                OnErrorGetImportlistDefaultImplementation(e, "/api/v3/importlist", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetImportlist(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListImportListApiResponse"/>
+        /// The <see cref="GetImportlistApiResponse"/>
         /// </summary>
-        public partial class ListImportListApiResponse : Whisparr3.Net.Client.ApiResponse, IListImportListApiResponse
+        public partial class GetImportlistApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportlistApiResponse
         {
             /// <summary>
             /// The logger
@@ -2035,7 +1262,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListImportListApiResponse"/>
+            /// The <see cref="GetImportlistApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2044,14 +1271,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetImportlistApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListImportListApiResponse"/>
+            /// The <see cref="GetImportlistApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2060,7 +1287,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetImportlistApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2129,14 +1356,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatGetImportlistById(ref int id);
+
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListImportListSchemaDefaultImplementation(IListImportListSchemaApiResponse apiResponseLocalVar)
+        /// <param name="id"></param>
+        private void AfterGetImportlistByIdDefaultImplementation(IGetImportlistByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterListImportListSchema(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetImportlistById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2146,7 +1376,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListImportListSchema(ref bool suppressDefaultLog, IListImportListSchemaApiResponse apiResponseLocalVar);
+        /// <param name="id"></param>
+        partial void AfterGetImportlistById(ref bool suppressDefaultLog, IGetImportlistByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2154,10 +1385,11 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListImportListSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        /// <param name="id"></param>
+        private void OnErrorGetImportlistByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListImportListSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetImportlistById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2169,18 +1401,264 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListImportListSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        /// <param name="id"></param>
+        partial void OnErrorGetImportlistById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistByIdApiResponse?> GetImportlistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetImportlistByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistByIdApiResponse> GetImportlistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetImportlistById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/importlist/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetImportlistByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetImportlistByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnGetImportlistById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetImportlistByIdDefaultImplementation(e, "/api/v3/importlist/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetImportlistById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetImportlistByIdApiResponse"/>
+        /// </summary>
+        public partial class GetImportlistByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportlistByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetImportlistByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetImportlistByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetImportlistByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetImportlistByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.ImportListResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.ImportListResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.ImportListResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetImportlistSchemaDefaultImplementation(IGetImportlistSchemaApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetImportlistSchema(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetImportlistSchema(ref bool suppressDefaultLog, IGetImportlistSchemaApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetImportlistSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetImportlistSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetImportlistSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListImportListSchemaApiResponse?> ListImportListSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistSchemaApiResponse?> GetImportlistSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListImportListSchemaAsync(cancellationToken).ConfigureAwait(false);
+                return await GetImportlistSchemaAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2193,8 +1671,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListImportListSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListImportListSchemaApiResponse> ListImportListSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportlistSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetImportlistSchemaApiResponse> GetImportlistSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -2231,7 +1709,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListImportListSchemaApiResponse apiResponseLocalVar;
+                        GetImportlistSchemaApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2242,9 +1720,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListImportListSchemaDefaultImplementation(apiResponseLocalVar);
+                        AfterGetImportlistSchemaDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListImportListSchema(apiResponseLocalVar);
+                        Events.ExecuteOnGetImportlistSchema(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2256,16 +1734,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListImportListSchemaDefaultImplementation(e, "/api/v3/importlist/schema", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListImportListSchema(e);
+                OnErrorGetImportlistSchemaDefaultImplementation(e, "/api/v3/importlist/schema", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetImportlistSchema(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListImportListSchemaApiResponse"/>
+        /// The <see cref="GetImportlistSchemaApiResponse"/>
         /// </summary>
-        public partial class ListImportListSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IListImportListSchemaApiResponse
+        public partial class GetImportlistSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportlistSchemaApiResponse
         {
             /// <summary>
             /// The logger
@@ -2273,7 +1751,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListImportListSchemaApiResponse"/>
+            /// The <see cref="GetImportlistSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2282,14 +1760,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListImportListSchemaApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetImportlistSchemaApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListImportListSchemaApiResponse"/>
+            /// The <see cref="GetImportlistSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2298,7 +1776,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListImportListSchemaApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetImportlistSchemaApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2367,28 +1845,29 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatPutImportListBulk(Option<ImportListBulkResource> importListBulkResource);
+        partial void FormatPostImportlist(ImportListResource importListResource, ref Option<bool> forceSave);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="importListBulkResource"></param>
+        /// <param name="importListResource"></param>
         /// <returns></returns>
-        private void ValidatePutImportListBulk(Option<ImportListBulkResource> importListBulkResource)
+        private void ValidatePostImportlist(ImportListResource importListResource)
         {
-            if (importListBulkResource.IsSet && importListBulkResource.Value == null)
-                throw new ArgumentNullException(nameof(importListBulkResource));
+            if (importListResource == null)
+                throw new ArgumentNullException(nameof(importListResource));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="importListBulkResource"></param>
-        private void AfterPutImportListBulkDefaultImplementation(IPutImportListBulkApiResponse apiResponseLocalVar, Option<ImportListBulkResource> importListBulkResource)
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        private void AfterPostImportlistDefaultImplementation(IPostImportlistApiResponse apiResponseLocalVar, ImportListResource importListResource, Option<bool> forceSave)
         {
             bool suppressDefaultLog = false;
-            AfterPutImportListBulk(ref suppressDefaultLog, apiResponseLocalVar, importListBulkResource);
+            AfterPostImportlist(ref suppressDefaultLog, apiResponseLocalVar, importListResource, forceSave);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2398,8 +1877,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="importListBulkResource"></param>
-        partial void AfterPutImportListBulk(ref bool suppressDefaultLog, IPutImportListBulkApiResponse apiResponseLocalVar, Option<ImportListBulkResource> importListBulkResource);
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        partial void AfterPostImportlist(ref bool suppressDefaultLog, IPostImportlistApiResponse apiResponseLocalVar, ImportListResource importListResource, Option<bool> forceSave);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2407,11 +1887,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="importListBulkResource"></param>
-        private void OnErrorPutImportListBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListBulkResource> importListBulkResource)
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        private void OnErrorPostImportlistDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListResource importListResource, Option<bool> forceSave)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorPutImportListBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListBulkResource);
+            OnErrorPostImportlist(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListResource, forceSave);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2423,20 +1904,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="importListBulkResource"></param>
-        partial void OnErrorPutImportListBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListBulkResource> importListBulkResource);
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        partial void OnErrorPostImportlist(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListResource importListResource, Option<bool> forceSave);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="importListBulkResource"> (optional)</param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportListBulkApiResponse"/>&gt;</returns>
-        public async Task<IPutImportListBulkApiResponse?> PutImportListBulkOrDefaultAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistApiResponse?> PostImportlistOrDefaultAsync(ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await PutImportListBulkAsync(importListBulkResource, cancellationToken).ConfigureAwait(false);
+                return await PostImportlistAsync(importListResource, forceSave, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2448,18 +1931,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListBulkResource"> (optional)</param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportListBulkApiResponse"/>&gt;</returns>
-        public async Task<IPutImportListBulkApiResponse> PutImportListBulkAsync(Option<ImportListBulkResource> importListBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistApiResponse> PostImportlistAsync(ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidatePutImportListBulk(importListBulkResource);
+                ValidatePostImportlist(importListResource);
 
-                FormatPutImportListBulk(importListBulkResource);
+                FormatPostImportlist(importListResource, ref forceSave);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2467,15 +1951,19 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist/bulk"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/bulk");
+                        ? "/api/v3/importlist"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist");
 
-                    if (importListBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (forceSave.IsSet)
+                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (importListResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2502,26 +1990,26 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        PutImportListBulkApiResponse apiResponseLocalVar;
+                        PostImportlistApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/bulk", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterPutImportListBulkDefaultImplementation(apiResponseLocalVar, importListBulkResource);
+                        AfterPostImportlistDefaultImplementation(apiResponseLocalVar, importListResource, forceSave);
 
-                        Events.ExecuteOnPutImportListBulk(apiResponseLocalVar);
+                        Events.ExecuteOnPostImportlist(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2533,16 +2021,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorPutImportListBulkDefaultImplementation(e, "/api/v3/importlist/bulk", uriBuilderLocalVar.Path, importListBulkResource);
-                Events.ExecuteOnErrorPutImportListBulk(e);
+                OnErrorPostImportlistDefaultImplementation(e, "/api/v3/importlist", uriBuilderLocalVar.Path, importListResource, forceSave);
+                Events.ExecuteOnErrorPostImportlist(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="PutImportListBulkApiResponse"/>
+        /// The <see cref="PostImportlistApiResponse"/>
         /// </summary>
-        public partial class PutImportListBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPutImportListBulkApiResponse
+        public partial class PostImportlistApiResponse : Whisparr3.Net.Client.ApiResponse, IPostImportlistApiResponse
         {
             /// <summary>
             /// The logger
@@ -2550,7 +2038,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="PutImportListBulkApiResponse"/>
+            /// The <see cref="PostImportlistApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2559,14 +2047,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public PutImportListBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostImportlistApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="PutImportListBulkApiResponse"/>
+            /// The <see cref="PostImportlistApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2575,7 +2063,292 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public PutImportListBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostImportlistApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.ImportListResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.ImportListResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.ImportListResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostImportlistActionByName(ref string name, ImportListResource importListResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        /// <returns></returns>
+        private void ValidatePostImportlistActionByName(string name, ImportListResource importListResource)
+        {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+
+            if (importListResource == null)
+                throw new ArgumentNullException(nameof(importListResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        private void AfterPostImportlistActionByNameDefaultImplementation(IPostImportlistActionByNameApiResponse apiResponseLocalVar, string name, ImportListResource importListResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostImportlistActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, importListResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        partial void AfterPostImportlistActionByName(ref bool suppressDefaultLog, IPostImportlistActionByNameApiResponse apiResponseLocalVar, string name, ImportListResource importListResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        private void OnErrorPostImportlistActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, ImportListResource importListResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostImportlistActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, importListResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        partial void OnErrorPostImportlistActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, ImportListResource importListResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistActionByNameApiResponse?> PostImportlistActionByNameOrDefaultAsync(string name, ImportListResource importListResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostImportlistActionByNameAsync(name, importListResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistActionByNameApiResponse> PostImportlistActionByNameAsync(string name, ImportListResource importListResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostImportlistActionByName(name, importListResource);
+
+                FormatPostImportlistActionByName(ref name, importListResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/importlist/action/{name}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/action/{name}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (importListResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostImportlistActionByNameApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostImportlistActionByNameDefaultImplementation(apiResponseLocalVar, name, importListResource);
+
+                        Events.ExecuteOnPostImportlistActionByName(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostImportlistActionByNameDefaultImplementation(e, "/api/v3/importlist/action/{name}", uriBuilderLocalVar.Path, name, importListResource);
+                Events.ExecuteOnErrorPostImportlistActionByName(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostImportlistActionByNameApiResponse"/>
+        /// </summary>
+        public partial class PostImportlistActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, IPostImportlistActionByNameApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostImportlistActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostImportlistActionByNameApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostImportlistActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostImportlistActionByNameApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2593,32 +2366,32 @@ namespace Whisparr3.Net.Api
             /// Deserializes the response if the response is 200 Ok
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListResource? Ok()
+            public Object? Ok()
             {
                 bool suppressDefault = false;
-                Whisparr3.Net.Model.ImportListResource? result = null;
+                Object? result = null;
                 OnOk(ref suppressDefault, ref result);
                 if (!suppressDefault)
                     result = DefaultOk();
                 return result;
             }
 
-            private Whisparr3.Net.Model.ImportListResource? DefaultOk()
+            private Object? DefaultOk()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<Object>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
+            partial void OnOk(ref bool suppressDefault, ref Object? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
+            public bool TryOk([NotNullWhen(true)]out Object? result)
             {
                 result = null;
 
@@ -2644,201 +2417,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterTestAllImportListDefaultImplementation(ITestAllImportListApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterTestAllImportList(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterTestAllImportList(ref bool suppressDefaultLog, ITestAllImportListApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorTestAllImportListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorTestAllImportList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorTestAllImportList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllImportListApiResponse"/>&gt;</returns>
-        public async Task<ITestAllImportListApiResponse?> TestAllImportListOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await TestAllImportListAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllImportListApiResponse"/>&gt;</returns>
-        public async Task<ITestAllImportListApiResponse> TestAllImportListAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist/testall"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/testall");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        TestAllImportListApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/testall", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterTestAllImportListDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnTestAllImportList(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorTestAllImportListDefaultImplementation(e, "/api/v3/importlist/testall", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorTestAllImportList(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="TestAllImportListApiResponse"/>
-        /// </summary>
-        public partial class TestAllImportListApiResponse : Whisparr3.Net.Client.ApiResponse, ITestAllImportListApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="TestAllImportListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public TestAllImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="TestAllImportListApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public TestAllImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatTestImportList(ref Option<bool> forceTest, Option<ImportListResource> importListResource);
+        partial void FormatPostImportlistTest(ImportListResource importListResource, ref Option<bool> forceTest);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="importListResource"></param>
         /// <returns></returns>
-        private void ValidateTestImportList(Option<ImportListResource> importListResource)
+        private void ValidatePostImportlistTest(ImportListResource importListResource)
         {
-            if (importListResource.IsSet && importListResource.Value == null)
+            if (importListResource == null)
                 throw new ArgumentNullException(nameof(importListResource));
         }
 
@@ -2846,12 +2434,12 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="importListResource"></param>
-        private void AfterTestImportListDefaultImplementation(ITestImportListApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<ImportListResource> importListResource)
+        /// <param name="forceTest"></param>
+        private void AfterPostImportlistTestDefaultImplementation(IPostImportlistTestApiResponse apiResponseLocalVar, ImportListResource importListResource, Option<bool> forceTest)
         {
             bool suppressDefaultLog = false;
-            AfterTestImportList(ref suppressDefaultLog, apiResponseLocalVar, forceTest, importListResource);
+            AfterPostImportlistTest(ref suppressDefaultLog, apiResponseLocalVar, importListResource, forceTest);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2861,9 +2449,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="importListResource"></param>
-        partial void AfterTestImportList(ref bool suppressDefaultLog, ITestImportListApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<ImportListResource> importListResource);
+        /// <param name="forceTest"></param>
+        partial void AfterPostImportlistTest(ref bool suppressDefaultLog, IPostImportlistTestApiResponse apiResponseLocalVar, ImportListResource importListResource, Option<bool> forceTest);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2871,12 +2459,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="importListResource"></param>
-        private void OnErrorTestImportListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<ImportListResource> importListResource)
+        /// <param name="forceTest"></param>
+        private void OnErrorPostImportlistTestDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListResource importListResource, Option<bool> forceTest)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTestImportList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceTest, importListResource);
+            OnErrorPostImportlistTest(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListResource, forceTest);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2888,22 +2476,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="importListResource"></param>
-        partial void OnErrorTestImportList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<ImportListResource> importListResource);
+        /// <param name="forceTest"></param>
+        partial void OnErrorPostImportlistTest(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListResource importListResource, Option<bool> forceTest);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="importListResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestImportListApiResponse"/>&gt;</returns>
-        public async Task<ITestImportListApiResponse?> TestImportListOrDefaultAsync(Option<bool> forceTest = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistTestApiResponse?> PostImportlistTestOrDefaultAsync(ImportListResource importListResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TestImportListAsync(forceTest, importListResource, cancellationToken).ConfigureAwait(false);
+                return await PostImportlistTestAsync(importListResource, forceTest, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2915,19 +2503,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestImportListApiResponse"/>&gt;</returns>
-        public async Task<ITestImportListApiResponse> TestImportListAsync(Option<bool> forceTest = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistTestApiResponse> PostImportlistTestAsync(ImportListResource importListResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateTestImportList(importListResource);
+                ValidatePostImportlistTest(importListResource);
 
-                FormatTestImportList(ref forceTest, importListResource);
+                FormatPostImportlistTest(importListResource, ref forceTest);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2945,12 +2533,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (importListResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importListResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2974,7 +2559,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        TestImportListApiResponse apiResponseLocalVar;
+                        PostImportlistTestApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2985,9 +2570,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterTestImportListDefaultImplementation(apiResponseLocalVar, forceTest, importListResource);
+                        AfterPostImportlistTestDefaultImplementation(apiResponseLocalVar, importListResource, forceTest);
 
-                        Events.ExecuteOnTestImportList(apiResponseLocalVar);
+                        Events.ExecuteOnPostImportlistTest(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2999,16 +2584,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorTestImportListDefaultImplementation(e, "/api/v3/importlist/test", uriBuilderLocalVar.Path, forceTest, importListResource);
-                Events.ExecuteOnErrorTestImportList(e);
+                OnErrorPostImportlistTestDefaultImplementation(e, "/api/v3/importlist/test", uriBuilderLocalVar.Path, importListResource, forceTest);
+                Events.ExecuteOnErrorPostImportlistTest(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="TestImportListApiResponse"/>
+        /// The <see cref="PostImportlistTestApiResponse"/>
         /// </summary>
-        public partial class TestImportListApiResponse : Whisparr3.Net.Client.ApiResponse, ITestImportListApiResponse
+        public partial class PostImportlistTestApiResponse : Whisparr3.Net.Client.ApiResponse, IPostImportlistTestApiResponse
         {
             /// <summary>
             /// The logger
@@ -3016,7 +2601,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="TestImportListApiResponse"/>
+            /// The <see cref="PostImportlistTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3025,14 +2610,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostImportlistTestApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="TestImportListApiResponse"/>
+            /// The <see cref="PostImportlistTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3041,7 +2626,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostImportlistTestApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3066,30 +2651,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateImportList(ref int id, ref Option<bool> forceSave, Option<ImportListResource> importListResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="importListResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateImportList(Option<ImportListResource> importListResource)
-        {
-            if (importListResource.IsSet && importListResource.Value == null)
-                throw new ArgumentNullException(nameof(importListResource));
-        }
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        private void AfterUpdateImportListDefaultImplementation(IUpdateImportListApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<ImportListResource> importListResource)
+        private void AfterPostImportlistTestallDefaultImplementation(IPostImportlistTestallApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateImportList(ref suppressDefaultLog, apiResponseLocalVar, id, forceSave, importListResource);
+            AfterPostImportlistTestall(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -3099,10 +2668,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        partial void AfterUpdateImportList(ref bool suppressDefaultLog, IUpdateImportListApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<ImportListResource> importListResource);
+        partial void AfterPostImportlistTestall(ref bool suppressDefaultLog, IPostImportlistTestallApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -3110,13 +2676,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        private void OnErrorUpdateImportListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<ImportListResource> importListResource)
+        private void OnErrorPostImportlistTestallDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateImportList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, forceSave, importListResource);
+            OnErrorPostImportlistTestall(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -3128,24 +2691,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="importListResource"></param>
-        partial void OnErrorUpdateImportList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<ImportListResource> importListResource);
+        partial void OnErrorPostImportlistTestall(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListApiResponse"/>&gt;</returns>
-        public async Task<IUpdateImportListApiResponse?> UpdateImportListOrDefaultAsync(int id, Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistTestallApiResponse?> PostImportlistTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateImportListAsync(id, forceSave, importListResource, cancellationToken).ConfigureAwait(false);
+                return await PostImportlistTestallAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -3157,20 +2714,324 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="importListResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListApiResponse"/>&gt;</returns>
-        public async Task<IUpdateImportListApiResponse> UpdateImportListAsync(int id, Option<bool> forceSave = default, Option<ImportListResource> importListResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostImportlistTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostImportlistTestallApiResponse> PostImportlistTestallAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateImportList(importListResource);
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/importlist/testall"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/testall");
 
-                FormatUpdateImportList(ref id, ref forceSave, importListResource);
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostImportlistTestallApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/testall", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostImportlistTestallDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnPostImportlistTestall(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostImportlistTestallDefaultImplementation(e, "/api/v3/importlist/testall", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorPostImportlistTestall(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostImportlistTestallApiResponse"/>
+        /// </summary>
+        public partial class PostImportlistTestallApiResponse : Whisparr3.Net.Client.ApiResponse, IPostImportlistTestallApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostImportlistTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostImportlistTestallApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostImportlistTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostImportlistTestallApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? BadRequest()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutImportlistBulk(ImportListBulkResource importListBulkResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="importListBulkResource"></param>
+        /// <returns></returns>
+        private void ValidatePutImportlistBulk(ImportListBulkResource importListBulkResource)
+        {
+            if (importListBulkResource == null)
+                throw new ArgumentNullException(nameof(importListBulkResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="importListBulkResource"></param>
+        private void AfterPutImportlistBulkDefaultImplementation(IPutImportlistBulkApiResponse apiResponseLocalVar, ImportListBulkResource importListBulkResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutImportlistBulk(ref suppressDefaultLog, apiResponseLocalVar, importListBulkResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="importListBulkResource"></param>
+        partial void AfterPutImportlistBulk(ref bool suppressDefaultLog, IPutImportlistBulkApiResponse apiResponseLocalVar, ImportListBulkResource importListBulkResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="importListBulkResource"></param>
+        private void OnErrorPutImportlistBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListBulkResource importListBulkResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutImportlistBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListBulkResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="importListBulkResource"></param>
+        partial void OnErrorPutImportlistBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListBulkResource importListBulkResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="importListBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistBulkApiResponse"/>&gt;</returns>
+        public async Task<IPutImportlistBulkApiResponse?> PutImportlistBulkOrDefaultAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutImportlistBulkAsync(importListBulkResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistBulkApiResponse"/>&gt;</returns>
+        public async Task<IPutImportlistBulkApiResponse> PutImportlistBulkAsync(ImportListBulkResource importListBulkResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutImportlistBulk(importListBulkResource);
+
+                FormatPutImportlistBulk(importListBulkResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -3178,23 +3039,12 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/importlist/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/api/v3/importlist/bulk"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/bulk");
 
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (forceSave.IsSet)
-                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    if (importListResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importListBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -3227,20 +3077,20 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateImportListApiResponse apiResponseLocalVar;
+                        PutImportlistBulkApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/bulk", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterUpdateImportListDefaultImplementation(apiResponseLocalVar, id, forceSave, importListResource);
+                        AfterPutImportlistBulkDefaultImplementation(apiResponseLocalVar, importListBulkResource);
 
-                        Events.ExecuteOnUpdateImportList(apiResponseLocalVar);
+                        Events.ExecuteOnPutImportlistBulk(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -3252,16 +3102,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateImportListDefaultImplementation(e, "/api/v3/importlist/{id}", uriBuilderLocalVar.Path, id, forceSave, importListResource);
-                Events.ExecuteOnErrorUpdateImportList(e);
+                OnErrorPutImportlistBulkDefaultImplementation(e, "/api/v3/importlist/bulk", uriBuilderLocalVar.Path, importListBulkResource);
+                Events.ExecuteOnErrorPutImportlistBulk(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateImportListApiResponse"/>
+        /// The <see cref="PutImportlistBulkApiResponse"/>
         /// </summary>
-        public partial class UpdateImportListApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateImportListApiResponse
+        public partial class PutImportlistBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPutImportlistBulkApiResponse
         {
             /// <summary>
             /// The logger
@@ -3269,7 +3119,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateImportListApiResponse"/>
+            /// The <see cref="PutImportlistBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3278,14 +3128,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutImportlistBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateImportListApiResponse"/>
+            /// The <see cref="PutImportlistBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3294,7 +3144,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateImportListApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutImportlistBulkApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3303,50 +3153,344 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListResource? Ok()
+            public List<ImportListResource>? Accepted()
             {
                 bool suppressDefault = false;
-                Whisparr3.Net.Model.ImportListResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                List<ImportListResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.ImportListResource? DefaultOk()
+            private List<ImportListResource>? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ImportListResource>>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref List<ImportListResource>? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out List<ImportListResource>? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutImportlistById(ref int id, ImportListResource importListResource, ref Option<bool> forceSave);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="importListResource"></param>
+        /// <returns></returns>
+        private void ValidatePutImportlistById(ImportListResource importListResource)
+        {
+            if (importListResource == null)
+                throw new ArgumentNullException(nameof(importListResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        private void AfterPutImportlistByIdDefaultImplementation(IPutImportlistByIdApiResponse apiResponseLocalVar, int id, ImportListResource importListResource, Option<bool> forceSave)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutImportlistById(ref suppressDefaultLog, apiResponseLocalVar, id, importListResource, forceSave);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        partial void AfterPutImportlistById(ref bool suppressDefaultLog, IPutImportlistByIdApiResponse apiResponseLocalVar, int id, ImportListResource importListResource, Option<bool> forceSave);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        private void OnErrorPutImportlistByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, ImportListResource importListResource, Option<bool> forceSave)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutImportlistById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, importListResource, forceSave);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"></param>
+        partial void OnErrorPutImportlistById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, ImportListResource importListResource, Option<bool> forceSave);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutImportlistByIdApiResponse?> PutImportlistByIdOrDefaultAsync(int id, ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutImportlistByIdAsync(id, importListResource, forceSave, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="importListResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutImportlistByIdApiResponse> PutImportlistByIdAsync(int id, ImportListResource importListResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutImportlistById(importListResource);
+
+                FormatPutImportlistById(ref id, importListResource, ref forceSave);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/importlist/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/importlist/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (forceSave.IsSet)
+                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (importListResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutImportlistByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/importlist/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutImportlistByIdDefaultImplementation(apiResponseLocalVar, id, importListResource, forceSave);
+
+                        Events.ExecuteOnPutImportlistById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutImportlistByIdDefaultImplementation(e, "/api/v3/importlist/{id}", uriBuilderLocalVar.Path, id, importListResource, forceSave);
+                Events.ExecuteOnErrorPutImportlistById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutImportlistByIdApiResponse"/>
+        /// </summary>
+        public partial class PutImportlistByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutImportlistByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutImportlistByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutImportlistByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutImportlistByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutImportlistByIdApiResponse(ILogger<ImportListApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.ImportListResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.ImportListResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.ImportListResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

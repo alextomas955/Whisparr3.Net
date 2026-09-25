@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigApiResponse"/>&gt;</returns>
-        Task<IGetUiConfigApiResponse> GetUiConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiApiResponse"/>&gt;</returns>
+        Task<IGetConfigUiApiResponse> GetConfigUiAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,31 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigApiResponse"/>?&gt;</returns>
-        Task<IGetUiConfigApiResponse?> GetUiConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetUiConfigByIdApiResponse> GetUiConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetUiConfigByIdApiResponse?> GetUiConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiApiResponse"/>?&gt;</returns>
+        Task<IGetConfigUiApiResponse?> GetConfigUiOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -90,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="uiConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateUiConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateUiConfigApiResponse> UpdateUiConfigAsync(string id, Option<UiConfigResource> uiConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigUiByIdApiResponse> GetConfigUiByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,16 +78,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="uiConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateUiConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateUiConfigApiResponse?> UpdateUiConfigOrDefaultAsync(string id, Option<UiConfigResource> uiConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigUiByIdApiResponse?> GetConfigUiByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="uiConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigUiByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigUiByIdApiResponse> PutConfigUiByIdAsync(string id, UiConfigResource uiConfigResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="uiConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigUiByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigUiByIdApiResponse?> PutConfigUiByIdOrDefaultAsync(string id, UiConfigResource uiConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetUiConfigApiResponse"/>
+    /// The <see cref="IGetConfigUiApiResponse"/>
     /// </summary>
-    public interface IGetUiConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.UiConfigResource?>
+    public interface IGetConfigUiApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.UiConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -121,9 +121,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetUiConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigUiByIdApiResponse"/>
     /// </summary>
-    public interface IGetUiConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.UiConfigResource?>
+    public interface IGetConfigUiByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.UiConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -133,15 +133,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateUiConfigApiResponse"/>
+    /// The <see cref="IPutConfigUiByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateUiConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.UiConfigResource?>
+    public interface IPutConfigUiByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.UiConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -152,61 +152,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetUiConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigUi;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetUiConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigUi;
 
-        internal void ExecuteOnGetUiConfig(UiConfigApi.GetUiConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigUi(UiConfigApi.GetConfigUiApiResponse apiResponse)
         {
-            OnGetUiConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigUi?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetUiConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigUi(Exception exception)
         {
-            OnErrorGetUiConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigUi?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetUiConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigUiById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetUiConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigUiById;
 
-        internal void ExecuteOnGetUiConfigById(UiConfigApi.GetUiConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigUiById(UiConfigApi.GetConfigUiByIdApiResponse apiResponse)
         {
-            OnGetUiConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigUiById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetUiConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigUiById(Exception exception)
         {
-            OnErrorGetUiConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigUiById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateUiConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigUiById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateUiConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigUiById;
 
-        internal void ExecuteOnUpdateUiConfig(UiConfigApi.UpdateUiConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigUiById(UiConfigApi.PutConfigUiByIdApiResponse apiResponse)
         {
-            OnUpdateUiConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigUiById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateUiConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigUiById(Exception exception)
         {
-            OnErrorUpdateUiConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigUiById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -255,10 +255,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetUiConfigDefaultImplementation(IGetUiConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigUiDefaultImplementation(IGetConfigUiApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetUiConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigUi(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -268,7 +268,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetUiConfig(ref bool suppressDefaultLog, IGetUiConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigUi(ref bool suppressDefaultLog, IGetConfigUiApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -276,10 +276,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetUiConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigUiDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetUiConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigUi(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -291,18 +291,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetUiConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigUi(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetUiConfigApiResponse?> GetUiConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigUiApiResponse?> GetConfigUiOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetUiConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigUiAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -315,8 +315,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetUiConfigApiResponse> GetUiConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigUiApiResponse> GetConfigUiAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -353,7 +353,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetUiConfigApiResponse apiResponseLocalVar;
+                        GetConfigUiApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -364,9 +364,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetUiConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigUiDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetUiConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigUi(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -378,16 +378,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetUiConfigDefaultImplementation(e, "/api/v3/config/ui", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetUiConfig(e);
+                OnErrorGetConfigUiDefaultImplementation(e, "/api/v3/config/ui", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigUi(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetUiConfigApiResponse"/>
+        /// The <see cref="GetConfigUiApiResponse"/>
         /// </summary>
-        public partial class GetUiConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetUiConfigApiResponse
+        public partial class GetConfigUiApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigUiApiResponse
         {
             /// <summary>
             /// The logger
@@ -395,7 +395,7 @@ namespace Whisparr3.Net.Api
             public ILogger<UiConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetUiConfigApiResponse"/>
+            /// The <see cref="GetConfigUiApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -404,14 +404,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetUiConfigApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigUiApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetUiConfigApiResponse"/>
+            /// The <see cref="GetConfigUiApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -420,7 +420,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetUiConfigApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigUiApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -489,17 +489,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetUiConfigById(ref int id);
+        partial void FormatGetConfigUiById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetUiConfigByIdDefaultImplementation(IGetUiConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigUiByIdDefaultImplementation(IGetConfigUiByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetUiConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigUiById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -510,7 +510,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetUiConfigById(ref bool suppressDefaultLog, IGetUiConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigUiById(ref bool suppressDefaultLog, IGetConfigUiByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -519,10 +519,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetUiConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigUiByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetUiConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigUiById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -535,19 +535,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetUiConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigUiById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetUiConfigByIdApiResponse?> GetUiConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigUiByIdApiResponse?> GetConfigUiByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetUiConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigUiByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -561,14 +561,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetUiConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetUiConfigByIdApiResponse> GetUiConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigUiByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigUiByIdApiResponse> GetConfigUiByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetUiConfigById(ref id);
+                FormatGetConfigUiById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -604,7 +604,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetUiConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigUiByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -615,9 +615,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetUiConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigUiByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetUiConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigUiById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -629,16 +629,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetUiConfigByIdDefaultImplementation(e, "/api/v3/config/ui/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetUiConfigById(e);
+                OnErrorGetConfigUiByIdDefaultImplementation(e, "/api/v3/config/ui/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigUiById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetUiConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigUiByIdApiResponse"/>
         /// </summary>
-        public partial class GetUiConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetUiConfigByIdApiResponse
+        public partial class GetConfigUiByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigUiByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -646,7 +646,7 @@ namespace Whisparr3.Net.Api
             public ILogger<UiConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetUiConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigUiByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -655,14 +655,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetUiConfigByIdApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigUiByIdApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetUiConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigUiByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -671,7 +671,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetUiConfigByIdApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigUiByIdApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -740,7 +740,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateUiConfig(ref string id, Option<UiConfigResource> uiConfigResource);
+        partial void FormatPutConfigUiById(ref string id, UiConfigResource uiConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -748,12 +748,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="uiConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateUiConfig(string id, Option<UiConfigResource> uiConfigResource)
+        private void ValidatePutConfigUiById(string id, UiConfigResource uiConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (uiConfigResource.IsSet && uiConfigResource.Value == null)
+            if (uiConfigResource == null)
                 throw new ArgumentNullException(nameof(uiConfigResource));
         }
 
@@ -763,10 +763,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="uiConfigResource"></param>
-        private void AfterUpdateUiConfigDefaultImplementation(IUpdateUiConfigApiResponse apiResponseLocalVar, string id, Option<UiConfigResource> uiConfigResource)
+        private void AfterPutConfigUiByIdDefaultImplementation(IPutConfigUiByIdApiResponse apiResponseLocalVar, string id, UiConfigResource uiConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateUiConfig(ref suppressDefaultLog, apiResponseLocalVar, id, uiConfigResource);
+            AfterPutConfigUiById(ref suppressDefaultLog, apiResponseLocalVar, id, uiConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -778,7 +778,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="uiConfigResource"></param>
-        partial void AfterUpdateUiConfig(ref bool suppressDefaultLog, IUpdateUiConfigApiResponse apiResponseLocalVar, string id, Option<UiConfigResource> uiConfigResource);
+        partial void AfterPutConfigUiById(ref bool suppressDefaultLog, IPutConfigUiByIdApiResponse apiResponseLocalVar, string id, UiConfigResource uiConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -788,10 +788,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="uiConfigResource"></param>
-        private void OnErrorUpdateUiConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<UiConfigResource> uiConfigResource)
+        private void OnErrorPutConfigUiByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, UiConfigResource uiConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateUiConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, uiConfigResource);
+            OnErrorPutConfigUiById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, uiConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -805,20 +805,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="uiConfigResource"></param>
-        partial void OnErrorUpdateUiConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<UiConfigResource> uiConfigResource);
+        partial void OnErrorPutConfigUiById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, UiConfigResource uiConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="uiConfigResource"> (optional)</param>
+        /// <param name="uiConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateUiConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateUiConfigApiResponse?> UpdateUiConfigOrDefaultAsync(string id, Option<UiConfigResource> uiConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigUiByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigUiByIdApiResponse?> PutConfigUiByIdOrDefaultAsync(string id, UiConfigResource uiConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateUiConfigAsync(id, uiConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigUiByIdAsync(id, uiConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -831,18 +831,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="uiConfigResource"> (optional)</param>
+        /// <param name="uiConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateUiConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateUiConfigApiResponse> UpdateUiConfigAsync(string id, Option<UiConfigResource> uiConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigUiByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigUiByIdApiResponse> PutConfigUiByIdAsync(string id, UiConfigResource uiConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateUiConfig(id, uiConfigResource);
+                ValidatePutConfigUiById(id, uiConfigResource);
 
-                FormatUpdateUiConfig(ref id, uiConfigResource);
+                FormatPutConfigUiById(ref id, uiConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -854,12 +854,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/ui/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (uiConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (uiConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (uiConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(uiConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(uiConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -894,7 +891,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateUiConfigApiResponse apiResponseLocalVar;
+                        PutConfigUiByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -905,9 +902,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateUiConfigDefaultImplementation(apiResponseLocalVar, id, uiConfigResource);
+                        AfterPutConfigUiByIdDefaultImplementation(apiResponseLocalVar, id, uiConfigResource);
 
-                        Events.ExecuteOnUpdateUiConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigUiById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -919,16 +916,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateUiConfigDefaultImplementation(e, "/api/v3/config/ui/{id}", uriBuilderLocalVar.Path, id, uiConfigResource);
-                Events.ExecuteOnErrorUpdateUiConfig(e);
+                OnErrorPutConfigUiByIdDefaultImplementation(e, "/api/v3/config/ui/{id}", uriBuilderLocalVar.Path, id, uiConfigResource);
+                Events.ExecuteOnErrorPutConfigUiById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateUiConfigApiResponse"/>
+        /// The <see cref="PutConfigUiByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateUiConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateUiConfigApiResponse
+        public partial class PutConfigUiByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigUiByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -936,7 +933,7 @@ namespace Whisparr3.Net.Api
             public ILogger<UiConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateUiConfigApiResponse"/>
+            /// The <see cref="PutConfigUiByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -945,14 +942,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateUiConfigApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigUiByIdApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateUiConfigApiResponse"/>
+            /// The <see cref="PutConfigUiByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -961,7 +958,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateUiConfigApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigUiByIdApiResponse(ILogger<UiConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -970,50 +967,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.UiConfigResource? Ok()
+            public Whisparr3.Net.Model.UiConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.UiConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.UiConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.UiConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.UiConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.UiConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.UiConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.UiConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.UiConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

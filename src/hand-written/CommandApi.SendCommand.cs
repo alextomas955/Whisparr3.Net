@@ -34,7 +34,7 @@ namespace Whisparr3.Net.Api
         /// <returns>
         /// The response, in the same shape every generated operation returns. Read
         /// <see cref="Client.IApiResponse.StatusCode"/> to classify it, or call
-        /// <see cref="ApiResponseExtensions.EnsureSuccess{T}"/> to get the queued
+        /// <see cref="ApiResponseExtensions.EnsureSuccess{T}(Client.ICreated{T})"/> to get the queued
         /// <see cref="CommandResource"/> and throw on anything else.
         /// </returns>
         /// <exception cref="ArgumentException">
@@ -49,7 +49,7 @@ namespace Whisparr3.Net.Api
         /// <para>
         /// A refused command is reported through the returned status and not by throwing. The
         /// instance answers 201 to an accepted command and 400 to an unrecognised one, measured
-        /// against 3.4.0.1387. A caller that must not re-issue a command needs the status of the
+        /// against 3.6.2.1727. A caller that must not re-issue a command needs the status of the
         /// call it made, and reading it off a caught exception gives it on the refusal path only.
         /// </para>
         /// <para>
@@ -60,23 +60,19 @@ namespace Whisparr3.Net.Api
         /// </para>
         /// <para>
         /// The parameter is object rather than a type per command because the specification
-        /// describes none of the per-command fields. Whisparr has 42 commands and 25 of them take
-        /// arguments, and no shape for any of them appears in the specification this client is
-        /// generated from.
+        /// describes none of the per-command fields. Many Whisparr commands take arguments and no
+        /// shape for any of them appears in the specification this client is generated from.
         /// </para>
         /// <para>
-        /// This file stays under src/hand-written/ even though its namespace belongs to the
-        /// generated tree. A partial declared here reaches the private serializer options on the
-        /// generated class without the file being destroyed on the next regeneration.
-        /// </para>
-        /// <para>
-        /// ICommandApi is generated and is not declared partial, so it cannot carry this method.
-        /// AddWhisparr3 therefore registers the concrete CommandApi alongside the interface: inject
-        /// CommandApi to reach this method, and ICommandApi when the generated operations are all
-        /// that is needed.
+        /// Inject <see cref="CommandApi"/> to reach this method, and <c>ICommandApi</c> when the
+        /// generated operations are all that is needed. The interface is generator output and is
+        /// not declared partial, so it cannot carry this method.
         /// </para>
         /// </remarks>
-        public async Task<ICreateCommandApiResponse> SendCommandAsync(
+        // The partial lives here, outside the generated tree, because a partial declared in this
+        // namespace reaches the private serializer options on the generated class without being
+        // destroyed on the next regeneration.
+        public async Task<IPostCommandApiResponse> SendCommandAsync(
             string name,
             object? payload = null,
             CancellationToken cancellationToken = default)
@@ -85,6 +81,12 @@ namespace Whisparr3.Net.Api
             // the request had reached. It carries UriBuilder's default path, "/", when the throw
             // came before the assignment, which is what the generated operation reports too.
             UriBuilder uriBuilder = new();
+
+            // The two hooks below take the resource the generated operation was called with. This
+            // method is not called with one, so it carries the command name and nothing else,
+            // which is the part of the dispatch CommandResource can express. It is built before
+            // the try because the error hook runs for a throw from the first line of it.
+            CommandResource dispatched = new(name: name);
 
             try
             {
@@ -169,7 +171,7 @@ namespace Whisparr3.Net.Api
                 string rawContent =
                     await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
 
-                CreateCommandApiResponse apiResponse = new(
+                PostCommandApiResponse apiResponse = new(
                     Logger,
                     httpRequestMessage,
                     httpResponseMessage,
@@ -180,15 +182,11 @@ namespace Whisparr3.Net.Api
 
                 // The same two post-response steps the generated operation runs, in its order.
                 // The first writes the completion log line every other operation writes, and the
-                // second raises CommandApiEvents.OnCreateCommand. Skipping them made a dispatch the
+                // second raises CommandApiEvents.OnPostCommand. Skipping them made a dispatch the
                 // one call a consumer watching the api's logs or events could not see.
-                //
-                // The Option<CommandResource> argument is unset, and that is accurate rather than a
-                // placeholder: this method takes a name and a loose payload because CommandResource
-                // cannot express command arguments, so there is no resource to pass.
-                AfterCreateCommandDefaultImplementation(apiResponse, default);
+                AfterPostCommandDefaultImplementation(apiResponse, dispatched);
 
-                Events.ExecuteOnCreateCommand(apiResponse);
+                Events.ExecuteOnPostCommand(apiResponse);
 
                 // The token provider is shared across every api class, so skipping this would make the
                 // client's rate-limit accounting depend on which method met the 429.
@@ -213,9 +211,9 @@ namespace Whisparr3.Net.Api
                 // same, so a consumer subscribed to the api's event stream sees a failed dispatch
                 // as it sees every other failed operation. Nothing a caller observes changes: the
                 // original exception propagates unwrapped.
-                OnErrorCreateCommandDefaultImplementation(e, "/api/v3/command", uriBuilder.Path, default);
+                OnErrorPostCommandDefaultImplementation(e, "/api/v3/command", uriBuilder.Path, dispatched);
 
-                Events.ExecuteOnErrorCreateCommand(e);
+                Events.ExecuteOnErrorPostCommand(e);
 
                 throw;
             }
