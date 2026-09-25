@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigApiResponse"/>&gt;</returns>
-        Task<IGetImportListConfigApiResponse> GetImportListConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistApiResponse"/>&gt;</returns>
+        Task<IGetConfigImportlistApiResponse> GetConfigImportlistAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,31 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigApiResponse"/>?&gt;</returns>
-        Task<IGetImportListConfigApiResponse?> GetImportListConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetImportListConfigByIdApiResponse> GetImportListConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetImportListConfigByIdApiResponse?> GetImportListConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistApiResponse"/>?&gt;</returns>
+        Task<IGetConfigImportlistApiResponse?> GetConfigImportlistOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -90,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="importListConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateImportListConfigApiResponse> UpdateImportListConfigAsync(string id, Option<ImportListConfigResource> importListConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigImportlistByIdApiResponse> GetConfigImportlistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,16 +78,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="importListConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateImportListConfigApiResponse?> UpdateImportListConfigOrDefaultAsync(string id, Option<ImportListConfigResource> importListConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigImportlistByIdApiResponse?> GetConfigImportlistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="importListConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigImportlistByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigImportlistByIdApiResponse> PutConfigImportlistByIdAsync(string id, ImportListConfigResource importListConfigResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="importListConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigImportlistByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigImportlistByIdApiResponse?> PutConfigImportlistByIdOrDefaultAsync(string id, ImportListConfigResource importListConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetImportListConfigApiResponse"/>
+    /// The <see cref="IGetConfigImportlistApiResponse"/>
     /// </summary>
-    public interface IGetImportListConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListConfigResource?>
+    public interface IGetConfigImportlistApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -121,9 +121,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetImportListConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigImportlistByIdApiResponse"/>
     /// </summary>
-    public interface IGetImportListConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListConfigResource?>
+    public interface IGetConfigImportlistByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -133,15 +133,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateImportListConfigApiResponse"/>
+    /// The <see cref="IPutConfigImportlistByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateImportListConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListConfigResource?>
+    public interface IPutConfigImportlistByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.ImportListConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -152,61 +152,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetImportListConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigImportlist;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportListConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigImportlist;
 
-        internal void ExecuteOnGetImportListConfig(ImportListConfigApi.GetImportListConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigImportlist(ImportListConfigApi.GetConfigImportlistApiResponse apiResponse)
         {
-            OnGetImportListConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigImportlist?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetImportListConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigImportlist(Exception exception)
         {
-            OnErrorGetImportListConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigImportlist?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetImportListConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigImportlistById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetImportListConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigImportlistById;
 
-        internal void ExecuteOnGetImportListConfigById(ImportListConfigApi.GetImportListConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigImportlistById(ImportListConfigApi.GetConfigImportlistByIdApiResponse apiResponse)
         {
-            OnGetImportListConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigImportlistById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetImportListConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigImportlistById(Exception exception)
         {
-            OnErrorGetImportListConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigImportlistById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateImportListConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigImportlistById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateImportListConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigImportlistById;
 
-        internal void ExecuteOnUpdateImportListConfig(ImportListConfigApi.UpdateImportListConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigImportlistById(ImportListConfigApi.PutConfigImportlistByIdApiResponse apiResponse)
         {
-            OnUpdateImportListConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigImportlistById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateImportListConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigImportlistById(Exception exception)
         {
-            OnErrorUpdateImportListConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigImportlistById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -255,10 +255,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetImportListConfigDefaultImplementation(IGetImportListConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigImportlistDefaultImplementation(IGetConfigImportlistApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetImportListConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigImportlist(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -268,7 +268,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetImportListConfig(ref bool suppressDefaultLog, IGetImportListConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigImportlist(ref bool suppressDefaultLog, IGetConfigImportlistApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -276,10 +276,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetImportListConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigImportlistDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetImportListConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigImportlist(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -291,18 +291,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetImportListConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigImportlist(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListConfigApiResponse?> GetImportListConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigImportlistApiResponse?> GetConfigImportlistOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetImportListConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigImportlistAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -315,8 +315,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListConfigApiResponse> GetImportListConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigImportlistApiResponse> GetConfigImportlistAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -353,7 +353,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetImportListConfigApiResponse apiResponseLocalVar;
+                        GetConfigImportlistApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -364,9 +364,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetImportListConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigImportlistDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetImportListConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigImportlist(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -378,16 +378,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetImportListConfigDefaultImplementation(e, "/api/v3/config/importlist", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetImportListConfig(e);
+                OnErrorGetConfigImportlistDefaultImplementation(e, "/api/v3/config/importlist", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigImportlist(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetImportListConfigApiResponse"/>
+        /// The <see cref="GetConfigImportlistApiResponse"/>
         /// </summary>
-        public partial class GetImportListConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportListConfigApiResponse
+        public partial class GetConfigImportlistApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigImportlistApiResponse
         {
             /// <summary>
             /// The logger
@@ -395,7 +395,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetImportListConfigApiResponse"/>
+            /// The <see cref="GetConfigImportlistApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -404,14 +404,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetImportListConfigApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigImportlistApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetImportListConfigApiResponse"/>
+            /// The <see cref="GetConfigImportlistApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -420,7 +420,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetImportListConfigApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigImportlistApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -489,17 +489,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetImportListConfigById(ref int id);
+        partial void FormatGetConfigImportlistById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetImportListConfigByIdDefaultImplementation(IGetImportListConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigImportlistByIdDefaultImplementation(IGetConfigImportlistByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetImportListConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigImportlistById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -510,7 +510,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetImportListConfigById(ref bool suppressDefaultLog, IGetImportListConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigImportlistById(ref bool suppressDefaultLog, IGetConfigImportlistByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -519,10 +519,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetImportListConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigImportlistByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetImportListConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigImportlistById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -535,19 +535,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetImportListConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigImportlistById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListConfigByIdApiResponse?> GetImportListConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigImportlistByIdApiResponse?> GetConfigImportlistByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetImportListConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigImportlistByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -561,14 +561,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetImportListConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetImportListConfigByIdApiResponse> GetImportListConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigImportlistByIdApiResponse> GetConfigImportlistByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetImportListConfigById(ref id);
+                FormatGetConfigImportlistById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -604,7 +604,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetImportListConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigImportlistByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -615,9 +615,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetImportListConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigImportlistByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetImportListConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigImportlistById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -629,16 +629,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetImportListConfigByIdDefaultImplementation(e, "/api/v3/config/importlist/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetImportListConfigById(e);
+                OnErrorGetConfigImportlistByIdDefaultImplementation(e, "/api/v3/config/importlist/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigImportlistById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetImportListConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigImportlistByIdApiResponse"/>
         /// </summary>
-        public partial class GetImportListConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetImportListConfigByIdApiResponse
+        public partial class GetConfigImportlistByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigImportlistByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -646,7 +646,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetImportListConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigImportlistByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -655,14 +655,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetImportListConfigByIdApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigImportlistByIdApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetImportListConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigImportlistByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -671,7 +671,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetImportListConfigByIdApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigImportlistByIdApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -740,7 +740,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateImportListConfig(ref string id, Option<ImportListConfigResource> importListConfigResource);
+        partial void FormatPutConfigImportlistById(ref string id, ImportListConfigResource importListConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -748,12 +748,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="importListConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateImportListConfig(string id, Option<ImportListConfigResource> importListConfigResource)
+        private void ValidatePutConfigImportlistById(string id, ImportListConfigResource importListConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (importListConfigResource.IsSet && importListConfigResource.Value == null)
+            if (importListConfigResource == null)
                 throw new ArgumentNullException(nameof(importListConfigResource));
         }
 
@@ -763,10 +763,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListConfigResource"></param>
-        private void AfterUpdateImportListConfigDefaultImplementation(IUpdateImportListConfigApiResponse apiResponseLocalVar, string id, Option<ImportListConfigResource> importListConfigResource)
+        private void AfterPutConfigImportlistByIdDefaultImplementation(IPutConfigImportlistByIdApiResponse apiResponseLocalVar, string id, ImportListConfigResource importListConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateImportListConfig(ref suppressDefaultLog, apiResponseLocalVar, id, importListConfigResource);
+            AfterPutConfigImportlistById(ref suppressDefaultLog, apiResponseLocalVar, id, importListConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -778,7 +778,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListConfigResource"></param>
-        partial void AfterUpdateImportListConfig(ref bool suppressDefaultLog, IUpdateImportListConfigApiResponse apiResponseLocalVar, string id, Option<ImportListConfigResource> importListConfigResource);
+        partial void AfterPutConfigImportlistById(ref bool suppressDefaultLog, IPutConfigImportlistByIdApiResponse apiResponseLocalVar, string id, ImportListConfigResource importListConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -788,10 +788,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListConfigResource"></param>
-        private void OnErrorUpdateImportListConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<ImportListConfigResource> importListConfigResource)
+        private void OnErrorPutConfigImportlistByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, ImportListConfigResource importListConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateImportListConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, importListConfigResource);
+            OnErrorPutConfigImportlistById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, importListConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -805,20 +805,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListConfigResource"></param>
-        partial void OnErrorUpdateImportListConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<ImportListConfigResource> importListConfigResource);
+        partial void OnErrorPutConfigImportlistById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, ImportListConfigResource importListConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="importListConfigResource"> (optional)</param>
+        /// <param name="importListConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateImportListConfigApiResponse?> UpdateImportListConfigOrDefaultAsync(string id, Option<ImportListConfigResource> importListConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigImportlistByIdApiResponse?> PutConfigImportlistByIdOrDefaultAsync(string id, ImportListConfigResource importListConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateImportListConfigAsync(id, importListConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigImportlistByIdAsync(id, importListConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -831,18 +831,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="importListConfigResource"> (optional)</param>
+        /// <param name="importListConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateImportListConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateImportListConfigApiResponse> UpdateImportListConfigAsync(string id, Option<ImportListConfigResource> importListConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigImportlistByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigImportlistByIdApiResponse> PutConfigImportlistByIdAsync(string id, ImportListConfigResource importListConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateImportListConfig(id, importListConfigResource);
+                ValidatePutConfigImportlistById(id, importListConfigResource);
 
-                FormatUpdateImportListConfig(ref id, importListConfigResource);
+                FormatPutConfigImportlistById(ref id, importListConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -854,12 +854,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/importlist/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (importListConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importListConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -894,7 +891,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateImportListConfigApiResponse apiResponseLocalVar;
+                        PutConfigImportlistByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -905,9 +902,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateImportListConfigDefaultImplementation(apiResponseLocalVar, id, importListConfigResource);
+                        AfterPutConfigImportlistByIdDefaultImplementation(apiResponseLocalVar, id, importListConfigResource);
 
-                        Events.ExecuteOnUpdateImportListConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigImportlistById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -919,16 +916,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateImportListConfigDefaultImplementation(e, "/api/v3/config/importlist/{id}", uriBuilderLocalVar.Path, id, importListConfigResource);
-                Events.ExecuteOnErrorUpdateImportListConfig(e);
+                OnErrorPutConfigImportlistByIdDefaultImplementation(e, "/api/v3/config/importlist/{id}", uriBuilderLocalVar.Path, id, importListConfigResource);
+                Events.ExecuteOnErrorPutConfigImportlistById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateImportListConfigApiResponse"/>
+        /// The <see cref="PutConfigImportlistByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateImportListConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateImportListConfigApiResponse
+        public partial class PutConfigImportlistByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigImportlistByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -936,7 +933,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateImportListConfigApiResponse"/>
+            /// The <see cref="PutConfigImportlistByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -945,14 +942,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateImportListConfigApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigImportlistByIdApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateImportListConfigApiResponse"/>
+            /// The <see cref="PutConfigImportlistByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -961,7 +958,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateImportListConfigApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigImportlistByIdApiResponse(ILogger<ImportListConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -970,50 +967,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListConfigResource? Ok()
+            public Whisparr3.Net.Model.ImportListConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.ImportListConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.ImportListConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.ImportListConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

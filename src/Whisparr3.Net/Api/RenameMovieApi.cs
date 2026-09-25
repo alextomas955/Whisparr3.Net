@@ -46,9 +46,11 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRenameApiResponse"/>&gt;</returns>
-        Task<IListRenameApiResponse> ListRenameAsync(Option<List<int>> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRenameApiResponse"/>&gt;</returns>
+        Task<IGetRenameApiResponse> GetRenameAsync(Option<List<int>> movieId = default, Option<string> performerForeignId = default, Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -57,15 +59,17 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="movieId"> (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRenameApiResponse"/>?&gt;</returns>
-        Task<IListRenameApiResponse?> ListRenameOrDefaultAsync(Option<List<int>> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRenameApiResponse"/>?&gt;</returns>
+        Task<IGetRenameApiResponse?> GetRenameOrDefaultAsync(Option<List<int>> movieId = default, Option<string> performerForeignId = default, Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListRenameApiResponse"/>
+    /// The <see cref="IGetRenameApiResponse"/>
     /// </summary>
-    public interface IListRenameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<RenameMovieResource>?>
+    public interface IGetRenameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<RenameMovieResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -82,21 +86,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListRename;
+        public event EventHandler<ApiResponseEventArgs>? OnGetRename;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListRename;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetRename;
 
-        internal void ExecuteOnListRename(RenameMovieApi.ListRenameApiResponse apiResponse)
+        internal void ExecuteOnGetRename(RenameMovieApi.GetRenameApiResponse apiResponse)
         {
-            OnListRename?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetRename?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListRename(Exception exception)
+        internal void ExecuteOnErrorGetRename(Exception exception)
         {
-            OnErrorListRename?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetRename?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -141,17 +145,25 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatListRename(Option<List<int>> movieId);
+        partial void FormatGetRename(Option<List<int>> movieId, ref Option<string> performerForeignId, ref Option<string> studioForeignId);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="movieId"></param>
+        /// <param name="performerForeignId"></param>
+        /// <param name="studioForeignId"></param>
         /// <returns></returns>
-        private void ValidateListRename(Option<List<int>> movieId)
+        private void ValidateGetRename(Option<List<int>> movieId, Option<string> performerForeignId, Option<string> studioForeignId)
         {
             if (movieId.IsSet && movieId.Value == null)
                 throw new ArgumentNullException(nameof(movieId));
+
+            if (performerForeignId.IsSet && performerForeignId.Value == null)
+                throw new ArgumentNullException(nameof(performerForeignId));
+
+            if (studioForeignId.IsSet && studioForeignId.Value == null)
+                throw new ArgumentNullException(nameof(studioForeignId));
         }
 
         /// <summary>
@@ -159,10 +171,12 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        private void AfterListRenameDefaultImplementation(IListRenameApiResponse apiResponseLocalVar, Option<List<int>> movieId)
+        /// <param name="performerForeignId"></param>
+        /// <param name="studioForeignId"></param>
+        private void AfterGetRenameDefaultImplementation(IGetRenameApiResponse apiResponseLocalVar, Option<List<int>> movieId, Option<string> performerForeignId, Option<string> studioForeignId)
         {
             bool suppressDefaultLog = false;
-            AfterListRename(ref suppressDefaultLog, apiResponseLocalVar, movieId);
+            AfterGetRename(ref suppressDefaultLog, apiResponseLocalVar, movieId, performerForeignId, studioForeignId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -173,7 +187,9 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void AfterListRename(ref bool suppressDefaultLog, IListRenameApiResponse apiResponseLocalVar, Option<List<int>> movieId);
+        /// <param name="performerForeignId"></param>
+        /// <param name="studioForeignId"></param>
+        partial void AfterGetRename(ref bool suppressDefaultLog, IGetRenameApiResponse apiResponseLocalVar, Option<List<int>> movieId, Option<string> performerForeignId, Option<string> studioForeignId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -182,10 +198,12 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        private void OnErrorListRenameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId)
+        /// <param name="performerForeignId"></param>
+        /// <param name="studioForeignId"></param>
+        private void OnErrorGetRenameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId, Option<string> performerForeignId, Option<string> studioForeignId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListRename(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
+            OnErrorGetRename(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, performerForeignId, studioForeignId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -198,19 +216,23 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void OnErrorListRename(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId);
+        /// <param name="performerForeignId"></param>
+        /// <param name="studioForeignId"></param>
+        partial void OnErrorGetRename(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId, Option<string> performerForeignId, Option<string> studioForeignId);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="movieId"> (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRenameApiResponse"/>&gt;</returns>
-        public async Task<IListRenameApiResponse?> ListRenameOrDefaultAsync(Option<List<int>> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRenameApiResponse"/>&gt;</returns>
+        public async Task<IGetRenameApiResponse?> GetRenameOrDefaultAsync(Option<List<int>> movieId = default, Option<string> performerForeignId = default, Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListRenameAsync(movieId, cancellationToken).ConfigureAwait(false);
+                return await GetRenameAsync(movieId, performerForeignId, studioForeignId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -223,17 +245,19 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
+        /// <param name="performerForeignId"> (optional)</param>
+        /// <param name="studioForeignId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRenameApiResponse"/>&gt;</returns>
-        public async Task<IListRenameApiResponse> ListRenameAsync(Option<List<int>> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRenameApiResponse"/>&gt;</returns>
+        public async Task<IGetRenameApiResponse> GetRenameAsync(Option<List<int>> movieId = default, Option<string> performerForeignId = default, Option<string> studioForeignId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListRename(movieId);
+                ValidateGetRename(movieId, performerForeignId, studioForeignId);
 
-                FormatListRename(movieId);
+                FormatGetRename(movieId, ref performerForeignId, ref studioForeignId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -248,6 +272,12 @@ namespace Whisparr3.Net.Api
 
                     if (movieId.IsSet)
                         parseQueryStringLocalVar["movieId"] = ClientUtils.ParameterToString(movieId.Value);
+
+                    if (performerForeignId.IsSet)
+                        parseQueryStringLocalVar["performerForeignId"] = ClientUtils.ParameterToString(performerForeignId.Value);
+
+                    if (studioForeignId.IsSet)
+                        parseQueryStringLocalVar["studioForeignId"] = ClientUtils.ParameterToString(studioForeignId.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -275,7 +305,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListRenameApiResponse apiResponseLocalVar;
+                        GetRenameApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -286,9 +316,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListRenameDefaultImplementation(apiResponseLocalVar, movieId);
+                        AfterGetRenameDefaultImplementation(apiResponseLocalVar, movieId, performerForeignId, studioForeignId);
 
-                        Events.ExecuteOnListRename(apiResponseLocalVar);
+                        Events.ExecuteOnGetRename(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -300,16 +330,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListRenameDefaultImplementation(e, "/api/v3/rename", uriBuilderLocalVar.Path, movieId);
-                Events.ExecuteOnErrorListRename(e);
+                OnErrorGetRenameDefaultImplementation(e, "/api/v3/rename", uriBuilderLocalVar.Path, movieId, performerForeignId, studioForeignId);
+                Events.ExecuteOnErrorGetRename(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListRenameApiResponse"/>
+        /// The <see cref="GetRenameApiResponse"/>
         /// </summary>
-        public partial class ListRenameApiResponse : Whisparr3.Net.Client.ApiResponse, IListRenameApiResponse
+        public partial class GetRenameApiResponse : Whisparr3.Net.Client.ApiResponse, IGetRenameApiResponse
         {
             /// <summary>
             /// The logger
@@ -317,7 +347,7 @@ namespace Whisparr3.Net.Api
             public ILogger<RenameMovieApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListRenameApiResponse"/>
+            /// The <see cref="GetRenameApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -326,14 +356,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListRenameApiResponse(ILogger<RenameMovieApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetRenameApiResponse(ILogger<RenameMovieApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListRenameApiResponse"/>
+            /// The <see cref="GetRenameApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -342,7 +372,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListRenameApiResponse(ILogger<RenameMovieApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetRenameApiResponse(ILogger<RenameMovieApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

@@ -4,7 +4,7 @@ This is a rule for contributors to this repository, not advice for anyone using 
 governs what the integration tests may do to a live Whisparr instance. What a consumer of the SDK
 calls is their own decision.
 
-`docs/SURFACE.md` records which operations have effects the spec does not describe. Read it before
+The root README records which operations have effects the spec does not describe. Read it before
 adding a test that writes.
 
 ## What the suite writes today

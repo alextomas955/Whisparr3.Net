@@ -22,6 +22,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using Whisparr3.Net.Client;
 using Whisparr3.Net.Logging;
+using Whisparr3.Net.Model;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Whisparr3.Net.Api
@@ -48,8 +49,8 @@ namespace Whisparr3.Net.Api
         /// <param name="includeFiles"> (optional, default to false)</param>
         /// <param name="allowFoldersWithoutTrailingSlashes"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemApiResponse"/>&gt;</returns>
-        Task<IGetFileSystemApiResponse> GetFileSystemAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemApiResponse"/>&gt;</returns>
+        Task<IGetFilesystemApiResponse> GetFilesystemAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -61,8 +62,8 @@ namespace Whisparr3.Net.Api
         /// <param name="includeFiles"> (optional, default to false)</param>
         /// <param name="allowFoldersWithoutTrailingSlashes"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemApiResponse"/>?&gt;</returns>
-        Task<IGetFileSystemApiResponse?> GetFileSystemOrDefaultAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemApiResponse"/>?&gt;</returns>
+        Task<IGetFilesystemApiResponse?> GetFilesystemOrDefaultAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -73,8 +74,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemMediaFilesApiResponse"/>&gt;</returns>
-        Task<IGetFileSystemMediaFilesApiResponse> GetFileSystemMediaFilesAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemMediafilesApiResponse"/>&gt;</returns>
+        Task<IGetFilesystemMediafilesApiResponse> GetFilesystemMediafilesAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -84,8 +85,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemMediaFilesApiResponse"/>?&gt;</returns>
-        Task<IGetFileSystemMediaFilesApiResponse?> GetFileSystemMediaFilesOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemMediafilesApiResponse"/>?&gt;</returns>
+        Task<IGetFilesystemMediafilesApiResponse?> GetFilesystemMediafilesOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -96,8 +97,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemTypeApiResponse"/>&gt;</returns>
-        Task<IGetFileSystemTypeApiResponse> GetFileSystemTypeAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemTypeApiResponse"/>&gt;</returns>
+        Task<IGetFilesystemTypeApiResponse> GetFilesystemTypeAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -107,14 +108,14 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemTypeApiResponse"/>?&gt;</returns>
-        Task<IGetFileSystemTypeApiResponse?> GetFileSystemTypeOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemTypeApiResponse"/>?&gt;</returns>
+        Task<IGetFilesystemTypeApiResponse?> GetFilesystemTypeOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetFileSystemApiResponse"/>
+    /// The <see cref="IGetFilesystemApiResponse"/>
     /// </summary>
-    public interface IGetFileSystemApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetFilesystemApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.FileSystemResult?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -124,9 +125,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetFileSystemMediaFilesApiResponse"/>
+    /// The <see cref="IGetFilesystemMediafilesApiResponse"/>
     /// </summary>
-    public interface IGetFileSystemMediaFilesApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetFilesystemMediafilesApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<FileSystemMediaFileResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -136,9 +137,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetFileSystemTypeApiResponse"/>
+    /// The <see cref="IGetFilesystemTypeApiResponse"/>
     /// </summary>
-    public interface IGetFileSystemTypeApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetFilesystemTypeApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.FileSystemTypeResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -155,61 +156,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetFileSystem;
+        public event EventHandler<ApiResponseEventArgs>? OnGetFilesystem;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetFileSystem;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetFilesystem;
 
-        internal void ExecuteOnGetFileSystem(FileSystemApi.GetFileSystemApiResponse apiResponse)
+        internal void ExecuteOnGetFilesystem(FileSystemApi.GetFilesystemApiResponse apiResponse)
         {
-            OnGetFileSystem?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetFilesystem?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetFileSystem(Exception exception)
+        internal void ExecuteOnErrorGetFilesystem(Exception exception)
         {
-            OnErrorGetFileSystem?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetFilesystem?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetFileSystemMediaFiles;
+        public event EventHandler<ApiResponseEventArgs>? OnGetFilesystemMediafiles;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetFileSystemMediaFiles;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetFilesystemMediafiles;
 
-        internal void ExecuteOnGetFileSystemMediaFiles(FileSystemApi.GetFileSystemMediaFilesApiResponse apiResponse)
+        internal void ExecuteOnGetFilesystemMediafiles(FileSystemApi.GetFilesystemMediafilesApiResponse apiResponse)
         {
-            OnGetFileSystemMediaFiles?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetFilesystemMediafiles?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetFileSystemMediaFiles(Exception exception)
+        internal void ExecuteOnErrorGetFilesystemMediafiles(Exception exception)
         {
-            OnErrorGetFileSystemMediaFiles?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetFilesystemMediafiles?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetFileSystemType;
+        public event EventHandler<ApiResponseEventArgs>? OnGetFilesystemType;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetFileSystemType;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetFilesystemType;
 
-        internal void ExecuteOnGetFileSystemType(FileSystemApi.GetFileSystemTypeApiResponse apiResponse)
+        internal void ExecuteOnGetFilesystemType(FileSystemApi.GetFilesystemTypeApiResponse apiResponse)
         {
-            OnGetFileSystemType?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetFilesystemType?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetFileSystemType(Exception exception)
+        internal void ExecuteOnErrorGetFilesystemType(Exception exception)
         {
-            OnErrorGetFileSystemType?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetFilesystemType?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -254,14 +255,14 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetFileSystem(ref Option<string> path, ref Option<bool> includeFiles, ref Option<bool> allowFoldersWithoutTrailingSlashes);
+        partial void FormatGetFilesystem(ref Option<string> path, ref Option<bool> includeFiles, ref Option<bool> allowFoldersWithoutTrailingSlashes);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        private void ValidateGetFileSystem(Option<string> path)
+        private void ValidateGetFilesystem(Option<string> path)
         {
             if (path.IsSet && path.Value == null)
                 throw new ArgumentNullException(nameof(path));
@@ -274,10 +275,10 @@ namespace Whisparr3.Net.Api
         /// <param name="path"></param>
         /// <param name="includeFiles"></param>
         /// <param name="allowFoldersWithoutTrailingSlashes"></param>
-        private void AfterGetFileSystemDefaultImplementation(IGetFileSystemApiResponse apiResponseLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes)
+        private void AfterGetFilesystemDefaultImplementation(IGetFilesystemApiResponse apiResponseLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes)
         {
             bool suppressDefaultLog = false;
-            AfterGetFileSystem(ref suppressDefaultLog, apiResponseLocalVar, path, includeFiles, allowFoldersWithoutTrailingSlashes);
+            AfterGetFilesystem(ref suppressDefaultLog, apiResponseLocalVar, path, includeFiles, allowFoldersWithoutTrailingSlashes);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -290,7 +291,7 @@ namespace Whisparr3.Net.Api
         /// <param name="path"></param>
         /// <param name="includeFiles"></param>
         /// <param name="allowFoldersWithoutTrailingSlashes"></param>
-        partial void AfterGetFileSystem(ref bool suppressDefaultLog, IGetFileSystemApiResponse apiResponseLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes);
+        partial void AfterGetFilesystem(ref bool suppressDefaultLog, IGetFilesystemApiResponse apiResponseLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -301,10 +302,10 @@ namespace Whisparr3.Net.Api
         /// <param name="path"></param>
         /// <param name="includeFiles"></param>
         /// <param name="allowFoldersWithoutTrailingSlashes"></param>
-        private void OnErrorGetFileSystemDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes)
+        private void OnErrorGetFilesystemDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetFileSystem(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, path, includeFiles, allowFoldersWithoutTrailingSlashes);
+            OnErrorGetFilesystem(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, path, includeFiles, allowFoldersWithoutTrailingSlashes);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -319,7 +320,7 @@ namespace Whisparr3.Net.Api
         /// <param name="path"></param>
         /// <param name="includeFiles"></param>
         /// <param name="allowFoldersWithoutTrailingSlashes"></param>
-        partial void OnErrorGetFileSystem(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes);
+        partial void OnErrorGetFilesystem(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path, Option<bool> includeFiles, Option<bool> allowFoldersWithoutTrailingSlashes);
 
         /// <summary>
         ///  
@@ -328,12 +329,12 @@ namespace Whisparr3.Net.Api
         /// <param name="includeFiles"> (optional, default to false)</param>
         /// <param name="allowFoldersWithoutTrailingSlashes"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemApiResponse"/>&gt;</returns>
-        public async Task<IGetFileSystemApiResponse?> GetFileSystemOrDefaultAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemApiResponse"/>&gt;</returns>
+        public async Task<IGetFilesystemApiResponse?> GetFilesystemOrDefaultAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetFileSystemAsync(path, includeFiles, allowFoldersWithoutTrailingSlashes, cancellationToken).ConfigureAwait(false);
+                return await GetFilesystemAsync(path, includeFiles, allowFoldersWithoutTrailingSlashes, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -349,16 +350,16 @@ namespace Whisparr3.Net.Api
         /// <param name="includeFiles"> (optional, default to false)</param>
         /// <param name="allowFoldersWithoutTrailingSlashes"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemApiResponse"/>&gt;</returns>
-        public async Task<IGetFileSystemApiResponse> GetFileSystemAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemApiResponse"/>&gt;</returns>
+        public async Task<IGetFilesystemApiResponse> GetFilesystemAsync(Option<string> path = default, Option<bool> includeFiles = default, Option<bool> allowFoldersWithoutTrailingSlashes = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetFileSystem(path);
+                ValidateGetFilesystem(path);
 
-                FormatGetFileSystem(ref path, ref includeFiles, ref allowFoldersWithoutTrailingSlashes);
+                FormatGetFilesystem(ref path, ref includeFiles, ref allowFoldersWithoutTrailingSlashes);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -389,13 +390,24 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetFileSystemApiResponse apiResponseLocalVar;
+                        GetFilesystemApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -406,9 +418,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetFileSystemDefaultImplementation(apiResponseLocalVar, path, includeFiles, allowFoldersWithoutTrailingSlashes);
+                        AfterGetFilesystemDefaultImplementation(apiResponseLocalVar, path, includeFiles, allowFoldersWithoutTrailingSlashes);
 
-                        Events.ExecuteOnGetFileSystem(apiResponseLocalVar);
+                        Events.ExecuteOnGetFilesystem(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -420,16 +432,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetFileSystemDefaultImplementation(e, "/api/v3/filesystem", uriBuilderLocalVar.Path, path, includeFiles, allowFoldersWithoutTrailingSlashes);
-                Events.ExecuteOnErrorGetFileSystem(e);
+                OnErrorGetFilesystemDefaultImplementation(e, "/api/v3/filesystem", uriBuilderLocalVar.Path, path, includeFiles, allowFoldersWithoutTrailingSlashes);
+                Events.ExecuteOnErrorGetFilesystem(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetFileSystemApiResponse"/>
+        /// The <see cref="GetFilesystemApiResponse"/>
         /// </summary>
-        public partial class GetFileSystemApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFileSystemApiResponse
+        public partial class GetFilesystemApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFilesystemApiResponse
         {
             /// <summary>
             /// The logger
@@ -437,7 +449,7 @@ namespace Whisparr3.Net.Api
             public ILogger<FileSystemApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetFileSystemApiResponse"/>
+            /// The <see cref="GetFilesystemApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -446,14 +458,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetFileSystemApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetFilesystemApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetFileSystemApiResponse"/>
+            /// The <see cref="GetFilesystemApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -462,7 +474,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetFileSystemApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetFilesystemApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -476,6 +488,50 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.FileSystemResult? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.FileSystemResult? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.FileSystemResult? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.FileSystemResult>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.FileSystemResult? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.FileSystemResult? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -487,14 +543,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetFileSystemMediaFiles(ref Option<string> path);
+        partial void FormatGetFilesystemMediafiles(ref Option<string> path);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        private void ValidateGetFileSystemMediaFiles(Option<string> path)
+        private void ValidateGetFilesystemMediafiles(Option<string> path)
         {
             if (path.IsSet && path.Value == null)
                 throw new ArgumentNullException(nameof(path));
@@ -505,10 +561,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="path"></param>
-        private void AfterGetFileSystemMediaFilesDefaultImplementation(IGetFileSystemMediaFilesApiResponse apiResponseLocalVar, Option<string> path)
+        private void AfterGetFilesystemMediafilesDefaultImplementation(IGetFilesystemMediafilesApiResponse apiResponseLocalVar, Option<string> path)
         {
             bool suppressDefaultLog = false;
-            AfterGetFileSystemMediaFiles(ref suppressDefaultLog, apiResponseLocalVar, path);
+            AfterGetFilesystemMediafiles(ref suppressDefaultLog, apiResponseLocalVar, path);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -519,7 +575,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="path"></param>
-        partial void AfterGetFileSystemMediaFiles(ref bool suppressDefaultLog, IGetFileSystemMediaFilesApiResponse apiResponseLocalVar, Option<string> path);
+        partial void AfterGetFilesystemMediafiles(ref bool suppressDefaultLog, IGetFilesystemMediafilesApiResponse apiResponseLocalVar, Option<string> path);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -528,10 +584,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="path"></param>
-        private void OnErrorGetFileSystemMediaFilesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path)
+        private void OnErrorGetFilesystemMediafilesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetFileSystemMediaFiles(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, path);
+            OnErrorGetFilesystemMediafiles(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, path);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -544,19 +600,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="path"></param>
-        partial void OnErrorGetFileSystemMediaFiles(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path);
+        partial void OnErrorGetFilesystemMediafiles(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemMediaFilesApiResponse"/>&gt;</returns>
-        public async Task<IGetFileSystemMediaFilesApiResponse?> GetFileSystemMediaFilesOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemMediafilesApiResponse"/>&gt;</returns>
+        public async Task<IGetFilesystemMediafilesApiResponse?> GetFilesystemMediafilesOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetFileSystemMediaFilesAsync(path, cancellationToken).ConfigureAwait(false);
+                return await GetFilesystemMediafilesAsync(path, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -570,16 +626,16 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemMediaFilesApiResponse"/>&gt;</returns>
-        public async Task<IGetFileSystemMediaFilesApiResponse> GetFileSystemMediaFilesAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemMediafilesApiResponse"/>&gt;</returns>
+        public async Task<IGetFilesystemMediafilesApiResponse> GetFilesystemMediafilesAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetFileSystemMediaFiles(path);
+                ValidateGetFilesystemMediafiles(path);
 
-                FormatGetFileSystemMediaFiles(ref path);
+                FormatGetFilesystemMediafiles(ref path);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -604,13 +660,24 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetFileSystemMediaFilesApiResponse apiResponseLocalVar;
+                        GetFilesystemMediafilesApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -621,9 +688,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetFileSystemMediaFilesDefaultImplementation(apiResponseLocalVar, path);
+                        AfterGetFilesystemMediafilesDefaultImplementation(apiResponseLocalVar, path);
 
-                        Events.ExecuteOnGetFileSystemMediaFiles(apiResponseLocalVar);
+                        Events.ExecuteOnGetFilesystemMediafiles(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -635,16 +702,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetFileSystemMediaFilesDefaultImplementation(e, "/api/v3/filesystem/mediafiles", uriBuilderLocalVar.Path, path);
-                Events.ExecuteOnErrorGetFileSystemMediaFiles(e);
+                OnErrorGetFilesystemMediafilesDefaultImplementation(e, "/api/v3/filesystem/mediafiles", uriBuilderLocalVar.Path, path);
+                Events.ExecuteOnErrorGetFilesystemMediafiles(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetFileSystemMediaFilesApiResponse"/>
+        /// The <see cref="GetFilesystemMediafilesApiResponse"/>
         /// </summary>
-        public partial class GetFileSystemMediaFilesApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFileSystemMediaFilesApiResponse
+        public partial class GetFilesystemMediafilesApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFilesystemMediafilesApiResponse
         {
             /// <summary>
             /// The logger
@@ -652,7 +719,7 @@ namespace Whisparr3.Net.Api
             public ILogger<FileSystemApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetFileSystemMediaFilesApiResponse"/>
+            /// The <see cref="GetFilesystemMediafilesApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -661,14 +728,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetFileSystemMediaFilesApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetFilesystemMediafilesApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetFileSystemMediaFilesApiResponse"/>
+            /// The <see cref="GetFilesystemMediafilesApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -677,7 +744,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetFileSystemMediaFilesApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetFilesystemMediafilesApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -691,6 +758,50 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<FileSystemMediaFileResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<FileSystemMediaFileResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<FileSystemMediaFileResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<FileSystemMediaFileResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<FileSystemMediaFileResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<FileSystemMediaFileResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -702,14 +813,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetFileSystemType(ref Option<string> path);
+        partial void FormatGetFilesystemType(ref Option<string> path);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        private void ValidateGetFileSystemType(Option<string> path)
+        private void ValidateGetFilesystemType(Option<string> path)
         {
             if (path.IsSet && path.Value == null)
                 throw new ArgumentNullException(nameof(path));
@@ -720,10 +831,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="path"></param>
-        private void AfterGetFileSystemTypeDefaultImplementation(IGetFileSystemTypeApiResponse apiResponseLocalVar, Option<string> path)
+        private void AfterGetFilesystemTypeDefaultImplementation(IGetFilesystemTypeApiResponse apiResponseLocalVar, Option<string> path)
         {
             bool suppressDefaultLog = false;
-            AfterGetFileSystemType(ref suppressDefaultLog, apiResponseLocalVar, path);
+            AfterGetFilesystemType(ref suppressDefaultLog, apiResponseLocalVar, path);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -734,7 +845,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="path"></param>
-        partial void AfterGetFileSystemType(ref bool suppressDefaultLog, IGetFileSystemTypeApiResponse apiResponseLocalVar, Option<string> path);
+        partial void AfterGetFilesystemType(ref bool suppressDefaultLog, IGetFilesystemTypeApiResponse apiResponseLocalVar, Option<string> path);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -743,10 +854,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="path"></param>
-        private void OnErrorGetFileSystemTypeDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path)
+        private void OnErrorGetFilesystemTypeDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetFileSystemType(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, path);
+            OnErrorGetFilesystemType(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, path);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -759,19 +870,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="path"></param>
-        partial void OnErrorGetFileSystemType(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path);
+        partial void OnErrorGetFilesystemType(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> path);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemTypeApiResponse"/>&gt;</returns>
-        public async Task<IGetFileSystemTypeApiResponse?> GetFileSystemTypeOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemTypeApiResponse"/>&gt;</returns>
+        public async Task<IGetFilesystemTypeApiResponse?> GetFilesystemTypeOrDefaultAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetFileSystemTypeAsync(path, cancellationToken).ConfigureAwait(false);
+                return await GetFilesystemTypeAsync(path, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -785,16 +896,16 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="path"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetFileSystemTypeApiResponse"/>&gt;</returns>
-        public async Task<IGetFileSystemTypeApiResponse> GetFileSystemTypeAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFilesystemTypeApiResponse"/>&gt;</returns>
+        public async Task<IGetFilesystemTypeApiResponse> GetFilesystemTypeAsync(Option<string> path = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetFileSystemType(path);
+                ValidateGetFilesystemType(path);
 
-                FormatGetFileSystemType(ref path);
+                FormatGetFilesystemType(ref path);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -819,13 +930,24 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetFileSystemTypeApiResponse apiResponseLocalVar;
+                        GetFilesystemTypeApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -836,9 +958,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetFileSystemTypeDefaultImplementation(apiResponseLocalVar, path);
+                        AfterGetFilesystemTypeDefaultImplementation(apiResponseLocalVar, path);
 
-                        Events.ExecuteOnGetFileSystemType(apiResponseLocalVar);
+                        Events.ExecuteOnGetFilesystemType(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -850,16 +972,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetFileSystemTypeDefaultImplementation(e, "/api/v3/filesystem/type", uriBuilderLocalVar.Path, path);
-                Events.ExecuteOnErrorGetFileSystemType(e);
+                OnErrorGetFilesystemTypeDefaultImplementation(e, "/api/v3/filesystem/type", uriBuilderLocalVar.Path, path);
+                Events.ExecuteOnErrorGetFilesystemType(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetFileSystemTypeApiResponse"/>
+        /// The <see cref="GetFilesystemTypeApiResponse"/>
         /// </summary>
-        public partial class GetFileSystemTypeApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFileSystemTypeApiResponse
+        public partial class GetFilesystemTypeApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFilesystemTypeApiResponse
         {
             /// <summary>
             /// The logger
@@ -867,7 +989,7 @@ namespace Whisparr3.Net.Api
             public ILogger<FileSystemApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetFileSystemTypeApiResponse"/>
+            /// The <see cref="GetFilesystemTypeApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -876,14 +998,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetFileSystemTypeApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetFilesystemTypeApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetFileSystemTypeApiResponse"/>
+            /// The <see cref="GetFilesystemTypeApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -892,7 +1014,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetFileSystemTypeApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetFilesystemTypeApiResponse(ILogger<FileSystemApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -905,6 +1027,50 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.FileSystemTypeResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.FileSystemTypeResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.FileSystemTypeResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.FileSystemTypeResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.FileSystemTypeResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.FileSystemTypeResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

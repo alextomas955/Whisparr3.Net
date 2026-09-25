@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateTagApiResponse"/>&gt;</returns>
-        Task<ICreateTagApiResponse> CreateTagAsync(Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteTagByIdApiResponse> DeleteTagByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="tagResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateTagApiResponse"/>?&gt;</returns>
-        Task<ICreateTagApiResponse?> CreateTagOrDefaultAsync(Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteTagByIdApiResponse?> DeleteTagByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,10 +68,9 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagApiResponse"/>&gt;</returns>
-        Task<IDeleteTagApiResponse> DeleteTagAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetTagApiResponse"/>&gt;</returns>
+        Task<IGetTagApiResponse> GetTagAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,10 +78,9 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagApiResponse"/>?&gt;</returns>
-        Task<IDeleteTagApiResponse?> DeleteTagOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetTagApiResponse"/>?&gt;</returns>
+        Task<IGetTagApiResponse?> GetTagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -114,9 +112,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListTagApiResponse"/>&gt;</returns>
-        Task<IListTagApiResponse> ListTagAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostTagApiResponse"/>&gt;</returns>
+        Task<IPostTagApiResponse> PostTagAsync(TagResource tagResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -124,9 +123,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListTagApiResponse"/>?&gt;</returns>
-        Task<IListTagApiResponse?> ListTagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostTagApiResponse"/>?&gt;</returns>
+        Task<IPostTagApiResponse?> PostTagOrDefaultAsync(TagResource tagResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -136,10 +136,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="tagResource"> (optional)</param>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateTagApiResponse"/>&gt;</returns>
-        Task<IUpdateTagApiResponse> UpdateTagAsync(string id, Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutTagByIdApiResponse"/>&gt;</returns>
+        Task<IPutTagByIdApiResponse> PutTagByIdAsync(string id, TagResource tagResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -148,16 +148,16 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="tagResource"> (optional)</param>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateTagApiResponse"/>?&gt;</returns>
-        Task<IUpdateTagApiResponse?> UpdateTagOrDefaultAsync(string id, Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutTagByIdApiResponse"/>?&gt;</returns>
+        Task<IPutTagByIdApiResponse?> PutTagByIdOrDefaultAsync(string id, TagResource tagResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateTagApiResponse"/>
+    /// The <see cref="IDeleteTagByIdApiResponse"/>
     /// </summary>
-    public interface ICreateTagApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.TagResource?>
+    public interface IDeleteTagByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -167,9 +167,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteTagApiResponse"/>
+    /// The <see cref="IGetTagApiResponse"/>
     /// </summary>
-    public interface IDeleteTagApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetTagApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<TagResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -191,27 +191,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListTagApiResponse"/>
+    /// The <see cref="IPostTagApiResponse"/>
     /// </summary>
-    public interface IListTagApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<TagResource>?>
+    public interface IPostTagApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.TagResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 201 Created
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsCreated { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateTagApiResponse"/>
+    /// The <see cref="IPutTagByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateTagApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.TagResource?>
+    public interface IPutTagByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.TagResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -222,41 +222,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateTag;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteTagById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateTag;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteTagById;
 
-        internal void ExecuteOnCreateTag(TagApi.CreateTagApiResponse apiResponse)
+        internal void ExecuteOnDeleteTagById(TagApi.DeleteTagByIdApiResponse apiResponse)
         {
-            OnCreateTag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteTagById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateTag(Exception exception)
+        internal void ExecuteOnErrorDeleteTagById(Exception exception)
         {
-            OnErrorCreateTag?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteTagById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteTag;
+        public event EventHandler<ApiResponseEventArgs>? OnGetTag;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteTag;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetTag;
 
-        internal void ExecuteOnDeleteTag(TagApi.DeleteTagApiResponse apiResponse)
+        internal void ExecuteOnGetTag(TagApi.GetTagApiResponse apiResponse)
         {
-            OnDeleteTag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetTag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteTag(Exception exception)
+        internal void ExecuteOnErrorGetTag(Exception exception)
         {
-            OnErrorDeleteTag?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetTag?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -282,41 +282,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListTag;
+        public event EventHandler<ApiResponseEventArgs>? OnPostTag;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListTag;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostTag;
 
-        internal void ExecuteOnListTag(TagApi.ListTagApiResponse apiResponse)
+        internal void ExecuteOnPostTag(TagApi.PostTagApiResponse apiResponse)
         {
-            OnListTag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostTag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListTag(Exception exception)
+        internal void ExecuteOnErrorPostTag(Exception exception)
         {
-            OnErrorListTag?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostTag?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateTag;
+        public event EventHandler<ApiResponseEventArgs>? OnPutTagById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateTag;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutTagById;
 
-        internal void ExecuteOnUpdateTag(TagApi.UpdateTagApiResponse apiResponse)
+        internal void ExecuteOnPutTagById(TagApi.PutTagByIdApiResponse apiResponse)
         {
-            OnUpdateTag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutTagById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateTag(Exception exception)
+        internal void ExecuteOnErrorPutTagById(Exception exception)
         {
-            OnErrorUpdateTag?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutTagById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -361,296 +361,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateTag(Option<TagResource> tagResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="tagResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateTag(Option<TagResource> tagResource)
-        {
-            if (tagResource.IsSet && tagResource.Value == null)
-                throw new ArgumentNullException(nameof(tagResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="tagResource"></param>
-        private void AfterCreateTagDefaultImplementation(ICreateTagApiResponse apiResponseLocalVar, Option<TagResource> tagResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateTag(ref suppressDefaultLog, apiResponseLocalVar, tagResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="tagResource"></param>
-        partial void AfterCreateTag(ref bool suppressDefaultLog, ICreateTagApiResponse apiResponseLocalVar, Option<TagResource> tagResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="tagResource"></param>
-        private void OnErrorCreateTagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<TagResource> tagResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateTag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, tagResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="tagResource"></param>
-        partial void OnErrorCreateTag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<TagResource> tagResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="tagResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateTagApiResponse"/>&gt;</returns>
-        public async Task<ICreateTagApiResponse?> CreateTagOrDefaultAsync(Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateTagAsync(tagResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tagResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateTagApiResponse"/>&gt;</returns>
-        public async Task<ICreateTagApiResponse> CreateTagAsync(Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateTag(tagResource);
-
-                FormatCreateTag(tagResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/tag"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/tag");
-
-                    if (tagResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (tagResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(tagResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateTagApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/tag", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateTagDefaultImplementation(apiResponseLocalVar, tagResource);
-
-                        Events.ExecuteOnCreateTag(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateTagDefaultImplementation(e, "/api/v3/tag", uriBuilderLocalVar.Path, tagResource);
-                Events.ExecuteOnErrorCreateTag(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateTagApiResponse"/>
-        /// </summary>
-        public partial class CreateTagApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateTagApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<TagApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateTagApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateTagApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.TagResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.TagResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.TagResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.TagResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.TagResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.TagResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteTag(ref int id);
+        partial void FormatDeleteTagById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterDeleteTagDefaultImplementation(IDeleteTagApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteTagByIdDefaultImplementation(IDeleteTagByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteTag(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteTagById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -661,7 +382,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterDeleteTag(ref bool suppressDefaultLog, IDeleteTagApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteTagById(ref bool suppressDefaultLog, IDeleteTagByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -670,10 +391,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorDeleteTagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteTagByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteTag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteTagById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -686,19 +407,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorDeleteTag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteTagById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagApiResponse"/>&gt;</returns>
-        public async Task<IDeleteTagApiResponse?> DeleteTagOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteTagByIdApiResponse?> DeleteTagByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteTagAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteTagByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -712,14 +433,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagApiResponse"/>&gt;</returns>
-        public async Task<IDeleteTagApiResponse> DeleteTagAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteTagByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteTagByIdApiResponse> DeleteTagByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteTag(ref id);
+                FormatDeleteTagById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -744,7 +465,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteTagApiResponse apiResponseLocalVar;
+                        DeleteTagByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -755,9 +476,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteTagDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteTagByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteTag(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteTagById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -769,16 +490,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteTagDefaultImplementation(e, "/api/v3/tag/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteTag(e);
+                OnErrorDeleteTagByIdDefaultImplementation(e, "/api/v3/tag/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteTagById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteTagApiResponse"/>
+        /// The <see cref="DeleteTagByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteTagApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteTagApiResponse
+        public partial class DeleteTagByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteTagByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -786,7 +507,7 @@ namespace Whisparr3.Net.Api
             public ILogger<TagApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteTagApiResponse"/>
+            /// The <see cref="DeleteTagByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -795,14 +516,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteTagByIdApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteTagApiResponse"/>
+            /// The <see cref="DeleteTagByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -811,7 +532,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteTagByIdApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -824,6 +545,246 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetTagDefaultImplementation(IGetTagApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetTag(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetTag(ref bool suppressDefaultLog, IGetTagApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetTagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetTag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetTag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetTagApiResponse"/>&gt;</returns>
+        public async Task<IGetTagApiResponse?> GetTagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetTagAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetTagApiResponse"/>&gt;</returns>
+        public async Task<IGetTagApiResponse> GetTagAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/tag"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/tag");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetTagApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/tag", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetTagDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnGetTag(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetTagDefaultImplementation(e, "/api/v3/tag", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetTag(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetTagApiResponse"/>
+        /// </summary>
+        public partial class GetTagApiResponse : Whisparr3.Net.Client.ApiResponse, IGetTagApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<TagApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetTagApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetTagApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<TagResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<TagResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<TagResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<TagResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<TagResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<TagResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -1087,14 +1048,28 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatPostTag(TagResource tagResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="tagResource"></param>
+        /// <returns></returns>
+        private void ValidatePostTag(TagResource tagResource)
+        {
+            if (tagResource == null)
+                throw new ArgumentNullException(nameof(tagResource));
+        }
+
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListTagDefaultImplementation(IListTagApiResponse apiResponseLocalVar)
+        /// <param name="tagResource"></param>
+        private void AfterPostTagDefaultImplementation(IPostTagApiResponse apiResponseLocalVar, TagResource tagResource)
         {
             bool suppressDefaultLog = false;
-            AfterListTag(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterPostTag(ref suppressDefaultLog, apiResponseLocalVar, tagResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1104,7 +1079,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListTag(ref bool suppressDefaultLog, IListTagApiResponse apiResponseLocalVar);
+        /// <param name="tagResource"></param>
+        partial void AfterPostTag(ref bool suppressDefaultLog, IPostTagApiResponse apiResponseLocalVar, TagResource tagResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1112,10 +1088,11 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListTagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        /// <param name="tagResource"></param>
+        private void OnErrorPostTagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, TagResource tagResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListTag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorPostTag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, tagResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1127,18 +1104,20 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListTag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        /// <param name="tagResource"></param>
+        partial void OnErrorPostTag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, TagResource tagResource);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListTagApiResponse"/>&gt;</returns>
-        public async Task<IListTagApiResponse?> ListTagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostTagApiResponse"/>&gt;</returns>
+        public async Task<IPostTagApiResponse?> PostTagOrDefaultAsync(TagResource tagResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListTagAsync(cancellationToken).ConfigureAwait(false);
+                return await PostTagAsync(tagResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1150,14 +1129,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListTagApiResponse"/>&gt;</returns>
-        public async Task<IListTagApiResponse> ListTagAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostTagApiResponse"/>&gt;</returns>
+        public async Task<IPostTagApiResponse> PostTagAsync(TagResource tagResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
+                ValidatePostTag(tagResource);
+
+                FormatPostTag(tagResource);
+
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
@@ -1167,12 +1151,25 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/tag"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/tag");
 
+                    httpRequestMessageLocalVar.Content = (tagResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(tagResource, _jsonSerializerOptions));
+
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
                     tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
                     apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "text/plain",
@@ -1185,13 +1182,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListTagApiResponse apiResponseLocalVar;
+                        PostTagApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1202,9 +1199,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListTagDefaultImplementation(apiResponseLocalVar);
+                        AfterPostTagDefaultImplementation(apiResponseLocalVar, tagResource);
 
-                        Events.ExecuteOnListTag(apiResponseLocalVar);
+                        Events.ExecuteOnPostTag(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1216,16 +1213,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListTagDefaultImplementation(e, "/api/v3/tag", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListTag(e);
+                OnErrorPostTagDefaultImplementation(e, "/api/v3/tag", uriBuilderLocalVar.Path, tagResource);
+                Events.ExecuteOnErrorPostTag(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListTagApiResponse"/>
+        /// The <see cref="PostTagApiResponse"/>
         /// </summary>
-        public partial class ListTagApiResponse : Whisparr3.Net.Client.ApiResponse, IListTagApiResponse
+        public partial class PostTagApiResponse : Whisparr3.Net.Client.ApiResponse, IPostTagApiResponse
         {
             /// <summary>
             /// The logger
@@ -1233,7 +1230,7 @@ namespace Whisparr3.Net.Api
             public ILogger<TagApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListTagApiResponse"/>
+            /// The <see cref="PostTagApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1242,14 +1239,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListTagApiResponse"/>
+            /// The <see cref="PostTagApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1258,7 +1255,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1267,50 +1264,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 201 Created
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsCreated => 201 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 201 Created
             /// </summary>
             /// <returns></returns>
-            public List<TagResource>? Ok()
+            public Whisparr3.Net.Model.TagResource? Created()
             {
                 bool suppressDefault = false;
-                List<TagResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
+                Whisparr3.Net.Model.TagResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultCreated();
                 return result;
             }
 
-            private List<TagResource>? DefaultOk()
+            private Whisparr3.Net.Model.TagResource? DefaultCreated()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<TagResource>>(RawContent, _jsonSerializerOptions)
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.TagResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref List<TagResource>? result);
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.TagResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 201 Created and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<TagResource>? result)
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.TagResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Created();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
                 }
 
                 return result != null;
@@ -1327,7 +1324,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateTag(ref string id, Option<TagResource> tagResource);
+        partial void FormatPutTagById(ref string id, TagResource tagResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -1335,12 +1332,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="tagResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateTag(string id, Option<TagResource> tagResource)
+        private void ValidatePutTagById(string id, TagResource tagResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (tagResource.IsSet && tagResource.Value == null)
+            if (tagResource == null)
                 throw new ArgumentNullException(nameof(tagResource));
         }
 
@@ -1350,10 +1347,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="tagResource"></param>
-        private void AfterUpdateTagDefaultImplementation(IUpdateTagApiResponse apiResponseLocalVar, string id, Option<TagResource> tagResource)
+        private void AfterPutTagByIdDefaultImplementation(IPutTagByIdApiResponse apiResponseLocalVar, string id, TagResource tagResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateTag(ref suppressDefaultLog, apiResponseLocalVar, id, tagResource);
+            AfterPutTagById(ref suppressDefaultLog, apiResponseLocalVar, id, tagResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1365,7 +1362,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="tagResource"></param>
-        partial void AfterUpdateTag(ref bool suppressDefaultLog, IUpdateTagApiResponse apiResponseLocalVar, string id, Option<TagResource> tagResource);
+        partial void AfterPutTagById(ref bool suppressDefaultLog, IPutTagByIdApiResponse apiResponseLocalVar, string id, TagResource tagResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1375,10 +1372,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="tagResource"></param>
-        private void OnErrorUpdateTagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<TagResource> tagResource)
+        private void OnErrorPutTagByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, TagResource tagResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateTag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, tagResource);
+            OnErrorPutTagById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, tagResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1392,20 +1389,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="tagResource"></param>
-        partial void OnErrorUpdateTag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<TagResource> tagResource);
+        partial void OnErrorPutTagById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, TagResource tagResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="tagResource"> (optional)</param>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateTagApiResponse"/>&gt;</returns>
-        public async Task<IUpdateTagApiResponse?> UpdateTagOrDefaultAsync(string id, Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutTagByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutTagByIdApiResponse?> PutTagByIdOrDefaultAsync(string id, TagResource tagResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateTagAsync(id, tagResource, cancellationToken).ConfigureAwait(false);
+                return await PutTagByIdAsync(id, tagResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1418,18 +1415,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="tagResource"> (optional)</param>
+        /// <param name="tagResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateTagApiResponse"/>&gt;</returns>
-        public async Task<IUpdateTagApiResponse> UpdateTagAsync(string id, Option<TagResource> tagResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutTagByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutTagByIdApiResponse> PutTagByIdAsync(string id, TagResource tagResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateTag(id, tagResource);
+                ValidatePutTagById(id, tagResource);
 
-                FormatUpdateTag(ref id, tagResource);
+                FormatPutTagById(ref id, tagResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1441,12 +1438,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/tag/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (tagResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (tagResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (tagResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(tagResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(tagResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1481,7 +1475,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateTagApiResponse apiResponseLocalVar;
+                        PutTagByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1492,9 +1486,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateTagDefaultImplementation(apiResponseLocalVar, id, tagResource);
+                        AfterPutTagByIdDefaultImplementation(apiResponseLocalVar, id, tagResource);
 
-                        Events.ExecuteOnUpdateTag(apiResponseLocalVar);
+                        Events.ExecuteOnPutTagById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1506,16 +1500,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateTagDefaultImplementation(e, "/api/v3/tag/{id}", uriBuilderLocalVar.Path, id, tagResource);
-                Events.ExecuteOnErrorUpdateTag(e);
+                OnErrorPutTagByIdDefaultImplementation(e, "/api/v3/tag/{id}", uriBuilderLocalVar.Path, id, tagResource);
+                Events.ExecuteOnErrorPutTagById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateTagApiResponse"/>
+        /// The <see cref="PutTagByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateTagApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateTagApiResponse
+        public partial class PutTagByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutTagByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1523,7 +1517,7 @@ namespace Whisparr3.Net.Api
             public ILogger<TagApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateTagApiResponse"/>
+            /// The <see cref="PutTagByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1532,14 +1526,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutTagByIdApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateTagApiResponse"/>
+            /// The <see cref="PutTagByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1548,7 +1542,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateTagApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutTagByIdApiResponse(ILogger<TagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1557,50 +1551,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.TagResource? Ok()
+            public Whisparr3.Net.Model.TagResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.TagResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.TagResource? DefaultOk()
+            private Whisparr3.Net.Model.TagResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.TagResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.TagResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.TagResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.TagResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.TagResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

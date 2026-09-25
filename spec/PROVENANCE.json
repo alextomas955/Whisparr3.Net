@@ -1,14 +1,14 @@
 {
-  "capturedAt": "2026-09-04T21:40:00.095342Z",
+  "capturedAt": "2026-09-24T17:59:21.337707Z",
   "capturedFrom": "http://localhost:6969/docs/v3/openapi.json",
-  "imageDigest": "ghcr.io/hotio/whisparr@sha256:fab920114a75f1c86bbadf24c66f1e35a912ace9c7527e971f1032a569589ee6",
-  "whisparrVersion": "3.4.0.1387",
+  "image": "ghcr.io/hotio/whisparr@sha256:0f2af8b840e937f1e7f06aa535179692428f8c4b3f2dc139591f1640e9b4c6fb",
+  "whisparrVersion": "3.6.2.1727",
   "whisparrBranch": "eros",
-  "whisparrBuildTime": "2026-08-30T11:26:49Z",
-  "whisparrPackageVersion": "v3-7f610bc",
+  "whisparrBuildTime": "2026-09-24T02:45:36Z",
+  "whisparrPackageVersion": "v3-0a2e672",
   "specEndpoint": "/docs/v3/openapi.json",
-  "specSha256": "8ac2dbceedf65de542c6a8d2c7bb8d8f8fa6e155b651956079f9b192e8bedf18",
-  "specBytes": 381380,
+  "specSha256": "5cb377a22c5678e824440cac9be7a520773380c70c90d166d952d21d07fb74a9",
+  "specBytes": 447817,
   "specOpenApiVersion": "3.0.4",
-  "generatedSpecSha256": "665f8dcf872cae6168039850e1ff030a11955346754236867a05f83662c2fcb6"
+  "generatedSpecSha256": "25969dfd21fe35b2ad67c540866841fb3fd24c22593c342528a9f33827bc97b1"
 }

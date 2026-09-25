@@ -45,79 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsApiResponse"/>&gt;</returns>
-        Task<ICreateExclusionsApiResponse> CreateExclusionsAsync(Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsApiResponse"/>?&gt;</returns>
-        Task<ICreateExclusionsApiResponse?> CreateExclusionsOrDefaultAsync(Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsBulkApiResponse"/>&gt;</returns>
-        Task<ICreateExclusionsBulkApiResponse> CreateExclusionsBulkAsync(Option<List<ImportListExclusionResource>> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsBulkApiResponse"/>?&gt;</returns>
-        Task<ICreateExclusionsBulkApiResponse?> CreateExclusionsBulkOrDefaultAsync(Option<List<ImportListExclusionResource>> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsApiResponse"/>&gt;</returns>
-        Task<IDeleteExclusionsApiResponse> DeleteExclusionsAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsApiResponse"/>?&gt;</returns>
-        Task<IDeleteExclusionsApiResponse?> DeleteExclusionsOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListExclusionBulkResource"> (optional)</param>
+        /// <param name="importListExclusionBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsBulkApiResponse"/>&gt;</returns>
-        Task<IDeleteExclusionsBulkApiResponse> DeleteExclusionsBulkAsync(Option<ImportListExclusionBulkResource> importListExclusionBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteExclusionsBulkApiResponse> DeleteExclusionsBulkAsync(ImportListExclusionBulkResource importListExclusionBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -125,10 +56,58 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="importListExclusionBulkResource"> (optional)</param>
+        /// <param name="importListExclusionBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsBulkApiResponse"/>?&gt;</returns>
-        Task<IDeleteExclusionsBulkApiResponse?> DeleteExclusionsBulkOrDefaultAsync(Option<ImportListExclusionBulkResource> importListExclusionBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteExclusionsBulkApiResponse?> DeleteExclusionsBulkOrDefaultAsync(ImportListExclusionBulkResource importListExclusionBulkResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteExclusionsByIdApiResponse> DeleteExclusionsByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteExclusionsByIdApiResponse?> DeleteExclusionsByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="stashId"> (optional)</param>
+        /// <param name="type"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExclusionsApiResponse"/>&gt;</returns>
+        Task<IGetExclusionsApiResponse> GetExclusionsAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="stashId"> (optional)</param>
+        /// <param name="type"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExclusionsApiResponse"/>?&gt;</returns>
+        Task<IGetExclusionsApiResponse?> GetExclusionsOrDefaultAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -189,11 +168,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="type"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExclusionsApiResponse"/>&gt;</returns>
-        Task<IListExclusionsApiResponse> ListExclusionsAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsApiResponse"/>&gt;</returns>
+        Task<IPostExclusionsApiResponse> PostExclusionsAsync(ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -201,11 +179,33 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="type"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExclusionsApiResponse"/>?&gt;</returns>
-        Task<IListExclusionsApiResponse?> ListExclusionsOrDefaultAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsApiResponse"/>?&gt;</returns>
+        Task<IPostExclusionsApiResponse?> PostExclusionsOrDefaultAsync(ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListExclusionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsBulkApiResponse"/>&gt;</returns>
+        Task<IPostExclusionsBulkApiResponse> PostExclusionsBulkAsync(List<ImportListExclusionResource> importListExclusionResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="importListExclusionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsBulkApiResponse"/>?&gt;</returns>
+        Task<IPostExclusionsBulkApiResponse?> PostExclusionsBulkOrDefaultAsync(List<ImportListExclusionResource> importListExclusionResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -215,10 +215,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="importListExclusionResource"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateExclusionsApiResponse"/>&gt;</returns>
-        Task<IUpdateExclusionsApiResponse> UpdateExclusionsAsync(string id, Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutExclusionsByIdApiResponse"/>&gt;</returns>
+        Task<IPutExclusionsByIdApiResponse> PutExclusionsByIdAsync(string id, ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -227,52 +227,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="importListExclusionResource"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateExclusionsApiResponse"/>?&gt;</returns>
-        Task<IUpdateExclusionsApiResponse?> UpdateExclusionsOrDefaultAsync(string id, Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default);
-    }
-
-    /// <summary>
-    /// The <see cref="ICreateExclusionsApiResponse"/>
-    /// </summary>
-    public interface ICreateExclusionsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListExclusionResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="ICreateExclusionsBulkApiResponse"/>
-    /// </summary>
-    public interface ICreateExclusionsBulkApiResponse : Whisparr3.Net.Client.IApiResponse
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IDeleteExclusionsApiResponse"/>
-    /// </summary>
-    public interface IDeleteExclusionsApiResponse : Whisparr3.Net.Client.IApiResponse
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutExclusionsByIdApiResponse"/>?&gt;</returns>
+        Task<IPutExclusionsByIdApiResponse?> PutExclusionsByIdOrDefaultAsync(string id, ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
     /// The <see cref="IDeleteExclusionsBulkApiResponse"/>
     /// </summary>
     public interface IDeleteExclusionsBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IDeleteExclusionsByIdApiResponse"/>
+    /// </summary>
+    public interface IDeleteExclusionsByIdApiResponse : Whisparr3.Net.Client.IApiResponse
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetExclusionsApiResponse"/>
+    /// </summary>
+    public interface IGetExclusionsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListExclusionResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -306,9 +294,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListExclusionsApiResponse"/>
+    /// The <see cref="IPostExclusionsApiResponse"/>
     /// </summary>
-    public interface IListExclusionsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListExclusionResource>?>
+    public interface IPostExclusionsApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.ImportListExclusionResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostExclusionsBulkApiResponse"/>
+    /// </summary>
+    public interface IPostExclusionsBulkApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ImportListExclusionResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -318,15 +318,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateExclusionsApiResponse"/>
+    /// The <see cref="IPutExclusionsByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateExclusionsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ImportListExclusionResource?>
+    public interface IPutExclusionsByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.ImportListExclusionResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -334,66 +334,6 @@ namespace Whisparr3.Net.Api
     /// </summary>
     public class ImportListExclusionApiEvents
     {
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateExclusions;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateExclusions;
-
-        internal void ExecuteOnCreateExclusions(ImportListExclusionApi.CreateExclusionsApiResponse apiResponse)
-        {
-            OnCreateExclusions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorCreateExclusions(Exception exception)
-        {
-            OnErrorCreateExclusions?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateExclusionsBulk;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateExclusionsBulk;
-
-        internal void ExecuteOnCreateExclusionsBulk(ImportListExclusionApi.CreateExclusionsBulkApiResponse apiResponse)
-        {
-            OnCreateExclusionsBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorCreateExclusionsBulk(Exception exception)
-        {
-            OnErrorCreateExclusionsBulk?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteExclusions;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteExclusions;
-
-        internal void ExecuteOnDeleteExclusions(ImportListExclusionApi.DeleteExclusionsApiResponse apiResponse)
-        {
-            OnDeleteExclusions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeleteExclusions(Exception exception)
-        {
-            OnErrorDeleteExclusions?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -412,6 +352,46 @@ namespace Whisparr3.Net.Api
         internal void ExecuteOnErrorDeleteExclusionsBulk(Exception exception)
         {
             OnErrorDeleteExclusionsBulk?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteExclusionsById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteExclusionsById;
+
+        internal void ExecuteOnDeleteExclusionsById(ImportListExclusionApi.DeleteExclusionsByIdApiResponse apiResponse)
+        {
+            OnDeleteExclusionsById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorDeleteExclusionsById(Exception exception)
+        {
+            OnErrorDeleteExclusionsById?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetExclusions;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetExclusions;
+
+        internal void ExecuteOnGetExclusions(ImportListExclusionApi.GetExclusionsApiResponse apiResponse)
+        {
+            OnGetExclusions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetExclusions(Exception exception)
+        {
+            OnErrorGetExclusions?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -457,41 +437,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListExclusions;
+        public event EventHandler<ApiResponseEventArgs>? OnPostExclusions;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListExclusions;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostExclusions;
 
-        internal void ExecuteOnListExclusions(ImportListExclusionApi.ListExclusionsApiResponse apiResponse)
+        internal void ExecuteOnPostExclusions(ImportListExclusionApi.PostExclusionsApiResponse apiResponse)
         {
-            OnListExclusions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostExclusions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListExclusions(Exception exception)
+        internal void ExecuteOnErrorPostExclusions(Exception exception)
         {
-            OnErrorListExclusions?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostExclusions?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateExclusions;
+        public event EventHandler<ApiResponseEventArgs>? OnPostExclusionsBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateExclusions;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostExclusionsBulk;
 
-        internal void ExecuteOnUpdateExclusions(ImportListExclusionApi.UpdateExclusionsApiResponse apiResponse)
+        internal void ExecuteOnPostExclusionsBulk(ImportListExclusionApi.PostExclusionsBulkApiResponse apiResponse)
         {
-            OnUpdateExclusions?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostExclusionsBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateExclusions(Exception exception)
+        internal void ExecuteOnErrorPostExclusionsBulk(Exception exception)
         {
-            OnErrorUpdateExclusions?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostExclusionsBulk?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutExclusionsById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutExclusionsById;
+
+        internal void ExecuteOnPutExclusionsById(ImportListExclusionApi.PutExclusionsByIdApiResponse apiResponse)
+        {
+            OnPutExclusionsById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutExclusionsById(Exception exception)
+        {
+            OnErrorPutExclusionsById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -536,717 +536,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateExclusions(Option<ImportListExclusionResource> importListExclusionResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="importListExclusionResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateExclusions(Option<ImportListExclusionResource> importListExclusionResource)
-        {
-            if (importListExclusionResource.IsSet && importListExclusionResource.Value == null)
-                throw new ArgumentNullException(nameof(importListExclusionResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        private void AfterCreateExclusionsDefaultImplementation(ICreateExclusionsApiResponse apiResponseLocalVar, Option<ImportListExclusionResource> importListExclusionResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateExclusions(ref suppressDefaultLog, apiResponseLocalVar, importListExclusionResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        partial void AfterCreateExclusions(ref bool suppressDefaultLog, ICreateExclusionsApiResponse apiResponseLocalVar, Option<ImportListExclusionResource> importListExclusionResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        private void OnErrorCreateExclusionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListExclusionResource> importListExclusionResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateExclusions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListExclusionResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        partial void OnErrorCreateExclusions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListExclusionResource> importListExclusionResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsApiResponse"/>&gt;</returns>
-        public async Task<ICreateExclusionsApiResponse?> CreateExclusionsOrDefaultAsync(Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateExclusionsAsync(importListExclusionResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsApiResponse"/>&gt;</returns>
-        public async Task<ICreateExclusionsApiResponse> CreateExclusionsAsync(Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateExclusions(importListExclusionResource);
-
-                FormatCreateExclusions(importListExclusionResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/exclusions"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions");
-
-                    if (importListExclusionResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListExclusionResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateExclusionsApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/exclusions", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateExclusionsDefaultImplementation(apiResponseLocalVar, importListExclusionResource);
-
-                        Events.ExecuteOnCreateExclusions(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateExclusionsDefaultImplementation(e, "/api/v3/exclusions", uriBuilderLocalVar.Path, importListExclusionResource);
-                Events.ExecuteOnErrorCreateExclusions(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateExclusionsApiResponse"/>
-        /// </summary>
-        public partial class CreateExclusionsApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateExclusionsApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListExclusionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateExclusionsApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateExclusionsApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListExclusionResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.ImportListExclusionResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.ImportListExclusionResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListExclusionResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListExclusionResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListExclusionResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreateExclusionsBulk(Option<List<ImportListExclusionResource>> importListExclusionResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="importListExclusionResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateExclusionsBulk(Option<List<ImportListExclusionResource>> importListExclusionResource)
-        {
-            if (importListExclusionResource.IsSet && importListExclusionResource.Value == null)
-                throw new ArgumentNullException(nameof(importListExclusionResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        private void AfterCreateExclusionsBulkDefaultImplementation(ICreateExclusionsBulkApiResponse apiResponseLocalVar, Option<List<ImportListExclusionResource>> importListExclusionResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateExclusionsBulk(ref suppressDefaultLog, apiResponseLocalVar, importListExclusionResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        partial void AfterCreateExclusionsBulk(ref bool suppressDefaultLog, ICreateExclusionsBulkApiResponse apiResponseLocalVar, Option<List<ImportListExclusionResource>> importListExclusionResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        private void OnErrorCreateExclusionsBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<ImportListExclusionResource>> importListExclusionResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateExclusionsBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListExclusionResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="importListExclusionResource"></param>
-        partial void OnErrorCreateExclusionsBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<ImportListExclusionResource>> importListExclusionResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsBulkApiResponse"/>&gt;</returns>
-        public async Task<ICreateExclusionsBulkApiResponse?> CreateExclusionsBulkOrDefaultAsync(Option<List<ImportListExclusionResource>> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateExclusionsBulkAsync(importListExclusionResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListExclusionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateExclusionsBulkApiResponse"/>&gt;</returns>
-        public async Task<ICreateExclusionsBulkApiResponse> CreateExclusionsBulkAsync(Option<List<ImportListExclusionResource>> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateExclusionsBulk(importListExclusionResource);
-
-                FormatCreateExclusionsBulk(importListExclusionResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/exclusions/bulk"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions/bulk");
-
-                    if (importListExclusionResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListExclusionResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json",
-                        "text/json",
-                        "application/*+json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateExclusionsBulkApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/exclusions/bulk", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateExclusionsBulkDefaultImplementation(apiResponseLocalVar, importListExclusionResource);
-
-                        Events.ExecuteOnCreateExclusionsBulk(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateExclusionsBulkDefaultImplementation(e, "/api/v3/exclusions/bulk", uriBuilderLocalVar.Path, importListExclusionResource);
-                Events.ExecuteOnErrorCreateExclusionsBulk(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateExclusionsBulkApiResponse"/>
-        /// </summary>
-        public partial class CreateExclusionsBulkApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateExclusionsBulkApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListExclusionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateExclusionsBulkApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateExclusionsBulkApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateExclusionsBulkApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateExclusionsBulkApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteExclusions(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterDeleteExclusionsDefaultImplementation(IDeleteExclusionsApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteExclusions(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterDeleteExclusions(ref bool suppressDefaultLog, IDeleteExclusionsApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorDeleteExclusionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteExclusions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorDeleteExclusions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsApiResponse"/>&gt;</returns>
-        public async Task<IDeleteExclusionsApiResponse?> DeleteExclusionsOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteExclusionsAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsApiResponse"/>&gt;</returns>
-        public async Task<IDeleteExclusionsApiResponse> DeleteExclusionsAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteExclusions(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/exclusions/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteExclusionsApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/exclusions/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteExclusionsDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnDeleteExclusions(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteExclusionsDefaultImplementation(e, "/api/v3/exclusions/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteExclusions(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteExclusionsApiResponse"/>
-        /// </summary>
-        public partial class DeleteExclusionsApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteExclusionsApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ImportListExclusionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteExclusionsApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteExclusionsApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteExclusionsBulk(Option<ImportListExclusionBulkResource> importListExclusionBulkResource);
+        partial void FormatDeleteExclusionsBulk(ImportListExclusionBulkResource importListExclusionBulkResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="importListExclusionBulkResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteExclusionsBulk(Option<ImportListExclusionBulkResource> importListExclusionBulkResource)
+        private void ValidateDeleteExclusionsBulk(ImportListExclusionBulkResource importListExclusionBulkResource)
         {
-            if (importListExclusionBulkResource.IsSet && importListExclusionBulkResource.Value == null)
+            if (importListExclusionBulkResource == null)
                 throw new ArgumentNullException(nameof(importListExclusionBulkResource));
         }
 
@@ -1255,7 +554,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="importListExclusionBulkResource"></param>
-        private void AfterDeleteExclusionsBulkDefaultImplementation(IDeleteExclusionsBulkApiResponse apiResponseLocalVar, Option<ImportListExclusionBulkResource> importListExclusionBulkResource)
+        private void AfterDeleteExclusionsBulkDefaultImplementation(IDeleteExclusionsBulkApiResponse apiResponseLocalVar, ImportListExclusionBulkResource importListExclusionBulkResource)
         {
             bool suppressDefaultLog = false;
             AfterDeleteExclusionsBulk(ref suppressDefaultLog, apiResponseLocalVar, importListExclusionBulkResource);
@@ -1269,7 +568,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="importListExclusionBulkResource"></param>
-        partial void AfterDeleteExclusionsBulk(ref bool suppressDefaultLog, IDeleteExclusionsBulkApiResponse apiResponseLocalVar, Option<ImportListExclusionBulkResource> importListExclusionBulkResource);
+        partial void AfterDeleteExclusionsBulk(ref bool suppressDefaultLog, IDeleteExclusionsBulkApiResponse apiResponseLocalVar, ImportListExclusionBulkResource importListExclusionBulkResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1278,7 +577,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="importListExclusionBulkResource"></param>
-        private void OnErrorDeleteExclusionsBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListExclusionBulkResource> importListExclusionBulkResource)
+        private void OnErrorDeleteExclusionsBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListExclusionBulkResource importListExclusionBulkResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorDeleteExclusionsBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListExclusionBulkResource);
@@ -1294,15 +593,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="importListExclusionBulkResource"></param>
-        partial void OnErrorDeleteExclusionsBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ImportListExclusionBulkResource> importListExclusionBulkResource);
+        partial void OnErrorDeleteExclusionsBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListExclusionBulkResource importListExclusionBulkResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="importListExclusionBulkResource"> (optional)</param>
+        /// <param name="importListExclusionBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteExclusionsBulkApiResponse?> DeleteExclusionsBulkOrDefaultAsync(Option<ImportListExclusionBulkResource> importListExclusionBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteExclusionsBulkApiResponse?> DeleteExclusionsBulkOrDefaultAsync(ImportListExclusionBulkResource importListExclusionBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -1318,10 +617,10 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="importListExclusionBulkResource"> (optional)</param>
+        /// <param name="importListExclusionBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteExclusionsBulkApiResponse> DeleteExclusionsBulkAsync(Option<ImportListExclusionBulkResource> importListExclusionBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteExclusionsBulkApiResponse> DeleteExclusionsBulkAsync(ImportListExclusionBulkResource importListExclusionBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1340,12 +639,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/exclusions/bulk"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions/bulk");
 
-                    if (importListExclusionBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListExclusionBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importListExclusionBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1449,6 +745,479 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatDeleteExclusionsById(ref int id);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        private void AfterDeleteExclusionsByIdDefaultImplementation(IDeleteExclusionsByIdApiResponse apiResponseLocalVar, int id)
+        {
+            bool suppressDefaultLog = false;
+            AfterDeleteExclusionsById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        partial void AfterDeleteExclusionsById(ref bool suppressDefaultLog, IDeleteExclusionsByIdApiResponse apiResponseLocalVar, int id);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        private void OnErrorDeleteExclusionsByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorDeleteExclusionsById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        partial void OnErrorDeleteExclusionsById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteExclusionsByIdApiResponse?> DeleteExclusionsByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await DeleteExclusionsByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteExclusionsByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteExclusionsByIdApiResponse> DeleteExclusionsByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatDeleteExclusionsById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/exclusions/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        DeleteExclusionsByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/exclusions/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterDeleteExclusionsByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnDeleteExclusionsById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorDeleteExclusionsByIdDefaultImplementation(e, "/api/v3/exclusions/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteExclusionsById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="DeleteExclusionsByIdApiResponse"/>
+        /// </summary>
+        public partial class DeleteExclusionsByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteExclusionsByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListExclusionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="DeleteExclusionsByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteExclusionsByIdApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="DeleteExclusionsByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public DeleteExclusionsByIdApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetExclusions(ref Option<string> stashId, ref Option<ImportExclusionType> type);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="stashId"></param>
+        /// <returns></returns>
+        private void ValidateGetExclusions(Option<string> stashId)
+        {
+            if (stashId.IsSet && stashId.Value == null)
+                throw new ArgumentNullException(nameof(stashId));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="stashId"></param>
+        /// <param name="type"></param>
+        private void AfterGetExclusionsDefaultImplementation(IGetExclusionsApiResponse apiResponseLocalVar, Option<string> stashId, Option<ImportExclusionType> type)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetExclusions(ref suppressDefaultLog, apiResponseLocalVar, stashId, type);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="stashId"></param>
+        /// <param name="type"></param>
+        partial void AfterGetExclusions(ref bool suppressDefaultLog, IGetExclusionsApiResponse apiResponseLocalVar, Option<string> stashId, Option<ImportExclusionType> type);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="stashId"></param>
+        /// <param name="type"></param>
+        private void OnErrorGetExclusionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId, Option<ImportExclusionType> type)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetExclusions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, stashId, type);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="stashId"></param>
+        /// <param name="type"></param>
+        partial void OnErrorGetExclusions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId, Option<ImportExclusionType> type);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="stashId"> (optional)</param>
+        /// <param name="type"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExclusionsApiResponse"/>&gt;</returns>
+        public async Task<IGetExclusionsApiResponse?> GetExclusionsOrDefaultAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetExclusionsAsync(stashId, type, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="stashId"> (optional)</param>
+        /// <param name="type"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExclusionsApiResponse"/>&gt;</returns>
+        public async Task<IGetExclusionsApiResponse> GetExclusionsAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetExclusions(stashId);
+
+                FormatGetExclusions(ref stashId, ref type);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/exclusions"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (stashId.IsSet)
+                        parseQueryStringLocalVar["stashId"] = ClientUtils.ParameterToString(stashId.Value);
+
+                    if (type.IsSet)
+                        parseQueryStringLocalVar["type"] = ClientUtils.ParameterToString(type.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetExclusionsApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/exclusions", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetExclusionsDefaultImplementation(apiResponseLocalVar, stashId, type);
+
+                        Events.ExecuteOnGetExclusions(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetExclusionsDefaultImplementation(e, "/api/v3/exclusions", uriBuilderLocalVar.Path, stashId, type);
+                Events.ExecuteOnErrorGetExclusions(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetExclusionsApiResponse"/>
+        /// </summary>
+        public partial class GetExclusionsApiResponse : Whisparr3.Net.Client.ApiResponse, IGetExclusionsApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListExclusionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetExclusionsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetExclusionsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ImportListExclusionResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ImportListExclusionResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ImportListExclusionResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ImportListExclusionResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ImportListExclusionResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ImportListExclusionResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -2007,29 +1776,28 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListExclusions(ref Option<string> stashId, ref Option<ImportExclusionType> type);
+        partial void FormatPostExclusions(ImportListExclusionResource importListExclusionResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="stashId"></param>
+        /// <param name="importListExclusionResource"></param>
         /// <returns></returns>
-        private void ValidateListExclusions(Option<string> stashId)
+        private void ValidatePostExclusions(ImportListExclusionResource importListExclusionResource)
         {
-            if (stashId.IsSet && stashId.Value == null)
-                throw new ArgumentNullException(nameof(stashId));
+            if (importListExclusionResource == null)
+                throw new ArgumentNullException(nameof(importListExclusionResource));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="stashId"></param>
-        /// <param name="type"></param>
-        private void AfterListExclusionsDefaultImplementation(IListExclusionsApiResponse apiResponseLocalVar, Option<string> stashId, Option<ImportExclusionType> type)
+        /// <param name="importListExclusionResource"></param>
+        private void AfterPostExclusionsDefaultImplementation(IPostExclusionsApiResponse apiResponseLocalVar, ImportListExclusionResource importListExclusionResource)
         {
             bool suppressDefaultLog = false;
-            AfterListExclusions(ref suppressDefaultLog, apiResponseLocalVar, stashId, type);
+            AfterPostExclusions(ref suppressDefaultLog, apiResponseLocalVar, importListExclusionResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2039,9 +1807,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="stashId"></param>
-        /// <param name="type"></param>
-        partial void AfterListExclusions(ref bool suppressDefaultLog, IListExclusionsApiResponse apiResponseLocalVar, Option<string> stashId, Option<ImportExclusionType> type);
+        /// <param name="importListExclusionResource"></param>
+        partial void AfterPostExclusions(ref bool suppressDefaultLog, IPostExclusionsApiResponse apiResponseLocalVar, ImportListExclusionResource importListExclusionResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2049,12 +1816,11 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="stashId"></param>
-        /// <param name="type"></param>
-        private void OnErrorListExclusionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId, Option<ImportExclusionType> type)
+        /// <param name="importListExclusionResource"></param>
+        private void OnErrorPostExclusionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListExclusionResource importListExclusionResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListExclusions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, stashId, type);
+            OnErrorPostExclusions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListExclusionResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2066,22 +1832,20 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="stashId"></param>
-        /// <param name="type"></param>
-        partial void OnErrorListExclusions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId, Option<ImportExclusionType> type);
+        /// <param name="importListExclusionResource"></param>
+        partial void OnErrorPostExclusions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ImportListExclusionResource importListExclusionResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="type"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExclusionsApiResponse"/>&gt;</returns>
-        public async Task<IListExclusionsApiResponse?> ListExclusionsOrDefaultAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsApiResponse"/>&gt;</returns>
+        public async Task<IPostExclusionsApiResponse?> PostExclusionsOrDefaultAsync(ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListExclusionsAsync(stashId, type, cancellationToken).ConfigureAwait(false);
+                return await PostExclusionsAsync(importListExclusionResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2093,19 +1857,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="type"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExclusionsApiResponse"/>&gt;</returns>
-        public async Task<IListExclusionsApiResponse> ListExclusionsAsync(Option<string> stashId = default, Option<ImportExclusionType> type = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsApiResponse"/>&gt;</returns>
+        public async Task<IPostExclusionsApiResponse> PostExclusionsAsync(ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListExclusions(stashId);
+                ValidatePostExclusions(importListExclusionResource);
 
-                FormatListExclusions(ref stashId, ref type);
+                FormatPostExclusions(importListExclusionResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2116,15 +1879,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/exclusions"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions");
 
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (stashId.IsSet)
-                        parseQueryStringLocalVar["stashId"] = ClientUtils.ParameterToString(stashId.Value);
-
-                    if (type.IsSet)
-                        parseQueryStringLocalVar["type"] = ClientUtils.ParameterToString(type.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+                    httpRequestMessageLocalVar.Content = (importListExclusionResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2133,8 +1890,19 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
-                    string[] acceptLocalVars = new string[] {
+                    string[] contentTypes = new string[] {
                         "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
                     };
 
                     IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
@@ -2142,13 +1910,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListExclusionsApiResponse apiResponseLocalVar;
+                        PostExclusionsApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2159,9 +1927,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListExclusionsDefaultImplementation(apiResponseLocalVar, stashId, type);
+                        AfterPostExclusionsDefaultImplementation(apiResponseLocalVar, importListExclusionResource);
 
-                        Events.ExecuteOnListExclusions(apiResponseLocalVar);
+                        Events.ExecuteOnPostExclusions(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2173,16 +1941,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListExclusionsDefaultImplementation(e, "/api/v3/exclusions", uriBuilderLocalVar.Path, stashId, type);
-                Events.ExecuteOnErrorListExclusions(e);
+                OnErrorPostExclusionsDefaultImplementation(e, "/api/v3/exclusions", uriBuilderLocalVar.Path, importListExclusionResource);
+                Events.ExecuteOnErrorPostExclusions(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListExclusionsApiResponse"/>
+        /// The <see cref="PostExclusionsApiResponse"/>
         /// </summary>
-        public partial class ListExclusionsApiResponse : Whisparr3.Net.Client.ApiResponse, IListExclusionsApiResponse
+        public partial class PostExclusionsApiResponse : Whisparr3.Net.Client.ApiResponse, IPostExclusionsApiResponse
         {
             /// <summary>
             /// The logger
@@ -2190,7 +1958,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListExclusionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListExclusionsApiResponse"/>
+            /// The <see cref="PostExclusionsApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2199,14 +1967,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListExclusionsApiResponse"/>
+            /// The <see cref="PostExclusionsApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2215,7 +1983,285 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.ImportListExclusionResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.ImportListExclusionResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.ImportListExclusionResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListExclusionResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListExclusionResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListExclusionResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostExclusionsBulk(List<ImportListExclusionResource> importListExclusionResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="importListExclusionResource"></param>
+        /// <returns></returns>
+        private void ValidatePostExclusionsBulk(List<ImportListExclusionResource> importListExclusionResource)
+        {
+            if (importListExclusionResource == null)
+                throw new ArgumentNullException(nameof(importListExclusionResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="importListExclusionResource"></param>
+        private void AfterPostExclusionsBulkDefaultImplementation(IPostExclusionsBulkApiResponse apiResponseLocalVar, List<ImportListExclusionResource> importListExclusionResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostExclusionsBulk(ref suppressDefaultLog, apiResponseLocalVar, importListExclusionResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="importListExclusionResource"></param>
+        partial void AfterPostExclusionsBulk(ref bool suppressDefaultLog, IPostExclusionsBulkApiResponse apiResponseLocalVar, List<ImportListExclusionResource> importListExclusionResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="importListExclusionResource"></param>
+        private void OnErrorPostExclusionsBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<ImportListExclusionResource> importListExclusionResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostExclusionsBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, importListExclusionResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="importListExclusionResource"></param>
+        partial void OnErrorPostExclusionsBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<ImportListExclusionResource> importListExclusionResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="importListExclusionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsBulkApiResponse"/>&gt;</returns>
+        public async Task<IPostExclusionsBulkApiResponse?> PostExclusionsBulkOrDefaultAsync(List<ImportListExclusionResource> importListExclusionResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostExclusionsBulkAsync(importListExclusionResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="importListExclusionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostExclusionsBulkApiResponse"/>&gt;</returns>
+        public async Task<IPostExclusionsBulkApiResponse> PostExclusionsBulkAsync(List<ImportListExclusionResource> importListExclusionResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostExclusionsBulk(importListExclusionResource);
+
+                FormatPostExclusionsBulk(importListExclusionResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/exclusions/bulk"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions/bulk");
+
+                    httpRequestMessageLocalVar.Content = (importListExclusionResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json",
+                        "text/json",
+                        "application/*+json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostExclusionsBulkApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/exclusions/bulk", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostExclusionsBulkDefaultImplementation(apiResponseLocalVar, importListExclusionResource);
+
+                        Events.ExecuteOnPostExclusionsBulk(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostExclusionsBulkDefaultImplementation(e, "/api/v3/exclusions/bulk", uriBuilderLocalVar.Path, importListExclusionResource);
+                Events.ExecuteOnErrorPostExclusionsBulk(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostExclusionsBulkApiResponse"/>
+        /// </summary>
+        public partial class PostExclusionsBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPostExclusionsBulkApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ImportListExclusionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostExclusionsBulkApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostExclusionsBulkApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostExclusionsBulkApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostExclusionsBulkApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2284,7 +2330,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateExclusions(ref string id, Option<ImportListExclusionResource> importListExclusionResource);
+        partial void FormatPutExclusionsById(ref string id, ImportListExclusionResource importListExclusionResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -2292,12 +2338,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="importListExclusionResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateExclusions(string id, Option<ImportListExclusionResource> importListExclusionResource)
+        private void ValidatePutExclusionsById(string id, ImportListExclusionResource importListExclusionResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (importListExclusionResource.IsSet && importListExclusionResource.Value == null)
+            if (importListExclusionResource == null)
                 throw new ArgumentNullException(nameof(importListExclusionResource));
         }
 
@@ -2307,10 +2353,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListExclusionResource"></param>
-        private void AfterUpdateExclusionsDefaultImplementation(IUpdateExclusionsApiResponse apiResponseLocalVar, string id, Option<ImportListExclusionResource> importListExclusionResource)
+        private void AfterPutExclusionsByIdDefaultImplementation(IPutExclusionsByIdApiResponse apiResponseLocalVar, string id, ImportListExclusionResource importListExclusionResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateExclusions(ref suppressDefaultLog, apiResponseLocalVar, id, importListExclusionResource);
+            AfterPutExclusionsById(ref suppressDefaultLog, apiResponseLocalVar, id, importListExclusionResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2322,7 +2368,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListExclusionResource"></param>
-        partial void AfterUpdateExclusions(ref bool suppressDefaultLog, IUpdateExclusionsApiResponse apiResponseLocalVar, string id, Option<ImportListExclusionResource> importListExclusionResource);
+        partial void AfterPutExclusionsById(ref bool suppressDefaultLog, IPutExclusionsByIdApiResponse apiResponseLocalVar, string id, ImportListExclusionResource importListExclusionResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2332,10 +2378,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListExclusionResource"></param>
-        private void OnErrorUpdateExclusionsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<ImportListExclusionResource> importListExclusionResource)
+        private void OnErrorPutExclusionsByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, ImportListExclusionResource importListExclusionResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateExclusions(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, importListExclusionResource);
+            OnErrorPutExclusionsById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, importListExclusionResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2349,20 +2395,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="importListExclusionResource"></param>
-        partial void OnErrorUpdateExclusions(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<ImportListExclusionResource> importListExclusionResource);
+        partial void OnErrorPutExclusionsById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, ImportListExclusionResource importListExclusionResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="importListExclusionResource"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateExclusionsApiResponse"/>&gt;</returns>
-        public async Task<IUpdateExclusionsApiResponse?> UpdateExclusionsOrDefaultAsync(string id, Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutExclusionsByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutExclusionsByIdApiResponse?> PutExclusionsByIdOrDefaultAsync(string id, ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateExclusionsAsync(id, importListExclusionResource, cancellationToken).ConfigureAwait(false);
+                return await PutExclusionsByIdAsync(id, importListExclusionResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2375,18 +2421,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="importListExclusionResource"> (optional)</param>
+        /// <param name="importListExclusionResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateExclusionsApiResponse"/>&gt;</returns>
-        public async Task<IUpdateExclusionsApiResponse> UpdateExclusionsAsync(string id, Option<ImportListExclusionResource> importListExclusionResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutExclusionsByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutExclusionsByIdApiResponse> PutExclusionsByIdAsync(string id, ImportListExclusionResource importListExclusionResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateExclusions(id, importListExclusionResource);
+                ValidatePutExclusionsById(id, importListExclusionResource);
 
-                FormatUpdateExclusions(ref id, importListExclusionResource);
+                FormatPutExclusionsById(ref id, importListExclusionResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2398,12 +2444,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/exclusions/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (importListExclusionResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (importListExclusionResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (importListExclusionResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(importListExclusionResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2438,7 +2481,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateExclusionsApiResponse apiResponseLocalVar;
+                        PutExclusionsByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2449,9 +2492,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateExclusionsDefaultImplementation(apiResponseLocalVar, id, importListExclusionResource);
+                        AfterPutExclusionsByIdDefaultImplementation(apiResponseLocalVar, id, importListExclusionResource);
 
-                        Events.ExecuteOnUpdateExclusions(apiResponseLocalVar);
+                        Events.ExecuteOnPutExclusionsById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2463,16 +2506,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateExclusionsDefaultImplementation(e, "/api/v3/exclusions/{id}", uriBuilderLocalVar.Path, id, importListExclusionResource);
-                Events.ExecuteOnErrorUpdateExclusions(e);
+                OnErrorPutExclusionsByIdDefaultImplementation(e, "/api/v3/exclusions/{id}", uriBuilderLocalVar.Path, id, importListExclusionResource);
+                Events.ExecuteOnErrorPutExclusionsById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateExclusionsApiResponse"/>
+        /// The <see cref="PutExclusionsByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateExclusionsApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateExclusionsApiResponse
+        public partial class PutExclusionsByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutExclusionsByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -2480,7 +2523,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ImportListExclusionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateExclusionsApiResponse"/>
+            /// The <see cref="PutExclusionsByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2489,14 +2532,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutExclusionsByIdApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateExclusionsApiResponse"/>
+            /// The <see cref="PutExclusionsByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2505,7 +2548,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateExclusionsApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutExclusionsByIdApiResponse(ILogger<ImportListExclusionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2514,50 +2557,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.ImportListExclusionResource? Ok()
+            public Whisparr3.Net.Model.ImportListExclusionResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.ImportListExclusionResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.ImportListExclusionResource? DefaultOk()
+            private Whisparr3.Net.Model.ImportListExclusionResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ImportListExclusionResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListExclusionResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.ImportListExclusionResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListExclusionResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.ImportListExclusionResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

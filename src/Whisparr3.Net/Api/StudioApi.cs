@@ -45,81 +45,12 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioApiResponse"/>&gt;</returns>
-        Task<ICreateStudioApiResponse> CreateStudioAsync(Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="studioResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioApiResponse"/>?&gt;</returns>
-        Task<ICreateStudioApiResponse?> CreateStudioOrDefaultAsync(Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioListApiResponse"/>&gt;</returns>
-        Task<ICreateStudioListApiResponse> CreateStudioListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
-        /// </remarks>
-        /// <param name="requestBody"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioListApiResponse"/>?&gt;</returns>
-        Task<ICreateStudioListApiResponse?> CreateStudioListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>&gt;</returns>
-        Task<ICreateStudioPagedApiResponse> CreateStudioPagedAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>?&gt;</returns>
-        Task<ICreateStudioPagedApiResponse?> CreateStudioPagedOrDefaultAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="deleteFiles"> (optional, default to false)</param>
         /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioApiResponse"/>&gt;</returns>
-        Task<IDeleteStudioApiResponse> DeleteStudioAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteStudioByIdApiResponse> DeleteStudioByIdAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -131,77 +62,54 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles"> (optional, default to false)</param>
         /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioApiResponse"/>?&gt;</returns>
-        Task<IDeleteStudioApiResponse?> DeleteStudioOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteStudioByIdApiResponse?> DeleteStudioByIdOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
         /// </summary>
         /// <remarks>
         /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="stashId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioApiResponse"/>&gt;</returns>
+        Task<IGetStudioApiResponse> GetStudioAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="stashId"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioApiResponse"/>?&gt;</returns>
+        Task<IGetStudioApiResponse?> GetStudioOrDefaultAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb)
+        /// </summary>
+        /// <remarks>
+        /// A numeric value is routed to the internal ID lookup instead.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByIdApiResponse"/>&gt;</returns>
-        Task<IGetStudioByIdApiResponse> GetStudioByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetStudioByIdApiResponse> GetStudioByIdAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// 
+        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb)
         /// </summary>
         /// <remarks>
-        /// 
+        /// A numeric value is routed to the internal ID lookup instead.
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByIdApiResponse"/>?&gt;</returns>
-        Task<IGetStudioByIdApiResponse?> GetStudioByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdApiResponse"/>&gt;</returns>
-        Task<IGetStudioByStudioForeignIdApiResponse> GetStudioByStudioForeignIdAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb)
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="studioForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdApiResponse"/>?&gt;</returns>
-        Task<IGetStudioByStudioForeignIdApiResponse?> GetStudioByStudioForeignIdOrDefaultAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioApiResponse"/>&gt;</returns>
-        Task<IListStudioApiResponse> ListStudioAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioApiResponse"/>?&gt;</returns>
-        Task<IListStudioApiResponse?> ListStudioOrDefaultAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetStudioByIdApiResponse?> GetStudioByIdOrDefaultAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb)
@@ -212,8 +120,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="studioForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioWorksApiResponse"/>&gt;</returns>
-        Task<IListStudioWorksApiResponse> ListStudioWorksAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdWorksApiResponse"/>&gt;</returns>
+        Task<IGetStudioByStudioForeignIdWorksApiResponse> GetStudioByStudioForeignIdWorksAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb)
@@ -223,8 +131,77 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="studioForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioWorksApiResponse"/>?&gt;</returns>
-        Task<IListStudioWorksApiResponse?> ListStudioWorksOrDefaultAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdWorksApiResponse"/>?&gt;</returns>
+        Task<IGetStudioByStudioForeignIdWorksApiResponse?> GetStudioByStudioForeignIdWorksOrDefaultAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="studioResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioApiResponse"/>&gt;</returns>
+        Task<IPostStudioApiResponse> PostStudioAsync(StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="studioResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioApiResponse"/>?&gt;</returns>
+        Task<IPostStudioApiResponse?> PostStudioOrDefaultAsync(StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)
+        /// </summary>
+        /// <remarks>
+        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioListApiResponse"/>&gt;</returns>
+        Task<IPostStudioListApiResponse> PostStudioListAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb)
+        /// </summary>
+        /// <remarks>
+        /// If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </remarks>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioListApiResponse"/>?&gt;</returns>
+        Task<IPostStudioListApiResponse?> PostStudioListOrDefaultAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a paged list of studios with advanced filtering options
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="studioPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioPagedApiResponse"/>&gt;</returns>
+        Task<IPostStudioPagedApiResponse> PostStudioPagedAsync(StudioPagingRequestResource studioPagingRequestResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves a paged list of studios with advanced filtering options
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="studioPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioPagedApiResponse"/>?&gt;</returns>
+        Task<IPostStudioPagedApiResponse?> PostStudioPagedOrDefaultAsync(StudioPagingRequestResource studioPagingRequestResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -234,10 +211,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="studioResource"> (optional)</param>
+        /// <param name="studioResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateStudioApiResponse"/>&gt;</returns>
-        Task<IUpdateStudioApiResponse> UpdateStudioAsync(string id, Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioByIdApiResponse"/>&gt;</returns>
+        Task<IPutStudioByIdApiResponse> PutStudioByIdAsync(string id, StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -246,16 +223,16 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="studioResource"> (optional)</param>
+        /// <param name="studioResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateStudioApiResponse"/>?&gt;</returns>
-        Task<IUpdateStudioApiResponse?> UpdateStudioOrDefaultAsync(string id, Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioByIdApiResponse"/>?&gt;</returns>
+        Task<IPutStudioByIdApiResponse?> PutStudioByIdOrDefaultAsync(string id, StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateStudioApiResponse"/>
+    /// The <see cref="IDeleteStudioByIdApiResponse"/>
     /// </summary>
-    public interface ICreateStudioApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.StudioResource?>
+    public interface IDeleteStudioByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -265,33 +242,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateStudioListApiResponse"/>
+    /// The <see cref="IGetStudioApiResponse"/>
     /// </summary>
-    public interface ICreateStudioListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<StudioResource>?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="ICreateStudioPagedApiResponse"/>
-    /// </summary>
-    public interface ICreateStudioPagedApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.StudioResourcePagingResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IDeleteStudioApiResponse"/>
-    /// </summary>
-    public interface IDeleteStudioApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetStudioApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<StudioResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -310,12 +263,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 404 NotFound
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
     }
 
     /// <summary>
-    /// The <see cref="IGetStudioByStudioForeignIdApiResponse"/>
+    /// The <see cref="IGetStudioByStudioForeignIdWorksApiResponse"/>
     /// </summary>
-    public interface IGetStudioByStudioForeignIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.StudioResource?>
+    public interface IGetStudioByStudioForeignIdWorksApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -331,9 +290,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListStudioApiResponse"/>
+    /// The <see cref="IPostStudioApiResponse"/>
     /// </summary>
-    public interface IListStudioApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<StudioResource>?>
+    public interface IPostStudioApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.StudioResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostStudioListApiResponse"/>
+    /// </summary>
+    public interface IPostStudioListApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<StudioResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -343,33 +314,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListStudioWorksApiResponse"/>
+    /// The <see cref="IPostStudioPagedApiResponse"/>
     /// </summary>
-    public interface IListStudioWorksApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
+    public interface IPostStudioPagedApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.StudioResourcePagingResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
-
-        /// <summary>
-        /// Returns true if the response is 404 NotFound
-        /// </summary>
-        /// <returns></returns>
-        bool IsNotFound { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateStudioApiResponse"/>
+    /// The <see cref="IPutStudioByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateStudioApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.StudioResource?>
+    public interface IPutStudioByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.StudioResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -380,81 +345,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateStudio;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteStudioById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateStudio;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteStudioById;
 
-        internal void ExecuteOnCreateStudio(StudioApi.CreateStudioApiResponse apiResponse)
+        internal void ExecuteOnDeleteStudioById(StudioApi.DeleteStudioByIdApiResponse apiResponse)
         {
-            OnCreateStudio?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteStudioById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateStudio(Exception exception)
+        internal void ExecuteOnErrorDeleteStudioById(Exception exception)
         {
-            OnErrorCreateStudio?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteStudioById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateStudioList;
+        public event EventHandler<ApiResponseEventArgs>? OnGetStudio;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateStudioList;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetStudio;
 
-        internal void ExecuteOnCreateStudioList(StudioApi.CreateStudioListApiResponse apiResponse)
+        internal void ExecuteOnGetStudio(StudioApi.GetStudioApiResponse apiResponse)
         {
-            OnCreateStudioList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetStudio?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateStudioList(Exception exception)
+        internal void ExecuteOnErrorGetStudio(Exception exception)
         {
-            OnErrorCreateStudioList?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateStudioPaged;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateStudioPaged;
-
-        internal void ExecuteOnCreateStudioPaged(StudioApi.CreateStudioPagedApiResponse apiResponse)
-        {
-            OnCreateStudioPaged?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorCreateStudioPaged(Exception exception)
-        {
-            OnErrorCreateStudioPaged?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteStudio;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteStudio;
-
-        internal void ExecuteOnDeleteStudio(StudioApi.DeleteStudioApiResponse apiResponse)
-        {
-            OnDeleteStudio?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeleteStudio(Exception exception)
-        {
-            OnErrorDeleteStudio?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetStudio?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -480,81 +405,101 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetStudioByStudioForeignId;
+        public event EventHandler<ApiResponseEventArgs>? OnGetStudioByStudioForeignIdWorks;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetStudioByStudioForeignId;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetStudioByStudioForeignIdWorks;
 
-        internal void ExecuteOnGetStudioByStudioForeignId(StudioApi.GetStudioByStudioForeignIdApiResponse apiResponse)
+        internal void ExecuteOnGetStudioByStudioForeignIdWorks(StudioApi.GetStudioByStudioForeignIdWorksApiResponse apiResponse)
         {
-            OnGetStudioByStudioForeignId?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetStudioByStudioForeignIdWorks?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetStudioByStudioForeignId(Exception exception)
+        internal void ExecuteOnErrorGetStudioByStudioForeignIdWorks(Exception exception)
         {
-            OnErrorGetStudioByStudioForeignId?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetStudioByStudioForeignIdWorks?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListStudio;
+        public event EventHandler<ApiResponseEventArgs>? OnPostStudio;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListStudio;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostStudio;
 
-        internal void ExecuteOnListStudio(StudioApi.ListStudioApiResponse apiResponse)
+        internal void ExecuteOnPostStudio(StudioApi.PostStudioApiResponse apiResponse)
         {
-            OnListStudio?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostStudio?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListStudio(Exception exception)
+        internal void ExecuteOnErrorPostStudio(Exception exception)
         {
-            OnErrorListStudio?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostStudio?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListStudioWorks;
+        public event EventHandler<ApiResponseEventArgs>? OnPostStudioList;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListStudioWorks;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostStudioList;
 
-        internal void ExecuteOnListStudioWorks(StudioApi.ListStudioWorksApiResponse apiResponse)
+        internal void ExecuteOnPostStudioList(StudioApi.PostStudioListApiResponse apiResponse)
         {
-            OnListStudioWorks?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostStudioList?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListStudioWorks(Exception exception)
+        internal void ExecuteOnErrorPostStudioList(Exception exception)
         {
-            OnErrorListStudioWorks?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostStudioList?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateStudio;
+        public event EventHandler<ApiResponseEventArgs>? OnPostStudioPaged;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateStudio;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostStudioPaged;
 
-        internal void ExecuteOnUpdateStudio(StudioApi.UpdateStudioApiResponse apiResponse)
+        internal void ExecuteOnPostStudioPaged(StudioApi.PostStudioPagedApiResponse apiResponse)
         {
-            OnUpdateStudio?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostStudioPaged?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateStudio(Exception exception)
+        internal void ExecuteOnErrorPostStudioPaged(Exception exception)
         {
-            OnErrorUpdateStudio?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostStudioPaged?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutStudioById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutStudioById;
+
+        internal void ExecuteOnPutStudioById(StudioApi.PutStudioByIdApiResponse apiResponse)
+        {
+            OnPutStudioById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutStudioById(Exception exception)
+        {
+            OnErrorPutStudioById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -599,28 +544,19 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateStudio(Option<StudioResource> studioResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="studioResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateStudio(Option<StudioResource> studioResource)
-        {
-            if (studioResource.IsSet && studioResource.Value == null)
-                throw new ArgumentNullException(nameof(studioResource));
-        }
+        partial void FormatDeleteStudioById(ref int id, ref Option<bool> deleteFiles, ref Option<bool> addImportExclusion);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="studioResource"></param>
-        private void AfterCreateStudioDefaultImplementation(ICreateStudioApiResponse apiResponseLocalVar, Option<StudioResource> studioResource)
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"></param>
+        /// <param name="addImportExclusion"></param>
+        private void AfterDeleteStudioByIdDefaultImplementation(IDeleteStudioByIdApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
         {
             bool suppressDefaultLog = false;
-            AfterCreateStudio(ref suppressDefaultLog, apiResponseLocalVar, studioResource);
+            AfterDeleteStudioById(ref suppressDefaultLog, apiResponseLocalVar, id, deleteFiles, addImportExclusion);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -630,8 +566,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="studioResource"></param>
-        partial void AfterCreateStudio(ref bool suppressDefaultLog, ICreateStudioApiResponse apiResponseLocalVar, Option<StudioResource> studioResource);
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"></param>
+        /// <param name="addImportExclusion"></param>
+        partial void AfterDeleteStudioById(ref bool suppressDefaultLog, IDeleteStudioByIdApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -639,11 +577,13 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="studioResource"></param>
-        private void OnErrorCreateStudioDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioResource> studioResource)
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"></param>
+        /// <param name="addImportExclusion"></param>
+        private void OnErrorDeleteStudioByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateStudio(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioResource);
+            OnErrorDeleteStudioById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, deleteFiles, addImportExclusion);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -655,20 +595,24 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="studioResource"></param>
-        partial void OnErrorCreateStudio(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioResource> studioResource);
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"></param>
+        /// <param name="addImportExclusion"></param>
+        partial void OnErrorDeleteStudioById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="studioResource"> (optional)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioApiResponse"/>&gt;</returns>
-        public async Task<ICreateStudioApiResponse?> CreateStudioOrDefaultAsync(Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteStudioByIdApiResponse?> DeleteStudioByIdOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateStudioAsync(studioResource, cancellationToken).ConfigureAwait(false);
+                return await DeleteStudioByIdAsync(id, deleteFiles, addImportExclusion, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -680,18 +624,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioResource"> (optional)</param>
+        /// <param name="id"></param>
+        /// <param name="deleteFiles"> (optional, default to false)</param>
+        /// <param name="addImportExclusion"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioApiResponse"/>&gt;</returns>
-        public async Task<ICreateStudioApiResponse> CreateStudioAsync(Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteStudioByIdApiResponse> DeleteStudioByIdAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateStudio(studioResource);
-
-                FormatCreateStudio(studioResource);
+                FormatDeleteStudioById(ref id, ref deleteFiles, ref addImportExclusion);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -699,15 +643,19 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/studio"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio");
+                        ? "/api/v3/studio/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (studioResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (studioResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioResource.Value, _jsonSerializerOptions));
-                    }
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (deleteFiles.IsSet)
+                        parseQueryStringLocalVar["deleteFiles"] = ClientUtils.ParameterToString(deleteFiles.Value);
+
+                    if (addImportExclusion.IsSet)
+                        parseQueryStringLocalVar["addImportExclusion"] = ClientUtils.ParameterToString(addImportExclusion.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -716,44 +664,26 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateStudioApiResponse apiResponseLocalVar;
+                        DeleteStudioByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/{id}", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterCreateStudioDefaultImplementation(apiResponseLocalVar, studioResource);
+                        AfterDeleteStudioByIdDefaultImplementation(apiResponseLocalVar, id, deleteFiles, addImportExclusion);
 
-                        Events.ExecuteOnCreateStudio(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteStudioById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -765,16 +695,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateStudioDefaultImplementation(e, "/api/v3/studio", uriBuilderLocalVar.Path, studioResource);
-                Events.ExecuteOnErrorCreateStudio(e);
+                OnErrorDeleteStudioByIdDefaultImplementation(e, "/api/v3/studio/{id}", uriBuilderLocalVar.Path, id, deleteFiles, addImportExclusion);
+                Events.ExecuteOnErrorDeleteStudioById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateStudioApiResponse"/>
+        /// The <see cref="DeleteStudioByIdApiResponse"/>
         /// </summary>
-        public partial class CreateStudioApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateStudioApiResponse
+        public partial class DeleteStudioByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteStudioByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -782,7 +712,7 @@ namespace Whisparr3.Net.Api
             public ILogger<StudioApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateStudioApiResponse"/>
+            /// The <see cref="DeleteStudioByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -791,14 +721,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteStudioByIdApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateStudioApiResponse"/>
+            /// The <see cref="DeleteStudioByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -807,7 +737,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteStudioByIdApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -821,50 +751,6 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.StudioResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.StudioResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.StudioResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.StudioResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -876,28 +762,28 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateStudioList(Option<List<string>> requestBody);
+        partial void FormatGetStudio(ref Option<string> stashId);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="requestBody"></param>
+        /// <param name="stashId"></param>
         /// <returns></returns>
-        private void ValidateCreateStudioList(Option<List<string>> requestBody)
+        private void ValidateGetStudio(Option<string> stashId)
         {
-            if (requestBody.IsSet && requestBody.Value == null)
-                throw new ArgumentNullException(nameof(requestBody));
+            if (stashId.IsSet && stashId.Value == null)
+                throw new ArgumentNullException(nameof(stashId));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="requestBody"></param>
-        private void AfterCreateStudioListDefaultImplementation(ICreateStudioListApiResponse apiResponseLocalVar, Option<List<string>> requestBody)
+        /// <param name="stashId"></param>
+        private void AfterGetStudioDefaultImplementation(IGetStudioApiResponse apiResponseLocalVar, Option<string> stashId)
         {
             bool suppressDefaultLog = false;
-            AfterCreateStudioList(ref suppressDefaultLog, apiResponseLocalVar, requestBody);
+            AfterGetStudio(ref suppressDefaultLog, apiResponseLocalVar, stashId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -907,8 +793,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="requestBody"></param>
-        partial void AfterCreateStudioList(ref bool suppressDefaultLog, ICreateStudioListApiResponse apiResponseLocalVar, Option<List<string>> requestBody);
+        /// <param name="stashId"></param>
+        partial void AfterGetStudio(ref bool suppressDefaultLog, IGetStudioApiResponse apiResponseLocalVar, Option<string> stashId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -916,11 +802,11 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="requestBody"></param>
-        private void OnErrorCreateStudioListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody)
+        /// <param name="stashId"></param>
+        private void OnErrorGetStudioDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateStudioList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, requestBody);
+            OnErrorGetStudio(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, stashId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -932,20 +818,20 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="requestBody"></param>
-        partial void OnErrorCreateStudioList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<string>> requestBody);
+        /// <param name="stashId"></param>
+        partial void OnErrorGetStudio(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId);
 
         /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        ///  
         /// </summary>
-        /// <param name="requestBody"> (optional)</param>
+        /// <param name="stashId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioListApiResponse"/>&gt;</returns>
-        public async Task<ICreateStudioListApiResponse?> CreateStudioListOrDefaultAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioApiResponse"/>&gt;</returns>
+        public async Task<IGetStudioApiResponse?> GetStudioOrDefaultAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateStudioListAsync(requestBody, cancellationToken).ConfigureAwait(false);
+                return await GetStudioAsync(stashId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -954,21 +840,21 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="requestBody"> (optional)</param>
+        /// <param name="stashId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioListApiResponse"/>&gt;</returns>
-        public async Task<ICreateStudioListApiResponse> CreateStudioListAsync(Option<List<string>> requestBody = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioApiResponse"/>&gt;</returns>
+        public async Task<IGetStudioApiResponse> GetStudioAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateStudioList(requestBody);
+                ValidateGetStudio(stashId);
 
-                FormatCreateStudioList(requestBody);
+                FormatGetStudio(ref stashId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -976,15 +862,15 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/studio/list"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/list");
+                        ? "/api/v3/studio"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio");
 
-                    if (requestBody.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (requestBody.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(requestBody.Value, _jsonSerializerOptions));
-                    }
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (stashId.IsSet)
+                        parseQueryStringLocalVar["stashId"] = ClientUtils.ParameterToString(stashId.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -993,17 +879,10 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
                     string[] acceptLocalVars = new string[] {
-                        "application/json"
+                        "text/plain",
+                        "application/json",
+                        "text/json"
                     };
 
                     IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
@@ -1011,26 +890,26 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateStudioListApiResponse apiResponseLocalVar;
+                        GetStudioApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/list", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterCreateStudioListDefaultImplementation(apiResponseLocalVar, requestBody);
+                        AfterGetStudioDefaultImplementation(apiResponseLocalVar, stashId);
 
-                        Events.ExecuteOnCreateStudioList(apiResponseLocalVar);
+                        Events.ExecuteOnGetStudio(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1042,16 +921,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateStudioListDefaultImplementation(e, "/api/v3/studio/list", uriBuilderLocalVar.Path, requestBody);
-                Events.ExecuteOnErrorCreateStudioList(e);
+                OnErrorGetStudioDefaultImplementation(e, "/api/v3/studio", uriBuilderLocalVar.Path, stashId);
+                Events.ExecuteOnErrorGetStudio(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateStudioListApiResponse"/>
+        /// The <see cref="GetStudioApiResponse"/>
         /// </summary>
-        public partial class CreateStudioListApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateStudioListApiResponse
+        public partial class GetStudioApiResponse : Whisparr3.Net.Client.ApiResponse, IGetStudioApiResponse
         {
             /// <summary>
             /// The logger
@@ -1059,7 +938,7 @@ namespace Whisparr3.Net.Api
             public ILogger<StudioApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateStudioListApiResponse"/>
+            /// The <see cref="GetStudioApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1068,14 +947,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateStudioListApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateStudioListApiResponse"/>
+            /// The <see cref="GetStudioApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1084,7 +963,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateStudioListApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1153,509 +1032,25 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatCreateStudioPaged(Option<StudioPagingRequestResource> studioPagingRequestResource);
+        partial void FormatGetStudioById(ref string id);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="studioPagingRequestResource"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        private void ValidateCreateStudioPaged(Option<StudioPagingRequestResource> studioPagingRequestResource)
+        private void ValidateGetStudioById(string id)
         {
-            if (studioPagingRequestResource.IsSet && studioPagingRequestResource.Value == null)
-                throw new ArgumentNullException(nameof(studioPagingRequestResource));
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="studioPagingRequestResource"></param>
-        private void AfterCreateStudioPagedDefaultImplementation(ICreateStudioPagedApiResponse apiResponseLocalVar, Option<StudioPagingRequestResource> studioPagingRequestResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateStudioPaged(ref suppressDefaultLog, apiResponseLocalVar, studioPagingRequestResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="studioPagingRequestResource"></param>
-        partial void AfterCreateStudioPaged(ref bool suppressDefaultLog, ICreateStudioPagedApiResponse apiResponseLocalVar, Option<StudioPagingRequestResource> studioPagingRequestResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="studioPagingRequestResource"></param>
-        private void OnErrorCreateStudioPagedDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioPagingRequestResource> studioPagingRequestResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateStudioPaged(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioPagingRequestResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="studioPagingRequestResource"></param>
-        partial void OnErrorCreateStudioPaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioPagingRequestResource> studioPagingRequestResource);
-
-        /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options 
-        /// </summary>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>&gt;</returns>
-        public async Task<ICreateStudioPagedApiResponse?> CreateStudioPagedOrDefaultAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateStudioPagedAsync(studioPagingRequestResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves a paged list of studios with advanced filtering options 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioPagingRequestResource">Paging and filtering parameters (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateStudioPagedApiResponse"/>&gt;</returns>
-        public async Task<ICreateStudioPagedApiResponse> CreateStudioPagedAsync(Option<StudioPagingRequestResource> studioPagingRequestResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateStudioPaged(studioPagingRequestResource);
-
-                FormatCreateStudioPaged(studioPagingRequestResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/studio/paged"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/paged");
-
-                    if (studioPagingRequestResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (studioPagingRequestResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioPagingRequestResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateStudioPagedApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/paged", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateStudioPagedDefaultImplementation(apiResponseLocalVar, studioPagingRequestResource);
-
-                        Events.ExecuteOnCreateStudioPaged(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateStudioPagedDefaultImplementation(e, "/api/v3/studio/paged", uriBuilderLocalVar.Path, studioPagingRequestResource);
-                Events.ExecuteOnErrorCreateStudioPaged(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateStudioPagedApiResponse"/>
-        /// </summary>
-        public partial class CreateStudioPagedApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateStudioPagedApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<StudioApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateStudioPagedApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateStudioPagedApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateStudioPagedApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateStudioPagedApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.StudioResourcePagingResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.StudioResourcePagingResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.StudioResourcePagingResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.StudioResourcePagingResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResourcePagingResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResourcePagingResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteStudio(ref int id, ref Option<bool> deleteFiles, ref Option<bool> addImportExclusion);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="deleteFiles"></param>
-        /// <param name="addImportExclusion"></param>
-        private void AfterDeleteStudioDefaultImplementation(IDeleteStudioApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteStudio(ref suppressDefaultLog, apiResponseLocalVar, id, deleteFiles, addImportExclusion);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="deleteFiles"></param>
-        /// <param name="addImportExclusion"></param>
-        partial void AfterDeleteStudio(ref bool suppressDefaultLog, IDeleteStudioApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="deleteFiles"></param>
-        /// <param name="addImportExclusion"></param>
-        private void OnErrorDeleteStudioDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteStudio(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, deleteFiles, addImportExclusion);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="deleteFiles"></param>
-        /// <param name="addImportExclusion"></param>
-        partial void OnErrorDeleteStudio(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="deleteFiles"> (optional, default to false)</param>
-        /// <param name="addImportExclusion"> (optional, default to false)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioApiResponse"/>&gt;</returns>
-        public async Task<IDeleteStudioApiResponse?> DeleteStudioOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteStudioAsync(id, deleteFiles, addImportExclusion, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="deleteFiles"> (optional, default to false)</param>
-        /// <param name="addImportExclusion"> (optional, default to false)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteStudioApiResponse"/>&gt;</returns>
-        public async Task<IDeleteStudioApiResponse> DeleteStudioAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteStudio(ref id, ref deleteFiles, ref addImportExclusion);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/studio/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (deleteFiles.IsSet)
-                        parseQueryStringLocalVar["deleteFiles"] = ClientUtils.ParameterToString(deleteFiles.Value);
-
-                    if (addImportExclusion.IsSet)
-                        parseQueryStringLocalVar["addImportExclusion"] = ClientUtils.ParameterToString(addImportExclusion.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteStudioApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteStudioDefaultImplementation(apiResponseLocalVar, id, deleteFiles, addImportExclusion);
-
-                        Events.ExecuteOnDeleteStudio(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteStudioDefaultImplementation(e, "/api/v3/studio/{id}", uriBuilderLocalVar.Path, id, deleteFiles, addImportExclusion);
-                Events.ExecuteOnErrorDeleteStudio(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteStudioApiResponse"/>
-        /// </summary>
-        public partial class DeleteStudioApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteStudioApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<StudioApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteStudioApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteStudioApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatGetStudioById(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterGetStudioByIdDefaultImplementation(IGetStudioByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetStudioByIdDefaultImplementation(IGetStudioByIdApiResponse apiResponseLocalVar, string id)
         {
             bool suppressDefaultLog = false;
             AfterGetStudioById(ref suppressDefaultLog, apiResponseLocalVar, id);
@@ -1669,7 +1064,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetStudioById(ref bool suppressDefaultLog, IGetStudioByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetStudioById(ref bool suppressDefaultLog, IGetStudioByIdApiResponse apiResponseLocalVar, string id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1678,7 +1073,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetStudioByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetStudioByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorGetStudioById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
@@ -1694,15 +1089,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetStudioById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetStudioById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id);
 
         /// <summary>
-        ///  
+        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb) A numeric value is routed to the internal ID lookup instead.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetStudioByIdApiResponse?> GetStudioByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetStudioByIdApiResponse?> GetStudioByIdOrDefaultAsync(string id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -1715,18 +1110,20 @@ namespace Whisparr3.Net.Api
         }
 
         /// <summary>
-        ///  
+        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb) A numeric value is routed to the internal ID lookup instead.
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetStudioByIdApiResponse> GetStudioByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetStudioByIdApiResponse> GetStudioByIdAsync(string id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
+                ValidateGetStudioById(id);
+
                 FormatGetStudioById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
@@ -1747,9 +1144,7 @@ namespace Whisparr3.Net.Api
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
                     string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
+                        "application/json"
                     };
 
                     IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
@@ -1888,268 +1283,6 @@ namespace Whisparr3.Net.Api
                 return result != null;
             }
 
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatGetStudioByStudioForeignId(ref string studioForeignId);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="studioForeignId"></param>
-        /// <returns></returns>
-        private void ValidateGetStudioByStudioForeignId(string studioForeignId)
-        {
-            if (studioForeignId == null)
-                throw new ArgumentNullException(nameof(studioForeignId));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="studioForeignId"></param>
-        private void AfterGetStudioByStudioForeignIdDefaultImplementation(IGetStudioByStudioForeignIdApiResponse apiResponseLocalVar, string studioForeignId)
-        {
-            bool suppressDefaultLog = false;
-            AfterGetStudioByStudioForeignId(ref suppressDefaultLog, apiResponseLocalVar, studioForeignId);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="studioForeignId"></param>
-        partial void AfterGetStudioByStudioForeignId(ref bool suppressDefaultLog, IGetStudioByStudioForeignIdApiResponse apiResponseLocalVar, string studioForeignId);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="studioForeignId"></param>
-        private void OnErrorGetStudioByStudioForeignIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorGetStudioByStudioForeignId(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioForeignId);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="studioForeignId"></param>
-        partial void OnErrorGetStudioByStudioForeignId(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId);
-
-        /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb) 
-        /// </summary>
-        /// <param name="studioForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdApiResponse"/>&gt;</returns>
-        public async Task<IGetStudioByStudioForeignIdApiResponse?> GetStudioByStudioForeignIdOrDefaultAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetStudioByStudioForeignIdAsync(studioForeignId, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves a single studio by their external foreign ID (e.g., from StashDb) 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioForeignId"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdApiResponse"/>&gt;</returns>
-        public async Task<IGetStudioByStudioForeignIdApiResponse> GetStudioByStudioForeignIdAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateGetStudioByStudioForeignId(studioForeignId);
-
-                FormatGetStudioByStudioForeignId(ref studioForeignId);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/studio/{studioForeignId}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/{studioForeignId}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7BstudioForeignId%7D", Uri.EscapeDataString(studioForeignId.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetStudioByStudioForeignIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/{studioForeignId}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetStudioByStudioForeignIdDefaultImplementation(apiResponseLocalVar, studioForeignId);
-
-                        Events.ExecuteOnGetStudioByStudioForeignId(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetStudioByStudioForeignIdDefaultImplementation(e, "/api/v3/studio/{studioForeignId}", uriBuilderLocalVar.Path, studioForeignId);
-                Events.ExecuteOnErrorGetStudioByStudioForeignId(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetStudioByStudioForeignIdApiResponse"/>
-        /// </summary>
-        public partial class GetStudioByStudioForeignIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetStudioByStudioForeignIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<StudioApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetStudioByStudioForeignIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetStudioByStudioForeignIdApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetStudioByStudioForeignIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetStudioByStudioForeignIdApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.StudioResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.StudioResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.StudioResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.StudioResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
             /// <summary>
             /// Returns true if the response is 404 NotFound
             /// </summary>
@@ -2167,284 +1300,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListStudio(ref Option<string> stashId);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="stashId"></param>
-        /// <returns></returns>
-        private void ValidateListStudio(Option<string> stashId)
-        {
-            if (stashId.IsSet && stashId.Value == null)
-                throw new ArgumentNullException(nameof(stashId));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="stashId"></param>
-        private void AfterListStudioDefaultImplementation(IListStudioApiResponse apiResponseLocalVar, Option<string> stashId)
-        {
-            bool suppressDefaultLog = false;
-            AfterListStudio(ref suppressDefaultLog, apiResponseLocalVar, stashId);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="stashId"></param>
-        partial void AfterListStudio(ref bool suppressDefaultLog, IListStudioApiResponse apiResponseLocalVar, Option<string> stashId);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="stashId"></param>
-        private void OnErrorListStudioDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListStudio(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, stashId);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="stashId"></param>
-        partial void OnErrorListStudio(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> stashId);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioApiResponse"/>&gt;</returns>
-        public async Task<IListStudioApiResponse?> ListStudioOrDefaultAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListStudioAsync(stashId, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="stashId"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioApiResponse"/>&gt;</returns>
-        public async Task<IListStudioApiResponse> ListStudioAsync(Option<string> stashId = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateListStudio(stashId);
-
-                FormatListStudio(ref stashId);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/studio"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (stashId.IsSet)
-                        parseQueryStringLocalVar["stashId"] = ClientUtils.ParameterToString(stashId.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListStudioApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListStudioDefaultImplementation(apiResponseLocalVar, stashId);
-
-                        Events.ExecuteOnListStudio(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListStudioDefaultImplementation(e, "/api/v3/studio", uriBuilderLocalVar.Path, stashId);
-                Events.ExecuteOnErrorListStudio(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListStudioApiResponse"/>
-        /// </summary>
-        public partial class ListStudioApiResponse : Whisparr3.Net.Client.ApiResponse, IListStudioApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<StudioApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListStudioApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListStudioApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<StudioResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<StudioResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<StudioResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<StudioResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<StudioResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<StudioResource>? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListStudioWorks(ref string studioForeignId);
+        partial void FormatGetStudioByStudioForeignIdWorks(ref string studioForeignId);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="studioForeignId"></param>
         /// <returns></returns>
-        private void ValidateListStudioWorks(string studioForeignId)
+        private void ValidateGetStudioByStudioForeignIdWorks(string studioForeignId)
         {
             if (studioForeignId == null)
                 throw new ArgumentNullException(nameof(studioForeignId));
@@ -2455,10 +1318,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="studioForeignId"></param>
-        private void AfterListStudioWorksDefaultImplementation(IListStudioWorksApiResponse apiResponseLocalVar, string studioForeignId)
+        private void AfterGetStudioByStudioForeignIdWorksDefaultImplementation(IGetStudioByStudioForeignIdWorksApiResponse apiResponseLocalVar, string studioForeignId)
         {
             bool suppressDefaultLog = false;
-            AfterListStudioWorks(ref suppressDefaultLog, apiResponseLocalVar, studioForeignId);
+            AfterGetStudioByStudioForeignIdWorks(ref suppressDefaultLog, apiResponseLocalVar, studioForeignId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2469,7 +1332,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="studioForeignId"></param>
-        partial void AfterListStudioWorks(ref bool suppressDefaultLog, IListStudioWorksApiResponse apiResponseLocalVar, string studioForeignId);
+        partial void AfterGetStudioByStudioForeignIdWorks(ref bool suppressDefaultLog, IGetStudioByStudioForeignIdWorksApiResponse apiResponseLocalVar, string studioForeignId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2478,10 +1341,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="studioForeignId"></param>
-        private void OnErrorListStudioWorksDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId)
+        private void OnErrorGetStudioByStudioForeignIdWorksDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListStudioWorks(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioForeignId);
+            OnErrorGetStudioByStudioForeignIdWorks(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioForeignId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2494,19 +1357,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="studioForeignId"></param>
-        partial void OnErrorListStudioWorks(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId);
+        partial void OnErrorGetStudioByStudioForeignIdWorks(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string studioForeignId);
 
         /// <summary>
         /// Retrieves all movies associated with a studio by their external foreign ID (e.g., from StashDb) 
         /// </summary>
         /// <param name="studioForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioWorksApiResponse"/>&gt;</returns>
-        public async Task<IListStudioWorksApiResponse?> ListStudioWorksOrDefaultAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdWorksApiResponse"/>&gt;</returns>
+        public async Task<IGetStudioByStudioForeignIdWorksApiResponse?> GetStudioByStudioForeignIdWorksOrDefaultAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListStudioWorksAsync(studioForeignId, cancellationToken).ConfigureAwait(false);
+                return await GetStudioByStudioForeignIdWorksAsync(studioForeignId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2520,16 +1383,16 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="studioForeignId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListStudioWorksApiResponse"/>&gt;</returns>
-        public async Task<IListStudioWorksApiResponse> ListStudioWorksAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetStudioByStudioForeignIdWorksApiResponse"/>&gt;</returns>
+        public async Task<IGetStudioByStudioForeignIdWorksApiResponse> GetStudioByStudioForeignIdWorksAsync(string studioForeignId, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListStudioWorks(studioForeignId);
+                ValidateGetStudioByStudioForeignIdWorks(studioForeignId);
 
-                FormatListStudioWorks(ref studioForeignId);
+                FormatGetStudioByStudioForeignIdWorks(ref studioForeignId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2565,7 +1428,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListStudioWorksApiResponse apiResponseLocalVar;
+                        GetStudioByStudioForeignIdWorksApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2576,9 +1439,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListStudioWorksDefaultImplementation(apiResponseLocalVar, studioForeignId);
+                        AfterGetStudioByStudioForeignIdWorksDefaultImplementation(apiResponseLocalVar, studioForeignId);
 
-                        Events.ExecuteOnListStudioWorks(apiResponseLocalVar);
+                        Events.ExecuteOnGetStudioByStudioForeignIdWorks(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2590,16 +1453,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListStudioWorksDefaultImplementation(e, "/api/v3/studio/{studioForeignId}/works", uriBuilderLocalVar.Path, studioForeignId);
-                Events.ExecuteOnErrorListStudioWorks(e);
+                OnErrorGetStudioByStudioForeignIdWorksDefaultImplementation(e, "/api/v3/studio/{studioForeignId}/works", uriBuilderLocalVar.Path, studioForeignId);
+                Events.ExecuteOnErrorGetStudioByStudioForeignIdWorks(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListStudioWorksApiResponse"/>
+        /// The <see cref="GetStudioByStudioForeignIdWorksApiResponse"/>
         /// </summary>
-        public partial class ListStudioWorksApiResponse : Whisparr3.Net.Client.ApiResponse, IListStudioWorksApiResponse
+        public partial class GetStudioByStudioForeignIdWorksApiResponse : Whisparr3.Net.Client.ApiResponse, IGetStudioByStudioForeignIdWorksApiResponse
         {
             /// <summary>
             /// The logger
@@ -2607,7 +1470,7 @@ namespace Whisparr3.Net.Api
             public ILogger<StudioApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListStudioWorksApiResponse"/>
+            /// The <see cref="GetStudioByStudioForeignIdWorksApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2616,14 +1479,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListStudioWorksApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetStudioByStudioForeignIdWorksApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListStudioWorksApiResponse"/>
+            /// The <see cref="GetStudioByStudioForeignIdWorksApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2632,7 +1495,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListStudioWorksApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetStudioByStudioForeignIdWorksApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2707,7 +1570,829 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateStudio(ref string id, Option<StudioResource> studioResource);
+        partial void FormatPostStudio(StudioResource studioResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="studioResource"></param>
+        /// <returns></returns>
+        private void ValidatePostStudio(StudioResource studioResource)
+        {
+            if (studioResource == null)
+                throw new ArgumentNullException(nameof(studioResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="studioResource"></param>
+        private void AfterPostStudioDefaultImplementation(IPostStudioApiResponse apiResponseLocalVar, StudioResource studioResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostStudio(ref suppressDefaultLog, apiResponseLocalVar, studioResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="studioResource"></param>
+        partial void AfterPostStudio(ref bool suppressDefaultLog, IPostStudioApiResponse apiResponseLocalVar, StudioResource studioResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="studioResource"></param>
+        private void OnErrorPostStudioDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, StudioResource studioResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostStudio(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="studioResource"></param>
+        partial void OnErrorPostStudio(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, StudioResource studioResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="studioResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioApiResponse"/>&gt;</returns>
+        public async Task<IPostStudioApiResponse?> PostStudioOrDefaultAsync(StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostStudioAsync(studioResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="studioResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioApiResponse"/>&gt;</returns>
+        public async Task<IPostStudioApiResponse> PostStudioAsync(StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostStudio(studioResource);
+
+                FormatPostStudio(studioResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/studio"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio");
+
+                    httpRequestMessageLocalVar.Content = (studioResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostStudioApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostStudioDefaultImplementation(apiResponseLocalVar, studioResource);
+
+                        Events.ExecuteOnPostStudio(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostStudioDefaultImplementation(e, "/api/v3/studio", uriBuilderLocalVar.Path, studioResource);
+                Events.ExecuteOnErrorPostStudio(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostStudioApiResponse"/>
+        /// </summary>
+        public partial class PostStudioApiResponse : Whisparr3.Net.Client.ApiResponse, IPostStudioApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<StudioApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostStudioApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostStudioApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.StudioResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.StudioResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.StudioResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.StudioResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostStudioList(List<string> requestBody);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="requestBody"></param>
+        /// <returns></returns>
+        private void ValidatePostStudioList(List<string> requestBody)
+        {
+            if (requestBody == null)
+                throw new ArgumentNullException(nameof(requestBody));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="requestBody"></param>
+        private void AfterPostStudioListDefaultImplementation(IPostStudioListApiResponse apiResponseLocalVar, List<string> requestBody)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostStudioList(ref suppressDefaultLog, apiResponseLocalVar, requestBody);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="requestBody"></param>
+        partial void AfterPostStudioList(ref bool suppressDefaultLog, IPostStudioListApiResponse apiResponseLocalVar, List<string> requestBody);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="requestBody"></param>
+        private void OnErrorPostStudioListDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<string> requestBody)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostStudioList(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, requestBody);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="requestBody"></param>
+        partial void OnErrorPostStudioList(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<string> requestBody);
+
+        /// <summary>
+        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </summary>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioListApiResponse"/>&gt;</returns>
+        public async Task<IPostStudioListApiResponse?> PostStudioListOrDefaultAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostStudioListAsync(requestBody, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a list of studios by their external foreign IDs (e.g., from StashDb) If a foreign Id does not exist in Whisparr, it does not query StashDB on demand
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestBody"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioListApiResponse"/>&gt;</returns>
+        public async Task<IPostStudioListApiResponse> PostStudioListAsync(List<string> requestBody, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostStudioList(requestBody);
+
+                FormatPostStudioList(requestBody);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/studio/list"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/list");
+
+                    httpRequestMessageLocalVar.Content = (requestBody as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(requestBody, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostStudioListApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/list", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostStudioListDefaultImplementation(apiResponseLocalVar, requestBody);
+
+                        Events.ExecuteOnPostStudioList(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostStudioListDefaultImplementation(e, "/api/v3/studio/list", uriBuilderLocalVar.Path, requestBody);
+                Events.ExecuteOnErrorPostStudioList(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostStudioListApiResponse"/>
+        /// </summary>
+        public partial class PostStudioListApiResponse : Whisparr3.Net.Client.ApiResponse, IPostStudioListApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<StudioApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostStudioListApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostStudioListApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostStudioListApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostStudioListApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<StudioResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<StudioResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<StudioResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<StudioResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<StudioResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<StudioResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostStudioPaged(StudioPagingRequestResource studioPagingRequestResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="studioPagingRequestResource"></param>
+        /// <returns></returns>
+        private void ValidatePostStudioPaged(StudioPagingRequestResource studioPagingRequestResource)
+        {
+            if (studioPagingRequestResource == null)
+                throw new ArgumentNullException(nameof(studioPagingRequestResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="studioPagingRequestResource"></param>
+        private void AfterPostStudioPagedDefaultImplementation(IPostStudioPagedApiResponse apiResponseLocalVar, StudioPagingRequestResource studioPagingRequestResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostStudioPaged(ref suppressDefaultLog, apiResponseLocalVar, studioPagingRequestResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="studioPagingRequestResource"></param>
+        partial void AfterPostStudioPaged(ref bool suppressDefaultLog, IPostStudioPagedApiResponse apiResponseLocalVar, StudioPagingRequestResource studioPagingRequestResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="studioPagingRequestResource"></param>
+        private void OnErrorPostStudioPagedDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, StudioPagingRequestResource studioPagingRequestResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostStudioPaged(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioPagingRequestResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="studioPagingRequestResource"></param>
+        partial void OnErrorPostStudioPaged(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, StudioPagingRequestResource studioPagingRequestResource);
+
+        /// <summary>
+        /// Retrieves a paged list of studios with advanced filtering options 
+        /// </summary>
+        /// <param name="studioPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioPagedApiResponse"/>&gt;</returns>
+        public async Task<IPostStudioPagedApiResponse?> PostStudioPagedOrDefaultAsync(StudioPagingRequestResource studioPagingRequestResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostStudioPagedAsync(studioPagingRequestResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a paged list of studios with advanced filtering options 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="studioPagingRequestResource">Paging and filtering parameters</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostStudioPagedApiResponse"/>&gt;</returns>
+        public async Task<IPostStudioPagedApiResponse> PostStudioPagedAsync(StudioPagingRequestResource studioPagingRequestResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostStudioPaged(studioPagingRequestResource);
+
+                FormatPostStudioPaged(studioPagingRequestResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/studio/paged"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/paged");
+
+                    httpRequestMessageLocalVar.Content = (studioPagingRequestResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioPagingRequestResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostStudioPagedApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/studio/paged", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostStudioPagedDefaultImplementation(apiResponseLocalVar, studioPagingRequestResource);
+
+                        Events.ExecuteOnPostStudioPaged(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostStudioPagedDefaultImplementation(e, "/api/v3/studio/paged", uriBuilderLocalVar.Path, studioPagingRequestResource);
+                Events.ExecuteOnErrorPostStudioPaged(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostStudioPagedApiResponse"/>
+        /// </summary>
+        public partial class PostStudioPagedApiResponse : Whisparr3.Net.Client.ApiResponse, IPostStudioPagedApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<StudioApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostStudioPagedApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostStudioPagedApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostStudioPagedApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostStudioPagedApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.StudioResourcePagingResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.StudioResourcePagingResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.StudioResourcePagingResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.StudioResourcePagingResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResourcePagingResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResourcePagingResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutStudioById(ref string id, StudioResource studioResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -2715,12 +2400,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="studioResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateStudio(string id, Option<StudioResource> studioResource)
+        private void ValidatePutStudioById(string id, StudioResource studioResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (studioResource.IsSet && studioResource.Value == null)
+            if (studioResource == null)
                 throw new ArgumentNullException(nameof(studioResource));
         }
 
@@ -2730,10 +2415,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="studioResource"></param>
-        private void AfterUpdateStudioDefaultImplementation(IUpdateStudioApiResponse apiResponseLocalVar, string id, Option<StudioResource> studioResource)
+        private void AfterPutStudioByIdDefaultImplementation(IPutStudioByIdApiResponse apiResponseLocalVar, string id, StudioResource studioResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateStudio(ref suppressDefaultLog, apiResponseLocalVar, id, studioResource);
+            AfterPutStudioById(ref suppressDefaultLog, apiResponseLocalVar, id, studioResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2745,7 +2430,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="studioResource"></param>
-        partial void AfterUpdateStudio(ref bool suppressDefaultLog, IUpdateStudioApiResponse apiResponseLocalVar, string id, Option<StudioResource> studioResource);
+        partial void AfterPutStudioById(ref bool suppressDefaultLog, IPutStudioByIdApiResponse apiResponseLocalVar, string id, StudioResource studioResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2755,10 +2440,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="studioResource"></param>
-        private void OnErrorUpdateStudioDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<StudioResource> studioResource)
+        private void OnErrorPutStudioByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, StudioResource studioResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateStudio(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, studioResource);
+            OnErrorPutStudioById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, studioResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2772,20 +2457,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="studioResource"></param>
-        partial void OnErrorUpdateStudio(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<StudioResource> studioResource);
+        partial void OnErrorPutStudioById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, StudioResource studioResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="studioResource"> (optional)</param>
+        /// <param name="studioResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateStudioApiResponse"/>&gt;</returns>
-        public async Task<IUpdateStudioApiResponse?> UpdateStudioOrDefaultAsync(string id, Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutStudioByIdApiResponse?> PutStudioByIdOrDefaultAsync(string id, StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateStudioAsync(id, studioResource, cancellationToken).ConfigureAwait(false);
+                return await PutStudioByIdAsync(id, studioResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2798,18 +2483,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="studioResource"> (optional)</param>
+        /// <param name="studioResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateStudioApiResponse"/>&gt;</returns>
-        public async Task<IUpdateStudioApiResponse> UpdateStudioAsync(string id, Option<StudioResource> studioResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutStudioByIdApiResponse> PutStudioByIdAsync(string id, StudioResource studioResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateStudio(id, studioResource);
+                ValidatePutStudioById(id, studioResource);
 
-                FormatUpdateStudio(ref id, studioResource);
+                FormatPutStudioById(ref id, studioResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2821,12 +2506,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (studioResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (studioResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (studioResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2859,7 +2541,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateStudioApiResponse apiResponseLocalVar;
+                        PutStudioByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2870,9 +2552,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateStudioDefaultImplementation(apiResponseLocalVar, id, studioResource);
+                        AfterPutStudioByIdDefaultImplementation(apiResponseLocalVar, id, studioResource);
 
-                        Events.ExecuteOnUpdateStudio(apiResponseLocalVar);
+                        Events.ExecuteOnPutStudioById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2884,16 +2566,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateStudioDefaultImplementation(e, "/api/v3/studio/{id}", uriBuilderLocalVar.Path, id, studioResource);
-                Events.ExecuteOnErrorUpdateStudio(e);
+                OnErrorPutStudioByIdDefaultImplementation(e, "/api/v3/studio/{id}", uriBuilderLocalVar.Path, id, studioResource);
+                Events.ExecuteOnErrorPutStudioById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateStudioApiResponse"/>
+        /// The <see cref="PutStudioByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateStudioApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateStudioApiResponse
+        public partial class PutStudioByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutStudioByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -2901,7 +2583,7 @@ namespace Whisparr3.Net.Api
             public ILogger<StudioApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateStudioApiResponse"/>
+            /// The <see cref="PutStudioByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2910,14 +2592,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutStudioByIdApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateStudioApiResponse"/>
+            /// The <see cref="PutStudioByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2926,7 +2608,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateStudioApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutStudioByIdApiResponse(ILogger<StudioApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2935,50 +2617,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.StudioResource? Ok()
+            public Whisparr3.Net.Model.StudioResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.StudioResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.StudioResource? DefaultOk()
+            private Whisparr3.Net.Model.StudioResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.StudioResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.StudioResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.StudioResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

@@ -47,8 +47,8 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaCoverByMovieIdAndFilenameApiResponse"/>&gt;</returns>
-        Task<IGetMediaCoverByMovieIdAndFilenameApiResponse> GetMediaCoverByMovieIdAndFilenameAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediacoverByMovieIdByFilenameApiResponse"/>&gt;</returns>
+        Task<IGetMediacoverByMovieIdByFilenameApiResponse> GetMediacoverByMovieIdByFilenameAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -59,14 +59,14 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaCoverByMovieIdAndFilenameApiResponse"/>?&gt;</returns>
-        Task<IGetMediaCoverByMovieIdAndFilenameApiResponse?> GetMediaCoverByMovieIdAndFilenameOrDefaultAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediacoverByMovieIdByFilenameApiResponse"/>?&gt;</returns>
+        Task<IGetMediacoverByMovieIdByFilenameApiResponse?> GetMediacoverByMovieIdByFilenameOrDefaultAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetMediaCoverByMovieIdAndFilenameApiResponse"/>
+    /// The <see cref="IGetMediacoverByMovieIdByFilenameApiResponse"/>
     /// </summary>
-    public interface IGetMediaCoverByMovieIdAndFilenameApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetMediacoverByMovieIdByFilenameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<System.IO.Stream?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -83,21 +83,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetMediaCoverByMovieIdAndFilename;
+        public event EventHandler<ApiResponseEventArgs>? OnGetMediacoverByMovieIdByFilename;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetMediaCoverByMovieIdAndFilename;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMediacoverByMovieIdByFilename;
 
-        internal void ExecuteOnGetMediaCoverByMovieIdAndFilename(MediaCoverApi.GetMediaCoverByMovieIdAndFilenameApiResponse apiResponse)
+        internal void ExecuteOnGetMediacoverByMovieIdByFilename(MediaCoverApi.GetMediacoverByMovieIdByFilenameApiResponse apiResponse)
         {
-            OnGetMediaCoverByMovieIdAndFilename?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetMediacoverByMovieIdByFilename?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetMediaCoverByMovieIdAndFilename(Exception exception)
+        internal void ExecuteOnErrorGetMediacoverByMovieIdByFilename(Exception exception)
         {
-            OnErrorGetMediaCoverByMovieIdAndFilename?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetMediacoverByMovieIdByFilename?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -142,14 +142,14 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetMediaCoverByMovieIdAndFilename(ref int movieId, ref string filename);
+        partial void FormatGetMediacoverByMovieIdByFilename(ref int movieId, ref string filename);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        private void ValidateGetMediaCoverByMovieIdAndFilename(string filename)
+        private void ValidateGetMediacoverByMovieIdByFilename(string filename)
         {
             if (filename == null)
                 throw new ArgumentNullException(nameof(filename));
@@ -161,10 +161,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
-        private void AfterGetMediaCoverByMovieIdAndFilenameDefaultImplementation(IGetMediaCoverByMovieIdAndFilenameApiResponse apiResponseLocalVar, int movieId, string filename)
+        private void AfterGetMediacoverByMovieIdByFilenameDefaultImplementation(IGetMediacoverByMovieIdByFilenameApiResponse apiResponseLocalVar, int movieId, string filename)
         {
             bool suppressDefaultLog = false;
-            AfterGetMediaCoverByMovieIdAndFilename(ref suppressDefaultLog, apiResponseLocalVar, movieId, filename);
+            AfterGetMediacoverByMovieIdByFilename(ref suppressDefaultLog, apiResponseLocalVar, movieId, filename);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -176,7 +176,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
-        partial void AfterGetMediaCoverByMovieIdAndFilename(ref bool suppressDefaultLog, IGetMediaCoverByMovieIdAndFilenameApiResponse apiResponseLocalVar, int movieId, string filename);
+        partial void AfterGetMediacoverByMovieIdByFilename(ref bool suppressDefaultLog, IGetMediacoverByMovieIdByFilenameApiResponse apiResponseLocalVar, int movieId, string filename);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -186,10 +186,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
-        private void OnErrorGetMediaCoverByMovieIdAndFilenameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int movieId, string filename)
+        private void OnErrorGetMediacoverByMovieIdByFilenameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int movieId, string filename)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMediaCoverByMovieIdAndFilename(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, filename);
+            OnErrorGetMediacoverByMovieIdByFilename(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, filename);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -203,7 +203,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
-        partial void OnErrorGetMediaCoverByMovieIdAndFilename(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int movieId, string filename);
+        partial void OnErrorGetMediacoverByMovieIdByFilename(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int movieId, string filename);
 
         /// <summary>
         ///  
@@ -211,12 +211,12 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaCoverByMovieIdAndFilenameApiResponse"/>&gt;</returns>
-        public async Task<IGetMediaCoverByMovieIdAndFilenameApiResponse?> GetMediaCoverByMovieIdAndFilenameOrDefaultAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediacoverByMovieIdByFilenameApiResponse"/>&gt;</returns>
+        public async Task<IGetMediacoverByMovieIdByFilenameApiResponse?> GetMediacoverByMovieIdByFilenameOrDefaultAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMediaCoverByMovieIdAndFilenameAsync(movieId, filename, cancellationToken).ConfigureAwait(false);
+                return await GetMediacoverByMovieIdByFilenameAsync(movieId, filename, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -231,16 +231,16 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="filename"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaCoverByMovieIdAndFilenameApiResponse"/>&gt;</returns>
-        public async Task<IGetMediaCoverByMovieIdAndFilenameApiResponse> GetMediaCoverByMovieIdAndFilenameAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediacoverByMovieIdByFilenameApiResponse"/>&gt;</returns>
+        public async Task<IGetMediacoverByMovieIdByFilenameApiResponse> GetMediacoverByMovieIdByFilenameAsync(int movieId, string filename, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetMediaCoverByMovieIdAndFilename(filename);
+                ValidateGetMediacoverByMovieIdByFilename(filename);
 
-                FormatGetMediaCoverByMovieIdAndFilename(ref movieId, ref filename);
+                FormatGetMediacoverByMovieIdByFilename(ref movieId, ref filename);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -260,15 +260,34 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "image/jpeg",
+                        "image/png",
+                        "image/gif"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetMediaCoverByMovieIdAndFilenameApiResponse apiResponseLocalVar;
+                        GetMediacoverByMovieIdByFilenameApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            case (200):
+                            {
+                                byte[] responseBytesArrayLocalVar = await httpResponseMessageLocalVar.Content.ReadAsByteArrayAsync(cancellationToken).ConfigureAwait(false);
+                                System.IO.Stream responseContentStreamLocalVar = new System.IO.MemoryStream(responseBytesArrayLocalVar);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentStreamLocalVar, "/api/v3/mediacover/{movieId}/{filename}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                                 apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/mediacover/{movieId}/{filename}", requestedAtLocalVar, _jsonSerializerOptions);
@@ -277,9 +296,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetMediaCoverByMovieIdAndFilenameDefaultImplementation(apiResponseLocalVar, movieId, filename);
+                        AfterGetMediacoverByMovieIdByFilenameDefaultImplementation(apiResponseLocalVar, movieId, filename);
 
-                        Events.ExecuteOnGetMediaCoverByMovieIdAndFilename(apiResponseLocalVar);
+                        Events.ExecuteOnGetMediacoverByMovieIdByFilename(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -291,16 +310,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMediaCoverByMovieIdAndFilenameDefaultImplementation(e, "/api/v3/mediacover/{movieId}/{filename}", uriBuilderLocalVar.Path, movieId, filename);
-                Events.ExecuteOnErrorGetMediaCoverByMovieIdAndFilename(e);
+                OnErrorGetMediacoverByMovieIdByFilenameDefaultImplementation(e, "/api/v3/mediacover/{movieId}/{filename}", uriBuilderLocalVar.Path, movieId, filename);
+                Events.ExecuteOnErrorGetMediacoverByMovieIdByFilename(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetMediaCoverByMovieIdAndFilenameApiResponse"/>
+        /// The <see cref="GetMediacoverByMovieIdByFilenameApiResponse"/>
         /// </summary>
-        public partial class GetMediaCoverByMovieIdAndFilenameApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMediaCoverByMovieIdAndFilenameApiResponse
+        public partial class GetMediacoverByMovieIdByFilenameApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMediacoverByMovieIdByFilenameApiResponse
         {
             /// <summary>
             /// The logger
@@ -308,7 +327,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MediaCoverApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetMediaCoverByMovieIdAndFilenameApiResponse"/>
+            /// The <see cref="GetMediacoverByMovieIdByFilenameApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -317,14 +336,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMediaCoverByMovieIdAndFilenameApiResponse(ILogger<MediaCoverApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetMediacoverByMovieIdByFilenameApiResponse(ILogger<MediaCoverApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetMediaCoverByMovieIdAndFilenameApiResponse"/>
+            /// The <see cref="GetMediacoverByMovieIdByFilenameApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -333,7 +352,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMediaCoverByMovieIdAndFilenameApiResponse(ILogger<MediaCoverApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetMediacoverByMovieIdByFilenameApiResponse(ILogger<MediaCoverApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -346,6 +365,50 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public System.IO.Stream? Ok()
+            {
+                bool suppressDefault = false;
+                System.IO.Stream? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private System.IO.Stream? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? ContentStream
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref System.IO.Stream? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out System.IO.Stream? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

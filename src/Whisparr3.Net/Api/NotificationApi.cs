@@ -45,60 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationApiResponse"/>&gt;</returns>
-        Task<ICreateNotificationApiResponse> CreateNotificationAsync(Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationApiResponse"/>?&gt;</returns>
-        Task<ICreateNotificationApiResponse?> CreateNotificationOrDefaultAsync(Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationActionByNameApiResponse"/>&gt;</returns>
-        Task<ICreateNotificationActionByNameApiResponse> CreateNotificationActionByNameAsync(string name, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationActionByNameApiResponse"/>?&gt;</returns>
-        Task<ICreateNotificationActionByNameApiResponse?> CreateNotificationActionByNameOrDefaultAsync(string name, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationApiResponse"/>&gt;</returns>
-        Task<IDeleteNotificationApiResponse> DeleteNotificationAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteNotificationByIdApiResponse> DeleteNotificationByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -108,8 +58,29 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationApiResponse"/>?&gt;</returns>
-        Task<IDeleteNotificationApiResponse?> DeleteNotificationOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteNotificationByIdApiResponse?> DeleteNotificationByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationApiResponse"/>&gt;</returns>
+        Task<IGetNotificationApiResponse> GetNotificationAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationApiResponse"/>?&gt;</returns>
+        Task<IGetNotificationApiResponse?> GetNotificationOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -142,8 +113,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationApiResponse"/>&gt;</returns>
-        Task<IListNotificationApiResponse> ListNotificationAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationSchemaApiResponse"/>&gt;</returns>
+        Task<IGetNotificationSchemaApiResponse> GetNotificationSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -152,8 +123,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationApiResponse"/>?&gt;</returns>
-        Task<IListNotificationApiResponse?> ListNotificationOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationSchemaApiResponse"/>?&gt;</returns>
+        Task<IGetNotificationSchemaApiResponse?> GetNotificationSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -162,9 +133,11 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationSchemaApiResponse"/>&gt;</returns>
-        Task<IListNotificationSchemaApiResponse> ListNotificationSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationApiResponse"/>&gt;</returns>
+        Task<IPostNotificationApiResponse> PostNotificationAsync(NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -172,30 +145,11 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationSchemaApiResponse"/>?&gt;</returns>
-        Task<IListNotificationSchemaApiResponse?> ListNotificationSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllNotificationApiResponse"/>&gt;</returns>
-        Task<ITestAllNotificationApiResponse> TestAllNotificationAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllNotificationApiResponse"/>?&gt;</returns>
-        Task<ITestAllNotificationApiResponse?> TestAllNotificationOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationApiResponse"/>?&gt;</returns>
+        Task<IPostNotificationApiResponse?> PostNotificationOrDefaultAsync(NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -204,11 +158,36 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationActionByNameApiResponse"/>&gt;</returns>
+        Task<IPostNotificationActionByNameApiResponse> PostNotificationActionByNameAsync(string name, NotificationResource notificationResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationActionByNameApiResponse"/>?&gt;</returns>
+        Task<IPostNotificationActionByNameApiResponse?> PostNotificationActionByNameOrDefaultAsync(string name, NotificationResource notificationResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="notificationResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestNotificationApiResponse"/>&gt;</returns>
-        Task<ITestNotificationApiResponse> TestNotificationAsync(Option<bool> forceTest = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestApiResponse"/>&gt;</returns>
+        Task<IPostNotificationTestApiResponse> PostNotificationTestAsync(NotificationResource notificationResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -216,11 +195,32 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="notificationResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestNotificationApiResponse"/>?&gt;</returns>
-        Task<ITestNotificationApiResponse?> TestNotificationOrDefaultAsync(Option<bool> forceTest = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestApiResponse"/>?&gt;</returns>
+        Task<IPostNotificationTestApiResponse?> PostNotificationTestOrDefaultAsync(NotificationResource notificationResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestallApiResponse"/>&gt;</returns>
+        Task<IPostNotificationTestallApiResponse> PostNotificationTestallAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestallApiResponse"/>?&gt;</returns>
+        Task<IPostNotificationTestallApiResponse?> PostNotificationTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -230,11 +230,11 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="notificationResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNotificationApiResponse"/>&gt;</returns>
-        Task<IUpdateNotificationApiResponse> UpdateNotificationAsync(int id, Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutNotificationByIdApiResponse"/>&gt;</returns>
+        Task<IPutNotificationByIdApiResponse> PutNotificationByIdAsync(int id, NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -243,17 +243,17 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
+        /// <param name="notificationResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNotificationApiResponse"/>?&gt;</returns>
-        Task<IUpdateNotificationApiResponse?> UpdateNotificationOrDefaultAsync(int id, Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutNotificationByIdApiResponse"/>?&gt;</returns>
+        Task<IPutNotificationByIdApiResponse?> PutNotificationByIdOrDefaultAsync(int id, NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateNotificationApiResponse"/>
+    /// The <see cref="IDeleteNotificationByIdApiResponse"/>
     /// </summary>
-    public interface ICreateNotificationApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NotificationResource?>
+    public interface IDeleteNotificationByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -263,21 +263,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateNotificationActionByNameApiResponse"/>
+    /// The <see cref="IGetNotificationApiResponse"/>
     /// </summary>
-    public interface ICreateNotificationActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IDeleteNotificationApiResponse"/>
-    /// </summary>
-    public interface IDeleteNotificationApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetNotificationApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<NotificationResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -299,9 +287,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListNotificationApiResponse"/>
+    /// The <see cref="IGetNotificationSchemaApiResponse"/>
     /// </summary>
-    public interface IListNotificationApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<NotificationResource>?>
+    public interface IGetNotificationSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<NotificationResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -311,9 +299,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListNotificationSchemaApiResponse"/>
+    /// The <see cref="IPostNotificationApiResponse"/>
     /// </summary>
-    public interface IListNotificationSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<NotificationResource>?>
+    public interface IPostNotificationApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.NotificationResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostNotificationActionByNameApiResponse"/>
+    /// </summary>
+    public interface IPostNotificationActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Object?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -323,9 +323,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ITestAllNotificationApiResponse"/>
+    /// The <see cref="IPostNotificationTestApiResponse"/>
     /// </summary>
-    public interface ITestAllNotificationApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostNotificationTestApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -335,27 +335,33 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ITestNotificationApiResponse"/>
+    /// The <see cref="IPostNotificationTestallApiResponse"/>
     /// </summary>
-    public interface ITestNotificationApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostNotificationTestallApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ProviderTestAllResult>?>, IBadRequest<List<ProviderTestAllResult>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateNotificationApiResponse"/>
+    /// The <see cref="IPutNotificationByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateNotificationApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NotificationResource?>
+    public interface IPutNotificationByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.NotificationResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -366,61 +372,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateNotification;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteNotificationById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateNotification;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteNotificationById;
 
-        internal void ExecuteOnCreateNotification(NotificationApi.CreateNotificationApiResponse apiResponse)
+        internal void ExecuteOnDeleteNotificationById(NotificationApi.DeleteNotificationByIdApiResponse apiResponse)
         {
-            OnCreateNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteNotificationById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateNotification(Exception exception)
+        internal void ExecuteOnErrorDeleteNotificationById(Exception exception)
         {
-            OnErrorCreateNotification?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteNotificationById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateNotificationActionByName;
+        public event EventHandler<ApiResponseEventArgs>? OnGetNotification;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateNotificationActionByName;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetNotification;
 
-        internal void ExecuteOnCreateNotificationActionByName(NotificationApi.CreateNotificationActionByNameApiResponse apiResponse)
+        internal void ExecuteOnGetNotification(NotificationApi.GetNotificationApiResponse apiResponse)
         {
-            OnCreateNotificationActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateNotificationActionByName(Exception exception)
+        internal void ExecuteOnErrorGetNotification(Exception exception)
         {
-            OnErrorCreateNotificationActionByName?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteNotification;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteNotification;
-
-        internal void ExecuteOnDeleteNotification(NotificationApi.DeleteNotificationApiResponse apiResponse)
-        {
-            OnDeleteNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeleteNotification(Exception exception)
-        {
-            OnErrorDeleteNotification?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetNotification?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -446,101 +432,121 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListNotification;
+        public event EventHandler<ApiResponseEventArgs>? OnGetNotificationSchema;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListNotification;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetNotificationSchema;
 
-        internal void ExecuteOnListNotification(NotificationApi.ListNotificationApiResponse apiResponse)
+        internal void ExecuteOnGetNotificationSchema(NotificationApi.GetNotificationSchemaApiResponse apiResponse)
         {
-            OnListNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetNotificationSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListNotification(Exception exception)
+        internal void ExecuteOnErrorGetNotificationSchema(Exception exception)
         {
-            OnErrorListNotification?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetNotificationSchema?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListNotificationSchema;
+        public event EventHandler<ApiResponseEventArgs>? OnPostNotification;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListNotificationSchema;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostNotification;
 
-        internal void ExecuteOnListNotificationSchema(NotificationApi.ListNotificationSchemaApiResponse apiResponse)
+        internal void ExecuteOnPostNotification(NotificationApi.PostNotificationApiResponse apiResponse)
         {
-            OnListNotificationSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListNotificationSchema(Exception exception)
+        internal void ExecuteOnErrorPostNotification(Exception exception)
         {
-            OnErrorListNotificationSchema?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostNotification?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestAllNotification;
+        public event EventHandler<ApiResponseEventArgs>? OnPostNotificationActionByName;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestAllNotification;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostNotificationActionByName;
 
-        internal void ExecuteOnTestAllNotification(NotificationApi.TestAllNotificationApiResponse apiResponse)
+        internal void ExecuteOnPostNotificationActionByName(NotificationApi.PostNotificationActionByNameApiResponse apiResponse)
         {
-            OnTestAllNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostNotificationActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestAllNotification(Exception exception)
+        internal void ExecuteOnErrorPostNotificationActionByName(Exception exception)
         {
-            OnErrorTestAllNotification?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostNotificationActionByName?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestNotification;
+        public event EventHandler<ApiResponseEventArgs>? OnPostNotificationTest;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestNotification;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostNotificationTest;
 
-        internal void ExecuteOnTestNotification(NotificationApi.TestNotificationApiResponse apiResponse)
+        internal void ExecuteOnPostNotificationTest(NotificationApi.PostNotificationTestApiResponse apiResponse)
         {
-            OnTestNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostNotificationTest?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestNotification(Exception exception)
+        internal void ExecuteOnErrorPostNotificationTest(Exception exception)
         {
-            OnErrorTestNotification?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostNotificationTest?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateNotification;
+        public event EventHandler<ApiResponseEventArgs>? OnPostNotificationTestall;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateNotification;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostNotificationTestall;
 
-        internal void ExecuteOnUpdateNotification(NotificationApi.UpdateNotificationApiResponse apiResponse)
+        internal void ExecuteOnPostNotificationTestall(NotificationApi.PostNotificationTestallApiResponse apiResponse)
         {
-            OnUpdateNotification?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostNotificationTestall?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateNotification(Exception exception)
+        internal void ExecuteOnErrorPostNotificationTestall(Exception exception)
         {
-            OnErrorUpdateNotification?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostNotificationTestall?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutNotificationById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutNotificationById;
+
+        internal void ExecuteOnPutNotificationById(NotificationApi.PutNotificationByIdApiResponse apiResponse)
+        {
+            OnPutNotificationById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutNotificationById(Exception exception)
+        {
+            OnErrorPutNotificationById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -585,542 +591,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateNotification(ref Option<bool> forceSave, Option<NotificationResource> notificationResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="notificationResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateNotification(Option<NotificationResource> notificationResource)
-        {
-            if (notificationResource.IsSet && notificationResource.Value == null)
-                throw new ArgumentNullException(nameof(notificationResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="notificationResource"></param>
-        private void AfterCreateNotificationDefaultImplementation(ICreateNotificationApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<NotificationResource> notificationResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateNotification(ref suppressDefaultLog, apiResponseLocalVar, forceSave, notificationResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="notificationResource"></param>
-        partial void AfterCreateNotification(ref bool suppressDefaultLog, ICreateNotificationApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<NotificationResource> notificationResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="notificationResource"></param>
-        private void OnErrorCreateNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<NotificationResource> notificationResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceSave, notificationResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="notificationResource"></param>
-        partial void OnErrorCreateNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<NotificationResource> notificationResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationApiResponse"/>&gt;</returns>
-        public async Task<ICreateNotificationApiResponse?> CreateNotificationOrDefaultAsync(Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateNotificationAsync(forceSave, notificationResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationApiResponse"/>&gt;</returns>
-        public async Task<ICreateNotificationApiResponse> CreateNotificationAsync(Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateNotification(notificationResource);
-
-                FormatCreateNotification(ref forceSave, notificationResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/notification"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (forceSave.IsSet)
-                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    if (notificationResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (notificationResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateNotificationApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateNotificationDefaultImplementation(apiResponseLocalVar, forceSave, notificationResource);
-
-                        Events.ExecuteOnCreateNotification(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateNotificationDefaultImplementation(e, "/api/v3/notification", uriBuilderLocalVar.Path, forceSave, notificationResource);
-                Events.ExecuteOnErrorCreateNotification(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateNotificationApiResponse"/>
-        /// </summary>
-        public partial class CreateNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateNotificationApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<NotificationApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateNotificationApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateNotificationApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.NotificationResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.NotificationResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.NotificationResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.NotificationResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.NotificationResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.NotificationResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreateNotificationActionByName(ref string name, Option<NotificationResource> notificationResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateNotificationActionByName(string name, Option<NotificationResource> notificationResource)
-        {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
-
-            if (notificationResource.IsSet && notificationResource.Value == null)
-                throw new ArgumentNullException(nameof(notificationResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"></param>
-        private void AfterCreateNotificationActionByNameDefaultImplementation(ICreateNotificationActionByNameApiResponse apiResponseLocalVar, string name, Option<NotificationResource> notificationResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateNotificationActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, notificationResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"></param>
-        partial void AfterCreateNotificationActionByName(ref bool suppressDefaultLog, ICreateNotificationActionByNameApiResponse apiResponseLocalVar, string name, Option<NotificationResource> notificationResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"></param>
-        private void OnErrorCreateNotificationActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<NotificationResource> notificationResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateNotificationActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, notificationResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"></param>
-        partial void OnErrorCreateNotificationActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<NotificationResource> notificationResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateNotificationActionByNameApiResponse?> CreateNotificationActionByNameOrDefaultAsync(string name, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateNotificationActionByNameAsync(name, notificationResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="notificationResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateNotificationActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateNotificationActionByNameApiResponse> CreateNotificationActionByNameAsync(string name, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateNotificationActionByName(name, notificationResource);
-
-                FormatCreateNotificationActionByName(ref name, notificationResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/notification/action/{name}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification/action/{name}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
-
-                    if (notificationResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (notificationResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateNotificationActionByNameApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateNotificationActionByNameDefaultImplementation(apiResponseLocalVar, name, notificationResource);
-
-                        Events.ExecuteOnCreateNotificationActionByName(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateNotificationActionByNameDefaultImplementation(e, "/api/v3/notification/action/{name}", uriBuilderLocalVar.Path, name, notificationResource);
-                Events.ExecuteOnErrorCreateNotificationActionByName(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateNotificationActionByNameApiResponse"/>
-        /// </summary>
-        public partial class CreateNotificationActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateNotificationActionByNameApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<NotificationApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateNotificationActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateNotificationActionByNameApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateNotificationActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateNotificationActionByNameApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteNotification(ref int id);
+        partial void FormatDeleteNotificationById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterDeleteNotificationDefaultImplementation(IDeleteNotificationApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteNotificationByIdDefaultImplementation(IDeleteNotificationByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteNotification(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteNotificationById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1131,7 +612,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterDeleteNotification(ref bool suppressDefaultLog, IDeleteNotificationApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteNotificationById(ref bool suppressDefaultLog, IDeleteNotificationByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1140,10 +621,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorDeleteNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteNotificationByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteNotificationById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1156,19 +637,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorDeleteNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteNotificationById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationApiResponse"/>&gt;</returns>
-        public async Task<IDeleteNotificationApiResponse?> DeleteNotificationOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteNotificationByIdApiResponse?> DeleteNotificationByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteNotificationAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteNotificationByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1182,14 +663,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationApiResponse"/>&gt;</returns>
-        public async Task<IDeleteNotificationApiResponse> DeleteNotificationAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteNotificationByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteNotificationByIdApiResponse> DeleteNotificationByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteNotification(ref id);
+                FormatDeleteNotificationById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1214,7 +695,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteNotificationApiResponse apiResponseLocalVar;
+                        DeleteNotificationByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1225,9 +706,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteNotificationDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteNotificationByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteNotification(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteNotificationById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1239,16 +720,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteNotificationDefaultImplementation(e, "/api/v3/notification/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteNotification(e);
+                OnErrorDeleteNotificationByIdDefaultImplementation(e, "/api/v3/notification/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteNotificationById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteNotificationApiResponse"/>
+        /// The <see cref="DeleteNotificationByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteNotificationApiResponse
+        public partial class DeleteNotificationByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteNotificationByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1256,7 +737,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NotificationApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteNotificationApiResponse"/>
+            /// The <see cref="DeleteNotificationByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1265,14 +746,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteNotificationByIdApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteNotificationApiResponse"/>
+            /// The <see cref="DeleteNotificationByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1281,7 +762,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteNotificationByIdApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1294,6 +775,244 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetNotificationDefaultImplementation(IGetNotificationApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetNotification(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetNotification(ref bool suppressDefaultLog, IGetNotificationApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationApiResponse"/>&gt;</returns>
+        public async Task<IGetNotificationApiResponse?> GetNotificationOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetNotificationAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationApiResponse"/>&gt;</returns>
+        public async Task<IGetNotificationApiResponse> GetNotificationAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/notification"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetNotificationApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetNotificationDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnGetNotification(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetNotificationDefaultImplementation(e, "/api/v3/notification", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetNotification(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetNotificationApiResponse"/>
+        /// </summary>
+        public partial class GetNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, IGetNotificationApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<NotificationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetNotificationApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetNotificationApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<NotificationResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<NotificationResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<NotificationResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<NotificationResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<NotificationResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<NotificationResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -1561,10 +1280,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListNotificationDefaultImplementation(IListNotificationApiResponse apiResponseLocalVar)
+        private void AfterGetNotificationSchemaDefaultImplementation(IGetNotificationSchemaApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListNotification(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetNotificationSchema(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1574,7 +1293,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListNotification(ref bool suppressDefaultLog, IListNotificationApiResponse apiResponseLocalVar);
+        partial void AfterGetNotificationSchema(ref bool suppressDefaultLog, IGetNotificationSchemaApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1582,10 +1301,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetNotificationSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetNotificationSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1597,18 +1316,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetNotificationSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationApiResponse"/>&gt;</returns>
-        public async Task<IListNotificationApiResponse?> ListNotificationOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetNotificationSchemaApiResponse?> GetNotificationSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListNotificationAsync(cancellationToken).ConfigureAwait(false);
+                return await GetNotificationSchemaAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1621,246 +1340,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationApiResponse"/>&gt;</returns>
-        public async Task<IListNotificationApiResponse> ListNotificationAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/notification"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListNotificationApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListNotificationDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnListNotification(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListNotificationDefaultImplementation(e, "/api/v3/notification", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListNotification(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListNotificationApiResponse"/>
-        /// </summary>
-        public partial class ListNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, IListNotificationApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<NotificationApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListNotificationApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListNotificationApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<NotificationResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<NotificationResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<NotificationResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<NotificationResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<NotificationResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<NotificationResource>? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListNotificationSchemaDefaultImplementation(IListNotificationSchemaApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListNotificationSchema(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListNotificationSchema(ref bool suppressDefaultLog, IListNotificationSchemaApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListNotificationSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListNotificationSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListNotificationSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListNotificationSchemaApiResponse?> ListNotificationSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListNotificationSchemaAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListNotificationSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListNotificationSchemaApiResponse> ListNotificationSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetNotificationSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetNotificationSchemaApiResponse> GetNotificationSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1897,7 +1378,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListNotificationSchemaApiResponse apiResponseLocalVar;
+                        GetNotificationSchemaApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1908,9 +1389,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListNotificationSchemaDefaultImplementation(apiResponseLocalVar);
+                        AfterGetNotificationSchemaDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListNotificationSchema(apiResponseLocalVar);
+                        Events.ExecuteOnGetNotificationSchema(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1922,16 +1403,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListNotificationSchemaDefaultImplementation(e, "/api/v3/notification/schema", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListNotificationSchema(e);
+                OnErrorGetNotificationSchemaDefaultImplementation(e, "/api/v3/notification/schema", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetNotificationSchema(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListNotificationSchemaApiResponse"/>
+        /// The <see cref="GetNotificationSchemaApiResponse"/>
         /// </summary>
-        public partial class ListNotificationSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IListNotificationSchemaApiResponse
+        public partial class GetNotificationSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IGetNotificationSchemaApiResponse
         {
             /// <summary>
             /// The logger
@@ -1939,7 +1420,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NotificationApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListNotificationSchemaApiResponse"/>
+            /// The <see cref="GetNotificationSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1948,14 +1429,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListNotificationSchemaApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetNotificationSchemaApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListNotificationSchemaApiResponse"/>
+            /// The <see cref="GetNotificationSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1964,7 +1445,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListNotificationSchemaApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetNotificationSchemaApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2033,14 +1514,29 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatPostNotification(NotificationResource notificationResource, ref Option<bool> forceSave);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="notificationResource"></param>
+        /// <returns></returns>
+        private void ValidatePostNotification(NotificationResource notificationResource)
+        {
+            if (notificationResource == null)
+                throw new ArgumentNullException(nameof(notificationResource));
+        }
+
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterTestAllNotificationDefaultImplementation(ITestAllNotificationApiResponse apiResponseLocalVar)
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"></param>
+        private void AfterPostNotificationDefaultImplementation(IPostNotificationApiResponse apiResponseLocalVar, NotificationResource notificationResource, Option<bool> forceSave)
         {
             bool suppressDefaultLog = false;
-            AfterTestAllNotification(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterPostNotification(ref suppressDefaultLog, apiResponseLocalVar, notificationResource, forceSave);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2050,7 +1546,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterTestAllNotification(ref bool suppressDefaultLog, ITestAllNotificationApiResponse apiResponseLocalVar);
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"></param>
+        partial void AfterPostNotification(ref bool suppressDefaultLog, IPostNotificationApiResponse apiResponseLocalVar, NotificationResource notificationResource, Option<bool> forceSave);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2058,10 +1556,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorTestAllNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"></param>
+        private void OnErrorPostNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, NotificationResource notificationResource, Option<bool> forceSave)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTestAllNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorPostNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, notificationResource, forceSave);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2073,18 +1573,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorTestAllNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"></param>
+        partial void OnErrorPostNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, NotificationResource notificationResource, Option<bool> forceSave);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllNotificationApiResponse"/>&gt;</returns>
-        public async Task<ITestAllNotificationApiResponse?> TestAllNotificationOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationApiResponse?> PostNotificationOrDefaultAsync(NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TestAllNotificationAsync(cancellationToken).ConfigureAwait(false);
+                return await PostNotificationAsync(notificationResource, forceSave, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2096,22 +1600,39 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="notificationResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllNotificationApiResponse"/>&gt;</returns>
-        public async Task<ITestAllNotificationApiResponse> TestAllNotificationAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationApiResponse> PostNotificationAsync(NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
+                ValidatePostNotification(notificationResource);
+
+                FormatPostNotification(notificationResource, ref forceSave);
+
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/notification/testall"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification/testall");
+                        ? "/api/v3/notification"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (forceSave.IsSet)
+                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (notificationResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2120,26 +1641,44 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        TestAllNotificationApiResponse apiResponseLocalVar;
+                        PostNotificationApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification/testall", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterTestAllNotificationDefaultImplementation(apiResponseLocalVar);
+                        AfterPostNotificationDefaultImplementation(apiResponseLocalVar, notificationResource, forceSave);
 
-                        Events.ExecuteOnTestAllNotification(apiResponseLocalVar);
+                        Events.ExecuteOnPostNotification(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2151,16 +1690,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorTestAllNotificationDefaultImplementation(e, "/api/v3/notification/testall", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorTestAllNotification(e);
+                OnErrorPostNotificationDefaultImplementation(e, "/api/v3/notification", uriBuilderLocalVar.Path, notificationResource, forceSave);
+                Events.ExecuteOnErrorPostNotification(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="TestAllNotificationApiResponse"/>
+        /// The <see cref="PostNotificationApiResponse"/>
         /// </summary>
-        public partial class TestAllNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, ITestAllNotificationApiResponse
+        public partial class PostNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, IPostNotificationApiResponse
         {
             /// <summary>
             /// The logger
@@ -2168,7 +1707,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NotificationApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="TestAllNotificationApiResponse"/>
+            /// The <see cref="PostNotificationApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2177,14 +1716,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestAllNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="TestAllNotificationApiResponse"/>
+            /// The <see cref="PostNotificationApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2193,7 +1732,292 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestAllNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.NotificationResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.NotificationResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.NotificationResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.NotificationResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.NotificationResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.NotificationResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostNotificationActionByName(ref string name, NotificationResource notificationResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        /// <returns></returns>
+        private void ValidatePostNotificationActionByName(string name, NotificationResource notificationResource)
+        {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+
+            if (notificationResource == null)
+                throw new ArgumentNullException(nameof(notificationResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        private void AfterPostNotificationActionByNameDefaultImplementation(IPostNotificationActionByNameApiResponse apiResponseLocalVar, string name, NotificationResource notificationResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostNotificationActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, notificationResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        partial void AfterPostNotificationActionByName(ref bool suppressDefaultLog, IPostNotificationActionByNameApiResponse apiResponseLocalVar, string name, NotificationResource notificationResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        private void OnErrorPostNotificationActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, NotificationResource notificationResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostNotificationActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, notificationResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        partial void OnErrorPostNotificationActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, NotificationResource notificationResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationActionByNameApiResponse?> PostNotificationActionByNameOrDefaultAsync(string name, NotificationResource notificationResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostNotificationActionByNameAsync(name, notificationResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"></param>
+        /// <param name="notificationResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationActionByNameApiResponse> PostNotificationActionByNameAsync(string name, NotificationResource notificationResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostNotificationActionByName(name, notificationResource);
+
+                FormatPostNotificationActionByName(ref name, notificationResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/notification/action/{name}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification/action/{name}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (notificationResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostNotificationActionByNameApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostNotificationActionByNameDefaultImplementation(apiResponseLocalVar, name, notificationResource);
+
+                        Events.ExecuteOnPostNotificationActionByName(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostNotificationActionByNameDefaultImplementation(e, "/api/v3/notification/action/{name}", uriBuilderLocalVar.Path, name, notificationResource);
+                Events.ExecuteOnErrorPostNotificationActionByName(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostNotificationActionByNameApiResponse"/>
+        /// </summary>
+        public partial class PostNotificationActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, IPostNotificationActionByNameApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<NotificationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostNotificationActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostNotificationActionByNameApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostNotificationActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostNotificationActionByNameApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2207,6 +2031,50 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Object? Ok()
+            {
+                bool suppressDefault = false;
+                Object? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Object? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Object>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Object? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Object? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -2218,16 +2086,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatTestNotification(ref Option<bool> forceTest, Option<NotificationResource> notificationResource);
+        partial void FormatPostNotificationTest(NotificationResource notificationResource, ref Option<bool> forceTest);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="notificationResource"></param>
         /// <returns></returns>
-        private void ValidateTestNotification(Option<NotificationResource> notificationResource)
+        private void ValidatePostNotificationTest(NotificationResource notificationResource)
         {
-            if (notificationResource.IsSet && notificationResource.Value == null)
+            if (notificationResource == null)
                 throw new ArgumentNullException(nameof(notificationResource));
         }
 
@@ -2235,12 +2103,12 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="notificationResource"></param>
-        private void AfterTestNotificationDefaultImplementation(ITestNotificationApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<NotificationResource> notificationResource)
+        /// <param name="forceTest"></param>
+        private void AfterPostNotificationTestDefaultImplementation(IPostNotificationTestApiResponse apiResponseLocalVar, NotificationResource notificationResource, Option<bool> forceTest)
         {
             bool suppressDefaultLog = false;
-            AfterTestNotification(ref suppressDefaultLog, apiResponseLocalVar, forceTest, notificationResource);
+            AfterPostNotificationTest(ref suppressDefaultLog, apiResponseLocalVar, notificationResource, forceTest);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2250,9 +2118,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="notificationResource"></param>
-        partial void AfterTestNotification(ref bool suppressDefaultLog, ITestNotificationApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<NotificationResource> notificationResource);
+        /// <param name="forceTest"></param>
+        partial void AfterPostNotificationTest(ref bool suppressDefaultLog, IPostNotificationTestApiResponse apiResponseLocalVar, NotificationResource notificationResource, Option<bool> forceTest);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2260,12 +2128,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="notificationResource"></param>
-        private void OnErrorTestNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<NotificationResource> notificationResource)
+        /// <param name="forceTest"></param>
+        private void OnErrorPostNotificationTestDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, NotificationResource notificationResource, Option<bool> forceTest)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTestNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceTest, notificationResource);
+            OnErrorPostNotificationTest(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, notificationResource, forceTest);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2277,22 +2145,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="notificationResource"></param>
-        partial void OnErrorTestNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<NotificationResource> notificationResource);
+        /// <param name="forceTest"></param>
+        partial void OnErrorPostNotificationTest(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, NotificationResource notificationResource, Option<bool> forceTest);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="notificationResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestNotificationApiResponse"/>&gt;</returns>
-        public async Task<ITestNotificationApiResponse?> TestNotificationOrDefaultAsync(Option<bool> forceTest = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationTestApiResponse?> PostNotificationTestOrDefaultAsync(NotificationResource notificationResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TestNotificationAsync(forceTest, notificationResource, cancellationToken).ConfigureAwait(false);
+                return await PostNotificationTestAsync(notificationResource, forceTest, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2304,19 +2172,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="notificationResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestNotificationApiResponse"/>&gt;</returns>
-        public async Task<ITestNotificationApiResponse> TestNotificationAsync(Option<bool> forceTest = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationTestApiResponse> PostNotificationTestAsync(NotificationResource notificationResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateTestNotification(notificationResource);
+                ValidatePostNotificationTest(notificationResource);
 
-                FormatTestNotification(ref forceTest, notificationResource);
+                FormatPostNotificationTest(notificationResource, ref forceTest);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2334,12 +2202,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (notificationResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (notificationResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (notificationResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2363,7 +2228,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        TestNotificationApiResponse apiResponseLocalVar;
+                        PostNotificationTestApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2374,9 +2239,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterTestNotificationDefaultImplementation(apiResponseLocalVar, forceTest, notificationResource);
+                        AfterPostNotificationTestDefaultImplementation(apiResponseLocalVar, notificationResource, forceTest);
 
-                        Events.ExecuteOnTestNotification(apiResponseLocalVar);
+                        Events.ExecuteOnPostNotificationTest(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2388,16 +2253,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorTestNotificationDefaultImplementation(e, "/api/v3/notification/test", uriBuilderLocalVar.Path, forceTest, notificationResource);
-                Events.ExecuteOnErrorTestNotification(e);
+                OnErrorPostNotificationTestDefaultImplementation(e, "/api/v3/notification/test", uriBuilderLocalVar.Path, notificationResource, forceTest);
+                Events.ExecuteOnErrorPostNotificationTest(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="TestNotificationApiResponse"/>
+        /// The <see cref="PostNotificationTestApiResponse"/>
         /// </summary>
-        public partial class TestNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, ITestNotificationApiResponse
+        public partial class PostNotificationTestApiResponse : Whisparr3.Net.Client.ApiResponse, IPostNotificationTestApiResponse
         {
             /// <summary>
             /// The logger
@@ -2405,7 +2270,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NotificationApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="TestNotificationApiResponse"/>
+            /// The <see cref="PostNotificationTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2414,14 +2279,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostNotificationTestApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="TestNotificationApiResponse"/>
+            /// The <see cref="PostNotificationTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2430,7 +2295,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostNotificationTestApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2455,16 +2320,304 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateNotification(ref int id, ref Option<bool> forceSave, Option<NotificationResource> notificationResource);
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterPostNotificationTestallDefaultImplementation(IPostNotificationTestallApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostNotificationTestall(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterPostNotificationTestall(ref bool suppressDefaultLog, IPostNotificationTestallApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorPostNotificationTestallDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostNotificationTestall(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorPostNotificationTestall(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationTestallApiResponse?> PostNotificationTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostNotificationTestallAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostNotificationTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostNotificationTestallApiResponse> PostNotificationTestallAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/notification/testall"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/notification/testall");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostNotificationTestallApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/notification/testall", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostNotificationTestallDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnPostNotificationTestall(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostNotificationTestallDefaultImplementation(e, "/api/v3/notification/testall", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorPostNotificationTestall(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostNotificationTestallApiResponse"/>
+        /// </summary>
+        public partial class PostNotificationTestallApiResponse : Whisparr3.Net.Client.ApiResponse, IPostNotificationTestallApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<NotificationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostNotificationTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostNotificationTestallApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostNotificationTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostNotificationTestallApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? BadRequest()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutNotificationById(ref int id, NotificationResource notificationResource, ref Option<bool> forceSave);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="notificationResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateNotification(Option<NotificationResource> notificationResource)
+        private void ValidatePutNotificationById(NotificationResource notificationResource)
         {
-            if (notificationResource.IsSet && notificationResource.Value == null)
+            if (notificationResource == null)
                 throw new ArgumentNullException(nameof(notificationResource));
         }
 
@@ -2473,12 +2626,12 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="notificationResource"></param>
-        private void AfterUpdateNotificationDefaultImplementation(IUpdateNotificationApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<NotificationResource> notificationResource)
+        /// <param name="forceSave"></param>
+        private void AfterPutNotificationByIdDefaultImplementation(IPutNotificationByIdApiResponse apiResponseLocalVar, int id, NotificationResource notificationResource, Option<bool> forceSave)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateNotification(ref suppressDefaultLog, apiResponseLocalVar, id, forceSave, notificationResource);
+            AfterPutNotificationById(ref suppressDefaultLog, apiResponseLocalVar, id, notificationResource, forceSave);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2489,9 +2642,9 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="notificationResource"></param>
-        partial void AfterUpdateNotification(ref bool suppressDefaultLog, IUpdateNotificationApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<NotificationResource> notificationResource);
+        /// <param name="forceSave"></param>
+        partial void AfterPutNotificationById(ref bool suppressDefaultLog, IPutNotificationByIdApiResponse apiResponseLocalVar, int id, NotificationResource notificationResource, Option<bool> forceSave);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2500,12 +2653,12 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="notificationResource"></param>
-        private void OnErrorUpdateNotificationDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<NotificationResource> notificationResource)
+        /// <param name="forceSave"></param>
+        private void OnErrorPutNotificationByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, NotificationResource notificationResource, Option<bool> forceSave)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateNotification(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, forceSave, notificationResource);
+            OnErrorPutNotificationById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, notificationResource, forceSave);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2518,23 +2671,23 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="notificationResource"></param>
-        partial void OnErrorUpdateNotification(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<NotificationResource> notificationResource);
+        /// <param name="forceSave"></param>
+        partial void OnErrorPutNotificationById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, NotificationResource notificationResource, Option<bool> forceSave);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="notificationResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNotificationApiResponse"/>&gt;</returns>
-        public async Task<IUpdateNotificationApiResponse?> UpdateNotificationOrDefaultAsync(int id, Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutNotificationByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutNotificationByIdApiResponse?> PutNotificationByIdOrDefaultAsync(int id, NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateNotificationAsync(id, forceSave, notificationResource, cancellationToken).ConfigureAwait(false);
+                return await PutNotificationByIdAsync(id, notificationResource, forceSave, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2547,19 +2700,19 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="notificationResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="notificationResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNotificationApiResponse"/>&gt;</returns>
-        public async Task<IUpdateNotificationApiResponse> UpdateNotificationAsync(int id, Option<bool> forceSave = default, Option<NotificationResource> notificationResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutNotificationByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutNotificationByIdApiResponse> PutNotificationByIdAsync(int id, NotificationResource notificationResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateNotification(notificationResource);
+                ValidatePutNotificationById(notificationResource);
 
-                FormatUpdateNotification(ref id, ref forceSave, notificationResource);
+                FormatPutNotificationById(ref id, notificationResource, ref forceSave);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2578,12 +2731,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (notificationResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (notificationResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (notificationResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(notificationResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2616,7 +2766,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateNotificationApiResponse apiResponseLocalVar;
+                        PutNotificationByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2627,9 +2777,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateNotificationDefaultImplementation(apiResponseLocalVar, id, forceSave, notificationResource);
+                        AfterPutNotificationByIdDefaultImplementation(apiResponseLocalVar, id, notificationResource, forceSave);
 
-                        Events.ExecuteOnUpdateNotification(apiResponseLocalVar);
+                        Events.ExecuteOnPutNotificationById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2641,16 +2791,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateNotificationDefaultImplementation(e, "/api/v3/notification/{id}", uriBuilderLocalVar.Path, id, forceSave, notificationResource);
-                Events.ExecuteOnErrorUpdateNotification(e);
+                OnErrorPutNotificationByIdDefaultImplementation(e, "/api/v3/notification/{id}", uriBuilderLocalVar.Path, id, notificationResource, forceSave);
+                Events.ExecuteOnErrorPutNotificationById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateNotificationApiResponse"/>
+        /// The <see cref="PutNotificationByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateNotificationApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateNotificationApiResponse
+        public partial class PutNotificationByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutNotificationByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -2658,7 +2808,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NotificationApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateNotificationApiResponse"/>
+            /// The <see cref="PutNotificationByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2667,14 +2817,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutNotificationByIdApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateNotificationApiResponse"/>
+            /// The <see cref="PutNotificationByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2683,7 +2833,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateNotificationApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutNotificationByIdApiResponse(ILogger<NotificationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2692,50 +2842,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.NotificationResource? Ok()
+            public Whisparr3.Net.Model.NotificationResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.NotificationResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.NotificationResource? DefaultOk()
+            private Whisparr3.Net.Model.NotificationResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.NotificationResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.NotificationResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.NotificationResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.NotificationResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.NotificationResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="delayProfileResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDelayProfileApiResponse"/>&gt;</returns>
-        Task<ICreateDelayProfileApiResponse> CreateDelayProfileAsync(Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayprofileByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteDelayprofileByIdApiResponse> DeleteDelayprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,31 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="delayProfileResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDelayProfileApiResponse"/>?&gt;</returns>
-        Task<ICreateDelayProfileApiResponse?> CreateDelayProfileOrDefaultAsync(Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayprofileByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteDelayprofileByIdApiResponse?> DeleteDelayprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileApiResponse"/>&gt;</returns>
+        Task<IGetDelayprofileApiResponse> GetDelayprofileAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileApiResponse"/>?&gt;</returns>
+        Task<IGetDelayprofileApiResponse?> GetDelayprofileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -70,8 +91,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayProfileApiResponse"/>&gt;</returns>
-        Task<IDeleteDelayProfileApiResponse> DeleteDelayProfileAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileByIdApiResponse"/>&gt;</returns>
+        Task<IGetDelayprofileByIdApiResponse> GetDelayprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -81,8 +102,31 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayProfileApiResponse"/>?&gt;</returns>
-        Task<IDeleteDelayProfileApiResponse?> DeleteDelayProfileOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileByIdApiResponse"/>?&gt;</returns>
+        Task<IGetDelayprofileByIdApiResponse?> GetDelayprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="delayProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDelayprofileApiResponse"/>&gt;</returns>
+        Task<IPostDelayprofileApiResponse> PostDelayprofileAsync(DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="delayProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDelayprofileApiResponse"/>?&gt;</returns>
+        Task<IPostDelayprofileApiResponse?> PostDelayprofileOrDefaultAsync(DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -92,9 +136,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayProfileByIdApiResponse"/>&gt;</returns>
-        Task<IGetDelayProfileByIdApiResponse> GetDelayProfileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileByIdApiResponse"/>&gt;</returns>
+        Task<IPutDelayprofileByIdApiResponse> PutDelayprofileByIdAsync(string id, DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -103,55 +148,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayProfileByIdApiResponse"/>?&gt;</returns>
-        Task<IGetDelayProfileByIdApiResponse?> GetDelayProfileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDelayProfileApiResponse"/>&gt;</returns>
-        Task<IListDelayProfileApiResponse> ListDelayProfileAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDelayProfileApiResponse"/>?&gt;</returns>
-        Task<IListDelayProfileApiResponse?> ListDelayProfileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="delayProfileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileApiResponse"/>&gt;</returns>
-        Task<IUpdateDelayProfileApiResponse> UpdateDelayProfileAsync(string id, Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="delayProfileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileApiResponse"/>?&gt;</returns>
-        Task<IUpdateDelayProfileApiResponse?> UpdateDelayProfileOrDefaultAsync(string id, Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileByIdApiResponse"/>?&gt;</returns>
+        Task<IPutDelayprofileByIdApiResponse?> PutDelayprofileByIdOrDefaultAsync(string id, DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -163,8 +163,8 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="after"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileReorderApiResponse"/>&gt;</returns>
-        Task<IUpdateDelayProfileReorderApiResponse> UpdateDelayProfileReorderAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileReorderByIdApiResponse"/>&gt;</returns>
+        Task<IPutDelayprofileReorderByIdApiResponse> PutDelayprofileReorderByIdAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -175,14 +175,14 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="after"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileReorderApiResponse"/>?&gt;</returns>
-        Task<IUpdateDelayProfileReorderApiResponse?> UpdateDelayProfileReorderOrDefaultAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileReorderByIdApiResponse"/>?&gt;</returns>
+        Task<IPutDelayprofileReorderByIdApiResponse?> PutDelayprofileReorderByIdOrDefaultAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateDelayProfileApiResponse"/>
+    /// The <see cref="IDeleteDelayprofileByIdApiResponse"/>
     /// </summary>
-    public interface ICreateDelayProfileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DelayProfileResource?>
+    public interface IDeleteDelayprofileByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -192,9 +192,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteDelayProfileApiResponse"/>
+    /// The <see cref="IGetDelayprofileApiResponse"/>
     /// </summary>
-    public interface IDeleteDelayProfileApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetDelayprofileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DelayProfileResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -204,9 +204,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetDelayProfileByIdApiResponse"/>
+    /// The <see cref="IGetDelayprofileByIdApiResponse"/>
     /// </summary>
-    public interface IGetDelayProfileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DelayProfileResource?>
+    public interface IGetDelayprofileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DelayProfileResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -216,33 +216,33 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListDelayProfileApiResponse"/>
+    /// The <see cref="IPostDelayprofileApiResponse"/>
     /// </summary>
-    public interface IListDelayProfileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DelayProfileResource>?>
+    public interface IPostDelayprofileApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.DelayProfileResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 201 Created
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsCreated { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateDelayProfileApiResponse"/>
+    /// The <see cref="IPutDelayprofileByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateDelayProfileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DelayProfileResource?>
+    public interface IPutDelayprofileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.DelayProfileResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateDelayProfileReorderApiResponse"/>
+    /// The <see cref="IPutDelayprofileReorderByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateDelayProfileReorderApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DelayProfileResource>?>
+    public interface IPutDelayprofileReorderByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DelayProfileResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -259,121 +259,121 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateDelayProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteDelayprofileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateDelayProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteDelayprofileById;
 
-        internal void ExecuteOnCreateDelayProfile(DelayProfileApi.CreateDelayProfileApiResponse apiResponse)
+        internal void ExecuteOnDeleteDelayprofileById(DelayProfileApi.DeleteDelayprofileByIdApiResponse apiResponse)
         {
-            OnCreateDelayProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteDelayprofileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateDelayProfile(Exception exception)
+        internal void ExecuteOnErrorDeleteDelayprofileById(Exception exception)
         {
-            OnErrorCreateDelayProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteDelayprofileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteDelayProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnGetDelayprofile;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteDelayProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetDelayprofile;
 
-        internal void ExecuteOnDeleteDelayProfile(DelayProfileApi.DeleteDelayProfileApiResponse apiResponse)
+        internal void ExecuteOnGetDelayprofile(DelayProfileApi.GetDelayprofileApiResponse apiResponse)
         {
-            OnDeleteDelayProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetDelayprofile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteDelayProfile(Exception exception)
+        internal void ExecuteOnErrorGetDelayprofile(Exception exception)
         {
-            OnErrorDeleteDelayProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetDelayprofile?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetDelayProfileById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetDelayprofileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetDelayProfileById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetDelayprofileById;
 
-        internal void ExecuteOnGetDelayProfileById(DelayProfileApi.GetDelayProfileByIdApiResponse apiResponse)
+        internal void ExecuteOnGetDelayprofileById(DelayProfileApi.GetDelayprofileByIdApiResponse apiResponse)
         {
-            OnGetDelayProfileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetDelayprofileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetDelayProfileById(Exception exception)
+        internal void ExecuteOnErrorGetDelayprofileById(Exception exception)
         {
-            OnErrorGetDelayProfileById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetDelayprofileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListDelayProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDelayprofile;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListDelayProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDelayprofile;
 
-        internal void ExecuteOnListDelayProfile(DelayProfileApi.ListDelayProfileApiResponse apiResponse)
+        internal void ExecuteOnPostDelayprofile(DelayProfileApi.PostDelayprofileApiResponse apiResponse)
         {
-            OnListDelayProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDelayprofile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListDelayProfile(Exception exception)
+        internal void ExecuteOnErrorPostDelayprofile(Exception exception)
         {
-            OnErrorListDelayProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDelayprofile?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateDelayProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnPutDelayprofileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateDelayProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutDelayprofileById;
 
-        internal void ExecuteOnUpdateDelayProfile(DelayProfileApi.UpdateDelayProfileApiResponse apiResponse)
+        internal void ExecuteOnPutDelayprofileById(DelayProfileApi.PutDelayprofileByIdApiResponse apiResponse)
         {
-            OnUpdateDelayProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutDelayprofileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateDelayProfile(Exception exception)
+        internal void ExecuteOnErrorPutDelayprofileById(Exception exception)
         {
-            OnErrorUpdateDelayProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutDelayprofileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateDelayProfileReorder;
+        public event EventHandler<ApiResponseEventArgs>? OnPutDelayprofileReorderById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateDelayProfileReorder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutDelayprofileReorderById;
 
-        internal void ExecuteOnUpdateDelayProfileReorder(DelayProfileApi.UpdateDelayProfileReorderApiResponse apiResponse)
+        internal void ExecuteOnPutDelayprofileReorderById(DelayProfileApi.PutDelayprofileReorderByIdApiResponse apiResponse)
         {
-            OnUpdateDelayProfileReorder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutDelayprofileReorderById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateDelayProfileReorder(Exception exception)
+        internal void ExecuteOnErrorPutDelayprofileReorderById(Exception exception)
         {
-            OnErrorUpdateDelayProfileReorder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutDelayprofileReorderById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -418,296 +418,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateDelayProfile(Option<DelayProfileResource> delayProfileResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="delayProfileResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateDelayProfile(Option<DelayProfileResource> delayProfileResource)
-        {
-            if (delayProfileResource.IsSet && delayProfileResource.Value == null)
-                throw new ArgumentNullException(nameof(delayProfileResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="delayProfileResource"></param>
-        private void AfterCreateDelayProfileDefaultImplementation(ICreateDelayProfileApiResponse apiResponseLocalVar, Option<DelayProfileResource> delayProfileResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateDelayProfile(ref suppressDefaultLog, apiResponseLocalVar, delayProfileResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="delayProfileResource"></param>
-        partial void AfterCreateDelayProfile(ref bool suppressDefaultLog, ICreateDelayProfileApiResponse apiResponseLocalVar, Option<DelayProfileResource> delayProfileResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="delayProfileResource"></param>
-        private void OnErrorCreateDelayProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DelayProfileResource> delayProfileResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateDelayProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, delayProfileResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="delayProfileResource"></param>
-        partial void OnErrorCreateDelayProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DelayProfileResource> delayProfileResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="delayProfileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<ICreateDelayProfileApiResponse?> CreateDelayProfileOrDefaultAsync(Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateDelayProfileAsync(delayProfileResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="delayProfileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<ICreateDelayProfileApiResponse> CreateDelayProfileAsync(Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateDelayProfile(delayProfileResource);
-
-                FormatCreateDelayProfile(delayProfileResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/delayprofile"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/delayprofile");
-
-                    if (delayProfileResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (delayProfileResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(delayProfileResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateDelayProfileApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/delayprofile", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateDelayProfileDefaultImplementation(apiResponseLocalVar, delayProfileResource);
-
-                        Events.ExecuteOnCreateDelayProfile(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateDelayProfileDefaultImplementation(e, "/api/v3/delayprofile", uriBuilderLocalVar.Path, delayProfileResource);
-                Events.ExecuteOnErrorCreateDelayProfile(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateDelayProfileApiResponse"/>
-        /// </summary>
-        public partial class CreateDelayProfileApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateDelayProfileApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<DelayProfileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateDelayProfileApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateDelayProfileApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.DelayProfileResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.DelayProfileResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.DelayProfileResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DelayProfileResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DelayProfileResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DelayProfileResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteDelayProfile(ref int id);
+        partial void FormatDeleteDelayprofileById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterDeleteDelayProfileDefaultImplementation(IDeleteDelayProfileApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteDelayprofileByIdDefaultImplementation(IDeleteDelayprofileByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteDelayProfile(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteDelayprofileById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -718,7 +439,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterDeleteDelayProfile(ref bool suppressDefaultLog, IDeleteDelayProfileApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteDelayprofileById(ref bool suppressDefaultLog, IDeleteDelayprofileByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -727,10 +448,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorDeleteDelayProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteDelayprofileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteDelayProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteDelayprofileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -743,19 +464,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorDeleteDelayProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteDelayprofileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<IDeleteDelayProfileApiResponse?> DeleteDelayProfileOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteDelayprofileByIdApiResponse?> DeleteDelayprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteDelayProfileAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteDelayprofileByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -769,14 +490,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<IDeleteDelayProfileApiResponse> DeleteDelayProfileAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDelayprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteDelayprofileByIdApiResponse> DeleteDelayprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteDelayProfile(ref id);
+                FormatDeleteDelayprofileById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -801,7 +522,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteDelayProfileApiResponse apiResponseLocalVar;
+                        DeleteDelayprofileByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -812,9 +533,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteDelayProfileDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteDelayprofileByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteDelayProfile(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteDelayprofileById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -826,16 +547,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteDelayProfileDefaultImplementation(e, "/api/v3/delayprofile/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteDelayProfile(e);
+                OnErrorDeleteDelayprofileByIdDefaultImplementation(e, "/api/v3/delayprofile/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteDelayprofileById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteDelayProfileApiResponse"/>
+        /// The <see cref="DeleteDelayprofileByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteDelayProfileApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteDelayProfileApiResponse
+        public partial class DeleteDelayprofileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteDelayprofileByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -843,7 +564,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DelayProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteDelayProfileApiResponse"/>
+            /// The <see cref="DeleteDelayprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -852,14 +573,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteDelayprofileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteDelayProfileApiResponse"/>
+            /// The <see cref="DeleteDelayprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -868,7 +589,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteDelayprofileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -893,17 +614,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetDelayProfileById(ref int id);
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterGetDelayProfileByIdDefaultImplementation(IGetDelayProfileByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetDelayprofileDefaultImplementation(IGetDelayprofileApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetDelayProfileById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetDelayprofile(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -913,8 +631,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterGetDelayProfileById(ref bool suppressDefaultLog, IGetDelayProfileByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetDelayprofile(ref bool suppressDefaultLog, IGetDelayprofileApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -922,11 +639,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorGetDelayProfileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetDelayprofileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetDelayProfileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetDelayprofile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -938,264 +654,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorGetDelayProfileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayProfileByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetDelayProfileByIdApiResponse?> GetDelayProfileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetDelayProfileByIdAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayProfileByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetDelayProfileByIdApiResponse> GetDelayProfileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatGetDelayProfileById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/delayprofile/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/delayprofile/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetDelayProfileByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/delayprofile/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetDelayProfileByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnGetDelayProfileById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetDelayProfileByIdDefaultImplementation(e, "/api/v3/delayprofile/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetDelayProfileById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetDelayProfileByIdApiResponse"/>
-        /// </summary>
-        public partial class GetDelayProfileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDelayProfileByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<DelayProfileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetDelayProfileByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetDelayProfileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetDelayProfileByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetDelayProfileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.DelayProfileResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.DelayProfileResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.DelayProfileResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DelayProfileResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DelayProfileResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DelayProfileResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListDelayProfileDefaultImplementation(IListDelayProfileApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListDelayProfile(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListDelayProfile(ref bool suppressDefaultLog, IListDelayProfileApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListDelayProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListDelayProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListDelayProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetDelayprofile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<IListDelayProfileApiResponse?> ListDelayProfileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileApiResponse"/>&gt;</returns>
+        public async Task<IGetDelayprofileApiResponse?> GetDelayprofileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListDelayProfileAsync(cancellationToken).ConfigureAwait(false);
+                return await GetDelayprofileAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1208,8 +678,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<IListDelayProfileApiResponse> ListDelayProfileAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileApiResponse"/>&gt;</returns>
+        public async Task<IGetDelayprofileApiResponse> GetDelayprofileAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1248,7 +718,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListDelayProfileApiResponse apiResponseLocalVar;
+                        GetDelayprofileApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1259,9 +729,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListDelayProfileDefaultImplementation(apiResponseLocalVar);
+                        AfterGetDelayprofileDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListDelayProfile(apiResponseLocalVar);
+                        Events.ExecuteOnGetDelayprofile(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1273,16 +743,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListDelayProfileDefaultImplementation(e, "/api/v3/delayprofile", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListDelayProfile(e);
+                OnErrorGetDelayprofileDefaultImplementation(e, "/api/v3/delayprofile", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetDelayprofile(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListDelayProfileApiResponse"/>
+        /// The <see cref="GetDelayprofileApiResponse"/>
         /// </summary>
-        public partial class ListDelayProfileApiResponse : Whisparr3.Net.Client.ApiResponse, IListDelayProfileApiResponse
+        public partial class GetDelayprofileApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDelayprofileApiResponse
         {
             /// <summary>
             /// The logger
@@ -1290,7 +760,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DelayProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListDelayProfileApiResponse"/>
+            /// The <see cref="GetDelayprofileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1299,14 +769,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetDelayprofileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListDelayProfileApiResponse"/>
+            /// The <see cref="GetDelayprofileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1315,7 +785,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetDelayprofileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1384,33 +854,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateDelayProfile(ref string id, Option<DelayProfileResource> delayProfileResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="delayProfileResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateDelayProfile(string id, Option<DelayProfileResource> delayProfileResource)
-        {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            if (delayProfileResource.IsSet && delayProfileResource.Value == null)
-                throw new ArgumentNullException(nameof(delayProfileResource));
-        }
+        partial void FormatGetDelayprofileById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="delayProfileResource"></param>
-        private void AfterUpdateDelayProfileDefaultImplementation(IUpdateDelayProfileApiResponse apiResponseLocalVar, string id, Option<DelayProfileResource> delayProfileResource)
+        private void AfterGetDelayprofileByIdDefaultImplementation(IGetDelayprofileByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateDelayProfile(ref suppressDefaultLog, apiResponseLocalVar, id, delayProfileResource);
+            AfterGetDelayprofileById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1421,8 +875,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="delayProfileResource"></param>
-        partial void AfterUpdateDelayProfile(ref bool suppressDefaultLog, IUpdateDelayProfileApiResponse apiResponseLocalVar, string id, Option<DelayProfileResource> delayProfileResource);
+        partial void AfterGetDelayprofileById(ref bool suppressDefaultLog, IGetDelayprofileByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1431,11 +884,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="delayProfileResource"></param>
-        private void OnErrorUpdateDelayProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<DelayProfileResource> delayProfileResource)
+        private void OnErrorGetDelayprofileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateDelayProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, delayProfileResource);
+            OnErrorGetDelayprofileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1448,21 +900,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="delayProfileResource"></param>
-        partial void OnErrorUpdateDelayProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<DelayProfileResource> delayProfileResource);
+        partial void OnErrorGetDelayprofileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="delayProfileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDelayProfileApiResponse?> UpdateDelayProfileOrDefaultAsync(string id, Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetDelayprofileByIdApiResponse?> GetDelayprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateDelayProfileAsync(id, delayProfileResource, cancellationToken).ConfigureAwait(false);
+                return await GetDelayprofileByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1475,18 +925,15 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="delayProfileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDelayProfileApiResponse> UpdateDelayProfileAsync(string id, Option<DelayProfileResource> delayProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDelayprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetDelayprofileByIdApiResponse> GetDelayprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateDelayProfile(id, delayProfileResource);
-
-                FormatUpdateDelayProfile(ref id, delayProfileResource);
+                FormatGetDelayprofileById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1498,28 +945,12 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/delayprofile/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (delayProfileResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (delayProfileResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(delayProfileResource.Value, _jsonSerializerOptions));
-                    }
-
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
                     tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
                     apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "text/plain",
@@ -1532,13 +963,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateDelayProfileApiResponse apiResponseLocalVar;
+                        GetDelayprofileByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1549,9 +980,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateDelayProfileDefaultImplementation(apiResponseLocalVar, id, delayProfileResource);
+                        AfterGetDelayprofileByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnUpdateDelayProfile(apiResponseLocalVar);
+                        Events.ExecuteOnGetDelayprofileById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1563,16 +994,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateDelayProfileDefaultImplementation(e, "/api/v3/delayprofile/{id}", uriBuilderLocalVar.Path, id, delayProfileResource);
-                Events.ExecuteOnErrorUpdateDelayProfile(e);
+                OnErrorGetDelayprofileByIdDefaultImplementation(e, "/api/v3/delayprofile/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetDelayprofileById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateDelayProfileApiResponse"/>
+        /// The <see cref="GetDelayprofileByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateDelayProfileApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateDelayProfileApiResponse
+        public partial class GetDelayprofileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDelayprofileByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1580,7 +1011,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DelayProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateDelayProfileApiResponse"/>
+            /// The <see cref="GetDelayprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1589,14 +1020,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetDelayprofileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateDelayProfileApiResponse"/>
+            /// The <see cref="GetDelayprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1605,7 +1036,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDelayProfileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetDelayprofileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1674,7 +1105,570 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateDelayProfileReorder(ref int id, ref Option<int> after);
+        partial void FormatPostDelayprofile(DelayProfileResource delayProfileResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="delayProfileResource"></param>
+        /// <returns></returns>
+        private void ValidatePostDelayprofile(DelayProfileResource delayProfileResource)
+        {
+            if (delayProfileResource == null)
+                throw new ArgumentNullException(nameof(delayProfileResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="delayProfileResource"></param>
+        private void AfterPostDelayprofileDefaultImplementation(IPostDelayprofileApiResponse apiResponseLocalVar, DelayProfileResource delayProfileResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostDelayprofile(ref suppressDefaultLog, apiResponseLocalVar, delayProfileResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="delayProfileResource"></param>
+        partial void AfterPostDelayprofile(ref bool suppressDefaultLog, IPostDelayprofileApiResponse apiResponseLocalVar, DelayProfileResource delayProfileResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="delayProfileResource"></param>
+        private void OnErrorPostDelayprofileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DelayProfileResource delayProfileResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostDelayprofile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, delayProfileResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="delayProfileResource"></param>
+        partial void OnErrorPostDelayprofile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DelayProfileResource delayProfileResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="delayProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDelayprofileApiResponse"/>&gt;</returns>
+        public async Task<IPostDelayprofileApiResponse?> PostDelayprofileOrDefaultAsync(DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostDelayprofileAsync(delayProfileResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="delayProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDelayprofileApiResponse"/>&gt;</returns>
+        public async Task<IPostDelayprofileApiResponse> PostDelayprofileAsync(DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostDelayprofile(delayProfileResource);
+
+                FormatPostDelayprofile(delayProfileResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/delayprofile"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/delayprofile");
+
+                    httpRequestMessageLocalVar.Content = (delayProfileResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(delayProfileResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostDelayprofileApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/delayprofile", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostDelayprofileDefaultImplementation(apiResponseLocalVar, delayProfileResource);
+
+                        Events.ExecuteOnPostDelayprofile(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostDelayprofileDefaultImplementation(e, "/api/v3/delayprofile", uriBuilderLocalVar.Path, delayProfileResource);
+                Events.ExecuteOnErrorPostDelayprofile(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostDelayprofileApiResponse"/>
+        /// </summary>
+        public partial class PostDelayprofileApiResponse : Whisparr3.Net.Client.ApiResponse, IPostDelayprofileApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DelayProfileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostDelayprofileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostDelayprofileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostDelayprofileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostDelayprofileApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.DelayProfileResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.DelayProfileResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.DelayProfileResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DelayProfileResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.DelayProfileResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.DelayProfileResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutDelayprofileById(ref string id, DelayProfileResource delayProfileResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        /// <returns></returns>
+        private void ValidatePutDelayprofileById(string id, DelayProfileResource delayProfileResource)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (delayProfileResource == null)
+                throw new ArgumentNullException(nameof(delayProfileResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        private void AfterPutDelayprofileByIdDefaultImplementation(IPutDelayprofileByIdApiResponse apiResponseLocalVar, string id, DelayProfileResource delayProfileResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutDelayprofileById(ref suppressDefaultLog, apiResponseLocalVar, id, delayProfileResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        partial void AfterPutDelayprofileById(ref bool suppressDefaultLog, IPutDelayprofileByIdApiResponse apiResponseLocalVar, string id, DelayProfileResource delayProfileResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        private void OnErrorPutDelayprofileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, DelayProfileResource delayProfileResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutDelayprofileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, delayProfileResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        partial void OnErrorPutDelayprofileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, DelayProfileResource delayProfileResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutDelayprofileByIdApiResponse?> PutDelayprofileByIdOrDefaultAsync(string id, DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutDelayprofileByIdAsync(id, delayProfileResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="delayProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutDelayprofileByIdApiResponse> PutDelayprofileByIdAsync(string id, DelayProfileResource delayProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutDelayprofileById(id, delayProfileResource);
+
+                FormatPutDelayprofileById(ref id, delayProfileResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/delayprofile/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/delayprofile/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (delayProfileResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(delayProfileResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutDelayprofileByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/delayprofile/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutDelayprofileByIdDefaultImplementation(apiResponseLocalVar, id, delayProfileResource);
+
+                        Events.ExecuteOnPutDelayprofileById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutDelayprofileByIdDefaultImplementation(e, "/api/v3/delayprofile/{id}", uriBuilderLocalVar.Path, id, delayProfileResource);
+                Events.ExecuteOnErrorPutDelayprofileById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutDelayprofileByIdApiResponse"/>
+        /// </summary>
+        public partial class PutDelayprofileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutDelayprofileByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DelayProfileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutDelayprofileByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutDelayprofileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutDelayprofileByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutDelayprofileByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.DelayProfileResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.DelayProfileResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.DelayProfileResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DelayProfileResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.DelayProfileResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.DelayProfileResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutDelayprofileReorderById(ref int id, ref Option<int> after);
 
         /// <summary>
         /// Processes the server response
@@ -1682,10 +1676,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="after"></param>
-        private void AfterUpdateDelayProfileReorderDefaultImplementation(IUpdateDelayProfileReorderApiResponse apiResponseLocalVar, int id, Option<int> after)
+        private void AfterPutDelayprofileReorderByIdDefaultImplementation(IPutDelayprofileReorderByIdApiResponse apiResponseLocalVar, int id, Option<int> after)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateDelayProfileReorder(ref suppressDefaultLog, apiResponseLocalVar, id, after);
+            AfterPutDelayprofileReorderById(ref suppressDefaultLog, apiResponseLocalVar, id, after);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1697,7 +1691,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="after"></param>
-        partial void AfterUpdateDelayProfileReorder(ref bool suppressDefaultLog, IUpdateDelayProfileReorderApiResponse apiResponseLocalVar, int id, Option<int> after);
+        partial void AfterPutDelayprofileReorderById(ref bool suppressDefaultLog, IPutDelayprofileReorderByIdApiResponse apiResponseLocalVar, int id, Option<int> after);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1707,10 +1701,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="after"></param>
-        private void OnErrorUpdateDelayProfileReorderDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<int> after)
+        private void OnErrorPutDelayprofileReorderByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<int> after)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateDelayProfileReorder(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, after);
+            OnErrorPutDelayprofileReorderById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, after);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1724,7 +1718,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="after"></param>
-        partial void OnErrorUpdateDelayProfileReorder(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<int> after);
+        partial void OnErrorPutDelayprofileReorderById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<int> after);
 
         /// <summary>
         ///  
@@ -1732,12 +1726,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="after"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileReorderApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDelayProfileReorderApiResponse?> UpdateDelayProfileReorderOrDefaultAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileReorderByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutDelayprofileReorderByIdApiResponse?> PutDelayprofileReorderByIdOrDefaultAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateDelayProfileReorderAsync(id, after, cancellationToken).ConfigureAwait(false);
+                return await PutDelayprofileReorderByIdAsync(id, after, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1752,14 +1746,14 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="after"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDelayProfileReorderApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDelayProfileReorderApiResponse> UpdateDelayProfileReorderAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDelayprofileReorderByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutDelayprofileReorderByIdApiResponse> PutDelayprofileReorderByIdAsync(int id, Option<int> after = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatUpdateDelayProfileReorder(ref id, ref after);
+                FormatPutDelayprofileReorderById(ref id, ref after);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1802,7 +1796,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateDelayProfileReorderApiResponse apiResponseLocalVar;
+                        PutDelayprofileReorderByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1813,9 +1807,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateDelayProfileReorderDefaultImplementation(apiResponseLocalVar, id, after);
+                        AfterPutDelayprofileReorderByIdDefaultImplementation(apiResponseLocalVar, id, after);
 
-                        Events.ExecuteOnUpdateDelayProfileReorder(apiResponseLocalVar);
+                        Events.ExecuteOnPutDelayprofileReorderById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1827,16 +1821,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateDelayProfileReorderDefaultImplementation(e, "/api/v3/delayprofile/reorder/{id}", uriBuilderLocalVar.Path, id, after);
-                Events.ExecuteOnErrorUpdateDelayProfileReorder(e);
+                OnErrorPutDelayprofileReorderByIdDefaultImplementation(e, "/api/v3/delayprofile/reorder/{id}", uriBuilderLocalVar.Path, id, after);
+                Events.ExecuteOnErrorPutDelayprofileReorderById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateDelayProfileReorderApiResponse"/>
+        /// The <see cref="PutDelayprofileReorderByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateDelayProfileReorderApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateDelayProfileReorderApiResponse
+        public partial class PutDelayprofileReorderByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutDelayprofileReorderByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1844,7 +1838,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DelayProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateDelayProfileReorderApiResponse"/>
+            /// The <see cref="PutDelayprofileReorderByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1853,14 +1847,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDelayProfileReorderApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutDelayprofileReorderByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateDelayProfileReorderApiResponse"/>
+            /// The <see cref="PutDelayprofileReorderByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1869,7 +1863,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDelayProfileReorderApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutDelayprofileReorderByIdApiResponse(ILogger<DelayProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

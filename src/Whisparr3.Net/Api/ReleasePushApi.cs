@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="releaseResource"> (optional)</param>
+        /// <param name="releaseResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleasePushApiResponse"/>&gt;</returns>
-        Task<ICreateReleasePushApiResponse> CreateReleasePushAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleasePushApiResponse"/>&gt;</returns>
+        Task<IPostReleasePushApiResponse> PostReleasePushAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,16 +56,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="releaseResource"> (optional)</param>
+        /// <param name="releaseResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleasePushApiResponse"/>?&gt;</returns>
-        Task<ICreateReleasePushApiResponse?> CreateReleasePushOrDefaultAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleasePushApiResponse"/>?&gt;</returns>
+        Task<IPostReleasePushApiResponse?> PostReleasePushOrDefaultAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateReleasePushApiResponse"/>
+    /// The <see cref="IPostReleasePushApiResponse"/>
     /// </summary>
-    public interface ICreateReleasePushApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ReleaseResource>?>
+    public interface IPostReleasePushApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ReleaseResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -82,21 +82,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateReleasePush;
+        public event EventHandler<ApiResponseEventArgs>? OnPostReleasePush;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateReleasePush;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostReleasePush;
 
-        internal void ExecuteOnCreateReleasePush(ReleasePushApi.CreateReleasePushApiResponse apiResponse)
+        internal void ExecuteOnPostReleasePush(ReleasePushApi.PostReleasePushApiResponse apiResponse)
         {
-            OnCreateReleasePush?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostReleasePush?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateReleasePush(Exception exception)
+        internal void ExecuteOnErrorPostReleasePush(Exception exception)
         {
-            OnErrorCreateReleasePush?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostReleasePush?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -141,16 +141,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateReleasePush(Option<ReleaseResource> releaseResource);
+        partial void FormatPostReleasePush(ReleaseResource releaseResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="releaseResource"></param>
         /// <returns></returns>
-        private void ValidateCreateReleasePush(Option<ReleaseResource> releaseResource)
+        private void ValidatePostReleasePush(ReleaseResource releaseResource)
         {
-            if (releaseResource.IsSet && releaseResource.Value == null)
+            if (releaseResource == null)
                 throw new ArgumentNullException(nameof(releaseResource));
         }
 
@@ -159,10 +159,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="releaseResource"></param>
-        private void AfterCreateReleasePushDefaultImplementation(ICreateReleasePushApiResponse apiResponseLocalVar, Option<ReleaseResource> releaseResource)
+        private void AfterPostReleasePushDefaultImplementation(IPostReleasePushApiResponse apiResponseLocalVar, ReleaseResource releaseResource)
         {
             bool suppressDefaultLog = false;
-            AfterCreateReleasePush(ref suppressDefaultLog, apiResponseLocalVar, releaseResource);
+            AfterPostReleasePush(ref suppressDefaultLog, apiResponseLocalVar, releaseResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -173,7 +173,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="releaseResource"></param>
-        partial void AfterCreateReleasePush(ref bool suppressDefaultLog, ICreateReleasePushApiResponse apiResponseLocalVar, Option<ReleaseResource> releaseResource);
+        partial void AfterPostReleasePush(ref bool suppressDefaultLog, IPostReleasePushApiResponse apiResponseLocalVar, ReleaseResource releaseResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -182,10 +182,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="releaseResource"></param>
-        private void OnErrorCreateReleasePushDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ReleaseResource> releaseResource)
+        private void OnErrorPostReleasePushDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ReleaseResource releaseResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateReleasePush(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, releaseResource);
+            OnErrorPostReleasePush(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, releaseResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -198,19 +198,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="releaseResource"></param>
-        partial void OnErrorCreateReleasePush(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ReleaseResource> releaseResource);
+        partial void OnErrorPostReleasePush(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ReleaseResource releaseResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="releaseResource"> (optional)</param>
+        /// <param name="releaseResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleasePushApiResponse"/>&gt;</returns>
-        public async Task<ICreateReleasePushApiResponse?> CreateReleasePushOrDefaultAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleasePushApiResponse"/>&gt;</returns>
+        public async Task<IPostReleasePushApiResponse?> PostReleasePushOrDefaultAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateReleasePushAsync(releaseResource, cancellationToken).ConfigureAwait(false);
+                return await PostReleasePushAsync(releaseResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -222,18 +222,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="releaseResource"> (optional)</param>
+        /// <param name="releaseResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleasePushApiResponse"/>&gt;</returns>
-        public async Task<ICreateReleasePushApiResponse> CreateReleasePushAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleasePushApiResponse"/>&gt;</returns>
+        public async Task<IPostReleasePushApiResponse> PostReleasePushAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateReleasePush(releaseResource);
+                ValidatePostReleasePush(releaseResource);
 
-                FormatCreateReleasePush(releaseResource);
+                FormatPostReleasePush(releaseResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -244,12 +244,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/release/push"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/release/push");
 
-                    if (releaseResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (releaseResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (releaseResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(releaseResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(releaseResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -282,7 +279,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateReleasePushApiResponse apiResponseLocalVar;
+                        PostReleasePushApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -293,9 +290,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterCreateReleasePushDefaultImplementation(apiResponseLocalVar, releaseResource);
+                        AfterPostReleasePushDefaultImplementation(apiResponseLocalVar, releaseResource);
 
-                        Events.ExecuteOnCreateReleasePush(apiResponseLocalVar);
+                        Events.ExecuteOnPostReleasePush(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -307,16 +304,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateReleasePushDefaultImplementation(e, "/api/v3/release/push", uriBuilderLocalVar.Path, releaseResource);
-                Events.ExecuteOnErrorCreateReleasePush(e);
+                OnErrorPostReleasePushDefaultImplementation(e, "/api/v3/release/push", uriBuilderLocalVar.Path, releaseResource);
+                Events.ExecuteOnErrorPostReleasePush(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateReleasePushApiResponse"/>
+        /// The <see cref="PostReleasePushApiResponse"/>
         /// </summary>
-        public partial class CreateReleasePushApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateReleasePushApiResponse
+        public partial class PostReleasePushApiResponse : Whisparr3.Net.Client.ApiResponse, IPostReleasePushApiResponse
         {
             /// <summary>
             /// The logger
@@ -324,7 +321,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ReleasePushApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateReleasePushApiResponse"/>
+            /// The <see cref="PostReleasePushApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -333,14 +330,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateReleasePushApiResponse(ILogger<ReleasePushApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostReleasePushApiResponse(ILogger<ReleasePushApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateReleasePushApiResponse"/>
+            /// The <see cref="PostReleasePushApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -349,7 +346,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateReleasePushApiResponse(ILogger<ReleasePushApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostReleasePushApiResponse(ILogger<ReleasePushApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

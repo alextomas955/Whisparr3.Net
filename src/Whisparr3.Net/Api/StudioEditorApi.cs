@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioEditorResource"> (optional)</param>
+        /// <param name="studioEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioEditorApiResponse"/>&gt;</returns>
-        Task<IPutStudioEditorApiResponse> PutStudioEditorAsync(Option<StudioEditorResource> studioEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutStudioEditorApiResponse> PutStudioEditorAsync(StudioEditorResource studioEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Edits multiple studios
@@ -56,22 +56,22 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="studioEditorResource"> (optional)</param>
+        /// <param name="studioEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioEditorApiResponse"/>?&gt;</returns>
-        Task<IPutStudioEditorApiResponse?> PutStudioEditorOrDefaultAsync(Option<StudioEditorResource> studioEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutStudioEditorApiResponse?> PutStudioEditorOrDefaultAsync(StudioEditorResource studioEditorResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
     /// The <see cref="IPutStudioEditorApiResponse"/>
     /// </summary>
-    public interface IPutStudioEditorApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutStudioEditorApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<StudioResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -141,16 +141,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatPutStudioEditor(Option<StudioEditorResource> studioEditorResource);
+        partial void FormatPutStudioEditor(StudioEditorResource studioEditorResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="studioEditorResource"></param>
         /// <returns></returns>
-        private void ValidatePutStudioEditor(Option<StudioEditorResource> studioEditorResource)
+        private void ValidatePutStudioEditor(StudioEditorResource studioEditorResource)
         {
-            if (studioEditorResource.IsSet && studioEditorResource.Value == null)
+            if (studioEditorResource == null)
                 throw new ArgumentNullException(nameof(studioEditorResource));
         }
 
@@ -159,7 +159,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="studioEditorResource"></param>
-        private void AfterPutStudioEditorDefaultImplementation(IPutStudioEditorApiResponse apiResponseLocalVar, Option<StudioEditorResource> studioEditorResource)
+        private void AfterPutStudioEditorDefaultImplementation(IPutStudioEditorApiResponse apiResponseLocalVar, StudioEditorResource studioEditorResource)
         {
             bool suppressDefaultLog = false;
             AfterPutStudioEditor(ref suppressDefaultLog, apiResponseLocalVar, studioEditorResource);
@@ -173,7 +173,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="studioEditorResource"></param>
-        partial void AfterPutStudioEditor(ref bool suppressDefaultLog, IPutStudioEditorApiResponse apiResponseLocalVar, Option<StudioEditorResource> studioEditorResource);
+        partial void AfterPutStudioEditor(ref bool suppressDefaultLog, IPutStudioEditorApiResponse apiResponseLocalVar, StudioEditorResource studioEditorResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -182,7 +182,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="studioEditorResource"></param>
-        private void OnErrorPutStudioEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioEditorResource> studioEditorResource)
+        private void OnErrorPutStudioEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, StudioEditorResource studioEditorResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorPutStudioEditor(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, studioEditorResource);
@@ -198,15 +198,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="studioEditorResource"></param>
-        partial void OnErrorPutStudioEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<StudioEditorResource> studioEditorResource);
+        partial void OnErrorPutStudioEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, StudioEditorResource studioEditorResource);
 
         /// <summary>
         /// Edits multiple studios 
         /// </summary>
-        /// <param name="studioEditorResource"> (optional)</param>
+        /// <param name="studioEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutStudioEditorApiResponse?> PutStudioEditorOrDefaultAsync(Option<StudioEditorResource> studioEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutStudioEditorApiResponse?> PutStudioEditorOrDefaultAsync(StudioEditorResource studioEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -222,10 +222,10 @@ namespace Whisparr3.Net.Api
         /// Edits multiple studios 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="studioEditorResource"> (optional)</param>
+        /// <param name="studioEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutStudioEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutStudioEditorApiResponse> PutStudioEditorAsync(Option<StudioEditorResource> studioEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutStudioEditorApiResponse> PutStudioEditorAsync(StudioEditorResource studioEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -244,12 +244,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/studio/editor"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/studio/editor");
 
-                    if (studioEditorResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (studioEditorResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (studioEditorResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioEditorResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(studioEditorResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -266,6 +263,15 @@ namespace Whisparr3.Net.Api
 
                     if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
                         httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Put;
 
@@ -349,10 +355,54 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public List<StudioResource>? Accepted()
+            {
+                bool suppressDefault = false;
+                List<StudioResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private List<StudioResource>? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<StudioResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref List<StudioResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out List<StudioResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

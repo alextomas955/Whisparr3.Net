@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigApiResponse"/>&gt;</returns>
-        Task<IGetHostConfigApiResponse> GetHostConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostApiResponse"/>&gt;</returns>
+        Task<IGetConfigHostApiResponse> GetConfigHostAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,31 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigApiResponse"/>?&gt;</returns>
-        Task<IGetHostConfigApiResponse?> GetHostConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetHostConfigByIdApiResponse> GetHostConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetHostConfigByIdApiResponse?> GetHostConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostApiResponse"/>?&gt;</returns>
+        Task<IGetConfigHostApiResponse?> GetConfigHostOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -90,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="hostConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateHostConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateHostConfigApiResponse> UpdateHostConfigAsync(string id, Option<HostConfigResource> hostConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigHostByIdApiResponse> GetConfigHostByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,16 +78,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="hostConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateHostConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateHostConfigApiResponse?> UpdateHostConfigOrDefaultAsync(string id, Option<HostConfigResource> hostConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigHostByIdApiResponse?> GetConfigHostByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="hostConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigHostByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigHostByIdApiResponse> PutConfigHostByIdAsync(string id, HostConfigResource hostConfigResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="hostConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigHostByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigHostByIdApiResponse?> PutConfigHostByIdOrDefaultAsync(string id, HostConfigResource hostConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetHostConfigApiResponse"/>
+    /// The <see cref="IGetConfigHostApiResponse"/>
     /// </summary>
-    public interface IGetHostConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.HostConfigResource?>
+    public interface IGetConfigHostApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.HostConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -121,9 +121,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetHostConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigHostByIdApiResponse"/>
     /// </summary>
-    public interface IGetHostConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.HostConfigResource?>
+    public interface IGetConfigHostByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.HostConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -133,15 +133,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateHostConfigApiResponse"/>
+    /// The <see cref="IPutConfigHostByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateHostConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.HostConfigResource?>
+    public interface IPutConfigHostByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.HostConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -152,61 +152,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetHostConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigHost;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetHostConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigHost;
 
-        internal void ExecuteOnGetHostConfig(HostConfigApi.GetHostConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigHost(HostConfigApi.GetConfigHostApiResponse apiResponse)
         {
-            OnGetHostConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigHost?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetHostConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigHost(Exception exception)
         {
-            OnErrorGetHostConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigHost?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetHostConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigHostById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetHostConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigHostById;
 
-        internal void ExecuteOnGetHostConfigById(HostConfigApi.GetHostConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigHostById(HostConfigApi.GetConfigHostByIdApiResponse apiResponse)
         {
-            OnGetHostConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigHostById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetHostConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigHostById(Exception exception)
         {
-            OnErrorGetHostConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigHostById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateHostConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigHostById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateHostConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigHostById;
 
-        internal void ExecuteOnUpdateHostConfig(HostConfigApi.UpdateHostConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigHostById(HostConfigApi.PutConfigHostByIdApiResponse apiResponse)
         {
-            OnUpdateHostConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigHostById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateHostConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigHostById(Exception exception)
         {
-            OnErrorUpdateHostConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigHostById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -255,10 +255,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetHostConfigDefaultImplementation(IGetHostConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigHostDefaultImplementation(IGetConfigHostApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetHostConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigHost(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -268,7 +268,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetHostConfig(ref bool suppressDefaultLog, IGetHostConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigHost(ref bool suppressDefaultLog, IGetConfigHostApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -276,10 +276,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetHostConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigHostDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetHostConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigHost(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -291,18 +291,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetHostConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigHost(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetHostConfigApiResponse?> GetHostConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigHostApiResponse?> GetConfigHostOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetHostConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigHostAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -315,8 +315,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetHostConfigApiResponse> GetHostConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigHostApiResponse> GetConfigHostAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -355,7 +355,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetHostConfigApiResponse apiResponseLocalVar;
+                        GetConfigHostApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -366,9 +366,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetHostConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigHostDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetHostConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigHost(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -380,16 +380,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetHostConfigDefaultImplementation(e, "/api/v3/config/host", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetHostConfig(e);
+                OnErrorGetConfigHostDefaultImplementation(e, "/api/v3/config/host", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigHost(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetHostConfigApiResponse"/>
+        /// The <see cref="GetConfigHostApiResponse"/>
         /// </summary>
-        public partial class GetHostConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetHostConfigApiResponse
+        public partial class GetConfigHostApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigHostApiResponse
         {
             /// <summary>
             /// The logger
@@ -397,7 +397,7 @@ namespace Whisparr3.Net.Api
             public ILogger<HostConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetHostConfigApiResponse"/>
+            /// The <see cref="GetConfigHostApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -406,14 +406,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetHostConfigApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigHostApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetHostConfigApiResponse"/>
+            /// The <see cref="GetConfigHostApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -422,7 +422,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetHostConfigApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigHostApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -491,17 +491,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetHostConfigById(ref int id);
+        partial void FormatGetConfigHostById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetHostConfigByIdDefaultImplementation(IGetHostConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigHostByIdDefaultImplementation(IGetConfigHostByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetHostConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigHostById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -512,7 +512,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetHostConfigById(ref bool suppressDefaultLog, IGetHostConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigHostById(ref bool suppressDefaultLog, IGetConfigHostByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -521,10 +521,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetHostConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigHostByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetHostConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigHostById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -537,19 +537,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetHostConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigHostById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetHostConfigByIdApiResponse?> GetHostConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigHostByIdApiResponse?> GetConfigHostByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetHostConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigHostByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -563,14 +563,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetHostConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetHostConfigByIdApiResponse> GetHostConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigHostByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigHostByIdApiResponse> GetConfigHostByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetHostConfigById(ref id);
+                FormatGetConfigHostById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -606,7 +606,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetHostConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigHostByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -617,9 +617,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetHostConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigHostByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetHostConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigHostById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -631,16 +631,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetHostConfigByIdDefaultImplementation(e, "/api/v3/config/host/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetHostConfigById(e);
+                OnErrorGetConfigHostByIdDefaultImplementation(e, "/api/v3/config/host/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigHostById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetHostConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigHostByIdApiResponse"/>
         /// </summary>
-        public partial class GetHostConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetHostConfigByIdApiResponse
+        public partial class GetConfigHostByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigHostByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -648,7 +648,7 @@ namespace Whisparr3.Net.Api
             public ILogger<HostConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetHostConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigHostByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -657,14 +657,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetHostConfigByIdApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigHostByIdApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetHostConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigHostByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -673,7 +673,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetHostConfigByIdApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigHostByIdApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -742,7 +742,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateHostConfig(ref string id, Option<HostConfigResource> hostConfigResource);
+        partial void FormatPutConfigHostById(ref string id, HostConfigResource hostConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -750,12 +750,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="hostConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateHostConfig(string id, Option<HostConfigResource> hostConfigResource)
+        private void ValidatePutConfigHostById(string id, HostConfigResource hostConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (hostConfigResource.IsSet && hostConfigResource.Value == null)
+            if (hostConfigResource == null)
                 throw new ArgumentNullException(nameof(hostConfigResource));
         }
 
@@ -765,10 +765,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="hostConfigResource"></param>
-        private void AfterUpdateHostConfigDefaultImplementation(IUpdateHostConfigApiResponse apiResponseLocalVar, string id, Option<HostConfigResource> hostConfigResource)
+        private void AfterPutConfigHostByIdDefaultImplementation(IPutConfigHostByIdApiResponse apiResponseLocalVar, string id, HostConfigResource hostConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateHostConfig(ref suppressDefaultLog, apiResponseLocalVar, id, hostConfigResource);
+            AfterPutConfigHostById(ref suppressDefaultLog, apiResponseLocalVar, id, hostConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -780,7 +780,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="hostConfigResource"></param>
-        partial void AfterUpdateHostConfig(ref bool suppressDefaultLog, IUpdateHostConfigApiResponse apiResponseLocalVar, string id, Option<HostConfigResource> hostConfigResource);
+        partial void AfterPutConfigHostById(ref bool suppressDefaultLog, IPutConfigHostByIdApiResponse apiResponseLocalVar, string id, HostConfigResource hostConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -790,10 +790,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="hostConfigResource"></param>
-        private void OnErrorUpdateHostConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<HostConfigResource> hostConfigResource)
+        private void OnErrorPutConfigHostByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, HostConfigResource hostConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateHostConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, hostConfigResource);
+            OnErrorPutConfigHostById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, hostConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -807,20 +807,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="hostConfigResource"></param>
-        partial void OnErrorUpdateHostConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<HostConfigResource> hostConfigResource);
+        partial void OnErrorPutConfigHostById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, HostConfigResource hostConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="hostConfigResource"> (optional)</param>
+        /// <param name="hostConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateHostConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateHostConfigApiResponse?> UpdateHostConfigOrDefaultAsync(string id, Option<HostConfigResource> hostConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigHostByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigHostByIdApiResponse?> PutConfigHostByIdOrDefaultAsync(string id, HostConfigResource hostConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateHostConfigAsync(id, hostConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigHostByIdAsync(id, hostConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -833,18 +833,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="hostConfigResource"> (optional)</param>
+        /// <param name="hostConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateHostConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateHostConfigApiResponse> UpdateHostConfigAsync(string id, Option<HostConfigResource> hostConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigHostByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigHostByIdApiResponse> PutConfigHostByIdAsync(string id, HostConfigResource hostConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateHostConfig(id, hostConfigResource);
+                ValidatePutConfigHostById(id, hostConfigResource);
 
-                FormatUpdateHostConfig(ref id, hostConfigResource);
+                FormatPutConfigHostById(ref id, hostConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -856,12 +856,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/host/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (hostConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (hostConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (hostConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(hostConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(hostConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -896,7 +893,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateHostConfigApiResponse apiResponseLocalVar;
+                        PutConfigHostByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -907,9 +904,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateHostConfigDefaultImplementation(apiResponseLocalVar, id, hostConfigResource);
+                        AfterPutConfigHostByIdDefaultImplementation(apiResponseLocalVar, id, hostConfigResource);
 
-                        Events.ExecuteOnUpdateHostConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigHostById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -921,16 +918,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateHostConfigDefaultImplementation(e, "/api/v3/config/host/{id}", uriBuilderLocalVar.Path, id, hostConfigResource);
-                Events.ExecuteOnErrorUpdateHostConfig(e);
+                OnErrorPutConfigHostByIdDefaultImplementation(e, "/api/v3/config/host/{id}", uriBuilderLocalVar.Path, id, hostConfigResource);
+                Events.ExecuteOnErrorPutConfigHostById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateHostConfigApiResponse"/>
+        /// The <see cref="PutConfigHostByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateHostConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateHostConfigApiResponse
+        public partial class PutConfigHostByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigHostByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -938,7 +935,7 @@ namespace Whisparr3.Net.Api
             public ILogger<HostConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateHostConfigApiResponse"/>
+            /// The <see cref="PutConfigHostByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -947,14 +944,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateHostConfigApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigHostByIdApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateHostConfigApiResponse"/>
+            /// The <see cref="PutConfigHostByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -963,7 +960,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateHostConfigApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigHostByIdApiResponse(ILogger<HostConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -972,50 +969,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.HostConfigResource? Ok()
+            public Whisparr3.Net.Model.HostConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.HostConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.HostConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.HostConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.HostConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.HostConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.HostConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.HostConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.HostConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

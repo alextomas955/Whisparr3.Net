@@ -49,8 +49,8 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>&gt;</returns>
-        Task<IDeleteCollectionApiResponse> DeleteCollectionAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteCollectionByIdApiResponse> DeleteCollectionByIdAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a collection and their associated movies/scenes from Whisparr
@@ -62,8 +62,31 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>?&gt;</returns>
-        Task<IDeleteCollectionApiResponse?> DeleteCollectionOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteCollectionByIdApiResponse?> DeleteCollectionByIdOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCollectionApiResponse"/>&gt;</returns>
+        Task<IGetCollectionApiResponse> GetCollectionAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCollectionApiResponse"/>?&gt;</returns>
+        Task<IGetCollectionApiResponse?> GetCollectionOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -89,39 +112,16 @@ namespace Whisparr3.Net.Api
         Task<IGetCollectionByIdApiResponse?> GetCollectionByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>&gt;</returns>
-        Task<IListCollectionApiResponse> ListCollectionAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>?&gt;</returns>
-        Task<IListCollectionApiResponse?> ListCollectionOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
         /// Bulk update for multiple collections. Only properties present in the request are applied.
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>&gt;</returns>
-        Task<IPutCollectionApiResponse> PutCollectionAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutCollectionApiResponse> PutCollectionAsync(CollectionUpdateResource collectionUpdateResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk update for multiple collections. Only properties present in the request are applied.
@@ -129,10 +129,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>?&gt;</returns>
-        Task<IPutCollectionApiResponse?> PutCollectionOrDefaultAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutCollectionApiResponse?> PutCollectionOrDefaultAsync(CollectionUpdateResource collectionUpdateResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates a single collection.
@@ -142,10 +142,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>&gt;</returns>
-        Task<IUpdateCollectionApiResponse> UpdateCollectionAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionByIdApiResponse"/>&gt;</returns>
+        Task<IPutCollectionByIdApiResponse> PutCollectionByIdAsync(string id, CollectionResource collectionResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates a single collection.
@@ -154,16 +154,28 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>?&gt;</returns>
-        Task<IUpdateCollectionApiResponse?> UpdateCollectionOrDefaultAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionByIdApiResponse"/>?&gt;</returns>
+        Task<IPutCollectionByIdApiResponse?> PutCollectionByIdOrDefaultAsync(string id, CollectionResource collectionResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IDeleteCollectionApiResponse"/>
+    /// The <see cref="IDeleteCollectionByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteCollectionApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteCollectionByIdApiResponse : Whisparr3.Net.Client.IApiResponse
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetCollectionApiResponse"/>
+    /// </summary>
+    public interface IGetCollectionApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<CollectionResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -185,39 +197,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListCollectionApiResponse"/>
-    /// </summary>
-    public interface IListCollectionApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<CollectionResource>?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
     /// The <see cref="IPutCollectionApiResponse"/>
     /// </summary>
-    public interface IPutCollectionApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutCollectionApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<CollectionResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateCollectionApiResponse"/>
+    /// The <see cref="IPutCollectionByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateCollectionApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.CollectionResource?>
+    public interface IPutCollectionByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.CollectionResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -228,21 +228,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteCollection;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteCollectionById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteCollection;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteCollectionById;
 
-        internal void ExecuteOnDeleteCollection(CollectionApi.DeleteCollectionApiResponse apiResponse)
+        internal void ExecuteOnDeleteCollectionById(CollectionApi.DeleteCollectionByIdApiResponse apiResponse)
         {
-            OnDeleteCollection?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteCollectionById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteCollection(Exception exception)
+        internal void ExecuteOnErrorDeleteCollectionById(Exception exception)
         {
-            OnErrorDeleteCollection?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteCollectionById?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetCollection;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetCollection;
+
+        internal void ExecuteOnGetCollection(CollectionApi.GetCollectionApiResponse apiResponse)
+        {
+            OnGetCollection?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetCollection(Exception exception)
+        {
+            OnErrorGetCollection?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -268,26 +288,6 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListCollection;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListCollection;
-
-        internal void ExecuteOnListCollection(CollectionApi.ListCollectionApiResponse apiResponse)
-        {
-            OnListCollection?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorListCollection(Exception exception)
-        {
-            OnErrorListCollection?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
         public event EventHandler<ApiResponseEventArgs>? OnPutCollection;
 
         /// <summary>
@@ -308,21 +308,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateCollection;
+        public event EventHandler<ApiResponseEventArgs>? OnPutCollectionById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateCollection;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutCollectionById;
 
-        internal void ExecuteOnUpdateCollection(CollectionApi.UpdateCollectionApiResponse apiResponse)
+        internal void ExecuteOnPutCollectionById(CollectionApi.PutCollectionByIdApiResponse apiResponse)
         {
-            OnUpdateCollection?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutCollectionById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateCollection(Exception exception)
+        internal void ExecuteOnErrorPutCollectionById(Exception exception)
         {
-            OnErrorUpdateCollection?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutCollectionById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -367,7 +367,7 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatDeleteCollection(ref int id, ref Option<bool> deleteFiles, ref Option<bool> addImportExclusion);
+        partial void FormatDeleteCollectionById(ref int id, ref Option<bool> deleteFiles, ref Option<bool> addImportExclusion);
 
         /// <summary>
         /// Processes the server response
@@ -376,10 +376,10 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        private void AfterDeleteCollectionDefaultImplementation(IDeleteCollectionApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
+        private void AfterDeleteCollectionByIdDefaultImplementation(IDeleteCollectionByIdApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteCollection(ref suppressDefaultLog, apiResponseLocalVar, id, deleteFiles, addImportExclusion);
+            AfterDeleteCollectionById(ref suppressDefaultLog, apiResponseLocalVar, id, deleteFiles, addImportExclusion);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -392,7 +392,7 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        partial void AfterDeleteCollection(ref bool suppressDefaultLog, IDeleteCollectionApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
+        partial void AfterDeleteCollectionById(ref bool suppressDefaultLog, IDeleteCollectionByIdApiResponse apiResponseLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -403,10 +403,10 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        private void OnErrorDeleteCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
+        private void OnErrorDeleteCollectionByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, deleteFiles, addImportExclusion);
+            OnErrorDeleteCollectionById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, deleteFiles, addImportExclusion);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -421,7 +421,7 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="deleteFiles"></param>
         /// <param name="addImportExclusion"></param>
-        partial void OnErrorDeleteCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
+        partial void OnErrorDeleteCollectionById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> deleteFiles, Option<bool> addImportExclusion);
 
         /// <summary>
         /// Deletes a collection and their associated movies/scenes from Whisparr 
@@ -430,12 +430,12 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>&gt;</returns>
-        public async Task<IDeleteCollectionApiResponse?> DeleteCollectionOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteCollectionByIdApiResponse?> DeleteCollectionByIdOrDefaultAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteCollectionAsync(id, deleteFiles, addImportExclusion, cancellationToken).ConfigureAwait(false);
+                return await DeleteCollectionByIdAsync(id, deleteFiles, addImportExclusion, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -451,14 +451,14 @@ namespace Whisparr3.Net.Api
         /// <param name="deleteFiles">If true, associated movie/scene files will also be deleted from disk (optional, default to false)</param>
         /// <param name="addImportExclusion">If true, an import exclusion will be added to prevent re-adding the collection in future imports (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionApiResponse"/>&gt;</returns>
-        public async Task<IDeleteCollectionApiResponse> DeleteCollectionAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteCollectionByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteCollectionByIdApiResponse> DeleteCollectionByIdAsync(int id, Option<bool> deleteFiles = default, Option<bool> addImportExclusion = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteCollection(ref id, ref deleteFiles, ref addImportExclusion);
+                FormatDeleteCollectionById(ref id, ref deleteFiles, ref addImportExclusion);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -493,7 +493,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteCollectionApiResponse apiResponseLocalVar;
+                        DeleteCollectionByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -504,9 +504,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteCollectionDefaultImplementation(apiResponseLocalVar, id, deleteFiles, addImportExclusion);
+                        AfterDeleteCollectionByIdDefaultImplementation(apiResponseLocalVar, id, deleteFiles, addImportExclusion);
 
-                        Events.ExecuteOnDeleteCollection(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteCollectionById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -518,16 +518,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteCollectionDefaultImplementation(e, "/api/v3/collection/{id}", uriBuilderLocalVar.Path, id, deleteFiles, addImportExclusion);
-                Events.ExecuteOnErrorDeleteCollection(e);
+                OnErrorDeleteCollectionByIdDefaultImplementation(e, "/api/v3/collection/{id}", uriBuilderLocalVar.Path, id, deleteFiles, addImportExclusion);
+                Events.ExecuteOnErrorDeleteCollectionById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteCollectionApiResponse"/>
+        /// The <see cref="DeleteCollectionByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteCollectionApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteCollectionApiResponse
+        public partial class DeleteCollectionByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteCollectionByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -535,7 +535,7 @@ namespace Whisparr3.Net.Api
             public ILogger<CollectionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteCollectionApiResponse"/>
+            /// The <see cref="DeleteCollectionByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -544,14 +544,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteCollectionByIdApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteCollectionApiResponse"/>
+            /// The <see cref="DeleteCollectionByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -560,7 +560,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteCollectionByIdApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -573,6 +573,261 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetCollection(ref Option<int> tmdbId);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="tmdbId"></param>
+        private void AfterGetCollectionDefaultImplementation(IGetCollectionApiResponse apiResponseLocalVar, Option<int> tmdbId)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetCollection(ref suppressDefaultLog, apiResponseLocalVar, tmdbId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="tmdbId"></param>
+        partial void AfterGetCollection(ref bool suppressDefaultLog, IGetCollectionApiResponse apiResponseLocalVar, Option<int> tmdbId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="tmdbId"></param>
+        private void OnErrorGetCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, tmdbId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="tmdbId"></param>
+        partial void OnErrorGetCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId);
+
+        /// <summary>
+        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections. 
+        /// </summary>
+        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCollectionApiResponse"/>&gt;</returns>
+        public async Task<IGetCollectionApiResponse?> GetCollectionOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetCollectionAsync(tmdbId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCollectionApiResponse"/>&gt;</returns>
+        public async Task<IGetCollectionApiResponse> GetCollectionAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetCollection(ref tmdbId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/collection"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/collection");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (tmdbId.IsSet)
+                        parseQueryStringLocalVar["tmdbId"] = ClientUtils.ParameterToString(tmdbId.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetCollectionApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/collection", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetCollectionDefaultImplementation(apiResponseLocalVar, tmdbId);
+
+                        Events.ExecuteOnGetCollection(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetCollectionDefaultImplementation(e, "/api/v3/collection", uriBuilderLocalVar.Path, tmdbId);
+                Events.ExecuteOnErrorGetCollection(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetCollectionApiResponse"/>
+        /// </summary>
+        public partial class GetCollectionApiResponse : Whisparr3.Net.Client.ApiResponse, IGetCollectionApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<CollectionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetCollectionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCollectionApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<CollectionResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<CollectionResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<CollectionResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<CollectionResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<CollectionResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<CollectionResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -836,271 +1091,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListCollection(ref Option<int> tmdbId);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="tmdbId"></param>
-        private void AfterListCollectionDefaultImplementation(IListCollectionApiResponse apiResponseLocalVar, Option<int> tmdbId)
-        {
-            bool suppressDefaultLog = false;
-            AfterListCollection(ref suppressDefaultLog, apiResponseLocalVar, tmdbId);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="tmdbId"></param>
-        partial void AfterListCollection(ref bool suppressDefaultLog, IListCollectionApiResponse apiResponseLocalVar, Option<int> tmdbId);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="tmdbId"></param>
-        private void OnErrorListCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, tmdbId);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="tmdbId"></param>
-        partial void OnErrorListCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> tmdbId);
-
-        /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections. 
-        /// </summary>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>&gt;</returns>
-        public async Task<IListCollectionApiResponse?> ListCollectionOrDefaultAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListCollectionAsync(tmdbId, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves collections. If tmdbId is provided returns the single matching collection; otherwise returns all collections. 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="tmdbId">Optional TMDB collection id to filter by. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCollectionApiResponse"/>&gt;</returns>
-        public async Task<IListCollectionApiResponse> ListCollectionAsync(Option<int> tmdbId = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatListCollection(ref tmdbId);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/collection"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/collection");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (tmdbId.IsSet)
-                        parseQueryStringLocalVar["tmdbId"] = ClientUtils.ParameterToString(tmdbId.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListCollectionApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/collection", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListCollectionDefaultImplementation(apiResponseLocalVar, tmdbId);
-
-                        Events.ExecuteOnListCollection(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListCollectionDefaultImplementation(e, "/api/v3/collection", uriBuilderLocalVar.Path, tmdbId);
-                Events.ExecuteOnErrorListCollection(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListCollectionApiResponse"/>
-        /// </summary>
-        public partial class ListCollectionApiResponse : Whisparr3.Net.Client.ApiResponse, IListCollectionApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<CollectionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListCollectionApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListCollectionApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<CollectionResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<CollectionResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<CollectionResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<CollectionResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<CollectionResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<CollectionResource>? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatPutCollection(Option<CollectionUpdateResource> collectionUpdateResource);
+        partial void FormatPutCollection(CollectionUpdateResource collectionUpdateResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="collectionUpdateResource"></param>
         /// <returns></returns>
-        private void ValidatePutCollection(Option<CollectionUpdateResource> collectionUpdateResource)
+        private void ValidatePutCollection(CollectionUpdateResource collectionUpdateResource)
         {
-            if (collectionUpdateResource.IsSet && collectionUpdateResource.Value == null)
+            if (collectionUpdateResource == null)
                 throw new ArgumentNullException(nameof(collectionUpdateResource));
         }
 
@@ -1109,7 +1109,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="collectionUpdateResource"></param>
-        private void AfterPutCollectionDefaultImplementation(IPutCollectionApiResponse apiResponseLocalVar, Option<CollectionUpdateResource> collectionUpdateResource)
+        private void AfterPutCollectionDefaultImplementation(IPutCollectionApiResponse apiResponseLocalVar, CollectionUpdateResource collectionUpdateResource)
         {
             bool suppressDefaultLog = false;
             AfterPutCollection(ref suppressDefaultLog, apiResponseLocalVar, collectionUpdateResource);
@@ -1123,7 +1123,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="collectionUpdateResource"></param>
-        partial void AfterPutCollection(ref bool suppressDefaultLog, IPutCollectionApiResponse apiResponseLocalVar, Option<CollectionUpdateResource> collectionUpdateResource);
+        partial void AfterPutCollection(ref bool suppressDefaultLog, IPutCollectionApiResponse apiResponseLocalVar, CollectionUpdateResource collectionUpdateResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1132,7 +1132,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="collectionUpdateResource"></param>
-        private void OnErrorPutCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<CollectionUpdateResource> collectionUpdateResource)
+        private void OnErrorPutCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CollectionUpdateResource collectionUpdateResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorPutCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, collectionUpdateResource);
@@ -1148,15 +1148,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="collectionUpdateResource"></param>
-        partial void OnErrorPutCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<CollectionUpdateResource> collectionUpdateResource);
+        partial void OnErrorPutCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, CollectionUpdateResource collectionUpdateResource);
 
         /// <summary>
         /// Bulk update for multiple collections. Only properties present in the request are applied. 
         /// </summary>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>&gt;</returns>
-        public async Task<IPutCollectionApiResponse?> PutCollectionOrDefaultAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutCollectionApiResponse?> PutCollectionOrDefaultAsync(CollectionUpdateResource collectionUpdateResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -1172,10 +1172,10 @@ namespace Whisparr3.Net.Api
         /// Bulk update for multiple collections. Only properties present in the request are applied. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change. (optional)</param>
+        /// <param name="collectionUpdateResource">The update resource containing collection ids and the properties to change.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionApiResponse"/>&gt;</returns>
-        public async Task<IPutCollectionApiResponse> PutCollectionAsync(Option<CollectionUpdateResource> collectionUpdateResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutCollectionApiResponse> PutCollectionAsync(CollectionUpdateResource collectionUpdateResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1194,12 +1194,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/collection"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/collection");
 
-                    if (collectionUpdateResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (collectionUpdateResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (collectionUpdateResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(collectionUpdateResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(collectionUpdateResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1216,6 +1213,15 @@ namespace Whisparr3.Net.Api
 
                     if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
                         httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Put;
 
@@ -1299,10 +1305,54 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public List<CollectionResource>? Accepted()
+            {
+                bool suppressDefault = false;
+                List<CollectionResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private List<CollectionResource>? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<CollectionResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref List<CollectionResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out List<CollectionResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -1315,7 +1365,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateCollection(ref string id, Option<CollectionResource> collectionResource);
+        partial void FormatPutCollectionById(ref string id, CollectionResource collectionResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -1323,12 +1373,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="collectionResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateCollection(string id, Option<CollectionResource> collectionResource)
+        private void ValidatePutCollectionById(string id, CollectionResource collectionResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (collectionResource.IsSet && collectionResource.Value == null)
+            if (collectionResource == null)
                 throw new ArgumentNullException(nameof(collectionResource));
         }
 
@@ -1338,10 +1388,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="collectionResource"></param>
-        private void AfterUpdateCollectionDefaultImplementation(IUpdateCollectionApiResponse apiResponseLocalVar, string id, Option<CollectionResource> collectionResource)
+        private void AfterPutCollectionByIdDefaultImplementation(IPutCollectionByIdApiResponse apiResponseLocalVar, string id, CollectionResource collectionResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateCollection(ref suppressDefaultLog, apiResponseLocalVar, id, collectionResource);
+            AfterPutCollectionById(ref suppressDefaultLog, apiResponseLocalVar, id, collectionResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1353,7 +1403,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="collectionResource"></param>
-        partial void AfterUpdateCollection(ref bool suppressDefaultLog, IUpdateCollectionApiResponse apiResponseLocalVar, string id, Option<CollectionResource> collectionResource);
+        partial void AfterPutCollectionById(ref bool suppressDefaultLog, IPutCollectionByIdApiResponse apiResponseLocalVar, string id, CollectionResource collectionResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1363,10 +1413,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="collectionResource"></param>
-        private void OnErrorUpdateCollectionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<CollectionResource> collectionResource)
+        private void OnErrorPutCollectionByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, CollectionResource collectionResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateCollection(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, collectionResource);
+            OnErrorPutCollectionById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, collectionResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1380,20 +1430,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="collectionResource"></param>
-        partial void OnErrorUpdateCollection(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<CollectionResource> collectionResource);
+        partial void OnErrorPutCollectionById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, CollectionResource collectionResource);
 
         /// <summary>
         /// Updates a single collection. 
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCollectionApiResponse?> UpdateCollectionOrDefaultAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutCollectionByIdApiResponse?> PutCollectionByIdOrDefaultAsync(string id, CollectionResource collectionResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateCollectionAsync(id, collectionResource, cancellationToken).ConfigureAwait(false);
+                return await PutCollectionByIdAsync(id, collectionResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1406,18 +1456,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection. (optional)</param>
+        /// <param name="collectionResource">The collection resource containing updated values. The resource&#39;s Id is used to locate the existing collection.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateCollectionApiResponse"/>&gt;</returns>
-        public async Task<IUpdateCollectionApiResponse> UpdateCollectionAsync(string id, Option<CollectionResource> collectionResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutCollectionByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutCollectionByIdApiResponse> PutCollectionByIdAsync(string id, CollectionResource collectionResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateCollection(id, collectionResource);
+                ValidatePutCollectionById(id, collectionResource);
 
-                FormatUpdateCollection(ref id, collectionResource);
+                FormatPutCollectionById(ref id, collectionResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1429,12 +1479,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/collection/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (collectionResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (collectionResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (collectionResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(collectionResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(collectionResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1467,7 +1514,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateCollectionApiResponse apiResponseLocalVar;
+                        PutCollectionByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1478,9 +1525,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateCollectionDefaultImplementation(apiResponseLocalVar, id, collectionResource);
+                        AfterPutCollectionByIdDefaultImplementation(apiResponseLocalVar, id, collectionResource);
 
-                        Events.ExecuteOnUpdateCollection(apiResponseLocalVar);
+                        Events.ExecuteOnPutCollectionById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1492,16 +1539,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateCollectionDefaultImplementation(e, "/api/v3/collection/{id}", uriBuilderLocalVar.Path, id, collectionResource);
-                Events.ExecuteOnErrorUpdateCollection(e);
+                OnErrorPutCollectionByIdDefaultImplementation(e, "/api/v3/collection/{id}", uriBuilderLocalVar.Path, id, collectionResource);
+                Events.ExecuteOnErrorPutCollectionById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateCollectionApiResponse"/>
+        /// The <see cref="PutCollectionByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateCollectionApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateCollectionApiResponse
+        public partial class PutCollectionByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutCollectionByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1509,7 +1556,7 @@ namespace Whisparr3.Net.Api
             public ILogger<CollectionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateCollectionApiResponse"/>
+            /// The <see cref="PutCollectionByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1518,14 +1565,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutCollectionByIdApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateCollectionApiResponse"/>
+            /// The <see cref="PutCollectionByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1534,7 +1581,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateCollectionApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutCollectionByIdApiResponse(ILogger<CollectionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1543,50 +1590,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.CollectionResource? Ok()
+            public Whisparr3.Net.Model.CollectionResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.CollectionResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.CollectionResource? DefaultOk()
+            private Whisparr3.Net.Model.CollectionResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.CollectionResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.CollectionResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.CollectionResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.CollectionResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.CollectionResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

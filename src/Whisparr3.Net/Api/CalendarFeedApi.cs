@@ -49,8 +49,8 @@ namespace Whisparr3.Net.Api
         /// <param name="tags"> (optional, default to &quot;&quot;)</param>
         /// <param name="unmonitored"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetCalendarFeedApiResponse"/>&gt;</returns>
-        Task<IGetCalendarFeedApiResponse> GetCalendarFeedAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFeedV3CalendarWhisparrIcsApiResponse"/>&gt;</returns>
+        Task<IGetFeedV3CalendarWhisparrIcsApiResponse> GetFeedV3CalendarWhisparrIcsAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -63,14 +63,14 @@ namespace Whisparr3.Net.Api
         /// <param name="tags"> (optional, default to &quot;&quot;)</param>
         /// <param name="unmonitored"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetCalendarFeedApiResponse"/>?&gt;</returns>
-        Task<IGetCalendarFeedApiResponse?> GetCalendarFeedOrDefaultAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFeedV3CalendarWhisparrIcsApiResponse"/>?&gt;</returns>
+        Task<IGetFeedV3CalendarWhisparrIcsApiResponse?> GetFeedV3CalendarWhisparrIcsOrDefaultAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetCalendarFeedApiResponse"/>
+    /// The <see cref="IGetFeedV3CalendarWhisparrIcsApiResponse"/>
     /// </summary>
-    public interface IGetCalendarFeedApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetFeedV3CalendarWhisparrIcsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<string?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -87,21 +87,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetCalendarFeed;
+        public event EventHandler<ApiResponseEventArgs>? OnGetFeedV3CalendarWhisparrIcs;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetCalendarFeed;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetFeedV3CalendarWhisparrIcs;
 
-        internal void ExecuteOnGetCalendarFeed(CalendarFeedApi.GetCalendarFeedApiResponse apiResponse)
+        internal void ExecuteOnGetFeedV3CalendarWhisparrIcs(CalendarFeedApi.GetFeedV3CalendarWhisparrIcsApiResponse apiResponse)
         {
-            OnGetCalendarFeed?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetFeedV3CalendarWhisparrIcs?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetCalendarFeed(Exception exception)
+        internal void ExecuteOnErrorGetFeedV3CalendarWhisparrIcs(Exception exception)
         {
-            OnErrorGetCalendarFeed?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetFeedV3CalendarWhisparrIcs?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -146,14 +146,14 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetCalendarFeed(ref Option<int> pastDays, ref Option<int> futureDays, ref Option<string> tags, ref Option<bool> unmonitored);
+        partial void FormatGetFeedV3CalendarWhisparrIcs(ref Option<int> pastDays, ref Option<int> futureDays, ref Option<string> tags, ref Option<bool> unmonitored);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
-        private void ValidateGetCalendarFeed(Option<string> tags)
+        private void ValidateGetFeedV3CalendarWhisparrIcs(Option<string> tags)
         {
             if (tags.IsSet && tags.Value == null)
                 throw new ArgumentNullException(nameof(tags));
@@ -167,10 +167,10 @@ namespace Whisparr3.Net.Api
         /// <param name="futureDays"></param>
         /// <param name="tags"></param>
         /// <param name="unmonitored"></param>
-        private void AfterGetCalendarFeedDefaultImplementation(IGetCalendarFeedApiResponse apiResponseLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored)
+        private void AfterGetFeedV3CalendarWhisparrIcsDefaultImplementation(IGetFeedV3CalendarWhisparrIcsApiResponse apiResponseLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored)
         {
             bool suppressDefaultLog = false;
-            AfterGetCalendarFeed(ref suppressDefaultLog, apiResponseLocalVar, pastDays, futureDays, tags, unmonitored);
+            AfterGetFeedV3CalendarWhisparrIcs(ref suppressDefaultLog, apiResponseLocalVar, pastDays, futureDays, tags, unmonitored);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -184,7 +184,7 @@ namespace Whisparr3.Net.Api
         /// <param name="futureDays"></param>
         /// <param name="tags"></param>
         /// <param name="unmonitored"></param>
-        partial void AfterGetCalendarFeed(ref bool suppressDefaultLog, IGetCalendarFeedApiResponse apiResponseLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored);
+        partial void AfterGetFeedV3CalendarWhisparrIcs(ref bool suppressDefaultLog, IGetFeedV3CalendarWhisparrIcsApiResponse apiResponseLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -196,10 +196,10 @@ namespace Whisparr3.Net.Api
         /// <param name="futureDays"></param>
         /// <param name="tags"></param>
         /// <param name="unmonitored"></param>
-        private void OnErrorGetCalendarFeedDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored)
+        private void OnErrorGetFeedV3CalendarWhisparrIcsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetCalendarFeed(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pastDays, futureDays, tags, unmonitored);
+            OnErrorGetFeedV3CalendarWhisparrIcs(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, pastDays, futureDays, tags, unmonitored);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -215,7 +215,7 @@ namespace Whisparr3.Net.Api
         /// <param name="futureDays"></param>
         /// <param name="tags"></param>
         /// <param name="unmonitored"></param>
-        partial void OnErrorGetCalendarFeed(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored);
+        partial void OnErrorGetFeedV3CalendarWhisparrIcs(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> pastDays, Option<int> futureDays, Option<string> tags, Option<bool> unmonitored);
 
         /// <summary>
         ///  
@@ -225,12 +225,12 @@ namespace Whisparr3.Net.Api
         /// <param name="tags"> (optional, default to &quot;&quot;)</param>
         /// <param name="unmonitored"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetCalendarFeedApiResponse"/>&gt;</returns>
-        public async Task<IGetCalendarFeedApiResponse?> GetCalendarFeedOrDefaultAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFeedV3CalendarWhisparrIcsApiResponse"/>&gt;</returns>
+        public async Task<IGetFeedV3CalendarWhisparrIcsApiResponse?> GetFeedV3CalendarWhisparrIcsOrDefaultAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetCalendarFeedAsync(pastDays, futureDays, tags, unmonitored, cancellationToken).ConfigureAwait(false);
+                return await GetFeedV3CalendarWhisparrIcsAsync(pastDays, futureDays, tags, unmonitored, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -247,16 +247,16 @@ namespace Whisparr3.Net.Api
         /// <param name="tags"> (optional, default to &quot;&quot;)</param>
         /// <param name="unmonitored"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetCalendarFeedApiResponse"/>&gt;</returns>
-        public async Task<IGetCalendarFeedApiResponse> GetCalendarFeedAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetFeedV3CalendarWhisparrIcsApiResponse"/>&gt;</returns>
+        public async Task<IGetFeedV3CalendarWhisparrIcsApiResponse> GetFeedV3CalendarWhisparrIcsAsync(Option<int> pastDays = default, Option<int> futureDays = default, Option<string> tags = default, Option<bool> unmonitored = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetCalendarFeed(tags);
+                ValidateGetFeedV3CalendarWhisparrIcs(tags);
 
-                FormatGetCalendarFeed(ref pastDays, ref futureDays, ref tags, ref unmonitored);
+                FormatGetFeedV3CalendarWhisparrIcs(ref pastDays, ref futureDays, ref tags, ref unmonitored);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -290,13 +290,22 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "text/calendar"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetCalendarFeedApiResponse apiResponseLocalVar;
+                        GetFeedV3CalendarWhisparrIcsApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -307,9 +316,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetCalendarFeedDefaultImplementation(apiResponseLocalVar, pastDays, futureDays, tags, unmonitored);
+                        AfterGetFeedV3CalendarWhisparrIcsDefaultImplementation(apiResponseLocalVar, pastDays, futureDays, tags, unmonitored);
 
-                        Events.ExecuteOnGetCalendarFeed(apiResponseLocalVar);
+                        Events.ExecuteOnGetFeedV3CalendarWhisparrIcs(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -321,16 +330,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetCalendarFeedDefaultImplementation(e, "/feed/v3/calendar/whisparr.ics", uriBuilderLocalVar.Path, pastDays, futureDays, tags, unmonitored);
-                Events.ExecuteOnErrorGetCalendarFeed(e);
+                OnErrorGetFeedV3CalendarWhisparrIcsDefaultImplementation(e, "/feed/v3/calendar/whisparr.ics", uriBuilderLocalVar.Path, pastDays, futureDays, tags, unmonitored);
+                Events.ExecuteOnErrorGetFeedV3CalendarWhisparrIcs(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetCalendarFeedApiResponse"/>
+        /// The <see cref="GetFeedV3CalendarWhisparrIcsApiResponse"/>
         /// </summary>
-        public partial class GetCalendarFeedApiResponse : Whisparr3.Net.Client.ApiResponse, IGetCalendarFeedApiResponse
+        public partial class GetFeedV3CalendarWhisparrIcsApiResponse : Whisparr3.Net.Client.ApiResponse, IGetFeedV3CalendarWhisparrIcsApiResponse
         {
             /// <summary>
             /// The logger
@@ -338,7 +347,7 @@ namespace Whisparr3.Net.Api
             public ILogger<CalendarFeedApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetCalendarFeedApiResponse"/>
+            /// The <see cref="GetFeedV3CalendarWhisparrIcsApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -347,14 +356,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetCalendarFeedApiResponse(ILogger<CalendarFeedApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetFeedV3CalendarWhisparrIcsApiResponse(ILogger<CalendarFeedApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetCalendarFeedApiResponse"/>
+            /// The <see cref="GetFeedV3CalendarWhisparrIcsApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -363,7 +372,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetCalendarFeedApiResponse(ILogger<CalendarFeedApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetFeedV3CalendarWhisparrIcsApiResponse(ILogger<CalendarFeedApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -376,6 +385,50 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public string? Ok()
+            {
+                bool suppressDefault = false;
+                string? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private string? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<string>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref string? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out string? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

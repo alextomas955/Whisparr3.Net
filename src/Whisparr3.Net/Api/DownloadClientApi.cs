@@ -45,11 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
+        /// <param name="downloadClientBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientApiResponse"/>&gt;</returns>
-        Task<ICreateDownloadClientApiResponse> CreateDownloadClientAsync(Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientBulkApiResponse"/>&gt;</returns>
+        Task<IDeleteDownloadclientBulkApiResponse> DeleteDownloadclientBulkAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -57,11 +56,123 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
+        /// <param name="downloadClientBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientApiResponse"/>?&gt;</returns>
-        Task<ICreateDownloadClientApiResponse?> CreateDownloadClientOrDefaultAsync(Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientBulkApiResponse"/>?&gt;</returns>
+        Task<IDeleteDownloadclientBulkApiResponse?> DeleteDownloadclientBulkOrDefaultAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteDownloadclientByIdApiResponse> DeleteDownloadclientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteDownloadclientByIdApiResponse?> DeleteDownloadclientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientApiResponse"/>&gt;</returns>
+        Task<IGetDownloadclientApiResponse> GetDownloadclientAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientApiResponse"/>?&gt;</returns>
+        Task<IGetDownloadclientApiResponse?> GetDownloadclientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientByIdApiResponse"/>&gt;</returns>
+        Task<IGetDownloadclientByIdApiResponse> GetDownloadclientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientByIdApiResponse"/>?&gt;</returns>
+        Task<IGetDownloadclientByIdApiResponse?> GetDownloadclientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientSchemaApiResponse"/>&gt;</returns>
+        Task<IGetDownloadclientSchemaApiResponse> GetDownloadclientSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientSchemaApiResponse"/>?&gt;</returns>
+        Task<IGetDownloadclientSchemaApiResponse?> GetDownloadclientSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientApiResponse"/>&gt;</returns>
+        Task<IPostDownloadclientApiResponse> PostDownloadclientAsync(DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientApiResponse"/>?&gt;</returns>
+        Task<IPostDownloadclientApiResponse?> PostDownloadclientOrDefaultAsync(DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -71,10 +182,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="name"></param>
-        /// <param name="downloadClientResource"> (optional)</param>
+        /// <param name="downloadClientResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientActionByNameApiResponse"/>&gt;</returns>
-        Task<ICreateDownloadClientActionByNameApiResponse> CreateDownloadClientActionByNameAsync(string name, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientActionByNameApiResponse"/>&gt;</returns>
+        Task<IPostDownloadclientActionByNameApiResponse> PostDownloadclientActionByNameAsync(string name, DownloadClientResource downloadClientResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -83,10 +194,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="name"></param>
-        /// <param name="downloadClientResource"> (optional)</param>
+        /// <param name="downloadClientResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientActionByNameApiResponse"/>?&gt;</returns>
-        Task<ICreateDownloadClientActionByNameApiResponse?> CreateDownloadClientActionByNameOrDefaultAsync(string name, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientActionByNameApiResponse"/>?&gt;</returns>
+        Task<IPostDownloadclientActionByNameApiResponse?> PostDownloadclientActionByNameOrDefaultAsync(string name, DownloadClientResource downloadClientResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -95,166 +206,11 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientApiResponse"/>&gt;</returns>
-        Task<IDeleteDownloadClientApiResponse> DeleteDownloadClientAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientApiResponse"/>?&gt;</returns>
-        Task<IDeleteDownloadClientApiResponse?> DeleteDownloadClientOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientBulkApiResponse"/>&gt;</returns>
-        Task<IDeleteDownloadClientBulkApiResponse> DeleteDownloadClientBulkAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientBulkApiResponse"/>?&gt;</returns>
-        Task<IDeleteDownloadClientBulkApiResponse?> DeleteDownloadClientBulkOrDefaultAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientByIdApiResponse"/>&gt;</returns>
-        Task<IGetDownloadClientByIdApiResponse> GetDownloadClientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientByIdApiResponse"/>?&gt;</returns>
-        Task<IGetDownloadClientByIdApiResponse?> GetDownloadClientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientApiResponse"/>&gt;</returns>
-        Task<IListDownloadClientApiResponse> ListDownloadClientAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientApiResponse"/>?&gt;</returns>
-        Task<IListDownloadClientApiResponse?> ListDownloadClientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientSchemaApiResponse"/>&gt;</returns>
-        Task<IListDownloadClientSchemaApiResponse> ListDownloadClientSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientSchemaApiResponse"/>?&gt;</returns>
-        Task<IListDownloadClientSchemaApiResponse?> ListDownloadClientSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadClientBulkApiResponse"/>&gt;</returns>
-        Task<IPutDownloadClientBulkApiResponse> PutDownloadClientBulkAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadClientBulkApiResponse"/>?&gt;</returns>
-        Task<IPutDownloadClientBulkApiResponse?> PutDownloadClientBulkOrDefaultAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllDownloadClientApiResponse"/>&gt;</returns>
-        Task<ITestAllDownloadClientApiResponse> TestAllDownloadClientAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllDownloadClientApiResponse"/>?&gt;</returns>
-        Task<ITestAllDownloadClientApiResponse?> TestAllDownloadClientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="downloadClientResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestDownloadClientApiResponse"/>&gt;</returns>
-        Task<ITestDownloadClientApiResponse> TestDownloadClientAsync(Option<bool> forceTest = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestApiResponse"/>&gt;</returns>
+        Task<IPostDownloadclientTestApiResponse> PostDownloadclientTestAsync(DownloadClientResource downloadClientResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -262,11 +218,55 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="downloadClientResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestDownloadClientApiResponse"/>?&gt;</returns>
-        Task<ITestDownloadClientApiResponse?> TestDownloadClientOrDefaultAsync(Option<bool> forceTest = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestApiResponse"/>?&gt;</returns>
+        Task<IPostDownloadclientTestApiResponse?> PostDownloadclientTestOrDefaultAsync(DownloadClientResource downloadClientResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestallApiResponse"/>&gt;</returns>
+        Task<IPostDownloadclientTestallApiResponse> PostDownloadclientTestallAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestallApiResponse"/>?&gt;</returns>
+        Task<IPostDownloadclientTestallApiResponse?> PostDownloadclientTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="downloadClientBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientBulkApiResponse"/>&gt;</returns>
+        Task<IPutDownloadclientBulkApiResponse> PutDownloadclientBulkAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="downloadClientBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientBulkApiResponse"/>?&gt;</returns>
+        Task<IPutDownloadclientBulkApiResponse?> PutDownloadclientBulkOrDefaultAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -276,11 +276,11 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientApiResponse"/>&gt;</returns>
-        Task<IUpdateDownloadClientApiResponse> UpdateDownloadClientAsync(int id, Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientByIdApiResponse"/>&gt;</returns>
+        Task<IPutDownloadclientByIdApiResponse> PutDownloadclientByIdAsync(int id, DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -289,17 +289,17 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientApiResponse"/>?&gt;</returns>
-        Task<IUpdateDownloadClientApiResponse?> UpdateDownloadClientOrDefaultAsync(int id, Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientByIdApiResponse"/>?&gt;</returns>
+        Task<IPutDownloadclientByIdApiResponse?> PutDownloadclientByIdOrDefaultAsync(int id, DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateDownloadClientApiResponse"/>
+    /// The <see cref="IDeleteDownloadclientBulkApiResponse"/>
     /// </summary>
-    public interface ICreateDownloadClientApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientResource?>
+    public interface IDeleteDownloadclientBulkApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -309,9 +309,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateDownloadClientActionByNameApiResponse"/>
+    /// The <see cref="IDeleteDownloadclientByIdApiResponse"/>
     /// </summary>
-    public interface ICreateDownloadClientActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteDownloadclientByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -321,9 +321,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteDownloadClientApiResponse"/>
+    /// The <see cref="IGetDownloadclientApiResponse"/>
     /// </summary>
-    public interface IDeleteDownloadClientApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetDownloadclientApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DownloadClientResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -333,9 +333,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteDownloadClientBulkApiResponse"/>
+    /// The <see cref="IGetDownloadclientByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteDownloadClientBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetDownloadclientByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -345,9 +345,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetDownloadClientByIdApiResponse"/>
+    /// The <see cref="IGetDownloadclientSchemaApiResponse"/>
     /// </summary>
-    public interface IGetDownloadClientByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientResource?>
+    public interface IGetDownloadclientSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DownloadClientResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -357,9 +357,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListDownloadClientApiResponse"/>
+    /// The <see cref="IPostDownloadclientApiResponse"/>
     /// </summary>
-    public interface IListDownloadClientApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DownloadClientResource>?>
+    public interface IPostDownloadclientApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.DownloadClientResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostDownloadclientActionByNameApiResponse"/>
+    /// </summary>
+    public interface IPostDownloadclientActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Object?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -369,9 +381,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListDownloadClientSchemaApiResponse"/>
+    /// The <see cref="IPostDownloadclientTestApiResponse"/>
     /// </summary>
-    public interface IListDownloadClientSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DownloadClientResource>?>
+    public interface IPostDownloadclientTestApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -381,51 +393,45 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IPutDownloadClientBulkApiResponse"/>
+    /// The <see cref="IPostDownloadclientTestallApiResponse"/>
     /// </summary>
-    public interface IPutDownloadClientBulkApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientResource?>
+    public interface IPostDownloadclientTestallApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ProviderTestAllResult>?>, IBadRequest<List<ProviderTestAllResult>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
     }
 
     /// <summary>
-    /// The <see cref="ITestAllDownloadClientApiResponse"/>
+    /// The <see cref="IPutDownloadclientBulkApiResponse"/>
     /// </summary>
-    public interface ITestAllDownloadClientApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutDownloadclientBulkApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<DownloadClientResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
-    /// The <see cref="ITestDownloadClientApiResponse"/>
+    /// The <see cref="IPutDownloadclientByIdApiResponse"/>
     /// </summary>
-    public interface ITestDownloadClientApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutDownloadclientByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.DownloadClientResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IUpdateDownloadClientApiResponse"/>
-    /// </summary>
-    public interface IUpdateDownloadClientApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -436,221 +442,221 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateDownloadClient;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteDownloadclientBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateDownloadClient;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteDownloadclientBulk;
 
-        internal void ExecuteOnCreateDownloadClient(DownloadClientApi.CreateDownloadClientApiResponse apiResponse)
+        internal void ExecuteOnDeleteDownloadclientBulk(DownloadClientApi.DeleteDownloadclientBulkApiResponse apiResponse)
         {
-            OnCreateDownloadClient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteDownloadclientBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateDownloadClient(Exception exception)
+        internal void ExecuteOnErrorDeleteDownloadclientBulk(Exception exception)
         {
-            OnErrorCreateDownloadClient?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteDownloadclientBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateDownloadClientActionByName;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteDownloadclientById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateDownloadClientActionByName;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteDownloadclientById;
 
-        internal void ExecuteOnCreateDownloadClientActionByName(DownloadClientApi.CreateDownloadClientActionByNameApiResponse apiResponse)
+        internal void ExecuteOnDeleteDownloadclientById(DownloadClientApi.DeleteDownloadclientByIdApiResponse apiResponse)
         {
-            OnCreateDownloadClientActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteDownloadclientById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateDownloadClientActionByName(Exception exception)
+        internal void ExecuteOnErrorDeleteDownloadclientById(Exception exception)
         {
-            OnErrorCreateDownloadClientActionByName?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteDownloadclientById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteDownloadClient;
+        public event EventHandler<ApiResponseEventArgs>? OnGetDownloadclient;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteDownloadClient;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetDownloadclient;
 
-        internal void ExecuteOnDeleteDownloadClient(DownloadClientApi.DeleteDownloadClientApiResponse apiResponse)
+        internal void ExecuteOnGetDownloadclient(DownloadClientApi.GetDownloadclientApiResponse apiResponse)
         {
-            OnDeleteDownloadClient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetDownloadclient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteDownloadClient(Exception exception)
+        internal void ExecuteOnErrorGetDownloadclient(Exception exception)
         {
-            OnErrorDeleteDownloadClient?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetDownloadclient?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteDownloadClientBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnGetDownloadclientById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteDownloadClientBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetDownloadclientById;
 
-        internal void ExecuteOnDeleteDownloadClientBulk(DownloadClientApi.DeleteDownloadClientBulkApiResponse apiResponse)
+        internal void ExecuteOnGetDownloadclientById(DownloadClientApi.GetDownloadclientByIdApiResponse apiResponse)
         {
-            OnDeleteDownloadClientBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetDownloadclientById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteDownloadClientBulk(Exception exception)
+        internal void ExecuteOnErrorGetDownloadclientById(Exception exception)
         {
-            OnErrorDeleteDownloadClientBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetDownloadclientById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetDownloadClientById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetDownloadclientSchema;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetDownloadClientById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetDownloadclientSchema;
 
-        internal void ExecuteOnGetDownloadClientById(DownloadClientApi.GetDownloadClientByIdApiResponse apiResponse)
+        internal void ExecuteOnGetDownloadclientSchema(DownloadClientApi.GetDownloadclientSchemaApiResponse apiResponse)
         {
-            OnGetDownloadClientById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetDownloadclientSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetDownloadClientById(Exception exception)
+        internal void ExecuteOnErrorGetDownloadclientSchema(Exception exception)
         {
-            OnErrorGetDownloadClientById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetDownloadclientSchema?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListDownloadClient;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDownloadclient;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListDownloadClient;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDownloadclient;
 
-        internal void ExecuteOnListDownloadClient(DownloadClientApi.ListDownloadClientApiResponse apiResponse)
+        internal void ExecuteOnPostDownloadclient(DownloadClientApi.PostDownloadclientApiResponse apiResponse)
         {
-            OnListDownloadClient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDownloadclient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListDownloadClient(Exception exception)
+        internal void ExecuteOnErrorPostDownloadclient(Exception exception)
         {
-            OnErrorListDownloadClient?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDownloadclient?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListDownloadClientSchema;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDownloadclientActionByName;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListDownloadClientSchema;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDownloadclientActionByName;
 
-        internal void ExecuteOnListDownloadClientSchema(DownloadClientApi.ListDownloadClientSchemaApiResponse apiResponse)
+        internal void ExecuteOnPostDownloadclientActionByName(DownloadClientApi.PostDownloadclientActionByNameApiResponse apiResponse)
         {
-            OnListDownloadClientSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDownloadclientActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListDownloadClientSchema(Exception exception)
+        internal void ExecuteOnErrorPostDownloadclientActionByName(Exception exception)
         {
-            OnErrorListDownloadClientSchema?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDownloadclientActionByName?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnPutDownloadClientBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDownloadclientTest;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorPutDownloadClientBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDownloadclientTest;
 
-        internal void ExecuteOnPutDownloadClientBulk(DownloadClientApi.PutDownloadClientBulkApiResponse apiResponse)
+        internal void ExecuteOnPostDownloadclientTest(DownloadClientApi.PostDownloadclientTestApiResponse apiResponse)
         {
-            OnPutDownloadClientBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDownloadclientTest?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorPutDownloadClientBulk(Exception exception)
+        internal void ExecuteOnErrorPostDownloadclientTest(Exception exception)
         {
-            OnErrorPutDownloadClientBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDownloadclientTest?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestAllDownloadClient;
+        public event EventHandler<ApiResponseEventArgs>? OnPostDownloadclientTestall;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestAllDownloadClient;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostDownloadclientTestall;
 
-        internal void ExecuteOnTestAllDownloadClient(DownloadClientApi.TestAllDownloadClientApiResponse apiResponse)
+        internal void ExecuteOnPostDownloadclientTestall(DownloadClientApi.PostDownloadclientTestallApiResponse apiResponse)
         {
-            OnTestAllDownloadClient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostDownloadclientTestall?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestAllDownloadClient(Exception exception)
+        internal void ExecuteOnErrorPostDownloadclientTestall(Exception exception)
         {
-            OnErrorTestAllDownloadClient?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostDownloadclientTestall?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestDownloadClient;
+        public event EventHandler<ApiResponseEventArgs>? OnPutDownloadclientBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestDownloadClient;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutDownloadclientBulk;
 
-        internal void ExecuteOnTestDownloadClient(DownloadClientApi.TestDownloadClientApiResponse apiResponse)
+        internal void ExecuteOnPutDownloadclientBulk(DownloadClientApi.PutDownloadclientBulkApiResponse apiResponse)
         {
-            OnTestDownloadClient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutDownloadclientBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestDownloadClient(Exception exception)
+        internal void ExecuteOnErrorPutDownloadclientBulk(Exception exception)
         {
-            OnErrorTestDownloadClient?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutDownloadclientBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateDownloadClient;
+        public event EventHandler<ApiResponseEventArgs>? OnPutDownloadclientById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateDownloadClient;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutDownloadclientById;
 
-        internal void ExecuteOnUpdateDownloadClient(DownloadClientApi.UpdateDownloadClientApiResponse apiResponse)
+        internal void ExecuteOnPutDownloadclientById(DownloadClientApi.PutDownloadclientByIdApiResponse apiResponse)
         {
-            OnUpdateDownloadClient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutDownloadclientById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateDownloadClient(Exception exception)
+        internal void ExecuteOnErrorPutDownloadclientById(Exception exception)
         {
-            OnErrorUpdateDownloadClient?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutDownloadclientById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -695,737 +701,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateDownloadClient(ref Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="downloadClientResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateDownloadClient(Option<DownloadClientResource> downloadClientResource)
-        {
-            if (downloadClientResource.IsSet && downloadClientResource.Value == null)
-                throw new ArgumentNullException(nameof(downloadClientResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        private void AfterCreateDownloadClientDefaultImplementation(ICreateDownloadClientApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateDownloadClient(ref suppressDefaultLog, apiResponseLocalVar, forceSave, downloadClientResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        partial void AfterCreateDownloadClient(ref bool suppressDefaultLog, ICreateDownloadClientApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        private void OnErrorCreateDownloadClientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateDownloadClient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceSave, downloadClientResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        partial void OnErrorCreateDownloadClient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<ICreateDownloadClientApiResponse?> CreateDownloadClientOrDefaultAsync(Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateDownloadClientAsync(forceSave, downloadClientResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<ICreateDownloadClientApiResponse> CreateDownloadClientAsync(Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateDownloadClient(downloadClientResource);
-
-                FormatCreateDownloadClient(ref forceSave, downloadClientResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/downloadclient"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (forceSave.IsSet)
-                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    if (downloadClientResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateDownloadClientApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateDownloadClientDefaultImplementation(apiResponseLocalVar, forceSave, downloadClientResource);
-
-                        Events.ExecuteOnCreateDownloadClient(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateDownloadClientDefaultImplementation(e, "/api/v3/downloadclient", uriBuilderLocalVar.Path, forceSave, downloadClientResource);
-                Events.ExecuteOnErrorCreateDownloadClient(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateDownloadClientApiResponse"/>
-        /// </summary>
-        public partial class CreateDownloadClientApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateDownloadClientApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<DownloadClientApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateDownloadClientApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateDownloadClientApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.DownloadClientResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.DownloadClientResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.DownloadClientResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreateDownloadClientActionByName(ref string name, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateDownloadClientActionByName(string name, Option<DownloadClientResource> downloadClientResource)
-        {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
-
-            if (downloadClientResource.IsSet && downloadClientResource.Value == null)
-                throw new ArgumentNullException(nameof(downloadClientResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"></param>
-        private void AfterCreateDownloadClientActionByNameDefaultImplementation(ICreateDownloadClientActionByNameApiResponse apiResponseLocalVar, string name, Option<DownloadClientResource> downloadClientResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateDownloadClientActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, downloadClientResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"></param>
-        partial void AfterCreateDownloadClientActionByName(ref bool suppressDefaultLog, ICreateDownloadClientActionByNameApiResponse apiResponseLocalVar, string name, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"></param>
-        private void OnErrorCreateDownloadClientActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<DownloadClientResource> downloadClientResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateDownloadClientActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, downloadClientResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"></param>
-        partial void OnErrorCreateDownloadClientActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateDownloadClientActionByNameApiResponse?> CreateDownloadClientActionByNameOrDefaultAsync(string name, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateDownloadClientActionByNameAsync(name, downloadClientResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="downloadClientResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateDownloadClientActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateDownloadClientActionByNameApiResponse> CreateDownloadClientActionByNameAsync(string name, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateDownloadClientActionByName(name, downloadClientResource);
-
-                FormatCreateDownloadClientActionByName(ref name, downloadClientResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/downloadclient/action/{name}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/action/{name}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
-
-                    if (downloadClientResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateDownloadClientActionByNameApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateDownloadClientActionByNameDefaultImplementation(apiResponseLocalVar, name, downloadClientResource);
-
-                        Events.ExecuteOnCreateDownloadClientActionByName(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateDownloadClientActionByNameDefaultImplementation(e, "/api/v3/downloadclient/action/{name}", uriBuilderLocalVar.Path, name, downloadClientResource);
-                Events.ExecuteOnErrorCreateDownloadClientActionByName(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateDownloadClientActionByNameApiResponse"/>
-        /// </summary>
-        public partial class CreateDownloadClientActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateDownloadClientActionByNameApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<DownloadClientApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateDownloadClientActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateDownloadClientActionByNameApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateDownloadClientActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateDownloadClientActionByNameApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteDownloadClient(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterDeleteDownloadClientDefaultImplementation(IDeleteDownloadClientApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteDownloadClient(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterDeleteDownloadClient(ref bool suppressDefaultLog, IDeleteDownloadClientApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorDeleteDownloadClientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteDownloadClient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorDeleteDownloadClient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<IDeleteDownloadClientApiResponse?> DeleteDownloadClientOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteDownloadClientAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<IDeleteDownloadClientApiResponse> DeleteDownloadClientAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteDownloadClient(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/downloadclient/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteDownloadClientApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteDownloadClientDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnDeleteDownloadClient(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteDownloadClientDefaultImplementation(e, "/api/v3/downloadclient/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteDownloadClient(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteDownloadClientApiResponse"/>
-        /// </summary>
-        public partial class DeleteDownloadClientApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteDownloadClientApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<DownloadClientApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteDownloadClientApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteDownloadClientApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteDownloadClientBulk(Option<DownloadClientBulkResource> downloadClientBulkResource);
+        partial void FormatDeleteDownloadclientBulk(DownloadClientBulkResource downloadClientBulkResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="downloadClientBulkResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteDownloadClientBulk(Option<DownloadClientBulkResource> downloadClientBulkResource)
+        private void ValidateDeleteDownloadclientBulk(DownloadClientBulkResource downloadClientBulkResource)
         {
-            if (downloadClientBulkResource.IsSet && downloadClientBulkResource.Value == null)
+            if (downloadClientBulkResource == null)
                 throw new ArgumentNullException(nameof(downloadClientBulkResource));
         }
 
@@ -1434,10 +719,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="downloadClientBulkResource"></param>
-        private void AfterDeleteDownloadClientBulkDefaultImplementation(IDeleteDownloadClientBulkApiResponse apiResponseLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource)
+        private void AfterDeleteDownloadclientBulkDefaultImplementation(IDeleteDownloadclientBulkApiResponse apiResponseLocalVar, DownloadClientBulkResource downloadClientBulkResource)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteDownloadClientBulk(ref suppressDefaultLog, apiResponseLocalVar, downloadClientBulkResource);
+            AfterDeleteDownloadclientBulk(ref suppressDefaultLog, apiResponseLocalVar, downloadClientBulkResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1448,7 +733,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="downloadClientBulkResource"></param>
-        partial void AfterDeleteDownloadClientBulk(ref bool suppressDefaultLog, IDeleteDownloadClientBulkApiResponse apiResponseLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource);
+        partial void AfterDeleteDownloadclientBulk(ref bool suppressDefaultLog, IDeleteDownloadclientBulkApiResponse apiResponseLocalVar, DownloadClientBulkResource downloadClientBulkResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1457,10 +742,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="downloadClientBulkResource"></param>
-        private void OnErrorDeleteDownloadClientBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource)
+        private void OnErrorDeleteDownloadclientBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientBulkResource downloadClientBulkResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteDownloadClientBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, downloadClientBulkResource);
+            OnErrorDeleteDownloadclientBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, downloadClientBulkResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1473,19 +758,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="downloadClientBulkResource"></param>
-        partial void OnErrorDeleteDownloadClientBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource);
+        partial void OnErrorDeleteDownloadclientBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientBulkResource downloadClientBulkResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
+        /// <param name="downloadClientBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteDownloadClientBulkApiResponse?> DeleteDownloadClientBulkOrDefaultAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientBulkApiResponse"/>&gt;</returns>
+        public async Task<IDeleteDownloadclientBulkApiResponse?> DeleteDownloadclientBulkOrDefaultAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteDownloadClientBulkAsync(downloadClientBulkResource, cancellationToken).ConfigureAwait(false);
+                return await DeleteDownloadclientBulkAsync(downloadClientBulkResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1497,18 +782,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
+        /// <param name="downloadClientBulkResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadClientBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteDownloadClientBulkApiResponse> DeleteDownloadClientBulkAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientBulkApiResponse"/>&gt;</returns>
+        public async Task<IDeleteDownloadclientBulkApiResponse> DeleteDownloadclientBulkAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateDeleteDownloadClientBulk(downloadClientBulkResource);
+                ValidateDeleteDownloadclientBulk(downloadClientBulkResource);
 
-                FormatDeleteDownloadClientBulk(downloadClientBulkResource);
+                FormatDeleteDownloadclientBulk(downloadClientBulkResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1519,12 +804,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/downloadclient/bulk"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/bulk");
 
-                    if (downloadClientBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (downloadClientBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1548,7 +830,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteDownloadClientBulkApiResponse apiResponseLocalVar;
+                        DeleteDownloadclientBulkApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1559,9 +841,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteDownloadClientBulkDefaultImplementation(apiResponseLocalVar, downloadClientBulkResource);
+                        AfterDeleteDownloadclientBulkDefaultImplementation(apiResponseLocalVar, downloadClientBulkResource);
 
-                        Events.ExecuteOnDeleteDownloadClientBulk(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteDownloadclientBulk(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1573,16 +855,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteDownloadClientBulkDefaultImplementation(e, "/api/v3/downloadclient/bulk", uriBuilderLocalVar.Path, downloadClientBulkResource);
-                Events.ExecuteOnErrorDeleteDownloadClientBulk(e);
+                OnErrorDeleteDownloadclientBulkDefaultImplementation(e, "/api/v3/downloadclient/bulk", uriBuilderLocalVar.Path, downloadClientBulkResource);
+                Events.ExecuteOnErrorDeleteDownloadclientBulk(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteDownloadClientBulkApiResponse"/>
+        /// The <see cref="DeleteDownloadclientBulkApiResponse"/>
         /// </summary>
-        public partial class DeleteDownloadClientBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteDownloadClientBulkApiResponse
+        public partial class DeleteDownloadclientBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteDownloadclientBulkApiResponse
         {
             /// <summary>
             /// The logger
@@ -1590,7 +872,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteDownloadClientBulkApiResponse"/>
+            /// The <see cref="DeleteDownloadclientBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1599,14 +881,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteDownloadClientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteDownloadclientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteDownloadClientBulkApiResponse"/>
+            /// The <see cref="DeleteDownloadclientBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1615,7 +897,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteDownloadClientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteDownloadclientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1640,17 +922,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetDownloadClientById(ref int id);
+        partial void FormatDeleteDownloadclientById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetDownloadClientByIdDefaultImplementation(IGetDownloadClientByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteDownloadclientByIdDefaultImplementation(IDeleteDownloadclientByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetDownloadClientById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteDownloadclientById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1661,7 +943,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetDownloadClientById(ref bool suppressDefaultLog, IGetDownloadClientByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteDownloadclientById(ref bool suppressDefaultLog, IDeleteDownloadclientByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1670,10 +952,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetDownloadClientByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteDownloadclientByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetDownloadClientById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteDownloadclientById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1686,19 +968,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetDownloadClientById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteDownloadclientById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetDownloadClientByIdApiResponse?> GetDownloadClientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteDownloadclientByIdApiResponse?> DeleteDownloadclientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetDownloadClientByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteDownloadclientByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1712,14 +994,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetDownloadClientByIdApiResponse> GetDownloadClientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteDownloadclientByIdApiResponse> DeleteDownloadclientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetDownloadClientById(ref id);
+                FormatDeleteDownloadclientById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1738,24 +1020,13 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetDownloadClientByIdApiResponse apiResponseLocalVar;
+                        DeleteDownloadclientByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1766,9 +1037,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetDownloadClientByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteDownloadclientByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetDownloadClientById(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteDownloadclientById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1780,16 +1051,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetDownloadClientByIdDefaultImplementation(e, "/api/v3/downloadclient/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetDownloadClientById(e);
+                OnErrorDeleteDownloadclientByIdDefaultImplementation(e, "/api/v3/downloadclient/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteDownloadclientById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetDownloadClientByIdApiResponse"/>
+        /// The <see cref="DeleteDownloadclientByIdApiResponse"/>
         /// </summary>
-        public partial class GetDownloadClientByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDownloadClientByIdApiResponse
+        public partial class DeleteDownloadclientByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteDownloadclientByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1797,7 +1068,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetDownloadClientByIdApiResponse"/>
+            /// The <see cref="DeleteDownloadclientByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1806,14 +1077,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetDownloadClientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteDownloadclientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetDownloadClientByIdApiResponse"/>
+            /// The <see cref="DeleteDownloadclientByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1822,7 +1093,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetDownloadClientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteDownloadclientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1835,50 +1106,6 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.DownloadClientResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.DownloadClientResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.DownloadClientResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -1895,10 +1122,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListDownloadClientDefaultImplementation(IListDownloadClientApiResponse apiResponseLocalVar)
+        private void AfterGetDownloadclientDefaultImplementation(IGetDownloadclientApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListDownloadClient(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetDownloadclient(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1908,7 +1135,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListDownloadClient(ref bool suppressDefaultLog, IListDownloadClientApiResponse apiResponseLocalVar);
+        partial void AfterGetDownloadclient(ref bool suppressDefaultLog, IGetDownloadclientApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1916,10 +1143,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListDownloadClientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetDownloadclientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListDownloadClient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetDownloadclient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1931,18 +1158,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListDownloadClient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetDownloadclient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<IListDownloadClientApiResponse?> ListDownloadClientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientApiResponse"/>&gt;</returns>
+        public async Task<IGetDownloadclientApiResponse?> GetDownloadclientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListDownloadClientAsync(cancellationToken).ConfigureAwait(false);
+                return await GetDownloadclientAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1955,8 +1182,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<IListDownloadClientApiResponse> ListDownloadClientAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientApiResponse"/>&gt;</returns>
+        public async Task<IGetDownloadclientApiResponse> GetDownloadclientAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1993,7 +1220,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListDownloadClientApiResponse apiResponseLocalVar;
+                        GetDownloadclientApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2004,9 +1231,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListDownloadClientDefaultImplementation(apiResponseLocalVar);
+                        AfterGetDownloadclientDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListDownloadClient(apiResponseLocalVar);
+                        Events.ExecuteOnGetDownloadclient(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2018,16 +1245,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListDownloadClientDefaultImplementation(e, "/api/v3/downloadclient", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListDownloadClient(e);
+                OnErrorGetDownloadclientDefaultImplementation(e, "/api/v3/downloadclient", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetDownloadclient(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListDownloadClientApiResponse"/>
+        /// The <see cref="GetDownloadclientApiResponse"/>
         /// </summary>
-        public partial class ListDownloadClientApiResponse : Whisparr3.Net.Client.ApiResponse, IListDownloadClientApiResponse
+        public partial class GetDownloadclientApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDownloadclientApiResponse
         {
             /// <summary>
             /// The logger
@@ -2035,7 +1262,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListDownloadClientApiResponse"/>
+            /// The <see cref="GetDownloadclientApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2044,14 +1271,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetDownloadclientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListDownloadClientApiResponse"/>
+            /// The <see cref="GetDownloadclientApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2060,7 +1287,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetDownloadclientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2129,14 +1356,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatGetDownloadclientById(ref int id);
+
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListDownloadClientSchemaDefaultImplementation(IListDownloadClientSchemaApiResponse apiResponseLocalVar)
+        /// <param name="id"></param>
+        private void AfterGetDownloadclientByIdDefaultImplementation(IGetDownloadclientByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterListDownloadClientSchema(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetDownloadclientById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2146,7 +1376,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListDownloadClientSchema(ref bool suppressDefaultLog, IListDownloadClientSchemaApiResponse apiResponseLocalVar);
+        /// <param name="id"></param>
+        partial void AfterGetDownloadclientById(ref bool suppressDefaultLog, IGetDownloadclientByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2154,10 +1385,11 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListDownloadClientSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        /// <param name="id"></param>
+        private void OnErrorGetDownloadclientByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListDownloadClientSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetDownloadclientById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2169,18 +1401,264 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListDownloadClientSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        /// <param name="id"></param>
+        partial void OnErrorGetDownloadclientById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetDownloadclientByIdApiResponse?> GetDownloadclientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetDownloadclientByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetDownloadclientByIdApiResponse> GetDownloadclientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetDownloadclientById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/downloadclient/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetDownloadclientByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetDownloadclientByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnGetDownloadclientById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetDownloadclientByIdDefaultImplementation(e, "/api/v3/downloadclient/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetDownloadclientById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetDownloadclientByIdApiResponse"/>
+        /// </summary>
+        public partial class GetDownloadclientByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDownloadclientByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DownloadClientApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetDownloadclientByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetDownloadclientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetDownloadclientByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetDownloadclientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.DownloadClientResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.DownloadClientResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.DownloadClientResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetDownloadclientSchemaDefaultImplementation(IGetDownloadclientSchemaApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetDownloadclientSchema(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetDownloadclientSchema(ref bool suppressDefaultLog, IGetDownloadclientSchemaApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetDownloadclientSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetDownloadclientSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetDownloadclientSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListDownloadClientSchemaApiResponse?> ListDownloadClientSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetDownloadclientSchemaApiResponse?> GetDownloadclientSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListDownloadClientSchemaAsync(cancellationToken).ConfigureAwait(false);
+                return await GetDownloadclientSchemaAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2193,8 +1671,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDownloadClientSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListDownloadClientSchemaApiResponse> ListDownloadClientSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadclientSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetDownloadclientSchemaApiResponse> GetDownloadclientSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -2231,7 +1709,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListDownloadClientSchemaApiResponse apiResponseLocalVar;
+                        GetDownloadclientSchemaApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2242,9 +1720,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListDownloadClientSchemaDefaultImplementation(apiResponseLocalVar);
+                        AfterGetDownloadclientSchemaDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListDownloadClientSchema(apiResponseLocalVar);
+                        Events.ExecuteOnGetDownloadclientSchema(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2256,16 +1734,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListDownloadClientSchemaDefaultImplementation(e, "/api/v3/downloadclient/schema", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListDownloadClientSchema(e);
+                OnErrorGetDownloadclientSchemaDefaultImplementation(e, "/api/v3/downloadclient/schema", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetDownloadclientSchema(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListDownloadClientSchemaApiResponse"/>
+        /// The <see cref="GetDownloadclientSchemaApiResponse"/>
         /// </summary>
-        public partial class ListDownloadClientSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IListDownloadClientSchemaApiResponse
+        public partial class GetDownloadclientSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDownloadclientSchemaApiResponse
         {
             /// <summary>
             /// The logger
@@ -2273,7 +1751,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListDownloadClientSchemaApiResponse"/>
+            /// The <see cref="GetDownloadclientSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2282,14 +1760,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDownloadClientSchemaApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetDownloadclientSchemaApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListDownloadClientSchemaApiResponse"/>
+            /// The <see cref="GetDownloadclientSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2298,7 +1776,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDownloadClientSchemaApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetDownloadclientSchemaApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2367,28 +1845,29 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatPutDownloadClientBulk(Option<DownloadClientBulkResource> downloadClientBulkResource);
+        partial void FormatPostDownloadclient(DownloadClientResource downloadClientResource, ref Option<bool> forceSave);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
-        /// <param name="downloadClientBulkResource"></param>
+        /// <param name="downloadClientResource"></param>
         /// <returns></returns>
-        private void ValidatePutDownloadClientBulk(Option<DownloadClientBulkResource> downloadClientBulkResource)
+        private void ValidatePostDownloadclient(DownloadClientResource downloadClientResource)
         {
-            if (downloadClientBulkResource.IsSet && downloadClientBulkResource.Value == null)
-                throw new ArgumentNullException(nameof(downloadClientBulkResource));
+            if (downloadClientResource == null)
+                throw new ArgumentNullException(nameof(downloadClientResource));
         }
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="downloadClientBulkResource"></param>
-        private void AfterPutDownloadClientBulkDefaultImplementation(IPutDownloadClientBulkApiResponse apiResponseLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource)
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        private void AfterPostDownloadclientDefaultImplementation(IPostDownloadclientApiResponse apiResponseLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceSave)
         {
             bool suppressDefaultLog = false;
-            AfterPutDownloadClientBulk(ref suppressDefaultLog, apiResponseLocalVar, downloadClientBulkResource);
+            AfterPostDownloadclient(ref suppressDefaultLog, apiResponseLocalVar, downloadClientResource, forceSave);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2398,8 +1877,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="downloadClientBulkResource"></param>
-        partial void AfterPutDownloadClientBulk(ref bool suppressDefaultLog, IPutDownloadClientBulkApiResponse apiResponseLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource);
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        partial void AfterPostDownloadclient(ref bool suppressDefaultLog, IPostDownloadclientApiResponse apiResponseLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceSave);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2407,11 +1887,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="downloadClientBulkResource"></param>
-        private void OnErrorPutDownloadClientBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource)
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        private void OnErrorPostDownloadclientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceSave)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorPutDownloadClientBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, downloadClientBulkResource);
+            OnErrorPostDownloadclient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, downloadClientResource, forceSave);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2423,20 +1904,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="downloadClientBulkResource"></param>
-        partial void OnErrorPutDownloadClientBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DownloadClientBulkResource> downloadClientBulkResource);
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        partial void OnErrorPostDownloadclient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceSave);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadClientBulkApiResponse"/>&gt;</returns>
-        public async Task<IPutDownloadClientBulkApiResponse?> PutDownloadClientBulkOrDefaultAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientApiResponse?> PostDownloadclientOrDefaultAsync(DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await PutDownloadClientBulkAsync(downloadClientBulkResource, cancellationToken).ConfigureAwait(false);
+                return await PostDownloadclientAsync(downloadClientResource, forceSave, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2448,18 +1931,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="downloadClientBulkResource"> (optional)</param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadClientBulkApiResponse"/>&gt;</returns>
-        public async Task<IPutDownloadClientBulkApiResponse> PutDownloadClientBulkAsync(Option<DownloadClientBulkResource> downloadClientBulkResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientApiResponse> PostDownloadclientAsync(DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidatePutDownloadClientBulk(downloadClientBulkResource);
+                ValidatePostDownloadclient(downloadClientResource);
 
-                FormatPutDownloadClientBulk(downloadClientBulkResource);
+                FormatPostDownloadclient(downloadClientResource, ref forceSave);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2467,15 +1951,19 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/downloadclient/bulk"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/bulk");
+                        ? "/api/v3/downloadclient"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient");
 
-                    if (downloadClientBulkResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientBulkResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (forceSave.IsSet)
+                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (downloadClientResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientBulkResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2502,26 +1990,26 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        PutDownloadClientBulkApiResponse apiResponseLocalVar;
+                        PostDownloadclientApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/bulk", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterPutDownloadClientBulkDefaultImplementation(apiResponseLocalVar, downloadClientBulkResource);
+                        AfterPostDownloadclientDefaultImplementation(apiResponseLocalVar, downloadClientResource, forceSave);
 
-                        Events.ExecuteOnPutDownloadClientBulk(apiResponseLocalVar);
+                        Events.ExecuteOnPostDownloadclient(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2533,16 +2021,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorPutDownloadClientBulkDefaultImplementation(e, "/api/v3/downloadclient/bulk", uriBuilderLocalVar.Path, downloadClientBulkResource);
-                Events.ExecuteOnErrorPutDownloadClientBulk(e);
+                OnErrorPostDownloadclientDefaultImplementation(e, "/api/v3/downloadclient", uriBuilderLocalVar.Path, downloadClientResource, forceSave);
+                Events.ExecuteOnErrorPostDownloadclient(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="PutDownloadClientBulkApiResponse"/>
+        /// The <see cref="PostDownloadclientApiResponse"/>
         /// </summary>
-        public partial class PutDownloadClientBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPutDownloadClientBulkApiResponse
+        public partial class PostDownloadclientApiResponse : Whisparr3.Net.Client.ApiResponse, IPostDownloadclientApiResponse
         {
             /// <summary>
             /// The logger
@@ -2550,7 +2038,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="PutDownloadClientBulkApiResponse"/>
+            /// The <see cref="PostDownloadclientApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2559,14 +2047,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public PutDownloadClientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostDownloadclientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="PutDownloadClientBulkApiResponse"/>
+            /// The <see cref="PostDownloadclientApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2575,7 +2063,292 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public PutDownloadClientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostDownloadclientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.DownloadClientResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.DownloadClientResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.DownloadClientResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostDownloadclientActionByName(ref string name, DownloadClientResource downloadClientResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <returns></returns>
+        private void ValidatePostDownloadclientActionByName(string name, DownloadClientResource downloadClientResource)
+        {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+
+            if (downloadClientResource == null)
+                throw new ArgumentNullException(nameof(downloadClientResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        private void AfterPostDownloadclientActionByNameDefaultImplementation(IPostDownloadclientActionByNameApiResponse apiResponseLocalVar, string name, DownloadClientResource downloadClientResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostDownloadclientActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, downloadClientResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        partial void AfterPostDownloadclientActionByName(ref bool suppressDefaultLog, IPostDownloadclientActionByNameApiResponse apiResponseLocalVar, string name, DownloadClientResource downloadClientResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        private void OnErrorPostDownloadclientActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, DownloadClientResource downloadClientResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostDownloadclientActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, downloadClientResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        partial void OnErrorPostDownloadclientActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, DownloadClientResource downloadClientResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientActionByNameApiResponse?> PostDownloadclientActionByNameOrDefaultAsync(string name, DownloadClientResource downloadClientResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostDownloadclientActionByNameAsync(name, downloadClientResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientActionByNameApiResponse> PostDownloadclientActionByNameAsync(string name, DownloadClientResource downloadClientResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostDownloadclientActionByName(name, downloadClientResource);
+
+                FormatPostDownloadclientActionByName(ref name, downloadClientResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/downloadclient/action/{name}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/action/{name}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (downloadClientResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostDownloadclientActionByNameApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostDownloadclientActionByNameDefaultImplementation(apiResponseLocalVar, name, downloadClientResource);
+
+                        Events.ExecuteOnPostDownloadclientActionByName(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostDownloadclientActionByNameDefaultImplementation(e, "/api/v3/downloadclient/action/{name}", uriBuilderLocalVar.Path, name, downloadClientResource);
+                Events.ExecuteOnErrorPostDownloadclientActionByName(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostDownloadclientActionByNameApiResponse"/>
+        /// </summary>
+        public partial class PostDownloadclientActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, IPostDownloadclientActionByNameApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DownloadClientApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostDownloadclientActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostDownloadclientActionByNameApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostDownloadclientActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostDownloadclientActionByNameApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2593,32 +2366,32 @@ namespace Whisparr3.Net.Api
             /// Deserializes the response if the response is 200 Ok
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.DownloadClientResource? Ok()
+            public Object? Ok()
             {
                 bool suppressDefault = false;
-                Whisparr3.Net.Model.DownloadClientResource? result = null;
+                Object? result = null;
                 OnOk(ref suppressDefault, ref result);
                 if (!suppressDefault)
                     result = DefaultOk();
                 return result;
             }
 
-            private Whisparr3.Net.Model.DownloadClientResource? DefaultOk()
+            private Object? DefaultOk()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
                 return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
+                    ? System.Text.Json.JsonSerializer.Deserialize<Object>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
+            partial void OnOk(ref bool suppressDefault, ref Object? result);
 
             /// <summary>
             /// Returns true if the response is 200 Ok and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
+            public bool TryOk([NotNullWhen(true)]out Object? result)
             {
                 result = null;
 
@@ -2644,201 +2417,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterTestAllDownloadClientDefaultImplementation(ITestAllDownloadClientApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterTestAllDownloadClient(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterTestAllDownloadClient(ref bool suppressDefaultLog, ITestAllDownloadClientApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorTestAllDownloadClientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorTestAllDownloadClient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorTestAllDownloadClient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<ITestAllDownloadClientApiResponse?> TestAllDownloadClientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await TestAllDownloadClientAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<ITestAllDownloadClientApiResponse> TestAllDownloadClientAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/downloadclient/testall"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/testall");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        TestAllDownloadClientApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/testall", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterTestAllDownloadClientDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnTestAllDownloadClient(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorTestAllDownloadClientDefaultImplementation(e, "/api/v3/downloadclient/testall", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorTestAllDownloadClient(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="TestAllDownloadClientApiResponse"/>
-        /// </summary>
-        public partial class TestAllDownloadClientApiResponse : Whisparr3.Net.Client.ApiResponse, ITestAllDownloadClientApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<DownloadClientApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="TestAllDownloadClientApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public TestAllDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="TestAllDownloadClientApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public TestAllDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatTestDownloadClient(ref Option<bool> forceTest, Option<DownloadClientResource> downloadClientResource);
+        partial void FormatPostDownloadclientTest(DownloadClientResource downloadClientResource, ref Option<bool> forceTest);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="downloadClientResource"></param>
         /// <returns></returns>
-        private void ValidateTestDownloadClient(Option<DownloadClientResource> downloadClientResource)
+        private void ValidatePostDownloadclientTest(DownloadClientResource downloadClientResource)
         {
-            if (downloadClientResource.IsSet && downloadClientResource.Value == null)
+            if (downloadClientResource == null)
                 throw new ArgumentNullException(nameof(downloadClientResource));
         }
 
@@ -2846,12 +2434,12 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="downloadClientResource"></param>
-        private void AfterTestDownloadClientDefaultImplementation(ITestDownloadClientApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<DownloadClientResource> downloadClientResource)
+        /// <param name="forceTest"></param>
+        private void AfterPostDownloadclientTestDefaultImplementation(IPostDownloadclientTestApiResponse apiResponseLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceTest)
         {
             bool suppressDefaultLog = false;
-            AfterTestDownloadClient(ref suppressDefaultLog, apiResponseLocalVar, forceTest, downloadClientResource);
+            AfterPostDownloadclientTest(ref suppressDefaultLog, apiResponseLocalVar, downloadClientResource, forceTest);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2861,9 +2449,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="downloadClientResource"></param>
-        partial void AfterTestDownloadClient(ref bool suppressDefaultLog, ITestDownloadClientApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<DownloadClientResource> downloadClientResource);
+        /// <param name="forceTest"></param>
+        partial void AfterPostDownloadclientTest(ref bool suppressDefaultLog, IPostDownloadclientTestApiResponse apiResponseLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceTest);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2871,12 +2459,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="downloadClientResource"></param>
-        private void OnErrorTestDownloadClientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<DownloadClientResource> downloadClientResource)
+        /// <param name="forceTest"></param>
+        private void OnErrorPostDownloadclientTestDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceTest)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTestDownloadClient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceTest, downloadClientResource);
+            OnErrorPostDownloadclientTest(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, downloadClientResource, forceTest);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2888,22 +2476,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="downloadClientResource"></param>
-        partial void OnErrorTestDownloadClient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<DownloadClientResource> downloadClientResource);
+        /// <param name="forceTest"></param>
+        partial void OnErrorPostDownloadclientTest(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientResource downloadClientResource, Option<bool> forceTest);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="downloadClientResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<ITestDownloadClientApiResponse?> TestDownloadClientOrDefaultAsync(Option<bool> forceTest = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientTestApiResponse?> PostDownloadclientTestOrDefaultAsync(DownloadClientResource downloadClientResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TestDownloadClientAsync(forceTest, downloadClientResource, cancellationToken).ConfigureAwait(false);
+                return await PostDownloadclientTestAsync(downloadClientResource, forceTest, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2915,19 +2503,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="downloadClientResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<ITestDownloadClientApiResponse> TestDownloadClientAsync(Option<bool> forceTest = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientTestApiResponse> PostDownloadclientTestAsync(DownloadClientResource downloadClientResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateTestDownloadClient(downloadClientResource);
+                ValidatePostDownloadclientTest(downloadClientResource);
 
-                FormatTestDownloadClient(ref forceTest, downloadClientResource);
+                FormatPostDownloadclientTest(downloadClientResource, ref forceTest);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2945,12 +2533,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (downloadClientResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (downloadClientResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2974,7 +2559,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        TestDownloadClientApiResponse apiResponseLocalVar;
+                        PostDownloadclientTestApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2985,9 +2570,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterTestDownloadClientDefaultImplementation(apiResponseLocalVar, forceTest, downloadClientResource);
+                        AfterPostDownloadclientTestDefaultImplementation(apiResponseLocalVar, downloadClientResource, forceTest);
 
-                        Events.ExecuteOnTestDownloadClient(apiResponseLocalVar);
+                        Events.ExecuteOnPostDownloadclientTest(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2999,16 +2584,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorTestDownloadClientDefaultImplementation(e, "/api/v3/downloadclient/test", uriBuilderLocalVar.Path, forceTest, downloadClientResource);
-                Events.ExecuteOnErrorTestDownloadClient(e);
+                OnErrorPostDownloadclientTestDefaultImplementation(e, "/api/v3/downloadclient/test", uriBuilderLocalVar.Path, downloadClientResource, forceTest);
+                Events.ExecuteOnErrorPostDownloadclientTest(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="TestDownloadClientApiResponse"/>
+        /// The <see cref="PostDownloadclientTestApiResponse"/>
         /// </summary>
-        public partial class TestDownloadClientApiResponse : Whisparr3.Net.Client.ApiResponse, ITestDownloadClientApiResponse
+        public partial class PostDownloadclientTestApiResponse : Whisparr3.Net.Client.ApiResponse, IPostDownloadclientTestApiResponse
         {
             /// <summary>
             /// The logger
@@ -3016,7 +2601,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="TestDownloadClientApiResponse"/>
+            /// The <see cref="PostDownloadclientTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3025,14 +2610,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostDownloadclientTestApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="TestDownloadClientApiResponse"/>
+            /// The <see cref="PostDownloadclientTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3041,7 +2626,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostDownloadclientTestApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3066,30 +2651,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateDownloadClient(ref int id, ref Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="downloadClientResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateDownloadClient(Option<DownloadClientResource> downloadClientResource)
-        {
-            if (downloadClientResource.IsSet && downloadClientResource.Value == null)
-                throw new ArgumentNullException(nameof(downloadClientResource));
-        }
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        private void AfterUpdateDownloadClientDefaultImplementation(IUpdateDownloadClientApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource)
+        private void AfterPostDownloadclientTestallDefaultImplementation(IPostDownloadclientTestallApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateDownloadClient(ref suppressDefaultLog, apiResponseLocalVar, id, forceSave, downloadClientResource);
+            AfterPostDownloadclientTestall(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -3099,10 +2668,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        partial void AfterUpdateDownloadClient(ref bool suppressDefaultLog, IUpdateDownloadClientApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource);
+        partial void AfterPostDownloadclientTestall(ref bool suppressDefaultLog, IPostDownloadclientTestallApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -3110,13 +2676,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        private void OnErrorUpdateDownloadClientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource)
+        private void OnErrorPostDownloadclientTestallDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateDownloadClient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, forceSave, downloadClientResource);
+            OnErrorPostDownloadclientTestall(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -3128,24 +2691,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="downloadClientResource"></param>
-        partial void OnErrorUpdateDownloadClient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<DownloadClientResource> downloadClientResource);
+        partial void OnErrorPostDownloadclientTestall(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDownloadClientApiResponse?> UpdateDownloadClientOrDefaultAsync(int id, Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientTestallApiResponse?> PostDownloadclientTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateDownloadClientAsync(id, forceSave, downloadClientResource, cancellationToken).ConfigureAwait(false);
+                return await PostDownloadclientTestallAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -3157,20 +2714,324 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="downloadClientResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDownloadClientApiResponse> UpdateDownloadClientAsync(int id, Option<bool> forceSave = default, Option<DownloadClientResource> downloadClientResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostDownloadclientTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostDownloadclientTestallApiResponse> PostDownloadclientTestallAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateDownloadClient(downloadClientResource);
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/downloadclient/testall"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/testall");
 
-                FormatUpdateDownloadClient(ref id, ref forceSave, downloadClientResource);
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostDownloadclientTestallApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/testall", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostDownloadclientTestallDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnPostDownloadclientTestall(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostDownloadclientTestallDefaultImplementation(e, "/api/v3/downloadclient/testall", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorPostDownloadclientTestall(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostDownloadclientTestallApiResponse"/>
+        /// </summary>
+        public partial class PostDownloadclientTestallApiResponse : Whisparr3.Net.Client.ApiResponse, IPostDownloadclientTestallApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DownloadClientApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostDownloadclientTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostDownloadclientTestallApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostDownloadclientTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostDownloadclientTestallApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? BadRequest()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutDownloadclientBulk(DownloadClientBulkResource downloadClientBulkResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="downloadClientBulkResource"></param>
+        /// <returns></returns>
+        private void ValidatePutDownloadclientBulk(DownloadClientBulkResource downloadClientBulkResource)
+        {
+            if (downloadClientBulkResource == null)
+                throw new ArgumentNullException(nameof(downloadClientBulkResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="downloadClientBulkResource"></param>
+        private void AfterPutDownloadclientBulkDefaultImplementation(IPutDownloadclientBulkApiResponse apiResponseLocalVar, DownloadClientBulkResource downloadClientBulkResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutDownloadclientBulk(ref suppressDefaultLog, apiResponseLocalVar, downloadClientBulkResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="downloadClientBulkResource"></param>
+        partial void AfterPutDownloadclientBulk(ref bool suppressDefaultLog, IPutDownloadclientBulkApiResponse apiResponseLocalVar, DownloadClientBulkResource downloadClientBulkResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="downloadClientBulkResource"></param>
+        private void OnErrorPutDownloadclientBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientBulkResource downloadClientBulkResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutDownloadclientBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, downloadClientBulkResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="downloadClientBulkResource"></param>
+        partial void OnErrorPutDownloadclientBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, DownloadClientBulkResource downloadClientBulkResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="downloadClientBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientBulkApiResponse"/>&gt;</returns>
+        public async Task<IPutDownloadclientBulkApiResponse?> PutDownloadclientBulkOrDefaultAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutDownloadclientBulkAsync(downloadClientBulkResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="downloadClientBulkResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientBulkApiResponse"/>&gt;</returns>
+        public async Task<IPutDownloadclientBulkApiResponse> PutDownloadclientBulkAsync(DownloadClientBulkResource downloadClientBulkResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutDownloadclientBulk(downloadClientBulkResource);
+
+                FormatPutDownloadclientBulk(downloadClientBulkResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -3178,23 +3039,12 @@ namespace Whisparr3.Net.Api
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/downloadclient/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+                        ? "/api/v3/downloadclient/bulk"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/bulk");
 
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (forceSave.IsSet)
-                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    if (downloadClientResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (downloadClientBulkResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientBulkResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -3227,20 +3077,20 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateDownloadClientApiResponse apiResponseLocalVar;
+                        PutDownloadclientBulkApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/bulk", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterUpdateDownloadClientDefaultImplementation(apiResponseLocalVar, id, forceSave, downloadClientResource);
+                        AfterPutDownloadclientBulkDefaultImplementation(apiResponseLocalVar, downloadClientBulkResource);
 
-                        Events.ExecuteOnUpdateDownloadClient(apiResponseLocalVar);
+                        Events.ExecuteOnPutDownloadclientBulk(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -3252,16 +3102,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateDownloadClientDefaultImplementation(e, "/api/v3/downloadclient/{id}", uriBuilderLocalVar.Path, id, forceSave, downloadClientResource);
-                Events.ExecuteOnErrorUpdateDownloadClient(e);
+                OnErrorPutDownloadclientBulkDefaultImplementation(e, "/api/v3/downloadclient/bulk", uriBuilderLocalVar.Path, downloadClientBulkResource);
+                Events.ExecuteOnErrorPutDownloadclientBulk(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateDownloadClientApiResponse"/>
+        /// The <see cref="PutDownloadclientBulkApiResponse"/>
         /// </summary>
-        public partial class UpdateDownloadClientApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateDownloadClientApiResponse
+        public partial class PutDownloadclientBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPutDownloadclientBulkApiResponse
         {
             /// <summary>
             /// The logger
@@ -3269,7 +3119,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateDownloadClientApiResponse"/>
+            /// The <see cref="PutDownloadclientBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3278,14 +3128,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutDownloadclientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateDownloadClientApiResponse"/>
+            /// The <see cref="PutDownloadclientBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -3294,7 +3144,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDownloadClientApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutDownloadclientBulkApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -3303,50 +3153,344 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.DownloadClientResource? Ok()
+            public List<DownloadClientResource>? Accepted()
             {
                 bool suppressDefault = false;
-                Whisparr3.Net.Model.DownloadClientResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                List<DownloadClientResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.DownloadClientResource? DefaultOk()
+            private List<DownloadClientResource>? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<DownloadClientResource>>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref List<DownloadClientResource>? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out List<DownloadClientResource>? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutDownloadclientById(ref int id, DownloadClientResource downloadClientResource, ref Option<bool> forceSave);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="downloadClientResource"></param>
+        /// <returns></returns>
+        private void ValidatePutDownloadclientById(DownloadClientResource downloadClientResource)
+        {
+            if (downloadClientResource == null)
+                throw new ArgumentNullException(nameof(downloadClientResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        private void AfterPutDownloadclientByIdDefaultImplementation(IPutDownloadclientByIdApiResponse apiResponseLocalVar, int id, DownloadClientResource downloadClientResource, Option<bool> forceSave)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutDownloadclientById(ref suppressDefaultLog, apiResponseLocalVar, id, downloadClientResource, forceSave);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        partial void AfterPutDownloadclientById(ref bool suppressDefaultLog, IPutDownloadclientByIdApiResponse apiResponseLocalVar, int id, DownloadClientResource downloadClientResource, Option<bool> forceSave);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        private void OnErrorPutDownloadclientByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, DownloadClientResource downloadClientResource, Option<bool> forceSave)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutDownloadclientById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, downloadClientResource, forceSave);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"></param>
+        partial void OnErrorPutDownloadclientById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, DownloadClientResource downloadClientResource, Option<bool> forceSave);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutDownloadclientByIdApiResponse?> PutDownloadclientByIdOrDefaultAsync(int id, DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutDownloadclientByIdAsync(id, downloadClientResource, forceSave, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="downloadClientResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutDownloadclientByIdApiResponse> PutDownloadclientByIdAsync(int id, DownloadClientResource downloadClientResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutDownloadclientById(downloadClientResource);
+
+                FormatPutDownloadclientById(ref id, downloadClientResource, ref forceSave);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/downloadclient/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/downloadclient/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (forceSave.IsSet)
+                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (downloadClientResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutDownloadclientByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/downloadclient/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutDownloadclientByIdDefaultImplementation(apiResponseLocalVar, id, downloadClientResource, forceSave);
+
+                        Events.ExecuteOnPutDownloadclientById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutDownloadclientByIdDefaultImplementation(e, "/api/v3/downloadclient/{id}", uriBuilderLocalVar.Path, id, downloadClientResource, forceSave);
+                Events.ExecuteOnErrorPutDownloadclientById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutDownloadclientByIdApiResponse"/>
+        /// </summary>
+        public partial class PutDownloadclientByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutDownloadclientByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<DownloadClientApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutDownloadclientByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutDownloadclientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutDownloadclientByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutDownloadclientByIdApiResponse(ILogger<DownloadClientApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.DownloadClientResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.DownloadClientResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.DownloadClientResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

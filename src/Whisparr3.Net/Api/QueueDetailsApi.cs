@@ -48,8 +48,8 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQueueDetailsApiResponse"/>&gt;</returns>
-        Task<IListQueueDetailsApiResponse> ListQueueDetailsAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQueueDetailsApiResponse"/>&gt;</returns>
+        Task<IGetQueueDetailsApiResponse> GetQueueDetailsAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -60,14 +60,14 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQueueDetailsApiResponse"/>?&gt;</returns>
-        Task<IListQueueDetailsApiResponse?> ListQueueDetailsOrDefaultAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQueueDetailsApiResponse"/>?&gt;</returns>
+        Task<IGetQueueDetailsApiResponse?> GetQueueDetailsOrDefaultAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListQueueDetailsApiResponse"/>
+    /// The <see cref="IGetQueueDetailsApiResponse"/>
     /// </summary>
-    public interface IListQueueDetailsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<QueueResource>?>
+    public interface IGetQueueDetailsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<QueueResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -84,21 +84,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListQueueDetails;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQueueDetails;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListQueueDetails;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQueueDetails;
 
-        internal void ExecuteOnListQueueDetails(QueueDetailsApi.ListQueueDetailsApiResponse apiResponse)
+        internal void ExecuteOnGetQueueDetails(QueueDetailsApi.GetQueueDetailsApiResponse apiResponse)
         {
-            OnListQueueDetails?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQueueDetails?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListQueueDetails(Exception exception)
+        internal void ExecuteOnErrorGetQueueDetails(Exception exception)
         {
-            OnErrorListQueueDetails?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQueueDetails?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,7 +143,7 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatListQueueDetails(ref Option<int> movieId, ref Option<bool> includeMovie);
+        partial void FormatGetQueueDetails(ref Option<int> movieId, ref Option<bool> includeMovie);
 
         /// <summary>
         /// Processes the server response
@@ -151,10 +151,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="includeMovie"></param>
-        private void AfterListQueueDetailsDefaultImplementation(IListQueueDetailsApiResponse apiResponseLocalVar, Option<int> movieId, Option<bool> includeMovie)
+        private void AfterGetQueueDetailsDefaultImplementation(IGetQueueDetailsApiResponse apiResponseLocalVar, Option<int> movieId, Option<bool> includeMovie)
         {
             bool suppressDefaultLog = false;
-            AfterListQueueDetails(ref suppressDefaultLog, apiResponseLocalVar, movieId, includeMovie);
+            AfterGetQueueDetails(ref suppressDefaultLog, apiResponseLocalVar, movieId, includeMovie);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -166,7 +166,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="includeMovie"></param>
-        partial void AfterListQueueDetails(ref bool suppressDefaultLog, IListQueueDetailsApiResponse apiResponseLocalVar, Option<int> movieId, Option<bool> includeMovie);
+        partial void AfterGetQueueDetails(ref bool suppressDefaultLog, IGetQueueDetailsApiResponse apiResponseLocalVar, Option<int> movieId, Option<bool> includeMovie);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -176,10 +176,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="includeMovie"></param>
-        private void OnErrorListQueueDetailsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<bool> includeMovie)
+        private void OnErrorGetQueueDetailsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<bool> includeMovie)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListQueueDetails(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, includeMovie);
+            OnErrorGetQueueDetails(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, includeMovie);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -193,7 +193,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
         /// <param name="includeMovie"></param>
-        partial void OnErrorListQueueDetails(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<bool> includeMovie);
+        partial void OnErrorGetQueueDetails(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<bool> includeMovie);
 
         /// <summary>
         ///  
@@ -201,12 +201,12 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQueueDetailsApiResponse"/>&gt;</returns>
-        public async Task<IListQueueDetailsApiResponse?> ListQueueDetailsOrDefaultAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQueueDetailsApiResponse"/>&gt;</returns>
+        public async Task<IGetQueueDetailsApiResponse?> GetQueueDetailsOrDefaultAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListQueueDetailsAsync(movieId, includeMovie, cancellationToken).ConfigureAwait(false);
+                return await GetQueueDetailsAsync(movieId, includeMovie, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -221,14 +221,14 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQueueDetailsApiResponse"/>&gt;</returns>
-        public async Task<IListQueueDetailsApiResponse> ListQueueDetailsAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQueueDetailsApiResponse"/>&gt;</returns>
+        public async Task<IGetQueueDetailsApiResponse> GetQueueDetailsAsync(Option<int> movieId = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListQueueDetails(ref movieId, ref includeMovie);
+                FormatGetQueueDetails(ref movieId, ref includeMovie);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -273,7 +273,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListQueueDetailsApiResponse apiResponseLocalVar;
+                        GetQueueDetailsApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -284,9 +284,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListQueueDetailsDefaultImplementation(apiResponseLocalVar, movieId, includeMovie);
+                        AfterGetQueueDetailsDefaultImplementation(apiResponseLocalVar, movieId, includeMovie);
 
-                        Events.ExecuteOnListQueueDetails(apiResponseLocalVar);
+                        Events.ExecuteOnGetQueueDetails(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -298,16 +298,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListQueueDetailsDefaultImplementation(e, "/api/v3/queue/details", uriBuilderLocalVar.Path, movieId, includeMovie);
-                Events.ExecuteOnErrorListQueueDetails(e);
+                OnErrorGetQueueDetailsDefaultImplementation(e, "/api/v3/queue/details", uriBuilderLocalVar.Path, movieId, includeMovie);
+                Events.ExecuteOnErrorGetQueueDetails(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListQueueDetailsApiResponse"/>
+        /// The <see cref="GetQueueDetailsApiResponse"/>
         /// </summary>
-        public partial class ListQueueDetailsApiResponse : Whisparr3.Net.Client.ApiResponse, IListQueueDetailsApiResponse
+        public partial class GetQueueDetailsApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQueueDetailsApiResponse
         {
             /// <summary>
             /// The logger
@@ -315,7 +315,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QueueDetailsApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListQueueDetailsApiResponse"/>
+            /// The <see cref="GetQueueDetailsApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -324,14 +324,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListQueueDetailsApiResponse(ILogger<QueueDetailsApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetQueueDetailsApiResponse(ILogger<QueueDetailsApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListQueueDetailsApiResponse"/>
+            /// The <see cref="GetQueueDetailsApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -340,7 +340,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListQueueDetailsApiResponse(ILogger<QueueDetailsApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetQueueDetailsApiResponse(ILogger<QueueDetailsApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

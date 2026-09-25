@@ -50,9 +50,12 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedMissingApiResponse"/>&gt;</returns>
-        Task<IGetWantedMissingApiResponse> GetWantedMissingAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWantedMissingApiResponse> GetWantedMissingAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -65,9 +68,12 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedMissingApiResponse"/>?&gt;</returns>
-        Task<IGetWantedMissingApiResponse?> GetWantedMissingOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWantedMissingApiResponse?> GetWantedMissingOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -149,17 +155,29 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetWantedMissing(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sortKey, ref Option<SortDirection> sortDirection, ref Option<bool> monitored);
+        partial void FormatGetWantedMissing(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sortKey, ref Option<SortDirection> sortDirection, ref Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="sortKey"></param>
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
         /// <returns></returns>
-        private void ValidateGetWantedMissing(Option<string> sortKey)
+        private void ValidateGetWantedMissing(Option<string> sortKey, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags)
         {
             if (sortKey.IsSet && sortKey.Value == null)
                 throw new ArgumentNullException(nameof(sortKey));
+
+            if (movieIds.IsSet && movieIds.Value == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            if (qualityProfileIds.IsSet && qualityProfileIds.Value == null)
+                throw new ArgumentNullException(nameof(qualityProfileIds));
+
+            if (movieTags.IsSet && movieTags.Value == null)
+                throw new ArgumentNullException(nameof(movieTags));
         }
 
         /// <summary>
@@ -171,10 +189,13 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        private void AfterGetWantedMissingDefaultImplementation(IGetWantedMissingApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored)
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        private void AfterGetWantedMissingDefaultImplementation(IGetWantedMissingApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags)
         {
             bool suppressDefaultLog = false;
-            AfterGetWantedMissing(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored);
+            AfterGetWantedMissing(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -189,7 +210,10 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        partial void AfterGetWantedMissing(ref bool suppressDefaultLog, IGetWantedMissingApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored);
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        partial void AfterGetWantedMissing(ref bool suppressDefaultLog, IGetWantedMissingApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -202,10 +226,13 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        private void OnErrorGetWantedMissingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored)
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        private void OnErrorGetWantedMissingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetWantedMissing(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sortKey, sortDirection, monitored);
+            OnErrorGetWantedMissing(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -222,7 +249,10 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        partial void OnErrorGetWantedMissing(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored);
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        partial void OnErrorGetWantedMissing(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags);
 
         /// <summary>
         ///  
@@ -232,13 +262,16 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedMissingApiResponse"/>&gt;</returns>
-        public async Task<IGetWantedMissingApiResponse?> GetWantedMissingOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetWantedMissingApiResponse?> GetWantedMissingOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetWantedMissingAsync(page, pageSize, sortKey, sortDirection, monitored, cancellationToken).ConfigureAwait(false);
+                return await GetWantedMissingAsync(page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -255,17 +288,20 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedMissingApiResponse"/>&gt;</returns>
-        public async Task<IGetWantedMissingApiResponse> GetWantedMissingAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetWantedMissingApiResponse> GetWantedMissingAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetWantedMissing(sortKey);
+                ValidateGetWantedMissing(sortKey, movieIds, qualityProfileIds, movieTags);
 
-                FormatGetWantedMissing(ref page, ref pageSize, ref sortKey, ref sortDirection, ref monitored);
+                FormatGetWantedMissing(ref page, ref pageSize, ref sortKey, ref sortDirection, ref monitored, movieIds, qualityProfileIds, movieTags);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -292,6 +328,15 @@ namespace Whisparr3.Net.Api
 
                     if (monitored.IsSet)
                         parseQueryStringLocalVar["monitored"] = ClientUtils.ParameterToString(monitored.Value);
+
+                    if (movieIds.IsSet)
+                        parseQueryStringLocalVar["movieIds"] = ClientUtils.ParameterToString(movieIds.Value);
+
+                    if (qualityProfileIds.IsSet)
+                        parseQueryStringLocalVar["qualityProfileIds"] = ClientUtils.ParameterToString(qualityProfileIds.Value);
+
+                    if (movieTags.IsSet)
+                        parseQueryStringLocalVar["movieTags"] = ClientUtils.ParameterToString(movieTags.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -328,7 +373,7 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetWantedMissingDefaultImplementation(apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored);
+                        AfterGetWantedMissingDefaultImplementation(apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags);
 
                         Events.ExecuteOnGetWantedMissing(apiResponseLocalVar);
 
@@ -342,7 +387,7 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetWantedMissingDefaultImplementation(e, "/api/v3/wanted/missing", uriBuilderLocalVar.Path, page, pageSize, sortKey, sortDirection, monitored);
+                OnErrorGetWantedMissingDefaultImplementation(e, "/api/v3/wanted/missing", uriBuilderLocalVar.Path, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags);
                 Events.ExecuteOnErrorGetWantedMissing(e);
                 throw;
             }

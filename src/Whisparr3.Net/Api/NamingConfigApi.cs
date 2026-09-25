@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigApiResponse"/>&gt;</returns>
-        Task<IGetNamingConfigApiResponse> GetNamingConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingApiResponse"/>&gt;</returns>
+        Task<IGetConfigNamingApiResponse> GetConfigNamingAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,8 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigApiResponse"/>?&gt;</returns>
-        Task<IGetNamingConfigApiResponse?> GetNamingConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingApiResponse"/>?&gt;</returns>
+        Task<IGetConfigNamingApiResponse?> GetConfigNamingOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,8 +68,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetNamingConfigByIdApiResponse> GetNamingConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigNamingByIdApiResponse> GetConfigNamingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,8 +79,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetNamingConfigByIdApiResponse?> GetNamingConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigNamingByIdApiResponse?> GetConfigNamingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -103,8 +103,8 @@ namespace Whisparr3.Net.Api
         /// <param name="id"> (optional)</param>
         /// <param name="resourceName"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigExamplesApiResponse"/>&gt;</returns>
-        Task<IGetNamingConfigExamplesApiResponse> GetNamingConfigExamplesAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingExamplesApiResponse"/>&gt;</returns>
+        Task<IGetConfigNamingExamplesApiResponse> GetConfigNamingExamplesAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -126,8 +126,8 @@ namespace Whisparr3.Net.Api
         /// <param name="id"> (optional)</param>
         /// <param name="resourceName"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigExamplesApiResponse"/>?&gt;</returns>
-        Task<IGetNamingConfigExamplesApiResponse?> GetNamingConfigExamplesOrDefaultAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingExamplesApiResponse"/>?&gt;</returns>
+        Task<IGetConfigNamingExamplesApiResponse?> GetConfigNamingExamplesOrDefaultAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -137,10 +137,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="namingConfigResource"> (optional)</param>
+        /// <param name="namingConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNamingConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateNamingConfigApiResponse> UpdateNamingConfigAsync(string id, Option<NamingConfigResource> namingConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigNamingByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigNamingByIdApiResponse> PutConfigNamingByIdAsync(string id, NamingConfigResource namingConfigResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -149,16 +149,16 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="namingConfigResource"> (optional)</param>
+        /// <param name="namingConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNamingConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateNamingConfigApiResponse?> UpdateNamingConfigOrDefaultAsync(string id, Option<NamingConfigResource> namingConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigNamingByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigNamingByIdApiResponse?> PutConfigNamingByIdOrDefaultAsync(string id, NamingConfigResource namingConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetNamingConfigApiResponse"/>
+    /// The <see cref="IGetConfigNamingApiResponse"/>
     /// </summary>
-    public interface IGetNamingConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NamingConfigResource?>
+    public interface IGetConfigNamingApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NamingConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -168,9 +168,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetNamingConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigNamingByIdApiResponse"/>
     /// </summary>
-    public interface IGetNamingConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NamingConfigResource?>
+    public interface IGetConfigNamingByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NamingConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -180,9 +180,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetNamingConfigExamplesApiResponse"/>
+    /// The <see cref="IGetConfigNamingExamplesApiResponse"/>
     /// </summary>
-    public interface IGetNamingConfigExamplesApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetConfigNamingExamplesApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NamingExampleResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -192,15 +192,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateNamingConfigApiResponse"/>
+    /// The <see cref="IPutConfigNamingByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateNamingConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.NamingConfigResource?>
+    public interface IPutConfigNamingByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.NamingConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -211,81 +211,81 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetNamingConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigNaming;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetNamingConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigNaming;
 
-        internal void ExecuteOnGetNamingConfig(NamingConfigApi.GetNamingConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigNaming(NamingConfigApi.GetConfigNamingApiResponse apiResponse)
         {
-            OnGetNamingConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigNaming?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetNamingConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigNaming(Exception exception)
         {
-            OnErrorGetNamingConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigNaming?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetNamingConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigNamingById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetNamingConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigNamingById;
 
-        internal void ExecuteOnGetNamingConfigById(NamingConfigApi.GetNamingConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigNamingById(NamingConfigApi.GetConfigNamingByIdApiResponse apiResponse)
         {
-            OnGetNamingConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigNamingById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetNamingConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigNamingById(Exception exception)
         {
-            OnErrorGetNamingConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigNamingById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetNamingConfigExamples;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigNamingExamples;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetNamingConfigExamples;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigNamingExamples;
 
-        internal void ExecuteOnGetNamingConfigExamples(NamingConfigApi.GetNamingConfigExamplesApiResponse apiResponse)
+        internal void ExecuteOnGetConfigNamingExamples(NamingConfigApi.GetConfigNamingExamplesApiResponse apiResponse)
         {
-            OnGetNamingConfigExamples?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigNamingExamples?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetNamingConfigExamples(Exception exception)
+        internal void ExecuteOnErrorGetConfigNamingExamples(Exception exception)
         {
-            OnErrorGetNamingConfigExamples?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigNamingExamples?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateNamingConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigNamingById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateNamingConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigNamingById;
 
-        internal void ExecuteOnUpdateNamingConfig(NamingConfigApi.UpdateNamingConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigNamingById(NamingConfigApi.PutConfigNamingByIdApiResponse apiResponse)
         {
-            OnUpdateNamingConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigNamingById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateNamingConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigNamingById(Exception exception)
         {
-            OnErrorUpdateNamingConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigNamingById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -334,10 +334,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetNamingConfigDefaultImplementation(IGetNamingConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigNamingDefaultImplementation(IGetConfigNamingApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetNamingConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigNaming(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -347,7 +347,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetNamingConfig(ref bool suppressDefaultLog, IGetNamingConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigNaming(ref bool suppressDefaultLog, IGetConfigNamingApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -355,10 +355,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetNamingConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigNamingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetNamingConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigNaming(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -370,18 +370,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetNamingConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigNaming(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetNamingConfigApiResponse?> GetNamingConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigNamingApiResponse?> GetConfigNamingOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetNamingConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigNamingAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -394,8 +394,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetNamingConfigApiResponse> GetNamingConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigNamingApiResponse> GetConfigNamingAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -434,7 +434,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetNamingConfigApiResponse apiResponseLocalVar;
+                        GetConfigNamingApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -445,9 +445,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetNamingConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigNamingDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetNamingConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigNaming(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -459,16 +459,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetNamingConfigDefaultImplementation(e, "/api/v3/config/naming", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetNamingConfig(e);
+                OnErrorGetConfigNamingDefaultImplementation(e, "/api/v3/config/naming", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigNaming(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetNamingConfigApiResponse"/>
+        /// The <see cref="GetConfigNamingApiResponse"/>
         /// </summary>
-        public partial class GetNamingConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetNamingConfigApiResponse
+        public partial class GetConfigNamingApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigNamingApiResponse
         {
             /// <summary>
             /// The logger
@@ -476,7 +476,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NamingConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetNamingConfigApiResponse"/>
+            /// The <see cref="GetConfigNamingApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -485,14 +485,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetNamingConfigApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigNamingApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetNamingConfigApiResponse"/>
+            /// The <see cref="GetConfigNamingApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -501,7 +501,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetNamingConfigApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigNamingApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -570,17 +570,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetNamingConfigById(ref int id);
+        partial void FormatGetConfigNamingById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetNamingConfigByIdDefaultImplementation(IGetNamingConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigNamingByIdDefaultImplementation(IGetConfigNamingByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetNamingConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigNamingById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -591,7 +591,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetNamingConfigById(ref bool suppressDefaultLog, IGetNamingConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigNamingById(ref bool suppressDefaultLog, IGetConfigNamingByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -600,10 +600,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetNamingConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigNamingByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetNamingConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigNamingById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -616,19 +616,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetNamingConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigNamingById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetNamingConfigByIdApiResponse?> GetNamingConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigNamingByIdApiResponse?> GetConfigNamingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetNamingConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigNamingByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -642,14 +642,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetNamingConfigByIdApiResponse> GetNamingConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigNamingByIdApiResponse> GetConfigNamingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetNamingConfigById(ref id);
+                FormatGetConfigNamingById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -685,7 +685,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetNamingConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigNamingByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -696,9 +696,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetNamingConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigNamingByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetNamingConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigNamingById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -710,16 +710,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetNamingConfigByIdDefaultImplementation(e, "/api/v3/config/naming/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetNamingConfigById(e);
+                OnErrorGetConfigNamingByIdDefaultImplementation(e, "/api/v3/config/naming/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigNamingById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetNamingConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigNamingByIdApiResponse"/>
         /// </summary>
-        public partial class GetNamingConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetNamingConfigByIdApiResponse
+        public partial class GetConfigNamingByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigNamingByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -727,7 +727,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NamingConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetNamingConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigNamingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -736,14 +736,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetNamingConfigByIdApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigNamingByIdApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetNamingConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigNamingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -752,7 +752,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetNamingConfigByIdApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigNamingByIdApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -821,7 +821,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetNamingConfigExamples(ref Option<bool> renameMovies, ref Option<bool> renameScenes, ref Option<bool> replaceIllegalCharacters, ref Option<ColonReplacementFormat> colonReplacementFormat, ref Option<string> standardMovieFormat, ref Option<string> movieFolderFormat, ref Option<string> standardSceneFormat, ref Option<string> sceneFolderFormat, ref Option<string> sceneImportFolderFormat, ref Option<int> maxFolderPathLength, ref Option<int> maxFilePathLength, ref Option<int> id, ref Option<string> resourceName);
+        partial void FormatGetConfigNamingExamples(ref Option<bool> renameMovies, ref Option<bool> renameScenes, ref Option<bool> replaceIllegalCharacters, ref Option<ColonReplacementFormat> colonReplacementFormat, ref Option<string> standardMovieFormat, ref Option<string> movieFolderFormat, ref Option<string> standardSceneFormat, ref Option<string> sceneFolderFormat, ref Option<string> sceneImportFolderFormat, ref Option<int> maxFolderPathLength, ref Option<int> maxFilePathLength, ref Option<int> id, ref Option<string> resourceName);
 
         /// <summary>
         /// Validates the request parameters
@@ -833,7 +833,7 @@ namespace Whisparr3.Net.Api
         /// <param name="sceneImportFolderFormat"></param>
         /// <param name="resourceName"></param>
         /// <returns></returns>
-        private void ValidateGetNamingConfigExamples(Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<string> resourceName)
+        private void ValidateGetConfigNamingExamples(Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<string> resourceName)
         {
             if (standardMovieFormat.IsSet && standardMovieFormat.Value == null)
                 throw new ArgumentNullException(nameof(standardMovieFormat));
@@ -871,10 +871,10 @@ namespace Whisparr3.Net.Api
         /// <param name="maxFilePathLength"></param>
         /// <param name="id"></param>
         /// <param name="resourceName"></param>
-        private void AfterGetNamingConfigExamplesDefaultImplementation(IGetNamingConfigExamplesApiResponse apiResponseLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName)
+        private void AfterGetConfigNamingExamplesDefaultImplementation(IGetConfigNamingExamplesApiResponse apiResponseLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName)
         {
             bool suppressDefaultLog = false;
-            AfterGetNamingConfigExamples(ref suppressDefaultLog, apiResponseLocalVar, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
+            AfterGetConfigNamingExamples(ref suppressDefaultLog, apiResponseLocalVar, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -897,7 +897,7 @@ namespace Whisparr3.Net.Api
         /// <param name="maxFilePathLength"></param>
         /// <param name="id"></param>
         /// <param name="resourceName"></param>
-        partial void AfterGetNamingConfigExamples(ref bool suppressDefaultLog, IGetNamingConfigExamplesApiResponse apiResponseLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName);
+        partial void AfterGetConfigNamingExamples(ref bool suppressDefaultLog, IGetConfigNamingExamplesApiResponse apiResponseLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -918,10 +918,10 @@ namespace Whisparr3.Net.Api
         /// <param name="maxFilePathLength"></param>
         /// <param name="id"></param>
         /// <param name="resourceName"></param>
-        private void OnErrorGetNamingConfigExamplesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName)
+        private void OnErrorGetConfigNamingExamplesDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetNamingConfigExamples(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
+            OnErrorGetConfigNamingExamples(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -946,7 +946,7 @@ namespace Whisparr3.Net.Api
         /// <param name="maxFilePathLength"></param>
         /// <param name="id"></param>
         /// <param name="resourceName"></param>
-        partial void OnErrorGetNamingConfigExamples(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName);
+        partial void OnErrorGetConfigNamingExamples(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> renameMovies, Option<bool> renameScenes, Option<bool> replaceIllegalCharacters, Option<ColonReplacementFormat> colonReplacementFormat, Option<string> standardMovieFormat, Option<string> movieFolderFormat, Option<string> standardSceneFormat, Option<string> sceneFolderFormat, Option<string> sceneImportFolderFormat, Option<int> maxFolderPathLength, Option<int> maxFilePathLength, Option<int> id, Option<string> resourceName);
 
         /// <summary>
         ///  
@@ -965,12 +965,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"> (optional)</param>
         /// <param name="resourceName"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigExamplesApiResponse"/>&gt;</returns>
-        public async Task<IGetNamingConfigExamplesApiResponse?> GetNamingConfigExamplesOrDefaultAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingExamplesApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigNamingExamplesApiResponse?> GetConfigNamingExamplesOrDefaultAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetNamingConfigExamplesAsync(renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName, cancellationToken).ConfigureAwait(false);
+                return await GetConfigNamingExamplesAsync(renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -996,16 +996,16 @@ namespace Whisparr3.Net.Api
         /// <param name="id"> (optional)</param>
         /// <param name="resourceName"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetNamingConfigExamplesApiResponse"/>&gt;</returns>
-        public async Task<IGetNamingConfigExamplesApiResponse> GetNamingConfigExamplesAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigNamingExamplesApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigNamingExamplesApiResponse> GetConfigNamingExamplesAsync(Option<bool> renameMovies = default, Option<bool> renameScenes = default, Option<bool> replaceIllegalCharacters = default, Option<ColonReplacementFormat> colonReplacementFormat = default, Option<string> standardMovieFormat = default, Option<string> movieFolderFormat = default, Option<string> standardSceneFormat = default, Option<string> sceneFolderFormat = default, Option<string> sceneImportFolderFormat = default, Option<int> maxFolderPathLength = default, Option<int> maxFilePathLength = default, Option<int> id = default, Option<string> resourceName = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetNamingConfigExamples(standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, resourceName);
+                ValidateGetConfigNamingExamples(standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, resourceName);
 
-                FormatGetNamingConfigExamples(ref renameMovies, ref renameScenes, ref replaceIllegalCharacters, ref colonReplacementFormat, ref standardMovieFormat, ref movieFolderFormat, ref standardSceneFormat, ref sceneFolderFormat, ref sceneImportFolderFormat, ref maxFolderPathLength, ref maxFilePathLength, ref id, ref resourceName);
+                FormatGetConfigNamingExamples(ref renameMovies, ref renameScenes, ref replaceIllegalCharacters, ref colonReplacementFormat, ref standardMovieFormat, ref movieFolderFormat, ref standardSceneFormat, ref sceneFolderFormat, ref sceneImportFolderFormat, ref maxFolderPathLength, ref maxFilePathLength, ref id, ref resourceName);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1066,13 +1066,24 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetNamingConfigExamplesApiResponse apiResponseLocalVar;
+                        GetConfigNamingExamplesApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1083,9 +1094,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetNamingConfigExamplesDefaultImplementation(apiResponseLocalVar, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
+                        AfterGetConfigNamingExamplesDefaultImplementation(apiResponseLocalVar, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
 
-                        Events.ExecuteOnGetNamingConfigExamples(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigNamingExamples(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1097,16 +1108,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetNamingConfigExamplesDefaultImplementation(e, "/api/v3/config/naming/examples", uriBuilderLocalVar.Path, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
-                Events.ExecuteOnErrorGetNamingConfigExamples(e);
+                OnErrorGetConfigNamingExamplesDefaultImplementation(e, "/api/v3/config/naming/examples", uriBuilderLocalVar.Path, renameMovies, renameScenes, replaceIllegalCharacters, colonReplacementFormat, standardMovieFormat, movieFolderFormat, standardSceneFormat, sceneFolderFormat, sceneImportFolderFormat, maxFolderPathLength, maxFilePathLength, id, resourceName);
+                Events.ExecuteOnErrorGetConfigNamingExamples(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetNamingConfigExamplesApiResponse"/>
+        /// The <see cref="GetConfigNamingExamplesApiResponse"/>
         /// </summary>
-        public partial class GetNamingConfigExamplesApiResponse : Whisparr3.Net.Client.ApiResponse, IGetNamingConfigExamplesApiResponse
+        public partial class GetConfigNamingExamplesApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigNamingExamplesApiResponse
         {
             /// <summary>
             /// The logger
@@ -1114,7 +1125,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NamingConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetNamingConfigExamplesApiResponse"/>
+            /// The <see cref="GetConfigNamingExamplesApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1123,14 +1134,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetNamingConfigExamplesApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigNamingExamplesApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetNamingConfigExamplesApiResponse"/>
+            /// The <see cref="GetConfigNamingExamplesApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1139,7 +1150,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetNamingConfigExamplesApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigNamingExamplesApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1153,6 +1164,50 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.NamingExampleResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.NamingExampleResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.NamingExampleResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.NamingExampleResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.NamingExampleResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.NamingExampleResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -1164,7 +1219,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateNamingConfig(ref string id, Option<NamingConfigResource> namingConfigResource);
+        partial void FormatPutConfigNamingById(ref string id, NamingConfigResource namingConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -1172,12 +1227,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="namingConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateNamingConfig(string id, Option<NamingConfigResource> namingConfigResource)
+        private void ValidatePutConfigNamingById(string id, NamingConfigResource namingConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (namingConfigResource.IsSet && namingConfigResource.Value == null)
+            if (namingConfigResource == null)
                 throw new ArgumentNullException(nameof(namingConfigResource));
         }
 
@@ -1187,10 +1242,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="namingConfigResource"></param>
-        private void AfterUpdateNamingConfigDefaultImplementation(IUpdateNamingConfigApiResponse apiResponseLocalVar, string id, Option<NamingConfigResource> namingConfigResource)
+        private void AfterPutConfigNamingByIdDefaultImplementation(IPutConfigNamingByIdApiResponse apiResponseLocalVar, string id, NamingConfigResource namingConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateNamingConfig(ref suppressDefaultLog, apiResponseLocalVar, id, namingConfigResource);
+            AfterPutConfigNamingById(ref suppressDefaultLog, apiResponseLocalVar, id, namingConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1202,7 +1257,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="namingConfigResource"></param>
-        partial void AfterUpdateNamingConfig(ref bool suppressDefaultLog, IUpdateNamingConfigApiResponse apiResponseLocalVar, string id, Option<NamingConfigResource> namingConfigResource);
+        partial void AfterPutConfigNamingById(ref bool suppressDefaultLog, IPutConfigNamingByIdApiResponse apiResponseLocalVar, string id, NamingConfigResource namingConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1212,10 +1267,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="namingConfigResource"></param>
-        private void OnErrorUpdateNamingConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<NamingConfigResource> namingConfigResource)
+        private void OnErrorPutConfigNamingByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, NamingConfigResource namingConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateNamingConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, namingConfigResource);
+            OnErrorPutConfigNamingById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, namingConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1229,20 +1284,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="namingConfigResource"></param>
-        partial void OnErrorUpdateNamingConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<NamingConfigResource> namingConfigResource);
+        partial void OnErrorPutConfigNamingById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, NamingConfigResource namingConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="namingConfigResource"> (optional)</param>
+        /// <param name="namingConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNamingConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateNamingConfigApiResponse?> UpdateNamingConfigOrDefaultAsync(string id, Option<NamingConfigResource> namingConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigNamingByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigNamingByIdApiResponse?> PutConfigNamingByIdOrDefaultAsync(string id, NamingConfigResource namingConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateNamingConfigAsync(id, namingConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigNamingByIdAsync(id, namingConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1255,18 +1310,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="namingConfigResource"> (optional)</param>
+        /// <param name="namingConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateNamingConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateNamingConfigApiResponse> UpdateNamingConfigAsync(string id, Option<NamingConfigResource> namingConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigNamingByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigNamingByIdApiResponse> PutConfigNamingByIdAsync(string id, NamingConfigResource namingConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateNamingConfig(id, namingConfigResource);
+                ValidatePutConfigNamingById(id, namingConfigResource);
 
-                FormatUpdateNamingConfig(ref id, namingConfigResource);
+                FormatPutConfigNamingById(ref id, namingConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1278,12 +1333,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/naming/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (namingConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (namingConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (namingConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(namingConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(namingConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -1318,7 +1370,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateNamingConfigApiResponse apiResponseLocalVar;
+                        PutConfigNamingByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1329,9 +1381,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateNamingConfigDefaultImplementation(apiResponseLocalVar, id, namingConfigResource);
+                        AfterPutConfigNamingByIdDefaultImplementation(apiResponseLocalVar, id, namingConfigResource);
 
-                        Events.ExecuteOnUpdateNamingConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigNamingById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1343,16 +1395,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateNamingConfigDefaultImplementation(e, "/api/v3/config/naming/{id}", uriBuilderLocalVar.Path, id, namingConfigResource);
-                Events.ExecuteOnErrorUpdateNamingConfig(e);
+                OnErrorPutConfigNamingByIdDefaultImplementation(e, "/api/v3/config/naming/{id}", uriBuilderLocalVar.Path, id, namingConfigResource);
+                Events.ExecuteOnErrorPutConfigNamingById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateNamingConfigApiResponse"/>
+        /// The <see cref="PutConfigNamingByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateNamingConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateNamingConfigApiResponse
+        public partial class PutConfigNamingByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigNamingByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1360,7 +1412,7 @@ namespace Whisparr3.Net.Api
             public ILogger<NamingConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateNamingConfigApiResponse"/>
+            /// The <see cref="PutConfigNamingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1369,14 +1421,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateNamingConfigApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigNamingByIdApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateNamingConfigApiResponse"/>
+            /// The <see cref="PutConfigNamingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1385,7 +1437,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateNamingConfigApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigNamingByIdApiResponse(ILogger<NamingConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1394,50 +1446,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.NamingConfigResource? Ok()
+            public Whisparr3.Net.Model.NamingConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.NamingConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.NamingConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.NamingConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.NamingConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.NamingConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.NamingConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.NamingConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.NamingConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

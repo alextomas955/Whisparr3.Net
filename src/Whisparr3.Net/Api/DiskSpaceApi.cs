@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDiskSpaceApiResponse"/>&gt;</returns>
-        Task<IListDiskSpaceApiResponse> ListDiskSpaceAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDiskspaceApiResponse"/>&gt;</returns>
+        Task<IGetDiskspaceApiResponse> GetDiskspaceAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,14 +56,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDiskSpaceApiResponse"/>?&gt;</returns>
-        Task<IListDiskSpaceApiResponse?> ListDiskSpaceOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDiskspaceApiResponse"/>?&gt;</returns>
+        Task<IGetDiskspaceApiResponse?> GetDiskspaceOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListDiskSpaceApiResponse"/>
+    /// The <see cref="IGetDiskspaceApiResponse"/>
     /// </summary>
-    public interface IListDiskSpaceApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DiskSpaceResource>?>
+    public interface IGetDiskspaceApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<DiskSpaceResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -80,21 +80,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListDiskSpace;
+        public event EventHandler<ApiResponseEventArgs>? OnGetDiskspace;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListDiskSpace;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetDiskspace;
 
-        internal void ExecuteOnListDiskSpace(DiskSpaceApi.ListDiskSpaceApiResponse apiResponse)
+        internal void ExecuteOnGetDiskspace(DiskSpaceApi.GetDiskspaceApiResponse apiResponse)
         {
-            OnListDiskSpace?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetDiskspace?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListDiskSpace(Exception exception)
+        internal void ExecuteOnErrorGetDiskspace(Exception exception)
         {
-            OnErrorListDiskSpace?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetDiskspace?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,10 +143,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListDiskSpaceDefaultImplementation(IListDiskSpaceApiResponse apiResponseLocalVar)
+        private void AfterGetDiskspaceDefaultImplementation(IGetDiskspaceApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListDiskSpace(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetDiskspace(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -156,7 +156,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListDiskSpace(ref bool suppressDefaultLog, IListDiskSpaceApiResponse apiResponseLocalVar);
+        partial void AfterGetDiskspace(ref bool suppressDefaultLog, IGetDiskspaceApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -164,10 +164,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListDiskSpaceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetDiskspaceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListDiskSpace(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetDiskspace(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -179,18 +179,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListDiskSpace(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetDiskspace(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDiskSpaceApiResponse"/>&gt;</returns>
-        public async Task<IListDiskSpaceApiResponse?> ListDiskSpaceOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDiskspaceApiResponse"/>&gt;</returns>
+        public async Task<IGetDiskspaceApiResponse?> GetDiskspaceOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListDiskSpaceAsync(cancellationToken).ConfigureAwait(false);
+                return await GetDiskspaceAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -203,8 +203,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListDiskSpaceApiResponse"/>&gt;</returns>
-        public async Task<IListDiskSpaceApiResponse> ListDiskSpaceAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetDiskspaceApiResponse"/>&gt;</returns>
+        public async Task<IGetDiskspaceApiResponse> GetDiskspaceAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -243,7 +243,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListDiskSpaceApiResponse apiResponseLocalVar;
+                        GetDiskspaceApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -254,9 +254,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListDiskSpaceDefaultImplementation(apiResponseLocalVar);
+                        AfterGetDiskspaceDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListDiskSpace(apiResponseLocalVar);
+                        Events.ExecuteOnGetDiskspace(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -268,16 +268,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListDiskSpaceDefaultImplementation(e, "/api/v3/diskspace", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListDiskSpace(e);
+                OnErrorGetDiskspaceDefaultImplementation(e, "/api/v3/diskspace", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetDiskspace(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListDiskSpaceApiResponse"/>
+        /// The <see cref="GetDiskspaceApiResponse"/>
         /// </summary>
-        public partial class ListDiskSpaceApiResponse : Whisparr3.Net.Client.ApiResponse, IListDiskSpaceApiResponse
+        public partial class GetDiskspaceApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDiskspaceApiResponse
         {
             /// <summary>
             /// The logger
@@ -285,7 +285,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DiskSpaceApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListDiskSpaceApiResponse"/>
+            /// The <see cref="GetDiskspaceApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -294,14 +294,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDiskSpaceApiResponse(ILogger<DiskSpaceApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetDiskspaceApiResponse(ILogger<DiskSpaceApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListDiskSpaceApiResponse"/>
+            /// The <see cref="GetDiskspaceApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -310,7 +310,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListDiskSpaceApiResponse(ILogger<DiskSpaceApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetDiskspaceApiResponse(ILogger<DiskSpaceApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

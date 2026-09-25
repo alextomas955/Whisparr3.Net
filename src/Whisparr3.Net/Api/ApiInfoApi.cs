@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiInfoApiResponse"/>&gt;</returns>
-        Task<IGetApiInfoApiResponse> GetApiInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiApiResponse"/>&gt;</returns>
+        Task<IGetApiApiResponse> GetApiAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,14 +56,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiInfoApiResponse"/>?&gt;</returns>
-        Task<IGetApiInfoApiResponse?> GetApiInfoOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiApiResponse"/>?&gt;</returns>
+        Task<IGetApiApiResponse?> GetApiOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetApiInfoApiResponse"/>
+    /// The <see cref="IGetApiApiResponse"/>
     /// </summary>
-    public interface IGetApiInfoApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ApiInfoResource?>
+    public interface IGetApiApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ApiInfoResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -80,21 +80,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetApiInfo;
+        public event EventHandler<ApiResponseEventArgs>? OnGetApi;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetApiInfo;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetApi;
 
-        internal void ExecuteOnGetApiInfo(ApiInfoApi.GetApiInfoApiResponse apiResponse)
+        internal void ExecuteOnGetApi(ApiInfoApi.GetApiApiResponse apiResponse)
         {
-            OnGetApiInfo?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetApi?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetApiInfo(Exception exception)
+        internal void ExecuteOnErrorGetApi(Exception exception)
         {
-            OnErrorGetApiInfo?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetApi?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,10 +143,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetApiInfoDefaultImplementation(IGetApiInfoApiResponse apiResponseLocalVar)
+        private void AfterGetApiDefaultImplementation(IGetApiApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetApiInfo(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetApi(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -156,7 +156,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetApiInfo(ref bool suppressDefaultLog, IGetApiInfoApiResponse apiResponseLocalVar);
+        partial void AfterGetApi(ref bool suppressDefaultLog, IGetApiApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -164,10 +164,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetApiInfoDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetApiDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetApiInfo(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetApi(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -179,18 +179,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetApiInfo(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetApi(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiInfoApiResponse"/>&gt;</returns>
-        public async Task<IGetApiInfoApiResponse?> GetApiInfoOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiApiResponse"/>&gt;</returns>
+        public async Task<IGetApiApiResponse?> GetApiOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetApiInfoAsync(cancellationToken).ConfigureAwait(false);
+                return await GetApiAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -203,8 +203,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiInfoApiResponse"/>&gt;</returns>
-        public async Task<IGetApiInfoApiResponse> GetApiInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetApiApiResponse"/>&gt;</returns>
+        public async Task<IGetApiApiResponse> GetApiAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -241,7 +241,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetApiInfoApiResponse apiResponseLocalVar;
+                        GetApiApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -252,9 +252,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetApiInfoDefaultImplementation(apiResponseLocalVar);
+                        AfterGetApiDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetApiInfo(apiResponseLocalVar);
+                        Events.ExecuteOnGetApi(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -266,16 +266,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetApiInfoDefaultImplementation(e, "/api", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetApiInfo(e);
+                OnErrorGetApiDefaultImplementation(e, "/api", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetApi(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetApiInfoApiResponse"/>
+        /// The <see cref="GetApiApiResponse"/>
         /// </summary>
-        public partial class GetApiInfoApiResponse : Whisparr3.Net.Client.ApiResponse, IGetApiInfoApiResponse
+        public partial class GetApiApiResponse : Whisparr3.Net.Client.ApiResponse, IGetApiApiResponse
         {
             /// <summary>
             /// The logger
@@ -283,7 +283,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ApiInfoApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetApiInfoApiResponse"/>
+            /// The <see cref="GetApiApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -292,14 +292,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetApiInfoApiResponse(ILogger<ApiInfoApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetApiApiResponse(ILogger<ApiInfoApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetApiInfoApiResponse"/>
+            /// The <see cref="GetApiApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -308,7 +308,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetApiInfoApiResponse(ILogger<ApiInfoApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetApiApiResponse(ILogger<ApiInfoApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
