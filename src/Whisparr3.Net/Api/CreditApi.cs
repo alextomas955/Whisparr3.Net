@@ -39,6 +39,33 @@ namespace Whisparr3.Net.Api
         CreditApiEvents Events { get; }
 
         /// <summary>
+        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
+        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
+        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCreditApiResponse"/>&gt;</returns>
+        Task<IGetCreditApiResponse> GetCreditAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
+        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
+        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCreditApiResponse"/>?&gt;</returns>
+        Task<IGetCreditApiResponse?> GetCreditOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// 
         /// </summary>
         /// <remarks>
@@ -60,33 +87,18 @@ namespace Whisparr3.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetCreditByIdApiResponse"/>?&gt;</returns>
         Task<IGetCreditByIdApiResponse?> GetCreditByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+    }
 
+    /// <summary>
+    /// The <see cref="IGetCreditApiResponse"/>
+    /// </summary>
+    public interface IGetCreditApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<CreditResource>?>
+    {
         /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned.
+        /// Returns true if the response is 200 Ok
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>&gt;</returns>
-        Task<IListCreditApiResponse> ListCreditAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>?&gt;</returns>
-        Task<IListCreditApiResponse?> ListCreditOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns></returns>
+        bool IsOk { get; }
     }
 
     /// <summary>
@@ -102,22 +114,30 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListCreditApiResponse"/>
-    /// </summary>
-    public interface IListCreditApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<CreditResource>?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
     public class CreditApiEvents
     {
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetCredit;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetCredit;
+
+        internal void ExecuteOnGetCredit(CreditApi.GetCreditApiResponse apiResponse)
+        {
+            OnGetCredit?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetCredit(Exception exception)
+        {
+            OnErrorGetCredit?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -136,26 +156,6 @@ namespace Whisparr3.Net.Api
         internal void ExecuteOnErrorGetCreditById(Exception exception)
         {
             OnErrorGetCreditById?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListCredit;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListCredit;
-
-        internal void ExecuteOnListCredit(CreditApi.ListCreditApiResponse apiResponse)
-        {
-            OnListCredit?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorListCredit(Exception exception)
-        {
-            OnErrorListCredit?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -198,6 +198,294 @@ namespace Whisparr3.Net.Api
             HttpClient = httpClient;
             Events = creditApiEvents;
             ApiKeyProvider = apiKeyProvider;
+        }
+
+        partial void FormatGetCredit(ref Option<int> movieId, ref Option<int> movieMetadataId, ref Option<string> performerId);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="performerId"></param>
+        /// <returns></returns>
+        private void ValidateGetCredit(Option<string> performerId)
+        {
+            if (performerId.IsSet && performerId.Value == null)
+                throw new ArgumentNullException(nameof(performerId));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="movieId"></param>
+        /// <param name="movieMetadataId"></param>
+        /// <param name="performerId"></param>
+        private void AfterGetCreditDefaultImplementation(IGetCreditApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetCredit(ref suppressDefaultLog, apiResponseLocalVar, movieId, movieMetadataId, performerId);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="movieId"></param>
+        /// <param name="movieMetadataId"></param>
+        /// <param name="performerId"></param>
+        partial void AfterGetCredit(ref bool suppressDefaultLog, IGetCreditApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="movieId"></param>
+        /// <param name="movieMetadataId"></param>
+        /// <param name="performerId"></param>
+        private void OnErrorGetCreditDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetCredit(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, movieMetadataId, performerId);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="movieId"></param>
+        /// <param name="movieMetadataId"></param>
+        /// <param name="performerId"></param>
+        partial void OnErrorGetCredit(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId);
+
+        /// <summary>
+        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned. 
+        /// </summary>
+        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
+        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
+        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCreditApiResponse"/>&gt;</returns>
+        public async Task<IGetCreditApiResponse?> GetCreditOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetCreditAsync(movieId, movieMetadataId, performerId, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
+        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
+        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetCreditApiResponse"/>&gt;</returns>
+        public async Task<IGetCreditApiResponse> GetCreditAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetCredit(performerId);
+
+                FormatGetCredit(ref movieId, ref movieMetadataId, ref performerId);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/credit"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/credit");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (movieId.IsSet)
+                        parseQueryStringLocalVar["movieId"] = ClientUtils.ParameterToString(movieId.Value);
+
+                    if (movieMetadataId.IsSet)
+                        parseQueryStringLocalVar["movieMetadataId"] = ClientUtils.ParameterToString(movieMetadataId.Value);
+
+                    if (performerId.IsSet)
+                        parseQueryStringLocalVar["performerId"] = ClientUtils.ParameterToString(performerId.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetCreditApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/credit", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetCreditDefaultImplementation(apiResponseLocalVar, movieId, movieMetadataId, performerId);
+
+                        Events.ExecuteOnGetCredit(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetCreditDefaultImplementation(e, "/api/v3/credit", uriBuilderLocalVar.Path, movieId, movieMetadataId, performerId);
+                Events.ExecuteOnErrorGetCredit(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetCreditApiResponse"/>
+        /// </summary>
+        public partial class GetCreditApiResponse : Whisparr3.Net.Client.ApiResponse, IGetCreditApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<CreditApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetCreditApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCreditApiResponse(ILogger<CreditApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetCreditApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetCreditApiResponse(ILogger<CreditApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<CreditResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<CreditResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<CreditResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<CreditResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<CreditResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<CreditResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
         partial void FormatGetCreditById(ref int id);
@@ -426,294 +714,6 @@ namespace Whisparr3.Net.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.CreditResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListCredit(ref Option<int> movieId, ref Option<int> movieMetadataId, ref Option<string> performerId);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="performerId"></param>
-        /// <returns></returns>
-        private void ValidateListCredit(Option<string> performerId)
-        {
-            if (performerId.IsSet && performerId.Value == null)
-                throw new ArgumentNullException(nameof(performerId));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="movieId"></param>
-        /// <param name="movieMetadataId"></param>
-        /// <param name="performerId"></param>
-        private void AfterListCreditDefaultImplementation(IListCreditApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId)
-        {
-            bool suppressDefaultLog = false;
-            AfterListCredit(ref suppressDefaultLog, apiResponseLocalVar, movieId, movieMetadataId, performerId);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="movieId"></param>
-        /// <param name="movieMetadataId"></param>
-        /// <param name="performerId"></param>
-        partial void AfterListCredit(ref bool suppressDefaultLog, IListCreditApiResponse apiResponseLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="movieId"></param>
-        /// <param name="movieMetadataId"></param>
-        /// <param name="performerId"></param>
-        private void OnErrorListCreditDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListCredit(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, movieMetadataId, performerId);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="movieId"></param>
-        /// <param name="movieMetadataId"></param>
-        /// <param name="performerId"></param>
-        partial void OnErrorListCredit(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<int> movieMetadataId, Option<string> performerId);
-
-        /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned. 
-        /// </summary>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>&gt;</returns>
-        public async Task<IListCreditApiResponse?> ListCreditOrDefaultAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListCreditAsync(movieId, movieMetadataId, performerId, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves credits filtered by movie id, movie metadata id, or performer id. If multiple filters are provided, precedence is: movieMetadataId, movieId, performerId. If no filters are provided, all credits are returned. 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieId">Optional internal movie id to filter credits by movie. (optional)</param>
-        /// <param name="movieMetadataId">Optional movie metadata id to filter credits by metadata record. (optional)</param>
-        /// <param name="performerId">Optional performer foreign id to filter credits by performer. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListCreditApiResponse"/>&gt;</returns>
-        public async Task<IListCreditApiResponse> ListCreditAsync(Option<int> movieId = default, Option<int> movieMetadataId = default, Option<string> performerId = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateListCredit(performerId);
-
-                FormatListCredit(ref movieId, ref movieMetadataId, ref performerId);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/credit"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/credit");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (movieId.IsSet)
-                        parseQueryStringLocalVar["movieId"] = ClientUtils.ParameterToString(movieId.Value);
-
-                    if (movieMetadataId.IsSet)
-                        parseQueryStringLocalVar["movieMetadataId"] = ClientUtils.ParameterToString(movieMetadataId.Value);
-
-                    if (performerId.IsSet)
-                        parseQueryStringLocalVar["performerId"] = ClientUtils.ParameterToString(performerId.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListCreditApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/credit", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListCreditDefaultImplementation(apiResponseLocalVar, movieId, movieMetadataId, performerId);
-
-                        Events.ExecuteOnListCredit(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListCreditDefaultImplementation(e, "/api/v3/credit", uriBuilderLocalVar.Path, movieId, movieMetadataId, performerId);
-                Events.ExecuteOnErrorListCredit(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListCreditApiResponse"/>
-        /// </summary>
-        public partial class ListCreditApiResponse : Whisparr3.Net.Client.ApiResponse, IListCreditApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<CreditApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListCreditApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListCreditApiResponse(ILogger<CreditApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListCreditApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListCreditApiResponse(ILogger<CreditApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<CreditResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<CreditResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<CreditResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<CreditResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<CreditResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<CreditResource>? result)
             {
                 result = null;
 

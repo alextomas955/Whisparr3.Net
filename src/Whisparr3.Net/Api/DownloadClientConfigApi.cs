@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigApiResponse"/>&gt;</returns>
-        Task<IGetDownloadClientConfigApiResponse> GetDownloadClientConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientApiResponse"/>&gt;</returns>
+        Task<IGetConfigDownloadclientApiResponse> GetConfigDownloadclientAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,31 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigApiResponse"/>?&gt;</returns>
-        Task<IGetDownloadClientConfigApiResponse?> GetDownloadClientConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetDownloadClientConfigByIdApiResponse> GetDownloadClientConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetDownloadClientConfigByIdApiResponse?> GetDownloadClientConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientApiResponse"/>?&gt;</returns>
+        Task<IGetConfigDownloadclientApiResponse?> GetConfigDownloadclientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -90,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="downloadClientConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateDownloadClientConfigApiResponse> UpdateDownloadClientConfigAsync(string id, Option<DownloadClientConfigResource> downloadClientConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigDownloadclientByIdApiResponse> GetConfigDownloadclientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,16 +78,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="downloadClientConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateDownloadClientConfigApiResponse?> UpdateDownloadClientConfigOrDefaultAsync(string id, Option<DownloadClientConfigResource> downloadClientConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigDownloadclientByIdApiResponse?> GetConfigDownloadclientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="downloadClientConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigDownloadclientByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigDownloadclientByIdApiResponse> PutConfigDownloadclientByIdAsync(string id, DownloadClientConfigResource downloadClientConfigResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="downloadClientConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigDownloadclientByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigDownloadclientByIdApiResponse?> PutConfigDownloadclientByIdOrDefaultAsync(string id, DownloadClientConfigResource downloadClientConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetDownloadClientConfigApiResponse"/>
+    /// The <see cref="IGetConfigDownloadclientApiResponse"/>
     /// </summary>
-    public interface IGetDownloadClientConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientConfigResource?>
+    public interface IGetConfigDownloadclientApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -121,9 +121,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetDownloadClientConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigDownloadclientByIdApiResponse"/>
     /// </summary>
-    public interface IGetDownloadClientConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientConfigResource?>
+    public interface IGetConfigDownloadclientByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -133,15 +133,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateDownloadClientConfigApiResponse"/>
+    /// The <see cref="IPutConfigDownloadclientByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateDownloadClientConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.DownloadClientConfigResource?>
+    public interface IPutConfigDownloadclientByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.DownloadClientConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -152,61 +152,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetDownloadClientConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigDownloadclient;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetDownloadClientConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigDownloadclient;
 
-        internal void ExecuteOnGetDownloadClientConfig(DownloadClientConfigApi.GetDownloadClientConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigDownloadclient(DownloadClientConfigApi.GetConfigDownloadclientApiResponse apiResponse)
         {
-            OnGetDownloadClientConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigDownloadclient?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetDownloadClientConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigDownloadclient(Exception exception)
         {
-            OnErrorGetDownloadClientConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigDownloadclient?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetDownloadClientConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigDownloadclientById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetDownloadClientConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigDownloadclientById;
 
-        internal void ExecuteOnGetDownloadClientConfigById(DownloadClientConfigApi.GetDownloadClientConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigDownloadclientById(DownloadClientConfigApi.GetConfigDownloadclientByIdApiResponse apiResponse)
         {
-            OnGetDownloadClientConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigDownloadclientById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetDownloadClientConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigDownloadclientById(Exception exception)
         {
-            OnErrorGetDownloadClientConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigDownloadclientById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateDownloadClientConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigDownloadclientById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateDownloadClientConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigDownloadclientById;
 
-        internal void ExecuteOnUpdateDownloadClientConfig(DownloadClientConfigApi.UpdateDownloadClientConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigDownloadclientById(DownloadClientConfigApi.PutConfigDownloadclientByIdApiResponse apiResponse)
         {
-            OnUpdateDownloadClientConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigDownloadclientById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateDownloadClientConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigDownloadclientById(Exception exception)
         {
-            OnErrorUpdateDownloadClientConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigDownloadclientById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -255,10 +255,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetDownloadClientConfigDefaultImplementation(IGetDownloadClientConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigDownloadclientDefaultImplementation(IGetConfigDownloadclientApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetDownloadClientConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigDownloadclient(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -268,7 +268,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetDownloadClientConfig(ref bool suppressDefaultLog, IGetDownloadClientConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigDownloadclient(ref bool suppressDefaultLog, IGetConfigDownloadclientApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -276,10 +276,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetDownloadClientConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigDownloadclientDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetDownloadClientConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigDownloadclient(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -291,18 +291,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetDownloadClientConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigDownloadclient(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetDownloadClientConfigApiResponse?> GetDownloadClientConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigDownloadclientApiResponse?> GetConfigDownloadclientOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetDownloadClientConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigDownloadclientAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -315,8 +315,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetDownloadClientConfigApiResponse> GetDownloadClientConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigDownloadclientApiResponse> GetConfigDownloadclientAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -353,7 +353,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetDownloadClientConfigApiResponse apiResponseLocalVar;
+                        GetConfigDownloadclientApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -364,9 +364,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetDownloadClientConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigDownloadclientDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetDownloadClientConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigDownloadclient(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -378,16 +378,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetDownloadClientConfigDefaultImplementation(e, "/api/v3/config/downloadclient", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetDownloadClientConfig(e);
+                OnErrorGetConfigDownloadclientDefaultImplementation(e, "/api/v3/config/downloadclient", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigDownloadclient(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetDownloadClientConfigApiResponse"/>
+        /// The <see cref="GetConfigDownloadclientApiResponse"/>
         /// </summary>
-        public partial class GetDownloadClientConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDownloadClientConfigApiResponse
+        public partial class GetConfigDownloadclientApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigDownloadclientApiResponse
         {
             /// <summary>
             /// The logger
@@ -395,7 +395,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetDownloadClientConfigApiResponse"/>
+            /// The <see cref="GetConfigDownloadclientApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -404,14 +404,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetDownloadClientConfigApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigDownloadclientApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetDownloadClientConfigApiResponse"/>
+            /// The <see cref="GetConfigDownloadclientApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -420,7 +420,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetDownloadClientConfigApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigDownloadclientApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -489,17 +489,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetDownloadClientConfigById(ref int id);
+        partial void FormatGetConfigDownloadclientById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetDownloadClientConfigByIdDefaultImplementation(IGetDownloadClientConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigDownloadclientByIdDefaultImplementation(IGetConfigDownloadclientByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetDownloadClientConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigDownloadclientById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -510,7 +510,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetDownloadClientConfigById(ref bool suppressDefaultLog, IGetDownloadClientConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigDownloadclientById(ref bool suppressDefaultLog, IGetConfigDownloadclientByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -519,10 +519,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetDownloadClientConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigDownloadclientByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetDownloadClientConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigDownloadclientById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -535,19 +535,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetDownloadClientConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigDownloadclientById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetDownloadClientConfigByIdApiResponse?> GetDownloadClientConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigDownloadclientByIdApiResponse?> GetConfigDownloadclientByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetDownloadClientConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigDownloadclientByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -561,14 +561,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetDownloadClientConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetDownloadClientConfigByIdApiResponse> GetDownloadClientConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigDownloadclientByIdApiResponse> GetConfigDownloadclientByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetDownloadClientConfigById(ref id);
+                FormatGetConfigDownloadclientById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -604,7 +604,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetDownloadClientConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigDownloadclientByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -615,9 +615,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetDownloadClientConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigDownloadclientByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetDownloadClientConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigDownloadclientById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -629,16 +629,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetDownloadClientConfigByIdDefaultImplementation(e, "/api/v3/config/downloadclient/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetDownloadClientConfigById(e);
+                OnErrorGetConfigDownloadclientByIdDefaultImplementation(e, "/api/v3/config/downloadclient/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigDownloadclientById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetDownloadClientConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigDownloadclientByIdApiResponse"/>
         /// </summary>
-        public partial class GetDownloadClientConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetDownloadClientConfigByIdApiResponse
+        public partial class GetConfigDownloadclientByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigDownloadclientByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -646,7 +646,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetDownloadClientConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigDownloadclientByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -655,14 +655,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetDownloadClientConfigByIdApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigDownloadclientByIdApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetDownloadClientConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigDownloadclientByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -671,7 +671,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetDownloadClientConfigByIdApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigDownloadclientByIdApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -740,7 +740,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateDownloadClientConfig(ref string id, Option<DownloadClientConfigResource> downloadClientConfigResource);
+        partial void FormatPutConfigDownloadclientById(ref string id, DownloadClientConfigResource downloadClientConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -748,12 +748,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="downloadClientConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateDownloadClientConfig(string id, Option<DownloadClientConfigResource> downloadClientConfigResource)
+        private void ValidatePutConfigDownloadclientById(string id, DownloadClientConfigResource downloadClientConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (downloadClientConfigResource.IsSet && downloadClientConfigResource.Value == null)
+            if (downloadClientConfigResource == null)
                 throw new ArgumentNullException(nameof(downloadClientConfigResource));
         }
 
@@ -763,10 +763,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="downloadClientConfigResource"></param>
-        private void AfterUpdateDownloadClientConfigDefaultImplementation(IUpdateDownloadClientConfigApiResponse apiResponseLocalVar, string id, Option<DownloadClientConfigResource> downloadClientConfigResource)
+        private void AfterPutConfigDownloadclientByIdDefaultImplementation(IPutConfigDownloadclientByIdApiResponse apiResponseLocalVar, string id, DownloadClientConfigResource downloadClientConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateDownloadClientConfig(ref suppressDefaultLog, apiResponseLocalVar, id, downloadClientConfigResource);
+            AfterPutConfigDownloadclientById(ref suppressDefaultLog, apiResponseLocalVar, id, downloadClientConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -778,7 +778,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="downloadClientConfigResource"></param>
-        partial void AfterUpdateDownloadClientConfig(ref bool suppressDefaultLog, IUpdateDownloadClientConfigApiResponse apiResponseLocalVar, string id, Option<DownloadClientConfigResource> downloadClientConfigResource);
+        partial void AfterPutConfigDownloadclientById(ref bool suppressDefaultLog, IPutConfigDownloadclientByIdApiResponse apiResponseLocalVar, string id, DownloadClientConfigResource downloadClientConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -788,10 +788,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="downloadClientConfigResource"></param>
-        private void OnErrorUpdateDownloadClientConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<DownloadClientConfigResource> downloadClientConfigResource)
+        private void OnErrorPutConfigDownloadclientByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, DownloadClientConfigResource downloadClientConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateDownloadClientConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, downloadClientConfigResource);
+            OnErrorPutConfigDownloadclientById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, downloadClientConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -805,20 +805,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="downloadClientConfigResource"></param>
-        partial void OnErrorUpdateDownloadClientConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<DownloadClientConfigResource> downloadClientConfigResource);
+        partial void OnErrorPutConfigDownloadclientById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, DownloadClientConfigResource downloadClientConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="downloadClientConfigResource"> (optional)</param>
+        /// <param name="downloadClientConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDownloadClientConfigApiResponse?> UpdateDownloadClientConfigOrDefaultAsync(string id, Option<DownloadClientConfigResource> downloadClientConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigDownloadclientByIdApiResponse?> PutConfigDownloadclientByIdOrDefaultAsync(string id, DownloadClientConfigResource downloadClientConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateDownloadClientConfigAsync(id, downloadClientConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigDownloadclientByIdAsync(id, downloadClientConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -831,18 +831,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="downloadClientConfigResource"> (optional)</param>
+        /// <param name="downloadClientConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateDownloadClientConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateDownloadClientConfigApiResponse> UpdateDownloadClientConfigAsync(string id, Option<DownloadClientConfigResource> downloadClientConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigDownloadclientByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigDownloadclientByIdApiResponse> PutConfigDownloadclientByIdAsync(string id, DownloadClientConfigResource downloadClientConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateDownloadClientConfig(id, downloadClientConfigResource);
+                ValidatePutConfigDownloadclientById(id, downloadClientConfigResource);
 
-                FormatUpdateDownloadClientConfig(ref id, downloadClientConfigResource);
+                FormatPutConfigDownloadclientById(ref id, downloadClientConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -854,12 +854,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/downloadclient/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (downloadClientConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (downloadClientConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (downloadClientConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(downloadClientConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -894,7 +891,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateDownloadClientConfigApiResponse apiResponseLocalVar;
+                        PutConfigDownloadclientByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -905,9 +902,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateDownloadClientConfigDefaultImplementation(apiResponseLocalVar, id, downloadClientConfigResource);
+                        AfterPutConfigDownloadclientByIdDefaultImplementation(apiResponseLocalVar, id, downloadClientConfigResource);
 
-                        Events.ExecuteOnUpdateDownloadClientConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigDownloadclientById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -919,16 +916,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateDownloadClientConfigDefaultImplementation(e, "/api/v3/config/downloadclient/{id}", uriBuilderLocalVar.Path, id, downloadClientConfigResource);
-                Events.ExecuteOnErrorUpdateDownloadClientConfig(e);
+                OnErrorPutConfigDownloadclientByIdDefaultImplementation(e, "/api/v3/config/downloadclient/{id}", uriBuilderLocalVar.Path, id, downloadClientConfigResource);
+                Events.ExecuteOnErrorPutConfigDownloadclientById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateDownloadClientConfigApiResponse"/>
+        /// The <see cref="PutConfigDownloadclientByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateDownloadClientConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateDownloadClientConfigApiResponse
+        public partial class PutConfigDownloadclientByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigDownloadclientByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -936,7 +933,7 @@ namespace Whisparr3.Net.Api
             public ILogger<DownloadClientConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateDownloadClientConfigApiResponse"/>
+            /// The <see cref="PutConfigDownloadclientByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -945,14 +942,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDownloadClientConfigApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigDownloadclientByIdApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateDownloadClientConfigApiResponse"/>
+            /// The <see cref="PutConfigDownloadclientByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -961,7 +958,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateDownloadClientConfigApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigDownloadclientByIdApiResponse(ILogger<DownloadClientConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -970,50 +967,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.DownloadClientConfigResource? Ok()
+            public Whisparr3.Net.Model.DownloadClientConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.DownloadClientConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.DownloadClientConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.DownloadClientConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.DownloadClientConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.DownloadClientConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.DownloadClientConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigApiResponse"/>&gt;</returns>
-        Task<IGetMediaManagementConfigApiResponse> GetMediaManagementConfigAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementApiResponse"/>&gt;</returns>
+        Task<IGetConfigMediamanagementApiResponse> GetConfigMediamanagementAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,31 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigApiResponse"/>?&gt;</returns>
-        Task<IGetMediaManagementConfigApiResponse?> GetMediaManagementConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigByIdApiResponse"/>&gt;</returns>
-        Task<IGetMediaManagementConfigByIdApiResponse> GetMediaManagementConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigByIdApiResponse"/>?&gt;</returns>
-        Task<IGetMediaManagementConfigByIdApiResponse?> GetMediaManagementConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementApiResponse"/>?&gt;</returns>
+        Task<IGetConfigMediamanagementApiResponse?> GetConfigMediamanagementOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -90,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="mediaManagementConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMediaManagementConfigApiResponse"/>&gt;</returns>
-        Task<IUpdateMediaManagementConfigApiResponse> UpdateMediaManagementConfigAsync(string id, Option<MediaManagementConfigResource> mediaManagementConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementByIdApiResponse"/>&gt;</returns>
+        Task<IGetConfigMediamanagementByIdApiResponse> GetConfigMediamanagementByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,16 +78,40 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="mediaManagementConfigResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMediaManagementConfigApiResponse"/>?&gt;</returns>
-        Task<IUpdateMediaManagementConfigApiResponse?> UpdateMediaManagementConfigOrDefaultAsync(string id, Option<MediaManagementConfigResource> mediaManagementConfigResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementByIdApiResponse"/>?&gt;</returns>
+        Task<IGetConfigMediamanagementByIdApiResponse?> GetConfigMediamanagementByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="mediaManagementConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigMediamanagementByIdApiResponse"/>&gt;</returns>
+        Task<IPutConfigMediamanagementByIdApiResponse> PutConfigMediamanagementByIdAsync(string id, MediaManagementConfigResource mediaManagementConfigResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="mediaManagementConfigResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigMediamanagementByIdApiResponse"/>?&gt;</returns>
+        Task<IPutConfigMediamanagementByIdApiResponse?> PutConfigMediamanagementByIdOrDefaultAsync(string id, MediaManagementConfigResource mediaManagementConfigResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetMediaManagementConfigApiResponse"/>
+    /// The <see cref="IGetConfigMediamanagementApiResponse"/>
     /// </summary>
-    public interface IGetMediaManagementConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MediaManagementConfigResource?>
+    public interface IGetConfigMediamanagementApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MediaManagementConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -121,9 +121,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetMediaManagementConfigByIdApiResponse"/>
+    /// The <see cref="IGetConfigMediamanagementByIdApiResponse"/>
     /// </summary>
-    public interface IGetMediaManagementConfigByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MediaManagementConfigResource?>
+    public interface IGetConfigMediamanagementByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MediaManagementConfigResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -133,15 +133,15 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateMediaManagementConfigApiResponse"/>
+    /// The <see cref="IPutConfigMediamanagementByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateMediaManagementConfigApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MediaManagementConfigResource?>
+    public interface IPutConfigMediamanagementByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.MediaManagementConfigResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -152,61 +152,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetMediaManagementConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigMediamanagement;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetMediaManagementConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigMediamanagement;
 
-        internal void ExecuteOnGetMediaManagementConfig(MediaManagementConfigApi.GetMediaManagementConfigApiResponse apiResponse)
+        internal void ExecuteOnGetConfigMediamanagement(MediaManagementConfigApi.GetConfigMediamanagementApiResponse apiResponse)
         {
-            OnGetMediaManagementConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigMediamanagement?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetMediaManagementConfig(Exception exception)
+        internal void ExecuteOnErrorGetConfigMediamanagement(Exception exception)
         {
-            OnErrorGetMediaManagementConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigMediamanagement?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetMediaManagementConfigById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetConfigMediamanagementById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetMediaManagementConfigById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetConfigMediamanagementById;
 
-        internal void ExecuteOnGetMediaManagementConfigById(MediaManagementConfigApi.GetMediaManagementConfigByIdApiResponse apiResponse)
+        internal void ExecuteOnGetConfigMediamanagementById(MediaManagementConfigApi.GetConfigMediamanagementByIdApiResponse apiResponse)
         {
-            OnGetMediaManagementConfigById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetConfigMediamanagementById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetMediaManagementConfigById(Exception exception)
+        internal void ExecuteOnErrorGetConfigMediamanagementById(Exception exception)
         {
-            OnErrorGetMediaManagementConfigById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetConfigMediamanagementById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateMediaManagementConfig;
+        public event EventHandler<ApiResponseEventArgs>? OnPutConfigMediamanagementById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateMediaManagementConfig;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutConfigMediamanagementById;
 
-        internal void ExecuteOnUpdateMediaManagementConfig(MediaManagementConfigApi.UpdateMediaManagementConfigApiResponse apiResponse)
+        internal void ExecuteOnPutConfigMediamanagementById(MediaManagementConfigApi.PutConfigMediamanagementByIdApiResponse apiResponse)
         {
-            OnUpdateMediaManagementConfig?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutConfigMediamanagementById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateMediaManagementConfig(Exception exception)
+        internal void ExecuteOnErrorPutConfigMediamanagementById(Exception exception)
         {
-            OnErrorUpdateMediaManagementConfig?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutConfigMediamanagementById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -255,10 +255,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetMediaManagementConfigDefaultImplementation(IGetMediaManagementConfigApiResponse apiResponseLocalVar)
+        private void AfterGetConfigMediamanagementDefaultImplementation(IGetConfigMediamanagementApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetMediaManagementConfig(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetConfigMediamanagement(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -268,7 +268,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetMediaManagementConfig(ref bool suppressDefaultLog, IGetMediaManagementConfigApiResponse apiResponseLocalVar);
+        partial void AfterGetConfigMediamanagement(ref bool suppressDefaultLog, IGetConfigMediamanagementApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -276,10 +276,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorGetMediaManagementConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetConfigMediamanagementDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMediaManagementConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetConfigMediamanagement(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -291,18 +291,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetMediaManagementConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetConfigMediamanagement(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetMediaManagementConfigApiResponse?> GetMediaManagementConfigOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigMediamanagementApiResponse?> GetConfigMediamanagementOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMediaManagementConfigAsync(cancellationToken).ConfigureAwait(false);
+                return await GetConfigMediamanagementAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -315,8 +315,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigApiResponse"/>&gt;</returns>
-        public async Task<IGetMediaManagementConfigApiResponse> GetMediaManagementConfigAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigMediamanagementApiResponse> GetConfigMediamanagementAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -353,7 +353,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetMediaManagementConfigApiResponse apiResponseLocalVar;
+                        GetConfigMediamanagementApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -364,9 +364,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetMediaManagementConfigDefaultImplementation(apiResponseLocalVar);
+                        AfterGetConfigMediamanagementDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnGetMediaManagementConfig(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigMediamanagement(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -378,16 +378,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMediaManagementConfigDefaultImplementation(e, "/api/v3/config/mediamanagement", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetMediaManagementConfig(e);
+                OnErrorGetConfigMediamanagementDefaultImplementation(e, "/api/v3/config/mediamanagement", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetConfigMediamanagement(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetMediaManagementConfigApiResponse"/>
+        /// The <see cref="GetConfigMediamanagementApiResponse"/>
         /// </summary>
-        public partial class GetMediaManagementConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMediaManagementConfigApiResponse
+        public partial class GetConfigMediamanagementApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigMediamanagementApiResponse
         {
             /// <summary>
             /// The logger
@@ -395,7 +395,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MediaManagementConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetMediaManagementConfigApiResponse"/>
+            /// The <see cref="GetConfigMediamanagementApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -404,14 +404,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMediaManagementConfigApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigMediamanagementApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetMediaManagementConfigApiResponse"/>
+            /// The <see cref="GetConfigMediamanagementApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -420,7 +420,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMediaManagementConfigApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigMediamanagementApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -489,17 +489,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetMediaManagementConfigById(ref int id);
+        partial void FormatGetConfigMediamanagementById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetMediaManagementConfigByIdDefaultImplementation(IGetMediaManagementConfigByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetConfigMediamanagementByIdDefaultImplementation(IGetConfigMediamanagementByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetMediaManagementConfigById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetConfigMediamanagementById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -510,7 +510,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetMediaManagementConfigById(ref bool suppressDefaultLog, IGetMediaManagementConfigByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetConfigMediamanagementById(ref bool suppressDefaultLog, IGetConfigMediamanagementByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -519,10 +519,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetMediaManagementConfigByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetConfigMediamanagementByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMediaManagementConfigById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetConfigMediamanagementById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -535,19 +535,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetMediaManagementConfigById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetConfigMediamanagementById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetMediaManagementConfigByIdApiResponse?> GetMediaManagementConfigByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigMediamanagementByIdApiResponse?> GetConfigMediamanagementByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMediaManagementConfigByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetConfigMediamanagementByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -561,14 +561,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMediaManagementConfigByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetMediaManagementConfigByIdApiResponse> GetMediaManagementConfigByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetConfigMediamanagementByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetConfigMediamanagementByIdApiResponse> GetConfigMediamanagementByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetMediaManagementConfigById(ref id);
+                FormatGetConfigMediamanagementById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -604,7 +604,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetMediaManagementConfigByIdApiResponse apiResponseLocalVar;
+                        GetConfigMediamanagementByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -615,9 +615,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetMediaManagementConfigByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetConfigMediamanagementByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetMediaManagementConfigById(apiResponseLocalVar);
+                        Events.ExecuteOnGetConfigMediamanagementById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -629,16 +629,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMediaManagementConfigByIdDefaultImplementation(e, "/api/v3/config/mediamanagement/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetMediaManagementConfigById(e);
+                OnErrorGetConfigMediamanagementByIdDefaultImplementation(e, "/api/v3/config/mediamanagement/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetConfigMediamanagementById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetMediaManagementConfigByIdApiResponse"/>
+        /// The <see cref="GetConfigMediamanagementByIdApiResponse"/>
         /// </summary>
-        public partial class GetMediaManagementConfigByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMediaManagementConfigByIdApiResponse
+        public partial class GetConfigMediamanagementByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetConfigMediamanagementByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -646,7 +646,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MediaManagementConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetMediaManagementConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigMediamanagementByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -655,14 +655,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMediaManagementConfigByIdApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetConfigMediamanagementByIdApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetMediaManagementConfigByIdApiResponse"/>
+            /// The <see cref="GetConfigMediamanagementByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -671,7 +671,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMediaManagementConfigByIdApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetConfigMediamanagementByIdApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -740,7 +740,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateMediaManagementConfig(ref string id, Option<MediaManagementConfigResource> mediaManagementConfigResource);
+        partial void FormatPutConfigMediamanagementById(ref string id, MediaManagementConfigResource mediaManagementConfigResource);
 
         /// <summary>
         /// Validates the request parameters
@@ -748,12 +748,12 @@ namespace Whisparr3.Net.Api
         /// <param name="id"></param>
         /// <param name="mediaManagementConfigResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateMediaManagementConfig(string id, Option<MediaManagementConfigResource> mediaManagementConfigResource)
+        private void ValidatePutConfigMediamanagementById(string id, MediaManagementConfigResource mediaManagementConfigResource)
         {
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            if (mediaManagementConfigResource.IsSet && mediaManagementConfigResource.Value == null)
+            if (mediaManagementConfigResource == null)
                 throw new ArgumentNullException(nameof(mediaManagementConfigResource));
         }
 
@@ -763,10 +763,10 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="mediaManagementConfigResource"></param>
-        private void AfterUpdateMediaManagementConfigDefaultImplementation(IUpdateMediaManagementConfigApiResponse apiResponseLocalVar, string id, Option<MediaManagementConfigResource> mediaManagementConfigResource)
+        private void AfterPutConfigMediamanagementByIdDefaultImplementation(IPutConfigMediamanagementByIdApiResponse apiResponseLocalVar, string id, MediaManagementConfigResource mediaManagementConfigResource)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateMediaManagementConfig(ref suppressDefaultLog, apiResponseLocalVar, id, mediaManagementConfigResource);
+            AfterPutConfigMediamanagementById(ref suppressDefaultLog, apiResponseLocalVar, id, mediaManagementConfigResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -778,7 +778,7 @@ namespace Whisparr3.Net.Api
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="mediaManagementConfigResource"></param>
-        partial void AfterUpdateMediaManagementConfig(ref bool suppressDefaultLog, IUpdateMediaManagementConfigApiResponse apiResponseLocalVar, string id, Option<MediaManagementConfigResource> mediaManagementConfigResource);
+        partial void AfterPutConfigMediamanagementById(ref bool suppressDefaultLog, IPutConfigMediamanagementByIdApiResponse apiResponseLocalVar, string id, MediaManagementConfigResource mediaManagementConfigResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -788,10 +788,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="mediaManagementConfigResource"></param>
-        private void OnErrorUpdateMediaManagementConfigDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<MediaManagementConfigResource> mediaManagementConfigResource)
+        private void OnErrorPutConfigMediamanagementByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, MediaManagementConfigResource mediaManagementConfigResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateMediaManagementConfig(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, mediaManagementConfigResource);
+            OnErrorPutConfigMediamanagementById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, mediaManagementConfigResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -805,20 +805,20 @@ namespace Whisparr3.Net.Api
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
         /// <param name="mediaManagementConfigResource"></param>
-        partial void OnErrorUpdateMediaManagementConfig(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<MediaManagementConfigResource> mediaManagementConfigResource);
+        partial void OnErrorPutConfigMediamanagementById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, MediaManagementConfigResource mediaManagementConfigResource);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="mediaManagementConfigResource"> (optional)</param>
+        /// <param name="mediaManagementConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMediaManagementConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateMediaManagementConfigApiResponse?> UpdateMediaManagementConfigOrDefaultAsync(string id, Option<MediaManagementConfigResource> mediaManagementConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigMediamanagementByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigMediamanagementByIdApiResponse?> PutConfigMediamanagementByIdOrDefaultAsync(string id, MediaManagementConfigResource mediaManagementConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateMediaManagementConfigAsync(id, mediaManagementConfigResource, cancellationToken).ConfigureAwait(false);
+                return await PutConfigMediamanagementByIdAsync(id, mediaManagementConfigResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -831,18 +831,18 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="mediaManagementConfigResource"> (optional)</param>
+        /// <param name="mediaManagementConfigResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMediaManagementConfigApiResponse"/>&gt;</returns>
-        public async Task<IUpdateMediaManagementConfigApiResponse> UpdateMediaManagementConfigAsync(string id, Option<MediaManagementConfigResource> mediaManagementConfigResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutConfigMediamanagementByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutConfigMediamanagementByIdApiResponse> PutConfigMediamanagementByIdAsync(string id, MediaManagementConfigResource mediaManagementConfigResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateMediaManagementConfig(id, mediaManagementConfigResource);
+                ValidatePutConfigMediamanagementById(id, mediaManagementConfigResource);
 
-                FormatUpdateMediaManagementConfig(ref id, mediaManagementConfigResource);
+                FormatPutConfigMediamanagementById(ref id, mediaManagementConfigResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -854,12 +854,9 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/config/mediamanagement/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (mediaManagementConfigResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (mediaManagementConfigResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (mediaManagementConfigResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(mediaManagementConfigResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(mediaManagementConfigResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -894,7 +891,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateMediaManagementConfigApiResponse apiResponseLocalVar;
+                        PutConfigMediamanagementByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -905,9 +902,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateMediaManagementConfigDefaultImplementation(apiResponseLocalVar, id, mediaManagementConfigResource);
+                        AfterPutConfigMediamanagementByIdDefaultImplementation(apiResponseLocalVar, id, mediaManagementConfigResource);
 
-                        Events.ExecuteOnUpdateMediaManagementConfig(apiResponseLocalVar);
+                        Events.ExecuteOnPutConfigMediamanagementById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -919,16 +916,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateMediaManagementConfigDefaultImplementation(e, "/api/v3/config/mediamanagement/{id}", uriBuilderLocalVar.Path, id, mediaManagementConfigResource);
-                Events.ExecuteOnErrorUpdateMediaManagementConfig(e);
+                OnErrorPutConfigMediamanagementByIdDefaultImplementation(e, "/api/v3/config/mediamanagement/{id}", uriBuilderLocalVar.Path, id, mediaManagementConfigResource);
+                Events.ExecuteOnErrorPutConfigMediamanagementById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateMediaManagementConfigApiResponse"/>
+        /// The <see cref="PutConfigMediamanagementByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateMediaManagementConfigApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateMediaManagementConfigApiResponse
+        public partial class PutConfigMediamanagementByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutConfigMediamanagementByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -936,7 +933,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MediaManagementConfigApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateMediaManagementConfigApiResponse"/>
+            /// The <see cref="PutConfigMediamanagementByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -945,14 +942,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateMediaManagementConfigApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutConfigMediamanagementByIdApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateMediaManagementConfigApiResponse"/>
+            /// The <see cref="PutConfigMediamanagementByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -961,7 +958,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateMediaManagementConfigApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutConfigMediamanagementByIdApiResponse(ILogger<MediaManagementConfigApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -970,50 +967,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.MediaManagementConfigResource? Ok()
+            public Whisparr3.Net.Model.MediaManagementConfigResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.MediaManagementConfigResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.MediaManagementConfigResource? DefaultOk()
+            private Whisparr3.Net.Model.MediaManagementConfigResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MediaManagementConfigResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.MediaManagementConfigResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.MediaManagementConfigResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.MediaManagementConfigResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.MediaManagementConfigResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

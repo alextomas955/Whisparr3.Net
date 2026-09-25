@@ -38,7 +38,12 @@ namespace Whisparr3.Net.Model
         /// <summary>
         /// Enum DisabledForLocalAddresses for value: disabledForLocalAddresses
         /// </summary>
-        DisabledForLocalAddresses = 2
+        DisabledForLocalAddresses = 2,
+
+        /// <summary>
+        /// Enum DisabledForLocalhost for value: disabledForLocalhost
+        /// </summary>
+        DisabledForLocalhost = 3
     }
 
     /// <summary>
@@ -59,6 +64,9 @@ namespace Whisparr3.Net.Model
             if (value.Equals("disabledForLocalAddresses"))
                 return AuthenticationRequiredType.DisabledForLocalAddresses;
 
+            if (value.Equals("disabledForLocalhost"))
+                return AuthenticationRequiredType.DisabledForLocalhost;
+
             throw new NotImplementedException($"Could not convert value to type AuthenticationRequiredType: '{value}'");
         }
 
@@ -74,6 +82,9 @@ namespace Whisparr3.Net.Model
 
             if (value.Equals("disabledForLocalAddresses"))
                 return AuthenticationRequiredType.DisabledForLocalAddresses;
+
+            if (value.Equals("disabledForLocalhost"))
+                return AuthenticationRequiredType.DisabledForLocalhost;
 
             return null;
         }
@@ -91,6 +102,9 @@ namespace Whisparr3.Net.Model
 
             if (value == AuthenticationRequiredType.DisabledForLocalAddresses)
                 return "disabledForLocalAddresses";
+
+            if (value == AuthenticationRequiredType.DisabledForLocalhost)
+                return "disabledForLocalhost";
 
             throw new NotImplementedException($"Value could not be handled: '{value}'");
         }

@@ -10,8 +10,7 @@ rather than being copied here where the two could drift apart. Each step runs as
 a child that fails arrives here as an exit code rather than as a traceback.
 
     python generator/refresh.py --image-digest sha256:0123abcd...
-    # Move to a new Whisparr image. Expect an operationId assertion to refuse if the new version
-    # moved a path; see its message. Omit --image-digest to re-verify the pinned one.
+    # Move to a new Whisparr image. Omit --image-digest to re-verify the pinned one.
 """
 
 import argparse
@@ -34,9 +33,8 @@ def script(name, *extra):
 def package_audit():
     """The verdict is read from the transcript text and never from the exit code.
 
-    Measured 2026-09-04: against a probe referencing System.Text.RegularExpressions 4.3.0 this
-    command printed a High severity advisory and exited 0, so a gate on the exit code passes a
-    finding. --include-transitive covers both frameworks in one pass. The continuous gate is
+    Against a probe referencing System.Text.RegularExpressions 4.3.0 this command printed a High
+    severity advisory and exited 0, so a gate on the exit code passes a finding. --include-transitive covers both frameworks in one pass. The continuous gate is
     Directory.Build.props, where NuGetAudit plus TreatWarningsAsErrors turns NU1901 through NU1904
     into restore errors; this is the point-in-time confirmation of it.
     """
@@ -74,19 +72,13 @@ def main():
          "digest names a Whisparr 3 (eros) image and that Docker can pull and boot it. Nothing "
          "downstream ran."),
         ("preprocess-spec", script("preprocess_spec.py"),
-         "Most often this is an assertion on the derived operationIds, which means this Whisparr "
-         "moved a path. Read which assertion refused: a stale override names a path that has moved, "
-         "and a shape or collision failure names an operation that needs an override. Edit "
-         "OPERATION_ID_OVERRIDES in preprocess_spec.py and run this script again. The committed "
+         "Most often this is an assertion on the operationIds Whisparr assigns: one missing, two "
+         "operations sharing a name, or a name that is not a C# identifier. The message names "
+         "which. All three are defects to report upstream rather than to patch here. The committed "
          "spec was not replaced."),
         ("generate", script("generate.py"),
          "Generation refused or the generator container failed. Its own message says whether the "
          "generated tree was left touched or untouched; read that before re-running."),
-        ("render-docs", script("render_docs.py"),
-         "The render refused. Most often a path named in render_docs.py has left the spec, which "
-         "means Whisparr moved or removed it: the message names which list and which path. Fix the "
-         "list and the prose that describes it together, then run this script again. The spec and "
-         "the generated tree above are already committed."),
         ("build", ["dotnet", "build", SOLUTION, "-c", "Release", "--nologo"],
          "The regenerated surface does not compile on both target frameworks. "
          "Directory.Build.props treats warnings as errors, so a new warning stops here too. A build "
@@ -94,7 +86,7 @@ def main():
          "Fix it in the spec pre-processing or in the hand-written layer, never inside "
          "src/Whisparr3.Net/."),
         ("package-audit", package_audit,
-         "A finding is a finding to report, never a dependency to remove on reflex. All four "
+         "A finding is a finding to report, never a dependency to remove on reflex. All three "
          "shipped packages are required. The transcript above names the package and its advisory."),
     ]
 

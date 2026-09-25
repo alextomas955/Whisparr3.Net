@@ -39,12 +39,13 @@ namespace Whisparr3.Net.Model
         /// <param name="qualityProfileId">The quality profile ID to set for the performers&#39; movies.</param>
         /// <param name="rootFolderPath">The root folder path to set for the performers&#39; movies.</param>
         /// <param name="searchOnAdd">Whether to search for new content after it is added to the performers.</param>
+        /// <param name="afterDate">The date to only add items after, as yyyy-MM-dd. Omit to leave the performers&#39; existing dates alone, or send an empty string to clear them</param>
         /// <param name="tags">The IDs of the tags to apply to the performers.</param>
         /// <param name="applyTags">applyTags</param>
         /// <param name="deleteFiles">Whether to delete the performers&#39; files from disk.</param>
         /// <param name="addImportExclusion">Whether to add an import exclusion for the deleted performers.</param>
         [JsonConstructor]
-        public PerformerEditorResource(Option<List<int>?> performerIds = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<int?> qualityProfileId = default, Option<string?> rootFolderPath = default, Option<bool?> searchOnAdd = default, Option<List<int>?> tags = default, Option<ApplyTags?> applyTags = default, Option<bool?> deleteFiles = default, Option<bool?> addImportExclusion = default)
+        public PerformerEditorResource(Option<List<int>?> performerIds = default, Option<bool?> monitored = default, Option<bool?> moviesMonitored = default, Option<int?> qualityProfileId = default, Option<string?> rootFolderPath = default, Option<bool?> searchOnAdd = default, Option<string?> afterDate = default, Option<List<int>?> tags = default, Option<ApplyTags?> applyTags = default, Option<bool?> deleteFiles = default, Option<bool?> addImportExclusion = default)
         {
             PerformerIdsOption = performerIds;
             MonitoredOption = monitored;
@@ -52,6 +53,7 @@ namespace Whisparr3.Net.Model
             QualityProfileIdOption = qualityProfileId;
             RootFolderPathOption = rootFolderPath;
             SearchOnAddOption = searchOnAdd;
+            AfterDateOption = afterDate;
             TagsOption = tags;
             ApplyTagsOption = applyTags;
             DeleteFilesOption = deleteFiles;
@@ -159,6 +161,20 @@ namespace Whisparr3.Net.Model
         public bool? SearchOnAdd { get { return this.SearchOnAddOption.Value; } set { this.SearchOnAddOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of AfterDate
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> AfterDateOption { get; private set; }
+
+        /// <summary>
+        /// The date to only add items after, as yyyy-MM-dd. Omit to leave the performers&#39; existing dates alone, or send an empty string to clear them
+        /// </summary>
+        /// <value>The date to only add items after, as yyyy-MM-dd. Omit to leave the performers&#39; existing dates alone, or send an empty string to clear them</value>
+        [JsonPropertyName("afterDate")]
+        public string? AfterDate { get { return this.AfterDateOption.Value; } set { this.AfterDateOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
@@ -214,6 +230,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  QualityProfileId: ").Append(QualityProfileId).Append("\n");
             sb.Append("  RootFolderPath: ").Append(RootFolderPath).Append("\n");
             sb.Append("  SearchOnAdd: ").Append(SearchOnAdd).Append("\n");
+            sb.Append("  AfterDate: ").Append(AfterDate).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  ApplyTags: ").Append(ApplyTags).Append("\n");
             sb.Append("  DeleteFiles: ").Append(DeleteFiles).Append("\n");
@@ -271,6 +288,7 @@ namespace Whisparr3.Net.Model
             Option<int?> qualityProfileId = default;
             Option<string?> rootFolderPath = default;
             Option<bool?> searchOnAdd = default;
+            Option<string?> afterDate = default;
             Option<List<int>?> tags = default;
             Option<ApplyTags?> applyTags = default;
             Option<bool?> deleteFiles = default;
@@ -309,6 +327,9 @@ namespace Whisparr3.Net.Model
                         case "searchOnAdd":
                             searchOnAdd = new Option<bool?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (bool?)null : utf8JsonReader.GetBoolean());
                             break;
+                        case "afterDate":
+                            afterDate = new Option<string?>(utf8JsonReader.GetString());
+                            break;
                         case "tags":
                             tags = new Option<List<int>?>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -336,7 +357,7 @@ namespace Whisparr3.Net.Model
             if (addImportExclusion.IsSet && addImportExclusion.Value == null)
                 throw new ArgumentNullException(nameof(addImportExclusion), "Property is not nullable for class PerformerEditorResource.");
 
-            return new PerformerEditorResource(performerIds, monitored, moviesMonitored, qualityProfileId, rootFolderPath, searchOnAdd, tags, applyTags, deleteFiles, addImportExclusion);
+            return new PerformerEditorResource(performerIds, monitored, moviesMonitored, qualityProfileId, rootFolderPath, searchOnAdd, afterDate, tags, applyTags, deleteFiles, addImportExclusion);
         }
 
         /// <summary>
@@ -400,6 +421,12 @@ namespace Whisparr3.Net.Model
                     writer.WriteBoolean("searchOnAdd", performerEditorResource.SearchOnAddOption.Value!.Value);
                 else
                     writer.WriteNull("searchOnAdd");
+
+            if (performerEditorResource.AfterDateOption.IsSet)
+                if (performerEditorResource.AfterDateOption.Value != null)
+                    writer.WriteString("afterDate", performerEditorResource.AfterDate);
+                else
+                    writer.WriteNull("afterDate");
 
             if (performerEditorResource.TagsOption.IsSet)
                 if (performerEditorResource.TagsOption.Value != null)

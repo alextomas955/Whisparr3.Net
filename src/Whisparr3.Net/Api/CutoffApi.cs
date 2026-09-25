@@ -50,9 +50,13 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
+        /// <param name="quality"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedCutoffApiResponse"/>&gt;</returns>
-        Task<IGetWantedCutoffApiResponse> GetWantedCutoffAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWantedCutoffApiResponse> GetWantedCutoffAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, Option<List<int>> quality = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -65,9 +69,13 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
+        /// <param name="quality"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedCutoffApiResponse"/>?&gt;</returns>
-        Task<IGetWantedCutoffApiResponse?> GetWantedCutoffOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWantedCutoffApiResponse?> GetWantedCutoffOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, Option<List<int>> quality = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -149,17 +157,33 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetWantedCutoff(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sortKey, ref Option<SortDirection> sortDirection, ref Option<bool> monitored);
+        partial void FormatGetWantedCutoff(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sortKey, ref Option<SortDirection> sortDirection, ref Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags, Option<List<int>> quality);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="sortKey"></param>
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        /// <param name="quality"></param>
         /// <returns></returns>
-        private void ValidateGetWantedCutoff(Option<string> sortKey)
+        private void ValidateGetWantedCutoff(Option<string> sortKey, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags, Option<List<int>> quality)
         {
             if (sortKey.IsSet && sortKey.Value == null)
                 throw new ArgumentNullException(nameof(sortKey));
+
+            if (movieIds.IsSet && movieIds.Value == null)
+                throw new ArgumentNullException(nameof(movieIds));
+
+            if (qualityProfileIds.IsSet && qualityProfileIds.Value == null)
+                throw new ArgumentNullException(nameof(qualityProfileIds));
+
+            if (movieTags.IsSet && movieTags.Value == null)
+                throw new ArgumentNullException(nameof(movieTags));
+
+            if (quality.IsSet && quality.Value == null)
+                throw new ArgumentNullException(nameof(quality));
         }
 
         /// <summary>
@@ -171,10 +195,14 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        private void AfterGetWantedCutoffDefaultImplementation(IGetWantedCutoffApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored)
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        /// <param name="quality"></param>
+        private void AfterGetWantedCutoffDefaultImplementation(IGetWantedCutoffApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags, Option<List<int>> quality)
         {
             bool suppressDefaultLog = false;
-            AfterGetWantedCutoff(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored);
+            AfterGetWantedCutoff(ref suppressDefaultLog, apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags, quality);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -189,7 +217,11 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        partial void AfterGetWantedCutoff(ref bool suppressDefaultLog, IGetWantedCutoffApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored);
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        /// <param name="quality"></param>
+        partial void AfterGetWantedCutoff(ref bool suppressDefaultLog, IGetWantedCutoffApiResponse apiResponseLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags, Option<List<int>> quality);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -202,10 +234,14 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        private void OnErrorGetWantedCutoffDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored)
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        /// <param name="quality"></param>
+        private void OnErrorGetWantedCutoffDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags, Option<List<int>> quality)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetWantedCutoff(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sortKey, sortDirection, monitored);
+            OnErrorGetWantedCutoff(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags, quality);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -222,7 +258,11 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"></param>
         /// <param name="sortDirection"></param>
         /// <param name="monitored"></param>
-        partial void OnErrorGetWantedCutoff(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored);
+        /// <param name="movieIds"></param>
+        /// <param name="qualityProfileIds"></param>
+        /// <param name="movieTags"></param>
+        /// <param name="quality"></param>
+        partial void OnErrorGetWantedCutoff(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> page, Option<int> pageSize, Option<string> sortKey, Option<SortDirection> sortDirection, Option<bool> monitored, Option<List<int>> movieIds, Option<List<int>> qualityProfileIds, Option<List<int>> movieTags, Option<List<int>> quality);
 
         /// <summary>
         ///  
@@ -232,13 +272,17 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
+        /// <param name="quality"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedCutoffApiResponse"/>&gt;</returns>
-        public async Task<IGetWantedCutoffApiResponse?> GetWantedCutoffOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetWantedCutoffApiResponse?> GetWantedCutoffOrDefaultAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, Option<List<int>> quality = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetWantedCutoffAsync(page, pageSize, sortKey, sortDirection, monitored, cancellationToken).ConfigureAwait(false);
+                return await GetWantedCutoffAsync(page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags, quality, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -255,17 +299,21 @@ namespace Whisparr3.Net.Api
         /// <param name="sortKey"> (optional)</param>
         /// <param name="sortDirection"> (optional)</param>
         /// <param name="monitored"> (optional, default to true)</param>
+        /// <param name="movieIds"> (optional)</param>
+        /// <param name="qualityProfileIds"> (optional)</param>
+        /// <param name="movieTags"> (optional)</param>
+        /// <param name="quality"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetWantedCutoffApiResponse"/>&gt;</returns>
-        public async Task<IGetWantedCutoffApiResponse> GetWantedCutoffAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetWantedCutoffApiResponse> GetWantedCutoffAsync(Option<int> page = default, Option<int> pageSize = default, Option<string> sortKey = default, Option<SortDirection> sortDirection = default, Option<bool> monitored = default, Option<List<int>> movieIds = default, Option<List<int>> qualityProfileIds = default, Option<List<int>> movieTags = default, Option<List<int>> quality = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateGetWantedCutoff(sortKey);
+                ValidateGetWantedCutoff(sortKey, movieIds, qualityProfileIds, movieTags, quality);
 
-                FormatGetWantedCutoff(ref page, ref pageSize, ref sortKey, ref sortDirection, ref monitored);
+                FormatGetWantedCutoff(ref page, ref pageSize, ref sortKey, ref sortDirection, ref monitored, movieIds, qualityProfileIds, movieTags, quality);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -292,6 +340,18 @@ namespace Whisparr3.Net.Api
 
                     if (monitored.IsSet)
                         parseQueryStringLocalVar["monitored"] = ClientUtils.ParameterToString(monitored.Value);
+
+                    if (movieIds.IsSet)
+                        parseQueryStringLocalVar["movieIds"] = ClientUtils.ParameterToString(movieIds.Value);
+
+                    if (qualityProfileIds.IsSet)
+                        parseQueryStringLocalVar["qualityProfileIds"] = ClientUtils.ParameterToString(qualityProfileIds.Value);
+
+                    if (movieTags.IsSet)
+                        parseQueryStringLocalVar["movieTags"] = ClientUtils.ParameterToString(movieTags.Value);
+
+                    if (quality.IsSet)
+                        parseQueryStringLocalVar["quality"] = ClientUtils.ParameterToString(quality.Value);
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
@@ -328,7 +388,7 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetWantedCutoffDefaultImplementation(apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored);
+                        AfterGetWantedCutoffDefaultImplementation(apiResponseLocalVar, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags, quality);
 
                         Events.ExecuteOnGetWantedCutoff(apiResponseLocalVar);
 
@@ -342,7 +402,7 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetWantedCutoffDefaultImplementation(e, "/api/v3/wanted/cutoff", uriBuilderLocalVar.Path, page, pageSize, sortKey, sortDirection, monitored);
+                OnErrorGetWantedCutoffDefaultImplementation(e, "/api/v3/wanted/cutoff", uriBuilderLocalVar.Path, page, pageSize, sortKey, sortDirection, monitored, movieIds, qualityProfileIds, movieTags, quality);
                 Events.ExecuteOnErrorGetWantedCutoff(e);
                 throw;
             }

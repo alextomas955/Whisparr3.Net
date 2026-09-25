@@ -45,32 +45,9 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionByIdApiResponse"/>&gt;</returns>
-        Task<IGetQualityDefinitionByIdApiResponse> GetQualityDefinitionByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionByIdApiResponse"/>?&gt;</returns>
-        Task<IGetQualityDefinitionByIdApiResponse?> GetQualityDefinitionByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionLimitsApiResponse"/>&gt;</returns>
-        Task<IGetQualityDefinitionLimitsApiResponse> GetQualityDefinitionLimitsAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionApiResponse"/>&gt;</returns>
+        Task<IGetQualitydefinitionApiResponse> GetQualitydefinitionAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,52 +56,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionLimitsApiResponse"/>?&gt;</returns>
-        Task<IGetQualityDefinitionLimitsApiResponse?> GetQualityDefinitionLimitsOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityDefinitionApiResponse"/>&gt;</returns>
-        Task<IListQualityDefinitionApiResponse> ListQualityDefinitionAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityDefinitionApiResponse"/>?&gt;</returns>
-        Task<IListQualityDefinitionApiResponse?> ListQualityDefinitionOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityDefinitionUpdateApiResponse"/>&gt;</returns>
-        Task<IPutQualityDefinitionUpdateApiResponse> PutQualityDefinitionUpdateAsync(Option<List<QualityDefinitionResource>> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityDefinitionUpdateApiResponse"/>?&gt;</returns>
-        Task<IPutQualityDefinitionUpdateApiResponse?> PutQualityDefinitionUpdateOrDefaultAsync(Option<List<QualityDefinitionResource>> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionApiResponse"/>?&gt;</returns>
+        Task<IGetQualitydefinitionApiResponse?> GetQualitydefinitionOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -134,10 +67,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityDefinitionApiResponse"/>&gt;</returns>
-        Task<IUpdateQualityDefinitionApiResponse> UpdateQualityDefinitionAsync(string id, Option<QualityDefinitionResource> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionByIdApiResponse"/>&gt;</returns>
+        Task<IGetQualitydefinitionByIdApiResponse> GetQualitydefinitionByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -146,16 +78,84 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityDefinitionApiResponse"/>?&gt;</returns>
-        Task<IUpdateQualityDefinitionApiResponse?> UpdateQualityDefinitionOrDefaultAsync(string id, Option<QualityDefinitionResource> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionByIdApiResponse"/>?&gt;</returns>
+        Task<IGetQualitydefinitionByIdApiResponse?> GetQualitydefinitionByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionLimitsApiResponse"/>&gt;</returns>
+        Task<IGetQualitydefinitionLimitsApiResponse> GetQualitydefinitionLimitsAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionLimitsApiResponse"/>?&gt;</returns>
+        Task<IGetQualitydefinitionLimitsApiResponse?> GetQualitydefinitionLimitsOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionByIdApiResponse"/>&gt;</returns>
+        Task<IPutQualitydefinitionByIdApiResponse> PutQualitydefinitionByIdAsync(string id, QualityDefinitionResource qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionByIdApiResponse"/>?&gt;</returns>
+        Task<IPutQualitydefinitionByIdApiResponse?> PutQualitydefinitionByIdOrDefaultAsync(string id, QualityDefinitionResource qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionUpdateApiResponse"/>&gt;</returns>
+        Task<IPutQualitydefinitionUpdateApiResponse> PutQualitydefinitionUpdateAsync(List<QualityDefinitionResource> qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionUpdateApiResponse"/>?&gt;</returns>
+        Task<IPutQualitydefinitionUpdateApiResponse?> PutQualitydefinitionUpdateOrDefaultAsync(List<QualityDefinitionResource> qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetQualityDefinitionByIdApiResponse"/>
+    /// The <see cref="IGetQualitydefinitionApiResponse"/>
     /// </summary>
-    public interface IGetQualityDefinitionByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityDefinitionResource?>
+    public interface IGetQualitydefinitionApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<QualityDefinitionResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -165,9 +165,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetQualityDefinitionLimitsApiResponse"/>
+    /// The <see cref="IGetQualitydefinitionByIdApiResponse"/>
     /// </summary>
-    public interface IGetQualityDefinitionLimitsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityDefinitionLimitsResource?>
+    public interface IGetQualitydefinitionByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityDefinitionResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -177,9 +177,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListQualityDefinitionApiResponse"/>
+    /// The <see cref="IGetQualitydefinitionLimitsApiResponse"/>
     /// </summary>
-    public interface IListQualityDefinitionApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<QualityDefinitionResource>?>
+    public interface IGetQualitydefinitionLimitsApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityDefinitionLimitsResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -189,27 +189,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IPutQualityDefinitionUpdateApiResponse"/>
+    /// The <see cref="IPutQualitydefinitionByIdApiResponse"/>
     /// </summary>
-    public interface IPutQualityDefinitionUpdateApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutQualitydefinitionByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.QualityDefinitionResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateQualityDefinitionApiResponse"/>
+    /// The <see cref="IPutQualitydefinitionUpdateApiResponse"/>
     /// </summary>
-    public interface IUpdateQualityDefinitionApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityDefinitionResource?>
+    public interface IPutQualitydefinitionUpdateApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<QualityDefinitionResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -220,101 +220,101 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetQualityDefinitionById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualitydefinition;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityDefinitionById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualitydefinition;
 
-        internal void ExecuteOnGetQualityDefinitionById(QualityDefinitionApi.GetQualityDefinitionByIdApiResponse apiResponse)
+        internal void ExecuteOnGetQualitydefinition(QualityDefinitionApi.GetQualitydefinitionApiResponse apiResponse)
         {
-            OnGetQualityDefinitionById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualitydefinition?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetQualityDefinitionById(Exception exception)
+        internal void ExecuteOnErrorGetQualitydefinition(Exception exception)
         {
-            OnErrorGetQualityDefinitionById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualitydefinition?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetQualityDefinitionLimits;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualitydefinitionById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityDefinitionLimits;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualitydefinitionById;
 
-        internal void ExecuteOnGetQualityDefinitionLimits(QualityDefinitionApi.GetQualityDefinitionLimitsApiResponse apiResponse)
+        internal void ExecuteOnGetQualitydefinitionById(QualityDefinitionApi.GetQualitydefinitionByIdApiResponse apiResponse)
         {
-            OnGetQualityDefinitionLimits?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualitydefinitionById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetQualityDefinitionLimits(Exception exception)
+        internal void ExecuteOnErrorGetQualitydefinitionById(Exception exception)
         {
-            OnErrorGetQualityDefinitionLimits?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualitydefinitionById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListQualityDefinition;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualitydefinitionLimits;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListQualityDefinition;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualitydefinitionLimits;
 
-        internal void ExecuteOnListQualityDefinition(QualityDefinitionApi.ListQualityDefinitionApiResponse apiResponse)
+        internal void ExecuteOnGetQualitydefinitionLimits(QualityDefinitionApi.GetQualitydefinitionLimitsApiResponse apiResponse)
         {
-            OnListQualityDefinition?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualitydefinitionLimits?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListQualityDefinition(Exception exception)
+        internal void ExecuteOnErrorGetQualitydefinitionLimits(Exception exception)
         {
-            OnErrorListQualityDefinition?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualitydefinitionLimits?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnPutQualityDefinitionUpdate;
+        public event EventHandler<ApiResponseEventArgs>? OnPutQualitydefinitionById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorPutQualityDefinitionUpdate;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutQualitydefinitionById;
 
-        internal void ExecuteOnPutQualityDefinitionUpdate(QualityDefinitionApi.PutQualityDefinitionUpdateApiResponse apiResponse)
+        internal void ExecuteOnPutQualitydefinitionById(QualityDefinitionApi.PutQualitydefinitionByIdApiResponse apiResponse)
         {
-            OnPutQualityDefinitionUpdate?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutQualitydefinitionById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorPutQualityDefinitionUpdate(Exception exception)
+        internal void ExecuteOnErrorPutQualitydefinitionById(Exception exception)
         {
-            OnErrorPutQualityDefinitionUpdate?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutQualitydefinitionById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateQualityDefinition;
+        public event EventHandler<ApiResponseEventArgs>? OnPutQualitydefinitionUpdate;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateQualityDefinition;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutQualitydefinitionUpdate;
 
-        internal void ExecuteOnUpdateQualityDefinition(QualityDefinitionApi.UpdateQualityDefinitionApiResponse apiResponse)
+        internal void ExecuteOnPutQualitydefinitionUpdate(QualityDefinitionApi.PutQualitydefinitionUpdateApiResponse apiResponse)
         {
-            OnUpdateQualityDefinition?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutQualitydefinitionUpdate?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateQualityDefinition(Exception exception)
+        internal void ExecuteOnErrorPutQualitydefinitionUpdate(Exception exception)
         {
-            OnErrorUpdateQualityDefinition?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutQualitydefinitionUpdate?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -359,17 +359,14 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetQualityDefinitionById(ref int id);
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterGetQualityDefinitionByIdDefaultImplementation(IGetQualityDefinitionByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetQualitydefinitionDefaultImplementation(IGetQualitydefinitionApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetQualityDefinitionById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetQualitydefinition(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -379,8 +376,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterGetQualityDefinitionById(ref bool suppressDefaultLog, IGetQualityDefinitionByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetQualitydefinition(ref bool suppressDefaultLog, IGetQualitydefinitionApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -388,11 +384,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorGetQualityDefinitionByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetQualitydefinitionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetQualityDefinitionById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetQualitydefinition(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -404,264 +399,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorGetQualityDefinitionById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityDefinitionByIdApiResponse?> GetQualityDefinitionByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetQualityDefinitionByIdAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityDefinitionByIdApiResponse> GetQualityDefinitionByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatGetQualityDefinitionById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/qualitydefinition/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetQualityDefinitionByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualitydefinition/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetQualityDefinitionByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnGetQualityDefinitionById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetQualityDefinitionByIdDefaultImplementation(e, "/api/v3/qualitydefinition/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetQualityDefinitionById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetQualityDefinitionByIdApiResponse"/>
-        /// </summary>
-        public partial class GetQualityDefinitionByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityDefinitionByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<QualityDefinitionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetQualityDefinitionByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetQualityDefinitionByIdApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetQualityDefinitionByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetQualityDefinitionByIdApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.QualityDefinitionResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.QualityDefinitionResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.QualityDefinitionResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityDefinitionResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityDefinitionResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.QualityDefinitionResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterGetQualityDefinitionLimitsDefaultImplementation(IGetQualityDefinitionLimitsApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterGetQualityDefinitionLimits(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterGetQualityDefinitionLimits(ref bool suppressDefaultLog, IGetQualityDefinitionLimitsApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorGetQualityDefinitionLimitsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorGetQualityDefinitionLimits(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorGetQualityDefinitionLimits(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetQualitydefinition(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionLimitsApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityDefinitionLimitsApiResponse?> GetQualityDefinitionLimitsOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionApiResponse"/>&gt;</returns>
+        public async Task<IGetQualitydefinitionApiResponse?> GetQualitydefinitionOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetQualityDefinitionLimitsAsync(cancellationToken).ConfigureAwait(false);
+                return await GetQualitydefinitionAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -674,248 +423,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityDefinitionLimitsApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityDefinitionLimitsApiResponse> GetQualityDefinitionLimitsAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/qualitydefinition/limits"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/limits");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetQualityDefinitionLimitsApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualitydefinition/limits", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetQualityDefinitionLimitsDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnGetQualityDefinitionLimits(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetQualityDefinitionLimitsDefaultImplementation(e, "/api/v3/qualitydefinition/limits", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorGetQualityDefinitionLimits(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetQualityDefinitionLimitsApiResponse"/>
-        /// </summary>
-        public partial class GetQualityDefinitionLimitsApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityDefinitionLimitsApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<QualityDefinitionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetQualityDefinitionLimitsApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetQualityDefinitionLimitsApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetQualityDefinitionLimitsApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetQualityDefinitionLimitsApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.QualityDefinitionLimitsResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.QualityDefinitionLimitsResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.QualityDefinitionLimitsResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityDefinitionLimitsResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityDefinitionLimitsResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.QualityDefinitionLimitsResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListQualityDefinitionDefaultImplementation(IListQualityDefinitionApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListQualityDefinition(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListQualityDefinition(ref bool suppressDefaultLog, IListQualityDefinitionApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListQualityDefinitionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListQualityDefinition(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListQualityDefinition(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityDefinitionApiResponse"/>&gt;</returns>
-        public async Task<IListQualityDefinitionApiResponse?> ListQualityDefinitionOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListQualityDefinitionAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityDefinitionApiResponse"/>&gt;</returns>
-        public async Task<IListQualityDefinitionApiResponse> ListQualityDefinitionAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionApiResponse"/>&gt;</returns>
+        public async Task<IGetQualitydefinitionApiResponse> GetQualitydefinitionAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -954,7 +463,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListQualityDefinitionApiResponse apiResponseLocalVar;
+                        GetQualitydefinitionApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -965,9 +474,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListQualityDefinitionDefaultImplementation(apiResponseLocalVar);
+                        AfterGetQualitydefinitionDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListQualityDefinition(apiResponseLocalVar);
+                        Events.ExecuteOnGetQualitydefinition(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -979,16 +488,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListQualityDefinitionDefaultImplementation(e, "/api/v3/qualitydefinition", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListQualityDefinition(e);
+                OnErrorGetQualitydefinitionDefaultImplementation(e, "/api/v3/qualitydefinition", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetQualitydefinition(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListQualityDefinitionApiResponse"/>
+        /// The <see cref="GetQualitydefinitionApiResponse"/>
         /// </summary>
-        public partial class ListQualityDefinitionApiResponse : Whisparr3.Net.Client.ApiResponse, IListQualityDefinitionApiResponse
+        public partial class GetQualitydefinitionApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualitydefinitionApiResponse
         {
             /// <summary>
             /// The logger
@@ -996,7 +505,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QualityDefinitionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListQualityDefinitionApiResponse"/>
+            /// The <see cref="GetQualitydefinitionApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1005,14 +514,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListQualityDefinitionApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetQualitydefinitionApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListQualityDefinitionApiResponse"/>
+            /// The <see cref="GetQualitydefinitionApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1021,7 +530,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListQualityDefinitionApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetQualitydefinitionApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1090,259 +599,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatPutQualityDefinitionUpdate(Option<List<QualityDefinitionResource>> qualityDefinitionResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="qualityDefinitionResource"></param>
-        /// <returns></returns>
-        private void ValidatePutQualityDefinitionUpdate(Option<List<QualityDefinitionResource>> qualityDefinitionResource)
-        {
-            if (qualityDefinitionResource.IsSet && qualityDefinitionResource.Value == null)
-                throw new ArgumentNullException(nameof(qualityDefinitionResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        private void AfterPutQualityDefinitionUpdateDefaultImplementation(IPutQualityDefinitionUpdateApiResponse apiResponseLocalVar, Option<List<QualityDefinitionResource>> qualityDefinitionResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterPutQualityDefinitionUpdate(ref suppressDefaultLog, apiResponseLocalVar, qualityDefinitionResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        partial void AfterPutQualityDefinitionUpdate(ref bool suppressDefaultLog, IPutQualityDefinitionUpdateApiResponse apiResponseLocalVar, Option<List<QualityDefinitionResource>> qualityDefinitionResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        private void OnErrorPutQualityDefinitionUpdateDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<QualityDefinitionResource>> qualityDefinitionResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorPutQualityDefinitionUpdate(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, qualityDefinitionResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        partial void OnErrorPutQualityDefinitionUpdate(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<QualityDefinitionResource>> qualityDefinitionResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityDefinitionUpdateApiResponse"/>&gt;</returns>
-        public async Task<IPutQualityDefinitionUpdateApiResponse?> PutQualityDefinitionUpdateOrDefaultAsync(Option<List<QualityDefinitionResource>> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await PutQualityDefinitionUpdateAsync(qualityDefinitionResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityDefinitionUpdateApiResponse"/>&gt;</returns>
-        public async Task<IPutQualityDefinitionUpdateApiResponse> PutQualityDefinitionUpdateAsync(Option<List<QualityDefinitionResource>> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidatePutQualityDefinitionUpdate(qualityDefinitionResource);
-
-                FormatPutQualityDefinitionUpdate(qualityDefinitionResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/qualitydefinition/update"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/update");
-
-                    if (qualityDefinitionResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (qualityDefinitionResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityDefinitionResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json",
-                        "text/json",
-                        "application/*+json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        PutQualityDefinitionUpdateApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualitydefinition/update", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterPutQualityDefinitionUpdateDefaultImplementation(apiResponseLocalVar, qualityDefinitionResource);
-
-                        Events.ExecuteOnPutQualityDefinitionUpdate(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorPutQualityDefinitionUpdateDefaultImplementation(e, "/api/v3/qualitydefinition/update", uriBuilderLocalVar.Path, qualityDefinitionResource);
-                Events.ExecuteOnErrorPutQualityDefinitionUpdate(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="PutQualityDefinitionUpdateApiResponse"/>
-        /// </summary>
-        public partial class PutQualityDefinitionUpdateApiResponse : Whisparr3.Net.Client.ApiResponse, IPutQualityDefinitionUpdateApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<QualityDefinitionApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="PutQualityDefinitionUpdateApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public PutQualityDefinitionUpdateApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="PutQualityDefinitionUpdateApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public PutQualityDefinitionUpdateApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatUpdateQualityDefinition(ref string id, Option<QualityDefinitionResource> qualityDefinitionResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateQualityDefinition(string id, Option<QualityDefinitionResource> qualityDefinitionResource)
-        {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            if (qualityDefinitionResource.IsSet && qualityDefinitionResource.Value == null)
-                throw new ArgumentNullException(nameof(qualityDefinitionResource));
-        }
+        partial void FormatGetQualitydefinitionById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        private void AfterUpdateQualityDefinitionDefaultImplementation(IUpdateQualityDefinitionApiResponse apiResponseLocalVar, string id, Option<QualityDefinitionResource> qualityDefinitionResource)
+        private void AfterGetQualitydefinitionByIdDefaultImplementation(IGetQualitydefinitionByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateQualityDefinition(ref suppressDefaultLog, apiResponseLocalVar, id, qualityDefinitionResource);
+            AfterGetQualitydefinitionById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1353,8 +620,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        partial void AfterUpdateQualityDefinition(ref bool suppressDefaultLog, IUpdateQualityDefinitionApiResponse apiResponseLocalVar, string id, Option<QualityDefinitionResource> qualityDefinitionResource);
+        partial void AfterGetQualitydefinitionById(ref bool suppressDefaultLog, IGetQualitydefinitionByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1363,11 +629,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        private void OnErrorUpdateQualityDefinitionDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<QualityDefinitionResource> qualityDefinitionResource)
+        private void OnErrorGetQualitydefinitionByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateQualityDefinition(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, qualityDefinitionResource);
+            OnErrorGetQualitydefinitionById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1380,21 +645,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"></param>
-        partial void OnErrorUpdateQualityDefinition(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<QualityDefinitionResource> qualityDefinitionResource);
+        partial void OnErrorGetQualitydefinitionById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityDefinitionApiResponse"/>&gt;</returns>
-        public async Task<IUpdateQualityDefinitionApiResponse?> UpdateQualityDefinitionOrDefaultAsync(string id, Option<QualityDefinitionResource> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetQualitydefinitionByIdApiResponse?> GetQualitydefinitionByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateQualityDefinitionAsync(id, qualityDefinitionResource, cancellationToken).ConfigureAwait(false);
+                return await GetQualitydefinitionByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1407,18 +670,15 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="qualityDefinitionResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityDefinitionApiResponse"/>&gt;</returns>
-        public async Task<IUpdateQualityDefinitionApiResponse> UpdateQualityDefinitionAsync(string id, Option<QualityDefinitionResource> qualityDefinitionResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetQualitydefinitionByIdApiResponse> GetQualitydefinitionByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateQualityDefinition(id, qualityDefinitionResource);
-
-                FormatUpdateQualityDefinition(ref id, qualityDefinitionResource);
+                FormatGetQualitydefinitionById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1430,30 +690,12 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (qualityDefinitionResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (qualityDefinitionResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityDefinitionResource.Value, _jsonSerializerOptions));
-                    }
-
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
                     tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
                     apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json",
-                        "text/json",
-                        "application/*+json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "text/plain",
@@ -1466,13 +708,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateQualityDefinitionApiResponse apiResponseLocalVar;
+                        GetQualitydefinitionByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1483,9 +725,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateQualityDefinitionDefaultImplementation(apiResponseLocalVar, id, qualityDefinitionResource);
+                        AfterGetQualitydefinitionByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnUpdateQualityDefinition(apiResponseLocalVar);
+                        Events.ExecuteOnGetQualitydefinitionById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1497,16 +739,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateQualityDefinitionDefaultImplementation(e, "/api/v3/qualitydefinition/{id}", uriBuilderLocalVar.Path, id, qualityDefinitionResource);
-                Events.ExecuteOnErrorUpdateQualityDefinition(e);
+                OnErrorGetQualitydefinitionByIdDefaultImplementation(e, "/api/v3/qualitydefinition/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetQualitydefinitionById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateQualityDefinitionApiResponse"/>
+        /// The <see cref="GetQualitydefinitionByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateQualityDefinitionApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateQualityDefinitionApiResponse
+        public partial class GetQualitydefinitionByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualitydefinitionByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1514,7 +756,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QualityDefinitionApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateQualityDefinitionApiResponse"/>
+            /// The <see cref="GetQualitydefinitionByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1523,14 +765,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateQualityDefinitionApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetQualitydefinitionByIdApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateQualityDefinitionApiResponse"/>
+            /// The <see cref="GetQualitydefinitionByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1539,7 +781,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateQualityDefinitionApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetQualitydefinitionByIdApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1592,6 +834,813 @@ namespace Whisparr3.Net.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetQualitydefinitionLimitsDefaultImplementation(IGetQualitydefinitionLimitsApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetQualitydefinitionLimits(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetQualitydefinitionLimits(ref bool suppressDefaultLog, IGetQualitydefinitionLimitsApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetQualitydefinitionLimitsDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetQualitydefinitionLimits(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetQualitydefinitionLimits(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionLimitsApiResponse"/>&gt;</returns>
+        public async Task<IGetQualitydefinitionLimitsApiResponse?> GetQualitydefinitionLimitsOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetQualitydefinitionLimitsAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualitydefinitionLimitsApiResponse"/>&gt;</returns>
+        public async Task<IGetQualitydefinitionLimitsApiResponse> GetQualitydefinitionLimitsAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/qualitydefinition/limits"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/limits");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetQualitydefinitionLimitsApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualitydefinition/limits", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetQualitydefinitionLimitsDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnGetQualitydefinitionLimits(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetQualitydefinitionLimitsDefaultImplementation(e, "/api/v3/qualitydefinition/limits", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetQualitydefinitionLimits(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetQualitydefinitionLimitsApiResponse"/>
+        /// </summary>
+        public partial class GetQualitydefinitionLimitsApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualitydefinitionLimitsApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QualityDefinitionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetQualitydefinitionLimitsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetQualitydefinitionLimitsApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetQualitydefinitionLimitsApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetQualitydefinitionLimitsApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.QualityDefinitionLimitsResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.QualityDefinitionLimitsResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.QualityDefinitionLimitsResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityDefinitionLimitsResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityDefinitionLimitsResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.QualityDefinitionLimitsResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutQualitydefinitionById(ref string id, QualityDefinitionResource qualityDefinitionResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <returns></returns>
+        private void ValidatePutQualitydefinitionById(string id, QualityDefinitionResource qualityDefinitionResource)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (qualityDefinitionResource == null)
+                throw new ArgumentNullException(nameof(qualityDefinitionResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        private void AfterPutQualitydefinitionByIdDefaultImplementation(IPutQualitydefinitionByIdApiResponse apiResponseLocalVar, string id, QualityDefinitionResource qualityDefinitionResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutQualitydefinitionById(ref suppressDefaultLog, apiResponseLocalVar, id, qualityDefinitionResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        partial void AfterPutQualitydefinitionById(ref bool suppressDefaultLog, IPutQualitydefinitionByIdApiResponse apiResponseLocalVar, string id, QualityDefinitionResource qualityDefinitionResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        private void OnErrorPutQualitydefinitionByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, QualityDefinitionResource qualityDefinitionResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutQualitydefinitionById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, qualityDefinitionResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        partial void OnErrorPutQualitydefinitionById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, QualityDefinitionResource qualityDefinitionResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutQualitydefinitionByIdApiResponse?> PutQualitydefinitionByIdOrDefaultAsync(string id, QualityDefinitionResource qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutQualitydefinitionByIdAsync(id, qualityDefinitionResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutQualitydefinitionByIdApiResponse> PutQualitydefinitionByIdAsync(string id, QualityDefinitionResource qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutQualitydefinitionById(id, qualityDefinitionResource);
+
+                FormatPutQualitydefinitionById(ref id, qualityDefinitionResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/qualitydefinition/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (qualityDefinitionResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityDefinitionResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json",
+                        "text/json",
+                        "application/*+json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutQualitydefinitionByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualitydefinition/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutQualitydefinitionByIdDefaultImplementation(apiResponseLocalVar, id, qualityDefinitionResource);
+
+                        Events.ExecuteOnPutQualitydefinitionById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutQualitydefinitionByIdDefaultImplementation(e, "/api/v3/qualitydefinition/{id}", uriBuilderLocalVar.Path, id, qualityDefinitionResource);
+                Events.ExecuteOnErrorPutQualitydefinitionById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutQualitydefinitionByIdApiResponse"/>
+        /// </summary>
+        public partial class PutQualitydefinitionByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutQualitydefinitionByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QualityDefinitionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutQualitydefinitionByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutQualitydefinitionByIdApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutQualitydefinitionByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutQualitydefinitionByIdApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.QualityDefinitionResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.QualityDefinitionResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.QualityDefinitionResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityDefinitionResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityDefinitionResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.QualityDefinitionResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutQualitydefinitionUpdate(List<QualityDefinitionResource> qualityDefinitionResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <returns></returns>
+        private void ValidatePutQualitydefinitionUpdate(List<QualityDefinitionResource> qualityDefinitionResource)
+        {
+            if (qualityDefinitionResource == null)
+                throw new ArgumentNullException(nameof(qualityDefinitionResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        private void AfterPutQualitydefinitionUpdateDefaultImplementation(IPutQualitydefinitionUpdateApiResponse apiResponseLocalVar, List<QualityDefinitionResource> qualityDefinitionResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutQualitydefinitionUpdate(ref suppressDefaultLog, apiResponseLocalVar, qualityDefinitionResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        partial void AfterPutQualitydefinitionUpdate(ref bool suppressDefaultLog, IPutQualitydefinitionUpdateApiResponse apiResponseLocalVar, List<QualityDefinitionResource> qualityDefinitionResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        private void OnErrorPutQualitydefinitionUpdateDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<QualityDefinitionResource> qualityDefinitionResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutQualitydefinitionUpdate(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, qualityDefinitionResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="qualityDefinitionResource"></param>
+        partial void OnErrorPutQualitydefinitionUpdate(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<QualityDefinitionResource> qualityDefinitionResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionUpdateApiResponse"/>&gt;</returns>
+        public async Task<IPutQualitydefinitionUpdateApiResponse?> PutQualitydefinitionUpdateOrDefaultAsync(List<QualityDefinitionResource> qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutQualitydefinitionUpdateAsync(qualityDefinitionResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="qualityDefinitionResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualitydefinitionUpdateApiResponse"/>&gt;</returns>
+        public async Task<IPutQualitydefinitionUpdateApiResponse> PutQualitydefinitionUpdateAsync(List<QualityDefinitionResource> qualityDefinitionResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutQualitydefinitionUpdate(qualityDefinitionResource);
+
+                FormatPutQualitydefinitionUpdate(qualityDefinitionResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/qualitydefinition/update"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualitydefinition/update");
+
+                    httpRequestMessageLocalVar.Content = (qualityDefinitionResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityDefinitionResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json",
+                        "text/json",
+                        "application/*+json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutQualitydefinitionUpdateApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualitydefinition/update", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutQualitydefinitionUpdateDefaultImplementation(apiResponseLocalVar, qualityDefinitionResource);
+
+                        Events.ExecuteOnPutQualitydefinitionUpdate(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutQualitydefinitionUpdateDefaultImplementation(e, "/api/v3/qualitydefinition/update", uriBuilderLocalVar.Path, qualityDefinitionResource);
+                Events.ExecuteOnErrorPutQualitydefinitionUpdate(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutQualitydefinitionUpdateApiResponse"/>
+        /// </summary>
+        public partial class PutQualitydefinitionUpdateApiResponse : Whisparr3.Net.Client.ApiResponse, IPutQualitydefinitionUpdateApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QualityDefinitionApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutQualitydefinitionUpdateApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutQualitydefinitionUpdateApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutQualitydefinitionUpdateApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutQualitydefinitionUpdateApiResponse(ILogger<QualityDefinitionApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public List<QualityDefinitionResource>? Accepted()
+            {
+                bool suppressDefault = false;
+                List<QualityDefinitionResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private List<QualityDefinitionResource>? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<QualityDefinitionResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref List<QualityDefinitionResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out List<QualityDefinitionResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

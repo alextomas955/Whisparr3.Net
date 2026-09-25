@@ -50,9 +50,8 @@ namespace Whisparr3.Net
         /// Validates both required settings and returns the parsed base URL.
         /// </summary>
         /// <returns>The base URL parsed as an absolute URI, so nothing downstream reparses the string.</returns>
-        /// <exception cref="ArgumentNullException"><see cref="BaseUrl"/> or <see cref="ApiKey"/> is null.</exception>
         /// <exception cref="ArgumentException">
-        /// <see cref="BaseUrl"/> or <see cref="ApiKey"/> is empty or whitespace, or
+        /// <see cref="BaseUrl"/> or <see cref="ApiKey"/> is null, empty or whitespace, or
         /// <see cref="BaseUrl"/> is not an absolute http or https URL.
         /// </exception>
         /// <remarks>
@@ -63,33 +62,19 @@ namespace Whisparr3.Net
         /// </remarks>
         public Uri Validate()
         {
-            if (BaseUrl is null)
-            {
-                throw new ArgumentNullException(
-                    nameof(BaseUrl),
-                    "Whisparr3Options.BaseUrl is required. The client never guesses a host or port.");
-            }
-
-            if (ApiKey is null)
-            {
-                throw new ArgumentNullException(
-                    nameof(ApiKey),
-                    "Whisparr3Options.ApiKey is required. Whisparr rejects a request that carries no key.");
-            }
-
             if (string.IsNullOrWhiteSpace(BaseUrl))
             {
                 throw new ArgumentException(
-                    "Whisparr3Options.BaseUrl is empty or whitespace. Set it to the instance base URL, "
-                        + "for example \"http://127.0.0.1:6969\".",
+                    "Whisparr3Options.BaseUrl is required. Set it to the instance base URL, "
+                        + "for example \"http://127.0.0.1:6969\". The client never guesses a host or port.",
                     nameof(BaseUrl));
             }
 
             if (string.IsNullOrWhiteSpace(ApiKey))
             {
                 throw new ArgumentException(
-                    "Whisparr3Options.ApiKey is empty or whitespace. The value is used exactly as supplied "
-                        + "and is never trimmed.",
+                    "Whisparr3Options.ApiKey is required. Whisparr rejects a request that carries no key, "
+                        + "and the value is used exactly as supplied and never trimmed.",
                     nameof(ApiKey));
             }
 

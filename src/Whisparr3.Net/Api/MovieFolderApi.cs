@@ -22,6 +22,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using Whisparr3.Net.Client;
 using Whisparr3.Net.Logging;
+using Whisparr3.Net.Model;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Whisparr3.Net.Api
@@ -46,8 +47,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFolderApiResponse"/>&gt;</returns>
-        Task<IGetMovieFolderApiResponse> GetMovieFolderAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieByIdFolderApiResponse"/>&gt;</returns>
+        Task<IGetMovieByIdFolderApiResponse> GetMovieByIdFolderAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -57,14 +58,14 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFolderApiResponse"/>?&gt;</returns>
-        Task<IGetMovieFolderApiResponse?> GetMovieFolderOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieByIdFolderApiResponse"/>?&gt;</returns>
+        Task<IGetMovieByIdFolderApiResponse?> GetMovieByIdFolderOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IGetMovieFolderApiResponse"/>
+    /// The <see cref="IGetMovieByIdFolderApiResponse"/>
     /// </summary>
-    public interface IGetMovieFolderApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetMovieByIdFolderApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MovieFolderResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -81,21 +82,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetMovieFolder;
+        public event EventHandler<ApiResponseEventArgs>? OnGetMovieByIdFolder;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetMovieFolder;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMovieByIdFolder;
 
-        internal void ExecuteOnGetMovieFolder(MovieFolderApi.GetMovieFolderApiResponse apiResponse)
+        internal void ExecuteOnGetMovieByIdFolder(MovieFolderApi.GetMovieByIdFolderApiResponse apiResponse)
         {
-            OnGetMovieFolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetMovieByIdFolder?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetMovieFolder(Exception exception)
+        internal void ExecuteOnErrorGetMovieByIdFolder(Exception exception)
         {
-            OnErrorGetMovieFolder?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetMovieByIdFolder?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -140,17 +141,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatGetMovieFolder(ref int id);
+        partial void FormatGetMovieByIdFolder(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetMovieFolderDefaultImplementation(IGetMovieFolderApiResponse apiResponseLocalVar, int id)
+        private void AfterGetMovieByIdFolderDefaultImplementation(IGetMovieByIdFolderApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetMovieFolder(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetMovieByIdFolder(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -161,7 +162,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetMovieFolder(ref bool suppressDefaultLog, IGetMovieFolderApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetMovieByIdFolder(ref bool suppressDefaultLog, IGetMovieByIdFolderApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -170,10 +171,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetMovieFolderDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetMovieByIdFolderDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMovieFolder(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetMovieByIdFolder(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -186,19 +187,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetMovieFolder(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorGetMovieByIdFolder(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFolderApiResponse"/>&gt;</returns>
-        public async Task<IGetMovieFolderApiResponse?> GetMovieFolderOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieByIdFolderApiResponse"/>&gt;</returns>
+        public async Task<IGetMovieByIdFolderApiResponse?> GetMovieByIdFolderOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMovieFolderAsync(id, cancellationToken).ConfigureAwait(false);
+                return await GetMovieByIdFolderAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -212,14 +213,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFolderApiResponse"/>&gt;</returns>
-        public async Task<IGetMovieFolderApiResponse> GetMovieFolderAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieByIdFolderApiResponse"/>&gt;</returns>
+        public async Task<IGetMovieByIdFolderApiResponse> GetMovieByIdFolderAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetMovieFolder(ref id);
+                FormatGetMovieByIdFolder(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -238,13 +239,22 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetMovieFolderApiResponse apiResponseLocalVar;
+                        GetMovieByIdFolderApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -255,9 +265,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetMovieFolderDefaultImplementation(apiResponseLocalVar, id);
+                        AfterGetMovieByIdFolderDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetMovieFolder(apiResponseLocalVar);
+                        Events.ExecuteOnGetMovieByIdFolder(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -269,16 +279,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMovieFolderDefaultImplementation(e, "/api/v3/movie/{id}/folder", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetMovieFolder(e);
+                OnErrorGetMovieByIdFolderDefaultImplementation(e, "/api/v3/movie/{id}/folder", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetMovieByIdFolder(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetMovieFolderApiResponse"/>
+        /// The <see cref="GetMovieByIdFolderApiResponse"/>
         /// </summary>
-        public partial class GetMovieFolderApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMovieFolderApiResponse
+        public partial class GetMovieByIdFolderApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMovieByIdFolderApiResponse
         {
             /// <summary>
             /// The logger
@@ -286,7 +296,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MovieFolderApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetMovieFolderApiResponse"/>
+            /// The <see cref="GetMovieByIdFolderApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -295,14 +305,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMovieFolderApiResponse(ILogger<MovieFolderApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetMovieByIdFolderApiResponse(ILogger<MovieFolderApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetMovieFolderApiResponse"/>
+            /// The <see cref="GetMovieByIdFolderApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -311,7 +321,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMovieFolderApiResponse(ILogger<MovieFolderApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetMovieByIdFolderApiResponse(ILogger<MovieFolderApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -324,6 +334,50 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.MovieFolderResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.MovieFolderResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.MovieFolderResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MovieFolderResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.MovieFolderResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.MovieFolderResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

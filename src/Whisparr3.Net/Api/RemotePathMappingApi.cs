@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="remotePathMappingResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRemotePathMappingApiResponse"/>&gt;</returns>
-        Task<ICreateRemotePathMappingApiResponse> CreateRemotePathMappingAsync(Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteRemotepathmappingByIdApiResponse> DeleteRemotepathmappingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,31 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="remotePathMappingResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRemotePathMappingApiResponse"/>?&gt;</returns>
-        Task<ICreateRemotePathMappingApiResponse?> CreateRemotePathMappingOrDefaultAsync(Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotepathmappingByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteRemotepathmappingByIdApiResponse?> DeleteRemotepathmappingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingApiResponse"/>&gt;</returns>
+        Task<IGetRemotepathmappingApiResponse> GetRemotepathmappingAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingApiResponse"/>?&gt;</returns>
+        Task<IGetRemotepathmappingApiResponse?> GetRemotepathmappingOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -70,8 +91,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotePathMappingApiResponse"/>&gt;</returns>
-        Task<IDeleteRemotePathMappingApiResponse> DeleteRemotePathMappingAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        Task<IGetRemotepathmappingByIdApiResponse> GetRemotepathmappingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -81,8 +102,31 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotePathMappingApiResponse"/>?&gt;</returns>
-        Task<IDeleteRemotePathMappingApiResponse?> DeleteRemotePathMappingOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingByIdApiResponse"/>?&gt;</returns>
+        Task<IGetRemotepathmappingByIdApiResponse?> GetRemotepathmappingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="remotePathMappingResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostRemotepathmappingApiResponse"/>&gt;</returns>
+        Task<IPostRemotepathmappingApiResponse> PostRemotepathmappingAsync(RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="remotePathMappingResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostRemotepathmappingApiResponse"/>?&gt;</returns>
+        Task<IPostRemotepathmappingApiResponse?> PostRemotepathmappingOrDefaultAsync(RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -92,9 +136,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotePathMappingByIdApiResponse"/>&gt;</returns>
-        Task<IGetRemotePathMappingByIdApiResponse> GetRemotePathMappingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        Task<IPutRemotepathmappingByIdApiResponse> PutRemotepathmappingByIdAsync(string id, RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -103,61 +148,16 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotePathMappingByIdApiResponse"/>?&gt;</returns>
-        Task<IGetRemotePathMappingByIdApiResponse?> GetRemotePathMappingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRemotePathMappingApiResponse"/>&gt;</returns>
-        Task<IListRemotePathMappingApiResponse> ListRemotePathMappingAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRemotePathMappingApiResponse"/>?&gt;</returns>
-        Task<IListRemotePathMappingApiResponse?> ListRemotePathMappingOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateRemotePathMappingApiResponse"/>&gt;</returns>
-        Task<IUpdateRemotePathMappingApiResponse> UpdateRemotePathMappingAsync(string id, Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateRemotePathMappingApiResponse"/>?&gt;</returns>
-        Task<IUpdateRemotePathMappingApiResponse?> UpdateRemotePathMappingOrDefaultAsync(string id, Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutRemotepathmappingByIdApiResponse"/>?&gt;</returns>
+        Task<IPutRemotepathmappingByIdApiResponse?> PutRemotepathmappingByIdOrDefaultAsync(string id, RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateRemotePathMappingApiResponse"/>
+    /// The <see cref="IDeleteRemotepathmappingByIdApiResponse"/>
     /// </summary>
-    public interface ICreateRemotePathMappingApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.RemotePathMappingResource?>
+    public interface IDeleteRemotepathmappingByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -167,9 +167,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteRemotePathMappingApiResponse"/>
+    /// The <see cref="IGetRemotepathmappingApiResponse"/>
     /// </summary>
-    public interface IDeleteRemotePathMappingApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetRemotepathmappingApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<RemotePathMappingResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -179,9 +179,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetRemotePathMappingByIdApiResponse"/>
+    /// The <see cref="IGetRemotepathmappingByIdApiResponse"/>
     /// </summary>
-    public interface IGetRemotePathMappingByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.RemotePathMappingResource?>
+    public interface IGetRemotepathmappingByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.RemotePathMappingResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -191,27 +191,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListRemotePathMappingApiResponse"/>
+    /// The <see cref="IPostRemotepathmappingApiResponse"/>
     /// </summary>
-    public interface IListRemotePathMappingApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<RemotePathMappingResource>?>
+    public interface IPostRemotepathmappingApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.RemotePathMappingResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 201 Created
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsCreated { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateRemotePathMappingApiResponse"/>
+    /// The <see cref="IPutRemotepathmappingByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateRemotePathMappingApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.RemotePathMappingResource?>
+    public interface IPutRemotepathmappingByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.RemotePathMappingResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -222,101 +222,101 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateRemotePathMapping;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteRemotepathmappingById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateRemotePathMapping;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteRemotepathmappingById;
 
-        internal void ExecuteOnCreateRemotePathMapping(RemotePathMappingApi.CreateRemotePathMappingApiResponse apiResponse)
+        internal void ExecuteOnDeleteRemotepathmappingById(RemotePathMappingApi.DeleteRemotepathmappingByIdApiResponse apiResponse)
         {
-            OnCreateRemotePathMapping?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteRemotepathmappingById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateRemotePathMapping(Exception exception)
+        internal void ExecuteOnErrorDeleteRemotepathmappingById(Exception exception)
         {
-            OnErrorCreateRemotePathMapping?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteRemotepathmappingById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteRemotePathMapping;
+        public event EventHandler<ApiResponseEventArgs>? OnGetRemotepathmapping;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteRemotePathMapping;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetRemotepathmapping;
 
-        internal void ExecuteOnDeleteRemotePathMapping(RemotePathMappingApi.DeleteRemotePathMappingApiResponse apiResponse)
+        internal void ExecuteOnGetRemotepathmapping(RemotePathMappingApi.GetRemotepathmappingApiResponse apiResponse)
         {
-            OnDeleteRemotePathMapping?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetRemotepathmapping?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteRemotePathMapping(Exception exception)
+        internal void ExecuteOnErrorGetRemotepathmapping(Exception exception)
         {
-            OnErrorDeleteRemotePathMapping?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetRemotepathmapping?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetRemotePathMappingById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetRemotepathmappingById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetRemotePathMappingById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetRemotepathmappingById;
 
-        internal void ExecuteOnGetRemotePathMappingById(RemotePathMappingApi.GetRemotePathMappingByIdApiResponse apiResponse)
+        internal void ExecuteOnGetRemotepathmappingById(RemotePathMappingApi.GetRemotepathmappingByIdApiResponse apiResponse)
         {
-            OnGetRemotePathMappingById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetRemotepathmappingById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetRemotePathMappingById(Exception exception)
+        internal void ExecuteOnErrorGetRemotepathmappingById(Exception exception)
         {
-            OnErrorGetRemotePathMappingById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetRemotepathmappingById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListRemotePathMapping;
+        public event EventHandler<ApiResponseEventArgs>? OnPostRemotepathmapping;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListRemotePathMapping;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostRemotepathmapping;
 
-        internal void ExecuteOnListRemotePathMapping(RemotePathMappingApi.ListRemotePathMappingApiResponse apiResponse)
+        internal void ExecuteOnPostRemotepathmapping(RemotePathMappingApi.PostRemotepathmappingApiResponse apiResponse)
         {
-            OnListRemotePathMapping?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostRemotepathmapping?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListRemotePathMapping(Exception exception)
+        internal void ExecuteOnErrorPostRemotepathmapping(Exception exception)
         {
-            OnErrorListRemotePathMapping?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostRemotepathmapping?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateRemotePathMapping;
+        public event EventHandler<ApiResponseEventArgs>? OnPutRemotepathmappingById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateRemotePathMapping;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutRemotepathmappingById;
 
-        internal void ExecuteOnUpdateRemotePathMapping(RemotePathMappingApi.UpdateRemotePathMappingApiResponse apiResponse)
+        internal void ExecuteOnPutRemotepathmappingById(RemotePathMappingApi.PutRemotepathmappingByIdApiResponse apiResponse)
         {
-            OnUpdateRemotePathMapping?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutRemotepathmappingById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateRemotePathMapping(Exception exception)
+        internal void ExecuteOnErrorPutRemotepathmappingById(Exception exception)
         {
-            OnErrorUpdateRemotePathMapping?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutRemotepathmappingById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -361,296 +361,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateRemotePathMapping(Option<RemotePathMappingResource> remotePathMappingResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="remotePathMappingResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateRemotePathMapping(Option<RemotePathMappingResource> remotePathMappingResource)
-        {
-            if (remotePathMappingResource.IsSet && remotePathMappingResource.Value == null)
-                throw new ArgumentNullException(nameof(remotePathMappingResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="remotePathMappingResource"></param>
-        private void AfterCreateRemotePathMappingDefaultImplementation(ICreateRemotePathMappingApiResponse apiResponseLocalVar, Option<RemotePathMappingResource> remotePathMappingResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateRemotePathMapping(ref suppressDefaultLog, apiResponseLocalVar, remotePathMappingResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="remotePathMappingResource"></param>
-        partial void AfterCreateRemotePathMapping(ref bool suppressDefaultLog, ICreateRemotePathMappingApiResponse apiResponseLocalVar, Option<RemotePathMappingResource> remotePathMappingResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="remotePathMappingResource"></param>
-        private void OnErrorCreateRemotePathMappingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<RemotePathMappingResource> remotePathMappingResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateRemotePathMapping(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, remotePathMappingResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="remotePathMappingResource"></param>
-        partial void OnErrorCreateRemotePathMapping(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<RemotePathMappingResource> remotePathMappingResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="remotePathMappingResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<ICreateRemotePathMappingApiResponse?> CreateRemotePathMappingOrDefaultAsync(Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateRemotePathMappingAsync(remotePathMappingResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="remotePathMappingResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<ICreateRemotePathMappingApiResponse> CreateRemotePathMappingAsync(Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateRemotePathMapping(remotePathMappingResource);
-
-                FormatCreateRemotePathMapping(remotePathMappingResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/remotepathmapping"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/remotepathmapping");
-
-                    if (remotePathMappingResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (remotePathMappingResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(remotePathMappingResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateRemotePathMappingApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/remotepathmapping", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateRemotePathMappingDefaultImplementation(apiResponseLocalVar, remotePathMappingResource);
-
-                        Events.ExecuteOnCreateRemotePathMapping(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateRemotePathMappingDefaultImplementation(e, "/api/v3/remotepathmapping", uriBuilderLocalVar.Path, remotePathMappingResource);
-                Events.ExecuteOnErrorCreateRemotePathMapping(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateRemotePathMappingApiResponse"/>
-        /// </summary>
-        public partial class CreateRemotePathMappingApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateRemotePathMappingApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<RemotePathMappingApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateRemotePathMappingApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateRemotePathMappingApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.RemotePathMappingResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.RemotePathMappingResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.RemotePathMappingResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.RemotePathMappingResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.RemotePathMappingResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.RemotePathMappingResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteRemotePathMapping(ref int id);
+        partial void FormatDeleteRemotepathmappingById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterDeleteRemotePathMappingDefaultImplementation(IDeleteRemotePathMappingApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteRemotepathmappingByIdDefaultImplementation(IDeleteRemotepathmappingByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteRemotePathMapping(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteRemotepathmappingById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -661,7 +382,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterDeleteRemotePathMapping(ref bool suppressDefaultLog, IDeleteRemotePathMappingApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteRemotepathmappingById(ref bool suppressDefaultLog, IDeleteRemotepathmappingByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -670,10 +391,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorDeleteRemotePathMappingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteRemotepathmappingByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteRemotePathMapping(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteRemotepathmappingById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -686,19 +407,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorDeleteRemotePathMapping(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteRemotepathmappingById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<IDeleteRemotePathMappingApiResponse?> DeleteRemotePathMappingOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteRemotepathmappingByIdApiResponse?> DeleteRemotepathmappingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteRemotePathMappingAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteRemotepathmappingByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -712,14 +433,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<IDeleteRemotePathMappingApiResponse> DeleteRemotePathMappingAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteRemotepathmappingByIdApiResponse> DeleteRemotepathmappingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteRemotePathMapping(ref id);
+                FormatDeleteRemotepathmappingById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -744,7 +465,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteRemotePathMappingApiResponse apiResponseLocalVar;
+                        DeleteRemotepathmappingByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -755,9 +476,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteRemotePathMappingDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteRemotepathmappingByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteRemotePathMapping(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteRemotepathmappingById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -769,16 +490,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteRemotePathMappingDefaultImplementation(e, "/api/v3/remotepathmapping/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteRemotePathMapping(e);
+                OnErrorDeleteRemotepathmappingByIdDefaultImplementation(e, "/api/v3/remotepathmapping/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteRemotepathmappingById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteRemotePathMappingApiResponse"/>
+        /// The <see cref="DeleteRemotepathmappingByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteRemotePathMappingApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteRemotePathMappingApiResponse
+        public partial class DeleteRemotepathmappingByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteRemotepathmappingByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -786,7 +507,7 @@ namespace Whisparr3.Net.Api
             public ILogger<RemotePathMappingApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteRemotePathMappingApiResponse"/>
+            /// The <see cref="DeleteRemotepathmappingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -795,14 +516,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteRemotepathmappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteRemotePathMappingApiResponse"/>
+            /// The <see cref="DeleteRemotepathmappingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -811,7 +532,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteRemotepathmappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -836,17 +557,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetRemotePathMappingById(ref int id);
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterGetRemotePathMappingByIdDefaultImplementation(IGetRemotePathMappingByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetRemotepathmappingDefaultImplementation(IGetRemotepathmappingApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetRemotePathMappingById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetRemotepathmapping(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -856,8 +574,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterGetRemotePathMappingById(ref bool suppressDefaultLog, IGetRemotePathMappingByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetRemotepathmapping(ref bool suppressDefaultLog, IGetRemotepathmappingApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -865,11 +582,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorGetRemotePathMappingByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetRemotepathmappingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetRemotePathMappingById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetRemotepathmapping(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -881,264 +597,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorGetRemotePathMappingById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotePathMappingByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetRemotePathMappingByIdApiResponse?> GetRemotePathMappingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetRemotePathMappingByIdAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotePathMappingByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetRemotePathMappingByIdApiResponse> GetRemotePathMappingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatGetRemotePathMappingById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/remotepathmapping/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/remotepathmapping/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetRemotePathMappingByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/remotepathmapping/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetRemotePathMappingByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnGetRemotePathMappingById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetRemotePathMappingByIdDefaultImplementation(e, "/api/v3/remotepathmapping/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetRemotePathMappingById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetRemotePathMappingByIdApiResponse"/>
-        /// </summary>
-        public partial class GetRemotePathMappingByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetRemotePathMappingByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<RemotePathMappingApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetRemotePathMappingByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetRemotePathMappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetRemotePathMappingByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetRemotePathMappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.RemotePathMappingResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.RemotePathMappingResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.RemotePathMappingResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.RemotePathMappingResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.RemotePathMappingResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.RemotePathMappingResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListRemotePathMappingDefaultImplementation(IListRemotePathMappingApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListRemotePathMapping(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListRemotePathMapping(ref bool suppressDefaultLog, IListRemotePathMappingApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListRemotePathMappingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListRemotePathMapping(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListRemotePathMapping(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetRemotepathmapping(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<IListRemotePathMappingApiResponse?> ListRemotePathMappingOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingApiResponse"/>&gt;</returns>
+        public async Task<IGetRemotepathmappingApiResponse?> GetRemotepathmappingOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListRemotePathMappingAsync(cancellationToken).ConfigureAwait(false);
+                return await GetRemotepathmappingAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1151,8 +621,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<IListRemotePathMappingApiResponse> ListRemotePathMappingAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingApiResponse"/>&gt;</returns>
+        public async Task<IGetRemotepathmappingApiResponse> GetRemotepathmappingAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1191,7 +661,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListRemotePathMappingApiResponse apiResponseLocalVar;
+                        GetRemotepathmappingApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1202,9 +672,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListRemotePathMappingDefaultImplementation(apiResponseLocalVar);
+                        AfterGetRemotepathmappingDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListRemotePathMapping(apiResponseLocalVar);
+                        Events.ExecuteOnGetRemotepathmapping(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1216,16 +686,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListRemotePathMappingDefaultImplementation(e, "/api/v3/remotepathmapping", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListRemotePathMapping(e);
+                OnErrorGetRemotepathmappingDefaultImplementation(e, "/api/v3/remotepathmapping", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetRemotepathmapping(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListRemotePathMappingApiResponse"/>
+        /// The <see cref="GetRemotepathmappingApiResponse"/>
         /// </summary>
-        public partial class ListRemotePathMappingApiResponse : Whisparr3.Net.Client.ApiResponse, IListRemotePathMappingApiResponse
+        public partial class GetRemotepathmappingApiResponse : Whisparr3.Net.Client.ApiResponse, IGetRemotepathmappingApiResponse
         {
             /// <summary>
             /// The logger
@@ -1233,7 +703,7 @@ namespace Whisparr3.Net.Api
             public ILogger<RemotePathMappingApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListRemotePathMappingApiResponse"/>
+            /// The <see cref="GetRemotepathmappingApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1242,14 +712,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetRemotepathmappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListRemotePathMappingApiResponse"/>
+            /// The <see cref="GetRemotepathmappingApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1258,7 +728,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetRemotepathmappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1327,33 +797,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateRemotePathMapping(ref string id, Option<RemotePathMappingResource> remotePathMappingResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateRemotePathMapping(string id, Option<RemotePathMappingResource> remotePathMappingResource)
-        {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            if (remotePathMappingResource.IsSet && remotePathMappingResource.Value == null)
-                throw new ArgumentNullException(nameof(remotePathMappingResource));
-        }
+        partial void FormatGetRemotepathmappingById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"></param>
-        private void AfterUpdateRemotePathMappingDefaultImplementation(IUpdateRemotePathMappingApiResponse apiResponseLocalVar, string id, Option<RemotePathMappingResource> remotePathMappingResource)
+        private void AfterGetRemotepathmappingByIdDefaultImplementation(IGetRemotepathmappingByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateRemotePathMapping(ref suppressDefaultLog, apiResponseLocalVar, id, remotePathMappingResource);
+            AfterGetRemotepathmappingById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1364,8 +818,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"></param>
-        partial void AfterUpdateRemotePathMapping(ref bool suppressDefaultLog, IUpdateRemotePathMappingApiResponse apiResponseLocalVar, string id, Option<RemotePathMappingResource> remotePathMappingResource);
+        partial void AfterGetRemotepathmappingById(ref bool suppressDefaultLog, IGetRemotepathmappingByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1374,11 +827,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"></param>
-        private void OnErrorUpdateRemotePathMappingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<RemotePathMappingResource> remotePathMappingResource)
+        private void OnErrorGetRemotepathmappingByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateRemotePathMapping(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, remotePathMappingResource);
+            OnErrorGetRemotepathmappingById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1391,21 +843,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"></param>
-        partial void OnErrorUpdateRemotePathMapping(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<RemotePathMappingResource> remotePathMappingResource);
+        partial void OnErrorGetRemotepathmappingById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<IUpdateRemotePathMappingApiResponse?> UpdateRemotePathMappingOrDefaultAsync(string id, Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetRemotepathmappingByIdApiResponse?> GetRemotepathmappingByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateRemotePathMappingAsync(id, remotePathMappingResource, cancellationToken).ConfigureAwait(false);
+                return await GetRemotepathmappingByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1418,18 +868,15 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="remotePathMappingResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateRemotePathMappingApiResponse"/>&gt;</returns>
-        public async Task<IUpdateRemotePathMappingApiResponse> UpdateRemotePathMappingAsync(string id, Option<RemotePathMappingResource> remotePathMappingResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetRemotepathmappingByIdApiResponse> GetRemotepathmappingByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateRemotePathMapping(id, remotePathMappingResource);
-
-                FormatUpdateRemotePathMapping(ref id, remotePathMappingResource);
+                FormatGetRemotepathmappingById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1441,30 +888,12 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/remotepathmapping/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (remotePathMappingResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (remotePathMappingResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(remotePathMappingResource.Value, _jsonSerializerOptions));
-                    }
-
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
                     tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
                     apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json",
-                        "text/json",
-                        "application/*+json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "text/plain",
@@ -1477,13 +906,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateRemotePathMappingApiResponse apiResponseLocalVar;
+                        GetRemotepathmappingByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1494,9 +923,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateRemotePathMappingDefaultImplementation(apiResponseLocalVar, id, remotePathMappingResource);
+                        AfterGetRemotepathmappingByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnUpdateRemotePathMapping(apiResponseLocalVar);
+                        Events.ExecuteOnGetRemotepathmappingById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1508,16 +937,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateRemotePathMappingDefaultImplementation(e, "/api/v3/remotepathmapping/{id}", uriBuilderLocalVar.Path, id, remotePathMappingResource);
-                Events.ExecuteOnErrorUpdateRemotePathMapping(e);
+                OnErrorGetRemotepathmappingByIdDefaultImplementation(e, "/api/v3/remotepathmapping/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetRemotepathmappingById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateRemotePathMappingApiResponse"/>
+        /// The <see cref="GetRemotepathmappingByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateRemotePathMappingApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateRemotePathMappingApiResponse
+        public partial class GetRemotepathmappingByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetRemotepathmappingByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1525,7 +954,7 @@ namespace Whisparr3.Net.Api
             public ILogger<RemotePathMappingApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateRemotePathMappingApiResponse"/>
+            /// The <see cref="GetRemotepathmappingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1534,14 +963,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetRemotepathmappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateRemotePathMappingApiResponse"/>
+            /// The <see cref="GetRemotepathmappingByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1550,7 +979,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateRemotePathMappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetRemotepathmappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1603,6 +1032,571 @@ namespace Whisparr3.Net.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostRemotepathmapping(RemotePathMappingResource remotePathMappingResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="remotePathMappingResource"></param>
+        /// <returns></returns>
+        private void ValidatePostRemotepathmapping(RemotePathMappingResource remotePathMappingResource)
+        {
+            if (remotePathMappingResource == null)
+                throw new ArgumentNullException(nameof(remotePathMappingResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="remotePathMappingResource"></param>
+        private void AfterPostRemotepathmappingDefaultImplementation(IPostRemotepathmappingApiResponse apiResponseLocalVar, RemotePathMappingResource remotePathMappingResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostRemotepathmapping(ref suppressDefaultLog, apiResponseLocalVar, remotePathMappingResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="remotePathMappingResource"></param>
+        partial void AfterPostRemotepathmapping(ref bool suppressDefaultLog, IPostRemotepathmappingApiResponse apiResponseLocalVar, RemotePathMappingResource remotePathMappingResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="remotePathMappingResource"></param>
+        private void OnErrorPostRemotepathmappingDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, RemotePathMappingResource remotePathMappingResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostRemotepathmapping(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, remotePathMappingResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="remotePathMappingResource"></param>
+        partial void OnErrorPostRemotepathmapping(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, RemotePathMappingResource remotePathMappingResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="remotePathMappingResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostRemotepathmappingApiResponse"/>&gt;</returns>
+        public async Task<IPostRemotepathmappingApiResponse?> PostRemotepathmappingOrDefaultAsync(RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostRemotepathmappingAsync(remotePathMappingResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="remotePathMappingResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostRemotepathmappingApiResponse"/>&gt;</returns>
+        public async Task<IPostRemotepathmappingApiResponse> PostRemotepathmappingAsync(RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostRemotepathmapping(remotePathMappingResource);
+
+                FormatPostRemotepathmapping(remotePathMappingResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/remotepathmapping"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/remotepathmapping");
+
+                    httpRequestMessageLocalVar.Content = (remotePathMappingResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(remotePathMappingResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostRemotepathmappingApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/remotepathmapping", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostRemotepathmappingDefaultImplementation(apiResponseLocalVar, remotePathMappingResource);
+
+                        Events.ExecuteOnPostRemotepathmapping(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostRemotepathmappingDefaultImplementation(e, "/api/v3/remotepathmapping", uriBuilderLocalVar.Path, remotePathMappingResource);
+                Events.ExecuteOnErrorPostRemotepathmapping(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostRemotepathmappingApiResponse"/>
+        /// </summary>
+        public partial class PostRemotepathmappingApiResponse : Whisparr3.Net.Client.ApiResponse, IPostRemotepathmappingApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<RemotePathMappingApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostRemotepathmappingApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostRemotepathmappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostRemotepathmappingApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostRemotepathmappingApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.RemotePathMappingResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.RemotePathMappingResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.RemotePathMappingResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.RemotePathMappingResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.RemotePathMappingResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.RemotePathMappingResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutRemotepathmappingById(ref string id, RemotePathMappingResource remotePathMappingResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        /// <returns></returns>
+        private void ValidatePutRemotepathmappingById(string id, RemotePathMappingResource remotePathMappingResource)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (remotePathMappingResource == null)
+                throw new ArgumentNullException(nameof(remotePathMappingResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        private void AfterPutRemotepathmappingByIdDefaultImplementation(IPutRemotepathmappingByIdApiResponse apiResponseLocalVar, string id, RemotePathMappingResource remotePathMappingResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutRemotepathmappingById(ref suppressDefaultLog, apiResponseLocalVar, id, remotePathMappingResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        partial void AfterPutRemotepathmappingById(ref bool suppressDefaultLog, IPutRemotepathmappingByIdApiResponse apiResponseLocalVar, string id, RemotePathMappingResource remotePathMappingResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        private void OnErrorPutRemotepathmappingByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, RemotePathMappingResource remotePathMappingResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutRemotepathmappingById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, remotePathMappingResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        partial void OnErrorPutRemotepathmappingById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, RemotePathMappingResource remotePathMappingResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutRemotepathmappingByIdApiResponse?> PutRemotepathmappingByIdOrDefaultAsync(string id, RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutRemotepathmappingByIdAsync(id, remotePathMappingResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remotePathMappingResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutRemotepathmappingByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutRemotepathmappingByIdApiResponse> PutRemotepathmappingByIdAsync(string id, RemotePathMappingResource remotePathMappingResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutRemotepathmappingById(id, remotePathMappingResource);
+
+                FormatPutRemotepathmappingById(ref id, remotePathMappingResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/remotepathmapping/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/remotepathmapping/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (remotePathMappingResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(remotePathMappingResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json",
+                        "text/json",
+                        "application/*+json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutRemotepathmappingByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/remotepathmapping/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutRemotepathmappingByIdDefaultImplementation(apiResponseLocalVar, id, remotePathMappingResource);
+
+                        Events.ExecuteOnPutRemotepathmappingById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutRemotepathmappingByIdDefaultImplementation(e, "/api/v3/remotepathmapping/{id}", uriBuilderLocalVar.Path, id, remotePathMappingResource);
+                Events.ExecuteOnErrorPutRemotepathmappingById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutRemotepathmappingByIdApiResponse"/>
+        /// </summary>
+        public partial class PutRemotepathmappingByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutRemotepathmappingByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<RemotePathMappingApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutRemotepathmappingByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutRemotepathmappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutRemotepathmappingByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutRemotepathmappingByIdApiResponse(ILogger<RemotePathMappingApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.RemotePathMappingResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.RemotePathMappingResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.RemotePathMappingResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.RemotePathMappingResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.RemotePathMappingResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.RemotePathMappingResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

@@ -18,8 +18,9 @@ namespace Whisparr3.Net.IntegrationTests
     /// One level up from ResponseTests.cs. There the status codes and bodies are canned by a
     /// loopback listener, so the tests prove what the client does with a response it was handed.
     /// Here the responses come from a real Whisparr, so they prove what the server actually
-    /// answers. The two disagree on this very operation: the committed spec documents 200 for the
-    /// tag create and the instance answers 201.
+    /// answers. The two used to disagree on this very operation: before Whisparr 3.6.1 the spec
+    /// documented 200 for the tag create while the instance answered 201. Both say 201 now, and
+    /// this suite is what would notice them parting again.
     /// </para>
     /// <para>
     /// POST /api/v3/command is the most consequential write in the API, because its name is a
@@ -34,7 +35,7 @@ namespace Whisparr3.Net.IntegrationTests
     /// </para>
     /// <para>
     /// Every response is classified by EnsureSuccess rather than by reading the generated success
-    /// accessor, which deserializes on exactly 200 and returns null on anything else.
+    /// accessor, which returns null on anything but the status its operation documents.
     /// </para>
     /// </remarks>
     [Collection(WhisparrCollection.Name)]
@@ -98,11 +99,10 @@ namespace Whisparr3.Net.IntegrationTests
             ITagApi tags = provider.GetRequiredService<ITagApi>();
 
             // Leg 1, create. The id is left unset on the request, which is the Option<T> write
-            // semantic SerializationTests proves on the request bytes. Without the hook in
-            // src/hand-written/ApiResponseExtensions.cs this line throws: the instance answers 201,
-            // the generated accessor deserializes on exactly 200, and EnsureSuccess reports a
-            // success whose body could not be read.
-            TagResource created = (await tags.CreateTagAsync(new TagResource(label: RoundTripLabel)))
+            // semantic SerializationTests proves on the request bytes. The instance answers 201
+            // and the spec documents 201, so the generated response carries ICreated and
+            // EnsureSuccess reads it.
+            TagResource created = (await tags.PostTagAsync(new TagResource(label: RoundTripLabel)))
                 .EnsureSuccess();
 
             Assert.True(created.Id.HasValue, "The create response carried no id.");
@@ -131,14 +131,14 @@ namespace Whisparr3.Net.IntegrationTests
             // Leg 3, delete. IDeleteTagApiResponse carries no typed success accessor, so this is
             // the non-generic EnsureSuccess overload, and this is the only place in the phase where
             // that overload meets a real server rather than a loopback stub.
-            (await tags.DeleteTagAsync(createdId)).EnsureSuccess();
+            (await tags.DeleteTagByIdAsync(createdId)).EnsureSuccess();
 
             // Leg 4, list. The delete's own status code does not prove the row is gone, and this
             // is what does. The assertion is about this test's row, by id and by label, rather than
             // about every tag on the instance. Three tests in this class post to /api/v3/tag and
             // xUnit does not specify method order, so a row left behind by one of the others would
             // otherwise fail this trip with a message about its delete leg.
-            List<TagResource> remaining = (await tags.ListTagAsync()).EnsureSuccess();
+            List<TagResource> remaining = (await tags.GetTagAsync()).EnsureSuccess();
 
             Assert.DoesNotContain(remaining, tag => tag.Id == createdId);
             Assert.DoesNotContain(
@@ -163,13 +163,13 @@ namespace Whisparr3.Net.IntegrationTests
             await using ServiceProvider provider = BuildProvider();
             ITagApi tags = provider.GetRequiredService<ITagApi>();
 
-            TagResource created = (await tags.CreateTagAsync(new TagResource(label: ControlLabel)))
+            TagResource created = (await tags.PostTagAsync(new TagResource(label: ControlLabel)))
                 .EnsureSuccess();
 
             Assert.True(created.Id.HasValue, "The create response carried no id.");
             int deletedId = created.Id!.Value;
 
-            (await tags.DeleteTagAsync(deletedId)).EnsureSuccess();
+            (await tags.DeleteTagByIdAsync(deletedId)).EnsureSuccess();
 
             IGetTagByIdApiResponse response = await tags.GetTagByIdAsync(deletedId);
 
@@ -218,14 +218,13 @@ namespace Whisparr3.Net.IntegrationTests
             await using ServiceProvider provider = BuildProvider();
             CommandApi commands = provider.GetRequiredService<CommandApi>();
 
-            ICreateCommandApiResponse response = await commands.SendCommandAsync(
+            IPostCommandApiResponse response = await commands.SendCommandAsync(
                 DispatchedCommandName,
                 new { studioIds = new[] { UnknownStudioId } });
 
-            // The instance answers 201 to an accepted command while the specification declares 200,
-            // so the generated Ok accessor reads nothing here and EnsureSuccess is what reads the
-            // body. Asserting the status first is what pins that a caller no longer has to compose
-            // one for the accepted path.
+            // Asserting the status first pins that a caller does not have to compose one for the
+            // accepted path. The specification declares 201 and the instance answers 201, so the
+            // response carries ICreated and EnsureSuccess reads the body through it.
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
             CommandResource dispatched = response.EnsureSuccess();
@@ -259,7 +258,7 @@ namespace Whisparr3.Net.IntegrationTests
             await using ServiceProvider provider = BuildProvider();
             CommandApi commands = provider.GetRequiredService<CommandApi>();
 
-            ICreateCommandApiResponse response = await commands.SendCommandAsync(UnknownCommandName);
+            IPostCommandApiResponse response = await commands.SendCommandAsync(UnknownCommandName);
 
             // The refusal is reported through the status and not by throwing, which is what lets a
             // caller that must not re-issue a command classify the call it made. EnsureSuccess is
@@ -327,7 +326,7 @@ namespace Whisparr3.Net.IntegrationTests
 
             List<TagResource> tags = (await provider
                 .GetRequiredService<ITagApi>()
-                .ListTagAsync())
+                .GetTagAsync())
                 .EnsureSuccess();
 
             Assert.DoesNotContain(

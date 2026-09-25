@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="qualityProfileResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQualityProfileApiResponse"/>&gt;</returns>
-        Task<ICreateQualityProfileApiResponse> CreateQualityProfileAsync(Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityprofileByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteQualityprofileByIdApiResponse> DeleteQualityprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,31 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="qualityProfileResource"> (optional)</param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQualityProfileApiResponse"/>?&gt;</returns>
-        Task<ICreateQualityProfileApiResponse?> CreateQualityProfileOrDefaultAsync(Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityprofileByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteQualityprofileByIdApiResponse?> DeleteQualityprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileApiResponse"/>&gt;</returns>
+        Task<IGetQualityprofileApiResponse> GetQualityprofileAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileApiResponse"/>?&gt;</returns>
+        Task<IGetQualityprofileApiResponse?> GetQualityprofileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -70,8 +91,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityProfileApiResponse"/>&gt;</returns>
-        Task<IDeleteQualityProfileApiResponse> DeleteQualityProfileAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdApiResponse"/>&gt;</returns>
+        Task<IGetQualityprofileByIdApiResponse> GetQualityprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -81,8 +102,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityProfileApiResponse"/>?&gt;</returns>
-        Task<IDeleteQualityProfileApiResponse?> DeleteQualityProfileOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdApiResponse"/>?&gt;</returns>
+        Task<IGetQualityprofileByIdApiResponse?> GetQualityprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -93,8 +114,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileByIdApiResponse"/>&gt;</returns>
-        Task<IGetQualityProfileByIdApiResponse> GetQualityProfileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdInuseApiResponse"/>&gt;</returns>
+        Task<IGetQualityprofileByIdInuseApiResponse> GetQualityprofileByIdInuseAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -104,8 +125,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileByIdApiResponse"/>?&gt;</returns>
-        Task<IGetQualityProfileByIdApiResponse?> GetQualityProfileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdInuseApiResponse"/>?&gt;</returns>
+        Task<IGetQualityprofileByIdInuseApiResponse?> GetQualityprofileByIdInuseOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -114,9 +135,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="qualityProfileResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityProfileApiResponse"/>&gt;</returns>
-        Task<IListQualityProfileApiResponse> ListQualityProfileAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQualityprofileApiResponse"/>&gt;</returns>
+        Task<IPostQualityprofileApiResponse> PostQualityprofileAsync(QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -124,9 +146,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="qualityProfileResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityProfileApiResponse"/>?&gt;</returns>
-        Task<IListQualityProfileApiResponse?> ListQualityProfileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQualityprofileApiResponse"/>?&gt;</returns>
+        Task<IPostQualityprofileApiResponse?> PostQualityprofileOrDefaultAsync(QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -136,10 +159,10 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"> (optional)</param>
+        /// <param name="qualityProfileResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityProfileApiResponse"/>&gt;</returns>
-        Task<IUpdateQualityProfileApiResponse> UpdateQualityProfileAsync(string id, Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityprofileByIdApiResponse"/>&gt;</returns>
+        Task<IPutQualityprofileByIdApiResponse> PutQualityprofileByIdAsync(string id, QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -148,16 +171,16 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"> (optional)</param>
+        /// <param name="qualityProfileResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityProfileApiResponse"/>?&gt;</returns>
-        Task<IUpdateQualityProfileApiResponse?> UpdateQualityProfileOrDefaultAsync(string id, Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityprofileByIdApiResponse"/>?&gt;</returns>
+        Task<IPutQualityprofileByIdApiResponse?> PutQualityprofileByIdOrDefaultAsync(string id, QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateQualityProfileApiResponse"/>
+    /// The <see cref="IDeleteQualityprofileByIdApiResponse"/>
     /// </summary>
-    public interface ICreateQualityProfileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileResource?>
+    public interface IDeleteQualityprofileByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -167,9 +190,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteQualityProfileApiResponse"/>
+    /// The <see cref="IGetQualityprofileApiResponse"/>
     /// </summary>
-    public interface IDeleteQualityProfileApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetQualityprofileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<QualityProfileResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -179,9 +202,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetQualityProfileByIdApiResponse"/>
+    /// The <see cref="IGetQualityprofileByIdApiResponse"/>
     /// </summary>
-    public interface IGetQualityProfileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileResource?>
+    public interface IGetQualityprofileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -191,9 +214,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListQualityProfileApiResponse"/>
+    /// The <see cref="IGetQualityprofileByIdInuseApiResponse"/>
     /// </summary>
-    public interface IListQualityProfileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<QualityProfileResource>?>
+    public interface IGetQualityprofileByIdInuseApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileInUseResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -203,15 +226,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IUpdateQualityProfileApiResponse"/>
+    /// The <see cref="IPostQualityprofileApiResponse"/>
     /// </summary>
-    public interface IUpdateQualityProfileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.QualityProfileResource?>
+    public interface IPostQualityprofileApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.QualityProfileResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 201 Created
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPutQualityprofileByIdApiResponse"/>
+    /// </summary>
+    public interface IPutQualityprofileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.QualityProfileResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 202 Accepted
+        /// </summary>
+        /// <returns></returns>
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -222,101 +257,121 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateQualityProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteQualityprofileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateQualityProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteQualityprofileById;
 
-        internal void ExecuteOnCreateQualityProfile(QualityProfileApi.CreateQualityProfileApiResponse apiResponse)
+        internal void ExecuteOnDeleteQualityprofileById(QualityProfileApi.DeleteQualityprofileByIdApiResponse apiResponse)
         {
-            OnCreateQualityProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteQualityprofileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateQualityProfile(Exception exception)
+        internal void ExecuteOnErrorDeleteQualityprofileById(Exception exception)
         {
-            OnErrorCreateQualityProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteQualityprofileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteQualityProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualityprofile;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteQualityProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityprofile;
 
-        internal void ExecuteOnDeleteQualityProfile(QualityProfileApi.DeleteQualityProfileApiResponse apiResponse)
+        internal void ExecuteOnGetQualityprofile(QualityProfileApi.GetQualityprofileApiResponse apiResponse)
         {
-            OnDeleteQualityProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualityprofile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteQualityProfile(Exception exception)
+        internal void ExecuteOnErrorGetQualityprofile(Exception exception)
         {
-            OnErrorDeleteQualityProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualityprofile?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetQualityProfileById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualityprofileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityProfileById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityprofileById;
 
-        internal void ExecuteOnGetQualityProfileById(QualityProfileApi.GetQualityProfileByIdApiResponse apiResponse)
+        internal void ExecuteOnGetQualityprofileById(QualityProfileApi.GetQualityprofileByIdApiResponse apiResponse)
         {
-            OnGetQualityProfileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualityprofileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetQualityProfileById(Exception exception)
+        internal void ExecuteOnErrorGetQualityprofileById(Exception exception)
         {
-            OnErrorGetQualityProfileById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualityprofileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListQualityProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnGetQualityprofileByIdInuse;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListQualityProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetQualityprofileByIdInuse;
 
-        internal void ExecuteOnListQualityProfile(QualityProfileApi.ListQualityProfileApiResponse apiResponse)
+        internal void ExecuteOnGetQualityprofileByIdInuse(QualityProfileApi.GetQualityprofileByIdInuseApiResponse apiResponse)
         {
-            OnListQualityProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetQualityprofileByIdInuse?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListQualityProfile(Exception exception)
+        internal void ExecuteOnErrorGetQualityprofileByIdInuse(Exception exception)
         {
-            OnErrorListQualityProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetQualityprofileByIdInuse?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateQualityProfile;
+        public event EventHandler<ApiResponseEventArgs>? OnPostQualityprofile;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateQualityProfile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostQualityprofile;
 
-        internal void ExecuteOnUpdateQualityProfile(QualityProfileApi.UpdateQualityProfileApiResponse apiResponse)
+        internal void ExecuteOnPostQualityprofile(QualityProfileApi.PostQualityprofileApiResponse apiResponse)
         {
-            OnUpdateQualityProfile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostQualityprofile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateQualityProfile(Exception exception)
+        internal void ExecuteOnErrorPostQualityprofile(Exception exception)
         {
-            OnErrorUpdateQualityProfile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostQualityprofile?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutQualityprofileById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutQualityprofileById;
+
+        internal void ExecuteOnPutQualityprofileById(QualityProfileApi.PutQualityprofileByIdApiResponse apiResponse)
+        {
+            OnPutQualityprofileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutQualityprofileById(Exception exception)
+        {
+            OnErrorPutQualityprofileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -361,296 +416,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateQualityProfile(Option<QualityProfileResource> qualityProfileResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="qualityProfileResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateQualityProfile(Option<QualityProfileResource> qualityProfileResource)
-        {
-            if (qualityProfileResource.IsSet && qualityProfileResource.Value == null)
-                throw new ArgumentNullException(nameof(qualityProfileResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="qualityProfileResource"></param>
-        private void AfterCreateQualityProfileDefaultImplementation(ICreateQualityProfileApiResponse apiResponseLocalVar, Option<QualityProfileResource> qualityProfileResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateQualityProfile(ref suppressDefaultLog, apiResponseLocalVar, qualityProfileResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="qualityProfileResource"></param>
-        partial void AfterCreateQualityProfile(ref bool suppressDefaultLog, ICreateQualityProfileApiResponse apiResponseLocalVar, Option<QualityProfileResource> qualityProfileResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="qualityProfileResource"></param>
-        private void OnErrorCreateQualityProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<QualityProfileResource> qualityProfileResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateQualityProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, qualityProfileResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="qualityProfileResource"></param>
-        partial void OnErrorCreateQualityProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<QualityProfileResource> qualityProfileResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="qualityProfileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<ICreateQualityProfileApiResponse?> CreateQualityProfileOrDefaultAsync(Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateQualityProfileAsync(qualityProfileResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="qualityProfileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<ICreateQualityProfileApiResponse> CreateQualityProfileAsync(Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateQualityProfile(qualityProfileResource);
-
-                FormatCreateQualityProfile(qualityProfileResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/qualityprofile"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualityprofile");
-
-                    if (qualityProfileResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (qualityProfileResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityProfileResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateQualityProfileApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualityprofile", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateQualityProfileDefaultImplementation(apiResponseLocalVar, qualityProfileResource);
-
-                        Events.ExecuteOnCreateQualityProfile(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateQualityProfileDefaultImplementation(e, "/api/v3/qualityprofile", uriBuilderLocalVar.Path, qualityProfileResource);
-                Events.ExecuteOnErrorCreateQualityProfile(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateQualityProfileApiResponse"/>
-        /// </summary>
-        public partial class CreateQualityProfileApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateQualityProfileApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<QualityProfileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateQualityProfileApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateQualityProfileApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.QualityProfileResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.QualityProfileResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.QualityProfileResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityProfileResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityProfileResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.QualityProfileResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteQualityProfile(ref int id);
+        partial void FormatDeleteQualityprofileById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterDeleteQualityProfileDefaultImplementation(IDeleteQualityProfileApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteQualityprofileByIdDefaultImplementation(IDeleteQualityprofileByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteQualityProfile(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteQualityprofileById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -661,7 +437,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterDeleteQualityProfile(ref bool suppressDefaultLog, IDeleteQualityProfileApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteQualityprofileById(ref bool suppressDefaultLog, IDeleteQualityprofileByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -670,10 +446,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorDeleteQualityProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteQualityprofileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteQualityProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteQualityprofileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -686,19 +462,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorDeleteQualityProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteQualityprofileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<IDeleteQualityProfileApiResponse?> DeleteQualityProfileOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteQualityprofileByIdApiResponse?> DeleteQualityprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteQualityProfileAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteQualityprofileByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -712,14 +488,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<IDeleteQualityProfileApiResponse> DeleteQualityProfileAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteQualityprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteQualityprofileByIdApiResponse> DeleteQualityprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteQualityProfile(ref id);
+                FormatDeleteQualityprofileById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -744,7 +520,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteQualityProfileApiResponse apiResponseLocalVar;
+                        DeleteQualityprofileByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -755,9 +531,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteQualityProfileDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteQualityprofileByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteQualityProfile(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteQualityprofileById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -769,16 +545,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteQualityProfileDefaultImplementation(e, "/api/v3/qualityprofile/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteQualityProfile(e);
+                OnErrorDeleteQualityprofileByIdDefaultImplementation(e, "/api/v3/qualityprofile/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteQualityprofileById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteQualityProfileApiResponse"/>
+        /// The <see cref="DeleteQualityprofileByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteQualityProfileApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteQualityProfileApiResponse
+        public partial class DeleteQualityprofileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteQualityprofileByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -786,7 +562,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QualityProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteQualityProfileApiResponse"/>
+            /// The <see cref="DeleteQualityprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -795,14 +571,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteQualityprofileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteQualityProfileApiResponse"/>
+            /// The <see cref="DeleteQualityprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -811,7 +587,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteQualityprofileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -836,17 +612,14 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetQualityProfileById(ref int id);
-
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterGetQualityProfileByIdDefaultImplementation(IGetQualityProfileByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterGetQualityprofileDefaultImplementation(IGetQualityprofileApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterGetQualityProfileById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterGetQualityprofile(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -856,8 +629,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterGetQualityProfileById(ref bool suppressDefaultLog, IGetQualityProfileByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterGetQualityprofile(ref bool suppressDefaultLog, IGetQualityprofileApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -865,11 +637,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorGetQualityProfileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorGetQualityprofileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetQualityProfileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorGetQualityprofile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -881,264 +652,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorGetQualityProfileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityProfileByIdApiResponse?> GetQualityProfileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await GetQualityProfileByIdAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityProfileByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetQualityProfileByIdApiResponse> GetQualityProfileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatGetQualityProfileById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/qualityprofile/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualityprofile/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        GetQualityProfileByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualityprofile/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterGetQualityProfileByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnGetQualityProfileById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorGetQualityProfileByIdDefaultImplementation(e, "/api/v3/qualityprofile/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetQualityProfileById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="GetQualityProfileByIdApiResponse"/>
-        /// </summary>
-        public partial class GetQualityProfileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityProfileByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<QualityProfileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="GetQualityProfileByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetQualityProfileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="GetQualityProfileByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public GetQualityProfileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.QualityProfileResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.QualityProfileResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.QualityProfileResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityProfileResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityProfileResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.QualityProfileResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListQualityProfileDefaultImplementation(IListQualityProfileApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListQualityProfile(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListQualityProfile(ref bool suppressDefaultLog, IListQualityProfileApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListQualityProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListQualityProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListQualityProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetQualityprofile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<IListQualityProfileApiResponse?> ListQualityProfileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileApiResponse?> GetQualityprofileOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListQualityProfileAsync(cancellationToken).ConfigureAwait(false);
+                return await GetQualityprofileAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1151,8 +676,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<IListQualityProfileApiResponse> ListQualityProfileAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileApiResponse> GetQualityprofileAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1191,7 +716,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListQualityProfileApiResponse apiResponseLocalVar;
+                        GetQualityprofileApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1202,9 +727,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListQualityProfileDefaultImplementation(apiResponseLocalVar);
+                        AfterGetQualityprofileDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListQualityProfile(apiResponseLocalVar);
+                        Events.ExecuteOnGetQualityprofile(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1216,16 +741,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListQualityProfileDefaultImplementation(e, "/api/v3/qualityprofile", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListQualityProfile(e);
+                OnErrorGetQualityprofileDefaultImplementation(e, "/api/v3/qualityprofile", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetQualityprofile(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListQualityProfileApiResponse"/>
+        /// The <see cref="GetQualityprofileApiResponse"/>
         /// </summary>
-        public partial class ListQualityProfileApiResponse : Whisparr3.Net.Client.ApiResponse, IListQualityProfileApiResponse
+        public partial class GetQualityprofileApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityprofileApiResponse
         {
             /// <summary>
             /// The logger
@@ -1233,7 +758,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QualityProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListQualityProfileApiResponse"/>
+            /// The <see cref="GetQualityprofileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1242,14 +767,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetQualityprofileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListQualityProfileApiResponse"/>
+            /// The <see cref="GetQualityprofileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1258,7 +783,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetQualityprofileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1327,33 +852,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateQualityProfile(ref string id, Option<QualityProfileResource> qualityProfileResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="qualityProfileResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateQualityProfile(string id, Option<QualityProfileResource> qualityProfileResource)
-        {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            if (qualityProfileResource.IsSet && qualityProfileResource.Value == null)
-                throw new ArgumentNullException(nameof(qualityProfileResource));
-        }
+        partial void FormatGetQualityprofileById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"></param>
-        private void AfterUpdateQualityProfileDefaultImplementation(IUpdateQualityProfileApiResponse apiResponseLocalVar, string id, Option<QualityProfileResource> qualityProfileResource)
+        private void AfterGetQualityprofileByIdDefaultImplementation(IGetQualityprofileByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateQualityProfile(ref suppressDefaultLog, apiResponseLocalVar, id, qualityProfileResource);
+            AfterGetQualityprofileById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1364,8 +873,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"></param>
-        partial void AfterUpdateQualityProfile(ref bool suppressDefaultLog, IUpdateQualityProfileApiResponse apiResponseLocalVar, string id, Option<QualityProfileResource> qualityProfileResource);
+        partial void AfterGetQualityprofileById(ref bool suppressDefaultLog, IGetQualityprofileByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1374,11 +882,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"></param>
-        private void OnErrorUpdateQualityProfileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<QualityProfileResource> qualityProfileResource)
+        private void OnErrorGetQualityprofileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateQualityProfile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, qualityProfileResource);
+            OnErrorGetQualityprofileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1391,21 +898,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"></param>
-        partial void OnErrorUpdateQualityProfile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<QualityProfileResource> qualityProfileResource);
+        partial void OnErrorGetQualityprofileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<IUpdateQualityProfileApiResponse?> UpdateQualityProfileOrDefaultAsync(string id, Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileByIdApiResponse?> GetQualityprofileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateQualityProfileAsync(id, qualityProfileResource, cancellationToken).ConfigureAwait(false);
+                return await GetQualityprofileByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1418,18 +923,15 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="qualityProfileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateQualityProfileApiResponse"/>&gt;</returns>
-        public async Task<IUpdateQualityProfileApiResponse> UpdateQualityProfileAsync(string id, Option<QualityProfileResource> qualityProfileResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileByIdApiResponse> GetQualityprofileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateQualityProfile(id, qualityProfileResource);
-
-                FormatUpdateQualityProfile(ref id, qualityProfileResource);
+                FormatGetQualityprofileById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1441,28 +943,12 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualityprofile/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (qualityProfileResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (qualityProfileResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityProfileResource.Value, _jsonSerializerOptions));
-                    }
-
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
                     tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
                     apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "text/plain",
@@ -1475,13 +961,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateQualityProfileApiResponse apiResponseLocalVar;
+                        GetQualityprofileByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1492,9 +978,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateQualityProfileDefaultImplementation(apiResponseLocalVar, id, qualityProfileResource);
+                        AfterGetQualityprofileByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnUpdateQualityProfile(apiResponseLocalVar);
+                        Events.ExecuteOnGetQualityprofileById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1506,16 +992,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateQualityProfileDefaultImplementation(e, "/api/v3/qualityprofile/{id}", uriBuilderLocalVar.Path, id, qualityProfileResource);
-                Events.ExecuteOnErrorUpdateQualityProfile(e);
+                OnErrorGetQualityprofileByIdDefaultImplementation(e, "/api/v3/qualityprofile/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetQualityprofileById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateQualityProfileApiResponse"/>
+        /// The <see cref="GetQualityprofileByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateQualityProfileApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateQualityProfileApiResponse
+        public partial class GetQualityprofileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityprofileByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1523,7 +1009,7 @@ namespace Whisparr3.Net.Api
             public ILogger<QualityProfileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateQualityProfileApiResponse"/>
+            /// The <see cref="GetQualityprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1532,14 +1018,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetQualityprofileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateQualityProfileApiResponse"/>
+            /// The <see cref="GetQualityprofileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1548,7 +1034,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateQualityProfileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetQualityprofileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1601,6 +1087,820 @@ namespace Whisparr3.Net.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatGetQualityprofileByIdInuse(ref int id);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        private void AfterGetQualityprofileByIdInuseDefaultImplementation(IGetQualityprofileByIdInuseApiResponse apiResponseLocalVar, int id)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetQualityprofileByIdInuse(ref suppressDefaultLog, apiResponseLocalVar, id);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        partial void AfterGetQualityprofileByIdInuse(ref bool suppressDefaultLog, IGetQualityprofileByIdInuseApiResponse apiResponseLocalVar, int id);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        private void OnErrorGetQualityprofileByIdInuseDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetQualityprofileByIdInuse(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        partial void OnErrorGetQualityprofileByIdInuse(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdInuseApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileByIdInuseApiResponse?> GetQualityprofileByIdInuseOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetQualityprofileByIdInuseAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetQualityprofileByIdInuseApiResponse"/>&gt;</returns>
+        public async Task<IGetQualityprofileByIdInuseApiResponse> GetQualityprofileByIdInuseAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatGetQualityprofileByIdInuse(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/qualityprofile/{id}/inuse"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualityprofile/{id}/inuse");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetQualityprofileByIdInuseApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualityprofile/{id}/inuse", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetQualityprofileByIdInuseDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnGetQualityprofileByIdInuse(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetQualityprofileByIdInuseDefaultImplementation(e, "/api/v3/qualityprofile/{id}/inuse", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetQualityprofileByIdInuse(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetQualityprofileByIdInuseApiResponse"/>
+        /// </summary>
+        public partial class GetQualityprofileByIdInuseApiResponse : Whisparr3.Net.Client.ApiResponse, IGetQualityprofileByIdInuseApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QualityProfileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetQualityprofileByIdInuseApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetQualityprofileByIdInuseApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetQualityprofileByIdInuseApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetQualityprofileByIdInuseApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.QualityProfileInUseResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.QualityProfileInUseResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.QualityProfileInUseResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityProfileInUseResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityProfileInUseResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.QualityProfileInUseResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostQualityprofile(QualityProfileResource qualityProfileResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="qualityProfileResource"></param>
+        /// <returns></returns>
+        private void ValidatePostQualityprofile(QualityProfileResource qualityProfileResource)
+        {
+            if (qualityProfileResource == null)
+                throw new ArgumentNullException(nameof(qualityProfileResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="qualityProfileResource"></param>
+        private void AfterPostQualityprofileDefaultImplementation(IPostQualityprofileApiResponse apiResponseLocalVar, QualityProfileResource qualityProfileResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostQualityprofile(ref suppressDefaultLog, apiResponseLocalVar, qualityProfileResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="qualityProfileResource"></param>
+        partial void AfterPostQualityprofile(ref bool suppressDefaultLog, IPostQualityprofileApiResponse apiResponseLocalVar, QualityProfileResource qualityProfileResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="qualityProfileResource"></param>
+        private void OnErrorPostQualityprofileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, QualityProfileResource qualityProfileResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostQualityprofile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, qualityProfileResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="qualityProfileResource"></param>
+        partial void OnErrorPostQualityprofile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, QualityProfileResource qualityProfileResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="qualityProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQualityprofileApiResponse"/>&gt;</returns>
+        public async Task<IPostQualityprofileApiResponse?> PostQualityprofileOrDefaultAsync(QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostQualityprofileAsync(qualityProfileResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="qualityProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostQualityprofileApiResponse"/>&gt;</returns>
+        public async Task<IPostQualityprofileApiResponse> PostQualityprofileAsync(QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostQualityprofile(qualityProfileResource);
+
+                FormatPostQualityprofile(qualityProfileResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/qualityprofile"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualityprofile");
+
+                    httpRequestMessageLocalVar.Content = (qualityProfileResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityProfileResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostQualityprofileApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualityprofile", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostQualityprofileDefaultImplementation(apiResponseLocalVar, qualityProfileResource);
+
+                        Events.ExecuteOnPostQualityprofile(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostQualityprofileDefaultImplementation(e, "/api/v3/qualityprofile", uriBuilderLocalVar.Path, qualityProfileResource);
+                Events.ExecuteOnErrorPostQualityprofile(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostQualityprofileApiResponse"/>
+        /// </summary>
+        public partial class PostQualityprofileApiResponse : Whisparr3.Net.Client.ApiResponse, IPostQualityprofileApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QualityProfileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostQualityprofileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostQualityprofileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostQualityprofileApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostQualityprofileApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.QualityProfileResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.QualityProfileResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.QualityProfileResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityProfileResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityProfileResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.QualityProfileResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutQualityprofileById(ref string id, QualityProfileResource qualityProfileResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        /// <returns></returns>
+        private void ValidatePutQualityprofileById(string id, QualityProfileResource qualityProfileResource)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (qualityProfileResource == null)
+                throw new ArgumentNullException(nameof(qualityProfileResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        private void AfterPutQualityprofileByIdDefaultImplementation(IPutQualityprofileByIdApiResponse apiResponseLocalVar, string id, QualityProfileResource qualityProfileResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutQualityprofileById(ref suppressDefaultLog, apiResponseLocalVar, id, qualityProfileResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        partial void AfterPutQualityprofileById(ref bool suppressDefaultLog, IPutQualityprofileByIdApiResponse apiResponseLocalVar, string id, QualityProfileResource qualityProfileResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        private void OnErrorPutQualityprofileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, QualityProfileResource qualityProfileResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutQualityprofileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, qualityProfileResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        partial void OnErrorPutQualityprofileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, QualityProfileResource qualityProfileResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutQualityprofileByIdApiResponse?> PutQualityprofileByIdOrDefaultAsync(string id, QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutQualityprofileByIdAsync(id, qualityProfileResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="qualityProfileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutQualityprofileByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutQualityprofileByIdApiResponse> PutQualityprofileByIdAsync(string id, QualityProfileResource qualityProfileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutQualityprofileById(id, qualityProfileResource);
+
+                FormatPutQualityprofileById(ref id, qualityProfileResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/qualityprofile/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/qualityprofile/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (qualityProfileResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(qualityProfileResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutQualityprofileByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/qualityprofile/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutQualityprofileByIdDefaultImplementation(apiResponseLocalVar, id, qualityProfileResource);
+
+                        Events.ExecuteOnPutQualityprofileById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutQualityprofileByIdDefaultImplementation(e, "/api/v3/qualityprofile/{id}", uriBuilderLocalVar.Path, id, qualityProfileResource);
+                Events.ExecuteOnErrorPutQualityprofileById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutQualityprofileByIdApiResponse"/>
+        /// </summary>
+        public partial class PutQualityprofileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutQualityprofileByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<QualityProfileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutQualityprofileByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutQualityprofileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutQualityprofileByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutQualityprofileByIdApiResponse(ILogger<QualityProfileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.QualityProfileResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.QualityProfileResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.QualityProfileResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.QualityProfileResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.QualityProfileResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.QualityProfileResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListIndexerFlagApiResponse"/>&gt;</returns>
-        Task<IListIndexerFlagApiResponse> ListIndexerFlagAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerflagApiResponse"/>&gt;</returns>
+        Task<IGetIndexerflagApiResponse> GetIndexerflagAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,14 +56,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListIndexerFlagApiResponse"/>?&gt;</returns>
-        Task<IListIndexerFlagApiResponse?> ListIndexerFlagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerflagApiResponse"/>?&gt;</returns>
+        Task<IGetIndexerflagApiResponse?> GetIndexerflagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListIndexerFlagApiResponse"/>
+    /// The <see cref="IGetIndexerflagApiResponse"/>
     /// </summary>
-    public interface IListIndexerFlagApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<IndexerFlagResource>?>
+    public interface IGetIndexerflagApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<IndexerFlagResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -80,21 +80,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListIndexerFlag;
+        public event EventHandler<ApiResponseEventArgs>? OnGetIndexerflag;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListIndexerFlag;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetIndexerflag;
 
-        internal void ExecuteOnListIndexerFlag(IndexerFlagApi.ListIndexerFlagApiResponse apiResponse)
+        internal void ExecuteOnGetIndexerflag(IndexerFlagApi.GetIndexerflagApiResponse apiResponse)
         {
-            OnListIndexerFlag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetIndexerflag?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListIndexerFlag(Exception exception)
+        internal void ExecuteOnErrorGetIndexerflag(Exception exception)
         {
-            OnErrorListIndexerFlag?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetIndexerflag?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,10 +143,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListIndexerFlagDefaultImplementation(IListIndexerFlagApiResponse apiResponseLocalVar)
+        private void AfterGetIndexerflagDefaultImplementation(IGetIndexerflagApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListIndexerFlag(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetIndexerflag(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -156,7 +156,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListIndexerFlag(ref bool suppressDefaultLog, IListIndexerFlagApiResponse apiResponseLocalVar);
+        partial void AfterGetIndexerflag(ref bool suppressDefaultLog, IGetIndexerflagApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -164,10 +164,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListIndexerFlagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetIndexerflagDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListIndexerFlag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetIndexerflag(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -179,18 +179,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListIndexerFlag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetIndexerflag(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListIndexerFlagApiResponse"/>&gt;</returns>
-        public async Task<IListIndexerFlagApiResponse?> ListIndexerFlagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerflagApiResponse"/>&gt;</returns>
+        public async Task<IGetIndexerflagApiResponse?> GetIndexerflagOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListIndexerFlagAsync(cancellationToken).ConfigureAwait(false);
+                return await GetIndexerflagAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -203,8 +203,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListIndexerFlagApiResponse"/>&gt;</returns>
-        public async Task<IListIndexerFlagApiResponse> ListIndexerFlagAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetIndexerflagApiResponse"/>&gt;</returns>
+        public async Task<IGetIndexerflagApiResponse> GetIndexerflagAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -243,7 +243,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListIndexerFlagApiResponse apiResponseLocalVar;
+                        GetIndexerflagApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -254,9 +254,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListIndexerFlagDefaultImplementation(apiResponseLocalVar);
+                        AfterGetIndexerflagDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListIndexerFlag(apiResponseLocalVar);
+                        Events.ExecuteOnGetIndexerflag(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -268,16 +268,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListIndexerFlagDefaultImplementation(e, "/api/v3/indexerflag", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListIndexerFlag(e);
+                OnErrorGetIndexerflagDefaultImplementation(e, "/api/v3/indexerflag", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetIndexerflag(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListIndexerFlagApiResponse"/>
+        /// The <see cref="GetIndexerflagApiResponse"/>
         /// </summary>
-        public partial class ListIndexerFlagApiResponse : Whisparr3.Net.Client.ApiResponse, IListIndexerFlagApiResponse
+        public partial class GetIndexerflagApiResponse : Whisparr3.Net.Client.ApiResponse, IGetIndexerflagApiResponse
         {
             /// <summary>
             /// The logger
@@ -285,7 +285,7 @@ namespace Whisparr3.Net.Api
             public ILogger<IndexerFlagApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListIndexerFlagApiResponse"/>
+            /// The <see cref="GetIndexerflagApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -294,14 +294,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListIndexerFlagApiResponse(ILogger<IndexerFlagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetIndexerflagApiResponse(ILogger<IndexerFlagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListIndexerFlagApiResponse"/>
+            /// The <see cref="GetIndexerflagApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -310,7 +310,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListIndexerFlagApiResponse(ILogger<IndexerFlagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetIndexerflagApiResponse(ILogger<IndexerFlagApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

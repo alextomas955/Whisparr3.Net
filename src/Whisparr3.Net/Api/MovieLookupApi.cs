@@ -39,6 +39,31 @@ namespace Whisparr3.Net.Api
         MovieLookupApiEvents Events { get; }
 
         /// <summary>
+        /// Search for movies by free-text term. Returns candidates suitable for adding.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
+        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupApiResponse"/>&gt;</returns>
+        Task<IGetMovieLookupApiResponse> GetMovieLookupAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Search for movies by free-text term. Returns candidates suitable for adding.
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
+        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupApiResponse"/>?&gt;</returns>
+        Task<IGetMovieLookupApiResponse?> GetMovieLookupOrDefaultAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Lookup movie metadata by IMDB id.
         /// </summary>
         /// <remarks>
@@ -106,31 +131,18 @@ namespace Whisparr3.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupTpdbApiResponse"/>?&gt;</returns>
         Task<IGetMovieLookupTpdbApiResponse?> GetMovieLookupTpdbOrDefaultAsync(Option<string> tpdbId = default, System.Threading.CancellationToken cancellationToken = default);
+    }
 
+    /// <summary>
+    /// The <see cref="IGetMovieLookupApiResponse"/>
+    /// </summary>
+    public interface IGetMovieLookupApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
+    {
         /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding.
+        /// Returns true if the response is 200 Ok
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>&gt;</returns>
-        Task<IListMovieLookupApiResponse> ListMovieLookupAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>?&gt;</returns>
-        Task<IListMovieLookupApiResponse?> ListMovieLookupOrDefaultAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns></returns>
+        bool IsOk { get; }
     }
 
     /// <summary>
@@ -170,22 +182,30 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListMovieLookupApiResponse"/>
-    /// </summary>
-    public interface IListMovieLookupApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
     public class MovieLookupApiEvents
     {
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetMovieLookup;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMovieLookup;
+
+        internal void ExecuteOnGetMovieLookup(MovieLookupApi.GetMovieLookupApiResponse apiResponse)
+        {
+            OnGetMovieLookup?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetMovieLookup(Exception exception)
+        {
+            OnErrorGetMovieLookup?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -245,26 +265,6 @@ namespace Whisparr3.Net.Api
         {
             OnErrorGetMovieLookupTpdb?.Invoke(this, new ExceptionEventArgs(exception));
         }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListMovieLookup;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListMovieLookup;
-
-        internal void ExecuteOnListMovieLookup(MovieLookupApi.ListMovieLookupApiResponse apiResponse)
-        {
-            OnListMovieLookup?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorListMovieLookup(Exception exception)
-        {
-            OnErrorListMovieLookup?.Invoke(this, new ExceptionEventArgs(exception));
-        }
     }
 
     /// <summary>
@@ -306,6 +306,283 @@ namespace Whisparr3.Net.Api
             HttpClient = httpClient;
             Events = movieLookupApiEvents;
             ApiKeyProvider = apiKeyProvider;
+        }
+
+        partial void FormatGetMovieLookup(ref Option<string> term, ref Option<ItemType> itemType);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        private void ValidateGetMovieLookup(Option<string> term)
+        {
+            if (term.IsSet && term.Value == null)
+                throw new ArgumentNullException(nameof(term));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="term"></param>
+        /// <param name="itemType"></param>
+        private void AfterGetMovieLookupDefaultImplementation(IGetMovieLookupApiResponse apiResponseLocalVar, Option<string> term, Option<ItemType> itemType)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetMovieLookup(ref suppressDefaultLog, apiResponseLocalVar, term, itemType);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="term"></param>
+        /// <param name="itemType"></param>
+        partial void AfterGetMovieLookup(ref bool suppressDefaultLog, IGetMovieLookupApiResponse apiResponseLocalVar, Option<string> term, Option<ItemType> itemType);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="term"></param>
+        /// <param name="itemType"></param>
+        private void OnErrorGetMovieLookupDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> term, Option<ItemType> itemType)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetMovieLookup(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, term, itemType);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="term"></param>
+        /// <param name="itemType"></param>
+        partial void OnErrorGetMovieLookup(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> term, Option<ItemType> itemType);
+
+        /// <summary>
+        /// Search for movies by free-text term. Returns candidates suitable for adding. 
+        /// </summary>
+        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
+        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupApiResponse"/>&gt;</returns>
+        public async Task<IGetMovieLookupApiResponse?> GetMovieLookupOrDefaultAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetMovieLookupAsync(term, itemType, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Search for movies by free-text term. Returns candidates suitable for adding. 
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
+        /// <param name="itemType">Optional item type filter. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieLookupApiResponse"/>&gt;</returns>
+        public async Task<IGetMovieLookupApiResponse> GetMovieLookupAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidateGetMovieLookup(term);
+
+                FormatGetMovieLookup(ref term, ref itemType);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/movie/lookup"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/movie/lookup");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (term.IsSet)
+                        parseQueryStringLocalVar["term"] = ClientUtils.ParameterToString(term.Value);
+
+                    if (itemType.IsSet)
+                        parseQueryStringLocalVar["itemType"] = ClientUtils.ParameterToString(itemType.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetMovieLookupApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/movie/lookup", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetMovieLookupDefaultImplementation(apiResponseLocalVar, term, itemType);
+
+                        Events.ExecuteOnGetMovieLookup(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetMovieLookupDefaultImplementation(e, "/api/v3/movie/lookup", uriBuilderLocalVar.Path, term, itemType);
+                Events.ExecuteOnErrorGetMovieLookup(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetMovieLookupApiResponse"/>
+        /// </summary>
+        public partial class GetMovieLookupApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMovieLookupApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<MovieLookupApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetMovieLookupApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetMovieLookupApiResponse(ILogger<MovieLookupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetMovieLookupApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetMovieLookupApiResponse(ILogger<MovieLookupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<MovieResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<MovieResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<MovieResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<MovieResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<MovieResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<MovieResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
         partial void FormatGetMovieLookupImdb(ref Option<string> imdbId);
@@ -1074,283 +1351,6 @@ namespace Whisparr3.Net.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.MovieResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListMovieLookup(ref Option<string> term, ref Option<ItemType> itemType);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="term"></param>
-        /// <returns></returns>
-        private void ValidateListMovieLookup(Option<string> term)
-        {
-            if (term.IsSet && term.Value == null)
-                throw new ArgumentNullException(nameof(term));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="term"></param>
-        /// <param name="itemType"></param>
-        private void AfterListMovieLookupDefaultImplementation(IListMovieLookupApiResponse apiResponseLocalVar, Option<string> term, Option<ItemType> itemType)
-        {
-            bool suppressDefaultLog = false;
-            AfterListMovieLookup(ref suppressDefaultLog, apiResponseLocalVar, term, itemType);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="term"></param>
-        /// <param name="itemType"></param>
-        partial void AfterListMovieLookup(ref bool suppressDefaultLog, IListMovieLookupApiResponse apiResponseLocalVar, Option<string> term, Option<ItemType> itemType);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="term"></param>
-        /// <param name="itemType"></param>
-        private void OnErrorListMovieLookupDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> term, Option<ItemType> itemType)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListMovieLookup(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, term, itemType);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="term"></param>
-        /// <param name="itemType"></param>
-        partial void OnErrorListMovieLookup(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> term, Option<ItemType> itemType);
-
-        /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding. 
-        /// </summary>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>&gt;</returns>
-        public async Task<IListMovieLookupApiResponse?> ListMovieLookupOrDefaultAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListMovieLookupAsync(term, itemType, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Search for movies by free-text term. Returns candidates suitable for adding. 
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="term">Search term (title, partial title, etc.). (optional)</param>
-        /// <param name="itemType">Optional item type filter. (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieLookupApiResponse"/>&gt;</returns>
-        public async Task<IListMovieLookupApiResponse> ListMovieLookupAsync(Option<string> term = default, Option<ItemType> itemType = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateListMovieLookup(term);
-
-                FormatListMovieLookup(ref term, ref itemType);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/movie/lookup"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/movie/lookup");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (term.IsSet)
-                        parseQueryStringLocalVar["term"] = ClientUtils.ParameterToString(term.Value);
-
-                    if (itemType.IsSet)
-                        parseQueryStringLocalVar["itemType"] = ClientUtils.ParameterToString(itemType.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListMovieLookupApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/movie/lookup", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListMovieLookupDefaultImplementation(apiResponseLocalVar, term, itemType);
-
-                        Events.ExecuteOnListMovieLookup(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListMovieLookupDefaultImplementation(e, "/api/v3/movie/lookup", uriBuilderLocalVar.Path, term, itemType);
-                Events.ExecuteOnErrorListMovieLookup(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListMovieLookupApiResponse"/>
-        /// </summary>
-        public partial class ListMovieLookupApiResponse : Whisparr3.Net.Client.ApiResponse, IListMovieLookupApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MovieLookupApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListMovieLookupApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListMovieLookupApiResponse(ILogger<MovieLookupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListMovieLookupApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListMovieLookupApiResponse(ILogger<MovieLookupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<MovieResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<MovieResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<MovieResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<MovieResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<MovieResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<MovieResource>? result)
             {
                 result = null;
 

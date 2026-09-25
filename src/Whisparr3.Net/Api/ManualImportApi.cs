@@ -45,10 +45,13 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="manualImportReprocessResource"> (optional)</param>
+        /// <param name="folder"> (optional)</param>
+        /// <param name="downloadId"> (optional)</param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="filterExistingFiles"> (optional, default to true)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateManualImportApiResponse"/>&gt;</returns>
-        Task<ICreateManualImportApiResponse> CreateManualImportAsync(Option<List<ManualImportReprocessResource>> manualImportReprocessResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetManualimportApiResponse"/>&gt;</returns>
+        Task<IGetManualimportApiResponse> GetManualimportAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +59,13 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="manualImportReprocessResource"> (optional)</param>
+        /// <param name="folder"> (optional)</param>
+        /// <param name="downloadId"> (optional)</param>
+        /// <param name="movieId"> (optional)</param>
+        /// <param name="filterExistingFiles"> (optional, default to true)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateManualImportApiResponse"/>?&gt;</returns>
-        Task<ICreateManualImportApiResponse?> CreateManualImportOrDefaultAsync(Option<List<ManualImportReprocessResource>> manualImportReprocessResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetManualimportApiResponse"/>?&gt;</returns>
+        Task<IGetManualimportApiResponse?> GetManualimportOrDefaultAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,13 +74,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="folder"> (optional)</param>
-        /// <param name="downloadId"> (optional)</param>
-        /// <param name="movieId"> (optional)</param>
-        /// <param name="filterExistingFiles"> (optional, default to true)</param>
+        /// <param name="manualImportReprocessResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListManualImportApiResponse"/>&gt;</returns>
-        Task<IListManualImportApiResponse> ListManualImportAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostManualimportApiResponse"/>&gt;</returns>
+        Task<IPostManualimportApiResponse> PostManualimportAsync(List<ManualImportReprocessResource> manualImportReprocessResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -82,19 +85,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="folder"> (optional)</param>
-        /// <param name="downloadId"> (optional)</param>
-        /// <param name="movieId"> (optional)</param>
-        /// <param name="filterExistingFiles"> (optional, default to true)</param>
+        /// <param name="manualImportReprocessResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListManualImportApiResponse"/>?&gt;</returns>
-        Task<IListManualImportApiResponse?> ListManualImportOrDefaultAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostManualimportApiResponse"/>?&gt;</returns>
+        Task<IPostManualimportApiResponse?> PostManualimportOrDefaultAsync(List<ManualImportReprocessResource> manualImportReprocessResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateManualImportApiResponse"/>
+    /// The <see cref="IGetManualimportApiResponse"/>
     /// </summary>
-    public interface ICreateManualImportApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetManualimportApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ManualImportResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -104,9 +104,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListManualImportApiResponse"/>
+    /// The <see cref="IPostManualimportApiResponse"/>
     /// </summary>
-    public interface IListManualImportApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ManualImportResource>?>
+    public interface IPostManualimportApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ManualImportReprocessResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -123,41 +123,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateManualImport;
+        public event EventHandler<ApiResponseEventArgs>? OnGetManualimport;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateManualImport;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetManualimport;
 
-        internal void ExecuteOnCreateManualImport(ManualImportApi.CreateManualImportApiResponse apiResponse)
+        internal void ExecuteOnGetManualimport(ManualImportApi.GetManualimportApiResponse apiResponse)
         {
-            OnCreateManualImport?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetManualimport?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateManualImport(Exception exception)
+        internal void ExecuteOnErrorGetManualimport(Exception exception)
         {
-            OnErrorCreateManualImport?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetManualimport?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListManualImport;
+        public event EventHandler<ApiResponseEventArgs>? OnPostManualimport;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListManualImport;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostManualimport;
 
-        internal void ExecuteOnListManualImport(ManualImportApi.ListManualImportApiResponse apiResponse)
+        internal void ExecuteOnPostManualimport(ManualImportApi.PostManualimportApiResponse apiResponse)
         {
-            OnListManualImport?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostManualimport?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListManualImport(Exception exception)
+        internal void ExecuteOnErrorPostManualimport(Exception exception)
         {
-            OnErrorListManualImport?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostManualimport?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -202,231 +202,7 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateManualImport(Option<List<ManualImportReprocessResource>> manualImportReprocessResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="manualImportReprocessResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateManualImport(Option<List<ManualImportReprocessResource>> manualImportReprocessResource)
-        {
-            if (manualImportReprocessResource.IsSet && manualImportReprocessResource.Value == null)
-                throw new ArgumentNullException(nameof(manualImportReprocessResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="manualImportReprocessResource"></param>
-        private void AfterCreateManualImportDefaultImplementation(ICreateManualImportApiResponse apiResponseLocalVar, Option<List<ManualImportReprocessResource>> manualImportReprocessResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateManualImport(ref suppressDefaultLog, apiResponseLocalVar, manualImportReprocessResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="manualImportReprocessResource"></param>
-        partial void AfterCreateManualImport(ref bool suppressDefaultLog, ICreateManualImportApiResponse apiResponseLocalVar, Option<List<ManualImportReprocessResource>> manualImportReprocessResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="manualImportReprocessResource"></param>
-        private void OnErrorCreateManualImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<ManualImportReprocessResource>> manualImportReprocessResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateManualImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, manualImportReprocessResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="manualImportReprocessResource"></param>
-        partial void OnErrorCreateManualImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<ManualImportReprocessResource>> manualImportReprocessResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="manualImportReprocessResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateManualImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateManualImportApiResponse?> CreateManualImportOrDefaultAsync(Option<List<ManualImportReprocessResource>> manualImportReprocessResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateManualImportAsync(manualImportReprocessResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="manualImportReprocessResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateManualImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateManualImportApiResponse> CreateManualImportAsync(Option<List<ManualImportReprocessResource>> manualImportReprocessResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateManualImport(manualImportReprocessResource);
-
-                FormatCreateManualImport(manualImportReprocessResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/manualimport"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/manualimport");
-
-                    if (manualImportReprocessResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (manualImportReprocessResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(manualImportReprocessResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateManualImportApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/manualimport", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateManualImportDefaultImplementation(apiResponseLocalVar, manualImportReprocessResource);
-
-                        Events.ExecuteOnCreateManualImport(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateManualImportDefaultImplementation(e, "/api/v3/manualimport", uriBuilderLocalVar.Path, manualImportReprocessResource);
-                Events.ExecuteOnErrorCreateManualImport(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateManualImportApiResponse"/>
-        /// </summary>
-        public partial class CreateManualImportApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateManualImportApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ManualImportApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateManualImportApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateManualImportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateManualImportApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateManualImportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListManualImport(ref Option<string> folder, ref Option<string> downloadId, ref Option<int> movieId, ref Option<bool> filterExistingFiles);
+        partial void FormatGetManualimport(ref Option<string> folder, ref Option<string> downloadId, ref Option<int> movieId, ref Option<bool> filterExistingFiles);
 
         /// <summary>
         /// Validates the request parameters
@@ -434,7 +210,7 @@ namespace Whisparr3.Net.Api
         /// <param name="folder"></param>
         /// <param name="downloadId"></param>
         /// <returns></returns>
-        private void ValidateListManualImport(Option<string> folder, Option<string> downloadId)
+        private void ValidateGetManualimport(Option<string> folder, Option<string> downloadId)
         {
             if (folder.IsSet && folder.Value == null)
                 throw new ArgumentNullException(nameof(folder));
@@ -451,10 +227,10 @@ namespace Whisparr3.Net.Api
         /// <param name="downloadId"></param>
         /// <param name="movieId"></param>
         /// <param name="filterExistingFiles"></param>
-        private void AfterListManualImportDefaultImplementation(IListManualImportApiResponse apiResponseLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles)
+        private void AfterGetManualimportDefaultImplementation(IGetManualimportApiResponse apiResponseLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles)
         {
             bool suppressDefaultLog = false;
-            AfterListManualImport(ref suppressDefaultLog, apiResponseLocalVar, folder, downloadId, movieId, filterExistingFiles);
+            AfterGetManualimport(ref suppressDefaultLog, apiResponseLocalVar, folder, downloadId, movieId, filterExistingFiles);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -468,7 +244,7 @@ namespace Whisparr3.Net.Api
         /// <param name="downloadId"></param>
         /// <param name="movieId"></param>
         /// <param name="filterExistingFiles"></param>
-        partial void AfterListManualImport(ref bool suppressDefaultLog, IListManualImportApiResponse apiResponseLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles);
+        partial void AfterGetManualimport(ref bool suppressDefaultLog, IGetManualimportApiResponse apiResponseLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -480,10 +256,10 @@ namespace Whisparr3.Net.Api
         /// <param name="downloadId"></param>
         /// <param name="movieId"></param>
         /// <param name="filterExistingFiles"></param>
-        private void OnErrorListManualImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles)
+        private void OnErrorGetManualimportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListManualImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, folder, downloadId, movieId, filterExistingFiles);
+            OnErrorGetManualimport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, folder, downloadId, movieId, filterExistingFiles);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -499,7 +275,7 @@ namespace Whisparr3.Net.Api
         /// <param name="downloadId"></param>
         /// <param name="movieId"></param>
         /// <param name="filterExistingFiles"></param>
-        partial void OnErrorListManualImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles);
+        partial void OnErrorGetManualimport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> folder, Option<string> downloadId, Option<int> movieId, Option<bool> filterExistingFiles);
 
         /// <summary>
         ///  
@@ -509,12 +285,12 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="filterExistingFiles"> (optional, default to true)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListManualImportApiResponse"/>&gt;</returns>
-        public async Task<IListManualImportApiResponse?> ListManualImportOrDefaultAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetManualimportApiResponse"/>&gt;</returns>
+        public async Task<IGetManualimportApiResponse?> GetManualimportOrDefaultAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListManualImportAsync(folder, downloadId, movieId, filterExistingFiles, cancellationToken).ConfigureAwait(false);
+                return await GetManualimportAsync(folder, downloadId, movieId, filterExistingFiles, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -531,16 +307,16 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"> (optional)</param>
         /// <param name="filterExistingFiles"> (optional, default to true)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListManualImportApiResponse"/>&gt;</returns>
-        public async Task<IListManualImportApiResponse> ListManualImportAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetManualimportApiResponse"/>&gt;</returns>
+        public async Task<IGetManualimportApiResponse> GetManualimportAsync(Option<string> folder = default, Option<string> downloadId = default, Option<int> movieId = default, Option<bool> filterExistingFiles = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListManualImport(folder, downloadId);
+                ValidateGetManualimport(folder, downloadId);
 
-                FormatListManualImport(ref folder, ref downloadId, ref movieId, ref filterExistingFiles);
+                FormatGetManualimport(ref folder, ref downloadId, ref movieId, ref filterExistingFiles);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -589,7 +365,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListManualImportApiResponse apiResponseLocalVar;
+                        GetManualimportApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -600,9 +376,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListManualImportDefaultImplementation(apiResponseLocalVar, folder, downloadId, movieId, filterExistingFiles);
+                        AfterGetManualimportDefaultImplementation(apiResponseLocalVar, folder, downloadId, movieId, filterExistingFiles);
 
-                        Events.ExecuteOnListManualImport(apiResponseLocalVar);
+                        Events.ExecuteOnGetManualimport(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -614,16 +390,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListManualImportDefaultImplementation(e, "/api/v3/manualimport", uriBuilderLocalVar.Path, folder, downloadId, movieId, filterExistingFiles);
-                Events.ExecuteOnErrorListManualImport(e);
+                OnErrorGetManualimportDefaultImplementation(e, "/api/v3/manualimport", uriBuilderLocalVar.Path, folder, downloadId, movieId, filterExistingFiles);
+                Events.ExecuteOnErrorGetManualimport(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListManualImportApiResponse"/>
+        /// The <see cref="GetManualimportApiResponse"/>
         /// </summary>
-        public partial class ListManualImportApiResponse : Whisparr3.Net.Client.ApiResponse, IListManualImportApiResponse
+        public partial class GetManualimportApiResponse : Whisparr3.Net.Client.ApiResponse, IGetManualimportApiResponse
         {
             /// <summary>
             /// The logger
@@ -631,7 +407,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ManualImportApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListManualImportApiResponse"/>
+            /// The <see cref="GetManualimportApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -640,14 +416,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListManualImportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetManualimportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListManualImportApiResponse"/>
+            /// The <see cref="GetManualimportApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -656,7 +432,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListManualImportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetManualimportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -700,6 +476,282 @@ namespace Whisparr3.Net.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk([NotNullWhen(true)]out List<ManualImportResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostManualimport(List<ManualImportReprocessResource> manualImportReprocessResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="manualImportReprocessResource"></param>
+        /// <returns></returns>
+        private void ValidatePostManualimport(List<ManualImportReprocessResource> manualImportReprocessResource)
+        {
+            if (manualImportReprocessResource == null)
+                throw new ArgumentNullException(nameof(manualImportReprocessResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="manualImportReprocessResource"></param>
+        private void AfterPostManualimportDefaultImplementation(IPostManualimportApiResponse apiResponseLocalVar, List<ManualImportReprocessResource> manualImportReprocessResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostManualimport(ref suppressDefaultLog, apiResponseLocalVar, manualImportReprocessResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="manualImportReprocessResource"></param>
+        partial void AfterPostManualimport(ref bool suppressDefaultLog, IPostManualimportApiResponse apiResponseLocalVar, List<ManualImportReprocessResource> manualImportReprocessResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="manualImportReprocessResource"></param>
+        private void OnErrorPostManualimportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<ManualImportReprocessResource> manualImportReprocessResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostManualimport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, manualImportReprocessResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="manualImportReprocessResource"></param>
+        partial void OnErrorPostManualimport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<ManualImportReprocessResource> manualImportReprocessResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="manualImportReprocessResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostManualimportApiResponse"/>&gt;</returns>
+        public async Task<IPostManualimportApiResponse?> PostManualimportOrDefaultAsync(List<ManualImportReprocessResource> manualImportReprocessResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostManualimportAsync(manualImportReprocessResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="manualImportReprocessResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostManualimportApiResponse"/>&gt;</returns>
+        public async Task<IPostManualimportApiResponse> PostManualimportAsync(List<ManualImportReprocessResource> manualImportReprocessResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostManualimport(manualImportReprocessResource);
+
+                FormatPostManualimport(manualImportReprocessResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/manualimport"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/manualimport");
+
+                    httpRequestMessageLocalVar.Content = (manualImportReprocessResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(manualImportReprocessResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostManualimportApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/manualimport", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostManualimportDefaultImplementation(apiResponseLocalVar, manualImportReprocessResource);
+
+                        Events.ExecuteOnPostManualimport(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostManualimportDefaultImplementation(e, "/api/v3/manualimport", uriBuilderLocalVar.Path, manualImportReprocessResource);
+                Events.ExecuteOnErrorPostManualimport(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostManualimportApiResponse"/>
+        /// </summary>
+        public partial class PostManualimportApiResponse : Whisparr3.Net.Client.ApiResponse, IPostManualimportApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ManualImportApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostManualimportApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostManualimportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostManualimportApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostManualimportApiResponse(ILogger<ManualImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ManualImportReprocessResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ManualImportReprocessResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ManualImportReprocessResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ManualImportReprocessResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ManualImportReprocessResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ManualImportReprocessResource>? result)
             {
                 result = null;
 

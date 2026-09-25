@@ -45,29 +45,6 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateHistoryFailedByIdApiResponse"/>&gt;</returns>
-        Task<ICreateHistoryFailedByIdApiResponse> CreateHistoryFailedByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateHistoryFailedByIdApiResponse"/>?&gt;</returns>
-        Task<ICreateHistoryFailedByIdApiResponse?> CreateHistoryFailedByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="page"> (optional, default to 1)</param>
         /// <param name="pageSize"> (optional, default to 10)</param>
         /// <param name="sortKey"> (optional)</param>
@@ -113,8 +90,8 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistoryMovieApiResponse"/>&gt;</returns>
-        Task<IListHistoryMovieApiResponse> ListHistoryMovieAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistoryMovieApiResponse"/>&gt;</returns>
+        Task<IGetHistoryMovieApiResponse> GetHistoryMovieAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -126,8 +103,8 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistoryMovieApiResponse"/>?&gt;</returns>
-        Task<IListHistoryMovieApiResponse?> ListHistoryMovieOrDefaultAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistoryMovieApiResponse"/>?&gt;</returns>
+        Task<IGetHistoryMovieApiResponse?> GetHistoryMovieOrDefaultAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -140,8 +117,8 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistorySinceApiResponse"/>&gt;</returns>
-        Task<IListHistorySinceApiResponse> ListHistorySinceAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistorySinceApiResponse"/>&gt;</returns>
+        Task<IGetHistorySinceApiResponse> GetHistorySinceAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -153,20 +130,31 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistorySinceApiResponse"/>?&gt;</returns>
-        Task<IListHistorySinceApiResponse?> ListHistorySinceOrDefaultAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
-    }
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistorySinceApiResponse"/>?&gt;</returns>
+        Task<IGetHistorySinceApiResponse?> GetHistorySinceOrDefaultAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// The <see cref="ICreateHistoryFailedByIdApiResponse"/>
-    /// </summary>
-    public interface ICreateHistoryFailedByIdApiResponse : Whisparr3.Net.Client.IApiResponse
-    {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// 
         /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostHistoryFailedByIdApiResponse"/>&gt;</returns>
+        Task<IPostHistoryFailedByIdApiResponse> PostHistoryFailedByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostHistoryFailedByIdApiResponse"/>?&gt;</returns>
+        Task<IPostHistoryFailedByIdApiResponse?> PostHistoryFailedByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -182,9 +170,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListHistoryMovieApiResponse"/>
+    /// The <see cref="IGetHistoryMovieApiResponse"/>
     /// </summary>
-    public interface IListHistoryMovieApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<HistoryResource>?>
+    public interface IGetHistoryMovieApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<HistoryResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -194,9 +182,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListHistorySinceApiResponse"/>
+    /// The <see cref="IGetHistorySinceApiResponse"/>
     /// </summary>
-    public interface IListHistorySinceApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<HistoryResource>?>
+    public interface IGetHistorySinceApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<HistoryResource>?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostHistoryFailedByIdApiResponse"/>
+    /// </summary>
+    public interface IPostHistoryFailedByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -210,26 +210,6 @@ namespace Whisparr3.Net.Api
     /// </summary>
     public class HistoryApiEvents
     {
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateHistoryFailedById;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateHistoryFailedById;
-
-        internal void ExecuteOnCreateHistoryFailedById(HistoryApi.CreateHistoryFailedByIdApiResponse apiResponse)
-        {
-            OnCreateHistoryFailedById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorCreateHistoryFailedById(Exception exception)
-        {
-            OnErrorCreateHistoryFailedById?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -253,41 +233,61 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListHistoryMovie;
+        public event EventHandler<ApiResponseEventArgs>? OnGetHistoryMovie;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListHistoryMovie;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetHistoryMovie;
 
-        internal void ExecuteOnListHistoryMovie(HistoryApi.ListHistoryMovieApiResponse apiResponse)
+        internal void ExecuteOnGetHistoryMovie(HistoryApi.GetHistoryMovieApiResponse apiResponse)
         {
-            OnListHistoryMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetHistoryMovie?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListHistoryMovie(Exception exception)
+        internal void ExecuteOnErrorGetHistoryMovie(Exception exception)
         {
-            OnErrorListHistoryMovie?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetHistoryMovie?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListHistorySince;
+        public event EventHandler<ApiResponseEventArgs>? OnGetHistorySince;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListHistorySince;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetHistorySince;
 
-        internal void ExecuteOnListHistorySince(HistoryApi.ListHistorySinceApiResponse apiResponse)
+        internal void ExecuteOnGetHistorySince(HistoryApi.GetHistorySinceApiResponse apiResponse)
         {
-            OnListHistorySince?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetHistorySince?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListHistorySince(Exception exception)
+        internal void ExecuteOnErrorGetHistorySince(Exception exception)
         {
-            OnErrorListHistorySince?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetHistorySince?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPostHistoryFailedById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostHistoryFailedById;
+
+        internal void ExecuteOnPostHistoryFailedById(HistoryApi.PostHistoryFailedByIdApiResponse apiResponse)
+        {
+            OnPostHistoryFailedById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPostHistoryFailedById(Exception exception)
+        {
+            OnErrorPostHistoryFailedById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -330,202 +330,6 @@ namespace Whisparr3.Net.Api
             HttpClient = httpClient;
             Events = historyApiEvents;
             ApiKeyProvider = apiKeyProvider;
-        }
-
-        partial void FormatCreateHistoryFailedById(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterCreateHistoryFailedByIdDefaultImplementation(ICreateHistoryFailedByIdApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateHistoryFailedById(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterCreateHistoryFailedById(ref bool suppressDefaultLog, ICreateHistoryFailedByIdApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorCreateHistoryFailedByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateHistoryFailedById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorCreateHistoryFailedById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateHistoryFailedByIdApiResponse"/>&gt;</returns>
-        public async Task<ICreateHistoryFailedByIdApiResponse?> CreateHistoryFailedByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateHistoryFailedByIdAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateHistoryFailedByIdApiResponse"/>&gt;</returns>
-        public async Task<ICreateHistoryFailedByIdApiResponse> CreateHistoryFailedByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatCreateHistoryFailedById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/history/failed/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/history/failed/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateHistoryFailedByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/history/failed/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateHistoryFailedByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnCreateHistoryFailedById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateHistoryFailedByIdDefaultImplementation(e, "/api/v3/history/failed/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorCreateHistoryFailedById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateHistoryFailedByIdApiResponse"/>
-        /// </summary>
-        public partial class CreateHistoryFailedByIdApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateHistoryFailedByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<HistoryApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateHistoryFailedByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateHistoryFailedByIdApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateHistoryFailedByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateHistoryFailedByIdApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
         partial void FormatGetHistory(ref Option<int> page, ref Option<int> pageSize, ref Option<string> sortKey, ref Option<SortDirection> sortDirection, ref Option<bool> includeMovie, Option<List<int>> eventType, ref Option<string> downloadId, Option<List<int>> movieIds, Option<List<int>> languages, Option<List<int>> quality);
@@ -897,7 +701,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListHistoryMovie(ref Option<int> movieId, ref Option<MovieHistoryEventType> eventType, ref Option<bool> includeMovie);
+        partial void FormatGetHistoryMovie(ref Option<int> movieId, ref Option<MovieHistoryEventType> eventType, ref Option<bool> includeMovie);
 
         /// <summary>
         /// Processes the server response
@@ -906,10 +710,10 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        private void AfterListHistoryMovieDefaultImplementation(IListHistoryMovieApiResponse apiResponseLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
+        private void AfterGetHistoryMovieDefaultImplementation(IGetHistoryMovieApiResponse apiResponseLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
         {
             bool suppressDefaultLog = false;
-            AfterListHistoryMovie(ref suppressDefaultLog, apiResponseLocalVar, movieId, eventType, includeMovie);
+            AfterGetHistoryMovie(ref suppressDefaultLog, apiResponseLocalVar, movieId, eventType, includeMovie);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -922,7 +726,7 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        partial void AfterListHistoryMovie(ref bool suppressDefaultLog, IListHistoryMovieApiResponse apiResponseLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
+        partial void AfterGetHistoryMovie(ref bool suppressDefaultLog, IGetHistoryMovieApiResponse apiResponseLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -933,10 +737,10 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        private void OnErrorListHistoryMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
+        private void OnErrorGetHistoryMovieDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListHistoryMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, eventType, includeMovie);
+            OnErrorGetHistoryMovie(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, eventType, includeMovie);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -951,7 +755,7 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        partial void OnErrorListHistoryMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
+        partial void OnErrorGetHistoryMovie(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
 
         /// <summary>
         ///  
@@ -960,12 +764,12 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistoryMovieApiResponse"/>&gt;</returns>
-        public async Task<IListHistoryMovieApiResponse?> ListHistoryMovieOrDefaultAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistoryMovieApiResponse"/>&gt;</returns>
+        public async Task<IGetHistoryMovieApiResponse?> GetHistoryMovieOrDefaultAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListHistoryMovieAsync(movieId, eventType, includeMovie, cancellationToken).ConfigureAwait(false);
+                return await GetHistoryMovieAsync(movieId, eventType, includeMovie, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -981,14 +785,14 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistoryMovieApiResponse"/>&gt;</returns>
-        public async Task<IListHistoryMovieApiResponse> ListHistoryMovieAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistoryMovieApiResponse"/>&gt;</returns>
+        public async Task<IGetHistoryMovieApiResponse> GetHistoryMovieAsync(Option<int> movieId = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListHistoryMovie(ref movieId, ref eventType, ref includeMovie);
+                FormatGetHistoryMovie(ref movieId, ref eventType, ref includeMovie);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1034,7 +838,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListHistoryMovieApiResponse apiResponseLocalVar;
+                        GetHistoryMovieApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1045,9 +849,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListHistoryMovieDefaultImplementation(apiResponseLocalVar, movieId, eventType, includeMovie);
+                        AfterGetHistoryMovieDefaultImplementation(apiResponseLocalVar, movieId, eventType, includeMovie);
 
-                        Events.ExecuteOnListHistoryMovie(apiResponseLocalVar);
+                        Events.ExecuteOnGetHistoryMovie(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1059,16 +863,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListHistoryMovieDefaultImplementation(e, "/api/v3/history/movie", uriBuilderLocalVar.Path, movieId, eventType, includeMovie);
-                Events.ExecuteOnErrorListHistoryMovie(e);
+                OnErrorGetHistoryMovieDefaultImplementation(e, "/api/v3/history/movie", uriBuilderLocalVar.Path, movieId, eventType, includeMovie);
+                Events.ExecuteOnErrorGetHistoryMovie(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListHistoryMovieApiResponse"/>
+        /// The <see cref="GetHistoryMovieApiResponse"/>
         /// </summary>
-        public partial class ListHistoryMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IListHistoryMovieApiResponse
+        public partial class GetHistoryMovieApiResponse : Whisparr3.Net.Client.ApiResponse, IGetHistoryMovieApiResponse
         {
             /// <summary>
             /// The logger
@@ -1076,7 +880,7 @@ namespace Whisparr3.Net.Api
             public ILogger<HistoryApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListHistoryMovieApiResponse"/>
+            /// The <see cref="GetHistoryMovieApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1085,14 +889,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListHistoryMovieApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetHistoryMovieApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListHistoryMovieApiResponse"/>
+            /// The <see cref="GetHistoryMovieApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1101,7 +905,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListHistoryMovieApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetHistoryMovieApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1170,7 +974,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListHistorySince(ref Option<DateTime> date, ref Option<MovieHistoryEventType> eventType, ref Option<bool> includeMovie);
+        partial void FormatGetHistorySince(ref Option<DateTime> date, ref Option<MovieHistoryEventType> eventType, ref Option<bool> includeMovie);
 
         /// <summary>
         /// Processes the server response
@@ -1179,10 +983,10 @@ namespace Whisparr3.Net.Api
         /// <param name="date"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        private void AfterListHistorySinceDefaultImplementation(IListHistorySinceApiResponse apiResponseLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
+        private void AfterGetHistorySinceDefaultImplementation(IGetHistorySinceApiResponse apiResponseLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
         {
             bool suppressDefaultLog = false;
-            AfterListHistorySince(ref suppressDefaultLog, apiResponseLocalVar, date, eventType, includeMovie);
+            AfterGetHistorySince(ref suppressDefaultLog, apiResponseLocalVar, date, eventType, includeMovie);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1195,7 +999,7 @@ namespace Whisparr3.Net.Api
         /// <param name="date"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        partial void AfterListHistorySince(ref bool suppressDefaultLog, IListHistorySinceApiResponse apiResponseLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
+        partial void AfterGetHistorySince(ref bool suppressDefaultLog, IGetHistorySinceApiResponse apiResponseLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1206,10 +1010,10 @@ namespace Whisparr3.Net.Api
         /// <param name="date"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        private void OnErrorListHistorySinceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
+        private void OnErrorGetHistorySinceDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListHistorySince(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, date, eventType, includeMovie);
+            OnErrorGetHistorySince(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, date, eventType, includeMovie);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1224,7 +1028,7 @@ namespace Whisparr3.Net.Api
         /// <param name="date"></param>
         /// <param name="eventType"></param>
         /// <param name="includeMovie"></param>
-        partial void OnErrorListHistorySince(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
+        partial void OnErrorGetHistorySince(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<DateTime> date, Option<MovieHistoryEventType> eventType, Option<bool> includeMovie);
 
         /// <summary>
         ///  
@@ -1233,12 +1037,12 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistorySinceApiResponse"/>&gt;</returns>
-        public async Task<IListHistorySinceApiResponse?> ListHistorySinceOrDefaultAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistorySinceApiResponse"/>&gt;</returns>
+        public async Task<IGetHistorySinceApiResponse?> GetHistorySinceOrDefaultAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListHistorySinceAsync(date, eventType, includeMovie, cancellationToken).ConfigureAwait(false);
+                return await GetHistorySinceAsync(date, eventType, includeMovie, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1254,14 +1058,14 @@ namespace Whisparr3.Net.Api
         /// <param name="eventType"> (optional)</param>
         /// <param name="includeMovie"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListHistorySinceApiResponse"/>&gt;</returns>
-        public async Task<IListHistorySinceApiResponse> ListHistorySinceAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetHistorySinceApiResponse"/>&gt;</returns>
+        public async Task<IGetHistorySinceApiResponse> GetHistorySinceAsync(Option<DateTime> date = default, Option<MovieHistoryEventType> eventType = default, Option<bool> includeMovie = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListHistorySince(ref date, ref eventType, ref includeMovie);
+                FormatGetHistorySince(ref date, ref eventType, ref includeMovie);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1307,7 +1111,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListHistorySinceApiResponse apiResponseLocalVar;
+                        GetHistorySinceApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1318,9 +1122,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListHistorySinceDefaultImplementation(apiResponseLocalVar, date, eventType, includeMovie);
+                        AfterGetHistorySinceDefaultImplementation(apiResponseLocalVar, date, eventType, includeMovie);
 
-                        Events.ExecuteOnListHistorySince(apiResponseLocalVar);
+                        Events.ExecuteOnGetHistorySince(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1332,16 +1136,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListHistorySinceDefaultImplementation(e, "/api/v3/history/since", uriBuilderLocalVar.Path, date, eventType, includeMovie);
-                Events.ExecuteOnErrorListHistorySince(e);
+                OnErrorGetHistorySinceDefaultImplementation(e, "/api/v3/history/since", uriBuilderLocalVar.Path, date, eventType, includeMovie);
+                Events.ExecuteOnErrorGetHistorySince(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListHistorySinceApiResponse"/>
+        /// The <see cref="GetHistorySinceApiResponse"/>
         /// </summary>
-        public partial class ListHistorySinceApiResponse : Whisparr3.Net.Client.ApiResponse, IListHistorySinceApiResponse
+        public partial class GetHistorySinceApiResponse : Whisparr3.Net.Client.ApiResponse, IGetHistorySinceApiResponse
         {
             /// <summary>
             /// The logger
@@ -1349,7 +1153,7 @@ namespace Whisparr3.Net.Api
             public ILogger<HistoryApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListHistorySinceApiResponse"/>
+            /// The <see cref="GetHistorySinceApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1358,14 +1162,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListHistorySinceApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetHistorySinceApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListHistorySinceApiResponse"/>
+            /// The <see cref="GetHistorySinceApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1374,7 +1178,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListHistorySinceApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetHistorySinceApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1431,6 +1235,202 @@ namespace Whisparr3.Net.Api
 
                 return result != null;
             }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostHistoryFailedById(ref int id);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        private void AfterPostHistoryFailedByIdDefaultImplementation(IPostHistoryFailedByIdApiResponse apiResponseLocalVar, int id)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostHistoryFailedById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        partial void AfterPostHistoryFailedById(ref bool suppressDefaultLog, IPostHistoryFailedByIdApiResponse apiResponseLocalVar, int id);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        private void OnErrorPostHistoryFailedByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostHistoryFailedById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        partial void OnErrorPostHistoryFailedById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostHistoryFailedByIdApiResponse"/>&gt;</returns>
+        public async Task<IPostHistoryFailedByIdApiResponse?> PostHistoryFailedByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostHistoryFailedByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostHistoryFailedByIdApiResponse"/>&gt;</returns>
+        public async Task<IPostHistoryFailedByIdApiResponse> PostHistoryFailedByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatPostHistoryFailedById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/history/failed/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/history/failed/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostHistoryFailedByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/history/failed/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostHistoryFailedByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnPostHistoryFailedById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostHistoryFailedByIdDefaultImplementation(e, "/api/v3/history/failed/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorPostHistoryFailedById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostHistoryFailedByIdApiResponse"/>
+        /// </summary>
+        public partial class PostHistoryFailedByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPostHistoryFailedByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<HistoryApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostHistoryFailedByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostHistoryFailedByIdApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostHistoryFailedByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostHistoryFailedByIdApiResponse(ILogger<HistoryApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

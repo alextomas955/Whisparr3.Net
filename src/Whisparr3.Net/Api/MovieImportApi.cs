@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>&gt;</returns>
-        Task<ICreateMovieImportApiResponse> CreateMovieImportAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMovieImportApiResponse"/>&gt;</returns>
+        Task<IPostMovieImportApiResponse> PostMovieImportAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library.
@@ -56,16 +56,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>?&gt;</returns>
-        Task<ICreateMovieImportApiResponse?> CreateMovieImportOrDefaultAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMovieImportApiResponse"/>?&gt;</returns>
+        Task<IPostMovieImportApiResponse?> PostMovieImportOrDefaultAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateMovieImportApiResponse"/>
+    /// The <see cref="IPostMovieImportApiResponse"/>
     /// </summary>
-    public interface ICreateMovieImportApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
+    public interface IPostMovieImportApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -82,21 +82,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateMovieImport;
+        public event EventHandler<ApiResponseEventArgs>? OnPostMovieImport;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateMovieImport;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostMovieImport;
 
-        internal void ExecuteOnCreateMovieImport(MovieImportApi.CreateMovieImportApiResponse apiResponse)
+        internal void ExecuteOnPostMovieImport(MovieImportApi.PostMovieImportApiResponse apiResponse)
         {
-            OnCreateMovieImport?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostMovieImport?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateMovieImport(Exception exception)
+        internal void ExecuteOnErrorPostMovieImport(Exception exception)
         {
-            OnErrorCreateMovieImport?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostMovieImport?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -141,16 +141,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateMovieImport(Option<List<MovieResource>> movieResource);
+        partial void FormatPostMovieImport(List<MovieResource> movieResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="movieResource"></param>
         /// <returns></returns>
-        private void ValidateCreateMovieImport(Option<List<MovieResource>> movieResource)
+        private void ValidatePostMovieImport(List<MovieResource> movieResource)
         {
-            if (movieResource.IsSet && movieResource.Value == null)
+            if (movieResource == null)
                 throw new ArgumentNullException(nameof(movieResource));
         }
 
@@ -159,10 +159,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieResource"></param>
-        private void AfterCreateMovieImportDefaultImplementation(ICreateMovieImportApiResponse apiResponseLocalVar, Option<List<MovieResource>> movieResource)
+        private void AfterPostMovieImportDefaultImplementation(IPostMovieImportApiResponse apiResponseLocalVar, List<MovieResource> movieResource)
         {
             bool suppressDefaultLog = false;
-            AfterCreateMovieImport(ref suppressDefaultLog, apiResponseLocalVar, movieResource);
+            AfterPostMovieImport(ref suppressDefaultLog, apiResponseLocalVar, movieResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -173,7 +173,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieResource"></param>
-        partial void AfterCreateMovieImport(ref bool suppressDefaultLog, ICreateMovieImportApiResponse apiResponseLocalVar, Option<List<MovieResource>> movieResource);
+        partial void AfterPostMovieImport(ref bool suppressDefaultLog, IPostMovieImportApiResponse apiResponseLocalVar, List<MovieResource> movieResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -182,10 +182,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieResource"></param>
-        private void OnErrorCreateMovieImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieResource>> movieResource)
+        private void OnErrorPostMovieImportDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<MovieResource> movieResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateMovieImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieResource);
+            OnErrorPostMovieImport(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -198,19 +198,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieResource"></param>
-        partial void OnErrorCreateMovieImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieResource>> movieResource);
+        partial void OnErrorPostMovieImport(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<MovieResource> movieResource);
 
         /// <summary>
         /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library. 
         /// </summary>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateMovieImportApiResponse?> CreateMovieImportOrDefaultAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMovieImportApiResponse"/>&gt;</returns>
+        public async Task<IPostMovieImportApiResponse?> PostMovieImportOrDefaultAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateMovieImportAsync(movieResource, cancellationToken).ConfigureAwait(false);
+                return await PostMovieImportAsync(movieResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -222,18 +222,18 @@ namespace Whisparr3.Net.Api
         /// Imports the provided list of movie resources into the application. Each resource must include a valid filesystem path to an existing movie file. Files will be moved/renamed according to configured naming rules and root folders, metadata will be augmented from configured providers, and the movies will be added to the library. 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import. (optional)</param>
+        /// <param name="movieResource">List of Whisparr.Api.V3.Movies.MovieResource objects describing movies to import.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMovieImportApiResponse"/>&gt;</returns>
-        public async Task<ICreateMovieImportApiResponse> CreateMovieImportAsync(Option<List<MovieResource>> movieResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMovieImportApiResponse"/>&gt;</returns>
+        public async Task<IPostMovieImportApiResponse> PostMovieImportAsync(List<MovieResource> movieResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateCreateMovieImport(movieResource);
+                ValidatePostMovieImport(movieResource);
 
-                FormatCreateMovieImport(movieResource);
+                FormatPostMovieImport(movieResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -244,12 +244,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/movie/import"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/movie/import");
 
-                    if (movieResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (movieResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -282,7 +279,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        CreateMovieImportApiResponse apiResponseLocalVar;
+                        PostMovieImportApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -293,9 +290,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterCreateMovieImportDefaultImplementation(apiResponseLocalVar, movieResource);
+                        AfterPostMovieImportDefaultImplementation(apiResponseLocalVar, movieResource);
 
-                        Events.ExecuteOnCreateMovieImport(apiResponseLocalVar);
+                        Events.ExecuteOnPostMovieImport(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -307,16 +304,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorCreateMovieImportDefaultImplementation(e, "/api/v3/movie/import", uriBuilderLocalVar.Path, movieResource);
-                Events.ExecuteOnErrorCreateMovieImport(e);
+                OnErrorPostMovieImportDefaultImplementation(e, "/api/v3/movie/import", uriBuilderLocalVar.Path, movieResource);
+                Events.ExecuteOnErrorPostMovieImport(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="CreateMovieImportApiResponse"/>
+        /// The <see cref="PostMovieImportApiResponse"/>
         /// </summary>
-        public partial class CreateMovieImportApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateMovieImportApiResponse
+        public partial class PostMovieImportApiResponse : Whisparr3.Net.Client.ApiResponse, IPostMovieImportApiResponse
         {
             /// <summary>
             /// The logger
@@ -324,7 +321,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MovieImportApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="CreateMovieImportApiResponse"/>
+            /// The <see cref="PostMovieImportApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -333,14 +330,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateMovieImportApiResponse(ILogger<MovieImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostMovieImportApiResponse(ILogger<MovieImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="CreateMovieImportApiResponse"/>
+            /// The <see cref="PostMovieImportApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -349,7 +346,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public CreateMovieImportApiResponse(ILogger<MovieImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostMovieImportApiResponse(ILogger<MovieImportApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

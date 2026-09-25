@@ -47,8 +47,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreByIdApiResponse"/>&gt;</returns>
-        Task<ICreateSystemBackupRestoreByIdApiResponse> CreateSystemBackupRestoreByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteSystemBackupByIdApiResponse> DeleteSystemBackupByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -58,8 +58,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreByIdApiResponse"/>?&gt;</returns>
-        Task<ICreateSystemBackupRestoreByIdApiResponse?> CreateSystemBackupRestoreByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteSystemBackupByIdApiResponse?> DeleteSystemBackupByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -69,8 +69,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreUploadApiResponse"/>&gt;</returns>
-        Task<ICreateSystemBackupRestoreUploadApiResponse> CreateSystemBackupRestoreUploadAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetSystemBackupApiResponse"/>&gt;</returns>
+        Task<IGetSystemBackupApiResponse> GetSystemBackupAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,8 +79,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreUploadApiResponse"/>?&gt;</returns>
-        Task<ICreateSystemBackupRestoreUploadApiResponse?> CreateSystemBackupRestoreUploadOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetSystemBackupApiResponse"/>?&gt;</returns>
+        Task<IGetSystemBackupApiResponse?> GetSystemBackupOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -91,8 +91,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupApiResponse"/>&gt;</returns>
-        Task<IDeleteSystemBackupApiResponse> DeleteSystemBackupAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreByIdApiResponse"/>&gt;</returns>
+        Task<IPostSystemBackupRestoreByIdApiResponse> PostSystemBackupRestoreByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -102,8 +102,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupApiResponse"/>?&gt;</returns>
-        Task<IDeleteSystemBackupApiResponse?> DeleteSystemBackupOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreByIdApiResponse"/>?&gt;</returns>
+        Task<IPostSystemBackupRestoreByIdApiResponse?> PostSystemBackupRestoreByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -112,9 +112,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="restore"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListSystemBackupApiResponse"/>&gt;</returns>
-        Task<IListSystemBackupApiResponse> ListSystemBackupAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreUploadApiResponse"/>&gt;</returns>
+        Task<IPostSystemBackupRestoreUploadApiResponse> PostSystemBackupRestoreUploadAsync(Whisparr3.Net.Client.FileParameter restore, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -122,15 +123,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="restore"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListSystemBackupApiResponse"/>?&gt;</returns>
-        Task<IListSystemBackupApiResponse?> ListSystemBackupOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreUploadApiResponse"/>?&gt;</returns>
+        Task<IPostSystemBackupRestoreUploadApiResponse?> PostSystemBackupRestoreUploadOrDefaultAsync(Whisparr3.Net.Client.FileParameter restore, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateSystemBackupRestoreByIdApiResponse"/>
+    /// The <see cref="IDeleteSystemBackupByIdApiResponse"/>
     /// </summary>
-    public interface ICreateSystemBackupRestoreByIdApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteSystemBackupByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -140,9 +142,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateSystemBackupRestoreUploadApiResponse"/>
+    /// The <see cref="IGetSystemBackupApiResponse"/>
     /// </summary>
-    public interface ICreateSystemBackupRestoreUploadApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetSystemBackupApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<BackupResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -152,9 +154,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteSystemBackupApiResponse"/>
+    /// The <see cref="IPostSystemBackupRestoreByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteSystemBackupApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostSystemBackupRestoreByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.BackupRestoreResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -164,9 +166,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListSystemBackupApiResponse"/>
+    /// The <see cref="IPostSystemBackupRestoreUploadApiResponse"/>
     /// </summary>
-    public interface IListSystemBackupApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<BackupResource>?>
+    public interface IPostSystemBackupRestoreUploadApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.BackupRestoreResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -183,81 +185,81 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateSystemBackupRestoreById;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteSystemBackupById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateSystemBackupRestoreById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteSystemBackupById;
 
-        internal void ExecuteOnCreateSystemBackupRestoreById(BackupApi.CreateSystemBackupRestoreByIdApiResponse apiResponse)
+        internal void ExecuteOnDeleteSystemBackupById(BackupApi.DeleteSystemBackupByIdApiResponse apiResponse)
         {
-            OnCreateSystemBackupRestoreById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteSystemBackupById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateSystemBackupRestoreById(Exception exception)
+        internal void ExecuteOnErrorDeleteSystemBackupById(Exception exception)
         {
-            OnErrorCreateSystemBackupRestoreById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteSystemBackupById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateSystemBackupRestoreUpload;
+        public event EventHandler<ApiResponseEventArgs>? OnGetSystemBackup;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateSystemBackupRestoreUpload;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetSystemBackup;
 
-        internal void ExecuteOnCreateSystemBackupRestoreUpload(BackupApi.CreateSystemBackupRestoreUploadApiResponse apiResponse)
+        internal void ExecuteOnGetSystemBackup(BackupApi.GetSystemBackupApiResponse apiResponse)
         {
-            OnCreateSystemBackupRestoreUpload?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetSystemBackup?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateSystemBackupRestoreUpload(Exception exception)
+        internal void ExecuteOnErrorGetSystemBackup(Exception exception)
         {
-            OnErrorCreateSystemBackupRestoreUpload?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetSystemBackup?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteSystemBackup;
+        public event EventHandler<ApiResponseEventArgs>? OnPostSystemBackupRestoreById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteSystemBackup;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostSystemBackupRestoreById;
 
-        internal void ExecuteOnDeleteSystemBackup(BackupApi.DeleteSystemBackupApiResponse apiResponse)
+        internal void ExecuteOnPostSystemBackupRestoreById(BackupApi.PostSystemBackupRestoreByIdApiResponse apiResponse)
         {
-            OnDeleteSystemBackup?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostSystemBackupRestoreById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteSystemBackup(Exception exception)
+        internal void ExecuteOnErrorPostSystemBackupRestoreById(Exception exception)
         {
-            OnErrorDeleteSystemBackup?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostSystemBackupRestoreById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListSystemBackup;
+        public event EventHandler<ApiResponseEventArgs>? OnPostSystemBackupRestoreUpload;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListSystemBackup;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostSystemBackupRestoreUpload;
 
-        internal void ExecuteOnListSystemBackup(BackupApi.ListSystemBackupApiResponse apiResponse)
+        internal void ExecuteOnPostSystemBackupRestoreUpload(BackupApi.PostSystemBackupRestoreUploadApiResponse apiResponse)
         {
-            OnListSystemBackup?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostSystemBackupRestoreUpload?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListSystemBackup(Exception exception)
+        internal void ExecuteOnErrorPostSystemBackupRestoreUpload(Exception exception)
         {
-            OnErrorListSystemBackup?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostSystemBackupRestoreUpload?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -302,17 +304,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateSystemBackupRestoreById(ref int id);
+        partial void FormatDeleteSystemBackupById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterCreateSystemBackupRestoreByIdDefaultImplementation(ICreateSystemBackupRestoreByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteSystemBackupByIdDefaultImplementation(IDeleteSystemBackupByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterCreateSystemBackupRestoreById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteSystemBackupById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -323,7 +325,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterCreateSystemBackupRestoreById(ref bool suppressDefaultLog, ICreateSystemBackupRestoreByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteSystemBackupById(ref bool suppressDefaultLog, IDeleteSystemBackupByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -332,10 +334,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorCreateSystemBackupRestoreByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteSystemBackupByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateSystemBackupRestoreById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteSystemBackupById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -348,19 +350,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorCreateSystemBackupRestoreById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteSystemBackupById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreByIdApiResponse"/>&gt;</returns>
-        public async Task<ICreateSystemBackupRestoreByIdApiResponse?> CreateSystemBackupRestoreByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteSystemBackupByIdApiResponse?> DeleteSystemBackupByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await CreateSystemBackupRestoreByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteSystemBackupByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -374,395 +376,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreByIdApiResponse"/>&gt;</returns>
-        public async Task<ICreateSystemBackupRestoreByIdApiResponse> CreateSystemBackupRestoreByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteSystemBackupByIdApiResponse> DeleteSystemBackupByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatCreateSystemBackupRestoreById(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/system/backup/restore/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/system/backup/restore/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateSystemBackupRestoreByIdApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/system/backup/restore/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateSystemBackupRestoreByIdDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnCreateSystemBackupRestoreById(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateSystemBackupRestoreByIdDefaultImplementation(e, "/api/v3/system/backup/restore/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorCreateSystemBackupRestoreById(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateSystemBackupRestoreByIdApiResponse"/>
-        /// </summary>
-        public partial class CreateSystemBackupRestoreByIdApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateSystemBackupRestoreByIdApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<BackupApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateSystemBackupRestoreByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateSystemBackupRestoreByIdApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateSystemBackupRestoreByIdApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateSystemBackupRestoreByIdApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterCreateSystemBackupRestoreUploadDefaultImplementation(ICreateSystemBackupRestoreUploadApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateSystemBackupRestoreUpload(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterCreateSystemBackupRestoreUpload(ref bool suppressDefaultLog, ICreateSystemBackupRestoreUploadApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorCreateSystemBackupRestoreUploadDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateSystemBackupRestoreUpload(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorCreateSystemBackupRestoreUpload(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreUploadApiResponse"/>&gt;</returns>
-        public async Task<ICreateSystemBackupRestoreUploadApiResponse?> CreateSystemBackupRestoreUploadOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateSystemBackupRestoreUploadAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateSystemBackupRestoreUploadApiResponse"/>&gt;</returns>
-        public async Task<ICreateSystemBackupRestoreUploadApiResponse> CreateSystemBackupRestoreUploadAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/system/backup/restore/upload"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/system/backup/restore/upload");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateSystemBackupRestoreUploadApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/system/backup/restore/upload", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateSystemBackupRestoreUploadDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnCreateSystemBackupRestoreUpload(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateSystemBackupRestoreUploadDefaultImplementation(e, "/api/v3/system/backup/restore/upload", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorCreateSystemBackupRestoreUpload(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateSystemBackupRestoreUploadApiResponse"/>
-        /// </summary>
-        public partial class CreateSystemBackupRestoreUploadApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateSystemBackupRestoreUploadApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<BackupApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateSystemBackupRestoreUploadApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateSystemBackupRestoreUploadApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateSystemBackupRestoreUploadApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateSystemBackupRestoreUploadApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteSystemBackup(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterDeleteSystemBackupDefaultImplementation(IDeleteSystemBackupApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteSystemBackup(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterDeleteSystemBackup(ref bool suppressDefaultLog, IDeleteSystemBackupApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorDeleteSystemBackupDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteSystemBackup(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorDeleteSystemBackup(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupApiResponse"/>&gt;</returns>
-        public async Task<IDeleteSystemBackupApiResponse?> DeleteSystemBackupOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteSystemBackupAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteSystemBackupApiResponse"/>&gt;</returns>
-        public async Task<IDeleteSystemBackupApiResponse> DeleteSystemBackupAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteSystemBackup(ref id);
+                FormatDeleteSystemBackupById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -787,7 +408,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteSystemBackupApiResponse apiResponseLocalVar;
+                        DeleteSystemBackupByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -798,9 +419,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteSystemBackupDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteSystemBackupByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteSystemBackup(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteSystemBackupById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -812,16 +433,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteSystemBackupDefaultImplementation(e, "/api/v3/system/backup/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteSystemBackup(e);
+                OnErrorDeleteSystemBackupByIdDefaultImplementation(e, "/api/v3/system/backup/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteSystemBackupById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteSystemBackupApiResponse"/>
+        /// The <see cref="DeleteSystemBackupByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteSystemBackupApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteSystemBackupApiResponse
+        public partial class DeleteSystemBackupByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteSystemBackupByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -829,7 +450,7 @@ namespace Whisparr3.Net.Api
             public ILogger<BackupApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteSystemBackupApiResponse"/>
+            /// The <see cref="DeleteSystemBackupByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -838,14 +459,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteSystemBackupApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteSystemBackupByIdApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteSystemBackupApiResponse"/>
+            /// The <see cref="DeleteSystemBackupByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -854,7 +475,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteSystemBackupApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteSystemBackupByIdApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -883,10 +504,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListSystemBackupDefaultImplementation(IListSystemBackupApiResponse apiResponseLocalVar)
+        private void AfterGetSystemBackupDefaultImplementation(IGetSystemBackupApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListSystemBackup(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetSystemBackup(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -896,7 +517,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListSystemBackup(ref bool suppressDefaultLog, IListSystemBackupApiResponse apiResponseLocalVar);
+        partial void AfterGetSystemBackup(ref bool suppressDefaultLog, IGetSystemBackupApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -904,10 +525,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListSystemBackupDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetSystemBackupDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListSystemBackup(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetSystemBackup(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -919,18 +540,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListSystemBackup(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetSystemBackup(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListSystemBackupApiResponse"/>&gt;</returns>
-        public async Task<IListSystemBackupApiResponse?> ListSystemBackupOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetSystemBackupApiResponse"/>&gt;</returns>
+        public async Task<IGetSystemBackupApiResponse?> GetSystemBackupOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListSystemBackupAsync(cancellationToken).ConfigureAwait(false);
+                return await GetSystemBackupAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -943,8 +564,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListSystemBackupApiResponse"/>&gt;</returns>
-        public async Task<IListSystemBackupApiResponse> ListSystemBackupAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetSystemBackupApiResponse"/>&gt;</returns>
+        public async Task<IGetSystemBackupApiResponse> GetSystemBackupAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -983,7 +604,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListSystemBackupApiResponse apiResponseLocalVar;
+                        GetSystemBackupApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -994,9 +615,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListSystemBackupDefaultImplementation(apiResponseLocalVar);
+                        AfterGetSystemBackupDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListSystemBackup(apiResponseLocalVar);
+                        Events.ExecuteOnGetSystemBackup(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1008,16 +629,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListSystemBackupDefaultImplementation(e, "/api/v3/system/backup", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListSystemBackup(e);
+                OnErrorGetSystemBackupDefaultImplementation(e, "/api/v3/system/backup", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetSystemBackup(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListSystemBackupApiResponse"/>
+        /// The <see cref="GetSystemBackupApiResponse"/>
         /// </summary>
-        public partial class ListSystemBackupApiResponse : Whisparr3.Net.Client.ApiResponse, IListSystemBackupApiResponse
+        public partial class GetSystemBackupApiResponse : Whisparr3.Net.Client.ApiResponse, IGetSystemBackupApiResponse
         {
             /// <summary>
             /// The logger
@@ -1025,7 +646,7 @@ namespace Whisparr3.Net.Api
             public ILogger<BackupApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListSystemBackupApiResponse"/>
+            /// The <see cref="GetSystemBackupApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1034,14 +655,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListSystemBackupApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetSystemBackupApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListSystemBackupApiResponse"/>
+            /// The <see cref="GetSystemBackupApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1050,7 +671,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListSystemBackupApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetSystemBackupApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1094,6 +715,539 @@ namespace Whisparr3.Net.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk([NotNullWhen(true)]out List<BackupResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostSystemBackupRestoreById(ref int id);
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        private void AfterPostSystemBackupRestoreByIdDefaultImplementation(IPostSystemBackupRestoreByIdApiResponse apiResponseLocalVar, int id)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostSystemBackupRestoreById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        partial void AfterPostSystemBackupRestoreById(ref bool suppressDefaultLog, IPostSystemBackupRestoreByIdApiResponse apiResponseLocalVar, int id);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        private void OnErrorPostSystemBackupRestoreByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostSystemBackupRestoreById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        partial void OnErrorPostSystemBackupRestoreById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreByIdApiResponse"/>&gt;</returns>
+        public async Task<IPostSystemBackupRestoreByIdApiResponse?> PostSystemBackupRestoreByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostSystemBackupRestoreByIdAsync(id, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreByIdApiResponse"/>&gt;</returns>
+        public async Task<IPostSystemBackupRestoreByIdApiResponse> PostSystemBackupRestoreByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                FormatPostSystemBackupRestoreById(ref id);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/system/backup/restore/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/system/backup/restore/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostSystemBackupRestoreByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/system/backup/restore/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostSystemBackupRestoreByIdDefaultImplementation(apiResponseLocalVar, id);
+
+                        Events.ExecuteOnPostSystemBackupRestoreById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostSystemBackupRestoreByIdDefaultImplementation(e, "/api/v3/system/backup/restore/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorPostSystemBackupRestoreById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostSystemBackupRestoreByIdApiResponse"/>
+        /// </summary>
+        public partial class PostSystemBackupRestoreByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPostSystemBackupRestoreByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<BackupApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostSystemBackupRestoreByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostSystemBackupRestoreByIdApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostSystemBackupRestoreByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostSystemBackupRestoreByIdApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.BackupRestoreResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.BackupRestoreResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.BackupRestoreResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.BackupRestoreResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.BackupRestoreResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.BackupRestoreResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostSystemBackupRestoreUpload(ref Whisparr3.Net.Client.FileParameter restore);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="restore"></param>
+        /// <returns></returns>
+        private void ValidatePostSystemBackupRestoreUpload(Whisparr3.Net.Client.FileParameter restore)
+        {
+            if (restore == null)
+                throw new ArgumentNullException(nameof(restore));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="restore"></param>
+        private void AfterPostSystemBackupRestoreUploadDefaultImplementation(IPostSystemBackupRestoreUploadApiResponse apiResponseLocalVar, Whisparr3.Net.Client.FileParameter restore)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostSystemBackupRestoreUpload(ref suppressDefaultLog, apiResponseLocalVar, restore);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="restore"></param>
+        partial void AfterPostSystemBackupRestoreUpload(ref bool suppressDefaultLog, IPostSystemBackupRestoreUploadApiResponse apiResponseLocalVar, Whisparr3.Net.Client.FileParameter restore);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="restore"></param>
+        private void OnErrorPostSystemBackupRestoreUploadDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Whisparr3.Net.Client.FileParameter restore)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostSystemBackupRestoreUpload(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, restore);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="restore"></param>
+        partial void OnErrorPostSystemBackupRestoreUpload(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Whisparr3.Net.Client.FileParameter restore);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="restore"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreUploadApiResponse"/>&gt;</returns>
+        public async Task<IPostSystemBackupRestoreUploadApiResponse?> PostSystemBackupRestoreUploadOrDefaultAsync(Whisparr3.Net.Client.FileParameter restore, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostSystemBackupRestoreUploadAsync(restore, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="restore"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostSystemBackupRestoreUploadApiResponse"/>&gt;</returns>
+        public async Task<IPostSystemBackupRestoreUploadApiResponse> PostSystemBackupRestoreUploadAsync(Whisparr3.Net.Client.FileParameter restore, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostSystemBackupRestoreUpload(restore);
+
+                FormatPostSystemBackupRestoreUpload(ref restore);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/system/backup/restore/upload"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/system/backup/restore/upload");
+
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
+
+                    httpRequestMessageLocalVar.Content = multipartContentLocalVar;
+
+                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
+
+                    {
+                        var streamContentLocalVar = new StreamContent(restore.Content);
+                        streamContentLocalVar.Headers.ContentType = new MediaTypeHeaderValue(restore.ContentType);
+                        multipartContentLocalVar.Add(streamContentLocalVar, "restore", restore.FileName ?? "restore");
+                    }
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "multipart/form-data"
+                    };
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostSystemBackupRestoreUploadApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/system/backup/restore/upload", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostSystemBackupRestoreUploadDefaultImplementation(apiResponseLocalVar, restore);
+
+                        Events.ExecuteOnPostSystemBackupRestoreUpload(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostSystemBackupRestoreUploadDefaultImplementation(e, "/api/v3/system/backup/restore/upload", uriBuilderLocalVar.Path, restore);
+                Events.ExecuteOnErrorPostSystemBackupRestoreUpload(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostSystemBackupRestoreUploadApiResponse"/>
+        /// </summary>
+        public partial class PostSystemBackupRestoreUploadApiResponse : Whisparr3.Net.Client.ApiResponse, IPostSystemBackupRestoreUploadApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<BackupApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostSystemBackupRestoreUploadApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostSystemBackupRestoreUploadApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostSystemBackupRestoreUploadApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostSystemBackupRestoreUploadApiResponse(ILogger<BackupApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.BackupRestoreResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.BackupRestoreResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.BackupRestoreResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.BackupRestoreResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.BackupRestoreResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.BackupRestoreResource? result)
             {
                 result = null;
 

@@ -22,6 +22,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using Whisparr3.Net.Client;
 using Whisparr3.Net.Logging;
+using Whisparr3.Net.Model;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Whisparr3.Net.Api
@@ -44,35 +45,6 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="returnUrl"> (optional)</param>
-        /// <param name="username"> (optional)</param>
-        /// <param name="password"> (optional)</param>
-        /// <param name="rememberMe"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateLoginApiResponse"/>&gt;</returns>
-        Task<ICreateLoginApiResponse> CreateLoginAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="returnUrl"> (optional)</param>
-        /// <param name="username"> (optional)</param>
-        /// <param name="password"> (optional)</param>
-        /// <param name="rememberMe"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateLoginApiResponse"/>?&gt;</returns>
-        Task<ICreateLoginApiResponse?> CreateLoginOrDefaultAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLogoutApiResponse"/>&gt;</returns>
         Task<IGetLogoutApiResponse> GetLogoutAsync(System.Threading.CancellationToken cancellationToken = default);
@@ -86,18 +58,35 @@ namespace Whisparr3.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IGetLogoutApiResponse"/>?&gt;</returns>
         Task<IGetLogoutApiResponse?> GetLogoutOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-    }
 
-    /// <summary>
-    /// The <see cref="ICreateLoginApiResponse"/>
-    /// </summary>
-    public interface ICreateLoginApiResponse : Whisparr3.Net.Client.IApiResponse
-    {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// 
         /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="returnUrl"> (optional)</param>
+        /// <param name="username"> (optional)</param>
+        /// <param name="password"> (optional)</param>
+        /// <param name="rememberMe"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostLoginApiResponse"/>&gt;</returns>
+        Task<IPostLoginApiResponse> PostLoginAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="returnUrl"> (optional)</param>
+        /// <param name="username"> (optional)</param>
+        /// <param name="password"> (optional)</param>
+        /// <param name="rememberMe"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostLoginApiResponse"/>?&gt;</returns>
+        Task<IPostLoginApiResponse?> PostLoginOrDefaultAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -106,10 +95,28 @@ namespace Whisparr3.Net.Api
     public interface IGetLogoutApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 302 Found
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsFound { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostLoginApiResponse"/>
+    /// </summary>
+    public interface IPostLoginApiResponse : Whisparr3.Net.Client.IApiResponse, IUnauthorized<Whisparr3.Net.Model.ProblemDetails?>
+    {
+        /// <summary>
+        /// Returns true if the response is 302 Found
+        /// </summary>
+        /// <returns></returns>
+        bool IsFound { get; }
+
+        /// <summary>
+        /// Returns true if the response is 401 Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        bool IsUnauthorized { get; }
     }
 
     /// <summary>
@@ -117,26 +124,6 @@ namespace Whisparr3.Net.Api
     /// </summary>
     public class AuthenticationApiEvents
     {
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateLogin;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateLogin;
-
-        internal void ExecuteOnCreateLogin(AuthenticationApi.CreateLoginApiResponse apiResponse)
-        {
-            OnCreateLogin?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorCreateLogin(Exception exception)
-        {
-            OnErrorCreateLogin?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
         /// <summary>
         /// The event raised after the server response
         /// </summary>
@@ -155,6 +142,26 @@ namespace Whisparr3.Net.Api
         internal void ExecuteOnErrorGetLogout(Exception exception)
         {
             OnErrorGetLogout?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPostLogin;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostLogin;
+
+        internal void ExecuteOnPostLogin(AuthenticationApi.PostLoginApiResponse apiResponse)
+        {
+            OnPostLogin?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPostLogin(Exception exception)
+        {
+            OnErrorPostLogin?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -197,273 +204,6 @@ namespace Whisparr3.Net.Api
             HttpClient = httpClient;
             Events = authenticationApiEvents;
             ApiKeyProvider = apiKeyProvider;
-        }
-
-        partial void FormatCreateLogin(ref Option<string> returnUrl, ref Option<string> username, ref Option<string> password, ref Option<string> rememberMe);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="returnUrl"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="rememberMe"></param>
-        /// <returns></returns>
-        private void ValidateCreateLogin(Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe)
-        {
-            if (returnUrl.IsSet && returnUrl.Value == null)
-                throw new ArgumentNullException(nameof(returnUrl));
-
-            if (username.IsSet && username.Value == null)
-                throw new ArgumentNullException(nameof(username));
-
-            if (password.IsSet && password.Value == null)
-                throw new ArgumentNullException(nameof(password));
-
-            if (rememberMe.IsSet && rememberMe.Value == null)
-                throw new ArgumentNullException(nameof(rememberMe));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="returnUrl"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="rememberMe"></param>
-        private void AfterCreateLoginDefaultImplementation(ICreateLoginApiResponse apiResponseLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateLogin(ref suppressDefaultLog, apiResponseLocalVar, returnUrl, username, password, rememberMe);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="returnUrl"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="rememberMe"></param>
-        partial void AfterCreateLogin(ref bool suppressDefaultLog, ICreateLoginApiResponse apiResponseLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="returnUrl"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="rememberMe"></param>
-        private void OnErrorCreateLoginDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateLogin(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, returnUrl, username, password, rememberMe);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="returnUrl"></param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="rememberMe"></param>
-        partial void OnErrorCreateLogin(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="returnUrl"> (optional)</param>
-        /// <param name="username"> (optional)</param>
-        /// <param name="password"> (optional)</param>
-        /// <param name="rememberMe"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateLoginApiResponse"/>&gt;</returns>
-        public async Task<ICreateLoginApiResponse?> CreateLoginOrDefaultAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateLoginAsync(returnUrl, username, password, rememberMe, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="returnUrl"> (optional)</param>
-        /// <param name="username"> (optional)</param>
-        /// <param name="password"> (optional)</param>
-        /// <param name="rememberMe"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateLoginApiResponse"/>&gt;</returns>
-        public async Task<ICreateLoginApiResponse> CreateLoginAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateLogin(returnUrl, username, password, rememberMe);
-
-                FormatCreateLogin(ref returnUrl, ref username, ref password, ref rememberMe);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/login"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/login");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (returnUrl.IsSet)
-                        parseQueryStringLocalVar["returnUrl"] = ClientUtils.ParameterToString(returnUrl.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
-
-                    httpRequestMessageLocalVar.Content = multipartContentLocalVar;
-
-                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
-
-                    if (username.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("username", ClientUtils.ParameterToString(username.Value)));
-
-                    if (password.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("password", ClientUtils.ParameterToString(password.Value)));
-
-                    if (rememberMe.IsSet)
-                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("rememberMe", ClientUtils.ParameterToString(rememberMe.Value)));
-
-                    foreach (var formParamLocalVar in formParameterLocalVars)
-                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "multipart/form-data"
-                    };
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateLoginApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/login", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateLoginDefaultImplementation(apiResponseLocalVar, returnUrl, username, password, rememberMe);
-
-                        Events.ExecuteOnCreateLogin(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateLoginDefaultImplementation(e, "/login", uriBuilderLocalVar.Path, returnUrl, username, password, rememberMe);
-                Events.ExecuteOnErrorCreateLogin(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateLoginApiResponse"/>
-        /// </summary>
-        public partial class CreateLoginApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateLoginApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<AuthenticationApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateLoginApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateLoginApiResponse(ILogger<AuthenticationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateLoginApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateLoginApiResponse(ILogger<AuthenticationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
         /// <summary>
@@ -546,11 +286,6 @@ namespace Whisparr3.Net.Api
                         ? "/logout"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/logout");
 
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Get;
@@ -573,10 +308,6 @@ namespace Whisparr3.Net.Api
                         AfterGetLogoutDefaultImplementation(apiResponseLocalVar);
 
                         Events.ExecuteOnGetLogout(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
 
                         return apiResponseLocalVar;
                     }
@@ -635,10 +366,329 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 302 Found
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsFound => 302 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostLogin(ref Option<string> returnUrl, ref Option<string> username, ref Option<string> password, ref Option<string> rememberMe);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="rememberMe"></param>
+        /// <returns></returns>
+        private void ValidatePostLogin(Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe)
+        {
+            if (returnUrl.IsSet && returnUrl.Value == null)
+                throw new ArgumentNullException(nameof(returnUrl));
+
+            if (username.IsSet && username.Value == null)
+                throw new ArgumentNullException(nameof(username));
+
+            if (password.IsSet && password.Value == null)
+                throw new ArgumentNullException(nameof(password));
+
+            if (rememberMe.IsSet && rememberMe.Value == null)
+                throw new ArgumentNullException(nameof(rememberMe));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="returnUrl"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="rememberMe"></param>
+        private void AfterPostLoginDefaultImplementation(IPostLoginApiResponse apiResponseLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostLogin(ref suppressDefaultLog, apiResponseLocalVar, returnUrl, username, password, rememberMe);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="returnUrl"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="rememberMe"></param>
+        partial void AfterPostLogin(ref bool suppressDefaultLog, IPostLoginApiResponse apiResponseLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="returnUrl"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="rememberMe"></param>
+        private void OnErrorPostLoginDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostLogin(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, returnUrl, username, password, rememberMe);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="returnUrl"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="rememberMe"></param>
+        partial void OnErrorPostLogin(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<string> returnUrl, Option<string> username, Option<string> password, Option<string> rememberMe);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="returnUrl"> (optional)</param>
+        /// <param name="username"> (optional)</param>
+        /// <param name="password"> (optional)</param>
+        /// <param name="rememberMe"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostLoginApiResponse"/>&gt;</returns>
+        public async Task<IPostLoginApiResponse?> PostLoginOrDefaultAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostLoginAsync(returnUrl, username, password, rememberMe, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="returnUrl"> (optional)</param>
+        /// <param name="username"> (optional)</param>
+        /// <param name="password"> (optional)</param>
+        /// <param name="rememberMe"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostLoginApiResponse"/>&gt;</returns>
+        public async Task<IPostLoginApiResponse> PostLoginAsync(Option<string> returnUrl = default, Option<string> username = default, Option<string> password = default, Option<string> rememberMe = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostLogin(returnUrl, username, password, rememberMe);
+
+                FormatPostLogin(ref returnUrl, ref username, ref password, ref rememberMe);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/login"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/login");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (returnUrl.IsSet)
+                        parseQueryStringLocalVar["returnUrl"] = ClientUtils.ParameterToString(returnUrl.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    MultipartFormDataContent multipartContentLocalVar = new MultipartFormDataContent();
+
+                    httpRequestMessageLocalVar.Content = multipartContentLocalVar;
+
+                    List<KeyValuePair<string, string?>> formParameterLocalVars = new List<KeyValuePair<string, string?>>();
+
+                    if (username.IsSet)
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("username", ClientUtils.ParameterToString(username.Value)));
+
+                    if (password.IsSet)
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("password", ClientUtils.ParameterToString(password.Value)));
+
+                    if (rememberMe.IsSet)
+                        formParameterLocalVars.Add(new KeyValuePair<string, string?>("rememberMe", ClientUtils.ParameterToString(rememberMe.Value)));
+
+                    foreach (var formParamLocalVar in formParameterLocalVars)
+                        multipartContentLocalVar.Add(new StringContent(formParamLocalVar.Value ?? string.Empty), formParamLocalVar.Key);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "multipart/form-data"
+                    };
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostLoginApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/login", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostLoginDefaultImplementation(apiResponseLocalVar, returnUrl, username, password, rememberMe);
+
+                        Events.ExecuteOnPostLogin(apiResponseLocalVar);
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostLoginDefaultImplementation(e, "/login", uriBuilderLocalVar.Path, returnUrl, username, password, rememberMe);
+                Events.ExecuteOnErrorPostLogin(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostLoginApiResponse"/>
+        /// </summary>
+        public partial class PostLoginApiResponse : Whisparr3.Net.Client.ApiResponse, IPostLoginApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<AuthenticationApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostLoginApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostLoginApiResponse(ILogger<AuthenticationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostLoginApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostLoginApiResponse(ILogger<AuthenticationApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 302 Found
+            /// </summary>
+            /// <returns></returns>
+            public bool IsFound => 302 == (int)StatusCode;
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public bool IsUnauthorized => 401 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 401 Unauthorized
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.ProblemDetails? Unauthorized()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.ProblemDetails? result = null;
+                OnUnauthorized(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultUnauthorized();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.ProblemDetails? DefaultUnauthorized()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsUnauthorized
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ProblemDetails>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnUnauthorized(ref bool suppressDefault, ref Whisparr3.Net.Model.ProblemDetails? result);
+
+            /// <summary>
+            /// Returns true if the response is 401 Unauthorized and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryUnauthorized([NotNullWhen(true)]out Whisparr3.Net.Model.ProblemDetails? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Unauthorized();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)401);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

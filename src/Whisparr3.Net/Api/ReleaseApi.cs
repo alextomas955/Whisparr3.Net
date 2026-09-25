@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="releaseResource"> (optional)</param>
+        /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleaseApiResponse"/>&gt;</returns>
-        Task<ICreateReleaseApiResponse> CreateReleaseAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetReleaseApiResponse"/>&gt;</returns>
+        Task<IGetReleaseApiResponse> GetReleaseAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="releaseResource"> (optional)</param>
+        /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleaseApiResponse"/>?&gt;</returns>
-        Task<ICreateReleaseApiResponse?> CreateReleaseOrDefaultAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetReleaseApiResponse"/>?&gt;</returns>
+        Task<IGetReleaseApiResponse?> GetReleaseOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -68,10 +68,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieId"> (optional)</param>
+        /// <param name="releaseResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListReleaseApiResponse"/>&gt;</returns>
-        Task<IListReleaseApiResponse> ListReleaseAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleaseApiResponse"/>&gt;</returns>
+        Task<IPostReleaseApiResponse> PostReleaseAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -79,16 +79,16 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="movieId"> (optional)</param>
+        /// <param name="releaseResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListReleaseApiResponse"/>?&gt;</returns>
-        Task<IListReleaseApiResponse?> ListReleaseOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleaseApiResponse"/>?&gt;</returns>
+        Task<IPostReleaseApiResponse?> PostReleaseOrDefaultAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateReleaseApiResponse"/>
+    /// The <see cref="IGetReleaseApiResponse"/>
     /// </summary>
-    public interface ICreateReleaseApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetReleaseApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ReleaseResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -98,9 +98,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListReleaseApiResponse"/>
+    /// The <see cref="IPostReleaseApiResponse"/>
     /// </summary>
-    public interface IListReleaseApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ReleaseResource>?>
+    public interface IPostReleaseApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.ReleaseResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -117,41 +117,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateRelease;
+        public event EventHandler<ApiResponseEventArgs>? OnGetRelease;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateRelease;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetRelease;
 
-        internal void ExecuteOnCreateRelease(ReleaseApi.CreateReleaseApiResponse apiResponse)
+        internal void ExecuteOnGetRelease(ReleaseApi.GetReleaseApiResponse apiResponse)
         {
-            OnCreateRelease?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetRelease?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateRelease(Exception exception)
+        internal void ExecuteOnErrorGetRelease(Exception exception)
         {
-            OnErrorCreateRelease?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetRelease?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListRelease;
+        public event EventHandler<ApiResponseEventArgs>? OnPostRelease;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListRelease;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostRelease;
 
-        internal void ExecuteOnListRelease(ReleaseApi.ListReleaseApiResponse apiResponse)
+        internal void ExecuteOnPostRelease(ReleaseApi.PostReleaseApiResponse apiResponse)
         {
-            OnListRelease?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostRelease?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListRelease(Exception exception)
+        internal void ExecuteOnErrorPostRelease(Exception exception)
         {
-            OnErrorListRelease?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostRelease?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -196,241 +196,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateRelease(Option<ReleaseResource> releaseResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="releaseResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateRelease(Option<ReleaseResource> releaseResource)
-        {
-            if (releaseResource.IsSet && releaseResource.Value == null)
-                throw new ArgumentNullException(nameof(releaseResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="releaseResource"></param>
-        private void AfterCreateReleaseDefaultImplementation(ICreateReleaseApiResponse apiResponseLocalVar, Option<ReleaseResource> releaseResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateRelease(ref suppressDefaultLog, apiResponseLocalVar, releaseResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="releaseResource"></param>
-        partial void AfterCreateRelease(ref bool suppressDefaultLog, ICreateReleaseApiResponse apiResponseLocalVar, Option<ReleaseResource> releaseResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="releaseResource"></param>
-        private void OnErrorCreateReleaseDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ReleaseResource> releaseResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateRelease(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, releaseResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="releaseResource"></param>
-        partial void OnErrorCreateRelease(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<ReleaseResource> releaseResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="releaseResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleaseApiResponse"/>&gt;</returns>
-        public async Task<ICreateReleaseApiResponse?> CreateReleaseOrDefaultAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateReleaseAsync(releaseResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="releaseResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateReleaseApiResponse"/>&gt;</returns>
-        public async Task<ICreateReleaseApiResponse> CreateReleaseAsync(Option<ReleaseResource> releaseResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateRelease(releaseResource);
-
-                FormatCreateRelease(releaseResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/release"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/release");
-
-                    if (releaseResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (releaseResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(releaseResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateReleaseApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/release", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateReleaseDefaultImplementation(apiResponseLocalVar, releaseResource);
-
-                        Events.ExecuteOnCreateRelease(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateReleaseDefaultImplementation(e, "/api/v3/release", uriBuilderLocalVar.Path, releaseResource);
-                Events.ExecuteOnErrorCreateRelease(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateReleaseApiResponse"/>
-        /// </summary>
-        public partial class CreateReleaseApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateReleaseApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<ReleaseApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateReleaseApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateReleaseApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatListRelease(ref Option<int> movieId);
+        partial void FormatGetRelease(ref Option<int> movieId);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        private void AfterListReleaseDefaultImplementation(IListReleaseApiResponse apiResponseLocalVar, Option<int> movieId)
+        private void AfterGetReleaseDefaultImplementation(IGetReleaseApiResponse apiResponseLocalVar, Option<int> movieId)
         {
             bool suppressDefaultLog = false;
-            AfterListRelease(ref suppressDefaultLog, apiResponseLocalVar, movieId);
+            AfterGetRelease(ref suppressDefaultLog, apiResponseLocalVar, movieId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -441,7 +217,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void AfterListRelease(ref bool suppressDefaultLog, IListReleaseApiResponse apiResponseLocalVar, Option<int> movieId);
+        partial void AfterGetRelease(ref bool suppressDefaultLog, IGetReleaseApiResponse apiResponseLocalVar, Option<int> movieId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -450,10 +226,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        private void OnErrorListReleaseDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId)
+        private void OnErrorGetReleaseDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListRelease(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
+            OnErrorGetRelease(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -466,19 +242,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void OnErrorListRelease(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId);
+        partial void OnErrorGetRelease(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListReleaseApiResponse"/>&gt;</returns>
-        public async Task<IListReleaseApiResponse?> ListReleaseOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetReleaseApiResponse"/>&gt;</returns>
+        public async Task<IGetReleaseApiResponse?> GetReleaseOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListReleaseAsync(movieId, cancellationToken).ConfigureAwait(false);
+                return await GetReleaseAsync(movieId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -492,14 +268,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListReleaseApiResponse"/>&gt;</returns>
-        public async Task<IListReleaseApiResponse> ListReleaseAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetReleaseApiResponse"/>&gt;</returns>
+        public async Task<IGetReleaseApiResponse> GetReleaseAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListRelease(ref movieId);
+                FormatGetRelease(ref movieId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -539,7 +315,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListReleaseApiResponse apiResponseLocalVar;
+                        GetReleaseApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -550,9 +326,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListReleaseDefaultImplementation(apiResponseLocalVar, movieId);
+                        AfterGetReleaseDefaultImplementation(apiResponseLocalVar, movieId);
 
-                        Events.ExecuteOnListRelease(apiResponseLocalVar);
+                        Events.ExecuteOnGetRelease(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -564,16 +340,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListReleaseDefaultImplementation(e, "/api/v3/release", uriBuilderLocalVar.Path, movieId);
-                Events.ExecuteOnErrorListRelease(e);
+                OnErrorGetReleaseDefaultImplementation(e, "/api/v3/release", uriBuilderLocalVar.Path, movieId);
+                Events.ExecuteOnErrorGetRelease(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListReleaseApiResponse"/>
+        /// The <see cref="GetReleaseApiResponse"/>
         /// </summary>
-        public partial class ListReleaseApiResponse : Whisparr3.Net.Client.ApiResponse, IListReleaseApiResponse
+        public partial class GetReleaseApiResponse : Whisparr3.Net.Client.ApiResponse, IGetReleaseApiResponse
         {
             /// <summary>
             /// The logger
@@ -581,7 +357,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ReleaseApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListReleaseApiResponse"/>
+            /// The <see cref="GetReleaseApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -590,14 +366,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListReleaseApiResponse"/>
+            /// The <see cref="GetReleaseApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -606,7 +382,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -650,6 +426,282 @@ namespace Whisparr3.Net.Api
             /// <param name="result"></param>
             /// <returns></returns>
             public bool TryOk([NotNullWhen(true)]out List<ReleaseResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostRelease(ReleaseResource releaseResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="releaseResource"></param>
+        /// <returns></returns>
+        private void ValidatePostRelease(ReleaseResource releaseResource)
+        {
+            if (releaseResource == null)
+                throw new ArgumentNullException(nameof(releaseResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="releaseResource"></param>
+        private void AfterPostReleaseDefaultImplementation(IPostReleaseApiResponse apiResponseLocalVar, ReleaseResource releaseResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostRelease(ref suppressDefaultLog, apiResponseLocalVar, releaseResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="releaseResource"></param>
+        partial void AfterPostRelease(ref bool suppressDefaultLog, IPostReleaseApiResponse apiResponseLocalVar, ReleaseResource releaseResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="releaseResource"></param>
+        private void OnErrorPostReleaseDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ReleaseResource releaseResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostRelease(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, releaseResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="releaseResource"></param>
+        partial void OnErrorPostRelease(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, ReleaseResource releaseResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="releaseResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleaseApiResponse"/>&gt;</returns>
+        public async Task<IPostReleaseApiResponse?> PostReleaseOrDefaultAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostReleaseAsync(releaseResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="releaseResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostReleaseApiResponse"/>&gt;</returns>
+        public async Task<IPostReleaseApiResponse> PostReleaseAsync(ReleaseResource releaseResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostRelease(releaseResource);
+
+                FormatPostRelease(releaseResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/release"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/release");
+
+                    httpRequestMessageLocalVar.Content = (releaseResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(releaseResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostReleaseApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/release", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostReleaseDefaultImplementation(apiResponseLocalVar, releaseResource);
+
+                        Events.ExecuteOnPostRelease(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostReleaseDefaultImplementation(e, "/api/v3/release", uriBuilderLocalVar.Path, releaseResource);
+                Events.ExecuteOnErrorPostRelease(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostReleaseApiResponse"/>
+        /// </summary>
+        public partial class PostReleaseApiResponse : Whisparr3.Net.Client.ApiResponse, IPostReleaseApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<ReleaseApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostReleaseApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostReleaseApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostReleaseApiResponse(ILogger<ReleaseApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.ReleaseResource? Ok()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.ReleaseResource? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.ReleaseResource? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.ReleaseResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.ReleaseResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.ReleaseResource? result)
             {
                 result = null;
 

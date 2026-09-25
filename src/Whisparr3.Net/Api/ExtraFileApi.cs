@@ -47,8 +47,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExtraFileApiResponse"/>&gt;</returns>
-        Task<IListExtraFileApiResponse> ListExtraFileAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExtrafileApiResponse"/>&gt;</returns>
+        Task<IGetExtrafileApiResponse> GetExtrafileAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -58,14 +58,14 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExtraFileApiResponse"/>?&gt;</returns>
-        Task<IListExtraFileApiResponse?> ListExtraFileOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExtrafileApiResponse"/>?&gt;</returns>
+        Task<IGetExtrafileApiResponse?> GetExtrafileOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListExtraFileApiResponse"/>
+    /// The <see cref="IGetExtrafileApiResponse"/>
     /// </summary>
-    public interface IListExtraFileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ExtraFileResource>?>
+    public interface IGetExtrafileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ExtraFileResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -82,21 +82,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListExtraFile;
+        public event EventHandler<ApiResponseEventArgs>? OnGetExtrafile;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListExtraFile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetExtrafile;
 
-        internal void ExecuteOnListExtraFile(ExtraFileApi.ListExtraFileApiResponse apiResponse)
+        internal void ExecuteOnGetExtrafile(ExtraFileApi.GetExtrafileApiResponse apiResponse)
         {
-            OnListExtraFile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetExtrafile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListExtraFile(Exception exception)
+        internal void ExecuteOnErrorGetExtrafile(Exception exception)
         {
-            OnErrorListExtraFile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetExtrafile?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -141,17 +141,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatListExtraFile(ref Option<int> movieId);
+        partial void FormatGetExtrafile(ref Option<int> movieId);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        private void AfterListExtraFileDefaultImplementation(IListExtraFileApiResponse apiResponseLocalVar, Option<int> movieId)
+        private void AfterGetExtrafileDefaultImplementation(IGetExtrafileApiResponse apiResponseLocalVar, Option<int> movieId)
         {
             bool suppressDefaultLog = false;
-            AfterListExtraFile(ref suppressDefaultLog, apiResponseLocalVar, movieId);
+            AfterGetExtrafile(ref suppressDefaultLog, apiResponseLocalVar, movieId);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -162,7 +162,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void AfterListExtraFile(ref bool suppressDefaultLog, IListExtraFileApiResponse apiResponseLocalVar, Option<int> movieId);
+        partial void AfterGetExtrafile(ref bool suppressDefaultLog, IGetExtrafileApiResponse apiResponseLocalVar, Option<int> movieId);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -171,10 +171,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        private void OnErrorListExtraFileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId)
+        private void OnErrorGetExtrafileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListExtraFile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
+            OnErrorGetExtrafile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -187,19 +187,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieId"></param>
-        partial void OnErrorListExtraFile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId);
+        partial void OnErrorGetExtrafile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<int> movieId);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExtraFileApiResponse"/>&gt;</returns>
-        public async Task<IListExtraFileApiResponse?> ListExtraFileOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExtrafileApiResponse"/>&gt;</returns>
+        public async Task<IGetExtrafileApiResponse?> GetExtrafileOrDefaultAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListExtraFileAsync(movieId, cancellationToken).ConfigureAwait(false);
+                return await GetExtrafileAsync(movieId, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -213,14 +213,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="movieId"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListExtraFileApiResponse"/>&gt;</returns>
-        public async Task<IListExtraFileApiResponse> ListExtraFileAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetExtrafileApiResponse"/>&gt;</returns>
+        public async Task<IGetExtrafileApiResponse> GetExtrafileAsync(Option<int> movieId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatListExtraFile(ref movieId);
+                FormatGetExtrafile(ref movieId);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -262,7 +262,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListExtraFileApiResponse apiResponseLocalVar;
+                        GetExtrafileApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -273,9 +273,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListExtraFileDefaultImplementation(apiResponseLocalVar, movieId);
+                        AfterGetExtrafileDefaultImplementation(apiResponseLocalVar, movieId);
 
-                        Events.ExecuteOnListExtraFile(apiResponseLocalVar);
+                        Events.ExecuteOnGetExtrafile(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -287,16 +287,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListExtraFileDefaultImplementation(e, "/api/v3/extrafile", uriBuilderLocalVar.Path, movieId);
-                Events.ExecuteOnErrorListExtraFile(e);
+                OnErrorGetExtrafileDefaultImplementation(e, "/api/v3/extrafile", uriBuilderLocalVar.Path, movieId);
+                Events.ExecuteOnErrorGetExtrafile(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListExtraFileApiResponse"/>
+        /// The <see cref="GetExtrafileApiResponse"/>
         /// </summary>
-        public partial class ListExtraFileApiResponse : Whisparr3.Net.Client.ApiResponse, IListExtraFileApiResponse
+        public partial class GetExtrafileApiResponse : Whisparr3.Net.Client.ApiResponse, IGetExtrafileApiResponse
         {
             /// <summary>
             /// The logger
@@ -304,7 +304,7 @@ namespace Whisparr3.Net.Api
             public ILogger<ExtraFileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListExtraFileApiResponse"/>
+            /// The <see cref="GetExtrafileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -313,14 +313,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListExtraFileApiResponse(ILogger<ExtraFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetExtrafileApiResponse(ILogger<ExtraFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListExtraFileApiResponse"/>
+            /// The <see cref="GetExtrafileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -329,7 +329,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListExtraFileApiResponse(ILogger<ExtraFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetExtrafileApiResponse(ILogger<ExtraFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);

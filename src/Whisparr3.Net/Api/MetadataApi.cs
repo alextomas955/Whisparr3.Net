@@ -45,60 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataApiResponse"/>&gt;</returns>
-        Task<ICreateMetadataApiResponse> CreateMetadataAsync(Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataApiResponse"/>?&gt;</returns>
-        Task<ICreateMetadataApiResponse?> CreateMetadataOrDefaultAsync(Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataActionByNameApiResponse"/>&gt;</returns>
-        Task<ICreateMetadataActionByNameApiResponse> CreateMetadataActionByNameAsync(string name, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataActionByNameApiResponse"/>?&gt;</returns>
-        Task<ICreateMetadataActionByNameApiResponse?> CreateMetadataActionByNameOrDefaultAsync(string name, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataApiResponse"/>&gt;</returns>
-        Task<IDeleteMetadataApiResponse> DeleteMetadataAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteMetadataByIdApiResponse> DeleteMetadataByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -108,8 +58,29 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataApiResponse"/>?&gt;</returns>
-        Task<IDeleteMetadataApiResponse?> DeleteMetadataOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteMetadataByIdApiResponse?> DeleteMetadataByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataApiResponse"/>&gt;</returns>
+        Task<IGetMetadataApiResponse> GetMetadataAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataApiResponse"/>?&gt;</returns>
+        Task<IGetMetadataApiResponse?> GetMetadataOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -142,8 +113,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataApiResponse"/>&gt;</returns>
-        Task<IListMetadataApiResponse> ListMetadataAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataSchemaApiResponse"/>&gt;</returns>
+        Task<IGetMetadataSchemaApiResponse> GetMetadataSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -152,8 +123,8 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataApiResponse"/>?&gt;</returns>
-        Task<IListMetadataApiResponse?> ListMetadataOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataSchemaApiResponse"/>?&gt;</returns>
+        Task<IGetMetadataSchemaApiResponse?> GetMetadataSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -162,9 +133,11 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataSchemaApiResponse"/>&gt;</returns>
-        Task<IListMetadataSchemaApiResponse> ListMetadataSchemaAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataApiResponse"/>&gt;</returns>
+        Task<IPostMetadataApiResponse> PostMetadataAsync(MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -172,30 +145,11 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataSchemaApiResponse"/>?&gt;</returns>
-        Task<IListMetadataSchemaApiResponse?> ListMetadataSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllMetadataApiResponse"/>&gt;</returns>
-        Task<ITestAllMetadataApiResponse> TestAllMetadataAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllMetadataApiResponse"/>?&gt;</returns>
-        Task<ITestAllMetadataApiResponse?> TestAllMetadataOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataApiResponse"/>?&gt;</returns>
+        Task<IPostMetadataApiResponse?> PostMetadataOrDefaultAsync(MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -204,11 +158,36 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataActionByNameApiResponse"/>&gt;</returns>
+        Task<IPostMetadataActionByNameApiResponse> PostMetadataActionByNameAsync(string name, MetadataResource metadataResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataActionByNameApiResponse"/>?&gt;</returns>
+        Task<IPostMetadataActionByNameApiResponse?> PostMetadataActionByNameOrDefaultAsync(string name, MetadataResource metadataResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="metadataResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestMetadataApiResponse"/>&gt;</returns>
-        Task<ITestMetadataApiResponse> TestMetadataAsync(Option<bool> forceTest = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestApiResponse"/>&gt;</returns>
+        Task<IPostMetadataTestApiResponse> PostMetadataTestAsync(MetadataResource metadataResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -216,11 +195,32 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
+        /// <param name="metadataResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestMetadataApiResponse"/>?&gt;</returns>
-        Task<ITestMetadataApiResponse?> TestMetadataOrDefaultAsync(Option<bool> forceTest = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestApiResponse"/>?&gt;</returns>
+        Task<IPostMetadataTestApiResponse?> PostMetadataTestOrDefaultAsync(MetadataResource metadataResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestallApiResponse"/>&gt;</returns>
+        Task<IPostMetadataTestallApiResponse> PostMetadataTestallAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestallApiResponse"/>?&gt;</returns>
+        Task<IPostMetadataTestallApiResponse?> PostMetadataTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -230,11 +230,11 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="metadataResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMetadataApiResponse"/>&gt;</returns>
-        Task<IUpdateMetadataApiResponse> UpdateMetadataAsync(int id, Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMetadataByIdApiResponse"/>&gt;</returns>
+        Task<IPutMetadataByIdApiResponse> PutMetadataByIdAsync(int id, MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -243,17 +243,17 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
+        /// <param name="metadataResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMetadataApiResponse"/>?&gt;</returns>
-        Task<IUpdateMetadataApiResponse?> UpdateMetadataOrDefaultAsync(int id, Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMetadataByIdApiResponse"/>?&gt;</returns>
+        Task<IPutMetadataByIdApiResponse?> PutMetadataByIdOrDefaultAsync(int id, MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="ICreateMetadataApiResponse"/>
+    /// The <see cref="IDeleteMetadataByIdApiResponse"/>
     /// </summary>
-    public interface ICreateMetadataApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MetadataResource?>
+    public interface IDeleteMetadataByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -263,21 +263,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ICreateMetadataActionByNameApiResponse"/>
+    /// The <see cref="IGetMetadataApiResponse"/>
     /// </summary>
-    public interface ICreateMetadataActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IDeleteMetadataApiResponse"/>
-    /// </summary>
-    public interface IDeleteMetadataApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IGetMetadataApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MetadataResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -299,9 +287,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListMetadataApiResponse"/>
+    /// The <see cref="IGetMetadataSchemaApiResponse"/>
     /// </summary>
-    public interface IListMetadataApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MetadataResource>?>
+    public interface IGetMetadataSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MetadataResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -311,9 +299,21 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListMetadataSchemaApiResponse"/>
+    /// The <see cref="IPostMetadataApiResponse"/>
     /// </summary>
-    public interface IListMetadataSchemaApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MetadataResource>?>
+    public interface IPostMetadataApiResponse : Whisparr3.Net.Client.IApiResponse, ICreated<Whisparr3.Net.Model.MetadataResource?>
+    {
+        /// <summary>
+        /// Returns true if the response is 201 Created
+        /// </summary>
+        /// <returns></returns>
+        bool IsCreated { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IPostMetadataActionByNameApiResponse"/>
+    /// </summary>
+    public interface IPostMetadataActionByNameApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Object?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -323,9 +323,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ITestAllMetadataApiResponse"/>
+    /// The <see cref="IPostMetadataTestApiResponse"/>
     /// </summary>
-    public interface ITestAllMetadataApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostMetadataTestApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -335,27 +335,33 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="ITestMetadataApiResponse"/>
+    /// The <see cref="IPostMetadataTestallApiResponse"/>
     /// </summary>
-    public interface ITestMetadataApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPostMetadataTestallApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<ProviderTestAllResult>?>, IBadRequest<List<ProviderTestAllResult>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
         /// </summary>
         /// <returns></returns>
         bool IsOk { get; }
+
+        /// <summary>
+        /// Returns true if the response is 400 BadRequest
+        /// </summary>
+        /// <returns></returns>
+        bool IsBadRequest { get; }
     }
 
     /// <summary>
-    /// The <see cref="IUpdateMetadataApiResponse"/>
+    /// The <see cref="IPutMetadataByIdApiResponse"/>
     /// </summary>
-    public interface IUpdateMetadataApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MetadataResource?>
+    public interface IPutMetadataByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.MetadataResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -366,61 +372,41 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateMetadata;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteMetadataById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateMetadata;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteMetadataById;
 
-        internal void ExecuteOnCreateMetadata(MetadataApi.CreateMetadataApiResponse apiResponse)
+        internal void ExecuteOnDeleteMetadataById(MetadataApi.DeleteMetadataByIdApiResponse apiResponse)
         {
-            OnCreateMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteMetadataById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateMetadata(Exception exception)
+        internal void ExecuteOnErrorDeleteMetadataById(Exception exception)
         {
-            OnErrorCreateMetadata?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteMetadataById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnCreateMetadataActionByName;
+        public event EventHandler<ApiResponseEventArgs>? OnGetMetadata;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorCreateMetadataActionByName;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMetadata;
 
-        internal void ExecuteOnCreateMetadataActionByName(MetadataApi.CreateMetadataActionByNameApiResponse apiResponse)
+        internal void ExecuteOnGetMetadata(MetadataApi.GetMetadataApiResponse apiResponse)
         {
-            OnCreateMetadataActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorCreateMetadataActionByName(Exception exception)
+        internal void ExecuteOnErrorGetMetadata(Exception exception)
         {
-            OnErrorCreateMetadataActionByName?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteMetadata;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteMetadata;
-
-        internal void ExecuteOnDeleteMetadata(MetadataApi.DeleteMetadataApiResponse apiResponse)
-        {
-            OnDeleteMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorDeleteMetadata(Exception exception)
-        {
-            OnErrorDeleteMetadata?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetMetadata?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
@@ -446,101 +432,121 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListMetadata;
+        public event EventHandler<ApiResponseEventArgs>? OnGetMetadataSchema;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListMetadata;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMetadataSchema;
 
-        internal void ExecuteOnListMetadata(MetadataApi.ListMetadataApiResponse apiResponse)
+        internal void ExecuteOnGetMetadataSchema(MetadataApi.GetMetadataSchemaApiResponse apiResponse)
         {
-            OnListMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetMetadataSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListMetadata(Exception exception)
+        internal void ExecuteOnErrorGetMetadataSchema(Exception exception)
         {
-            OnErrorListMetadata?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetMetadataSchema?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListMetadataSchema;
+        public event EventHandler<ApiResponseEventArgs>? OnPostMetadata;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListMetadataSchema;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostMetadata;
 
-        internal void ExecuteOnListMetadataSchema(MetadataApi.ListMetadataSchemaApiResponse apiResponse)
+        internal void ExecuteOnPostMetadata(MetadataApi.PostMetadataApiResponse apiResponse)
         {
-            OnListMetadataSchema?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListMetadataSchema(Exception exception)
+        internal void ExecuteOnErrorPostMetadata(Exception exception)
         {
-            OnErrorListMetadataSchema?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostMetadata?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestAllMetadata;
+        public event EventHandler<ApiResponseEventArgs>? OnPostMetadataActionByName;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestAllMetadata;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostMetadataActionByName;
 
-        internal void ExecuteOnTestAllMetadata(MetadataApi.TestAllMetadataApiResponse apiResponse)
+        internal void ExecuteOnPostMetadataActionByName(MetadataApi.PostMetadataActionByNameApiResponse apiResponse)
         {
-            OnTestAllMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostMetadataActionByName?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestAllMetadata(Exception exception)
+        internal void ExecuteOnErrorPostMetadataActionByName(Exception exception)
         {
-            OnErrorTestAllMetadata?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostMetadataActionByName?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnTestMetadata;
+        public event EventHandler<ApiResponseEventArgs>? OnPostMetadataTest;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorTestMetadata;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostMetadataTest;
 
-        internal void ExecuteOnTestMetadata(MetadataApi.TestMetadataApiResponse apiResponse)
+        internal void ExecuteOnPostMetadataTest(MetadataApi.PostMetadataTestApiResponse apiResponse)
         {
-            OnTestMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostMetadataTest?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorTestMetadata(Exception exception)
+        internal void ExecuteOnErrorPostMetadataTest(Exception exception)
         {
-            OnErrorTestMetadata?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostMetadataTest?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateMetadata;
+        public event EventHandler<ApiResponseEventArgs>? OnPostMetadataTestall;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateMetadata;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPostMetadataTestall;
 
-        internal void ExecuteOnUpdateMetadata(MetadataApi.UpdateMetadataApiResponse apiResponse)
+        internal void ExecuteOnPostMetadataTestall(MetadataApi.PostMetadataTestallApiResponse apiResponse)
         {
-            OnUpdateMetadata?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPostMetadataTestall?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorUpdateMetadata(Exception exception)
+        internal void ExecuteOnErrorPostMetadataTestall(Exception exception)
         {
-            OnErrorUpdateMetadata?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPostMetadataTestall?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response
+        /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnPutMetadataById;
+
+        /// <summary>
+        /// The event raised after an error querying the server
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutMetadataById;
+
+        internal void ExecuteOnPutMetadataById(MetadataApi.PutMetadataByIdApiResponse apiResponse)
+        {
+            OnPutMetadataById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorPutMetadataById(Exception exception)
+        {
+            OnErrorPutMetadataById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -585,542 +591,17 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatCreateMetadata(ref Option<bool> forceSave, Option<MetadataResource> metadataResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="metadataResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateMetadata(Option<MetadataResource> metadataResource)
-        {
-            if (metadataResource.IsSet && metadataResource.Value == null)
-                throw new ArgumentNullException(nameof(metadataResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="metadataResource"></param>
-        private void AfterCreateMetadataDefaultImplementation(ICreateMetadataApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<MetadataResource> metadataResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateMetadata(ref suppressDefaultLog, apiResponseLocalVar, forceSave, metadataResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="metadataResource"></param>
-        partial void AfterCreateMetadata(ref bool suppressDefaultLog, ICreateMetadataApiResponse apiResponseLocalVar, Option<bool> forceSave, Option<MetadataResource> metadataResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="metadataResource"></param>
-        private void OnErrorCreateMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<MetadataResource> metadataResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceSave, metadataResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="forceSave"></param>
-        /// <param name="metadataResource"></param>
-        partial void OnErrorCreateMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceSave, Option<MetadataResource> metadataResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataApiResponse"/>&gt;</returns>
-        public async Task<ICreateMetadataApiResponse?> CreateMetadataOrDefaultAsync(Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateMetadataAsync(forceSave, metadataResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataApiResponse"/>&gt;</returns>
-        public async Task<ICreateMetadataApiResponse> CreateMetadataAsync(Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateMetadata(metadataResource);
-
-                FormatCreateMetadata(ref forceSave, metadataResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/metadata"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata");
-
-                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
-
-                    if (forceSave.IsSet)
-                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
-
-                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
-
-                    if (metadataResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (metadataResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateMetadataApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateMetadataDefaultImplementation(apiResponseLocalVar, forceSave, metadataResource);
-
-                        Events.ExecuteOnCreateMetadata(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateMetadataDefaultImplementation(e, "/api/v3/metadata", uriBuilderLocalVar.Path, forceSave, metadataResource);
-                Events.ExecuteOnErrorCreateMetadata(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateMetadataApiResponse"/>
-        /// </summary>
-        public partial class CreateMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateMetadataApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MetadataApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateMetadataApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateMetadataApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.MetadataResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.MetadataResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.MetadataResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MetadataResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.MetadataResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.MetadataResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatCreateMetadataActionByName(ref string name, Option<MetadataResource> metadataResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"></param>
-        /// <returns></returns>
-        private void ValidateCreateMetadataActionByName(string name, Option<MetadataResource> metadataResource)
-        {
-            if (name == null)
-                throw new ArgumentNullException(nameof(name));
-
-            if (metadataResource.IsSet && metadataResource.Value == null)
-                throw new ArgumentNullException(nameof(metadataResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"></param>
-        private void AfterCreateMetadataActionByNameDefaultImplementation(ICreateMetadataActionByNameApiResponse apiResponseLocalVar, string name, Option<MetadataResource> metadataResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterCreateMetadataActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, metadataResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"></param>
-        partial void AfterCreateMetadataActionByName(ref bool suppressDefaultLog, ICreateMetadataActionByNameApiResponse apiResponseLocalVar, string name, Option<MetadataResource> metadataResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"></param>
-        private void OnErrorCreateMetadataActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<MetadataResource> metadataResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorCreateMetadataActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, metadataResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"></param>
-        partial void OnErrorCreateMetadataActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, Option<MetadataResource> metadataResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateMetadataActionByNameApiResponse?> CreateMetadataActionByNameOrDefaultAsync(string name, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await CreateMetadataActionByNameAsync(name, metadataResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="name"></param>
-        /// <param name="metadataResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ICreateMetadataActionByNameApiResponse"/>&gt;</returns>
-        public async Task<ICreateMetadataActionByNameApiResponse> CreateMetadataActionByNameAsync(string name, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidateCreateMetadataActionByName(name, metadataResource);
-
-                FormatCreateMetadataActionByName(ref name, metadataResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/metadata/action/{name}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata/action/{name}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
-
-                    if (metadataResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (metadataResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        CreateMetadataActionByNameApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterCreateMetadataActionByNameDefaultImplementation(apiResponseLocalVar, name, metadataResource);
-
-                        Events.ExecuteOnCreateMetadataActionByName(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorCreateMetadataActionByNameDefaultImplementation(e, "/api/v3/metadata/action/{name}", uriBuilderLocalVar.Path, name, metadataResource);
-                Events.ExecuteOnErrorCreateMetadataActionByName(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="CreateMetadataActionByNameApiResponse"/>
-        /// </summary>
-        public partial class CreateMetadataActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, ICreateMetadataActionByNameApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MetadataApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="CreateMetadataActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateMetadataActionByNameApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="CreateMetadataActionByNameApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public CreateMetadataActionByNameApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteMetadata(ref int id);
+        partial void FormatDeleteMetadataById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterDeleteMetadataDefaultImplementation(IDeleteMetadataApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteMetadataByIdDefaultImplementation(IDeleteMetadataByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteMetadata(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteMetadataById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1131,7 +612,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterDeleteMetadata(ref bool suppressDefaultLog, IDeleteMetadataApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteMetadataById(ref bool suppressDefaultLog, IDeleteMetadataByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1140,10 +621,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorDeleteMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteMetadataByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteMetadataById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1156,19 +637,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorDeleteMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteMetadataById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMetadataApiResponse?> DeleteMetadataOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteMetadataByIdApiResponse?> DeleteMetadataByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteMetadataAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteMetadataByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1182,14 +663,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMetadataApiResponse> DeleteMetadataAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMetadataByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteMetadataByIdApiResponse> DeleteMetadataByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatDeleteMetadata(ref id);
+                FormatDeleteMetadataById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1214,7 +695,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteMetadataApiResponse apiResponseLocalVar;
+                        DeleteMetadataByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1225,9 +706,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteMetadataDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteMetadataByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnDeleteMetadata(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteMetadataById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1239,16 +720,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteMetadataDefaultImplementation(e, "/api/v3/metadata/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteMetadata(e);
+                OnErrorDeleteMetadataByIdDefaultImplementation(e, "/api/v3/metadata/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteMetadataById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteMetadataApiResponse"/>
+        /// The <see cref="DeleteMetadataByIdApiResponse"/>
         /// </summary>
-        public partial class DeleteMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteMetadataApiResponse
+        public partial class DeleteMetadataByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteMetadataByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1256,7 +737,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MetadataApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteMetadataApiResponse"/>
+            /// The <see cref="DeleteMetadataByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1265,14 +746,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteMetadataByIdApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteMetadataApiResponse"/>
+            /// The <see cref="DeleteMetadataByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1281,7 +762,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteMetadataByIdApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1294,6 +775,244 @@ namespace Whisparr3.Net.Api
             /// </summary>
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterGetMetadataDefaultImplementation(IGetMetadataApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterGetMetadata(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterGetMetadata(ref bool suppressDefaultLog, IGetMetadataApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorGetMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorGetMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorGetMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataApiResponse"/>&gt;</returns>
+        public async Task<IGetMetadataApiResponse?> GetMetadataOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await GetMetadataAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataApiResponse"/>&gt;</returns>
+        public async Task<IGetMetadataApiResponse> GetMetadataAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/metadata"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        GetMetadataApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterGetMetadataDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnGetMetadata(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorGetMetadataDefaultImplementation(e, "/api/v3/metadata", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetMetadata(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetMetadataApiResponse"/>
+        /// </summary>
+        public partial class GetMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMetadataApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<MetadataApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetMetadataApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetMetadataApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public GetMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<MetadataResource>? Ok()
+            {
+                bool suppressDefault = false;
+                List<MetadataResource>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<MetadataResource>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<MetadataResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<MetadataResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<MetadataResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
@@ -1561,10 +1280,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListMetadataDefaultImplementation(IListMetadataApiResponse apiResponseLocalVar)
+        private void AfterGetMetadataSchemaDefaultImplementation(IGetMetadataSchemaApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListMetadata(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetMetadataSchema(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1574,7 +1293,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListMetadata(ref bool suppressDefaultLog, IListMetadataApiResponse apiResponseLocalVar);
+        partial void AfterGetMetadataSchema(ref bool suppressDefaultLog, IGetMetadataSchemaApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1582,10 +1301,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetMetadataSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetMetadataSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1597,18 +1316,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetMetadataSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataApiResponse"/>&gt;</returns>
-        public async Task<IListMetadataApiResponse?> ListMetadataOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetMetadataSchemaApiResponse?> GetMetadataSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListMetadataAsync(cancellationToken).ConfigureAwait(false);
+                return await GetMetadataSchemaAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1621,246 +1340,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataApiResponse"/>&gt;</returns>
-        public async Task<IListMetadataApiResponse> ListMetadataAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/metadata"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata");
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] acceptLocalVars = new string[] {
-                        "application/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        ListMetadataApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterListMetadataDefaultImplementation(apiResponseLocalVar);
-
-                        Events.ExecuteOnListMetadata(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorListMetadataDefaultImplementation(e, "/api/v3/metadata", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListMetadata(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="ListMetadataApiResponse"/>
-        /// </summary>
-        public partial class ListMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, IListMetadataApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MetadataApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="ListMetadataApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="ListMetadataApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public ListMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public List<MetadataResource>? Ok()
-            {
-                bool suppressDefault = false;
-                List<MetadataResource>? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private List<MetadataResource>? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<List<MetadataResource>>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref List<MetadataResource>? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out List<MetadataResource>? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        private void AfterListMetadataSchemaDefaultImplementation(IListMetadataSchemaApiResponse apiResponseLocalVar)
-        {
-            bool suppressDefaultLog = false;
-            AfterListMetadataSchema(ref suppressDefaultLog, apiResponseLocalVar);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListMetadataSchema(ref bool suppressDefaultLog, IListMetadataSchemaApiResponse apiResponseLocalVar);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        private void OnErrorListMetadataSchemaDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorListMetadataSchema(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        partial void OnErrorListMetadataSchema(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListMetadataSchemaApiResponse?> ListMetadataSchemaOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await ListMetadataSchemaAsync(cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMetadataSchemaApiResponse"/>&gt;</returns>
-        public async Task<IListMetadataSchemaApiResponse> ListMetadataSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMetadataSchemaApiResponse"/>&gt;</returns>
+        public async Task<IGetMetadataSchemaApiResponse> GetMetadataSchemaAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -1897,7 +1378,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListMetadataSchemaApiResponse apiResponseLocalVar;
+                        GetMetadataSchemaApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1908,9 +1389,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListMetadataSchemaDefaultImplementation(apiResponseLocalVar);
+                        AfterGetMetadataSchemaDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListMetadataSchema(apiResponseLocalVar);
+                        Events.ExecuteOnGetMetadataSchema(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1922,16 +1403,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListMetadataSchemaDefaultImplementation(e, "/api/v3/metadata/schema", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListMetadataSchema(e);
+                OnErrorGetMetadataSchemaDefaultImplementation(e, "/api/v3/metadata/schema", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetMetadataSchema(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListMetadataSchemaApiResponse"/>
+        /// The <see cref="GetMetadataSchemaApiResponse"/>
         /// </summary>
-        public partial class ListMetadataSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IListMetadataSchemaApiResponse
+        public partial class GetMetadataSchemaApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMetadataSchemaApiResponse
         {
             /// <summary>
             /// The logger
@@ -1939,7 +1420,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MetadataApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListMetadataSchemaApiResponse"/>
+            /// The <see cref="GetMetadataSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1948,14 +1429,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListMetadataSchemaApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetMetadataSchemaApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListMetadataSchemaApiResponse"/>
+            /// The <see cref="GetMetadataSchemaApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1964,7 +1445,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListMetadataSchemaApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetMetadataSchemaApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2033,14 +1514,29 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
+        partial void FormatPostMetadata(MetadataResource metadataResource, ref Option<bool> forceSave);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="metadataResource"></param>
+        /// <returns></returns>
+        private void ValidatePostMetadata(MetadataResource metadataResource)
+        {
+            if (metadataResource == null)
+                throw new ArgumentNullException(nameof(metadataResource));
+        }
+
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterTestAllMetadataDefaultImplementation(ITestAllMetadataApiResponse apiResponseLocalVar)
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"></param>
+        private void AfterPostMetadataDefaultImplementation(IPostMetadataApiResponse apiResponseLocalVar, MetadataResource metadataResource, Option<bool> forceSave)
         {
             bool suppressDefaultLog = false;
-            AfterTestAllMetadata(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterPostMetadata(ref suppressDefaultLog, apiResponseLocalVar, metadataResource, forceSave);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2050,7 +1546,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterTestAllMetadata(ref bool suppressDefaultLog, ITestAllMetadataApiResponse apiResponseLocalVar);
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"></param>
+        partial void AfterPostMetadata(ref bool suppressDefaultLog, IPostMetadataApiResponse apiResponseLocalVar, MetadataResource metadataResource, Option<bool> forceSave);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2058,10 +1556,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorTestAllMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"></param>
+        private void OnErrorPostMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MetadataResource metadataResource, Option<bool> forceSave)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTestAllMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorPostMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, metadataResource, forceSave);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2073,18 +1573,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorTestAllMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"></param>
+        partial void OnErrorPostMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MetadataResource metadataResource, Option<bool> forceSave);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllMetadataApiResponse"/>&gt;</returns>
-        public async Task<ITestAllMetadataApiResponse?> TestAllMetadataOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataApiResponse?> PostMetadataOrDefaultAsync(MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TestAllMetadataAsync(cancellationToken).ConfigureAwait(false);
+                return await PostMetadataAsync(metadataResource, forceSave, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2096,22 +1600,39 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="metadataResource"></param>
+        /// <param name="forceSave"> (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestAllMetadataApiResponse"/>&gt;</returns>
-        public async Task<ITestAllMetadataApiResponse> TestAllMetadataAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataApiResponse> PostMetadataAsync(MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
+                ValidatePostMetadata(metadataResource);
+
+                FormatPostMetadata(metadataResource, ref forceSave);
+
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
                     uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
                     uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
                     uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
                     uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/metadata/testall"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata/testall");
+                        ? "/api/v3/metadata"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata");
+
+                    System.Collections.Specialized.NameValueCollection parseQueryStringLocalVar = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    if (forceSave.IsSet)
+                        parseQueryStringLocalVar["forceSave"] = ClientUtils.ParameterToString(forceSave.Value);
+
+                    uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
+
+                    httpRequestMessageLocalVar.Content = (metadataResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2120,26 +1641,44 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
                     httpRequestMessageLocalVar.Method = HttpMethod.Post;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        TestAllMetadataApiResponse apiResponseLocalVar;
+                        PostMetadataApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
                                 string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata/testall", requestedAtLocalVar, _jsonSerializerOptions);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata", requestedAtLocalVar, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
 
-                        AfterTestAllMetadataDefaultImplementation(apiResponseLocalVar);
+                        AfterPostMetadataDefaultImplementation(apiResponseLocalVar, metadataResource, forceSave);
 
-                        Events.ExecuteOnTestAllMetadata(apiResponseLocalVar);
+                        Events.ExecuteOnPostMetadata(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2151,16 +1690,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorTestAllMetadataDefaultImplementation(e, "/api/v3/metadata/testall", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorTestAllMetadata(e);
+                OnErrorPostMetadataDefaultImplementation(e, "/api/v3/metadata", uriBuilderLocalVar.Path, metadataResource, forceSave);
+                Events.ExecuteOnErrorPostMetadata(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="TestAllMetadataApiResponse"/>
+        /// The <see cref="PostMetadataApiResponse"/>
         /// </summary>
-        public partial class TestAllMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, ITestAllMetadataApiResponse
+        public partial class PostMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, IPostMetadataApiResponse
         {
             /// <summary>
             /// The logger
@@ -2168,7 +1707,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MetadataApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="TestAllMetadataApiResponse"/>
+            /// The <see cref="PostMetadataApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2177,14 +1716,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestAllMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="TestAllMetadataApiResponse"/>
+            /// The <see cref="PostMetadataApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2193,7 +1732,292 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestAllMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public bool IsCreated => 201 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 201 Created
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.MetadataResource? Created()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.MetadataResource? result = null;
+                OnCreated(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultCreated();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.MetadataResource? DefaultCreated()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsCreated
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MetadataResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnCreated(ref bool suppressDefault, ref Whisparr3.Net.Model.MetadataResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 201 Created and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryCreated([NotNullWhen(true)]out Whisparr3.Net.Model.MetadataResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Created();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)201);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPostMetadataActionByName(ref string name, MetadataResource metadataResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        /// <returns></returns>
+        private void ValidatePostMetadataActionByName(string name, MetadataResource metadataResource)
+        {
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
+
+            if (metadataResource == null)
+                throw new ArgumentNullException(nameof(metadataResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        private void AfterPostMetadataActionByNameDefaultImplementation(IPostMetadataActionByNameApiResponse apiResponseLocalVar, string name, MetadataResource metadataResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostMetadataActionByName(ref suppressDefaultLog, apiResponseLocalVar, name, metadataResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        partial void AfterPostMetadataActionByName(ref bool suppressDefaultLog, IPostMetadataActionByNameApiResponse apiResponseLocalVar, string name, MetadataResource metadataResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        private void OnErrorPostMetadataActionByNameDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, MetadataResource metadataResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostMetadataActionByName(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, name, metadataResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        partial void OnErrorPostMetadataActionByName(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string name, MetadataResource metadataResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataActionByNameApiResponse?> PostMetadataActionByNameOrDefaultAsync(string name, MetadataResource metadataResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostMetadataActionByNameAsync(name, metadataResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"></param>
+        /// <param name="metadataResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataActionByNameApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataActionByNameApiResponse> PostMetadataActionByNameAsync(string name, MetadataResource metadataResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePostMetadataActionByName(name, metadataResource);
+
+                FormatPostMetadataActionByName(ref name, metadataResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/metadata/action/{name}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata/action/{name}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bname%7D", Uri.EscapeDataString(name.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (metadataResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostMetadataActionByNameApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata/action/{name}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostMetadataActionByNameDefaultImplementation(apiResponseLocalVar, name, metadataResource);
+
+                        Events.ExecuteOnPostMetadataActionByName(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostMetadataActionByNameDefaultImplementation(e, "/api/v3/metadata/action/{name}", uriBuilderLocalVar.Path, name, metadataResource);
+                Events.ExecuteOnErrorPostMetadataActionByName(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostMetadataActionByNameApiResponse"/>
+        /// </summary>
+        public partial class PostMetadataActionByNameApiResponse : Whisparr3.Net.Client.ApiResponse, IPostMetadataActionByNameApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<MetadataApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostMetadataActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostMetadataActionByNameApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostMetadataActionByNameApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostMetadataActionByNameApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2207,6 +2031,50 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public Object? Ok()
+            {
+                bool suppressDefault = false;
+                Object? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private Object? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Object>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref Object? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out Object? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -2218,16 +2086,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatTestMetadata(ref Option<bool> forceTest, Option<MetadataResource> metadataResource);
+        partial void FormatPostMetadataTest(MetadataResource metadataResource, ref Option<bool> forceTest);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="metadataResource"></param>
         /// <returns></returns>
-        private void ValidateTestMetadata(Option<MetadataResource> metadataResource)
+        private void ValidatePostMetadataTest(MetadataResource metadataResource)
         {
-            if (metadataResource.IsSet && metadataResource.Value == null)
+            if (metadataResource == null)
                 throw new ArgumentNullException(nameof(metadataResource));
         }
 
@@ -2235,12 +2103,12 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="metadataResource"></param>
-        private void AfterTestMetadataDefaultImplementation(ITestMetadataApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<MetadataResource> metadataResource)
+        /// <param name="forceTest"></param>
+        private void AfterPostMetadataTestDefaultImplementation(IPostMetadataTestApiResponse apiResponseLocalVar, MetadataResource metadataResource, Option<bool> forceTest)
         {
             bool suppressDefaultLog = false;
-            AfterTestMetadata(ref suppressDefaultLog, apiResponseLocalVar, forceTest, metadataResource);
+            AfterPostMetadataTest(ref suppressDefaultLog, apiResponseLocalVar, metadataResource, forceTest);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2250,9 +2118,9 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="metadataResource"></param>
-        partial void AfterTestMetadata(ref bool suppressDefaultLog, ITestMetadataApiResponse apiResponseLocalVar, Option<bool> forceTest, Option<MetadataResource> metadataResource);
+        /// <param name="forceTest"></param>
+        partial void AfterPostMetadataTest(ref bool suppressDefaultLog, IPostMetadataTestApiResponse apiResponseLocalVar, MetadataResource metadataResource, Option<bool> forceTest);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2260,12 +2128,12 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="metadataResource"></param>
-        private void OnErrorTestMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<MetadataResource> metadataResource)
+        /// <param name="forceTest"></param>
+        private void OnErrorPostMetadataTestDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MetadataResource metadataResource, Option<bool> forceTest)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorTestMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, forceTest, metadataResource);
+            OnErrorPostMetadataTest(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, metadataResource, forceTest);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2277,22 +2145,22 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        /// <param name="forceTest"></param>
         /// <param name="metadataResource"></param>
-        partial void OnErrorTestMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<bool> forceTest, Option<MetadataResource> metadataResource);
+        /// <param name="forceTest"></param>
+        partial void OnErrorPostMetadataTest(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MetadataResource metadataResource, Option<bool> forceTest);
 
         /// <summary>
         ///  
         /// </summary>
+        /// <param name="metadataResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestMetadataApiResponse"/>&gt;</returns>
-        public async Task<ITestMetadataApiResponse?> TestMetadataOrDefaultAsync(Option<bool> forceTest = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataTestApiResponse?> PostMetadataTestOrDefaultAsync(MetadataResource metadataResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await TestMetadataAsync(forceTest, metadataResource, cancellationToken).ConfigureAwait(false);
+                return await PostMetadataTestAsync(metadataResource, forceTest, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2304,19 +2172,19 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="metadataResource"></param>
         /// <param name="forceTest"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="ITestMetadataApiResponse"/>&gt;</returns>
-        public async Task<ITestMetadataApiResponse> TestMetadataAsync(Option<bool> forceTest = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataTestApiResponse> PostMetadataTestAsync(MetadataResource metadataResource, Option<bool> forceTest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateTestMetadata(metadataResource);
+                ValidatePostMetadataTest(metadataResource);
 
-                FormatTestMetadata(ref forceTest, metadataResource);
+                FormatPostMetadataTest(metadataResource, ref forceTest);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2334,12 +2202,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (metadataResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (metadataResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (metadataResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2363,7 +2228,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        TestMetadataApiResponse apiResponseLocalVar;
+                        PostMetadataTestApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2374,9 +2239,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterTestMetadataDefaultImplementation(apiResponseLocalVar, forceTest, metadataResource);
+                        AfterPostMetadataTestDefaultImplementation(apiResponseLocalVar, metadataResource, forceTest);
 
-                        Events.ExecuteOnTestMetadata(apiResponseLocalVar);
+                        Events.ExecuteOnPostMetadataTest(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2388,16 +2253,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorTestMetadataDefaultImplementation(e, "/api/v3/metadata/test", uriBuilderLocalVar.Path, forceTest, metadataResource);
-                Events.ExecuteOnErrorTestMetadata(e);
+                OnErrorPostMetadataTestDefaultImplementation(e, "/api/v3/metadata/test", uriBuilderLocalVar.Path, metadataResource, forceTest);
+                Events.ExecuteOnErrorPostMetadataTest(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="TestMetadataApiResponse"/>
+        /// The <see cref="PostMetadataTestApiResponse"/>
         /// </summary>
-        public partial class TestMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, ITestMetadataApiResponse
+        public partial class PostMetadataTestApiResponse : Whisparr3.Net.Client.ApiResponse, IPostMetadataTestApiResponse
         {
             /// <summary>
             /// The logger
@@ -2405,7 +2270,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MetadataApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="TestMetadataApiResponse"/>
+            /// The <see cref="PostMetadataTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2414,14 +2279,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PostMetadataTestApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="TestMetadataApiResponse"/>
+            /// The <see cref="PostMetadataTestApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2430,7 +2295,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public TestMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PostMetadataTestApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2455,16 +2320,304 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatUpdateMetadata(ref int id, ref Option<bool> forceSave, Option<MetadataResource> metadataResource);
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        private void AfterPostMetadataTestallDefaultImplementation(IPostMetadataTestallApiResponse apiResponseLocalVar)
+        {
+            bool suppressDefaultLog = false;
+            AfterPostMetadataTestall(ref suppressDefaultLog, apiResponseLocalVar);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        partial void AfterPostMetadataTestall(ref bool suppressDefaultLog, IPostMetadataTestallApiResponse apiResponseLocalVar);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        private void OnErrorPostMetadataTestallDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPostMetadataTestall(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        partial void OnErrorPostMetadataTestall(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataTestallApiResponse?> PostMetadataTestallOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PostMetadataTestallAsync(cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPostMetadataTestallApiResponse"/>&gt;</returns>
+        public async Task<IPostMetadataTestallApiResponse> PostMetadataTestallAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/metadata/testall"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/metadata/testall");
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Post;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PostMetadataTestallApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/metadata/testall", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPostMetadataTestallDefaultImplementation(apiResponseLocalVar);
+
+                        Events.ExecuteOnPostMetadataTestall(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPostMetadataTestallDefaultImplementation(e, "/api/v3/metadata/testall", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorPostMetadataTestall(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PostMetadataTestallApiResponse"/>
+        /// </summary>
+        public partial class PostMetadataTestallApiResponse : Whisparr3.Net.Client.ApiResponse, IPostMetadataTestallApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<MetadataApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PostMetadataTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostMetadataTestallApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PostMetadataTestallApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PostMetadataTestallApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? Ok()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnOk(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultOk();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultOk()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnOk(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryOk([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public bool IsBadRequest => 400 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 400 BadRequest
+            /// </summary>
+            /// <returns></returns>
+            public List<ProviderTestAllResult>? BadRequest()
+            {
+                bool suppressDefault = false;
+                List<ProviderTestAllResult>? result = null;
+                OnBadRequest(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultBadRequest();
+                return result;
+            }
+
+            private List<ProviderTestAllResult>? DefaultBadRequest()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsBadRequest
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<ProviderTestAllResult>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnBadRequest(ref bool suppressDefault, ref List<ProviderTestAllResult>? result);
+
+            /// <summary>
+            /// Returns true if the response is 400 BadRequest and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryBadRequest([NotNullWhen(true)]out List<ProviderTestAllResult>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = BadRequest();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)400);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutMetadataById(ref int id, MetadataResource metadataResource, ref Option<bool> forceSave);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="metadataResource"></param>
         /// <returns></returns>
-        private void ValidateUpdateMetadata(Option<MetadataResource> metadataResource)
+        private void ValidatePutMetadataById(MetadataResource metadataResource)
         {
-            if (metadataResource.IsSet && metadataResource.Value == null)
+            if (metadataResource == null)
                 throw new ArgumentNullException(nameof(metadataResource));
         }
 
@@ -2473,12 +2626,12 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="metadataResource"></param>
-        private void AfterUpdateMetadataDefaultImplementation(IUpdateMetadataApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<MetadataResource> metadataResource)
+        /// <param name="forceSave"></param>
+        private void AfterPutMetadataByIdDefaultImplementation(IPutMetadataByIdApiResponse apiResponseLocalVar, int id, MetadataResource metadataResource, Option<bool> forceSave)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateMetadata(ref suppressDefaultLog, apiResponseLocalVar, id, forceSave, metadataResource);
+            AfterPutMetadataById(ref suppressDefaultLog, apiResponseLocalVar, id, metadataResource, forceSave);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -2489,9 +2642,9 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="metadataResource"></param>
-        partial void AfterUpdateMetadata(ref bool suppressDefaultLog, IUpdateMetadataApiResponse apiResponseLocalVar, int id, Option<bool> forceSave, Option<MetadataResource> metadataResource);
+        /// <param name="forceSave"></param>
+        partial void AfterPutMetadataById(ref bool suppressDefaultLog, IPutMetadataByIdApiResponse apiResponseLocalVar, int id, MetadataResource metadataResource, Option<bool> forceSave);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -2500,12 +2653,12 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="metadataResource"></param>
-        private void OnErrorUpdateMetadataDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<MetadataResource> metadataResource)
+        /// <param name="forceSave"></param>
+        private void OnErrorPutMetadataByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, MetadataResource metadataResource, Option<bool> forceSave)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateMetadata(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, forceSave, metadataResource);
+            OnErrorPutMetadataById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, metadataResource, forceSave);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -2518,23 +2671,23 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="forceSave"></param>
         /// <param name="metadataResource"></param>
-        partial void OnErrorUpdateMetadata(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, Option<bool> forceSave, Option<MetadataResource> metadataResource);
+        /// <param name="forceSave"></param>
+        partial void OnErrorPutMetadataById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id, MetadataResource metadataResource, Option<bool> forceSave);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="metadataResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMetadataApiResponse"/>&gt;</returns>
-        public async Task<IUpdateMetadataApiResponse?> UpdateMetadataOrDefaultAsync(int id, Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMetadataByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutMetadataByIdApiResponse?> PutMetadataByIdOrDefaultAsync(int id, MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateMetadataAsync(id, forceSave, metadataResource, cancellationToken).ConfigureAwait(false);
+                return await PutMetadataByIdAsync(id, metadataResource, forceSave, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -2547,19 +2700,19 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
+        /// <param name="metadataResource"></param>
         /// <param name="forceSave"> (optional, default to false)</param>
-        /// <param name="metadataResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMetadataApiResponse"/>&gt;</returns>
-        public async Task<IUpdateMetadataApiResponse> UpdateMetadataAsync(int id, Option<bool> forceSave = default, Option<MetadataResource> metadataResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMetadataByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutMetadataByIdApiResponse> PutMetadataByIdAsync(int id, MetadataResource metadataResource, Option<bool> forceSave = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateMetadata(metadataResource);
+                ValidatePutMetadataById(metadataResource);
 
-                FormatUpdateMetadata(ref id, ref forceSave, metadataResource);
+                FormatPutMetadataById(ref id, metadataResource, ref forceSave);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2578,12 +2731,9 @@ namespace Whisparr3.Net.Api
 
                     uriBuilderLocalVar.Query = parseQueryStringLocalVar.ToString();
 
-                    if (metadataResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (metadataResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (metadataResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(metadataResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -2616,7 +2766,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateMetadataApiResponse apiResponseLocalVar;
+                        PutMetadataByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2627,9 +2777,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateMetadataDefaultImplementation(apiResponseLocalVar, id, forceSave, metadataResource);
+                        AfterPutMetadataByIdDefaultImplementation(apiResponseLocalVar, id, metadataResource, forceSave);
 
-                        Events.ExecuteOnUpdateMetadata(apiResponseLocalVar);
+                        Events.ExecuteOnPutMetadataById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2641,16 +2791,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateMetadataDefaultImplementation(e, "/api/v3/metadata/{id}", uriBuilderLocalVar.Path, id, forceSave, metadataResource);
-                Events.ExecuteOnErrorUpdateMetadata(e);
+                OnErrorPutMetadataByIdDefaultImplementation(e, "/api/v3/metadata/{id}", uriBuilderLocalVar.Path, id, metadataResource, forceSave);
+                Events.ExecuteOnErrorPutMetadataById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateMetadataApiResponse"/>
+        /// The <see cref="PutMetadataByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateMetadataApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateMetadataApiResponse
+        public partial class PutMetadataByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutMetadataByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -2658,7 +2808,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MetadataApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateMetadataApiResponse"/>
+            /// The <see cref="PutMetadataByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2667,14 +2817,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public PutMetadataByIdApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateMetadataApiResponse"/>
+            /// The <see cref="PutMetadataByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2683,7 +2833,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateMetadataApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public PutMetadataByIdApiResponse(ILogger<MetadataApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2692,50 +2842,50 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
 
             /// <summary>
-            /// Deserializes the response if the response is 200 Ok
+            /// Deserializes the response if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public Whisparr3.Net.Model.MetadataResource? Ok()
+            public Whisparr3.Net.Model.MetadataResource? Accepted()
             {
                 bool suppressDefault = false;
                 Whisparr3.Net.Model.MetadataResource? result = null;
-                OnOk(ref suppressDefault, ref result);
+                OnAccepted(ref suppressDefault, ref result);
                 if (!suppressDefault)
-                    result = DefaultOk();
+                    result = DefaultAccepted();
                 return result;
             }
 
-            private Whisparr3.Net.Model.MetadataResource? DefaultOk()
+            private Whisparr3.Net.Model.MetadataResource? DefaultAccepted()
             {
                 // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
+                return IsAccepted
                     ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MetadataResource>(RawContent, _jsonSerializerOptions)
                     : null;
             }
 
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.MetadataResource? result);
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.MetadataResource? result);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.MetadataResource? result)
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.MetadataResource? result)
             {
                 result = null;
 
                 try
                 {
-                    result = Ok();
+                    result = Accepted();
                 } catch (Exception e)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

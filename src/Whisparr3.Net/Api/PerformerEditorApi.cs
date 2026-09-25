@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerEditorApiResponse"/>&gt;</returns>
-        Task<IDeletePerformerEditorApiResponse> DeletePerformerEditorAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeletePerformerEditorApiResponse> DeletePerformerEditorAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,10 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerEditorApiResponse"/>?&gt;</returns>
-        Task<IDeletePerformerEditorApiResponse?> DeletePerformerEditorOrDefaultAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeletePerformerEditorApiResponse?> DeletePerformerEditorOrDefaultAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Edits multiple performers
@@ -68,10 +68,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerEditorApiResponse"/>&gt;</returns>
-        Task<IPutPerformerEditorApiResponse> PutPerformerEditorAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutPerformerEditorApiResponse> PutPerformerEditorAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Edits multiple performers
@@ -79,10 +79,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerEditorApiResponse"/>?&gt;</returns>
-        Task<IPutPerformerEditorApiResponse?> PutPerformerEditorOrDefaultAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPutPerformerEditorApiResponse?> PutPerformerEditorOrDefaultAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -100,13 +100,13 @@ namespace Whisparr3.Net.Api
     /// <summary>
     /// The <see cref="IPutPerformerEditorApiResponse"/>
     /// </summary>
-    public interface IPutPerformerEditorApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutPerformerEditorApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<PerformerResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -196,16 +196,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatDeletePerformerEditor(Option<PerformerEditorResource> performerEditorResource);
+        partial void FormatDeletePerformerEditor(PerformerEditorResource performerEditorResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="performerEditorResource"></param>
         /// <returns></returns>
-        private void ValidateDeletePerformerEditor(Option<PerformerEditorResource> performerEditorResource)
+        private void ValidateDeletePerformerEditor(PerformerEditorResource performerEditorResource)
         {
-            if (performerEditorResource.IsSet && performerEditorResource.Value == null)
+            if (performerEditorResource == null)
                 throw new ArgumentNullException(nameof(performerEditorResource));
         }
 
@@ -214,7 +214,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        private void AfterDeletePerformerEditorDefaultImplementation(IDeletePerformerEditorApiResponse apiResponseLocalVar, Option<PerformerEditorResource> performerEditorResource)
+        private void AfterDeletePerformerEditorDefaultImplementation(IDeletePerformerEditorApiResponse apiResponseLocalVar, PerformerEditorResource performerEditorResource)
         {
             bool suppressDefaultLog = false;
             AfterDeletePerformerEditor(ref suppressDefaultLog, apiResponseLocalVar, performerEditorResource);
@@ -228,7 +228,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        partial void AfterDeletePerformerEditor(ref bool suppressDefaultLog, IDeletePerformerEditorApiResponse apiResponseLocalVar, Option<PerformerEditorResource> performerEditorResource);
+        partial void AfterDeletePerformerEditor(ref bool suppressDefaultLog, IDeletePerformerEditorApiResponse apiResponseLocalVar, PerformerEditorResource performerEditorResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -237,7 +237,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        private void OnErrorDeletePerformerEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerEditorResource> performerEditorResource)
+        private void OnErrorDeletePerformerEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerEditorResource performerEditorResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorDeletePerformerEditor(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerEditorResource);
@@ -253,15 +253,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        partial void OnErrorDeletePerformerEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerEditorResource> performerEditorResource);
+        partial void OnErrorDeletePerformerEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerEditorResource performerEditorResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerEditorApiResponse"/>&gt;</returns>
-        public async Task<IDeletePerformerEditorApiResponse?> DeletePerformerEditorOrDefaultAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeletePerformerEditorApiResponse?> DeletePerformerEditorOrDefaultAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -277,10 +277,10 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IDeletePerformerEditorApiResponse"/>&gt;</returns>
-        public async Task<IDeletePerformerEditorApiResponse> DeletePerformerEditorAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeletePerformerEditorApiResponse> DeletePerformerEditorAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -299,12 +299,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/performer/editor"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/editor");
 
-                    if (performerEditorResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (performerEditorResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (performerEditorResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerEditorResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerEditorResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -422,16 +419,16 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatPutPerformerEditor(Option<PerformerEditorResource> performerEditorResource);
+        partial void FormatPutPerformerEditor(PerformerEditorResource performerEditorResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="performerEditorResource"></param>
         /// <returns></returns>
-        private void ValidatePutPerformerEditor(Option<PerformerEditorResource> performerEditorResource)
+        private void ValidatePutPerformerEditor(PerformerEditorResource performerEditorResource)
         {
-            if (performerEditorResource.IsSet && performerEditorResource.Value == null)
+            if (performerEditorResource == null)
                 throw new ArgumentNullException(nameof(performerEditorResource));
         }
 
@@ -440,7 +437,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        private void AfterPutPerformerEditorDefaultImplementation(IPutPerformerEditorApiResponse apiResponseLocalVar, Option<PerformerEditorResource> performerEditorResource)
+        private void AfterPutPerformerEditorDefaultImplementation(IPutPerformerEditorApiResponse apiResponseLocalVar, PerformerEditorResource performerEditorResource)
         {
             bool suppressDefaultLog = false;
             AfterPutPerformerEditor(ref suppressDefaultLog, apiResponseLocalVar, performerEditorResource);
@@ -454,7 +451,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        partial void AfterPutPerformerEditor(ref bool suppressDefaultLog, IPutPerformerEditorApiResponse apiResponseLocalVar, Option<PerformerEditorResource> performerEditorResource);
+        partial void AfterPutPerformerEditor(ref bool suppressDefaultLog, IPutPerformerEditorApiResponse apiResponseLocalVar, PerformerEditorResource performerEditorResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -463,7 +460,7 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        private void OnErrorPutPerformerEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerEditorResource> performerEditorResource)
+        private void OnErrorPutPerformerEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerEditorResource performerEditorResource)
         {
             bool suppressDefaultLogLocalVar = false;
             OnErrorPutPerformerEditor(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, performerEditorResource);
@@ -479,15 +476,15 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="performerEditorResource"></param>
-        partial void OnErrorPutPerformerEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<PerformerEditorResource> performerEditorResource);
+        partial void OnErrorPutPerformerEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, PerformerEditorResource performerEditorResource);
 
         /// <summary>
         /// Edits multiple performers 
         /// </summary>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutPerformerEditorApiResponse?> PutPerformerEditorOrDefaultAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutPerformerEditorApiResponse?> PutPerformerEditorOrDefaultAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
@@ -503,10 +500,10 @@ namespace Whisparr3.Net.Api
         /// Edits multiple performers 
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="performerEditorResource"> (optional)</param>
+        /// <param name="performerEditorResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="IPutPerformerEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutPerformerEditorApiResponse> PutPerformerEditorAsync(Option<PerformerEditorResource> performerEditorResource = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IPutPerformerEditorApiResponse> PutPerformerEditorAsync(PerformerEditorResource performerEditorResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -525,12 +522,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/performer/editor"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/performer/editor");
 
-                    if (performerEditorResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (performerEditorResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (performerEditorResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerEditorResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(performerEditorResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -547,6 +541,15 @@ namespace Whisparr3.Net.Api
 
                     if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
                         httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "application/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
                     httpRequestMessageLocalVar.Method = HttpMethod.Put;
 
@@ -630,10 +633,54 @@ namespace Whisparr3.Net.Api
             partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
 
             /// <summary>
-            /// Returns true if the response is 200 Ok
+            /// Returns true if the response is 202 Accepted
             /// </summary>
             /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public List<PerformerResource>? Accepted()
+            {
+                bool suppressDefault = false;
+                List<PerformerResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private List<PerformerResource>? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<PerformerResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref List<PerformerResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out List<PerformerResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
 
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {

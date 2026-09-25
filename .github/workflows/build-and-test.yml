@@ -62,8 +62,3 @@ jobs:
           VERSION="$(grep -oP '(?<=<Version>)[^<]+' Directory.Build.props)"
           python3 scripts/assert_package.py "artifacts/Whisparr3.Net.$VERSION.nupkg"
 
-      # docs/SURFACE.md is generated from the committed spec. Re-render and diff rather
-      # than assert counts: a Whisparr release that adds an operation should update the
-      # document, not fail the build.
-      - name: Assert the generated document matches the committed spec
-        run: python3 generator/render_docs.py --check

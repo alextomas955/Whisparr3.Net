@@ -45,10 +45,10 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
+        /// <param name="movieFileListResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileApiResponse"/>&gt;</returns>
-        Task<IDeleteMovieFileApiResponse> DeleteMovieFileAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileBulkApiResponse"/>&gt;</returns>
+        Task<IDeleteMoviefileBulkApiResponse> DeleteMoviefileBulkAsync(MovieFileListResource movieFileListResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,33 +56,10 @@ namespace Whisparr3.Net.Api
         /// <remarks>
         /// 
         /// </remarks>
-        /// <param name="id"></param>
+        /// <param name="movieFileListResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileApiResponse"/>?&gt;</returns>
-        Task<IDeleteMovieFileApiResponse?> DeleteMovieFileOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieFileListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileBulkApiResponse"/>&gt;</returns>
-        Task<IDeleteMovieFileBulkApiResponse> DeleteMovieFileBulkAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="movieFileListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileBulkApiResponse"/>?&gt;</returns>
-        Task<IDeleteMovieFileBulkApiResponse?> DeleteMovieFileBulkOrDefaultAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileBulkApiResponse"/>?&gt;</returns>
+        Task<IDeleteMoviefileBulkApiResponse?> DeleteMoviefileBulkOrDefaultAsync(MovieFileListResource movieFileListResource, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -93,8 +70,8 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFileByIdApiResponse"/>&gt;</returns>
-        Task<IGetMovieFileByIdApiResponse> GetMovieFileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileByIdApiResponse"/>&gt;</returns>
+        Task<IDeleteMoviefileByIdApiResponse> DeleteMoviefileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -104,8 +81,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFileByIdApiResponse"/>?&gt;</returns>
-        Task<IGetMovieFileByIdApiResponse?> GetMovieFileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileByIdApiResponse"/>?&gt;</returns>
+        Task<IDeleteMoviefileByIdApiResponse?> DeleteMoviefileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -118,8 +95,8 @@ namespace Whisparr3.Net.Api
         /// <param name="movieFileIds"> (optional)</param>
         /// <param name="unmapped"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieFileApiResponse"/>&gt;</returns>
-        Task<IListMovieFileApiResponse> ListMovieFileAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileApiResponse"/>&gt;</returns>
+        Task<IGetMoviefileApiResponse> GetMoviefileAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -131,56 +108,8 @@ namespace Whisparr3.Net.Api
         /// <param name="movieFileIds"> (optional)</param>
         /// <param name="unmapped"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieFileApiResponse"/>?&gt;</returns>
-        Task<IListMovieFileApiResponse?> ListMovieFileOrDefaultAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieFileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileBulkApiResponse"/>&gt;</returns>
-        Task<IPutMovieFileBulkApiResponse> PutMovieFileBulkAsync(Option<List<MovieFileResource>> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="movieFileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileBulkApiResponse"/>?&gt;</returns>
-        Task<IPutMovieFileBulkApiResponse?> PutMovieFileBulkOrDefaultAsync(Option<List<MovieFileResource>> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieFileListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileEditorApiResponse"/>&gt;</returns>
-        [Obsolete]
-        Task<IPutMovieFileEditorApiResponse> PutMovieFileEditorAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <param name="movieFileListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileEditorApiResponse"/>?&gt;</returns>
-        [Obsolete]
-        Task<IPutMovieFileEditorApiResponse?> PutMovieFileEditorOrDefaultAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileApiResponse"/>?&gt;</returns>
+        Task<IGetMoviefileApiResponse?> GetMoviefileOrDefaultAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -190,10 +119,9 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieFileApiResponse"/>&gt;</returns>
-        Task<IUpdateMovieFileApiResponse> UpdateMovieFileAsync(string id, Option<MovieFileResource> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileByIdApiResponse"/>&gt;</returns>
+        Task<IGetMoviefileByIdApiResponse> GetMoviefileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -202,16 +130,63 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieFileApiResponse"/>?&gt;</returns>
-        Task<IUpdateMovieFileApiResponse?> UpdateMovieFileOrDefaultAsync(string id, Option<MovieFileResource> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileByIdApiResponse"/>?&gt;</returns>
+        Task<IGetMoviefileByIdApiResponse?> GetMoviefileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileBulkApiResponse"/>&gt;</returns>
+        Task<IPutMoviefileBulkApiResponse> PutMoviefileBulkAsync(List<MovieFileResource> movieFileResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileBulkApiResponse"/>?&gt;</returns>
+        Task<IPutMoviefileBulkApiResponse?> PutMoviefileBulkOrDefaultAsync(List<MovieFileResource> movieFileResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileByIdApiResponse"/>&gt;</returns>
+        Task<IPutMoviefileByIdApiResponse> PutMoviefileByIdAsync(string id, MovieFileResource movieFileResource, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileByIdApiResponse"/>?&gt;</returns>
+        Task<IPutMoviefileByIdApiResponse?> PutMoviefileByIdOrDefaultAsync(string id, MovieFileResource movieFileResource, System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IDeleteMovieFileApiResponse"/>
+    /// The <see cref="IDeleteMoviefileBulkApiResponse"/>
     /// </summary>
-    public interface IDeleteMovieFileApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteMoviefileBulkApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -221,9 +196,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IDeleteMovieFileBulkApiResponse"/>
+    /// The <see cref="IDeleteMoviefileByIdApiResponse"/>
     /// </summary>
-    public interface IDeleteMovieFileBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IDeleteMoviefileByIdApiResponse : Whisparr3.Net.Client.IApiResponse
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -233,9 +208,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IGetMovieFileByIdApiResponse"/>
+    /// The <see cref="IGetMoviefileApiResponse"/>
     /// </summary>
-    public interface IGetMovieFileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MovieFileResource?>
+    public interface IGetMoviefileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieFileResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -245,9 +220,9 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IListMovieFileApiResponse"/>
+    /// The <see cref="IGetMoviefileByIdApiResponse"/>
     /// </summary>
-    public interface IListMovieFileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<MovieFileResource>?>
+    public interface IGetMoviefileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MovieFileResource?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -257,39 +232,27 @@ namespace Whisparr3.Net.Api
     }
 
     /// <summary>
-    /// The <see cref="IPutMovieFileBulkApiResponse"/>
+    /// The <see cref="IPutMoviefileBulkApiResponse"/>
     /// </summary>
-    public interface IPutMovieFileBulkApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutMoviefileBulkApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<List<MovieFileResource>?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
-    /// The <see cref="IPutMovieFileEditorApiResponse"/>
+    /// The <see cref="IPutMoviefileByIdApiResponse"/>
     /// </summary>
-    public interface IPutMovieFileEditorApiResponse : Whisparr3.Net.Client.IApiResponse
+    public interface IPutMoviefileByIdApiResponse : Whisparr3.Net.Client.IApiResponse, IAccepted<Whisparr3.Net.Model.MovieFileResource?>
     {
         /// <summary>
-        /// Returns true if the response is 200 Ok
+        /// Returns true if the response is 202 Accepted
         /// </summary>
         /// <returns></returns>
-        bool IsOk { get; }
-    }
-
-    /// <summary>
-    /// The <see cref="IUpdateMovieFileApiResponse"/>
-    /// </summary>
-    public interface IUpdateMovieFileApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<Whisparr3.Net.Model.MovieFileResource?>
-    {
-        /// <summary>
-        /// Returns true if the response is 200 Ok
-        /// </summary>
-        /// <returns></returns>
-        bool IsOk { get; }
+        bool IsAccepted { get; }
     }
 
     /// <summary>
@@ -300,141 +263,121 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteMovieFile;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteMoviefileBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteMovieFile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteMoviefileBulk;
 
-        internal void ExecuteOnDeleteMovieFile(MovieFileApi.DeleteMovieFileApiResponse apiResponse)
+        internal void ExecuteOnDeleteMoviefileBulk(MovieFileApi.DeleteMoviefileBulkApiResponse apiResponse)
         {
-            OnDeleteMovieFile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteMoviefileBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteMovieFile(Exception exception)
+        internal void ExecuteOnErrorDeleteMoviefileBulk(Exception exception)
         {
-            OnErrorDeleteMovieFile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteMoviefileBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnDeleteMovieFileBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnDeleteMoviefileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteMovieFileBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorDeleteMoviefileById;
 
-        internal void ExecuteOnDeleteMovieFileBulk(MovieFileApi.DeleteMovieFileBulkApiResponse apiResponse)
+        internal void ExecuteOnDeleteMoviefileById(MovieFileApi.DeleteMoviefileByIdApiResponse apiResponse)
         {
-            OnDeleteMovieFileBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnDeleteMoviefileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorDeleteMovieFileBulk(Exception exception)
+        internal void ExecuteOnErrorDeleteMoviefileById(Exception exception)
         {
-            OnErrorDeleteMovieFileBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorDeleteMoviefileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnGetMovieFileById;
+        public event EventHandler<ApiResponseEventArgs>? OnGetMoviefile;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorGetMovieFileById;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMoviefile;
 
-        internal void ExecuteOnGetMovieFileById(MovieFileApi.GetMovieFileByIdApiResponse apiResponse)
+        internal void ExecuteOnGetMoviefile(MovieFileApi.GetMoviefileApiResponse apiResponse)
         {
-            OnGetMovieFileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetMoviefile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorGetMovieFileById(Exception exception)
+        internal void ExecuteOnErrorGetMoviefile(Exception exception)
         {
-            OnErrorGetMovieFileById?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetMoviefile?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListMovieFile;
+        public event EventHandler<ApiResponseEventArgs>? OnGetMoviefileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListMovieFile;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetMoviefileById;
 
-        internal void ExecuteOnListMovieFile(MovieFileApi.ListMovieFileApiResponse apiResponse)
+        internal void ExecuteOnGetMoviefileById(MovieFileApi.GetMoviefileByIdApiResponse apiResponse)
         {
-            OnListMovieFile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetMoviefileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListMovieFile(Exception exception)
+        internal void ExecuteOnErrorGetMoviefileById(Exception exception)
         {
-            OnErrorListMovieFile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetMoviefileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnPutMovieFileBulk;
+        public event EventHandler<ApiResponseEventArgs>? OnPutMoviefileBulk;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorPutMovieFileBulk;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutMoviefileBulk;
 
-        internal void ExecuteOnPutMovieFileBulk(MovieFileApi.PutMovieFileBulkApiResponse apiResponse)
+        internal void ExecuteOnPutMoviefileBulk(MovieFileApi.PutMoviefileBulkApiResponse apiResponse)
         {
-            OnPutMovieFileBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutMoviefileBulk?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorPutMovieFileBulk(Exception exception)
+        internal void ExecuteOnErrorPutMoviefileBulk(Exception exception)
         {
-            OnErrorPutMovieFileBulk?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutMoviefileBulk?.Invoke(this, new ExceptionEventArgs(exception));
         }
 
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnPutMovieFileEditor;
+        public event EventHandler<ApiResponseEventArgs>? OnPutMoviefileById;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorPutMovieFileEditor;
+        public event EventHandler<ExceptionEventArgs>? OnErrorPutMoviefileById;
 
-        internal void ExecuteOnPutMovieFileEditor(MovieFileApi.PutMovieFileEditorApiResponse apiResponse)
+        internal void ExecuteOnPutMoviefileById(MovieFileApi.PutMoviefileByIdApiResponse apiResponse)
         {
-            OnPutMovieFileEditor?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnPutMoviefileById?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorPutMovieFileEditor(Exception exception)
+        internal void ExecuteOnErrorPutMoviefileById(Exception exception)
         {
-            OnErrorPutMovieFileEditor?.Invoke(this, new ExceptionEventArgs(exception));
-        }
-
-        /// <summary>
-        /// The event raised after the server response
-        /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnUpdateMovieFile;
-
-        /// <summary>
-        /// The event raised after an error querying the server
-        /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorUpdateMovieFile;
-
-        internal void ExecuteOnUpdateMovieFile(MovieFileApi.UpdateMovieFileApiResponse apiResponse)
-        {
-            OnUpdateMovieFile?.Invoke(this, new ApiResponseEventArgs(apiResponse));
-        }
-
-        internal void ExecuteOnErrorUpdateMovieFile(Exception exception)
-        {
-            OnErrorUpdateMovieFile?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorPutMoviefileById?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -479,212 +422,16 @@ namespace Whisparr3.Net.Api
             ApiKeyProvider = apiKeyProvider;
         }
 
-        partial void FormatDeleteMovieFile(ref int id);
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        private void AfterDeleteMovieFileDefaultImplementation(IDeleteMovieFileApiResponse apiResponseLocalVar, int id)
-        {
-            bool suppressDefaultLog = false;
-            AfterDeleteMovieFile(ref suppressDefaultLog, apiResponseLocalVar, id);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="id"></param>
-        partial void AfterDeleteMovieFile(ref bool suppressDefaultLog, IDeleteMovieFileApiResponse apiResponseLocalVar, int id);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        private void OnErrorDeleteMovieFileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteMovieFile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="id"></param>
-        partial void OnErrorDeleteMovieFile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMovieFileApiResponse?> DeleteMovieFileOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await DeleteMovieFileAsync(id, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMovieFileApiResponse> DeleteMovieFileAsync(int id, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                FormatDeleteMovieFile(ref id);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/moviefile/{id}"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/{id}");
-                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        DeleteMovieFileApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/moviefile/{id}", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterDeleteMovieFileDefaultImplementation(apiResponseLocalVar, id);
-
-                        Events.ExecuteOnDeleteMovieFile(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorDeleteMovieFileDefaultImplementation(e, "/api/v3/moviefile/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorDeleteMovieFile(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="DeleteMovieFileApiResponse"/>
-        /// </summary>
-        public partial class DeleteMovieFileApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteMovieFileApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MovieFileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="DeleteMovieFileApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteMovieFileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="DeleteMovieFileApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public DeleteMovieFileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatDeleteMovieFileBulk(Option<MovieFileListResource> movieFileListResource);
+        partial void FormatDeleteMoviefileBulk(MovieFileListResource movieFileListResource);
 
         /// <summary>
         /// Validates the request parameters
         /// </summary>
         /// <param name="movieFileListResource"></param>
         /// <returns></returns>
-        private void ValidateDeleteMovieFileBulk(Option<MovieFileListResource> movieFileListResource)
+        private void ValidateDeleteMoviefileBulk(MovieFileListResource movieFileListResource)
         {
-            if (movieFileListResource.IsSet && movieFileListResource.Value == null)
+            if (movieFileListResource == null)
                 throw new ArgumentNullException(nameof(movieFileListResource));
         }
 
@@ -693,10 +440,10 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieFileListResource"></param>
-        private void AfterDeleteMovieFileBulkDefaultImplementation(IDeleteMovieFileBulkApiResponse apiResponseLocalVar, Option<MovieFileListResource> movieFileListResource)
+        private void AfterDeleteMoviefileBulkDefaultImplementation(IDeleteMoviefileBulkApiResponse apiResponseLocalVar, MovieFileListResource movieFileListResource)
         {
             bool suppressDefaultLog = false;
-            AfterDeleteMovieFileBulk(ref suppressDefaultLog, apiResponseLocalVar, movieFileListResource);
+            AfterDeleteMoviefileBulk(ref suppressDefaultLog, apiResponseLocalVar, movieFileListResource);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -707,7 +454,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="movieFileListResource"></param>
-        partial void AfterDeleteMovieFileBulk(ref bool suppressDefaultLog, IDeleteMovieFileBulkApiResponse apiResponseLocalVar, Option<MovieFileListResource> movieFileListResource);
+        partial void AfterDeleteMoviefileBulk(ref bool suppressDefaultLog, IDeleteMoviefileBulkApiResponse apiResponseLocalVar, MovieFileListResource movieFileListResource);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -716,10 +463,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieFileListResource"></param>
-        private void OnErrorDeleteMovieFileBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieFileListResource> movieFileListResource)
+        private void OnErrorDeleteMoviefileBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MovieFileListResource movieFileListResource)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorDeleteMovieFileBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieFileListResource);
+            OnErrorDeleteMoviefileBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieFileListResource);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -732,19 +479,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="movieFileListResource"></param>
-        partial void OnErrorDeleteMovieFileBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieFileListResource> movieFileListResource);
+        partial void OnErrorDeleteMoviefileBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, MovieFileListResource movieFileListResource);
 
         /// <summary>
         ///  
         /// </summary>
-        /// <param name="movieFileListResource"> (optional)</param>
+        /// <param name="movieFileListResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMovieFileBulkApiResponse?> DeleteMovieFileBulkOrDefaultAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileBulkApiResponse"/>&gt;</returns>
+        public async Task<IDeleteMoviefileBulkApiResponse?> DeleteMoviefileBulkOrDefaultAsync(MovieFileListResource movieFileListResource, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await DeleteMovieFileBulkAsync(movieFileListResource, cancellationToken).ConfigureAwait(false);
+                return await DeleteMoviefileBulkAsync(movieFileListResource, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -756,18 +503,18 @@ namespace Whisparr3.Net.Api
         ///  
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieFileListResource"> (optional)</param>
+        /// <param name="movieFileListResource"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMovieFileBulkApiResponse"/>&gt;</returns>
-        public async Task<IDeleteMovieFileBulkApiResponse> DeleteMovieFileBulkAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileBulkApiResponse"/>&gt;</returns>
+        public async Task<IDeleteMoviefileBulkApiResponse> DeleteMoviefileBulkAsync(MovieFileListResource movieFileListResource, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateDeleteMovieFileBulk(movieFileListResource);
+                ValidateDeleteMoviefileBulk(movieFileListResource);
 
-                FormatDeleteMovieFileBulk(movieFileListResource);
+                FormatDeleteMoviefileBulk(movieFileListResource);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -778,12 +525,9 @@ namespace Whisparr3.Net.Api
                         ? "/api/v3/moviefile/bulk"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/bulk");
 
-                    if (movieFileListResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieFileListResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                    httpRequestMessageLocalVar.Content = (movieFileListResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
                         ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileListResource.Value, _jsonSerializerOptions));
-                    }
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileListResource, _jsonSerializerOptions));
 
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
@@ -807,7 +551,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        DeleteMovieFileBulkApiResponse apiResponseLocalVar;
+                        DeleteMoviefileBulkApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -818,9 +562,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterDeleteMovieFileBulkDefaultImplementation(apiResponseLocalVar, movieFileListResource);
+                        AfterDeleteMoviefileBulkDefaultImplementation(apiResponseLocalVar, movieFileListResource);
 
-                        Events.ExecuteOnDeleteMovieFileBulk(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteMoviefileBulk(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -832,16 +576,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorDeleteMovieFileBulkDefaultImplementation(e, "/api/v3/moviefile/bulk", uriBuilderLocalVar.Path, movieFileListResource);
-                Events.ExecuteOnErrorDeleteMovieFileBulk(e);
+                OnErrorDeleteMoviefileBulkDefaultImplementation(e, "/api/v3/moviefile/bulk", uriBuilderLocalVar.Path, movieFileListResource);
+                Events.ExecuteOnErrorDeleteMoviefileBulk(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="DeleteMovieFileBulkApiResponse"/>
+        /// The <see cref="DeleteMoviefileBulkApiResponse"/>
         /// </summary>
-        public partial class DeleteMovieFileBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteMovieFileBulkApiResponse
+        public partial class DeleteMoviefileBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteMoviefileBulkApiResponse
         {
             /// <summary>
             /// The logger
@@ -849,7 +593,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MovieFileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="DeleteMovieFileBulkApiResponse"/>
+            /// The <see cref="DeleteMoviefileBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -858,14 +602,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteMovieFileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteMoviefileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="DeleteMovieFileBulkApiResponse"/>
+            /// The <see cref="DeleteMoviefileBulkApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -874,7 +618,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public DeleteMovieFileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteMoviefileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -899,17 +643,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatGetMovieFileById(ref int id);
+        partial void FormatDeleteMoviefileById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        private void AfterGetMovieFileByIdDefaultImplementation(IGetMovieFileByIdApiResponse apiResponseLocalVar, int id)
+        private void AfterDeleteMoviefileByIdDefaultImplementation(IDeleteMoviefileByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterGetMovieFileById(ref suppressDefaultLog, apiResponseLocalVar, id);
+            AfterDeleteMoviefileById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -920,7 +664,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        partial void AfterGetMovieFileById(ref bool suppressDefaultLog, IGetMovieFileByIdApiResponse apiResponseLocalVar, int id);
+        partial void AfterDeleteMoviefileById(ref bool suppressDefaultLog, IDeleteMoviefileByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -929,10 +673,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        private void OnErrorGetMovieFileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
+        private void OnErrorDeleteMoviefileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorGetMovieFileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
+            OnErrorDeleteMoviefileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -945,19 +689,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        partial void OnErrorGetMovieFileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
+        partial void OnErrorDeleteMoviefileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFileByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetMovieFileByIdApiResponse?> GetMovieFileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteMoviefileByIdApiResponse?> DeleteMoviefileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await GetMovieFileByIdAsync(id, cancellationToken).ConfigureAwait(false);
+                return await DeleteMoviefileByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -971,14 +715,14 @@ namespace Whisparr3.Net.Api
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IGetMovieFileByIdApiResponse"/>&gt;</returns>
-        public async Task<IGetMovieFileByIdApiResponse> GetMovieFileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IDeleteMoviefileByIdApiResponse"/>&gt;</returns>
+        public async Task<IDeleteMoviefileByIdApiResponse> DeleteMoviefileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                FormatGetMovieFileById(ref id);
+                FormatDeleteMoviefileById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -997,24 +741,13 @@ namespace Whisparr3.Net.Api
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
 
-                    string[] acceptLocalVars = new string[] {
-                        "text/plain",
-                        "application/json",
-                        "text/json"
-                    };
-
-                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
-
-                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
-                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Delete;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        GetMovieFileByIdApiResponse apiResponseLocalVar;
+                        DeleteMoviefileByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1025,9 +758,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterGetMovieFileByIdDefaultImplementation(apiResponseLocalVar, id);
+                        AfterDeleteMoviefileByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnGetMovieFileById(apiResponseLocalVar);
+                        Events.ExecuteOnDeleteMoviefileById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1039,16 +772,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorGetMovieFileByIdDefaultImplementation(e, "/api/v3/moviefile/{id}", uriBuilderLocalVar.Path, id);
-                Events.ExecuteOnErrorGetMovieFileById(e);
+                OnErrorDeleteMoviefileByIdDefaultImplementation(e, "/api/v3/moviefile/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorDeleteMoviefileById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="GetMovieFileByIdApiResponse"/>
+        /// The <see cref="DeleteMoviefileByIdApiResponse"/>
         /// </summary>
-        public partial class GetMovieFileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMovieFileByIdApiResponse
+        public partial class DeleteMoviefileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IDeleteMoviefileByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -1056,7 +789,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MovieFileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="GetMovieFileByIdApiResponse"/>
+            /// The <see cref="DeleteMoviefileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1065,14 +798,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMovieFileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public DeleteMoviefileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="GetMovieFileByIdApiResponse"/>
+            /// The <see cref="DeleteMoviefileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1081,7 +814,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public GetMovieFileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public DeleteMoviefileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1095,50 +828,6 @@ namespace Whisparr3.Net.Api
             /// <returns></returns>
             public bool IsOk => 200 == (int)StatusCode;
 
-            /// <summary>
-            /// Deserializes the response if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public Whisparr3.Net.Model.MovieFileResource? Ok()
-            {
-                bool suppressDefault = false;
-                Whisparr3.Net.Model.MovieFileResource? result = null;
-                OnOk(ref suppressDefault, ref result);
-                if (!suppressDefault)
-                    result = DefaultOk();
-                return result;
-            }
-
-            private Whisparr3.Net.Model.MovieFileResource? DefaultOk()
-            {
-                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
-                return IsOk
-                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MovieFileResource>(RawContent, _jsonSerializerOptions)
-                    : null;
-            }
-
-            partial void OnOk(ref bool suppressDefault, ref Whisparr3.Net.Model.MovieFileResource? result);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok and the deserialized response is not null
-            /// </summary>
-            /// <param name="result"></param>
-            /// <returns></returns>
-            public bool TryOk([NotNullWhen(true)]out Whisparr3.Net.Model.MovieFileResource? result)
-            {
-                result = null;
-
-                try
-                {
-                    result = Ok();
-                } catch (Exception e)
-                {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
-                }
-
-                return result != null;
-            }
-
             private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
@@ -1150,7 +839,7 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatListMovieFile(Option<List<int>> movieId, Option<List<int>> movieFileIds, ref Option<bool> unmapped);
+        partial void FormatGetMoviefile(Option<List<int>> movieId, Option<List<int>> movieFileIds, ref Option<bool> unmapped);
 
         /// <summary>
         /// Validates the request parameters
@@ -1158,7 +847,7 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="movieFileIds"></param>
         /// <returns></returns>
-        private void ValidateListMovieFile(Option<List<int>> movieId, Option<List<int>> movieFileIds)
+        private void ValidateGetMoviefile(Option<List<int>> movieId, Option<List<int>> movieFileIds)
         {
             if (movieId.IsSet && movieId.Value == null)
                 throw new ArgumentNullException(nameof(movieId));
@@ -1174,10 +863,10 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="movieFileIds"></param>
         /// <param name="unmapped"></param>
-        private void AfterListMovieFileDefaultImplementation(IListMovieFileApiResponse apiResponseLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped)
+        private void AfterGetMoviefileDefaultImplementation(IGetMoviefileApiResponse apiResponseLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped)
         {
             bool suppressDefaultLog = false;
-            AfterListMovieFile(ref suppressDefaultLog, apiResponseLocalVar, movieId, movieFileIds, unmapped);
+            AfterGetMoviefile(ref suppressDefaultLog, apiResponseLocalVar, movieId, movieFileIds, unmapped);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1190,7 +879,7 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="movieFileIds"></param>
         /// <param name="unmapped"></param>
-        partial void AfterListMovieFile(ref bool suppressDefaultLog, IListMovieFileApiResponse apiResponseLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped);
+        partial void AfterGetMoviefile(ref bool suppressDefaultLog, IGetMoviefileApiResponse apiResponseLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1201,10 +890,10 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="movieFileIds"></param>
         /// <param name="unmapped"></param>
-        private void OnErrorListMovieFileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped)
+        private void OnErrorGetMoviefileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListMovieFile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, movieFileIds, unmapped);
+            OnErrorGetMoviefile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieId, movieFileIds, unmapped);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1219,7 +908,7 @@ namespace Whisparr3.Net.Api
         /// <param name="movieId"></param>
         /// <param name="movieFileIds"></param>
         /// <param name="unmapped"></param>
-        partial void OnErrorListMovieFile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped);
+        partial void OnErrorGetMoviefile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<int>> movieId, Option<List<int>> movieFileIds, Option<bool> unmapped);
 
         /// <summary>
         ///  
@@ -1228,12 +917,12 @@ namespace Whisparr3.Net.Api
         /// <param name="movieFileIds"> (optional)</param>
         /// <param name="unmapped"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieFileApiResponse"/>&gt;</returns>
-        public async Task<IListMovieFileApiResponse?> ListMovieFileOrDefaultAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileApiResponse"/>&gt;</returns>
+        public async Task<IGetMoviefileApiResponse?> GetMoviefileOrDefaultAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListMovieFileAsync(movieId, movieFileIds, unmapped, cancellationToken).ConfigureAwait(false);
+                return await GetMoviefileAsync(movieId, movieFileIds, unmapped, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1249,16 +938,16 @@ namespace Whisparr3.Net.Api
         /// <param name="movieFileIds"> (optional)</param>
         /// <param name="unmapped"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListMovieFileApiResponse"/>&gt;</returns>
-        public async Task<IListMovieFileApiResponse> ListMovieFileAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileApiResponse"/>&gt;</returns>
+        public async Task<IGetMoviefileApiResponse> GetMoviefileAsync(Option<List<int>> movieId = default, Option<List<int>> movieFileIds = default, Option<bool> unmapped = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateListMovieFile(movieId, movieFileIds);
+                ValidateGetMoviefile(movieId, movieFileIds);
 
-                FormatListMovieFile(movieId, movieFileIds, ref unmapped);
+                FormatGetMoviefile(movieId, movieFileIds, ref unmapped);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -1304,7 +993,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListMovieFileApiResponse apiResponseLocalVar;
+                        GetMoviefileApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -1315,9 +1004,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListMovieFileDefaultImplementation(apiResponseLocalVar, movieId, movieFileIds, unmapped);
+                        AfterGetMoviefileDefaultImplementation(apiResponseLocalVar, movieId, movieFileIds, unmapped);
 
-                        Events.ExecuteOnListMovieFile(apiResponseLocalVar);
+                        Events.ExecuteOnGetMoviefile(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -1329,16 +1018,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListMovieFileDefaultImplementation(e, "/api/v3/moviefile", uriBuilderLocalVar.Path, movieId, movieFileIds, unmapped);
-                Events.ExecuteOnErrorListMovieFile(e);
+                OnErrorGetMoviefileDefaultImplementation(e, "/api/v3/moviefile", uriBuilderLocalVar.Path, movieId, movieFileIds, unmapped);
+                Events.ExecuteOnErrorGetMoviefile(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListMovieFileApiResponse"/>
+        /// The <see cref="GetMoviefileApiResponse"/>
         /// </summary>
-        public partial class ListMovieFileApiResponse : Whisparr3.Net.Client.ApiResponse, IListMovieFileApiResponse
+        public partial class GetMoviefileApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMoviefileApiResponse
         {
             /// <summary>
             /// The logger
@@ -1346,7 +1035,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MovieFileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListMovieFileApiResponse"/>
+            /// The <see cref="GetMoviefileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1355,14 +1044,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListMovieFileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetMoviefileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListMovieFileApiResponse"/>
+            /// The <see cref="GetMoviefileApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -1371,7 +1060,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListMovieFileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetMoviefileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -1440,481 +1129,17 @@ namespace Whisparr3.Net.Api
             partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
         }
 
-        partial void FormatPutMovieFileBulk(Option<List<MovieFileResource>> movieFileResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="movieFileResource"></param>
-        /// <returns></returns>
-        private void ValidatePutMovieFileBulk(Option<List<MovieFileResource>> movieFileResource)
-        {
-            if (movieFileResource.IsSet && movieFileResource.Value == null)
-                throw new ArgumentNullException(nameof(movieFileResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="movieFileResource"></param>
-        private void AfterPutMovieFileBulkDefaultImplementation(IPutMovieFileBulkApiResponse apiResponseLocalVar, Option<List<MovieFileResource>> movieFileResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterPutMovieFileBulk(ref suppressDefaultLog, apiResponseLocalVar, movieFileResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="movieFileResource"></param>
-        partial void AfterPutMovieFileBulk(ref bool suppressDefaultLog, IPutMovieFileBulkApiResponse apiResponseLocalVar, Option<List<MovieFileResource>> movieFileResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="movieFileResource"></param>
-        private void OnErrorPutMovieFileBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieFileResource>> movieFileResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorPutMovieFileBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieFileResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="movieFileResource"></param>
-        partial void OnErrorPutMovieFileBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<List<MovieFileResource>> movieFileResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="movieFileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileBulkApiResponse"/>&gt;</returns>
-        public async Task<IPutMovieFileBulkApiResponse?> PutMovieFileBulkOrDefaultAsync(Option<List<MovieFileResource>> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await PutMovieFileBulkAsync(movieFileResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieFileResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileBulkApiResponse"/>&gt;</returns>
-        public async Task<IPutMovieFileBulkApiResponse> PutMovieFileBulkAsync(Option<List<MovieFileResource>> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidatePutMovieFileBulk(movieFileResource);
-
-                FormatPutMovieFileBulk(movieFileResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/moviefile/bulk"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/bulk");
-
-                    if (movieFileResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieFileResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        PutMovieFileBulkApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/moviefile/bulk", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterPutMovieFileBulkDefaultImplementation(apiResponseLocalVar, movieFileResource);
-
-                        Events.ExecuteOnPutMovieFileBulk(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorPutMovieFileBulkDefaultImplementation(e, "/api/v3/moviefile/bulk", uriBuilderLocalVar.Path, movieFileResource);
-                Events.ExecuteOnErrorPutMovieFileBulk(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="PutMovieFileBulkApiResponse"/>
-        /// </summary>
-        public partial class PutMovieFileBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPutMovieFileBulkApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MovieFileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="PutMovieFileBulkApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public PutMovieFileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="PutMovieFileBulkApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public PutMovieFileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatPutMovieFileEditor(Option<MovieFileListResource> movieFileListResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="movieFileListResource"></param>
-        /// <returns></returns>
-        private void ValidatePutMovieFileEditor(Option<MovieFileListResource> movieFileListResource)
-        {
-            if (movieFileListResource.IsSet && movieFileListResource.Value == null)
-                throw new ArgumentNullException(nameof(movieFileListResource));
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="movieFileListResource"></param>
-        private void AfterPutMovieFileEditorDefaultImplementation(IPutMovieFileEditorApiResponse apiResponseLocalVar, Option<MovieFileListResource> movieFileListResource)
-        {
-            bool suppressDefaultLog = false;
-            AfterPutMovieFileEditor(ref suppressDefaultLog, apiResponseLocalVar, movieFileListResource);
-            if (!suppressDefaultLog)
-                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
-        }
-
-        /// <summary>
-        /// Processes the server response
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponseLocalVar"></param>
-        /// <param name="movieFileListResource"></param>
-        partial void AfterPutMovieFileEditor(ref bool suppressDefaultLog, IPutMovieFileEditorApiResponse apiResponseLocalVar, Option<MovieFileListResource> movieFileListResource);
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
-        /// </summary>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="movieFileListResource"></param>
-        private void OnErrorPutMovieFileEditorDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieFileListResource> movieFileListResource)
-        {
-            bool suppressDefaultLogLocalVar = false;
-            OnErrorPutMovieFileEditor(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieFileListResource);
-            if (!suppressDefaultLogLocalVar)
-                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
-        /// </summary>
-        /// <param name="suppressDefaultLogLocalVar"></param>
-        /// <param name="exceptionLocalVar"></param>
-        /// <param name="pathFormatLocalVar"></param>
-        /// <param name="pathLocalVar"></param>
-        /// <param name="movieFileListResource"></param>
-        partial void OnErrorPutMovieFileEditor(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, Option<MovieFileListResource> movieFileListResource);
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <param name="movieFileListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutMovieFileEditorApiResponse?> PutMovieFileEditorOrDefaultAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            try
-            {
-                return await PutMovieFileEditorAsync(movieFileListResource, cancellationToken).ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///  
-        /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
-        /// <param name="movieFileListResource"> (optional)</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IPutMovieFileEditorApiResponse"/>&gt;</returns>
-        public async Task<IPutMovieFileEditorApiResponse> PutMovieFileEditorAsync(Option<MovieFileListResource> movieFileListResource = default, System.Threading.CancellationToken cancellationToken = default)
-        {
-            UriBuilder uriBuilderLocalVar = new UriBuilder();
-
-            try
-            {
-                ValidatePutMovieFileEditor(movieFileListResource);
-
-                FormatPutMovieFileEditor(movieFileListResource);
-
-                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
-                {
-                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
-                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
-                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
-                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
-                        ? "/api/v3/moviefile/editor"
-                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/editor");
-
-                    if (movieFileListResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieFileListResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileListResource.Value, _jsonSerializerOptions));
-                    }
-
-                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
-                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
-                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
-                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
-
-                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
-
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
-
-                    DateTime requestedAtLocalVar = DateTime.UtcNow;
-
-                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
-                    {
-                        PutMovieFileEditorApiResponse apiResponseLocalVar;
-
-                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
-                            default: {
-                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/moviefile/editor", requestedAtLocalVar, _jsonSerializerOptions);
-
-                                break;
-                            }
-                        }
-
-                        AfterPutMovieFileEditorDefaultImplementation(apiResponseLocalVar, movieFileListResource);
-
-                        Events.ExecuteOnPutMovieFileEditor(apiResponseLocalVar);
-
-                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
-                                tokenBaseLocalVar.BeginRateLimit();
-
-                        return apiResponseLocalVar;
-                    }
-                }
-            }
-            catch(Exception e)
-            {
-                OnErrorPutMovieFileEditorDefaultImplementation(e, "/api/v3/moviefile/editor", uriBuilderLocalVar.Path, movieFileListResource);
-                Events.ExecuteOnErrorPutMovieFileEditor(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="PutMovieFileEditorApiResponse"/>
-        /// </summary>
-        public partial class PutMovieFileEditorApiResponse : Whisparr3.Net.Client.ApiResponse, IPutMovieFileEditorApiResponse
-        {
-            /// <summary>
-            /// The logger
-            /// </summary>
-            public ILogger<MovieFileApi> Logger { get; }
-
-            /// <summary>
-            /// The <see cref="PutMovieFileEditorApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public PutMovieFileEditorApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            /// <summary>
-            /// The <see cref="PutMovieFileEditorApiResponse"/>
-            /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
-            public PutMovieFileEditorApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
-            {
-                Logger = logger;
-                OnCreated(httpRequestMessage, httpResponseMessage);
-            }
-
-            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
-
-            /// <summary>
-            /// Returns true if the response is 200 Ok
-            /// </summary>
-            /// <returns></returns>
-            public bool IsOk => 200 == (int)StatusCode;
-
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
-            {
-                bool suppressDefaultLog = false;
-                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
-                if (!suppressDefaultLog)
-                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
-            }
-
-            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
-        }
-
-        partial void FormatUpdateMovieFile(ref string id, Option<MovieFileResource> movieFileResource);
-
-        /// <summary>
-        /// Validates the request parameters
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="movieFileResource"></param>
-        /// <returns></returns>
-        private void ValidateUpdateMovieFile(string id, Option<MovieFileResource> movieFileResource)
-        {
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            if (movieFileResource.IsSet && movieFileResource.Value == null)
-                throw new ArgumentNullException(nameof(movieFileResource));
-        }
+        partial void FormatGetMoviefileById(ref int id);
 
         /// <summary>
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"></param>
-        private void AfterUpdateMovieFileDefaultImplementation(IUpdateMovieFileApiResponse apiResponseLocalVar, string id, Option<MovieFileResource> movieFileResource)
+        private void AfterGetMoviefileByIdDefaultImplementation(IGetMoviefileByIdApiResponse apiResponseLocalVar, int id)
         {
             bool suppressDefaultLog = false;
-            AfterUpdateMovieFile(ref suppressDefaultLog, apiResponseLocalVar, id, movieFileResource);
+            AfterGetMoviefileById(ref suppressDefaultLog, apiResponseLocalVar, id);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -1925,8 +1150,7 @@ namespace Whisparr3.Net.Api
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"></param>
-        partial void AfterUpdateMovieFile(ref bool suppressDefaultLog, IUpdateMovieFileApiResponse apiResponseLocalVar, string id, Option<MovieFileResource> movieFileResource);
+        partial void AfterGetMoviefileById(ref bool suppressDefaultLog, IGetMoviefileByIdApiResponse apiResponseLocalVar, int id);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -1935,11 +1159,10 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"></param>
-        private void OnErrorUpdateMovieFileDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<MovieFileResource> movieFileResource)
+        private void OnErrorGetMoviefileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorUpdateMovieFile(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, movieFileResource);
+            OnErrorGetMoviefileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -1952,21 +1175,19 @@ namespace Whisparr3.Net.Api
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"></param>
-        partial void OnErrorUpdateMovieFile(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, Option<MovieFileResource> movieFileResource);
+        partial void OnErrorGetMoviefileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, int id);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieFileApiResponse"/>&gt;</returns>
-        public async Task<IUpdateMovieFileApiResponse?> UpdateMovieFileOrDefaultAsync(string id, Option<MovieFileResource> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetMoviefileByIdApiResponse?> GetMoviefileByIdOrDefaultAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await UpdateMovieFileAsync(id, movieFileResource, cancellationToken).ConfigureAwait(false);
+                return await GetMoviefileByIdAsync(id, cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -1979,18 +1200,15 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="movieFileResource"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IUpdateMovieFileApiResponse"/>&gt;</returns>
-        public async Task<IUpdateMovieFileApiResponse> UpdateMovieFileAsync(string id, Option<MovieFileResource> movieFileResource = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetMoviefileByIdApiResponse"/>&gt;</returns>
+        public async Task<IGetMoviefileByIdApiResponse> GetMoviefileByIdAsync(int id, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
             try
             {
-                ValidateUpdateMovieFile(id, movieFileResource);
-
-                FormatUpdateMovieFile(ref id, movieFileResource);
+                FormatGetMoviefileById(ref id);
 
                 using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
                 {
@@ -2002,28 +1220,12 @@ namespace Whisparr3.Net.Api
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/{id}");
                     uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (movieFileResource.IsSet)
-                    {
-                      httpRequestMessageLocalVar.Content = (movieFileResource.Value as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
-                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
-                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileResource.Value, _jsonSerializerOptions));
-                    }
-
                     List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
                     ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
                     tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
                     apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
 
                     httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
-
-                    string[] contentTypes = new string[] {
-                        "application/json"
-                    };
-
-                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
-
-                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
-                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
 
                     string[] acceptLocalVars = new string[] {
                         "text/plain",
@@ -2036,13 +1238,13 @@ namespace Whisparr3.Net.Api
                     foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
                         httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
 
-                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+                    httpRequestMessageLocalVar.Method = HttpMethod.Get;
 
                     DateTime requestedAtLocalVar = DateTime.UtcNow;
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        UpdateMovieFileApiResponse apiResponseLocalVar;
+                        GetMoviefileByIdApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -2053,9 +1255,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterUpdateMovieFileDefaultImplementation(apiResponseLocalVar, id, movieFileResource);
+                        AfterGetMoviefileByIdDefaultImplementation(apiResponseLocalVar, id);
 
-                        Events.ExecuteOnUpdateMovieFile(apiResponseLocalVar);
+                        Events.ExecuteOnGetMoviefileById(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -2067,16 +1269,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorUpdateMovieFileDefaultImplementation(e, "/api/v3/moviefile/{id}", uriBuilderLocalVar.Path, id, movieFileResource);
-                Events.ExecuteOnErrorUpdateMovieFile(e);
+                OnErrorGetMoviefileByIdDefaultImplementation(e, "/api/v3/moviefile/{id}", uriBuilderLocalVar.Path, id);
+                Events.ExecuteOnErrorGetMoviefileById(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="UpdateMovieFileApiResponse"/>
+        /// The <see cref="GetMoviefileByIdApiResponse"/>
         /// </summary>
-        public partial class UpdateMovieFileApiResponse : Whisparr3.Net.Client.ApiResponse, IUpdateMovieFileApiResponse
+        public partial class GetMoviefileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IGetMoviefileByIdApiResponse
         {
             /// <summary>
             /// The logger
@@ -2084,7 +1286,7 @@ namespace Whisparr3.Net.Api
             public ILogger<MovieFileApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="UpdateMovieFileApiResponse"/>
+            /// The <see cref="GetMoviefileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2093,14 +1295,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateMovieFileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetMoviefileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="UpdateMovieFileApiResponse"/>
+            /// The <see cref="GetMoviefileByIdApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -2109,7 +1311,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public UpdateMovieFileApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetMoviefileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
@@ -2162,6 +1364,569 @@ namespace Whisparr3.Net.Api
                 } catch (Exception e)
                 {
                     OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)200);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutMoviefileBulk(List<MovieFileResource> movieFileResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="movieFileResource"></param>
+        /// <returns></returns>
+        private void ValidatePutMoviefileBulk(List<MovieFileResource> movieFileResource)
+        {
+            if (movieFileResource == null)
+                throw new ArgumentNullException(nameof(movieFileResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="movieFileResource"></param>
+        private void AfterPutMoviefileBulkDefaultImplementation(IPutMoviefileBulkApiResponse apiResponseLocalVar, List<MovieFileResource> movieFileResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutMoviefileBulk(ref suppressDefaultLog, apiResponseLocalVar, movieFileResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="movieFileResource"></param>
+        partial void AfterPutMoviefileBulk(ref bool suppressDefaultLog, IPutMoviefileBulkApiResponse apiResponseLocalVar, List<MovieFileResource> movieFileResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="movieFileResource"></param>
+        private void OnErrorPutMoviefileBulkDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<MovieFileResource> movieFileResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutMoviefileBulk(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, movieFileResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="movieFileResource"></param>
+        partial void OnErrorPutMoviefileBulk(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, List<MovieFileResource> movieFileResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileBulkApiResponse"/>&gt;</returns>
+        public async Task<IPutMoviefileBulkApiResponse?> PutMoviefileBulkOrDefaultAsync(List<MovieFileResource> movieFileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutMoviefileBulkAsync(movieFileResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileBulkApiResponse"/>&gt;</returns>
+        public async Task<IPutMoviefileBulkApiResponse> PutMoviefileBulkAsync(List<MovieFileResource> movieFileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutMoviefileBulk(movieFileResource);
+
+                FormatPutMoviefileBulk(movieFileResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/moviefile/bulk"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/bulk");
+
+                    httpRequestMessageLocalVar.Content = (movieFileResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutMoviefileBulkApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/moviefile/bulk", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutMoviefileBulkDefaultImplementation(apiResponseLocalVar, movieFileResource);
+
+                        Events.ExecuteOnPutMoviefileBulk(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutMoviefileBulkDefaultImplementation(e, "/api/v3/moviefile/bulk", uriBuilderLocalVar.Path, movieFileResource);
+                Events.ExecuteOnErrorPutMoviefileBulk(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutMoviefileBulkApiResponse"/>
+        /// </summary>
+        public partial class PutMoviefileBulkApiResponse : Whisparr3.Net.Client.ApiResponse, IPutMoviefileBulkApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<MovieFileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutMoviefileBulkApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutMoviefileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutMoviefileBulkApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutMoviefileBulkApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public List<MovieFileResource>? Accepted()
+            {
+                bool suppressDefault = false;
+                List<MovieFileResource>? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private List<MovieFileResource>? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<List<MovieFileResource>>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref List<MovieFileResource>? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out List<MovieFileResource>? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(RestLogEvents.ApiDeserializationFailed, exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+
+        partial void FormatPutMoviefileById(ref string id, MovieFileResource movieFileResource);
+
+        /// <summary>
+        /// Validates the request parameters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        /// <returns></returns>
+        private void ValidatePutMoviefileById(string id, MovieFileResource movieFileResource)
+        {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
+            if (movieFileResource == null)
+                throw new ArgumentNullException(nameof(movieFileResource));
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        private void AfterPutMoviefileByIdDefaultImplementation(IPutMoviefileByIdApiResponse apiResponseLocalVar, string id, MovieFileResource movieFileResource)
+        {
+            bool suppressDefaultLog = false;
+            AfterPutMoviefileById(ref suppressDefaultLog, apiResponseLocalVar, id, movieFileResource);
+            if (!suppressDefaultLog)
+                Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
+        }
+
+        /// <summary>
+        /// Processes the server response
+        /// </summary>
+        /// <param name="suppressDefaultLog"></param>
+        /// <param name="apiResponseLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        partial void AfterPutMoviefileById(ref bool suppressDefaultLog, IPutMoviefileByIdApiResponse apiResponseLocalVar, string id, MovieFileResource movieFileResource);
+
+        /// <summary>
+        /// Logs exceptions that occur while retrieving the server response
+        /// </summary>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        private void OnErrorPutMoviefileByIdDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, MovieFileResource movieFileResource)
+        {
+            bool suppressDefaultLogLocalVar = false;
+            OnErrorPutMoviefileById(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar, id, movieFileResource);
+            if (!suppressDefaultLogLocalVar)
+                Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
+        }
+
+        /// <summary>
+        /// A partial method that gives developers a way to provide customized exception handling
+        /// </summary>
+        /// <param name="suppressDefaultLogLocalVar"></param>
+        /// <param name="exceptionLocalVar"></param>
+        /// <param name="pathFormatLocalVar"></param>
+        /// <param name="pathLocalVar"></param>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        partial void OnErrorPutMoviefileById(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar, string id, MovieFileResource movieFileResource);
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutMoviefileByIdApiResponse?> PutMoviefileByIdOrDefaultAsync(string id, MovieFileResource movieFileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await PutMoviefileByIdAsync(id, movieFileResource, cancellationToken).ConfigureAwait(false);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="movieFileResource"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns><see cref="Task"/>&lt;<see cref="IPutMoviefileByIdApiResponse"/>&gt;</returns>
+        public async Task<IPutMoviefileByIdApiResponse> PutMoviefileByIdAsync(string id, MovieFileResource movieFileResource, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilderLocalVar = new UriBuilder();
+
+            try
+            {
+                ValidatePutMoviefileById(id, movieFileResource);
+
+                FormatPutMoviefileById(ref id, movieFileResource);
+
+                using (HttpRequestMessage httpRequestMessageLocalVar = new HttpRequestMessage())
+                {
+                    uriBuilderLocalVar.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilderLocalVar.Port = HttpClient.BaseAddress.Port;
+                    uriBuilderLocalVar.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilderLocalVar.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/api/v3/moviefile/{id}"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath.TrimEnd('/'), "/api/v3/moviefile/{id}");
+                    uriBuilderLocalVar.Path = uriBuilderLocalVar.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    httpRequestMessageLocalVar.Content = (movieFileResource as object) is Whisparr3.Net.Client.FileParameter fileParameterLocalVar
+                        ? httpRequestMessageLocalVar.Content = new StreamContent(fileParameterLocalVar.Content)
+                        : httpRequestMessageLocalVar.Content = new StringContent(JsonSerializer.Serialize(movieFileResource, _jsonSerializerOptions));
+
+                    List<TokenBase> tokenBaseLocalVars = new List<TokenBase>();
+                    ApiKeyToken apiKeyTokenLocalVar1 = (ApiKeyToken) await ApiKeyProvider.GetAsync("X-Api-Key", cancellationToken).ConfigureAwait(false);
+                    tokenBaseLocalVars.Add(apiKeyTokenLocalVar1);
+                    apiKeyTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar);
+
+                    httpRequestMessageLocalVar.RequestUri = uriBuilderLocalVar.Uri;
+
+                    string[] contentTypes = new string[] {
+                        "application/json"
+                    };
+
+                    string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
+
+                    if (contentTypeLocalVar != null && httpRequestMessageLocalVar.Content != null)
+                        httpRequestMessageLocalVar.Content.Headers.ContentType = new MediaTypeHeaderValue(contentTypeLocalVar);
+
+                    string[] acceptLocalVars = new string[] {
+                        "text/plain",
+                        "application/json",
+                        "text/json"
+                    };
+
+                    IEnumerable<MediaTypeWithQualityHeaderValue> acceptHeaderValuesLocalVar = ClientUtils.SelectHeaderAcceptArray(acceptLocalVars);
+
+                    foreach (var acceptLocalVar in acceptHeaderValuesLocalVar)
+                        httpRequestMessageLocalVar.Headers.Accept.Add(acceptLocalVar);
+
+                    httpRequestMessageLocalVar.Method = HttpMethod.Put;
+
+                    DateTime requestedAtLocalVar = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
+                    {
+                        PutMoviefileByIdApiResponse apiResponseLocalVar;
+
+                        switch ((int)httpResponseMessageLocalVar.StatusCode) {
+                            default: {
+                                string responseContentLocalVar = await httpResponseMessageLocalVar.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                                apiResponseLocalVar = new(Logger, httpRequestMessageLocalVar, httpResponseMessageLocalVar, responseContentLocalVar, "/api/v3/moviefile/{id}", requestedAtLocalVar, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+
+                        AfterPutMoviefileByIdDefaultImplementation(apiResponseLocalVar, id, movieFileResource);
+
+                        Events.ExecuteOnPutMoviefileById(apiResponseLocalVar);
+
+                        if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
+                            foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
+                                tokenBaseLocalVar.BeginRateLimit();
+
+                        return apiResponseLocalVar;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                OnErrorPutMoviefileByIdDefaultImplementation(e, "/api/v3/moviefile/{id}", uriBuilderLocalVar.Path, id, movieFileResource);
+                Events.ExecuteOnErrorPutMoviefileById(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PutMoviefileByIdApiResponse"/>
+        /// </summary>
+        public partial class PutMoviefileByIdApiResponse : Whisparr3.Net.Client.ApiResponse, IPutMoviefileByIdApiResponse
+        {
+            /// <summary>
+            /// The logger
+            /// </summary>
+            public ILogger<MovieFileApi> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="PutMoviefileByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="rawContent"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutMoviefileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="PutMoviefileByIdApiResponse"/>
+            /// </summary>
+            /// <param name="logger"></param>
+            /// <param name="httpRequestMessage"></param>
+            /// <param name="httpResponseMessage"></param>
+            /// <param name="contentStream"></param>
+            /// <param name="path"></param>
+            /// <param name="requestedAt"></param>
+            /// <param name="jsonSerializerOptions"></param>
+            public PutMoviefileByIdApiResponse(ILogger<MovieFileApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public bool IsAccepted => 202 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 202 Accepted
+            /// </summary>
+            /// <returns></returns>
+            public Whisparr3.Net.Model.MovieFileResource? Accepted()
+            {
+                bool suppressDefault = false;
+                Whisparr3.Net.Model.MovieFileResource? result = null;
+                OnAccepted(ref suppressDefault, ref result);
+                if (!suppressDefault)
+                    result = DefaultAccepted();
+                return result;
+            }
+
+            private Whisparr3.Net.Model.MovieFileResource? DefaultAccepted()
+            {
+                // NOTICE: Consider this AsModel template deprecated. Implement the appropriate partial method instead
+                return IsAccepted
+                    ? System.Text.Json.JsonSerializer.Deserialize<Whisparr3.Net.Model.MovieFileResource>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            partial void OnAccepted(ref bool suppressDefault, ref Whisparr3.Net.Model.MovieFileResource? result);
+
+            /// <summary>
+            /// Returns true if the response is 202 Accepted and the deserialized response is not null
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryAccepted([NotNullWhen(true)]out Whisparr3.Net.Model.MovieFileResource? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Accepted();
+                } catch (Exception e)
+                {
+                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode)202);
                 }
 
                 return result != null;

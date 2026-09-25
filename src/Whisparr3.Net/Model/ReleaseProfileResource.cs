@@ -39,9 +39,10 @@ namespace Whisparr3.Net.Model
         /// <param name="required">required</param>
         /// <param name="ignored">ignored</param>
         /// <param name="indexerId">indexerId</param>
+        /// <param name="indexerIds">indexerIds</param>
         /// <param name="tags">tags</param>
         [JsonConstructor]
-        public ReleaseProfileResource(Option<int?> id = default, Option<string?> name = default, Option<bool?> enabled = default, Option<Object?> required = default, Option<Object?> ignored = default, Option<int?> indexerId = default, Option<List<int>?> tags = default)
+        public ReleaseProfileResource(Option<int?> id = default, Option<string?> name = default, Option<bool?> enabled = default, Option<Object?> required = default, Option<Object?> ignored = default, Option<int?> indexerId = default, Option<List<int>?> indexerIds = default, Option<List<int>?> tags = default)
         {
             IdOption = id;
             NameOption = name;
@@ -49,6 +50,7 @@ namespace Whisparr3.Net.Model
             RequiredOption = required;
             IgnoredOption = ignored;
             IndexerIdOption = indexerId;
+            IndexerIdsOption = indexerIds;
             TagsOption = tags;
             OnCreated();
         }
@@ -134,6 +136,19 @@ namespace Whisparr3.Net.Model
         public int? IndexerId { get { return this.IndexerIdOption.Value; } set { this.IndexerIdOption = new(value); } }
 
         /// <summary>
+        /// Used to track the state of IndexerIds
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<int>?> IndexerIdsOption { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets IndexerIds
+        /// </summary>
+        [JsonPropertyName("indexerIds")]
+        public List<int>? IndexerIds { get { return this.IndexerIdsOption.Value; } set { this.IndexerIdsOption = new(value); } }
+
+        /// <summary>
         /// Used to track the state of Tags
         /// </summary>
         [JsonIgnore]
@@ -160,6 +175,7 @@ namespace Whisparr3.Net.Model
             sb.Append("  Required: ").Append(Required).Append("\n");
             sb.Append("  Ignored: ").Append(Ignored).Append("\n");
             sb.Append("  IndexerId: ").Append(IndexerId).Append("\n");
+            sb.Append("  IndexerIds: ").Append(IndexerIds).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -214,6 +230,7 @@ namespace Whisparr3.Net.Model
             Option<Object?> required = default;
             Option<Object?> ignored = default;
             Option<int?> indexerId = default;
+            Option<List<int>?> indexerIds = default;
             Option<List<int>?> tags = default;
 
             while (utf8JsonReader.Read())
@@ -249,6 +266,9 @@ namespace Whisparr3.Net.Model
                         case "indexerId":
                             indexerId = new Option<int?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (int?)null : utf8JsonReader.GetInt32());
                             break;
+                        case "indexerIds":
+                            indexerIds = new Option<List<int>?>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
+                            break;
                         case "tags":
                             tags = new Option<List<int>?>(JsonSerializer.Deserialize<List<int>>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -267,7 +287,7 @@ namespace Whisparr3.Net.Model
             if (indexerId.IsSet && indexerId.Value == null)
                 throw new ArgumentNullException(nameof(indexerId), "Property is not nullable for class ReleaseProfileResource.");
 
-            return new ReleaseProfileResource(id, name, enabled, required, ignored, indexerId, tags);
+            return new ReleaseProfileResource(id, name, enabled, required, ignored, indexerId, indexerIds, tags);
         }
 
         /// <summary>
@@ -325,6 +345,14 @@ namespace Whisparr3.Net.Model
             if (releaseProfileResource.IndexerIdOption.IsSet)
                 writer.WriteNumber("indexerId", releaseProfileResource.IndexerIdOption.Value!.Value);
 
+            if (releaseProfileResource.IndexerIdsOption.IsSet)
+                if (releaseProfileResource.IndexerIdsOption.Value != null)
+                {
+                    writer.WritePropertyName("indexerIds");
+                    JsonSerializer.Serialize(writer, releaseProfileResource.IndexerIds, jsonSerializerOptions);
+                }
+                else
+                    writer.WriteNull("indexerIds");
             if (releaseProfileResource.TagsOption.IsSet)
                 if (releaseProfileResource.TagsOption.Value != null)
                 {

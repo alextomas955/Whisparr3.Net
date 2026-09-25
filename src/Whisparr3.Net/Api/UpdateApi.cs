@@ -46,8 +46,8 @@ namespace Whisparr3.Net.Api
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListUpdateApiResponse"/>&gt;</returns>
-        Task<IListUpdateApiResponse> ListUpdateAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetUpdateApiResponse"/>&gt;</returns>
+        Task<IGetUpdateApiResponse> GetUpdateAsync(System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 
@@ -56,14 +56,14 @@ namespace Whisparr3.Net.Api
         /// 
         /// </remarks>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListUpdateApiResponse"/>?&gt;</returns>
-        Task<IListUpdateApiResponse?> ListUpdateOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetUpdateApiResponse"/>?&gt;</returns>
+        Task<IGetUpdateApiResponse?> GetUpdateOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default);
     }
 
     /// <summary>
-    /// The <see cref="IListUpdateApiResponse"/>
+    /// The <see cref="IGetUpdateApiResponse"/>
     /// </summary>
-    public interface IListUpdateApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<UpdateResource>?>
+    public interface IGetUpdateApiResponse : Whisparr3.Net.Client.IApiResponse, IOk<List<UpdateResource>?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok
@@ -80,21 +80,21 @@ namespace Whisparr3.Net.Api
         /// <summary>
         /// The event raised after the server response
         /// </summary>
-        public event EventHandler<ApiResponseEventArgs>? OnListUpdate;
+        public event EventHandler<ApiResponseEventArgs>? OnGetUpdate;
 
         /// <summary>
         /// The event raised after an error querying the server
         /// </summary>
-        public event EventHandler<ExceptionEventArgs>? OnErrorListUpdate;
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetUpdate;
 
-        internal void ExecuteOnListUpdate(UpdateApi.ListUpdateApiResponse apiResponse)
+        internal void ExecuteOnGetUpdate(UpdateApi.GetUpdateApiResponse apiResponse)
         {
-            OnListUpdate?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+            OnGetUpdate?.Invoke(this, new ApiResponseEventArgs(apiResponse));
         }
 
-        internal void ExecuteOnErrorListUpdate(Exception exception)
+        internal void ExecuteOnErrorGetUpdate(Exception exception)
         {
-            OnErrorListUpdate?.Invoke(this, new ExceptionEventArgs(exception));
+            OnErrorGetUpdate?.Invoke(this, new ExceptionEventArgs(exception));
         }
     }
 
@@ -143,10 +143,10 @@ namespace Whisparr3.Net.Api
         /// Processes the server response
         /// </summary>
         /// <param name="apiResponseLocalVar"></param>
-        private void AfterListUpdateDefaultImplementation(IListUpdateApiResponse apiResponseLocalVar)
+        private void AfterGetUpdateDefaultImplementation(IGetUpdateApiResponse apiResponseLocalVar)
         {
             bool suppressDefaultLog = false;
-            AfterListUpdate(ref suppressDefaultLog, apiResponseLocalVar);
+            AfterGetUpdate(ref suppressDefaultLog, apiResponseLocalVar);
             if (!suppressDefaultLog)
                 Logger.LogInformation(RestLogEvents.ApiRequestCompleted, "{0,-9} | {1} | {2}", (apiResponseLocalVar.DownloadedAt - apiResponseLocalVar.RequestedAt).TotalSeconds, apiResponseLocalVar.StatusCode, apiResponseLocalVar.Path);
         }
@@ -156,7 +156,7 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponseLocalVar"></param>
-        partial void AfterListUpdate(ref bool suppressDefaultLog, IListUpdateApiResponse apiResponseLocalVar);
+        partial void AfterGetUpdate(ref bool suppressDefaultLog, IGetUpdateApiResponse apiResponseLocalVar);
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -164,10 +164,10 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        private void OnErrorListUpdateDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
+        private void OnErrorGetUpdateDefaultImplementation(Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar)
         {
             bool suppressDefaultLogLocalVar = false;
-            OnErrorListUpdate(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
+            OnErrorGetUpdate(ref suppressDefaultLogLocalVar, exceptionLocalVar, pathFormatLocalVar, pathLocalVar);
             if (!suppressDefaultLogLocalVar)
                 Logger.LogError(RestLogEvents.ApiRequestFailed, exceptionLocalVar, "An error occurred while sending the request to the server.");
         }
@@ -179,18 +179,18 @@ namespace Whisparr3.Net.Api
         /// <param name="exceptionLocalVar"></param>
         /// <param name="pathFormatLocalVar"></param>
         /// <param name="pathLocalVar"></param>
-        partial void OnErrorListUpdate(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
+        partial void OnErrorGetUpdate(ref bool suppressDefaultLogLocalVar, Exception exceptionLocalVar, string pathFormatLocalVar, string pathLocalVar);
 
         /// <summary>
         ///  
         /// </summary>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListUpdateApiResponse"/>&gt;</returns>
-        public async Task<IListUpdateApiResponse?> ListUpdateOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetUpdateApiResponse"/>&gt;</returns>
+        public async Task<IGetUpdateApiResponse?> GetUpdateOrDefaultAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             try
             {
-                return await ListUpdateAsync(cancellationToken).ConfigureAwait(false);
+                return await GetUpdateAsync(cancellationToken).ConfigureAwait(false);
             }
             catch (Exception)
             {
@@ -203,8 +203,8 @@ namespace Whisparr3.Net.Api
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="IListUpdateApiResponse"/>&gt;</returns>
-        public async Task<IListUpdateApiResponse> ListUpdateAsync(System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/>&lt;<see cref="IGetUpdateApiResponse"/>&gt;</returns>
+        public async Task<IGetUpdateApiResponse> GetUpdateAsync(System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilderLocalVar = new UriBuilder();
 
@@ -243,7 +243,7 @@ namespace Whisparr3.Net.Api
 
                     using (HttpResponseMessage httpResponseMessageLocalVar = await HttpClient.SendAsync(httpRequestMessageLocalVar, cancellationToken).ConfigureAwait(false))
                     {
-                        ListUpdateApiResponse apiResponseLocalVar;
+                        GetUpdateApiResponse apiResponseLocalVar;
 
                         switch ((int)httpResponseMessageLocalVar.StatusCode) {
                             default: {
@@ -254,9 +254,9 @@ namespace Whisparr3.Net.Api
                             }
                         }
 
-                        AfterListUpdateDefaultImplementation(apiResponseLocalVar);
+                        AfterGetUpdateDefaultImplementation(apiResponseLocalVar);
 
-                        Events.ExecuteOnListUpdate(apiResponseLocalVar);
+                        Events.ExecuteOnGetUpdate(apiResponseLocalVar);
 
                         if (apiResponseLocalVar.StatusCode == (HttpStatusCode) 429)
                             foreach(TokenBase tokenBaseLocalVar in tokenBaseLocalVars)
@@ -268,16 +268,16 @@ namespace Whisparr3.Net.Api
             }
             catch(Exception e)
             {
-                OnErrorListUpdateDefaultImplementation(e, "/api/v3/update", uriBuilderLocalVar.Path);
-                Events.ExecuteOnErrorListUpdate(e);
+                OnErrorGetUpdateDefaultImplementation(e, "/api/v3/update", uriBuilderLocalVar.Path);
+                Events.ExecuteOnErrorGetUpdate(e);
                 throw;
             }
         }
 
         /// <summary>
-        /// The <see cref="ListUpdateApiResponse"/>
+        /// The <see cref="GetUpdateApiResponse"/>
         /// </summary>
-        public partial class ListUpdateApiResponse : Whisparr3.Net.Client.ApiResponse, IListUpdateApiResponse
+        public partial class GetUpdateApiResponse : Whisparr3.Net.Client.ApiResponse, IGetUpdateApiResponse
         {
             /// <summary>
             /// The logger
@@ -285,7 +285,7 @@ namespace Whisparr3.Net.Api
             public ILogger<UpdateApi> Logger { get; }
 
             /// <summary>
-            /// The <see cref="ListUpdateApiResponse"/>
+            /// The <see cref="GetUpdateApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -294,14 +294,14 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListUpdateApiResponse(ILogger<UpdateApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            public GetUpdateApiResponse(ILogger<UpdateApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
             }
 
             /// <summary>
-            /// The <see cref="ListUpdateApiResponse"/>
+            /// The <see cref="GetUpdateApiResponse"/>
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -310,7 +310,7 @@ namespace Whisparr3.Net.Api
             /// <param name="path"></param>
             /// <param name="requestedAt"></param>
             /// <param name="jsonSerializerOptions"></param>
-            public ListUpdateApiResponse(ILogger<UpdateApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            public GetUpdateApiResponse(ILogger<UpdateApi> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
                 OnCreated(httpRequestMessage, httpResponseMessage);
